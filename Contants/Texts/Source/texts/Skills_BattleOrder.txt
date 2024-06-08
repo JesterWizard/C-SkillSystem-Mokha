@@ -36,3 +36,8 @@ Battle +4 hit but damage is halved[X]
 ## MSG_SKILL_Adept
 Adept:[NL]
 Battle +1 hit if full HP[X]
+
+## MSG_SKILL_ChargePlus
+ChargePlus:[NL]
+Apply brave effect if unit has[NL]
+used their full movement this turn.[X]

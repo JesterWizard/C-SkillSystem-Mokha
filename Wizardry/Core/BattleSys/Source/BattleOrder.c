@@ -88,6 +88,18 @@ bool CheckCanTwiceAttackOrder(struct BattleUnit * actor, struct BattleUnit * tar
             }
         }
 #endif
+
+#if defined(SID_ChargePlus) && (SID_ChargePlus < MAX_SKILL_NUM)
+        if (SkillTester(real_actor, SID_ChargePlus))
+        {
+            if (MovGetter(real_actor) == gActionData.moveCount)
+            {
+                gBattleActorGlobalFlag.skill_activated_double_lion = true;
+                gBattleTemporaryFlag.order_dobule_lion = true;
+                return true;
+            }
+        }
+#endif
     }
     else if (&gBattleTarget == actor)
     {
@@ -109,6 +121,7 @@ bool CheckCanTwiceAttackOrder(struct BattleUnit * actor, struct BattleUnit * tar
         return false;
 
     return true;
+
 }
 
 STATIC_DECLAR bool CheckDesperationOrder(void)
@@ -275,6 +288,15 @@ void BattleUnwind(void)
         {
             if (gBattleTemporaryFlag.order_dobule_lion)
                 RegisterActorEfxSkill(GetBattleHitRound(old), SID_DoubleLion);
+        }
+#endif
+
+#if defined(SID_ChargePlus) && (SID_ChargePlus < MAX_SKILL_NUM)
+        /* Actor double attack */
+        if (actor_count > 1 && config[i] == ACT_ATTACK)
+        {
+            if (gBattleTemporaryFlag.order_dobule_lion)
+                RegisterActorEfxSkill(GetBattleHitRound(old), SID_ChargePlus);
         }
 #endif
 
