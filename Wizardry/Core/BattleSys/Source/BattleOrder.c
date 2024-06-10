@@ -104,10 +104,11 @@ bool CheckCanTwiceAttackOrder(struct BattleUnit * actor, struct BattleUnit * tar
         }
 #endif
 
-#if defined(SID_VengefulFighter) && (SID_VengefulFighter < MAX_SKILL_NUM)
-        if (SkillTester(real_target, SID_VengefulFighter))
+#if defined(SID_BoldFighter) && (SID_BoldFighter < MAX_SKILL_NUM)
+        if (SkillTester(real_actor, SID_BoldFighter))
         {
-            return true;
+            if(actor == &gBattleActor)
+                return true;
         }
 #endif
 

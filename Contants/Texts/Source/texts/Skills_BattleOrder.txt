@@ -37,10 +37,10 @@ Battle +4 hit but damage is halved[X]
 Adept:[NL]
 Battle +1 hit if full HP[X]
 
-## MSG_SKILL_VengefulFighter_NAME
-V-Fighter[X]
+## MSG_SKILL_BoldFighter_NAME
+B-Fighter[X]
 
-## MSG_SKILL_VengefulFighter
-VengefulFighter:[NL]
-When defending, this[NL]
+## MSG_SKILL_BoldFighter
+BoldFighter:[NL]
+When attacking, this[NL]
 unit always doubles.[X]

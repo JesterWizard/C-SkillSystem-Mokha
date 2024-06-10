@@ -5,8 +5,8 @@
 const struct SkillPreloadPConf gSkillPreloadPData[0x100] = {
     [CHARACTER_EIRIKA] = {
         .skills = {
-#if defined(SID_SpdBonus) && (SID_SpdBonus < MAX_SKILL_NUM)
-            [0] = SID_SpdBonus,
+#if defined(SID_BoldFighter) && (SID_BoldFighter < MAX_SKILL_NUM)
+            [0] = SID_BoldFighter,
 #endif
 
 #if defined(SID_PosReturn) && (SID_PosReturn < MAX_SKILL_NUM)
