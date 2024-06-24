@@ -48,3 +48,8 @@ to the original position.[X]
 Swap:[NL]
 Swap position after[NL]
 attacking enemy.[X]
+
+## MSG_SKILL_PowerStaff
+PowerStaff:[NL]
+Get an additional action[NL]
+after using a staff.[X]

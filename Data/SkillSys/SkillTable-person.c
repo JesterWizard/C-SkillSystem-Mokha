@@ -19,4 +19,8 @@ const u16 gConstSkillTable_Person[0x100][2] = {
     [CHARACTER_LYON] = {
         SID_AversaNight,
     },
+    
+    [CHARACTER_MOULDER] = {
+        SID_PowerStaff,
+    }
 };

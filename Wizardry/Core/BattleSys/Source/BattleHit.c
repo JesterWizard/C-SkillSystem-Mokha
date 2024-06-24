@@ -659,6 +659,11 @@ bool BattleGenerateHit(struct BattleUnit * attacker, struct BattleUnit * defende
         }
 #endif
 
+#if (defined(SID_PowerStaff) && (COMMON_SKILL_VALID(SID_PowerStaff)))
+            if (CheckBattleSkillActivte(&gBattleActor, &gBattleTarget, SID_PowerStaff, 100))
+                gBattleActorGlobalFlag.skill_activated_galeforce = true;
+#endif
+
         if (gBattleTarget.unit.curHP == 0)
         {
             gBattleActorGlobalFlag.enimy_defeated = true;

@@ -5,3 +5,6 @@ SID_Armsthrift
 
 // Weapon range
 SID_HighGround
+
+// Post-action
+SID_PowerStaff
