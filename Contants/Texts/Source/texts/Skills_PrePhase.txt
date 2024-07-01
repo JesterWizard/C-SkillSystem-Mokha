@@ -45,3 +45,11 @@ YuneWhis[X]
 Yune's Whispers: At start[NL]
 of turn, put ATK/SPD -6 to enemy[NL]
 who's RES is 3 less than unit's[X]
+
+## MSG_SKILL_PoisonHeal_NAME
+P-Heals[X]
+
+## MSG_SKILL_PoisonHeal
+Poison Heal:[NL]
+If unit is poisoned, restore 30% of[NL]
+max HP at the start of each turn.[X]

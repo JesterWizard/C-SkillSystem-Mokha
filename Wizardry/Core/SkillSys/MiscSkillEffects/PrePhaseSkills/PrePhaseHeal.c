@@ -28,6 +28,11 @@ STATIC_DECLAR int GetPrePhaseHealAmount(struct Unit * unit)
     }
 #endif
 
+#if defined(SID_PoisonHeal) && (COMMON_SKILL_VALID(SID_PoisonHeal))
+    if (SkillTester(unit, SID_PoisonHeal) && GetUnitStatusIndex(unit) == UNIT_STATUS_POISON)
+        ret += Div(GetUnitMaxHp(unit) * 3, 10);
+#endif
+
     return ret;
 }
 
