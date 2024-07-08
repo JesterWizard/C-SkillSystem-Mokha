@@ -2587,4 +2587,12 @@ const struct SkillInfo gSkillInfos[MAX_SKILL_NUM + 1] = {
          .icon = GFX_SkillIcon_Discipline,
     },
 #endif
+
+#if (defined(SID_TakerStrength) && COMMON_SKILL_VALID(SID_TakerStrength))
+    [SID_TakerStrength] = {
+        .name = MSG_SKILL_TakerStrength_NAME,
+        .desc = MSG_SKILL_TakerStrength,
+        .icon = GFX_SkillIcon_TakerStrength,
+    },
+#endif
 };

@@ -316,3 +316,11 @@ O-Strength[X]
 Oath Strength:[NL]
 +4 STR at the start of the turn[NL]
 if an adjacent ally is present.[X]
+
+## MSG_SKILL_TakerStrength_NAME
+Str-Taker[X]
+
+## MSG_SKILL_TakerStrength
+StrengthTaker:[NL]
++1 to STR after attacking and[NL]
+killing an enemy (MAX: +5).[X]

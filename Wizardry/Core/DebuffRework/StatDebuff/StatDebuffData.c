@@ -314,6 +314,42 @@ const struct DebuffInfo gStatDebuffInfos[UNIT_STAT_DEBUFF_MAX] = {
         .unit_status = { .mov = +4 },
     },
 
+    [UNIT_STAT_BUFF_TAKER_POW] = {
+        .positive_type = STATUS_DEBUFF_POSITIVE,
+        .tick_type = STATUS_DEBUFF_NO_TICK, /* tick it on manual */
+        .unit_status = { .pow = +1 },
+    },
+    [UNIT_STAT_BUFF_TAKER_MAG] = {
+        .positive_type = STATUS_DEBUFF_POSITIVE,
+        .tick_type = STATUS_DEBUFF_NO_TICK, /* tick it on manual */
+        .unit_status = { .mag = +1 },
+    },
+    [UNIT_STAT_BUFF_TAKER_SKL] = {
+        .positive_type = STATUS_DEBUFF_POSITIVE,
+        .tick_type = STATUS_DEBUFF_NO_TICK, /* tick it on manual */
+        .unit_status = { .skl = +1 },
+    },
+    [UNIT_STAT_BUFF_TAKER_SPD] = {
+        .positive_type = STATUS_DEBUFF_POSITIVE,
+        .tick_type = STATUS_DEBUFF_NO_TICK, /* tick it on manual */
+        .unit_status = { .spd = +1 },
+    },
+    [UNIT_STAT_BUFF_TAKER_LCK] = {
+        .positive_type = STATUS_DEBUFF_POSITIVE,
+        .tick_type = STATUS_DEBUFF_NO_TICK, /* tick it on manual */
+        .unit_status = { .lck = +1 },
+    },
+    [UNIT_STAT_BUFF_TAKER_DEF] = {
+        .positive_type = STATUS_DEBUFF_POSITIVE,
+        .tick_type = STATUS_DEBUFF_NO_TICK, /* tick it on manual */
+        .unit_status = { .def = +1 },
+    },
+    [UNIT_STAT_BUFF_TAKER_RES] = {
+        .positive_type = STATUS_DEBUFF_POSITIVE,
+        .tick_type = STATUS_DEBUFF_NO_TICK, /* tick it on manual */
+        .unit_status = { .res = +1 },
+    },
+
     [UNIT_STAT_DEBUFF_YuneWhispers] = {
         .positive_type = STATUS_DEBUFF_NEGATIVE,
         .tick_type = STATUS_DEBUFF_TICK_ON_ENEMY,

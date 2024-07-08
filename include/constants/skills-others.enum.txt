@@ -119,6 +119,15 @@ SID_OathSkill
 SID_OathSpeed
 SID_OathStrength
 
+// Taker skills
+SID_TakerStrength
+SID_TakerMagic
+SID_TakerSkill
+SID_TakerSpeed
+SID_TakerLuck
+SID_TakerDefense
+SID_TakerResistance
+
 // Engage skills
 SID_GentleFlower // This skill can only set to ally!
 SID_Admiration
