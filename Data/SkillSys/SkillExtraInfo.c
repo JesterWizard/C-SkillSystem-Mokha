@@ -12,6 +12,7 @@ const struct SkillExtraInfo gSkillExtraInfo[MAX_SKILL_NUM + 1] = {
     [SID_DefBonus] = {{ 2 }},
     [SID_ResBonus] = {{ 2 }},
     [SID_MovBonus] = {{ 2 }},
+    [SID_ConBonus] = {{ 5 }},
 
     [SID_DefiantStr] = {{ 7 }},
     [SID_DefiantMag] = {{ 7 }},

@@ -380,3 +380,7 @@ R-Strength[X]
 Rouse Strength:[NL]
 +4 STR at the start of the turn[NL]
 if an adjacent ally isn't present.[X]
+
+## MSG_SKILL_ConBonus
+CON+5:[NL]
+Boost unit CON by +5.[X]

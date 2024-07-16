@@ -68,6 +68,13 @@ const struct SkillInfo gSkillInfos[MAX_SKILL_NUM + 1] = {
     },
 #endif
 
+#if (defined(SID_ConBonus) && COMMON_SKILL_VALID(SID_ConBonus))
+    [SID_ConBonus] = {
+        .desc = MSG_SKILL_ConBonus,
+        .icon = GFX_SkillIcon_ConBonus,
+    },
+#endif
+
 #if (defined(SID_DefiantStr) && COMMON_SKILL_VALID(SID_DefiantStr))
     [SID_DefiantStr] = {
         .desc = MSG_SKILL_DefiantStr,

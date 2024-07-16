@@ -8,6 +8,7 @@ SID_LckBonus
 SID_DefBonus
 SID_ResBonus
 SID_MovBonus
+SID_ConBonus
 SID_Resolve
 
 SID_DefiantStr
