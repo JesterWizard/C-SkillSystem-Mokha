@@ -1242,6 +1242,7 @@ void PreBattleCalcAuraEffect(struct BattleUnit * attacker, struct BattleUnit * d
 {
     u32 i, _x, _y;
     struct Unit * unit;
+    struct Unit * targetUnit = GetUnit(attacker->unit.index);
 
     int allies_gRange3_In3x3 = 0;
     int allies_gRange2_In3x3 = 0;
@@ -1437,6 +1438,14 @@ void PreBattleCalcAuraEffect(struct BattleUnit * attacker, struct BattleUnit * d
             {
                 attacker->battleHitRate   += SKILL_EFF0(SID_Charisma);
                 attacker->battleAvoidRate += SKILL_EFF1(SID_Charisma);
+            }
+#endif
+
+#if (defined(SID_PastelVeil) && (COMMON_SKILL_VALID(SID_PastelVeil)))
+            if (SkillTester(unit, SID_PastelVeil))
+            {
+                if (targetUnit->statusIndex == UNIT_STATUS_POISON)
+                    targetUnit->statusIndex = UNIT_STATUS_NONE;
             }
 #endif
 

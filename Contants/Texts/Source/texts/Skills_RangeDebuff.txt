@@ -166,3 +166,11 @@ receive +2 magic damage.[X]
 Keep Up: +2 to MOV at the start of[NL]
 the turn, if within 3 tiles of an[NL]
 ally with Canto or Canto+.[X]
+
+## MSG_SKILL_PastelVeil_NAME
+P-Veil[X]
+
+## MSG_SKILL_PastelVeil
+Pastel Veil:[NL]
+Allies in a 3 tile radius[NL]
+are immune to poison.[X]

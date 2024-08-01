@@ -118,6 +118,7 @@ SID_Barricade
 SID_LunarBrace
 SID_Pursuer
 // SID_QuickLearner
+SID_PastelVeil
 
 // Devil skills
 SID_DevilsPact
