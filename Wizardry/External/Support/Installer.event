@@ -30,7 +30,7 @@ ALIGN 4
 SupportDistanceLink:
 WORD 3 // Currently set to a 3 tile range
 SupportRateKill:
-WORD 2 // Killing an enemy is worth 2x ended turns beside each other  
+WORD 40 // Killing an enemy is worth 2x ended turns beside each other  
 SupportRateCombat:
 WORD 1 
 SupportRateStaff:

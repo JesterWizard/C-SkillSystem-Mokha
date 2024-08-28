@@ -119,9 +119,9 @@
 
 /**
  * By: Vesly
- * Change support points being gained to after battle, if two or more supporting units are in range
+ * Change to support points so they're gained after battle, if two or more supporting units are in range
  */
-#define CONFIG_INSTALL_SUPPORT_POST_BATTLE
+//#define CONFIG_INSTALL_SUPPORT_POST_BATTLE
 
 /**
  * Levelup mode
