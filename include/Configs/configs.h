@@ -111,12 +111,17 @@
  */
 #define CONFIG_INSTALL_RES_TERRAIN_WINDOW
 
-
 /**
  * By Mokha:
  * Allow units to perform all their regular actions after trading
  */
 #define CONFIG_INSTALL_NO_WAIT_AFTER_TRADING
+
+/**
+ * By: Vesly
+ * Change support points being gained to after battle, if two or more supporting units are in range
+ */
+#define CONFIG_INSTALL_SUPPORT_POST_BATTLE
 
 /**
  * Levelup mode
