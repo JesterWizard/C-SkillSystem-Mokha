@@ -8,9 +8,63 @@
 #include "kernel-glyph.h"
 #include "constants/texts.h"
 
+extern u8 gStatScreenStatsGrowthsToggle;
+inline STATIC_DECLAR int DisplayGrowths(void)
+{
+    return gStatScreenStatsGrowthsToggle;
+}
+
+STATIC_DECLAR void DrawTrvOrTalk(int x, int y, int col, struct Unit *unit)
+{
+    ClearText(gStatScreen.text + STATSCREEN_TEXT_ITEM1);
+    int other_uid = GetTalkee(unit);
+    if (other_uid)
+    {
+        PutDrawText(gStatScreen.text + STATSCREEN_TEXT_ITEM1,
+                    gUiTmScratchA + TILEMAP_INDEX(x, y), col, 0, 0, "Talk");
+
+        other_uid = GetCharacterData(other_uid)->nameTextId;
+        Text_InsertDrawString(&gStatScreen.text[STATSCREEN_TEXT_ITEM1], 24, TEXT_COLOR_SYSTEM_BLUE, GetStringFromIndex(other_uid));
+    }
+    else
+    {
+        PutDrawText(gStatScreen.text + STATSCREEN_TEXT_RESCUENAME, gUiTmScratchA + TILEMAP_INDEX(x, y), col, 0, 0,
+                    GetStringFromIndex(0x4F9)); // Trv
+        Text_InsertDrawString(&gStatScreen.text[STATSCREEN_TEXT_RESCUENAME], 24, TEXT_COLOR_SYSTEM_BLUE, GetUnitRescueName(unit));
+    }
+}
+
+STATIC_DECLAR int GetGrowthBonusOffset(int diff)
+{
+    diff = ABS(diff);
+    int result = 1;
+    if (diff > 99)
+    {
+        result++;
+    }
+    return result;
+}
+
+STATIC_DECLAR void DrawGrowthWithDifference(int x, int y, int base, int modified)
+{
+    int diff = modified - base;
+    int offset = 0;
+    if (base > 99)
+    {
+        offset++;
+    }
+    if ((base < 100) && (diff < 100))
+    {
+        offset++;
+    }
+    PutNumberOrBlank(gUiTmScratchA + TILEMAP_INDEX(x + offset, y), TEXT_COLOR_SYSTEM_BLUE, base);
+    offset += GetGrowthBonusOffset(diff);
+    PutNumberBonus(diff, gUiTmScratchA + TILEMAP_INDEX(x + offset, y));
+}
+
 static void DrawPage1TextCommon(void)
 {
-    struct Unit * unit = gStatScreen.unit;
+    struct Unit *unit = gStatScreen.unit;
 
     PutDrawTextRework(
         &gStatScreen.text[STATSCREEN_TEXT_POWLABEL],
@@ -78,12 +132,19 @@ static void DrawPage1TextCommon(void)
     /* All growth related value done */
     ResetActiveFontPal();
 
+    int MovOrHpTextID = 0x4F6; // Mov
+    if (DisplayGrowths())
+    {
+        MovOrHpTextID = 0x4E9; // HP
+    }
+
     PutDrawText(
         &gStatScreen.text[STATSCREEN_TEXT_MOVLABEL],
         gUiTmScratchA + TILEMAP_INDEX(0x9, 0x1),
         TEXT_COLOR_SYSTEM_GOLD,
         0, 0,
-        GetStringFromIndex(0x4F6)); // Mov
+        GetStringFromIndex(MovOrHpTextID)); // "Move" or "HP"
+    // GetStringFromIndex(0x4F6)); // Mov
 
     PutDrawText(
         &gStatScreen.text[STATSCREEN_TEXT_CONLABEL],
@@ -112,70 +173,140 @@ static void DrawPage1TextCommon(void)
         TEXT_COLOR_SYSTEM_GOLD,
         0, 0,
         GetStringFromIndex(0x4FA)); // Cond
+
+    DrawTrvOrTalk(0x9, 0x9, TEXT_COLOR_SYSTEM_GOLD, unit);
+    // PutDrawText(
+    //     &gStatScreen.text[STATSCREEN_TEXT_RESCUENAME],
+    //     gUiTmScratchA + TILEMAP_INDEX(0x9, 0x9),
+    //     TEXT_COLOR_SYSTEM_GOLD,
+    //     0, 0,
+    //     GetStringFromIndex(0x4F9)); // Trv
 }
 
 static void DrawPage1ValueReal(void)
 {
-    struct Unit * unit = gStatScreen.unit;
+    struct Unit *unit = gStatScreen.unit;
 
-    DrawStatWithBarRework(0, 0x5, 0x1,
-                    gUiTmScratchA, gUiTmScratchC,
-                    unit->pow,
-                    GetUnitPower(unit),
-                    UNIT_POW_MAX(unit));
+    // DrawStatWithBarRework(0, 0x5, 0x1,
+    //                       gUiTmScratchA, gUiTmScratchC,
+    //                       unit->pow,
+    //                       GetUnitPower(unit),
+    //                       UNIT_POW_MAX(unit));
 
-    DrawStatWithBarRework(1, 0x5, 0x3,
-                    gUiTmScratchA, gUiTmScratchC,
-                    UNIT_MAG(unit),
-                    GetUnitMagic(unit),
-                    GetUnitMaxMagic(unit));
+    // DrawStatWithBarRework(1, 0x5, 0x3,
+    //                       gUiTmScratchA, gUiTmScratchC,
+    //                       UNIT_MAG(unit),
+    //                       GetUnitMagic(unit),
+    //                       GetUnitMaxMagic(unit));
 
-    DrawStatWithBarRework(2, 0x5, 0x5,
-                    gUiTmScratchA, gUiTmScratchC,
-                    unit->skl,
-                    GetUnitSkill(unit),
-                    UNIT_SKL_MAX(unit));
+    // DrawStatWithBarRework(2, 0x5, 0x5,
+    //                       gUiTmScratchA, gUiTmScratchC,
+    //                       unit->skl,
+    //                       GetUnitSkill(unit),
+    //                       UNIT_SKL_MAX(unit));
 
-    DrawStatWithBarRework(3, 0x5, 0x7,
-                    gUiTmScratchA, gUiTmScratchC,
-                    unit->spd,
-                    GetUnitSpeed(unit),
-                    UNIT_SPD_MAX(unit));
+    // DrawStatWithBarRework(3, 0x5, 0x7,
+    //                       gUiTmScratchA, gUiTmScratchC,
+    //                       unit->spd,
+    //                       GetUnitSpeed(unit),
+    //                       UNIT_SPD_MAX(unit));
 
-    DrawStatWithBarRework(4, 0x5, 0x9,
-                    gUiTmScratchA, gUiTmScratchC,
-                    unit->lck,
-                    GetUnitLuck(unit),
-                    UNIT_LCK_MAX(unit));
+    // DrawStatWithBarRework(4, 0x5, 0x9,
+    //                       gUiTmScratchA, gUiTmScratchC,
+    //                       unit->lck,
+    //                       GetUnitLuck(unit),
+    //                       UNIT_LCK_MAX(unit));
 
-    DrawStatWithBarRework(5, 0x5, 0xB,
-                    gUiTmScratchA, gUiTmScratchC,
-                    unit->def,
-                    GetUnitDefense(unit),
-                    UNIT_DEF_MAX(unit));
+    // DrawStatWithBarRework(5, 0x5, 0xB,
+    //                       gUiTmScratchA, gUiTmScratchC,
+    //                       unit->def,
+    //                       GetUnitDefense(unit),
+    //                       UNIT_DEF_MAX(unit));
 
-    DrawStatWithBarRework(6, 0x5, 0xD,
-                    gUiTmScratchA, gUiTmScratchC,
-                    unit->res,
-                    GetUnitResistance(unit),
-                    UNIT_RES_MAX(unit));
+    // DrawStatWithBarRework(6, 0x5, 0xD,
+    //                       gUiTmScratchA, gUiTmScratchC,
+    //                       unit->res,
+    //                       GetUnitResistance(unit),
+    //                       UNIT_RES_MAX(unit));
+
+    if (DisplayGrowths())
+    {
+        DrawGrowthWithDifference(0x4, 0x1, GetUnitBasePowGrowth(unit), GetUnitPowGrowth(unit));
+        DrawGrowthWithDifference(0x4, 0x3, GetUnitBaseMagGrowth(unit), GetUnitMagGrowth(unit));
+        DrawGrowthWithDifference(0x4, 0x5, GetUnitBaseSklGrowth(unit), GetUnitSklGrowth(unit));
+        DrawGrowthWithDifference(0x4, 0x7, GetUnitBaseSpdGrowth(unit), GetUnitSpdGrowth(unit));
+        DrawGrowthWithDifference(0x4, 0x9, GetUnitBaseLckGrowth(unit), GetUnitLckGrowth(unit));
+        DrawGrowthWithDifference(0x4, 0xB, GetUnitBaseDefGrowth(unit), GetUnitDefGrowth(unit));
+        DrawGrowthWithDifference(0x4, 0xD, GetUnitBaseResGrowth(unit), GetUnitResGrowth(unit));
+        DrawGrowthWithDifference(0xC, 0x1, GetUnitBaseHpGrowth(unit), GetUnitHpGrowth(unit));
+    }
+    else
+    {
+        DrawStatWithBarRework(0, 0x5, 0x1,
+                              gUiTmScratchA, gUiTmScratchC,
+                              unit->pow,
+                              GetUnitPower(unit),
+                              UNIT_POW_MAX(unit));
+
+        DrawStatWithBarRework(1, 0x5, 0x3,
+                              gUiTmScratchA, gUiTmScratchC,
+                              UNIT_MAG(unit),
+                              GetUnitMagic(unit),
+                              GetUnitMaxMagic(unit));
+
+        DrawStatWithBarRework(2, 0x5, 0x5,
+                              gUiTmScratchA, gUiTmScratchC,
+                              unit->skl,
+                              GetUnitSkill(unit),
+                              UNIT_SKL_MAX(unit));
+
+        DrawStatWithBarRework(3, 0x5, 0x7,
+                              gUiTmScratchA, gUiTmScratchC,
+                              unit->spd,
+                              GetUnitSpeed(unit),
+                              UNIT_SPD_MAX(unit));
+
+        DrawStatWithBarRework(4, 0x5, 0x9,
+                              gUiTmScratchA, gUiTmScratchC,
+                              unit->lck,
+                              GetUnitLuck(unit),
+                              UNIT_LCK_MAX(unit));
+
+        DrawStatWithBarRework(5, 0x5, 0xB,
+                              gUiTmScratchA, gUiTmScratchC,
+                              unit->def,
+                              GetUnitDefense(unit),
+                              UNIT_DEF_MAX(unit));
+
+        DrawStatWithBarRework(6, 0x5, 0xD,
+                              gUiTmScratchA, gUiTmScratchC,
+                              unit->res,
+                              GetUnitResistance(unit),
+                              UNIT_RES_MAX(unit));
+
+        DrawStatWithBarRework(7, 0xD, 0x1,
+                              gUiTmScratchA, gUiTmScratchC,
+                              UNIT_MOV(unit),
+                              MovGetter(unit),
+                              UNIT_MOV_MAX(unit));
+    }
 }
 
 static void DrawPage1ValueCommon(void)
 {
-    struct Unit * unit = gStatScreen.unit;
+    struct Unit *unit = gStatScreen.unit;
 
-    DrawStatWithBarRework(7, 0xD, 0x1,
-                    gUiTmScratchA, gUiTmScratchC,
-                    UNIT_MOV(unit),
-                    MovGetter(unit),
-                    UNIT_MOV_MAX(unit));
+    // DrawStatWithBarRework(7, 0xD, 0x1,
+    //                       gUiTmScratchA, gUiTmScratchC,
+    //                       UNIT_MOV(unit),
+    //                       MovGetter(unit),
+    //                       UNIT_MOV_MAX(unit));
 
     DrawStatWithBarRework(8, 0xD, 0x3,
-                    gUiTmScratchA, gUiTmScratchC,
-                    UNIT_CON_BASE(unit),
-                    ConGetter(unit),
-                    UNIT_CON_MAX(unit));
+                          gUiTmScratchA, gUiTmScratchC,
+                          UNIT_CON_BASE(unit),
+                          ConGetter(unit),
+                          UNIT_CON_MAX(unit));
 
     PutNumberOrBlank(
         gUiTmScratchA + TILEMAP_INDEX(0xD, 0x5),
@@ -225,7 +356,7 @@ static void DrawPage1BattleAmt(void)
         GetStringFromIndex(MSG_MSS_BattleAmt));
 
     PutNumber(gUiTmScratchA + TILEMAP_INDEX(0xC + CountDigits(amt), 0xD),
-        TEXT_COLOR_SYSTEM_BLUE, amt);
+              TEXT_COLOR_SYSTEM_BLUE, amt);
 
     DrawStatWithBarReworkExt(
         0x9, 0xD, 0xD,
@@ -236,7 +367,7 @@ static void DrawPage1BattleAmt(void)
 /* BWL */
 static void DrawPage1BWL(void)
 {
-    struct NewBwl * bwl = GetNewBwl(UNIT_CHAR_ID(gStatScreen.unit));
+    struct NewBwl *bwl = GetNewBwl(UNIT_CHAR_ID(gStatScreen.unit));
     if (!bwl)
         return;
 
@@ -271,50 +402,50 @@ static void DrawPage1BWL(void)
     {
         // Draw B label
         Text_InsertDrawString(&gStatScreen.text[STATSCREEN_TEXT_BWL],
-            0, TEXT_COLOR_SYSTEM_GOLD,
-            GetStringFromIndex(MSG_MSS_BWL_BATTLE));
+                              0, TEXT_COLOR_SYSTEM_GOLD,
+                              GetStringFromIndex(MSG_MSS_BWL_BATTLE));
 
         // Draw W label
         Text_InsertDrawString(&gStatScreen.text[STATSCREEN_TEXT_BWL],
-            32, TEXT_COLOR_SYSTEM_GOLD,
-            GetStringFromIndex(MSG_MSS_BWL_WIN));
+                              32, TEXT_COLOR_SYSTEM_GOLD,
+                              GetStringFromIndex(MSG_MSS_BWL_WIN));
 
         // Draw L label
         Text_InsertDrawString(&gStatScreen.text[STATSCREEN_TEXT_BWL],
-            64, TEXT_COLOR_SYSTEM_GOLD,
-            GetStringFromIndex(MSG_MSS_BWL_LOSE));
+                              64, TEXT_COLOR_SYSTEM_GOLD,
+                              GetStringFromIndex(MSG_MSS_BWL_LOSE));
     }
 
     // Display labels
     PutText(&gStatScreen.text[STATSCREEN_TEXT_BWL],
-        gUiTmScratchA + TILEMAP_INDEX(3, 0xF));
+            gUiTmScratchA + TILEMAP_INDEX(3, 0xF));
 
     // Display Battle Amt
     PutNumber(gUiTmScratchA + TILEMAP_INDEX(3 + CountDigits(bwl->battleAmt), 0xF),
-        TEXT_COLOR_SYSTEM_BLUE, bwl->battleAmt);
+              TEXT_COLOR_SYSTEM_BLUE, bwl->battleAmt);
 
     // Display Win Amt
     PutNumber(gUiTmScratchA + TILEMAP_INDEX(7 + CountDigits(bwl->winAmt), 0xF),
-        TEXT_COLOR_SYSTEM_BLUE, bwl->winAmt);
+              TEXT_COLOR_SYSTEM_BLUE, bwl->winAmt);
 
     // Display Loss Amt
     PutNumber(gUiTmScratchA + TILEMAP_INDEX(11 + CountDigits(bwl->lossAmt), 0xF),
-        TEXT_COLOR_SYSTEM_BLUE, bwl->lossAmt);
+              TEXT_COLOR_SYSTEM_BLUE, bwl->lossAmt);
 }
 
 static void DrawPage1Affin(void)
 {
-    struct Unit * unit = gStatScreen.unit;
+    struct Unit *unit = gStatScreen.unit;
     int affin = unit->pCharacterData->affinity;
 
-    const char * cn_affin[] = {
-        [UNIT_AFFIN_FIRE]    = "炎",
+    const char *cn_affin[] = {
+        [UNIT_AFFIN_FIRE] = "炎",
         [UNIT_AFFIN_THUNDER] = "雷",
-        [UNIT_AFFIN_WIND]    = "風",
-        [UNIT_AFFIN_ICE]     = "冰",
-        [UNIT_AFFIN_DARK]    = "闇",
-        [UNIT_AFFIN_LIGHT]   = "光",
-        [UNIT_AFFIN_ANIMA]   = "理",
+        [UNIT_AFFIN_WIND] = "風",
+        [UNIT_AFFIN_ICE] = "冰",
+        [UNIT_AFFIN_DARK] = "闇",
+        [UNIT_AFFIN_LIGHT] = "光",
+        [UNIT_AFFIN_ANIMA] = "理",
     };
 
     if (affin)

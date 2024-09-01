@@ -6,6 +6,7 @@
 #include "DrawPages/DrawPage4.lyn.event"
 #include "DrawPages/HelpBox.lyn.event"
 
+#include "OnIdle/OnIdle.lyn.event"
 #include "DrawUnitPage/DrawUnitPage.event"
 #include "DrawSkillPage/DrawSkillPage.event"
 #include "DrawMorePage/DrawMorePage.event"
