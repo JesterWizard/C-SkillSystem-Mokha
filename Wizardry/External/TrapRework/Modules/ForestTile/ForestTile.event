@@ -1,0 +1,19 @@
+#define ForestTileSpriteID 0x69
+#define ForestTileID 0x10
+
+SetTrapEventInit(ForestTileID,$378EC)
+SetTrapMapSprite(ForestTileID,ForestTileSpriteID)
+SetTrapMapSpritePalette(ForestTileID,EnemyTrapPaletteWord)
+
+PUSH
+	ORG (0x8AF880+0x8*ForestTileSpriteID)
+		SHORT 0x0002
+		SHORT 0x0000
+		POIN ForestGraphics
+POP
+
+ALIGN 4
+ForestGraphics:
+#incbin "ForestTile.dmp"
+
+

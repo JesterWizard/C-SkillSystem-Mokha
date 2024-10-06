@@ -38,6 +38,7 @@
 // SID_Shove
 // SID_Smite
 // SID_Entrepreneur
+// SID_GrassySurge
 
 ////////// PRE-BATTLE SKILLS 
 // SID_DefiantStr

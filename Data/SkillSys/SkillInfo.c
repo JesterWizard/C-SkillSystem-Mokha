@@ -4403,4 +4403,11 @@ const struct SkillInfo gSkillInfos[MAX_SKILL_NUM + 1] = {
         .icon = GFX_SkillIcon_WIP,
     },
 #endif
+
+#if (defined(SID_GrassySurge) && COMMON_SKILL_VALID(SID_GrassySurge))
+    [SID_GrassySurge] = {
+        .desc = MSG_SKILL_GrassySurge,
+        .icon = GFX_SkillIcon_WIP,
+    },
+#endif
 };
