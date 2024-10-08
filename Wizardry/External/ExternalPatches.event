@@ -43,7 +43,7 @@
 //     #include "BaseConversations/Installer.event"
 #endif
 
-//#ifdef CONFIG_INSTALL_TRAP_REWORK
+#ifdef CONFIG_INSTALL_TRAP_REWORK
      #include "TrapRework/Installer.event"
-//#endif
+#endif
 

@@ -12,6 +12,8 @@
 	#define MineTrapID 11
 	#define GorgonEggTrapID 12
 	#define LightRuneTrapID 13
+
+	#define ForestTileID 16
 	
 	#define LightRuneTrapPaletteWord 0xFFFFB080
 	#define PlayerTrapPaletteWord 0xFFFFC080
@@ -61,6 +63,9 @@
 	SetTrapMapSprite(MineTrapID,0)
 	SetTrapMapSprite(GorgonEggTrapID,0)
 	SetTrapMapSprite(LightRuneTrapID,0x66) //light rune map sprite
+
+	
+	SetTrapEventInit(ForestTileID, 0x67)
 	
 	//Macro for setting unique cases on trap map sprites
 	#define SetTrapMapSpriteFunc(trapID,ptr) "PUSH; ORG (TrapMapSpriteFuncTable+((trapID-1)*4)); POIN ptr; POP"
@@ -78,6 +83,8 @@
 	SetTrapEventInit(ExampleMapSpriteTrapID,TrapRework_GenericInitializer)
 	SetTrapMapSprite(ExampleMapSpriteTrapID,ExampleMapSpriteID) //thief map sprite
 	SetTrapMapSpritePalette(ExampleMapSpriteTrapID,NPCTrapPaletteWord)
+
+	SetTrapMapSpritePalette(ForestTileID, NPCTrapPaletteWord)
 	
 	
 	//Use this macro in your events to place a map sprite trap
