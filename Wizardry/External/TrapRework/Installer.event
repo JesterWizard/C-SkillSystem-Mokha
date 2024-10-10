@@ -125,7 +125,7 @@
 	
 
 	//Example usages
-	#include "Modules/DragonVeins/DragonVeins.event"
-	#include "Modules/HealTiles/HealTiles.event"
-	#include "Modules/TelliusTorches/TelliusTorches.event"
+	//#include "Modules/DragonVeins/DragonVeins.event"
+	//#include "Modules/HealTiles/HealTiles.event"
+	//#include "Modules/TelliusTorches/TelliusTorches.event"
 	#include "Modules/ForestTile/ForestTile.event"

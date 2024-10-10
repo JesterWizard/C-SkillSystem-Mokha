@@ -61,7 +61,7 @@ static void callback_anim(ProcPtr proc)
 
 static void callback_exec(ProcPtr proc)
 {
-    AddTrapRework(ForestTileID, gActiveUnit->xPos, gActiveUnit->yPos);
+    //AddTrapRework(ForestTileID, gActiveUnit->xPos, gActiveUnit->yPos);
 }
 
 bool Action_GrassySurge(ProcPtr parent)
