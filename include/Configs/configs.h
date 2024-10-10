@@ -149,6 +149,14 @@
  */
 //#define CONFIG_INSTALL_BASE_CONVERSATIONS
 
+/**
+ * By Sme
+ * Allows the defining and installation of custom traps
+ * through events (without ASM)
+ * https://feuniverse.us/t/sme-s-asm-and-miscellany/4445/86
+ */
+#define CONFIG_INSTALL_TRAP_REWORK
+
 
 /**
  * Levelup mode

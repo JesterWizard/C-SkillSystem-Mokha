@@ -543,4 +543,19 @@ const struct MenuItemDef gSkillMenuInfos[MAX_SKILL_NUM + 1] = {
         .onSwitchOut = NULL,
     },
 #endif
+
+#if (defined(SID_GrassySurge) && COMMON_SKILL_VALID(SID_GrassySurge))
+    [SID_GrassySurge] = {
+        .name = "　",
+        .nameMsgId = MSG_MenuSkill_GrassySurgeName,
+        .helpMsgId = MSG_SKILL_GrassySurge,
+        .color = TEXT_COLOR_SYSTEM_WHITE,
+        .isAvailable = GrassySurge_Usability,
+        .onDraw = NULL,
+        .onSelected = GrassySurge_OnSelected,
+        .onIdle = NULL,
+        .onSwitchIn = NULL,
+        .onSwitchOut = NULL,
+    },
+#endif
 };

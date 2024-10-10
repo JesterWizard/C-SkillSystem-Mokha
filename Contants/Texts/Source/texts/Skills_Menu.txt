@@ -393,3 +393,15 @@ shop attached to them.[X]
 
 ## MSG_MenuSkill_Entrepreneur_FRtext
 No allies are in range![X]
+
+## MSG_MenuSkill_GrassySurgeName
+ G-Surge[X]
+
+## MSG_MenuSkill_GrassySurge_FRtext
+Cannot place a forest[NL]
+tile here.[X]
+
+## MSG_SKILL_GrassySurge
+Grassy Surge:[NL]
+Place a forest tile[NL]
+underneath the unit.[X]
