@@ -72,7 +72,11 @@ void NewEfxDamageMojiEffectOBJ(struct Anim *anim, int hitted)
 	);
 }
 
+<<<<<<< HEAD
 STATIC_DECLAR void EfxMojiObjRework_HittedWithDamage(struct Anim *anim)
+=======
+NOINLINE STATIC_DECLAR void EfxMojiObjRework_HittedWithDamage(struct Anim *anim)
+>>>>>>> 7b86e9495edda39a0eb0d27d352d8795a134d7fc
 {
 	int round = anim->nextRoundId - 1;
 	struct BattleHit *hit = (prBattleHitArray + BattleHitArrayWidth * round);

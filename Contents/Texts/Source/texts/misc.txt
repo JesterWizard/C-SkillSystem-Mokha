@@ -1,0 +1,27 @@
+## MSG_SkillEffect_PosReturn_Confirm
+Return?        [NL][Yes][X]
+
+## MSG_SkillEffect_Lunge_Confirm
+Swap position?        [NL][Yes][X]
+
+## MSG_GaidenBMagic_UM_NAME
+ B.Mag[X]
+
+## MSG_GaidenBMagic_UM_DESC
+ Gaiden style black magic.[.][X]
+
+## MSG_GaidenWMagic_UM_NAME
+ W.Mag[X]
+
+## MSG_GaidenWMagic_UM_DESC
+ Gaiden style white magic.[.][X]
+
+## MSG_GaidenMagic_ItemMenuDisabled
+Can not use now![NL][X]
+
+## MSG_ItemSubOption_Reorganize_NAME
+Reorg[.][X]
+
+## MSG_ItemSubOption_Reorganize_DESC
+Reorganize this item to[.][LF]
+the top of inventory.[.][X]

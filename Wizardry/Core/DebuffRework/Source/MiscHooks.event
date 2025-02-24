@@ -7,17 +7,18 @@ PUSH
     SHORT 0x0E80 // lsr r0, r0, #0x1A
     PROTECT $54A1C $54B18
 
-    ORG $70BA0 // RegisterEkrDragonStatusType
-    BYTE $3F
-    ORG $70C5E
-    BYTE $3F
-    PROTECT $70B3C $70D04
+    // Already hooked in: Wizardry/External/BattleTransforming/Set_Background.s
+    // ORG $70BA0 // RegisterEkrDragonStatusType
+    // BYTE $3F
+    // ORG $70C5E
+    // BYTE $3F
+    // PROTECT 0x00070B3C 0x00070D04 // RegisterEkrDragonStatusType
 
     ORG $59A8C // UpdateBanimFrame
     BYTE $3F
     ORG $59AAA
     BYTE $3F
-    // PROTECT $599E8 $59D28
+    PROTECT 0x000599E8 0x00059D28 // UpdateBanimFrame
 
     ORG $31F58 // ArenaIsUnitAllowed
     BYTE 0x3F
@@ -163,7 +164,7 @@ PUSH
 
     ORG $27200 // RefreshUnitSprites
     BYTE 0x3F
-    // PROTECT $271A0 $2736C
+    PROTECT $271A0 $2736C
 
     // PutUnitSpriteIconsOam
 
@@ -219,9 +220,11 @@ PUSH
     BYTE 0x3F
     // PROTECT $399B0 $39A50
 
+/*
     ORG $3FA54 // AiTryDoStaff
     BYTE 0x3F
     PROTECT $3FA40 $3FAE8
+*/
 
     ORG $40214 // AiStaffRestore
     BYTE 0x3F

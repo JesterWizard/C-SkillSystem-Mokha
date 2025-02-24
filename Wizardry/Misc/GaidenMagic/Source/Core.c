@@ -5,12 +5,19 @@
 #include <bwl.h>
 #include <list-verify.h>
 #include <gaiden-magic.h>
+<<<<<<< HEAD
 #include <kernel-tutorial.h>
 #include <constants/texts.h>
 
 struct GaidenMagicList *const gGaidenMagicList = &sGaidenMagicListObj;
 
 static bool IsBMag(int iid)
+=======
+
+struct GaidenMagicList *const gGaidenMagicList = &sGaidenMagicListObj;
+
+NOINLINE static bool IsBMag(int iid)
+>>>>>>> 7b86e9495edda39a0eb0d27d352d8795a134d7fc
 {
 	u32 attr = GetItemAttributes(iid);
 
@@ -24,7 +31,11 @@ static bool IsBMag(int iid)
 	return true;
 }
 
+<<<<<<< HEAD
 static bool IsWMag(int iid)
+=======
+NOINLINE static bool IsWMag(int iid)
+>>>>>>> 7b86e9495edda39a0eb0d27d352d8795a134d7fc
 {
 	if (GetItemType(iid) != ITYPE_STAFF)
 		return false;
@@ -254,9 +265,15 @@ void PutGaidenMagicCostNumber(u16 *tm, int color, int number)
 		return;
 
 	while (number != 0) {
+<<<<<<< HEAD
 		PutSpecialChar(tm, color, k_umod(number, 10) + TEXT_SPECIAL_BIGNUM_0);
 
 		number = k_udiv(number, 10);
+=======
+		PutSpecialChar(tm, color, simple_mod(number, 10) + TEXT_SPECIAL_BIGNUM_0);
+
+		number = simple_div(number, 10);
+>>>>>>> 7b86e9495edda39a0eb0d27d352d8795a134d7fc
 		tm--;
 	}
 

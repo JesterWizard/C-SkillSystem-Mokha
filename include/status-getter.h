@@ -37,9 +37,13 @@ extern const u8 pr_SetHPClassLimitJudgement[];
 	pr_SetHPClassLimitJudgement[2] == 0x97 && \
 	pr_SetHPClassLimitJudgement[3] == 0x46 \
 )
+<<<<<<< HEAD
 // #define KUNIT_MHP_MAX(unit) (CheckUnlockAllyMhpLimit() ? 120 : UNIT_MHP_MAX(unit))
 
 #define KUNIT_MHP_MAX(unit) 255
+=======
+#define KUNIT_MHP_MAX(unit) (CheckUnlockAllyMhpLimit() ? 120 : UNIT_MHP_MAX(unit))
+>>>>>>> 7b86e9495edda39a0eb0d27d352d8795a134d7fc
 
 struct UnitMaxStatusConfig {
 	s8 hp, mag, pow, skl, spd, def, res, lck, con, mov;
@@ -57,4 +61,8 @@ int GetUnitMaxStatusLck(struct Unit *unit);
 int GetUnitMaxStatusDef(struct Unit *unit);
 int GetUnitMaxStatusRes(struct Unit *unit);
 int GetUnitMaxStatusMov(struct Unit *unit);
+<<<<<<< HEAD
 int GetUnitMaxStatusCon(struct Unit *unit);
+=======
+int GetUnitMaxStatusCon(struct Unit *unit);
+>>>>>>> 7b86e9495edda39a0eb0d27d352d8795a134d7fc

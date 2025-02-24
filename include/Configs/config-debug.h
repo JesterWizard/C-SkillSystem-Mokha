@@ -11,9 +11,12 @@
 	/* Auto load 254 skills on loading unit */
 	#define CONFIG_DEBUG_UNIT_LOAD_SKILL
 
+<<<<<<< HEAD
 	/* Test forcefully display popup rework */
 	// #define CONFIG_DEBUG_POPR
 
+=======
+>>>>>>> 7b86e9495edda39a0eb0d27d352d8795a134d7fc
 	#define CONFIG_DEBUG_CHAPTER
 
 #endif /* CONFIG_USE_DEBUG */

@@ -354,6 +354,7 @@ SID_PushSpectrum
 SID_PushMovement
 SID_Fury
 SID_FuryPlus
+<<<<<<< HEAD
 // SID_FortressDef
 // SID_FortressRes
 // SID_BlowDarting
@@ -404,6 +405,12 @@ SID_ArenaTrap
 // SID_LuckySeven
 SID_Unaware
 // SID_StaffGuard
+=======
+SID_FortressDef
+SID_FortressRes
+SID_LifeAndDeath
+SID_Leader
+>>>>>>> 7b86e9495edda39a0eb0d27d352d8795a134d7fc
 
 //////// WEAPON TRIANGLE ADVANTAGE SKILLS
 // SID_SwordBreaker
@@ -498,7 +505,98 @@ SID_Resourceful
 // SID_Slayer
 // SID_Skybreaker
 
+<<<<<<< HEAD
 //////// BATTLE ORDER SKILLS
+=======
+// Battle status skills
+SID_Nihil
+SID_CritSword
+SID_CritAxe
+SID_CritLance
+SID_CritBow
+SID_FaireSword
+SID_FaireLance
+SID_FaireAxe
+SID_FaireBow
+SID_FaireBMag
+SID_FaireAnima
+SID_FaireLight
+SID_FaireDark
+SID_Avoid
+SID_RuinedBlade
+SID_HeavyBlade
+SID_FlashingBlade
+SID_HeavyBladePlus
+SID_FlashingBladePlus
+SID_LunaAttack
+SID_SorceryBlade
+SID_Fortune
+SID_Frenzy
+SID_WonderGuard
+SID_Merciless
+SID_CriticalPierce
+SID_KillingMachine
+SID_HeavyStrikes
+SID_Technician
+SID_CatchingUp
+SID_BattleVeteran
+SID_ElbowRoom
+SID_ChaosStyle
+SID_ArcaneBlade
+SID_QuickDraw
+SID_KeenFighter
+SID_Hawkeye
+SID_MagicEye
+SID_DragonSkin
+SID_WaterBoost
+SID_EarthBoost
+SID_WindBoost
+SID_FireBoost
+SID_StoneBody
+SID_CriticalForce
+SID_Pursuit
+SID_Patience
+SID_StrongRiposte
+SID_Perfectionist
+SID_WindDisciple
+SID_Pragmatic
+SID_Chivalry
+SID_Charge
+SID_ChargePlus
+SID_FieryBlood
+SID_Wrath
+SID_OutdoorFighter
+SID_KnightAspirant
+SID_Outrider
+SID_EvenRhythm
+SID_OddRhythm
+SID_Corrosion
+SID_NoGuard
+SID_Puissance
+SID_Prescience
+SID_SilentPride
+SID_RightfulKing
+SID_RightfulGod
+SID_RightfulArch
+SID_Hero
+SID_Guts
+SID_StrongCon
+SID_SuperLuck
+SID_Spurn
+SID_Counter
+SID_CounterMagic
+SID_BonusDoubler
+SID_BloodSurge
+
+// Weapon triangle
+SID_SwordBreaker
+SID_AxeBreaker
+SID_LanceBreaker
+SID_BowBreaker
+SID_BMagBreaker
+
+// Battle order
+>>>>>>> 7b86e9495edda39a0eb0d27d352d8795a134d7fc
 SID_Vantage
 SID_Desperation
 // SID_QuickRiposte
@@ -583,8 +681,30 @@ SID_GoodyBasket
 // SID_DarkBargain
 SID_Rampage
 
+<<<<<<< HEAD
 //////// LEVEL UP SKILLS
 // SID_Blossom
+=======
+// debuff skills
+SID_ChillPow
+SID_ChillMag
+SID_ChillSkl
+SID_ChillSpd
+SID_ChillLck
+SID_ChillDef
+SID_ChillRes
+SID_PowHone
+SID_MagHone
+SID_SklHone
+SID_SpdHone
+SID_LckHone
+SID_DefHone
+SID_ResHone
+SID_MovHone
+
+// Lvup skills
+SID_Blossom
+>>>>>>> 7b86e9495edda39a0eb0d27d352d8795a134d7fc
 SID_Paragon
 SID_VoidCurse
 SID_Aptitude

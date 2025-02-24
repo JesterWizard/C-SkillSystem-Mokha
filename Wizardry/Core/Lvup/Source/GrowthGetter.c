@@ -6,14 +6,15 @@
 
 STATIC_DECLAR int GetUnitCommonGrowthBonus(int status, struct Unit *unit)
 {
-    int new = status;
+	int new = status;
 
 #if defined(SID_Blossom) && (COMMON_SKILL_VALID(SID_Blossom))
-    if (SkillTester(unit, SID_Blossom))
-        new = new + status * 2;
+	if (SkillTester(unit, SID_Blossom))
+		new = new + status * 2;
 #endif
 
 #if defined(SID_Aptitude) && (COMMON_SKILL_VALID(SID_Aptitude))
+<<<<<<< HEAD
     if (SkillTester(unit, SID_Aptitude))
         new = new + SKILL_EFF0(SID_Aptitude);
 #endif
@@ -22,11 +23,16 @@ STATIC_DECLAR int GetUnitCommonGrowthBonus(int status, struct Unit *unit)
 #if defined(SID_NecroCopy) && (COMMON_SKILL_VALID(SID_NecroCopy))
     if (SkillTester(unit, SID_NecroCopy))
         new = 0;
+=======
+	if (SkillTester(unit, SID_Aptitude))
+		new = new + Div(status * SKILL_EFF0(SID_Aptitude), 100);
+>>>>>>> 7b86e9495edda39a0eb0d27d352d8795a134d7fc
 #endif
 
-    return new;
+	return new;
 }
 
+<<<<<<< HEAD
 int GetUnitHpGrowthBonus(int status, struct Unit *unit)
 {
 	status = GetUnitCommonGrowthBonus(status, unit);
@@ -129,6 +135,70 @@ int GetUnitResGrowthBonus(int status, struct Unit *unit)
 #endif
 
     return status;
+=======
+int GetUnitHpGrowth(struct Unit *unit)
+{
+	int status = unit->pCharacterData->growthHP;
+
+	status = GetUnitCommonGrowthBonus(status, unit);
+	return status;
+}
+
+int GetUnitPowGrowth(struct Unit *unit)
+{
+	int status = unit->pCharacterData->growthPow;
+
+	status = GetUnitCommonGrowthBonus(status, unit);
+	return status;
+}
+
+int GetUnitMagGrowth(struct Unit *unit)
+{
+	int status = GetUnitBasicMagGrowth(unit);
+
+	status = GetUnitCommonGrowthBonus(status, unit);
+	return status;
+}
+
+int GetUnitSklGrowth(struct Unit *unit)
+{
+	int status = unit->pCharacterData->growthSkl;
+
+	status = GetUnitCommonGrowthBonus(status, unit);
+	return status;
+}
+
+int GetUnitSpdGrowth(struct Unit *unit)
+{
+	int status = unit->pCharacterData->growthSpd;
+
+	status = GetUnitCommonGrowthBonus(status, unit);
+	return status;
+}
+
+int GetUnitLckGrowth(struct Unit *unit)
+{
+	int status = unit->pCharacterData->growthLck;
+
+	status = GetUnitCommonGrowthBonus(status, unit);
+	return status;
+}
+
+int GetUnitDefGrowth(struct Unit *unit)
+{
+	int status = unit->pCharacterData->growthDef;
+
+	status = GetUnitCommonGrowthBonus(status, unit);
+	return status;
+}
+
+int GetUnitResGrowth(struct Unit *unit)
+{
+	int status = unit->pCharacterData->growthRes;
+
+	status = GetUnitCommonGrowthBonus(status, unit);
+	return status;
+>>>>>>> 7b86e9495edda39a0eb0d27d352d8795a134d7fc
 }
 
 /* Person based growth */

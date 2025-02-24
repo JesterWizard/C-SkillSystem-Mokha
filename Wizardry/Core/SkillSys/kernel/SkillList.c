@@ -60,6 +60,7 @@ void GenerateSkillListExt(struct Unit *unit, struct SkillList *list)
 
 	/* item */
 	for (i = 0; i < UNIT_ITEM_COUNT; i++) {
+<<<<<<< HEAD
 
 		/* If we're looking at a weapon, check it's equipped to apply its skill icon */
 		if (GetItemMight(unit->items[i]) > 0)
@@ -75,6 +76,16 @@ void GenerateSkillListExt(struct Unit *unit, struct SkillList *list)
 			list->sid[list->amt++] = sid;
 		}
 
+=======
+		u8 iid = ITEM_INDEX(unit->items[i]);
+
+		sid = gpConstSkillTable_Item[iid * 2];
+		if (COMMON_SKILL_VALID(sid) && !tmp_list[sid]) {
+			tmp_list[sid] = true;
+			list->sid[list->amt++] = sid;
+		}
+
+>>>>>>> 7b86e9495edda39a0eb0d27d352d8795a134d7fc
 		sid = gpConstSkillTable_Item[iid * 2 + 1];
 		if (COMMON_SKILL_VALID(sid) && !tmp_list[sid]) {
 			tmp_list[sid] = true;
@@ -169,6 +180,83 @@ void DisableUnitSkilLList(struct Unit *unit)
 void ResetSkillLists(void)
 {
 	memset(&sSkillList, 0, sizeof(sSkillList));
+<<<<<<< HEAD
+=======
+}
+
+STATIC_DECLAR void SetupBattleSkillFastList(void)
+{
+	int i;
+	struct SkillList *list;
+	u32 *fast_list;
+
+	Assert(MAX_SKILL_NUM <= (sizeof(sSkillFastList) * 8 / 2));
+
+	CpuFastFill(0, sSkillFastList, sizeof(sSkillFastList));
+
+	/**
+	 * Actor
+	 */
+	list = GetUnitSkillList(&gBattleActor.unit);
+	fast_list = SkillFastListActor;
+
+	for (i = 0; i < list->amt; i++)
+		_BIT_SET(fast_list, list->sid[i]);
+
+	/**
+	 * Target
+	 */
+	list = GetUnitSkillList(&gBattleTarget.unit);
+	fast_list = SkillFastListTarget;
+
+	for (i = 0; i < list->amt; i++)
+		_BIT_SET(fast_list, list->sid[i]);
+}
+
+#if 0
+bool _BattleFastSkillTester(struct BattleUnit *bu, const u16 sid)
+{
+	u32 *fast_list;
+
+	if (bu == &gBattleActor)
+		fast_list = SkillFastListActor;
+	else if (bu == &gBattleTarget)
+		fast_list = SkillFastListTarget;
+	else
+		return false;
+
+	return _BIT_CHK(fast_list, sid);
+}
+#endif
+
+void UnitToBattle_SetupSkillList(struct Unit *unit, struct BattleUnit *bu)
+{
+	FORCE_DECLARE bool nihil_on_actor, nihil_on_target;
+
+	/**
+	 * Here we hold 3 assumption:
+	 *
+	 * 1. UnitToBattle routine stands at the very beginning of battle-generate
+	 * 2. Battle target initialization is behind actor.
+	 * 3. No skill activcated before during function: InitBattleUnit()
+	 */
+	if (bu == &gBattleTarget) {
+		SetupBattleSkillList();
+
+#if (defined(SID_Nihil) && COMMON_SKILL_VALID(SID_Nihil))
+		nihil_on_actor  = _SkillListTester(&gBattleActor.unit,  SID_Nihil);
+		nihil_on_target = _SkillListTester(&gBattleTarget.unit, SID_Nihil);
+
+		if (nihil_on_actor)
+			DisableUnitSkilLList(&gBattleActor.unit);
+
+		if (nihil_on_target)
+			DisableUnitSkilLList(&gBattleTarget.unit);
+#endif
+
+		SetupBattleSkillFastList();
+	}
+>>>>>>> 7b86e9495edda39a0eb0d27d352d8795a134d7fc
 }
 
 STATIC_DECLAR void SetupBattleSkillFastList(void)

@@ -1,0 +1,9 @@
+#include "Source/vanilla.txt"
+<<<<<<< HEAD:Contants/Texts/texts.txt
+
+#include "Source/kernel.txt"
+=======
+// #include "Source/vanilla_cropped.txt"
+
+#include "Source/kernel.txt"
+>>>>>>> 7b86e9495edda39a0eb0d27d352d8795a134d7fc:Contents/Texts/texts.txt

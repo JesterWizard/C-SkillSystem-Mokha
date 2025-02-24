@@ -1,9 +1,12 @@
 #include <common-chax.h>
 #include <battle-system.h>
+<<<<<<< HEAD
 #include <combat-art.h>
 #include <skill-system.h>
 #include <constants/combat-arts.h>
 #include <constants/skills.h>
+=======
+>>>>>>> 7b86e9495edda39a0eb0d27d352d8795a134d7fc
 
 #include <gaiden-magic.h>
 

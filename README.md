@@ -1,13 +1,14 @@
+<<<<<<< HEAD
 # FE8U C-SkillSystem
+=======
+# FE8U C-SkillSys
+>>>>>>> 7b86e9495edda39a0eb0d27d352d8795a134d7fc
 
-[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](https://makeapullrequest.com) 
-
-[Contributing note](./docs/CONTRIBUTING.md)
-
-[Community discussion on FEUniverse](https://feuniverse.us/t/fe8-modern-c-skillsystem-release/24614)
+[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](https://makeapullrequest.com)
 
 A modern buildfile for a C-SkillSystem based on the decompilation of FE8U.
 
+<<<<<<< HEAD
 ## Main features
 
 1. More diverse functionality
@@ -159,5 +160,10 @@ The following files are built and output to the root of the repo
 |fe8-kernel-dev.sym|debug on NO$GBA|
 |fe8-kernel-dev.ref.s|lyn reference|
 |fe8-kernel-dev.ref.event|EA reference|
+=======
+- [This repo](https://github.com/FireEmblemUniverse/fe8u-cskillsys)
+- [Abstarct](./docs/Abstract.md)
+- [Community discussion on FEUniverse](https://feuniverse.us/t/fe8-modern-c-skillsystem-release/24614)
+>>>>>>> 7b86e9495edda39a0eb0d27d352d8795a134d7fc
 
 **For more notes, see [docs dir](./docs/)**

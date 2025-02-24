@@ -1,0 +1,3 @@
+Spurn: Reduce damage as 4% AS diff[NL]
+(max 40%). Damage +5 for critical atk[NL]
+if unit HP is less than 75%[X]

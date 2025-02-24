@@ -1,0 +1,94 @@
+## MSG_SKILL_Pass
+Pass:[NL]
+If HP more than 25% unit can[NL]
+move through foes' spaces.[X]
+
+## MSG_SKILL_Obstruct
+Obstruct: If HP more than 50%,[NL]
+foes cannot move through adjacent[NL]
+to unit. (Null on Pass skill)[X]
+
+## MSG_SKILL_Guidance
+Guidance:[NL]
+Provide 2 additional movement[NL]
+for non-flier allies[X]
+
+## MSG_SKILL_FlierGuidance_NAME
+F-Guidance[X]
+
+## MSG_SKILL_FlierGuidance
+Flier Guidance:[NL]
+Provide 3 additional movement[NL]
+for flier allies[X]
+
+## MSG_SKILL_SoaringGuidance_NAME
+S-Guidance[X]
+
+## MSG_SKILL_SoaringGuidance
+Soaring Guidance:[NL]
+Provide 1 additional movement[NL]
+for allies[X]
+
+## MSG_SKILL_Aerobatics
+Aerobatics:[NL]
+Non-flier allies can provides 2[NL]
+additional movement for the unit[X]
+
+## MSG_SKILL_FlierFormation_NAME
+F-Formation[X]
+
+## MSG_SKILL_FlierFormation
+Flier Formation:[NL]
+Flier allies can provides 3[NL]
+additional movement for the unit[X]
+
+## MSG_SKILL_SoaringWings_NAME
+Soar-Wings[X]
+
+## MSG_SKILL_SoaringWings
+Soaring Wings:[NL]
+Allies can provides 1[NL]
+additional movement for the unit[X]
+
+## MSG_SKILL_DetailedReport_NAME
+D-Report[X]
+
+## MSG_SKILL_DetailedReport
+Detailed Report:[NL]
+if HP>50%, ranged foes cannot[NL]
+move throgh 2x2 spaces adjacent.[X]
+
+## MSG_SKILL_GridMaster
+GridMasterAtk:[NL]
+Menu movement skills do not[NL]
+end this unit's turn.[X]
+
+## MSG_SKILL_Acrobat
+Acrobat:[NL]
+All traversable terrain for[NL]
+this unit costs 1 movement.[X]
+
+## MSG_SKILL_WaterWalking
+Water Walking:[NL]
+Allows the unit to[NL]
+walk on water tiles.[X]
+
+## MSG_SKILL_WaterWalkingPlus
+Water Walking+:[NL]
+Allows the unit to walk on water[NL]
+tiles with no move penalty.[X]
+
+## MSG_SKILL_MountainClimber
+Mountain Climber:[NL]
+Allows the unit to[NL]
+walk on mountain tiles.[X]
+
+## MSG_SKILL_MountainClimberPlus
+Mountain Climber+:[NL]
+Allows the unit to walk on mountain[NL]
+tiles with no move penalty.[X]
+
+## MSG_SKILL_GridMasterAtk
+Grid Master Atk:[NL]
+Unit can still attack after[N]
+using menu movement skills.[A][X]

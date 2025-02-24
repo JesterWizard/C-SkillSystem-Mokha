@@ -39,4 +39,8 @@ struct ShieldItem const gShieldItemTable[0x100] = {
 		},
 	},
 #endif
+<<<<<<< HEAD
 };
+=======
+};
+>>>>>>> 7b86e9495edda39a0eb0d27d352d8795a134d7fc

@@ -2,7 +2,19 @@
 #undef TextTable
 #endif
 
+<<<<<<< HEAD
+<<<<<<<< HEAD:Preload/AllocMsgTable.event
 #define TextTable NewTextTable
+========
+#ifdef TextTable
+#undef TextTable
+#endif
+
+#define TextTable NewTextTable // define to not conflict with Tool Helpers
+>>>>>>>> 7b86e9495edda39a0eb0d27d352d8795a134d7fc:Contents/Texts/unused/RepointText/RepointText.event
+=======
+#define TextTable NewTextTable
+>>>>>>> 7b86e9495edda39a0eb0d27d352d8795a134d7fc
 
 #define AnitiHuff(ptr) "0x88000000 | ptr"
 #define ALLOC_TEXT_x4    "AnitiHuff(NullStr) AnitiHuff(NullStr) AnitiHuff(NullStr) AnitiHuff(NullStr)"
@@ -27,4 +39,8 @@ PUSH
 
     ORG 0xa2a0
         POIN TextTable
+<<<<<<< HEAD
 POP
+=======
+POP
+>>>>>>> 7b86e9495edda39a0eb0d27d352d8795a134d7fc

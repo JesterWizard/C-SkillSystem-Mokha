@@ -5,6 +5,8 @@
 
 extern const u8 MetisTomeGrowthBonus;
 
+extern const u8 MetisTomeGrowthBonus;
+
 /* Growth getter */
 int GetUnitHpGrowth(struct Unit *unit);
 int GetUnitPowGrowth(struct Unit *unit);
@@ -14,6 +16,7 @@ int GetUnitSpdGrowth(struct Unit *unit);
 int GetUnitLckGrowth(struct Unit *unit);
 int GetUnitDefGrowth(struct Unit *unit);
 int GetUnitResGrowth(struct Unit *unit);
+<<<<<<< HEAD
 
 int GetUnitJobBasedHpGrowth(struct Unit *unit);
 int GetUnitJobBasedPowGrowth(struct Unit *unit);
@@ -37,3 +40,5 @@ int GetUnitSpdGrowthJobBonus(int status, struct Unit *unit);
 int GetUnitLckGrowthJobBonus(int status, struct Unit *unit);
 int GetUnitDefGrowthJobBonus(int status, struct Unit *unit);
 int GetUnitResGrowthJobBonus(int status, struct Unit *unit);
+=======
+>>>>>>> 7b86e9495edda39a0eb0d27d352d8795a134d7fc

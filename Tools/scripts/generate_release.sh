@@ -25,9 +25,12 @@ rm -rf $RELEASE_DIR
 mkdir $RELEASE_DIR
 
 # generate lyn-jump to refe
+echo "// #define PROTECT_EN PROCTECT_EN" >> *.ref.event
+echo "#ifdef PROCTECT_EN" >> *.ref.event
 for GENERATED_LYNFILE in $(find . -type f -name "*.event"); do
     cat $GENERATED_LYNFILE | grep "PROTECT " >> *.ref.event
 done
+echo "#endif /*procTECT_EN */" >> *.ref.event
 
 # make -j
 cp fe8-kernel-* $RELEASE_DIR
@@ -35,10 +38,20 @@ cp -rf include $RELEASE_DIR
 cp -rf Patches $RELEASE_DIR
 
 # fix texts
+<<<<<<< HEAD
 # cat Contants/Texts/TextDefinitions.h > $RELEASE_DIR/include/constants/texts.h
 cat Contants/Texts/build/msgs.h > $RELEASE_DIR/include/constants/texts.h
+=======
+cat Contents/Texts/build/msgs.h > $RELEASE_DIR/include/constants/texts.h
+>>>>>>> 7b86e9495edda39a0eb0d27d352d8795a134d7fc
 
 # fix gfx
-cat Contants/Gfx/GfxDefs.h > $RELEASE_DIR/include/constants/gfx.h
+cat Contents/Gfx/GfxDefs.h > $RELEASE_DIR/include/constants/gfx.h
 
 collect_header $RELEASE_DIR/include
+
+# collect buildfile
+RELEASE_EADIR=$RELEASE_DIR/buildfile
+
+install -d $RELEASE_EADIR
+cp -r Preload Wizardry Data Contents include main.event Debug Fonts $RELEASE_EADIR

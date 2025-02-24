@@ -5,37 +5,42 @@
 
 int StatusGetterCheckCpas(int status, struct Unit *unit)
 {
+<<<<<<< HEAD
 #ifdef CONFIG_UNLOCK_ALLY_MHP_LIMIT
     LIMIT_AREA(status, 0, 255);
 #else
     LIMIT_AREA(status, 0, 127);
 #endif
     return status;
+=======
+	LIMIT_AREA(status, 0, 127);
+	return status;
+>>>>>>> 7b86e9495edda39a0eb0d27d352d8795a134d7fc
 }
 
 LYN_REPLACE_CHECK(GetUnitMagBy2Range);
 int GetUnitMagBy2Range(struct Unit *unit)
 {
-    int range;
+	int range;
 
-    if (unit->pCharacterData->number == CHARACTER_FOMORTIIS)
-        return GetItemMaxRange(ITEM_NIGHTMARE);
+	if (unit->pCharacterData->number == CHARACTER_FOMORTIIS)
+		return GetItemMaxRange(ITEM_NIGHTMARE);
 
-    range = MagGetter(unit) / 2;
+	range = MagGetter(unit) / 2;
 
-    if (range < 5)
-        range = 5;
+	if (range < 5)
+		range = 5;
 
-    return range;
+	return range;
 }
 
 LYN_REPLACE_CHECK(GetUnitCurrentHp);
 int GetUnitCurrentHp(struct Unit *unit)
 {
-    if (unit->curHP > GetUnitMaxHp(unit))
-        unit->curHP = GetUnitMaxHp(unit);
+	if (unit->curHP > GetUnitMaxHp(unit))
+		unit->curHP = GetUnitMaxHp(unit);
 
-    return unit->curHP;
+	return unit->curHP;
 }
 
 LYN_REPLACE_CHECK(IsPositionMagicSealed);

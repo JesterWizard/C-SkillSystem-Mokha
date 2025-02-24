@@ -19,4 +19,8 @@ dat 0x02026B58, gExtBattleHitArray  /* 4 * 0x21 */
 dat 0x02026BE0, gAnimRoundDataRe    /* 2 * 0x21 */
 dat 0x02026C28, gEfxHpLutRe         /* 2 * 0x61 */
 
+<<<<<<< HEAD
 /* 0x02026CF0 - 0x02026E30 is free */
+=======
+/* 0x02026CF0 - 0x02026E30 is free */
+>>>>>>> 7b86e9495edda39a0eb0d27d352d8795a134d7fc

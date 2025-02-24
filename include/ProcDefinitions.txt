@@ -3,7 +3,10 @@
 
 // proc Definitions for writing proc code
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 7b86e9495edda39a0eb0d27d352d8795a134d7fc
 #define PROC_END                                     "SHORT 0x00 0 0 0"
 #define PROC_SET_NAME(apsNamePointer)                "SHORT 0x01 0; POIN apsNamePointer"
 #define PROC_CALL_ROUTINE(aprRoutine)                "SHORT 0x02 0; POIN aprRoutine"
@@ -31,9 +34,15 @@
 #define PROC_CALL_ROUTINE_ARG(aprRoutine, aArgument) "SHORT 0x18 aArgument; POIN aprRoutine"
 #define PROC_19                                      "SHORT 0x19 0 0 0"
 
+<<<<<<< HEAD
 #define PROC_YIELD "PROC_SLEEP(0)"
 
 // this one is a bit embarrassing (misspelled)
 #define PROC_YEILD "PROC_SLEEP(0)"
 
 #endif // HAX_PROC_DEFINITIONS_EVENT
+=======
+#define PROC_YEILD "PROC_SLEEP(0)"
+
+#endif // HAX_PROC_DEFINITIONS_EVENT
+>>>>>>> 7b86e9495edda39a0eb0d27d352d8795a134d7fc

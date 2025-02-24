@@ -7,6 +7,14 @@
 #define CONFIG_FE8_REWRITE
 
 /**
+ * Demo build
+ *
+ * If uncommented, then CHAX may not be seemed as kernel, but demo,
+ * and then try to insert every thing in contents by buildfile.
+ */
+// #define CONFIG_DEMO_BUILD
+
+/**
  * If uncomment, kernel may remove vanilla dislogue text
  * so that we can save ~470KByte ROM space in DEMO.
  *
@@ -35,7 +43,7 @@
  *
  * If completely surrounded (each side stands an enemy),
  * unit may cause def-5 additionally.
- * 
+ *
  * Flyer in outdoor environments are not affected by this effect
  */
 // #define CONFIG_BATTLE_SURROUND
@@ -58,6 +66,38 @@
  * with lower accuracy.
  */
 #define CONFIG_FASTER_MAP_RANGE
+
+/**
+ * Hook on function: LoadUnit() to
+ * optimize performance to avoid minor hitches when loading unit
+ */
+#define CONFIG_OPTIMIZE_UNIT_AUTOLEVEL
+
+/**
+ * Inject fake FEB old AnimNumber patch hooks.
+ * This config may cause two functions suffer from ugly ASM hooks:
+ *      - StartBattleAnimHitEffect
+ *      - NewEfxHpBar
+ */
+#define CONFIG_FAKE_OLD_ANIMNUMBER_PATCH
+
+/**
+ * If uncommented, enable Gaiden style magic system
+ *
+ * Sub:
+ * MUST_BE_MAGIC: if set as 0, then all weapons will be okay (rather than magic wepaon only)
+ * REQUIRES_WRANK: if set as 0, then unit can directly use the weapon regardless vanilla judgement
+ * AI_EN: if set as 1, AI can also use gaiden B.Mag
+ * EXT_CONF_EN: enbale gGaidenChaxConfigs
+ */
+#define CONFIG_USE_GAIDEN_MAGIC
+
+#ifdef CONFIG_USE_GAIDEN_MAGIC
+	#define CONFIG_GAIDEN_MAGIC_MUST_BE_MAGIC 0 // 0: all weapons are okay
+	#define CONFIG_GAIDEN_MAGIC_REQUIRES_WRANK 0 // 0: not requires unit ability to equip that weapon
+	#define CONFIG_GAIDEN_MAGIC_AI_EN 1
+	#define CONFIG_GAIDEN_EXT_CONF_EN 1
+#endif /* USE_GAIDEN_MAGIC */
 
 /**
  * Enable leader-ship features
@@ -98,6 +138,7 @@
 /**
  * Enable shield system
  */
+<<<<<<< HEAD
 // #define CONFIG_INSTALL_KERNEL_SHIELD
 
 /**
@@ -383,6 +424,9 @@
 */
 #define CONFIG_RESET_BWL_STATS_EACH_CHAPTER
 
+=======
+#define CONFIG_INSTALL_KERNEL_SHIELD
+>>>>>>> 7b86e9495edda39a0eb0d27d352d8795a134d7fc
 
 /**
  * Levelup mode
@@ -466,10 +510,21 @@ but at least the arena is playable now
 // #define CONFIG_AUTO_PROMOTION_ON_MAX_LEVEL
 
 /**
+ * Install none-kernel related patches (not necessary)
+ */
+#define CONFIG_INSTALL_NON_KERNEL_PATCH
+
+/**
  * Install ConvoyExpa
  */
 #define CONFIG_INSTALL_CONVOYEXPA
 #define CONFIG_INSTALL_CONVOYEXPA_AMT 200 // better not to touch this since it will affact on size of gExpaConvoyItemArray
+
+/**
+ * If uncommented, suspend data may only saved in play-phase starting.
+ * This may also overwrite PlaySt::disableTerrainDisplay config for player configuration in runtime.
+ */
+#define CONFIG_NO_SUS_IN_AI_PHASE
 
 /**
  * Ai action expansion

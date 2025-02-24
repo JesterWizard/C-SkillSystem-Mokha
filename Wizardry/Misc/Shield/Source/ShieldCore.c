@@ -11,14 +11,22 @@
 extern struct {
 	struct UnitListHeader header;
 	const struct ShieldInfo *sinfo;
+<<<<<<< HEAD
 } sShileldInfoCache;
+=======
+} sShileInfoCache;
+>>>>>>> 7b86e9495edda39a0eb0d27d352d8795a134d7fc
 
 static bool check_config_en(void)
 {
 	return gpKernelDesigerConfig->shield_en;
 }
 
+<<<<<<< HEAD
 static bool get_unit_item_slot(struct Unit *unit, u16 item)
+=======
+NOINLINE static bool get_unit_item_slot(struct Unit *unit, u16 item)
+>>>>>>> 7b86e9495edda39a0eb0d27d352d8795a134d7fc
 {
 	int i;
 
@@ -29,7 +37,11 @@ static bool get_unit_item_slot(struct Unit *unit, u16 item)
 	return -1;
 }
 
+<<<<<<< HEAD
 static void consume_unit_item(struct Unit *unit, u16 item)
+=======
+NOINLINE static void consume_unit_item(struct Unit *unit, u16 item)
+>>>>>>> 7b86e9495edda39a0eb0d27d352d8795a134d7fc
 {
 	int slot = get_unit_item_slot(unit, item);
 
@@ -39,18 +51,31 @@ static void consume_unit_item(struct Unit *unit, u16 item)
 
 static void WriteShileInfoCache(struct Unit *unit, const struct ShieldInfo *sinfo)
 {
+<<<<<<< HEAD
 	WriteUnitList(unit, &sShileldInfoCache.header);
 	sShileldInfoCache.sinfo = sinfo;
+=======
+	WriteUnitList(unit, &sShileInfoCache.header);
+	sShileInfoCache.sinfo = sinfo;
+>>>>>>> 7b86e9495edda39a0eb0d27d352d8795a134d7fc
 }
 
 static void ResetShieldInfo(void)
 {
+<<<<<<< HEAD
 	memset(&sShileldInfoCache, 0, sizeof(sShileldInfoCache));
+=======
+	memset(&sShileInfoCache, 0, sizeof(sShileInfoCache));
+>>>>>>> 7b86e9495edda39a0eb0d27d352d8795a134d7fc
 
 	gpActorShileInfo = gpTargetShileInfo = NULL;
 }
 
+<<<<<<< HEAD
 static const struct ShieldInfo *GetExtUnitShield(struct Unit *unit)
+=======
+NOINLINE static const struct ShieldInfo *GetExtUnitShield(struct Unit *unit)
+>>>>>>> 7b86e9495edda39a0eb0d27d352d8795a134d7fc
 {
 	int slot;
 	u8 pid = UNIT_CHAR_ID(unit);
@@ -78,7 +103,11 @@ static const struct ShieldInfo *GetExtUnitShield(struct Unit *unit)
 	return NULL;
 }
 
+<<<<<<< HEAD
 static const struct ShieldInfo *GetUnitShield(struct Unit *unit)
+=======
+NOINLINE static const struct ShieldInfo *GetUnitShield(struct Unit *unit)
+>>>>>>> 7b86e9495edda39a0eb0d27d352d8795a134d7fc
 {
 	int i;
 	const struct ShieldInfo *sinfo;
@@ -86,8 +115,13 @@ static const struct ShieldInfo *GetUnitShield(struct Unit *unit)
 	if (!check_config_en())
 		return NULL;
 
+<<<<<<< HEAD
 	if (JudgeUnitList(unit, &sShileldInfoCache.header))
 		return sShileldInfoCache.sinfo;
+=======
+	if (JudgeUnitList(unit, &sShileInfoCache.header))
+		return sShileInfoCache.sinfo;
+>>>>>>> 7b86e9495edda39a0eb0d27d352d8795a134d7fc
 
 	if (gpKernelDesigerConfig->shield_ext_equip_config_en) {
 		sinfo = GetExtUnitShield(unit);
@@ -106,7 +140,11 @@ static const struct ShieldInfo *GetUnitShield(struct Unit *unit)
 		if (!sitem->en)
 			continue;
 
+<<<<<<< HEAD
 		// This is a bug on info from designers
+=======
+		// This is a bug on iinfo from designers
+>>>>>>> 7b86e9495edda39a0eb0d27d352d8795a134d7fc
 		if (sinfo->iid != ITEM_INDEX(item)) {
 			Errorf("Shield item info wrong: item=%02X", ITEM_INDEX(item));
 			continue;

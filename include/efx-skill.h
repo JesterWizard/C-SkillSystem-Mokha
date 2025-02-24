@@ -3,8 +3,11 @@
 #include "common-chax.h"
 
 void NewEkrSkill(struct Anim *anim);
+<<<<<<< HEAD
 bool EkrSkillExists(void);
 
+=======
+>>>>>>> 7b86e9495edda39a0eb0d27d352d8795a134d7fc
 void NewEfxSkill(struct Anim *anim, int sid);
 void NewEfxCombatArt(struct Anim *anim, int cid);
 bool EfxSkillExists(void);

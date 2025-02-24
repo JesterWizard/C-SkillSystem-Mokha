@@ -1,6 +1,7 @@
 #include "common-chax.h"
 #include "efx-skill.h"
 #include "battle-system.h"
+<<<<<<< HEAD
 #include "banim-hack.h"
 
 struct ProcC07Handler {
@@ -100,12 +101,15 @@ STATIC_DECLAR const struct ProcCmd ProcScr_BanimC07Handler[] = {
 	PROC_CALL(C07Handler_End),
 	PROC_END
 };
+=======
+>>>>>>> 7b86e9495edda39a0eb0d27d352d8795a134d7fc
 
 /**
  * C07: Start attack animation
  */
 void Banim_C07(struct Anim *anim)
 {
+<<<<<<< HEAD
 	struct ProcC07Handler *proc;
 
 	/* We need to block the script */
@@ -121,6 +125,21 @@ void Banim_C07(struct Anim *anim)
 	}
 
 	if ((anim->state3 & ANIM_BIT3_BLOCKING)) {
+=======
+	/* We need to block the script */
+	anim->pScrCurrent = anim->pScrCurrent - 1;
+
+	if (!(anim->state3 & ANIM_BIT3_BLOCKING)) {
+		anim->state3 |= ANIM_BIT3_BLOCKING;
+
+		if (GetAISLayerId(anim) == 0) {
+			NewEkrSkill(anim);
+			BanimC07_UpdateHpCost(anim);
+		}
+	}
+
+	if ((anim->state3 & ANIM_BIT3_BLOCKING) && !EfxHpCostExists()) {
+>>>>>>> 7b86e9495edda39a0eb0d27d352d8795a134d7fc
 		if (anim->state3 & ANIM_BIT3_BLOCKEND) {
 			anim->state3 &= ~ANIM_BIT3_BLOCKING;
 			anim->state3 &= ~ANIM_BIT3_BLOCKEND;

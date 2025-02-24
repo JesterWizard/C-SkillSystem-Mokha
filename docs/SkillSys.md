@@ -1,27 +1,35 @@
-Currently, C-Skillsys theoretically allows up to **1021** skills (0x01~0xFE, 0x100~0x3FF) to take effect at the same time. Each unit can carry up to **23** skills at the same time, which are distributed as follows:
+Currently, C-Skillsys theoretically allows up to **1021** skills (0x01~0xFE, 0x100~0x3FF) to take effect at the same time. Each unit can carry up to **21** skills at the same time, which are distributed as follows:
 
 - **7 equipable skills**, which allows player to freely select in prepscreen, also allows the game-play designer dynamically assign skills to enemies through events.
 - **2 person skills**, fixed on ROM table and searched by unit character index.
 - **2 job skills**, fixed on ROM table and searched by unit class index.
 - **5x2 item skills**, fixed on ROM table and searched by item index. Just like an amulet, unit can obtain skills as long as they carry the corresponding items.
-- **2 weapon skills**, fixed on ROM table and searched by item index. These skills can only be obtained if the unit is equipped with the corresponding weapon.
 
 Note that the skill index is also divided into certain parts of categories in order to save memory and optimize performance. The following rules are generally followed for the division of skill index:
 
 - In order to save the RAM space especially SRAM space, **equipable skill** can only range in `0x01~0xFE`, which is consistent to tranditional SkillSystem_FE8.
-- In order to improve performance, only the skills ranging in `0x300-0x3FF` can involve on Item/weapon skills judgement.
+- In order to improve performance, only the skills ranging in `0x300-0x3FF` can involve on Item skills judgement.
 - Other skills, including person/job skills have no particular restrictions.
 
 # 1. Judge skill
 
-In order to improve the performance of the skill system, we provide two judge-skill functions for developers:
+In order to improve the performance of the skill system, we provide three judge-skill functions for developers:
 
 - `SkillTester`
-- `BattleSkillTester`
+- `SkillListTester`
+- `BattleFastSkillTester`
 
-The work of the two is basically the same. Just as their name suggests, `SkillTester` is recommended to use for non-battle unit judgement, and `BattleSkillTester` for battle-units (specially for `gBattleActor` and `gBattleTarget`). If the developer violates this principle, although kernel may not run into bugs but there will be potential loss of performance.
+| Name | Location | Security | Note |
+| :--------	| :-----------	| :-----------	| :----------- |
+| `SkillTester` | IWRAM | SEC | Generic usage |
+| `SkillListTester` | ROM | SEC | Generic usage |
+| `BattleFastSkillTester` | IWRAM | None SEC | Only used on battle-calc specially for `gBattleActor` and `gBattleTarget` |
 
-It is worth noting that `BattleSkillTester` will determine after all skills held by the unit are aggregated. Therefore, to a certain extent, it can ignore the principle of skill index distribution to determin more skills with greater efficiency. However, performance comes at cost on memory. There holds limitation on memory for the above optimization, so we only optimized it specifically for battle units.
+`SkillListTester` may temporarily stores unit's skill list in a buffer. However, if different characters are checked, a new list needs to be generated, which can lead to performance loss. Therefore, for fixed character checks, it is recommended to use `SkillListTester` (for example, when checking the `gActiveUnit`). On the other hand, when compiling for each character in the team, it is best to use `SkillTester`.
+
+It is worth noting that `SkillListTester` will determine after all skills held by the unit are aggregated. Therefore, to a certain extent, it can ignore the principle of skill index distribution to determin more skills with greater efficiency. However, performance comes at cost on memory. There holds limitation on memory for the above optimization, so we only optimized it specifically for battle units.
+
+`BattleFastSkillTester` is the most performant but least safe function: it directly searches from a preset skill list without checking if the list is correct. This means you must handle it with caution. Currently, it can only be used during the pre-battle calculation process and specially for `gBattleActor` and `gBattleTarget`.
 
 # 2. Skill lists
 
@@ -32,7 +40,6 @@ ROM table can be configured in:
 - [SkillTable-person.c](../Data/SkillSys/SkillTable-person.c)
 - [SkillTable-job.c](../Data/SkillSys/SkillTable-job.c)
 - [SkillTable-item.c](../Data/SkillSys/SkillTable-item.c)
-- [SkillTable-weapon.c](../Data/SkillSys/SkillTable-weapon.c)
 
 ## RAM table API
 
@@ -40,8 +47,8 @@ As for RAM table, developers may use the following API to give unit quipable ski
 
 ```C
 #include "skill-system.h"
-int AddSkill(struct Unit * unit, const u16 sid);
-int RemoveSkill(struct Unit * unit, const u16 sid);
+int AddSkill(struct Unit *unit, const u16 sid);
+int RemoveSkill(struct Unit *unit, const u16 sid);
 ```
 
 We have also offered event macros to add quipable skill from event:
@@ -70,7 +77,7 @@ We have also recorded unit level regardless he was promoted. Once one unit is pr
 
 Since the skills are currently divided into four categories, developers need to select a category in advance to place new skills first:
 
-| category | equipable | item/weapon | others |
+| category | equipable | item | others |
 | :--------	| :-----------	| :-----------	| :----------- |
 | index preconfig | [skills-equip.enum.txt](../include/constants/skills-equip.enum.txt) | [skills-item.enum.txt](../include/constants/skills-item.enum.txt) | [skills-others.enum.txt](../include/constants/skills-others.enum.txt) |
 
@@ -87,7 +94,7 @@ A skill need the following components:
 
 ```c
 struct SkillInfo {
-    const u8 * icon;
+    const u8 *icon;
     u16 name, desc;
 };
 ```
@@ -108,11 +115,11 @@ To avoid compilation errors, you'd better to add skill index detection on effect
 
 ### 2. Skill icon
 
-Add icon to [gfx directory](../Contants/Gfx/Sources/SkillIcon/), you just need to give the ***.png*** file a proper name, then kernel may automatically generate variable as `GFX_SkillIcon_*` in [constants/gfx.h](../include/constants/gfx.h).
+Add icon to [gfx directory](../Contents/Gfx/Sources/SkillIcon/), you just need to give the ***.png*** file a proper name, then kernel may automatically generate variable as `GFX_SkillIcon_*` in [constants/gfx.h](../include/constants/gfx.h).
 
 ### 3. Skill description & name
 
-Add text to [texts.txt](../Contants/Texts/Source/texts.txt), then kernel may automatically generate msg index in [constants/texts.h](../include/constants/texts.h).
+Add text to [texts.txt](../Contents/Texts/Source/texts.txt), then kernel may automatically generate msg index in [constants/texts.h](../include/constants/texts.h).
 
 Skill name is optional. You can also add a msg to texts, but kernel may also directly find the skill name inside skill description (by finding the character "`:`" through function [SkillDescToName()](../Wizardry/Core/SkillSys/kernel/Infos.c#L40)).
 

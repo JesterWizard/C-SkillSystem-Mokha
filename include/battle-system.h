@@ -75,6 +75,7 @@ bool CheckCanTwiceAttackOrder(struct BattleUnit *actor, struct BattleUnit *targe
 int CalcBattleRealDamage(struct BattleUnit *attacker, struct BattleUnit *defender);
 
 extern struct BattleGlobalFlags {
+<<<<<<< HEAD
     u32 hitted : 1;
     u32 round_cnt : 5;      // align to NEW_BATTLE_HIT_MAX
     u32 round_cnt_hit : 5;  // align to NEW_BATTLE_HIT_MAX
@@ -93,22 +94,37 @@ extern struct BattleGlobalFlags {
     u32 skill_activated_resurrection : 1;
 	u32 skill_activated_echo: 1;
 	u32 arenaFix: 1;
+=======
+	u32 hitted : 1;
+	u32 round_cnt : 5;	  // align to NEW_BATTLE_HIT_MAX
+	u32 round_cnt_hit : 5;  // align to NEW_BATTLE_HIT_MAX
+	u32 round_cnt_avo : 5;  // align to NEW_BATTLE_HIT_MAX
+	u32 enimy_defeated : 1;
+	u32 allies_in_range3x3 : 5;
+	u32 enemies_in_range3x3 : 5;
+	u32 skill_activated_double_lion : 1;
+	u32 skill_activated_astra : 1;
+	u32 skill_activated_galeforce : 1;
+>>>>>>> 7b86e9495edda39a0eb0d27d352d8795a134d7fc
 } gBattleActorGlobalFlag, gBattleTargetGlobalFlag;
 
-static inline struct BattleGlobalFlags * GetBattleGlobalFlags(struct BattleUnit * bu)
+static inline struct BattleGlobalFlags *GetBattleGlobalFlags(struct BattleUnit *bu)
 {
-    return (bu == &gBattleActor)
-         ? &gBattleActorGlobalFlag
-         : &gBattleTargetGlobalFlag;
+	return (bu == &gBattleActor)
+		 ? &gBattleActorGlobalFlag
+		 : &gBattleTargetGlobalFlag;
 }
 
 void ClearBattleGlobalFlags(void);
-void RegisterHitCnt(struct BattleUnit * bu, bool miss);
+void RegisterHitCnt(struct BattleUnit *bu, bool miss);
 
 extern struct {
-    u32 nihil_on_actor  : 1;
-    u32 nihil_on_target : 1;
+	u32 desperation_order : 1;
+	u32 vantage_order : 1;
+	u32 tar_force_twice_order : 1;
+	u32 act_force_twice_order : 1;
 
+<<<<<<< HEAD
     u32 desperation_order : 1;
     u32 vantage_order : 1;
     u32 tar_force_twice_order : 1;
@@ -119,15 +135,20 @@ extern struct {
     u32 skill_activated_aether : 1;
 
     u32 skill_roll12 : 4;
+=======
+	u32 skill_activated_sure_shoot : 1;
+	u32 skill_activated_dead_eye : 1;
+	u32 skill_activated_aether : 1;
+>>>>>>> 7b86e9495edda39a0eb0d27d352d8795a134d7fc
 } gBattleTemporaryFlag;
 
 enum BattleOrderSkills_Type {
-    BORDER_DESPERATION,
-    BORDER_VANTAGE,
-    BORDER_ACT_TWICE,
-    BORDER_TAR_TWICE,
+	BORDER_DESPERATION,
+	BORDER_VANTAGE,
+	BORDER_ACT_TWICE,
+	BORDER_TAR_TWICE,
 
-    BORDER_MAX
+	BORDER_MAX
 };
 extern u16 BattleOrderSkills[BORDER_MAX];
 
@@ -233,6 +254,10 @@ bool AddBattleHpCost(struct BattleUnit *bu, int round, int cost);
 
 void BattleGenerateHitHpCost(struct BattleUnit *attacker, struct BattleUnit *defender);
 bool MapAnimRoundAnim_DisplayHpCost(ProcPtr parent);
+<<<<<<< HEAD
+=======
+void BanimC07_UpdateHpCost(struct Anim *anim);
+>>>>>>> 7b86e9495edda39a0eb0d27d352d8795a134d7fc
 void NewEfxHpCost(struct Anim *anim);
 bool EfxHpCostExists(void);
 
@@ -300,4 +325,8 @@ static inline bool CheckUnbreakableSpecialSlot(int slot)
 	}
 }
 
+<<<<<<< HEAD
 int GetItemFromSlot(struct Unit *unit, int slot);
+=======
+int GetItemFromSlot(struct Unit *unit, int slot);
+>>>>>>> 7b86e9495edda39a0eb0d27d352d8795a134d7fc

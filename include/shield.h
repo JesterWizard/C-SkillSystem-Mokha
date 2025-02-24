@@ -40,4 +40,8 @@ void UnitToBattle_SetShieldInfo(struct Unit *unit, struct BattleUnit *bu);
 void BattleToUnit_ResetShieldInfo(struct BattleUnit *bu, struct Unit *unit);
 void GameInit_ResetShieldInfo(void);
 void PreBattleCalcShieldBonus(struct BattleUnit *attacker, struct BattleUnit *defender);
+<<<<<<< HEAD
 void DrawItemPage_ShieldEquipLine(void);
+=======
+void DrawItemPage_ShieldEquipLine(void);
+>>>>>>> 7b86e9495edda39a0eb0d27d352d8795a134d7fc

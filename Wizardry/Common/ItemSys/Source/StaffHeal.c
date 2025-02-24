@@ -1,8 +1,11 @@
 #include "common-chax.h"
 #include "status-getter.h"
 #include "skill-system.h"
+#include "battle-system.h"
+#include "item-sys.h"
 #include "constants/skills.h"
 
+<<<<<<< HEAD
 typedef int (*HealAmountGetterFunc_t)(int old, struct Unit *actor, struct Unit *target);
 extern HealAmountGetterFunc_t const *const gpHealAmountGetters;
 
@@ -22,19 +25,26 @@ static int HealAmountGetter(int base, struct Unit *actor, struct Unit *target)
 {
     const HealAmountGetterFunc_t *it;
     int status = base;
+=======
+static int HealAmountGetter(int base, struct Unit *actor, struct Unit *target)
+{
+	const HealAmountGetterFunc_t *it;
+	int status = base;
+>>>>>>> 7b86e9495edda39a0eb0d27d352d8795a134d7fc
 
-    for (it = gpHealAmountGetters; *it; it++)
-        status = (*it)(status, actor, target);
+	for (it = gpHealAmountGetters; *it; it++)
+		status = (*it)(status, actor, target);
 
-    LIMIT_AREA(status, 0, 80);
-    return status;
+	LIMIT_AREA(status, 0, 80);
+	return status;
 }
 
 LYN_REPLACE_CHECK(GetUnitItemHealAmount);
 int GetUnitItemHealAmount(struct Unit *unit, int item)
 {
-    int result = 0;
+	int result = 0;
 
+<<<<<<< HEAD
     switch (GetItemIndex(item))
     {
     case ITEM_STAFF_HEAL:
@@ -44,45 +54,70 @@ int GetUnitItemHealAmount(struct Unit *unit, int item)
     case ITEM_VULNERARY_2:
         result = 10;
         break;
+=======
+	switch (GetItemIndex(item)) {
+	case ITEM_STAFF_HEAL:
+	case ITEM_STAFF_PHYSIC:
+	case ITEM_STAFF_FORTIFY:
+	case ITEM_VULNERARY:
+	case ITEM_VULNERARY_2:
+		result = 10;
+		break;
+>>>>>>> 7b86e9495edda39a0eb0d27d352d8795a134d7fc
 
-    case ITEM_STAFF_MEND:
-        result = 20;
-        break;
+	case ITEM_STAFF_MEND:
+		result = 20;
+		break;
 
-    case ITEM_STAFF_RECOVER:
-    case ITEM_ELIXIR:
-        result = 80;
-        break;
+	case ITEM_STAFF_RECOVER:
+	case ITEM_ELIXIR:
+		result = 80;
+		break;
 
-    } // switch (GetItemIndex(item))
+	} // switch (GetItemIndex(item))
 
-    if (GetItemAttributes(item) & IA_STAFF)
-        result += MagGetter(unit);
+	if (GetItemAttributes(item) & IA_STAFF)
+		result += MagGetter(unit);
 
-    if (result > 80)
-        result = 80;
+	if (result > 80)
+		result = 80;
 
-    return result;
+	return result;
 }
 
 LYN_REPLACE_CHECK(ExecStandardHeal);
 void ExecStandardHeal(ProcPtr proc)
 {
-    int amount;
+	int amount;
 
+<<<<<<< HEAD
     struct Unit *unit_act = GetUnit(gActionData.subjectIndex);
     struct Unit *unit_tar = GetUnit(gActionData.targetIndex);
+=======
+	struct Unit *unit_act = GetUnit(gActionData.subjectIndex);
+	struct Unit *unit_tar = GetUnit(gActionData.targetIndex);
+>>>>>>> 7b86e9495edda39a0eb0d27d352d8795a134d7fc
 
-    BattleInitItemEffect(unit_act, gActionData.itemSlotIndex);
+	BattleInitItemEffect(unit_act, gActionData.itemSlotIndex);
 
+<<<<<<< HEAD
     amount = GetUnitItemHealAmount(
         unit_act,
         unit_act->items[gActionData.itemSlotIndex]);
+=======
+	BattleInitItemEffectTarget(unit_tar);
+
+	amount = GetUnitItemHealAmount(
+		unit_act,
+		GetItemFromSlot(unit_act, gActionData.itemSlotIndex)
+	);
+>>>>>>> 7b86e9495edda39a0eb0d27d352d8795a134d7fc
 
 #if CHAX
-    amount = HealAmountGetter(amount, unit_act, unit_tar);
+	amount = HealAmountGetter(amount, unit_act, unit_tar);
 #endif
 
+<<<<<<< HEAD
     BattleInitItemEffectTarget(unit_tar);
 
     AddUnitHp(unit_tar, amount);
@@ -135,42 +170,64 @@ void ExecStandardHeal(ProcPtr proc)
 
     BattleApplyItemEffect(proc);
     BeginBattleAnimations();
+=======
+	AddUnitHp(unit_tar, amount);
+	gBattleHitIterator->hpChange = gBattleTarget.unit.curHP - GetUnitCurrentHp(unit_tar);
+	gBattleTarget.unit.curHP = GetUnitCurrentHp(unit_tar);
+
+	BattleApplyItemEffect(proc);
+	BeginBattleAnimations();
+>>>>>>> 7b86e9495edda39a0eb0d27d352d8795a134d7fc
 }
 
 LYN_REPLACE_CHECK(ExecFortify);
 void ExecFortify(ProcPtr proc)
 {
-    int i;
-    int amount;
-    int targetCount;
+	int i;
+	int amount;
+	int targetCount;
 
+<<<<<<< HEAD
     struct Unit *unit_act = GetUnit(gActionData.subjectIndex);
     struct Unit *unit_tar = GetUnit(gActionData.targetIndex);
 
     BattleInitItemEffect(unit_act,
                          gActionData.itemSlotIndex);
+=======
+	struct Unit *unit_act = GetUnit(gActionData.subjectIndex);
+	struct Unit *unit_tar = GetUnit(gActionData.targetIndex);
 
-    BattleInitItemEffectTarget(GetUnitFromCharId(GetPlayerLeaderUnitId()));
-    MakeTargetListForRangedHeal(unit_act);
+	BattleInitItemEffect(unit_act, gActionData.itemSlotIndex);
+>>>>>>> 7b86e9495edda39a0eb0d27d352d8795a134d7fc
 
+	BattleInitItemEffectTarget(GetUnitFromCharId(GetPlayerLeaderUnitId()));
+	MakeTargetListForRangedHeal(unit_act);
+
+<<<<<<< HEAD
     amount = GetUnitItemHealAmount(
         unit_act,
         unit_act->items[gActionData.itemSlotIndex]);
+=======
+	amount = GetUnitItemHealAmount(
+		unit_act,
+		GetItemFromSlot(unit_act, gActionData.itemSlotIndex)
+	);
+>>>>>>> 7b86e9495edda39a0eb0d27d352d8795a134d7fc
 
-    targetCount = GetSelectTargetCount();
+	targetCount = GetSelectTargetCount();
 
-    for (i = 0; i < targetCount; i++)
-    {
+	for (i = 0; i < targetCount; i++) {
 #if CHAX
-        int amound_real = HealAmountGetter(amount, unit_act, unit_tar);
-        AddUnitHp(GetUnit(GetTarget(i)->uid), amound_real);
-#else
-        AddUnitHp(GetUnit(GetTarget(i)->uid), amount);
-#endif
-    }
+		int amound_real = HealAmountGetter(amount, unit_act, unit_tar);
 
-    BattleApplyItemEffect(proc);
-    BeginBattleAnimations();
+		AddUnitHp(GetUnit(GetTarget(i)->uid), amound_real);
+#else
+		AddUnitHp(GetUnit(GetTarget(i)->uid), amount);
+#endif
+	}
+
+	BattleApplyItemEffect(proc);
+	BeginBattleAnimations();
 }
 
 LYN_REPLACE_CHECK(BattleInitItemEffectTarget);

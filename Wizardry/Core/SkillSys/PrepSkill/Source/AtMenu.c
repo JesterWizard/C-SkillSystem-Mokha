@@ -28,26 +28,30 @@ struct ChapterStatusProc {
     /* 64 */ u16 unk_64;
 };
 
-void sub_8095C2C(struct ProcAtMenu * proc);
-
-void PrepScreenMenu_OnEquip(struct ProcAtMenu * proc)
+void PrepScreenMenu_OnEquip(struct ProcAtMenu *proc)
 {
-    if (gpKernelDesigerConfig->equip_skill_en == false)
-    {
-        /* Check map */
-        Proc_Goto(proc, 0x5);
-        return;
-    }
+	if (gpKernelDesigerConfig->equip_skill_en == false) {
+		/* Check map */
+		Proc_Goto(proc, 0x5);
+		return;
+	}
 
+<<<<<<< HEAD
     proc->state = 6;
     Proc_Goto(proc, 0xA);
 };
+=======
+	proc->state = 6;
+	Proc_Goto(proc, 0xA);
+}
+>>>>>>> 7b86e9495edda39a0eb0d27d352d8795a134d7fc
 
 LYN_REPLACE_CHECK(AtMenu_StartSubmenu);
-void AtMenu_StartSubmenu(struct ProcAtMenu * proc)
+void AtMenu_StartSubmenu(struct ProcAtMenu *proc)
 {
-    sub_8095C2C(proc);
+	sub_8095C2C(proc);
 
+<<<<<<< HEAD
     switch (proc->state) {
     case 5: /* Chapter Status */
 #ifdef CONFIG_INSTALL_PREPS_AUGURY
@@ -56,30 +60,41 @@ void AtMenu_StartSubmenu(struct ProcAtMenu * proc)
         sub_808E79C(proc);
 #endif
         break;
+=======
+	switch (proc->state) {
+	case 5:
+		sub_808E79C(proc);
+		break;
+>>>>>>> 7b86e9495edda39a0eb0d27d352d8795a134d7fc
 
-    case 2: /* Items */
-        StartPrepItemScreen(proc);
-        break;
+	case 2: /* Items */
+		StartPrepItemScreen(proc);
+		break;
 
-    case 1: /* Pick Units */
-        Proc_StartBlocking(ProcScr_PrepUnitScreen, proc);
-        break;
+	case 1: /* Pick Units */
+		Proc_StartBlocking(ProcScr_PrepUnitScreen, proc);
+		break;
 
-    case 4: /* Support */
-        StartFortuneSubMenu(2, proc);
-        break;
+	case 4: /* Support */
+		StartFortuneSubMenu(2, proc);
+		break;
 
-    case 3: /* Save */
-        StartPrepSaveScreen(proc);
-        break;
+	case 3: /* Save */
+		StartPrepSaveScreen(proc);
+		break;
 
-    case 6: /* Equip */
-        StartPrepEquipScreen(proc);
-        break;
+	case 6: /* Equip */
+		StartPrepEquipScreen(proc);
+		break;
 
-    default:
-        break;
-    }
+	default:
+		break;
+	}
 
+<<<<<<< HEAD
     Proc_Break(proc);
 };
+=======
+	Proc_Break(proc);
+}
+>>>>>>> 7b86e9495edda39a0eb0d27d352d8795a134d7fc

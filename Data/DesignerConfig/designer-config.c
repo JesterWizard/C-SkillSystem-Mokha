@@ -28,7 +28,11 @@ const struct KernelDesigerConfig gKernelDesigerConfig = {
 #endif
 
 #ifdef CONFIG_USE_UTF8_GLYPH
+<<<<<<< HEAD
 	.use_chinese_character = false,
+=======
+	.use_chinese_character = true,
+>>>>>>> 7b86e9495edda39a0eb0d27d352d8795a134d7fc
 #endif
 
 	.kernel_tutorial_level = CONFIG_KTUT_LEVEL,
@@ -41,7 +45,11 @@ const struct KernelDesigerConfig gKernelDesigerConfig = {
 	.battle_surrend_en = true,
 #endif
 
+<<<<<<< HEAD
 	.hit_decrease_on_range = false,
+=======
+	.hit_decrease_on_range = true,
+>>>>>>> 7b86e9495edda39a0eb0d27d352d8795a134d7fc
 
 #ifdef CONFIG_DEBUG_UNIT_LOAD_SKILL
 	.debug_autoload_skills = true,
@@ -53,7 +61,11 @@ const struct KernelDesigerConfig gKernelDesigerConfig = {
 	.lvup_mode_hard	    = CONFIG_LVUP_MODE_HARD,
 
 	.unit_page_style = CONFIG_PAGE1_WITH_BWL,
+<<<<<<< HEAD
 	.skil_page_style = CONFIG_PAGE3_SKILL_LAYOUT,
+=======
+	.skil_page_style = CONFIG_PAGE4_MOKHA_PLAN_A,
+>>>>>>> 7b86e9495edda39a0eb0d27d352d8795a134d7fc
 
 #ifdef CONFIG_USE_GAIDEN_MAGIC
 	.gaiden_magic_en = true,
@@ -71,8 +83,11 @@ const struct KernelDesigerConfig gKernelDesigerConfig = {
 	.shield_en = true,
 	.shield_ext_equip_config_en = true,
 #endif
+<<<<<<< HEAD
 
 #ifdef CONFIG_AUTO_NARROW_FONT
 	.auto_narrow_font = true,
 #endif
+=======
+>>>>>>> 7b86e9495edda39a0eb0d27d352d8795a134d7fc
 };

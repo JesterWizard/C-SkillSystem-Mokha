@@ -311,6 +311,7 @@ SID_Canto
 // SID_LullSkill
 // SID_LullSpectrum
 // SID_LullSpeed
+<<<<<<< HEAD
 // SID_LullStrength
 // SID_GentleFlower // This skill can only set to ally!
 // SID_Admiration
@@ -330,6 +331,49 @@ SID_Canto
 // SID_Mentorship
 // SID_HolyAura
 // SID_BlueFlame
+=======
+// SID_LullStregth
+SID_ShrewdPotential
+// SID_SteadyBrawler
+SID_KeepUp
+// SID_LiquidOoze
+SID_CloseCombat
+SID_ArmorMarch
+SID_Eclipse
+SID_Barricade
+SID_BarricadePlus
+SID_LunarBrace
+SID_Pursuer
+// SID_QuickLearner
+SID_EffectSpore
+SID_DominantArm
+SID_SolidRock
+SID_Sturdy
+SID_FranticSwing
+SID_SocialButterfly
+SID_MeleeManiac
+SID_CriticalOverload
+SID_WyvernFlight
+SID_YngviAscendant
+SID_DragonWrath
+SID_BrashAssault
+SID_Scendscale
+SID_LawsOfSacae
+SID_ShieldPulse
+SID_BestDefense
+SID_DoOrDie
+SID_OverKill
+SID_Momentum
+SID_FatalTen
+SID_LionFlame
+SID_LimitBreak
+SID_ImmovableObject
+SID_UnstoppableForce
+SID_WeaponHeal
+SID_BloodReaver
+SID_Saint
+SID_Witch
+>>>>>>> 7b86e9495edda39a0eb0d27d352d8795a134d7fc
 
 ////////// STAT MODIFIER SKILLS
 // SID_HpBonus
@@ -583,6 +627,7 @@ SID_Canto
 // SID_DarkBargain
 // SID_Rampage
 
+<<<<<<< HEAD
 ////////// LEVEL UP SKILLS
 // SID_Blossom
 // SID_Paragon
@@ -605,6 +650,36 @@ SID_Canto
 // SID_LEGEND_InoriDef
 // SID_LEGEND_4
 // SID_LEGEND_5
+=======
+// Post action
+SID_FailGale
+SID_Clearance
+SID_Despoil
+SID_GoldDigger
+SID_Glorifier
+
+// Menu skills
+SID_Dance
+SID_LockTouch
+SID_Summon
+SID_Steal
+SID_Supply
+SID_LightRune
+SID_Mine
+SID_RallyDefense
+SID_RallyLuck
+SID_RallyMagic
+SID_RallyMovement
+SID_RallyResistance
+SID_RallySkill
+SID_RallySpeed
+SID_RallyStrength
+SID_RallySpectrum
+SID_GoddessDance
+SID_Stride
+SID_Blacksmith
+SID_Latona
+>>>>>>> 7b86e9495edda39a0eb0d27d352d8795a134d7fc
 
 ////////// MOVEMENT SKILLS
 // SID_Pass

@@ -42,11 +42,19 @@ ORG FreeSpaceKernel_Data
 #ifdef CONFIG_DEMO_BUILD
 PUSH
 ORG FreeSpaceDEMO
+<<<<<<< HEAD
     #include "Contants/Contents.event"
 MESSAGE FreeSpace___Demo___ end at (CURRENTOFFSET)
 POP
 #else
     #include "Contants/Contents.event"
+=======
+    #include "Contents/Contents.event"
+MESSAGE FreeSpace___Demo___ end at (CURRENTOFFSET)
+POP
+#else
+    #include "Contents/Contents.event"
+>>>>>>> 7b86e9495edda39a0eb0d27d352d8795a134d7fc
 #endif
 MESSAGE FreeSpace___Data___ end at (CURRENTOFFSET) size as (CURRENTOFFSET - FreeSpaceKernel_Data) max (KernelDataSize)
 ASSERT (FreeSpaceKernel_DataEnd - CURRENTOFFSET)

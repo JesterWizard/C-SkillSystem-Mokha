@@ -30,8 +30,11 @@ struct KernelDesigerConfig {
 	u8 no_suspend_in_aiphase;
 
 	u8 shield_en, shield_ext_equip_config_en;
+<<<<<<< HEAD
 
 	u8 auto_narrow_font;
+=======
+>>>>>>> 7b86e9495edda39a0eb0d27d352d8795a134d7fc
 };
 
 struct KernelBattleDesignerConfig {
@@ -45,18 +48,24 @@ struct KernelBattleDesignerConfig {
 	u8 rider_debuff_indoor;
 };
 
+<<<<<<< HEAD
 
 extern const struct KernelDesigerConfig *const gpKernelDesigerConfig;
 extern const struct KernelBattleDesignerConfig *const gpKernelBattleDesignerConfig;
 
 u32 k_udiv(u32 a, u32 b);
 u32 k_umod(u32 a, u32 b);
+=======
+extern const struct KernelDesigerConfig *const gpKernelDesigerConfig;
+extern const struct KernelBattleDesignerConfig *const gpKernelBattleDesignerConfig;
+>>>>>>> 7b86e9495edda39a0eb0d27d352d8795a134d7fc
 
 /**
  * map.c
  */
 bool IsPositionValid(s8 x, s8 y);
-struct Unit * GetUnitAtPosition(s8 x, s8 y);
+struct Unit *GetUnitAtPosition(s8 x, s8 y);
+bool CheckOutdoorTerrain(int terrain);
 
 /**
  * mapanim.c
@@ -67,15 +76,15 @@ void MapAnim_CommonEnd(void);
 /**
  * math.c
  */
-#define DIV_ROUND_CLOSEST(x, divisor)(          \
-{                                               \
-    typeof(x) __x = x;                          \
-    typeof(divisor) __d = divisor;              \
-    (((typeof(x))-1) > 0 ||                     \
-     ((typeof(divisor))-1) > 0 || (__x) > 0) ?  \
-        (((__x) + ((__d) / 2)) / (__d)) :       \
-        (((__x) - ((__d) / 2)) / (__d));        \
-}                                               \
+#define DIV_ROUND_CLOSEST(x, divisor)( \
+{ \
+	typeof(x) __x = x; \
+	typeof(divisor) __d = divisor; \
+	(((typeof(x))-1) > 0 || \
+	((typeof(divisor))-1) > 0 || (__x) > 0) ? \
+		(((__x) + ((__d) / 2)) / (__d)) : \
+		(((__x) - ((__d) / 2)) / (__d)); \
+} \
 )
 
 u32 simple_div(u32 a, u32 b);
@@ -84,19 +93,17 @@ u32 simple_mod(u32 a, u32 b);
 /**
  * banim.c
  */
-bool IsAttackerAnim(struct Anim * anim);
-int GetBattleActorHpAtRound(int round);
-int GetBattleTargetHpAtRound(int round);
+bool IsAttackerAnim(struct Anim *anim);
 
 /**
  * event-call.c
  */
-ProcPtr KernelCallEvent(const EventScr * eventscr, u8 execType, ProcPtr parent);
+ProcPtr KernelCallEvent(const EventScr *eventscr, u8 execType, ProcPtr parent);
 
 /**
  * hook-proc.c
  */
-void KernelStartBlockingHookProc(HookProcFunc_t const * hook_list, ProcPtr parent);
+void KernelStartBlockingHookProc(HookProcFunc_t const *hook_list, ProcPtr parent);
 
 /**
  * ranges.c
@@ -116,30 +123,30 @@ extern const u8 gRange2_In3x3[ARRAY_COUNT_RANGE3x3];
 /**
  * faction
  */
-#define GetFactionUnitAmount(faction)                    \
-(                                                        \
-    (faction) == FACTION_BLUE  ? CONFIG_UNIT_AMT_ALLY  : \
-    (faction) == FACTION_RED   ? CONFIG_UNIT_AMT_ENEMY : \
-    (faction) == FACTION_GREEN ? CONFIG_UNIT_AMT_NPC   : \
-    0                                                    \
+#define GetFactionUnitAmount(faction) \
+( \
+	(faction) == FACTION_BLUE  ? CONFIG_UNIT_AMT_ALLY  : \
+	(faction) == FACTION_RED   ? CONFIG_UNIT_AMT_ENEMY : \
+	(faction) == FACTION_GREEN ? CONFIG_UNIT_AMT_NPC   : \
+	0 \
 )
 
 /**
  * Bits
  */
-static inline void _BIT_SET(u32 * bits, int idx)
+static inline void _BIT_SET(u32 *bits, int idx)
 {
-    bits[idx / 32] |= 1 << (idx % 32);
+	bits[idx / 32] |= 1 << (idx % 32);
 }
 
-static inline void _BIT_CLR(u32 * bits, int idx)
+static inline void _BIT_CLR(u32 *bits, int idx)
 {
-    bits[idx / 32] &= ~(1 << (idx % 32));
+	bits[idx / 32] &= ~(1 << (idx % 32));
 }
 
-static inline bool _BIT_CHK(u32 * bits, int idx)
+static inline bool _BIT_CHK(u32 *bits, int idx)
 {
-    return !!(bits[idx / 32] & (1 << (idx % 32)));
+	return !!(bits[idx / 32] & (1 << (idx % 32)));
 }
 
 /**
@@ -151,6 +158,7 @@ bool KernelPad3(void);
 bool KernelPad4(void);
 
 /**
+<<<<<<< HEAD
  * utf8.c
  */
 int GetChLenUtf8(const char *str);
@@ -160,6 +168,8 @@ char NarrowFontsUtf8ToAscii(const char *str);
 char NarrowFontsUnicodeToAscii(u32 unicod);
 
 /**
+=======
+>>>>>>> 7b86e9495edda39a0eb0d27d352d8795a134d7fc
  * Misc
  */
 enum UnitStatusIdxRef {
@@ -187,4 +197,8 @@ enum BattleStatusIdxRef {
 	BATTLE_STATUS_SILENCER,
 
 	BATTLE_STATUS_MAX
+<<<<<<< HEAD
 };
+=======
+};
+>>>>>>> 7b86e9495edda39a0eb0d27d352d8795a134d7fc

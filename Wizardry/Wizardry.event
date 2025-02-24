@@ -11,8 +11,11 @@ ALIGN 4
 #include "Essentials/LeaderFix/LeaderFix.event"
 #include "Essentials/RemoveMovePath/RemoveMovePath.event"
 #include "Essentials/UnitLimitation/UnitLimitation.event"
-#include "Essentials/OverflowDetection/OverflowDetection.lyn.event"
+#include "Essentials/BanimHpDrainFix/BanimHpDrainFix.event"
+#include "Essentials/BattleForcastFix/BattleForcastFix.event"
 
+#include "Common/OverflowDetection/OverflowDetection.lyn.event"
+#include "Common/AntiHuffman/AntiHuffman.event"
 #include "Common/EventRework/EventRework.event"
 #include "Common/UnitAction/UnitAction.event"
 #include "Common/GameInitHook/GameInitHook.event"
@@ -59,9 +62,20 @@ ALIGN 4
 #include "Core/Movement/Movement.event"
 #include "Core/AiHack/AiHack.event"
 
+<<<<<<< HEAD
 #include "Misc/GaidenMagic/GaidenMagic.event"
 #include "Misc/JobGrowth/JobGrowth.lyn.event"
 #include "Misc/Shield/Shield.event"
 #include "Misc/PortraitHeight/PortraitHeight.event"
+=======
+#include "Misc/SkillEffects/MiscSkillEffects.event"
+#include "Misc/GaidenMagic/GaidenMagic.event"
+#include "Misc/Reorganize/Reorganize.event"
+#include "Misc/Shield/Shield.event"
+
+#ifdef CONFIG_INSTALL_CONVOYEXPA
+    #include "Misc/ConvoyExpa/ConvoyExpa.event"
+#endif
+>>>>>>> 7b86e9495edda39a0eb0d27d352d8795a134d7fc
 
 #include "External/ExternalPatches.event"

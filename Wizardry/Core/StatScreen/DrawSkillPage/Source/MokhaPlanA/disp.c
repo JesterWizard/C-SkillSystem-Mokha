@@ -49,4 +49,8 @@ void DrawSkillPage_MokhaPlanA(void)
 			TEXT_COLOR_SYSTEM_WHITE, 0, 0,
 			GetSkillNameStr(list->sid[i]));
 	}
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> 7b86e9495edda39a0eb0d27d352d8795a134d7fc

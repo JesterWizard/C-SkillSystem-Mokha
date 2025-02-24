@@ -93,4 +93,8 @@ int GaidenBMagActionCommandUnhover(struct MenuProc *menu, struct MenuItemProc *m
 u8 GaidenWMagActionCommandUsability(const struct MenuItemDef *def, int number);
 int GaidenWMagActionCommandOnDarw(struct MenuProc *menu, struct MenuItemProc *item);
 u8 GaidenWMagActionCommandEffect(struct MenuProc *menu, struct MenuItemProc *menuItem);
+<<<<<<< HEAD
 int GaidenWMagActionCommandHover(struct MenuProc *menu, struct MenuItemProc *menuItem);
+=======
+int GaidenWMagActionCommandHover(struct MenuProc *menu, struct MenuItemProc *menuItem);
+>>>>>>> 7b86e9495edda39a0eb0d27d352d8795a134d7fc

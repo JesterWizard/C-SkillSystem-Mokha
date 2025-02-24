@@ -14,6 +14,24 @@ struct ProcEfxHpCost {
 	struct Anim *anim;
 };
 
+<<<<<<< HEAD
+=======
+void BanimC07_UpdateHpCost(struct Anim *anim)
+{
+	int round;
+
+	if (GetAISLayerId(anim) != 0)
+		return;
+
+	round = anim->nextRoundId - 1;
+	if (round < 0 || round >= NEW_BATTLE_HIT_MAX)
+		return;
+
+	if (GetExtBattleHit(round)->hp_cost > 0)
+		NewEfxHpCost(anim);
+}
+
+>>>>>>> 7b86e9495edda39a0eb0d27d352d8795a134d7fc
 STATIC_DECLAR void EfxHpCost_Start(struct ProcEfxHpCost *proc) {}
 
 STATIC_DECLAR void EfxHpCost_Loop(struct ProcEfxHpCost *proc)
@@ -49,10 +67,13 @@ STATIC_DECLAR const struct ProcCmd ProcScr_EfxHpCost[] = {
 	PROC_YIELD,
 	PROC_CALL(EfxHpCost_Start),
 	PROC_REPEAT(EfxHpCost_Loop),
+<<<<<<< HEAD
 
 	// We can fasten the banim not to waiting anim-number done
 	// PROC_WHILE(EfxAnimNumberExists),
 
+=======
+>>>>>>> 7b86e9495edda39a0eb0d27d352d8795a134d7fc
 	PROC_CALL(EfxHpCost_End),
 	PROC_END
 };

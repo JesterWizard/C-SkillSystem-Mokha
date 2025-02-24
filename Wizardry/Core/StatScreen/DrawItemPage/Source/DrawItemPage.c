@@ -99,7 +99,11 @@ struct ItemPageList *GetUnitItemPageList(struct Unit *unit)
 	return list;
 }
 
+<<<<<<< HEAD
 static void DrawItemLineDefault(const struct ItemPageEnt *ent, int line)
+=======
+NOINLINE static void DrawItemLineDefault(const struct ItemPageEnt *ent, int line)
+>>>>>>> 7b86e9495edda39a0eb0d27d352d8795a134d7fc
 {
 	DrawItemStatScreenLine(
 		&gStatScreen.text[STATSCREEN_TEXT_ITEM0 + line],
@@ -109,7 +113,11 @@ static void DrawItemLineDefault(const struct ItemPageEnt *ent, int line)
 	);
 }
 
+<<<<<<< HEAD
 static void DrawItemLineGaidenMagic(const struct ItemPageEnt *ent, int line)
+=======
+NOINLINE static void DrawItemLineGaidenMagic(const struct ItemPageEnt *ent, int line)
+>>>>>>> 7b86e9495edda39a0eb0d27d352d8795a134d7fc
 {
 	int item = ent->item;
 	int color = ent->color;
@@ -132,7 +140,11 @@ static void DrawItemLineGaidenMagic(const struct ItemPageEnt *ent, int line)
 #endif
 }
 
+<<<<<<< HEAD
 static void DrawItemEquipLine(int slot)
+=======
+NOINLINE static void DrawItemEquipLine(int slot)
+>>>>>>> 7b86e9495edda39a0eb0d27d352d8795a134d7fc
 {
 	int i, line;
 	struct Unit *unit = gStatScreen.unit;
@@ -158,7 +170,11 @@ static void DrawItemEquipLine(int slot)
 	}
 }
 
+<<<<<<< HEAD
 static void DrawItemPageSubfix(int slot)
+=======
+NOINLINE static void DrawItemPageSubfix(int slot)
+>>>>>>> 7b86e9495edda39a0eb0d27d352d8795a134d7fc
 {
 	int i, weapon;
 	const char *str;
@@ -242,6 +258,7 @@ void DisplayPage1(void)
  * Helpbox
  */
 LYN_REPLACE_CHECK(HbRedirect_SSItem);
+<<<<<<< HEAD
 void HbRedirect_SSItem(struct HelpBoxProc* proc)
 {
     if (!gStatScreen.unit->items[0])
@@ -269,10 +286,27 @@ void HbRedirect_SSItem(struct HelpBoxProc* proc)
 // 			TryRelocateHbDown(proc);
 // 	}
 // }
+=======
+void HbRedirect_SSItem(struct HelpBoxProc *proc)
+{
+	struct ItemPageList *list = GetUnitItemPageList(gStatScreen.unit);
+
+	if (list->ent[0].item == ITEM_NONE)
+		TryRelocateHbLeft(proc);
+
+	if (list->ent[proc->info->mid].item == ITEM_NONE) {
+		if (proc->moveKey == 0 || proc->moveKey == DPAD_RIGHT || proc->moveKey == DPAD_UP)
+			TryRelocateHbUp(proc);
+		else if (proc->moveKey == DPAD_DOWN)
+			TryRelocateHbDown(proc);
+	}
+}
+>>>>>>> 7b86e9495edda39a0eb0d27d352d8795a134d7fc
 
 LYN_REPLACE_CHECK(HbPopulate_SSItem);
 void HbPopulate_SSItem(struct HelpBoxProc *proc)
 {
+<<<<<<< HEAD
 	// struct ItemPageList *list = GetUnitItemPageList(gStatScreen.unit);
 	// int item = list->ent[proc->info->mid].item;
 
@@ -282,4 +316,11 @@ void HbPopulate_SSItem(struct HelpBoxProc *proc)
 
     proc->item = item;
     proc->mid  = GetItemDescId(item);
+=======
+	struct ItemPageList *list = GetUnitItemPageList(gStatScreen.unit);
+	int item = list->ent[proc->info->mid].item;
+
+	proc->item = item;
+	proc->mid  = GetItemDescId(item);
+>>>>>>> 7b86e9495edda39a0eb0d27d352d8795a134d7fc
 }

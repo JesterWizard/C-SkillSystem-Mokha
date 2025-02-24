@@ -6,12 +6,104 @@
 /**
  * Udefs
  */
+<<<<<<< HEAD
+=======
+static const struct REDA REDA_Eirika[] = {
+	{
+		.x = 14,
+		.y = 27,
+		.b = -1,
+	}
+};
+
+static const struct REDA REDA_Seth[] = {
+	{
+		.x = 15,
+		.y = 27,
+		.b = -1,
+		.delayFrames = 8,
+	}
+};
+
+static const struct REDA REDA_Myrrh[] = {
+	{
+		.x = 13,
+		.y = 25,
+		.b = -1,
+		.delayFrames = 16,
+	}
+};
+
+static const struct REDA REDA_Tana[] = {
+	{
+		.x = 16,
+		.y = 21,
+		.b = -1,
+		.delayFrames = 32,
+	}
+};
+
+static const struct REDA REDA_Vanessa[] = {
+	{
+		.x = 17,
+		.y = 19,
+		.b = -1,
+		.delayFrames = 48,
+	}
+};
+
+static const struct REDA REDA_Marisa[] = {
+	{
+		.x = 14,
+		.y = 24,
+		.b = -1,
+		.delayFrames = 48,
+	}
+};
+
+static const struct REDA REDA_Ephraim[] = {
+	{
+		.x = 13,
+		.y = 27,
+		.b = -1,
+	}
+};
+
+static const struct REDA REDA_Saleh[] = {
+	{
+		.x = 14,
+		.y = 26,
+		.b = -1,
+		.delayFrames = 64,
+	}
+};
+
+static const struct REDA REDA_Tethys[] = {
+	{
+		.x = 12,
+		.y = 27,
+		.b = -1,
+		.delayFrames = 64,
+	}
+};
+
+static const struct REDA REDA_Knoll[] = {
+	{
+		.x = 17,
+		.y = 28,
+		.b = -1,
+		.delayFrames = 64,
+	}
+};
+
+>>>>>>> 7b86e9495edda39a0eb0d27d352d8795a134d7fc
 static const struct UnitDefinition UnitDef_Ally1[] = {
 	{
 		.charIndex = CHARACTER_EIRIKA,
 		.classIndex = CLASS_EIRIKA_LORD,
 		.allegiance = FACTION_ID_BLUE,
 		.autolevel = true,
+<<<<<<< HEAD
 		.level = 9,
 		.xPosition = 16,
 		.yPosition = 29,
@@ -21,6 +113,13 @@ static const struct UnitDefinition UnitDef_Ally1[] = {
 			.y = 27,
 			.b = -1,
 		}},
+=======
+		.level = 10,
+		.xPosition = 16,
+		.yPosition = 29,
+		.redaCount = 1,
+		.redas = REDA_Eirika,
+>>>>>>> 7b86e9495edda39a0eb0d27d352d8795a134d7fc
 		.items = {
 			ITEM_SWORD_RAPIER,
 			ITEM_VULNERARY,
@@ -34,12 +133,16 @@ static const struct UnitDefinition UnitDef_Ally1[] = {
 		.xPosition = 16,
 		.yPosition = 29,
 		.redaCount = 1,
+<<<<<<< HEAD
 		.redas = (const struct REDA[]) {{
 			.x = 15,
 			.y = 27,
 			.b = -1,
 			.delayFrames = 8,
 		}},
+=======
+		.redas = REDA_Seth,
+>>>>>>> 7b86e9495edda39a0eb0d27d352d8795a134d7fc
 		.items = {
 			ITEM_SWORD_SILVER,
 			ITEM_LANCE_SILVER,
@@ -52,6 +155,7 @@ static const struct UnitDefinition UnitDef_Ally1[] = {
 		.classIndex = CLASS_MANAKETE_MYRRH,
 		.allegiance = FACTION_ID_BLUE,
 		.autolevel = true,
+<<<<<<< HEAD
 		.level = 9,
 		.xPosition = 16,
 		.yPosition = 29,
@@ -62,6 +166,13 @@ static const struct UnitDefinition UnitDef_Ally1[] = {
 			.b = -1,
 			.delayFrames = 16,
 		}},
+=======
+		.level = 15,
+		.xPosition = 16,
+		.yPosition = 29,
+		.redaCount = 1,
+		.redas = REDA_Myrrh,
+>>>>>>> 7b86e9495edda39a0eb0d27d352d8795a134d7fc
 		.items = {
 			ITEM_DIVINESTONE,
 			ITEM_VULNERARY,
@@ -75,12 +186,16 @@ static const struct UnitDefinition UnitDef_Ally1[] = {
 		.xPosition = 19,
 		.yPosition = 15,
 		.redaCount = 1,
+<<<<<<< HEAD
 		.redas = (const struct REDA[]) {{
 			.x = 16,
 			.y = 21,
 			.b = -1,
 			.delayFrames = 32,
 		}},
+=======
+		.redas = REDA_Tana,
+>>>>>>> 7b86e9495edda39a0eb0d27d352d8795a134d7fc
 		.items = {
 			ITEM_LANCE_SLIM,
 			ITEM_VULNERARY
@@ -94,12 +209,16 @@ static const struct UnitDefinition UnitDef_Ally1[] = {
 		.xPosition = 19,
 		.yPosition = 15,
 		.redaCount = 1,
+<<<<<<< HEAD
 		.redas = (const struct REDA[]) {{
 			.x = 17,
 			.y = 19,
 			.b = -1,
 			.delayFrames = 48,
 		}},
+=======
+		.redas = REDA_Vanessa,
+>>>>>>> 7b86e9495edda39a0eb0d27d352d8795a134d7fc
 		.items = {
 			ITEM_LANCE_SLIM,
 			ITEM_VULNERARY
@@ -113,6 +232,7 @@ static const struct UnitDefinition UnitDef_Ally1[] = {
 		.xPosition = 16,
 		.yPosition = 29,
 		.redaCount = 1,
+<<<<<<< HEAD
 		.redas = (const struct REDA[]) {{
 			.x = 14,
 			.y = 24,
@@ -122,6 +242,12 @@ static const struct UnitDefinition UnitDef_Ally1[] = {
 		.items = {
 			ITEM_SWORD_SLIM,
 			// CONFIG_ITEM_INDEX_MAG_BOOSTER
+=======
+		.redas = REDA_Marisa,
+		.items = {
+			ITEM_SWORD_SLIM,
+			CONFIG_ITEM_INDEX_MAG_BOOSTER
+>>>>>>> 7b86e9495edda39a0eb0d27d352d8795a134d7fc
 		},
 	},
 	{
@@ -132,6 +258,7 @@ static const struct UnitDefinition UnitDef_Ally1[] = {
 		.xPosition = 16,
 		.yPosition = 29,
 		.redaCount = 1,
+<<<<<<< HEAD
 		.redas = (const struct REDA[]) {{
 			.x = 13,
 			.y = 27,
@@ -140,6 +267,11 @@ static const struct UnitDefinition UnitDef_Ally1[] = {
 		.items = {
 			ITEM_LANCE_IRON,
 			ITEM_SOLARBRACE,
+=======
+		.redas = REDA_Ephraim,
+		.items = {
+			ITEM_LANCE_IRON,
+>>>>>>> 7b86e9495edda39a0eb0d27d352d8795a134d7fc
 		},
 	},
 	{
@@ -150,12 +282,16 @@ static const struct UnitDefinition UnitDef_Ally1[] = {
 		.xPosition = 11,
 		.yPosition = 29,
 		.redaCount = 1,
+<<<<<<< HEAD
 		.redas = (const struct REDA[]) {{
 			.x = 14,
 			.y = 26,
 			.b = -1,
 			.delayFrames = 64,
 		}},
+=======
+		.redas = REDA_Saleh,
+>>>>>>> 7b86e9495edda39a0eb0d27d352d8795a134d7fc
 		.items = {
 			ITEM_ANIMA_BOLTING,
 			ITEM_ANIMA_ELFIRE,
@@ -170,12 +306,16 @@ static const struct UnitDefinition UnitDef_Ally1[] = {
 		.xPosition = 12,
 		.yPosition = 29,
 		.redaCount = 1,
+<<<<<<< HEAD
 		.redas = (const struct REDA[]) {{
 			.x = 12,
 			.y = 27,
 			.b = -1,
 			.delayFrames = 64,
 		}},
+=======
+		.redas = REDA_Tethys,
+>>>>>>> 7b86e9495edda39a0eb0d27d352d8795a134d7fc
 		.items = {
 			ITEM_VULNERARY
 		},
@@ -188,12 +328,16 @@ static const struct UnitDefinition UnitDef_Ally1[] = {
 		.xPosition = 12,
 		.yPosition = 29,
 		.redaCount = 1,
+<<<<<<< HEAD
 		.redas = (const struct REDA[]) {{
 			.x = 17,
 			.y = 28,
 			.b = -1,
 			.delayFrames = 64,
 		}},
+=======
+		.redas = REDA_Knoll,
+>>>>>>> 7b86e9495edda39a0eb0d27d352d8795a134d7fc
 		.items = {
 			ITEM_DARK_FLUX,
 			ITEM_VULNERARY
@@ -220,6 +364,41 @@ static const struct UnitDefinition UnitDef_Ally1[] = {
 	{}
 };
 
+<<<<<<< HEAD
+=======
+static const struct REDA REDA_ONeill[] = {
+	{
+		.x = 16,
+		.y = 19,
+		.b = -1,
+	}
+};
+
+static const struct REDA REDA_Saar[] = {
+	{
+		.x = 10,
+		.y = 25,
+		.b = -1,
+	}
+};
+
+static const struct REDA REDA_Bazba[] = {
+	{
+		.x = 8,
+		.y = 7,
+		.b = -1,
+	}
+};
+
+static const struct REDA REDA_Vigarde[] = {
+	{
+		.x = 13,
+		.y = 23,
+		.b = -1,
+	},
+};
+
+>>>>>>> 7b86e9495edda39a0eb0d27d352d8795a134d7fc
 static const struct UnitDefinition UnitDef_Enemy1[] = {
 	{
 		.charIndex = CHARACTER_ONEILL,
@@ -230,11 +409,15 @@ static const struct UnitDefinition UnitDef_Enemy1[] = {
 		.xPosition = 12,
 		.yPosition = 21,
 		.redaCount = 1,
+<<<<<<< HEAD
 		.redas = (const struct REDA[]) {{
 			.x = 16,
 			.y = 19,
 			.b = -1,
 		}},
+=======
+		.redas = REDA_ONeill,
+>>>>>>> 7b86e9495edda39a0eb0d27d352d8795a134d7fc
 		.items = {
 			ITEM_AXE_IRON,
 		},
@@ -249,11 +432,15 @@ static const struct UnitDefinition UnitDef_Enemy1[] = {
 		.xPosition = 4,
 		.yPosition = 22,
 		.redaCount = 1,
+<<<<<<< HEAD
 		.redas = (const struct REDA[]) {{
 			.x = 10,
 			.y = 25,
 			.b = -1,
 		}},
+=======
+		.redas = REDA_Saar,
+>>>>>>> 7b86e9495edda39a0eb0d27d352d8795a134d7fc
 		.items = {
 			ITEM_LANCE_IRON,
 		},
@@ -268,11 +455,15 @@ static const struct UnitDefinition UnitDef_Enemy1[] = {
 		.xPosition = 10,
 		.yPosition = 9,
 		.redaCount = 1,
+<<<<<<< HEAD
 		.redas = (const struct REDA[]) {{
 			.x = 8,
 			.y = 7,
 			.b = -1,
 		}},
+=======
+		.redas = REDA_Bazba,
+>>>>>>> 7b86e9495edda39a0eb0d27d352d8795a134d7fc
 		.items = {
 			ITEM_SWORD_IRON,
 		},
@@ -287,11 +478,15 @@ static const struct UnitDefinition UnitDef_Enemy1[] = {
 		.xPosition = 12,
 		.yPosition = 21,
 		.redaCount = 1,
+<<<<<<< HEAD
 		.redas = (const struct REDA[]) {{
 			.x = 13,
 			.y = 23,
 			.b = -1,
 		}},
+=======
+		.redas = REDA_Vigarde,
+>>>>>>> 7b86e9495edda39a0eb0d27d352d8795a134d7fc
 		.items = {
 			ITEM_AXE_IRON,
 			ITEM_LANCE_SILVER,
@@ -356,6 +551,7 @@ static const struct UnitDefinition UnitDef_Enemy1[] = {
 	{}
 };
 
+<<<<<<< HEAD
 // static void modify_unit_status(void)
 // {
 // 	struct Unit *unit;
@@ -380,6 +576,19 @@ static const struct UnitDefinition UnitDef_Enemy1[] = {
 // 		unit->exp = 99;
 // 	}
 // }
+=======
+static void give_skill_scroll_to_ephraim(void)
+{
+	struct Unit *unit = GetUnitFromCharId(CHARACTER_EPHRAIM);
+
+	if (unit) {
+#if defined(SID_Fury) && (COMMON_SKILL_VALID(SID_Fury))
+		UnitAddItem(unit, (SID_Fury << 8) | CONFIG_ITEM_INDEX_SKILL_SCROLL);
+#endif
+		UnitAddItem(unit, (1 << 8) | ITEM_VULNERARY);
+	}
+}
+>>>>>>> 7b86e9495edda39a0eb0d27d352d8795a134d7fc
 
 /**
  * Main events
@@ -394,10 +603,13 @@ static const EventScr EventScr_Beginning[] = {
 	Evt_AddSkill(SID_Obstruct, CHARACTER_SAAR)
 #endif
 
+<<<<<<< HEAD
 #if defined(SID_Paragon) && (COMMON_SKILL_VALID(SID_Paragon))
 	Evt_AddSkill(SID_Paragon, CHARACTER_EIRIKA)
 #endif
 
+=======
+>>>>>>> 7b86e9495edda39a0eb0d27d352d8795a134d7fc
 #if defined(SID_Nihil) && (COMMON_SKILL_VALID(SID_Nihil))
 	Evt_AddSkill(SID_Nihil, CHARACTER_SAAR)
 #endif
@@ -468,10 +680,14 @@ static const EventScr EventScr_Beginning[] = {
 	Evt_RemoveSkill(SID_Fury, CHARACTER_EPHRAIM)
 #endif
 
+<<<<<<< HEAD
 	// ASMC(modify_unit_status)
 
 	SVAL(EVT_SLOT_3, ITEM_VULNERARY)
 	GIVEITEMTO(CHARACTER_EPHRAIM)
+=======
+	ASMC(give_skill_scroll_to_ephraim)
+>>>>>>> 7b86e9495edda39a0eb0d27d352d8795a134d7fc
 
 	// PREP
 	CALL(EventScr_08591FD8)
@@ -488,7 +704,11 @@ static const EventScr EventScr_Beginning[] = {
 	SVAL(EVT_SLOT_1, 40)
 	SET_HP(CHARACTER_VIGARDE)
 
+<<<<<<< HEAD
 	NOFADE
+=======
+	NoFade
+>>>>>>> 7b86e9495edda39a0eb0d27d352d8795a134d7fc
 	ENDA
 };
 
@@ -521,8 +741,13 @@ static const EventListScr EventListScr_Location[] = {
 };
 
 static const EventListScr EventListScr_Misc[] = {
+<<<<<<< HEAD
 	DEFEAT_ALL(EventScr_Ending)
 	CAUSE_GAME_OVER_IF_LORD_DIES
+=======
+	DefeatAll(EventScr_Ending)
+	CauseGameOverIfLordDies
+>>>>>>> 7b86e9495edda39a0eb0d27d352d8795a134d7fc
 	END_MAIN
 };
 

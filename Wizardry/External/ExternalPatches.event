@@ -1,3 +1,7 @@
+/**
+ * External QOL patches
+ */
+
 #ifdef CONFIG_USE_CHAR_CUSTOM_ANIM
     #include "Individual_animation_ea_2/Installer.event"
 #endif
@@ -10,8 +14,12 @@
     #include "StatScreenfx/StatScreenfx.event"
 #endif
 
-#ifdef CONFIG_INSTALL_CONVOYEXPA
-    #include "ConvoyExpa/ConvoyExpa.event"
+#ifdef CONFIG_OPTIMIZE_UNIT_AUTOLEVEL
+    #include "AutoluOpt/AutoluOpt.event"
+#endif
+
+#ifdef CONFIG_NO_SUS_IN_AI_PHASE
+    #include "PhaseSuspend/PhaseSuspend.event"
 #endif
 
 #ifdef CONFIG_INSTALL_SEND_INVENTORY_ON_DEATH

@@ -4,10 +4,11 @@
 #include "Source/LynJump.event"
 #include "Source/StaffAccuracy.lyn.event"
 #include "Source/StaffHeal.lyn.event"
+#include "Source/ItemUse.lyn.event"
 
 #include "ItemInfoRemap/ItemInfoRemap.event"
 
-/* int (*)(int old, struct Unit * actor, struct Unit * target); */
+/* int (*)(int old, struct Unit *actor, struct Unit *target); */
 ALIGN 4
 gHealAmountGetters:
     POIN HealAmount_SkillsGetter
@@ -20,8 +21,12 @@ gHealAmountGetters:
 #include "PrepItem/PrepItemUseScreen.lyn.event"
 
 PUSH
-ORG $A190D4
-PROC_YEILD
+    ORG $A190D4
+    PROC_YEILD
+
+    ORG 0x02FC62
+    BL(AutoGetItemUseActionItem)
+    PROTECT 0x0002FC48 0x0002FFB4 // ActionStaffDoorChestUseItem
 POP
 
 // #include "data.event"

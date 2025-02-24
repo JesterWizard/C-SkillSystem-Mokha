@@ -4,11 +4,12 @@
 #include "constants/skills.h"
 #include "bwl.h"
 
-int _GetUnitSkill(struct Unit * unit)
+int _GetUnitSkill(struct Unit *unit)
 {
-    const StatusGetterFunc_t * it;
-    int status = unit->skl;
+	const StatusGetterFunc_t *it;
+	int status = unit->skl;
 
+<<<<<<< HEAD
     if (unit->state & US_RESCUING) {
         bool hasPairUp = false;
         bool hasSavior = false;
@@ -32,88 +33,98 @@ int _GetUnitSkill(struct Unit * unit)
     else if (unit == GetUnit(gBattleTarget.unit.index) && GetUnit(gBattleActor.unit.index) && SkillTester(GetUnit(gBattleActor.unit.index), SID_Unaware))
         return status;
 #endif
+=======
+	if (unit->state & US_RESCUING)
+		status = unit->skl / 2;
+>>>>>>> 7b86e9495edda39a0eb0d27d352d8795a134d7fc
 
-    for (it = gpSklGetters; *it; it++)
-        status = (*it)(status, unit);
+	for (it = gpSklGetters; *it; it++)
+		status = (*it)(status, unit);
 
+<<<<<<< HEAD
 #if defined(SETH_INJURED)
     if (unit->pCharacterData->number == CHARACTER_SETH)
         status -= gPlaySt.chapterIndex < INJURED_TURN_COUNT ? INJURED_TURN_COUNT - gPlaySt.chapterIndex : 0;
 #endif
 
     return status;
+=======
+	return status;
+>>>>>>> 7b86e9495edda39a0eb0d27d352d8795a134d7fc
 }
 
 /* Hooks */
-int SklGetterWeaponBonus(int status, struct Unit * unit)
+int SklGetterWeaponBonus(int status, struct Unit *unit)
 {
-    u16 weapon = GetUnitEquippedWeapon(unit);
-    status += GetItemSklBonus(weapon);
-    return status;
+	u16 weapon = GetUnitEquippedWeapon(unit);
+
+	status += GetItemSklBonus(weapon);
+	return status;
 }
 
-int SklGetterSkills(int status, struct Unit * unit)
+int SklGetterSkills(int status, struct Unit *unit)
 {
-    int cur_hp = GetUnitCurrentHp(unit);
-    int max_hp = GetUnitMaxHp(unit);
+	int cur_hp = GetUnitCurrentHp(unit);
+	int max_hp = GetUnitMaxHp(unit);
 
 #if defined(CONFIG_RESET_BWL_STATS_EACH_CHAPTER)
     struct NewBwl * bwl = GetNewBwl(UNIT_CHAR_ID(unit));
 #endif
 
 #if defined(SID_LifeAndDeath) && (COMMON_SKILL_VALID(SID_LifeAndDeath))
-    if (SkillTester(unit, SID_LifeAndDeath))
-        status += SKILL_EFF0(SID_LifeAndDeath);
+	if (SkillTester(unit, SID_LifeAndDeath))
+		status += SKILL_EFF0(SID_LifeAndDeath);
 #endif
 
 #if defined(SID_SklBonus) && (COMMON_SKILL_VALID(SID_SklBonus))
-    if (SkillTester(unit, SID_SklBonus))
-        status += SKILL_EFF0(SID_SklBonus);
+	if (SkillTester(unit, SID_SklBonus))
+		status += SKILL_EFF0(SID_SklBonus);
 #endif
 
 #if defined(SID_DefiantSkl) && (COMMON_SKILL_VALID(SID_DefiantSkl))
-    if (SkillTester(unit, SID_DefiantSkl))
-        if ((cur_hp * 4) < max_hp)
-            status += SKILL_EFF0(SID_DefiantSkl);
+	if (SkillTester(unit, SID_DefiantSkl))
+		if ((cur_hp * 4) < max_hp)
+			status += SKILL_EFF0(SID_DefiantSkl);
 #endif
 
 #if defined(SID_Fury) && (COMMON_SKILL_VALID(SID_Fury))
-    if (SkillTester(unit, SID_Fury))
-        status += SKILL_EFF0(SID_Fury);
+	if (SkillTester(unit, SID_Fury))
+		status += SKILL_EFF0(SID_Fury);
 #endif
 
 #if defined(SID_FuryPlus) && (COMMON_SKILL_VALID(SID_FuryPlus))
-    if (SkillTester(unit, SID_FuryPlus))
-        status += SKILL_EFF0(SID_FuryPlus);
+	if (SkillTester(unit, SID_FuryPlus))
+		status += SKILL_EFF0(SID_FuryPlus);
 #endif
 
 #if defined(SID_LuckySeven) && (COMMON_SKILL_VALID(SID_LuckySeven))
-    if (SkillTester(unit, SID_LuckySeven) && (gPlaySt.chapterTurnNumber & 0x7) == LUCKY7_SKL)
-        status += SKILL_EFF0(SID_LuckySeven);
+	if (SkillTester(unit, SID_LuckySeven) && (gPlaySt.chapterTurnNumber & 0x7) == LUCKY7_SKL)
+		status += SKILL_EFF0(SID_LuckySeven);
 #endif
 
 #if defined(SID_SkillBoost) && (COMMON_SKILL_VALID(SID_SkillBoost))
-    if (SkillTester(unit, SID_SkillBoost))
-    {
-        int __buf = SKILL_EFF0(SID_SkillBoost);
-        if (gPlaySt.chapterTurnNumber >= __buf)
-            status += __buf;
-        else
-            status += gPlaySt.chapterTurnNumber;
-    }
+	if (SkillTester(unit, SID_SkillBoost)) {
+		int __buf = SKILL_EFF0(SID_SkillBoost);
+
+		if (gPlaySt.chapterTurnNumber >= __buf)
+			status += __buf;
+		else
+			status += gPlaySt.chapterTurnNumber;
+	}
 #endif
 
 #if defined(SID_SpectrumBoost) && (COMMON_SKILL_VALID(SID_SpectrumBoost))
-    if (SkillTester(unit, SID_SpectrumBoost))
-    {
-        int __buf = SKILL_EFF0(SID_SpectrumBoost);
-        if (gPlaySt.chapterTurnNumber >= __buf)
-            status += __buf;
-        else
-            status += gPlaySt.chapterTurnNumber;
-    }
+	if (SkillTester(unit, SID_SpectrumBoost)) {
+		int __buf = SKILL_EFF0(SID_SpectrumBoost);
+
+		if (gPlaySt.chapterTurnNumber >= __buf)
+			status += __buf;
+		else
+			status += gPlaySt.chapterTurnNumber;
+	}
 #endif
 
+<<<<<<< HEAD
 #if (defined(SID_TakerSkill) && (COMMON_SKILL_VALID(SID_TakerSkill)) && defined(CONFIG_RESET_BWL_STATS_EACH_CHAPTER))
     if (SkillTester(unit, SID_TakerSkill))
     {
@@ -140,25 +151,28 @@ int SklGetterSkills(int status, struct Unit * unit)
 
     if (cur_hp == max_hp)
     {
+=======
+	if (cur_hp == max_hp) {
+>>>>>>> 7b86e9495edda39a0eb0d27d352d8795a134d7fc
 #if defined(SID_PushSkill) && (COMMON_SKILL_VALID(SID_PushSkill))
-        if (SkillTester(unit, SID_PushSkill))
-            status += SKILL_EFF0(SID_PushSkill);
+		if (SkillTester(unit, SID_PushSkill))
+			status += SKILL_EFF0(SID_PushSkill);
 #endif
 
 #if defined(SID_PushSpectrum) && (COMMON_SKILL_VALID(SID_PushSpectrum))
-        if (SkillTester(unit, SID_PushSpectrum))
-            status += SKILL_EFF0(SID_PushSpectrum);
+		if (SkillTester(unit, SID_PushSpectrum))
+			status += SKILL_EFF0(SID_PushSpectrum);
 #endif
-    }
+	}
 
-#if (defined(SID_Resolve) && (COMMON_SKILL_VALID(SID_Resolve))) 
-    if (SkillTester(unit, SID_Resolve))
-    {
-        if ((cur_hp * 2) < max_hp)
-            status += status / 2;
-    }
+#if (defined(SID_Resolve) && (COMMON_SKILL_VALID(SID_Resolve)))
+	if (SkillTester(unit, SID_Resolve)) {
+		if ((cur_hp * 2) < max_hp)
+			status += status / 2;
+	}
 #endif
 
+<<<<<<< HEAD
 #if (defined(SID_Rampage) && (COMMON_SKILL_VALID(SID_Rampage))) 
     if (SkillTester(unit, SID_Rampage))
             status += status / 2;
@@ -171,6 +185,9 @@ int SklGetterSkills(int status, struct Unit * unit)
 #endif
 
     return status;
+=======
+	return status;
+>>>>>>> 7b86e9495edda39a0eb0d27d352d8795a134d7fc
 }
 
 int SklPsychUpCheck(int status, struct Unit *unit)

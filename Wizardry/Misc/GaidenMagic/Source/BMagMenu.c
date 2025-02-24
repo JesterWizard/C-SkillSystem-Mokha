@@ -340,7 +340,11 @@ STATIC_DECLAR const struct ProcCmd ProcScr_PostGaidenBMagSelectTarget[] = {
 	PROC_CALL(LockGame),
 	PROC_CALL(sub_8022E38),
 	PROC_WHILE_EXISTS(gProcScr_BKSEL),
+<<<<<<< HEAD
 	PROC_WHILE_EXISTS(gProcScr_CamMove),
+=======
+	PROC_WHILE_EXISTS(ProcScr_CamMove),
+>>>>>>> 7b86e9495edda39a0eb0d27d352d8795a134d7fc
 	PROC_CALL(RebuildGaidenBMagSelMenu),
 	PROC_CALL(UnlockGame),
 	PROC_END

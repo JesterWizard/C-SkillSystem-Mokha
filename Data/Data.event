@@ -3,11 +3,8 @@
 
 #include "EAstdlib.event"
 
-/**
- * Some file should put at head since it holds some macros
- */
-#include "../Wizardry/Common/ItemSys/data.event"
-#include "../Wizardry/Common/EventRework/data.event"
+/* Put at head since it holds some macros */
+#include "../Wizardry/data.event"
 
 #include "DesignerConfig/designer-config.lyn.event"
 #include "DesignerConfig/battle-designer-config.lyn.event"
@@ -37,9 +34,13 @@
 #include "GaidenMagic/GaidenMagicData.event"
 #include "GaidenMagic/GaidenMagicData.lyn.event"
 #include "MaxStatus/MaxStatus.lyn.event"
+<<<<<<< HEAD
 #include "JobGrowth/JobGrowth.lyn.event"
 #include "Shield/ShieldConfig.lyn.event"
 
 #include "../Wizardry/data.event"
+=======
+#include "Shield/ShieldConfig.lyn.event"
+>>>>>>> 7b86e9495edda39a0eb0d27d352d8795a134d7fc
 
 #endif

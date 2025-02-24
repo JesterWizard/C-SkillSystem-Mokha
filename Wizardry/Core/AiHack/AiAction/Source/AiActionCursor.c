@@ -2,17 +2,23 @@
 #include "strmag.h"
 
 LYN_REPLACE_CHECK(CpPerform_MoveCameraOntoTarget);
-void CpPerform_MoveCameraOntoTarget(struct CpPerformProc * proc)
+void CpPerform_MoveCameraOntoTarget(struct CpPerformProc *proc)
 {
-    struct Unit * unit;
+	struct Unit *unit;
 
+<<<<<<< HEAD
     int x = 0;
     int y = 0;
     int magic_seal_set = false;
+=======
+	int x = 0;
+	int y = 0;
+>>>>>>> 7b86e9495edda39a0eb0d27d352d8795a134d7fc
 
-    if (gActionData.unitActionType == UNIT_ACTION_TRAPPED)
-        return;
+	if (gActionData.unitActionType == UNIT_ACTION_TRAPPED)
+		return;
 
+<<<<<<< HEAD
     /**
      * Magic seal AI fix to prevent softlocks when it's used on the enemy
      */
@@ -32,77 +38,86 @@ void CpPerform_MoveCameraOntoTarget(struct CpPerformProc * proc)
         case AI_ACTION_DKNIGHTMARE:
         case AI_ACTION_DKSUMMON:
         case AI_ACTION_PICK:
+=======
+	switch (gAiDecision.actionId) {
+	case AI_ACTION_NONE:
+	case AI_ACTION_ESCAPE:
+	case AI_ACTION_PILLAGE:
+	case AI_ACTION_USEITEM:
+	case AI_ACTION_RIDEBALLISTA:
+	case AI_ACTION_EXITBALLISTA:
+	case AI_ACTION_DKNIGHTMARE:
+	case AI_ACTION_DKSUMMON:
+	case AI_ACTION_PICK:
+>>>>>>> 7b86e9495edda39a0eb0d27d352d8795a134d7fc
 
 #if CHAX
-        case CONFIG_AI_ACTION_EXPA_Teleportation:
-        default:
+	case CONFIG_AI_ACTION_EXPA_Teleportation:
+	default:
 #endif
-            return;
+		return;
 
-        case AI_ACTION_COMBAT:
-            if (gAiDecision.targetId == 0)
-            {
-                x = gAiDecision.xTarget;
-                y = gAiDecision.yTarget;
-            }
-            else
-            {
-                unit = GetUnit(gAiDecision.targetId);
-                x = unit->xPos;
-                y = unit->yPos;
-            }
+	case AI_ACTION_COMBAT:
+		if (gAiDecision.targetId == 0) {
+			x = gAiDecision.xTarget;
+			y = gAiDecision.yTarget;
+		} else {
+			unit = GetUnit(gAiDecision.targetId);
+			x = unit->xPos;
+			y = unit->yPos;
+		}
 
-            if (((s8)gAiDecision.itemSlot == -1) && !(gActiveUnit->state & US_IN_BALLISTA))
-            {
-                EndAllMus();
+		if (((s8)gAiDecision.itemSlot == -1) && !(gActiveUnit->state & US_IN_BALLISTA)) {
+			EndAllMus();
 
-                gActiveUnit->xPos = gAiDecision.xMove;
-                gActiveUnit->yPos = gAiDecision.yMove;
+			gActiveUnit->xPos = gAiDecision.xMove;
+			gActiveUnit->yPos = gAiDecision.yMove;
 
-                RideBallista(gActiveUnit);
+			RideBallista(gActiveUnit);
 
-                StartMu(gActiveUnit);
-                SetAutoMuDefaultFacing();
-            }
+			StartMu(gActiveUnit);
+			SetAutoMuDefaultFacing();
+		}
 
-            break;
+		break;
 
-        case AI_ACTION_STEAL:
-            unit = GetUnit(gAiDecision.targetId);
+	case AI_ACTION_STEAL:
+		unit = GetUnit(gAiDecision.targetId);
 
-            x = unit->xPos;
-            y = unit->yPos;
+		x = unit->xPos;
+		y = unit->yPos;
 
-            break;
+		break;
 
-        case AI_ACTION_REFRESH:
-            unit = GetUnit(gAiDecision.targetId);
+	case AI_ACTION_REFRESH:
+		unit = GetUnit(gAiDecision.targetId);
 
-            x = unit->xPos;
-            y = unit->yPos;
+		x = unit->xPos;
+		y = unit->yPos;
 
-            break;
+		break;
 
-        case AI_ACTION_TALK:
-            unit = GetUnit(gAiDecision.yTarget);
+	case AI_ACTION_TALK:
+		unit = GetUnit(gAiDecision.yTarget);
 
-            x = unit->xPos;
-            y = unit->yPos;
+		x = unit->xPos;
+		y = unit->yPos;
 
-            break;
+		break;
 
-        case AI_ACTION_STAFF:
-            if (gAiDecision.targetId == 0)
-                return;
+	case AI_ACTION_STAFF:
+		if (gAiDecision.targetId == 0)
+			return;
 
-            unit = GetUnit(gAiDecision.targetId);
+		unit = GetUnit(gAiDecision.targetId);
 
-            x = unit->xPos;
-            y = unit->yPos;
+		x = unit->xPos;
+		y = unit->yPos;
 
-            break;
-    }
+		break;
+	}
 
+<<<<<<< HEAD
     /**
      * If this is set, we don't want to bother setting the target red cursor
      */
@@ -111,4 +126,8 @@ void CpPerform_MoveCameraOntoTarget(struct CpPerformProc * proc)
 
     EnsureCameraOntoPosition(proc, x, y);
     StartAiTargetCursor(x * 16, y * 16, 2, proc);
+=======
+	EnsureCameraOntoPosition(proc, x, y);
+	StartAiTargetCursor(x * 16, y * 16, 2, proc);
+>>>>>>> 7b86e9495edda39a0eb0d27d352d8795a134d7fc
 }

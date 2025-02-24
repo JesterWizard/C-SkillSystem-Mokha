@@ -3,7 +3,11 @@
 #include <banim-hack.h>
 #include <battle-system.h>
 
+<<<<<<< HEAD
 void VramCopyAnimNumber(const void *src, void *dst)
+=======
+NOINLINE void VramCopyAnimNumber(const void *src, void *dst)
+>>>>>>> 7b86e9495edda39a0eb0d27d352d8795a134d7fc
 {
 	VramCopy(src,                                     dst,         CHR_SIZE * 2);
 	VramCopy(src + CHR_SIZE * IMG_ANIMNUMBER_LEN * 2, dst + 0x400, CHR_SIZE * 2);
@@ -33,14 +37,22 @@ void SetupEfxAnimNumberGfx(int number, int slot)
 	 * Number image
 	 */
 	for (i = 3; i > 0;) {
+<<<<<<< HEAD
 		int lo = k_umod(abs_num, 10);
+=======
+		int lo = simple_mod(abs_num, 10);
+>>>>>>> 7b86e9495edda39a0eb0d27d352d8795a134d7fc
 
 		VramCopyAnimNumber(
 			gpImg_EfxAnimNumber + (base_chr + lo * 2) * CHR_SIZE,
 			vram_base + i * 2 * CHR_SIZE
 		);
 
+<<<<<<< HEAD
 		abs_num = k_udiv(abs_num, 10);
+=======
+		abs_num = simple_div(abs_num, 10);
+>>>>>>> 7b86e9495edda39a0eb0d27d352d8795a134d7fc
 
 		i--;
 		if (abs_num <= 0)

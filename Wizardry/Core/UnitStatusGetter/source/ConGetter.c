@@ -3,6 +3,7 @@
 #include "status-getter.h"
 #include "constants/skills.h"
 
+<<<<<<< HEAD
 int _GetUnitCon(struct Unit * unit)
 {
     const StatusGetterFunc_t * it;
@@ -12,6 +13,18 @@ int _GetUnitCon(struct Unit * unit)
         status = (*it)(status, unit);
 
     return status;
+=======
+/**
+ * <!> WARNNING
+ * We did not inject CON-Getters to a lot of vanilla function.
+ * thus this function should not modified.
+ */
+int _GetUnitCon(struct Unit *unit)
+{
+	int status = UNIT_CON(unit);
+
+	return status;
+>>>>>>> 7b86e9495edda39a0eb0d27d352d8795a134d7fc
 }
 
 int ConGetterSkills(int status, struct Unit * unit)

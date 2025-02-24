@@ -12,10 +12,18 @@ install-devkitpro-pacman
 *.bsdiff
 
 # Tools
+<<<<<<< HEAD
 # Tools/EventAssembler/
 # Tools/FE-PyTools/
 # Tools/FE-CLib-Mokha/
 # Tools/dotnet-install.sh
+=======
+Tools/EventAssembler/
+Tools/FE-PyTools/
+Tools/FE-CLib-Mokha/
+Tools/check_patch/
+Tools/dotnet-install.sh
+>>>>>>> 7b86e9495edda39a0eb0d27d352d8795a134d7fc
 
 # Wizardry
 *.o
@@ -47,3 +55,4 @@ install-devkitpro-pacman
 !Wizardry/External/**/*.o
 
 packages-microsoft-prod.deb
+*.EXPERIMENTAL-checkpatch-fixes

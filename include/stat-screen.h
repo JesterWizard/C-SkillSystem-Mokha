@@ -95,4 +95,8 @@ struct ItemPageList *GetUnitItemPageList(struct Unit *unit);
 
 extern u8 const *const gpTSA_ItemPageSubfix;
 extern u8 const *const gpTSA_ItemEquipLine;
+<<<<<<< HEAD
 extern struct SSTextDispInfo const *const gpPage1TextInfo;
+=======
+extern struct SSTextDispInfo const *const gpPage1TextInfo;
+>>>>>>> 7b86e9495edda39a0eb0d27d352d8795a134d7fc

@@ -6,6 +6,7 @@ LYN_REPLACE_CHECK(UnitAutolevelCore);
 void UnitAutolevelCore(struct Unit *unit, u8 classId, int levelCount)
 {
 	if (levelCount) {
+<<<<<<< HEAD
 		unit->maxHP += GetAutoleveledStatIncrease(GetUnitJobBasedHpGrowth(unit),  levelCount);
 		unit->pow   += GetAutoleveledStatIncrease(GetUnitJobBasedPowGrowth(unit), levelCount);
 		unit->skl   += GetAutoleveledStatIncrease(GetUnitJobBasedSklGrowth(unit), levelCount);
@@ -16,6 +17,18 @@ void UnitAutolevelCore(struct Unit *unit, u8 classId, int levelCount)
 
 		/* Hook here */
 		UNIT_MAG(unit) += GetAutoleveledStatIncrease(GetUnitJobBasedMagGrowth(unit), levelCount);
+=======
+		unit->maxHP += GetAutoleveledStatIncrease(GetUnitHpGrowth(unit),  levelCount);
+		unit->pow   += GetAutoleveledStatIncrease(GetUnitPowGrowth(unit), levelCount);
+		unit->skl   += GetAutoleveledStatIncrease(GetUnitSklGrowth(unit), levelCount);
+		unit->spd   += GetAutoleveledStatIncrease(GetUnitSpdGrowth(unit), levelCount);
+		unit->def   += GetAutoleveledStatIncrease(GetUnitDefGrowth(unit), levelCount);
+		unit->res   += GetAutoleveledStatIncrease(GetUnitResGrowth(unit), levelCount);
+		unit->lck   += GetAutoleveledStatIncrease(GetUnitLckGrowth(unit), levelCount);
+
+		/* Hook here */
+		UNIT_MAG(unit) += GetAutoleveledStatIncrease(GetUnitMagGrowth(unit), levelCount);
+>>>>>>> 7b86e9495edda39a0eb0d27d352d8795a134d7fc
 	}
 }
 
@@ -44,4 +57,8 @@ void UnitAutolevelPenalty(struct Unit *unit, u8 classId, int levelCount)
 			unit->level = level;
 		}
 	}
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> 7b86e9495edda39a0eb0d27d352d8795a134d7fc

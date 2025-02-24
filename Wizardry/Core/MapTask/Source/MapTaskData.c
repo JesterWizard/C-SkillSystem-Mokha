@@ -6,6 +6,7 @@
 ** will be applied to.
 */ 
 const struct MapTaskConf gMapTaskConfs[] = {
+<<<<<<< HEAD
     [MTSKCONF_HPBAR]        = {  0,  9, gObject_16x8 },
     [MTSKCONF_COMM_BUFF]    = { -1,  0, sSprite_SysUpArrowA },
     [MTSKCONF_COMM_DEBUFF]  = { -1,  0, sSprite_SysDownArrowA },
@@ -13,11 +14,19 @@ const struct MapTaskConf gMapTaskConfs[] = {
     [MTSKCONF_BOSS]         = {  9,  7, gObject_8x8 },
     [MTSKCONF_PROTECTION]   = {  9,  7, gObject_8x8 },
     [MTSKCONF_TALK]         = {  -5, -1, gObject_8x8 },
+=======
+	[MTSKCONF_HPBAR]        = {  0,  9, gObject_16x8 },
+	[MTSKCONF_COMM_BUFF]    = { -1,  0, sSprite_SysUpArrowA },
+	[MTSKCONF_COMM_DEBUFF]  = { -1,  0, sSprite_SysDownArrowA },
+	[MTSKCONF_RESCUING]     = {  9,  7, gObject_8x8 },
+	[MTSKCONF_BOSS]         = {  9,  7, gObject_8x8 },
+	[MTSKCONF_PROTECTION]   = {  9,  7, gObject_8x8 },
+>>>>>>> 7b86e9495edda39a0eb0d27d352d8795a134d7fc
 };
 
 const u8 gHpBarChr[] = {
-          0x74, 0x74,
-    0x56, 0x54, 0x52,
-    0x36, 0x34, 0x32,
-    0x16, 0x14, 0x12
+	      0x74, 0x74,
+	0x56, 0x54, 0x52,
+	0x36, 0x34, 0x32,
+	0x16, 0x14, 0x12
 };

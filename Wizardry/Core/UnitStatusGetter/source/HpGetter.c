@@ -3,11 +3,12 @@
 #include "status-getter.h"
 #include "constants/skills.h"
 
-int _GetUnitMaxHp(struct Unit * unit)
+int _GetUnitMaxHp(struct Unit *unit)
 {
-    const StatusGetterFunc_t * it;
-    int status = unit->maxHP;
+	const StatusGetterFunc_t *it;
+	int status = unit->maxHP;
 
+<<<<<<< HEAD
 #if defined(SID_Unaware) && (COMMON_SKILL_VALID(SID_Unaware))
     if (unit == GetUnit(gBattleActor.unit.index) && GetUnit(gBattleTarget.unit.index) && SkillTester(GetUnit(gBattleTarget.unit.index), SID_Unaware))
         return status;
@@ -17,24 +18,29 @@ int _GetUnitMaxHp(struct Unit * unit)
 
     for (it = gpHpGetters; *it; it++)
         status = (*it)(status, unit);
+=======
+	for (it = gpHpGetters; *it; it++)
+		status = (*it)(status, unit);
+>>>>>>> 7b86e9495edda39a0eb0d27d352d8795a134d7fc
 
-    return status;
+	return status;
 }
 
 /* Hooks */
-int HpGetterWeaponBonus(int status, struct Unit * unit)
+int HpGetterWeaponBonus(int status, struct Unit *unit)
 {
-    u16 weapon = GetUnitEquippedWeapon(unit);
-    status += GetItemHpBonus(weapon);
-    return status;
+	u16 weapon = GetUnitEquippedWeapon(unit);
+
+	status += GetItemHpBonus(weapon);
+	return status;
 }
 
-int HpGetterSkills(int status, struct Unit * unit)
+int HpGetterSkills(int status, struct Unit *unit)
 {
 #if defined(SID_HpBonus) && (COMMON_SKILL_VALID(SID_HpBonus))
-    if (SkillTester(unit, SID_HpBonus))
-        status += SKILL_EFF0(SID_HpBonus);
+	if (SkillTester(unit, SID_HpBonus))
+		status += SKILL_EFF0(SID_HpBonus);
 #endif
 
-    return status;
+	return status;
 }

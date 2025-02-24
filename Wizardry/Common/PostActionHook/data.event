@@ -13,6 +13,7 @@ gPostActionFuncs:
     POIN PostActionAlertStance
     POIN PostActionTsuzuku
     POIN PostActionGetItem
+<<<<<<< HEAD
     POIN PostActionLunge
     POIN PostActionSealSkills
     POIN PostActionDebilitator
@@ -22,5 +23,12 @@ gPostActionFuncs:
 #ifdef CONFIG_AUTO_PROMOTION_ON_MAX_LEVEL
     POIN ConfigAutoPromotionOnMaxLevel
 #endif
+=======
+    POIN PostActionSwap
+    POIN PostActionPositionReturn
+    POIN PostActionRemoveChillDebuff
+    POIN PostAction_Glorifier
+
+>>>>>>> 7b86e9495edda39a0eb0d27d352d8795a134d7fc
     POIN PostActionPadFunc PostActionPadFunc PostActionPadFunc PostActionPadFunc
     WORD 0

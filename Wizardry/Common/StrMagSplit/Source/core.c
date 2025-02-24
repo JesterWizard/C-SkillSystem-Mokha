@@ -26,11 +26,14 @@ int GetUnitBasicMagGrowth(struct Unit *unit)
 	return gpMagicPInfos[UNIT_CHAR_ID(unit)].growth;
 }
 
+<<<<<<< HEAD
 int GetUnitJobBasedBasicMagGrowth(struct Unit *unit)
 {
 	return gpMagicJInfos[UNIT_CHAR_ID(unit)].growth;
 }
 
+=======
+>>>>>>> 7b86e9495edda39a0eb0d27d352d8795a134d7fc
 int GetClassChgMagicBonus(u8 jid)
 {
 	return gpMagicJInfos[jid].bonus;
@@ -39,4 +42,8 @@ int GetClassChgMagicBonus(u8 jid)
 int GetUnitMagic(struct Unit *unit)
 {
 	return MagGetter(unit);
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> 7b86e9495edda39a0eb0d27d352d8795a134d7fc
