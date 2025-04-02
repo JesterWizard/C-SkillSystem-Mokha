@@ -70,10 +70,34 @@ static _DECL_INFO RText_Aid = {
     NULL, NULL
 };
 
+void Page1_RText_Affin(struct HelpBoxProc * proc) 
+{
+#ifdef CONFIG_AFFINITY_SHOW_DESCRIPTIONS
+    if (gStatScreen.unit->pCharacterData->affinity == UNIT_AFFIN_LIGHT)
+        proc->mid = AFFINITY_Light;
+    else if (gStatScreen.unit->pCharacterData->affinity == UNIT_AFFIN_DARK)
+        proc->mid = AFFINITY_Dark;
+    else if (gStatScreen.unit->pCharacterData->affinity == UNIT_AFFIN_WIND)
+        proc->mid = AFFINITY_Wind;
+    else if (gStatScreen.unit->pCharacterData->affinity == UNIT_AFFIN_ANIMA)
+        proc->mid = AFFINITY_Anima;
+    else if (gStatScreen.unit->pCharacterData->affinity == UNIT_AFFIN_FIRE)
+        proc->mid = AFFINITY_Fire;
+    else if (gStatScreen.unit->pCharacterData->affinity == UNIT_AFFIN_ICE)
+        proc->mid = AFFINITY_Ice;
+    else if (gStatScreen.unit->pCharacterData->affinity == UNIT_AFFIN_THUNDER)
+        proc->mid = AFFINITY_Thunder;
+    else 
+        proc->mid = 0x551;
+#else
+    proc->mid = 0x551;
+#endif
+};
+
 static _DECL_INFO RText_Affin = {
     &RText_Aid, &RText_Trv, &RText_Spd, NULL,
     0xA6, 0x48, 0x551,
-    NULL, NULL
+    NULL, Page1_RText_Affin
 };
 
 static _DECL_INFO RText_Trv = {

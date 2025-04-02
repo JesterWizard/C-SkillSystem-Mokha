@@ -1,0 +1,34 @@
+## AFFINITY_Light
+A cheerful, sunny individual.[N]
++0.5 ATK, 0.5 DEF, +2.5 HIT, +2.5 CRIT[N]
+per support rank with this unit.[X]
+
+## AFFINITY_Anima
+A maverick character.[N]
+0.5 ATK, 0.5 DEF, +2.5 AVO, +2.5 DDG[N]
+per support rank with this unit.[X]
+
+## AFFINITY_Thunder
+A dynamic, intense being.[N]
++0.5 DEF, +2.5 AVO, +2.5 CRIT, +2.5 DDG[N]
+per support rank with this unit.[X]
+
+## AFFINITY_Fire
+A passionate and driven soul.[N]
++0.5 ATK, +2.5 HIT, +2.5 AVO, +2.5 CRIT[N]
+per support rank with this unit.[X]
+
+## AFFINITY_Wind
+An adaptable and curious spirit.[N]
++0.5 ATK, +2.5 HIT, +2.5 CRIT, +2.5 DDG[N]
+per support rank with this unit.[X]
+
+## AFFINITY_Dark
+A solitary, wistful figure.[N]
++2.5 HIT, +2.5 AVO, +2.5 CRIT, +2.5 DDG[N]
+per support rank with this unit.[X]
+
+## AFFINITY_Ice
+A calm-minded and analytic sort.[N]
++0.5 DEF, +2.5 HIT, +2.5 AVO, +2.5 DDG[N]
+per support rank with this unit.[X]
