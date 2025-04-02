@@ -472,6 +472,8 @@
  */
 #define CONFIG_GROWTHS_AS_LETTERS
 
+#define CONFIG_AFFINITY_SHOW_DESCRIPTIONS
+
 /**
  * Install ConvoyExpa
  */
