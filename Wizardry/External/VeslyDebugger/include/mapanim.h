@@ -178,6 +178,13 @@ struct MapAnimActorState {
     /* 12 */ STRUCT_PAD(0x12, 0x14);
 };
 
+enum
+{
+    MANIM_KIND_DAMAGE = 0,
+    MANIM_KIND_STEAL = 1,
+    MANIM_KIND_REFRESH = 2,
+};
+
 struct MapAnimState {
     /* 00 */ struct MapAnimActorState actor[4];
 
@@ -188,11 +195,11 @@ struct MapAnimState {
     /* 5A */ u16 hitAttributes;
     /* 5C */ u8 hitInfo;
     /* 5D */ s8 hitDamage;
-    /* 5E */ u8 actorCount_maybe;
+    /* 5E */ u8 actorCount;
     /* 5F */ u8 hp_changing;
     /* 60 */ u8 xtarget;
     /* 61 */ u8 ytarget;
-    /* 62 */ u8 u62;
+    /* 62 */ u8 mapAnimKind;
 };
 
 extern struct MapAnimState gManimSt;

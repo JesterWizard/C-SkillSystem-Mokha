@@ -33,6 +33,9 @@ Skill learned.[X]
 ## MSG_SkillRemoved
 Skill Removed.[X]
 
+## MSG_Learned
+Learned [X]
+
 ## MSG_RemoveSkillSubtitle
 Select a skill to remove and generate scroll[X]
 

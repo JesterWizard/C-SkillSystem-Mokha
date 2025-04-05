@@ -3,6 +3,7 @@
 #include "kernel-lib.h"
 #include "skill-system.h"
 #include "constants/skills.h"
+#include "constants/texts.h"
 
 struct LearnedSkillList {
     u32 data[8]; /* 8 * 32 = 0x100 */
@@ -72,3 +73,16 @@ void ForgetSkill(struct Unit * unit, const u16 sid)
     if (EQUIPE_SKILL_VALID(sid) && pid < NEW_BWL_ARRAY_NUM)
         _BIT_CLR(sLearnedSkillPLists[pid].data, sid);
 }
+
+struct PopupInstruction const PopupScr_LearnSkill[] = {
+    POPUP_SOUND(0x5A),
+    POPUP_COLOR(TEXT_COLOR_SYSTEM_WHITE),
+    POPUP_MSG(MSG_Learned),
+    POPUP_COLOR(TEXT_COLOR_SYSTEM_BLUE),
+    POPUP_ITEM_STR,
+    POPUP_SPACE(1),
+    POPUP_ITEM_ICON,
+    POPUP_COLOR(TEXT_COLOR_SYSTEM_WHITE),
+    POPUP_SPACE(1),
+    POPUP_END
+};

@@ -5160,4 +5160,18 @@ const struct SkillInfo gSkillInfos[MAX_SKILL_NUM + 1] = {
         .icon = GFX_SkillIcon_WIP,
     },
 #endif
+
+#if (defined(SID_Predation) && COMMON_SKILL_VALID(SID_Predation))
+    [SID_Predation] = {
+        .desc = MSG_SKILL_Predation,
+        .icon = GFX_SkillIcon_WIP,
+    },
+#endif
+
+#if (defined(SID_PredationPlus) && COMMON_SKILL_VALID(SID_PredationPlus))
+    [SID_PredationPlus] = {
+        .desc = MSG_SKILL_PredationPlus,
+        .icon = GFX_SkillIcon_WIP,
+    },
+#endif
 };

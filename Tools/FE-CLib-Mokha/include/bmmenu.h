@@ -65,6 +65,7 @@ u8 PlayCommandUsability(const struct MenuItemDef * def, int number);
 u8 DanceCommandUsability(const struct MenuItemDef * def, int number);
 u8 PlayCommandEffect(struct MenuProc * menu, struct MenuItemProc * menuItem);
 u8 RefreshMapSelect_Select(ProcPtr proc, struct SelectTarget * target);
+void BeginMapAnimForDance(void);
 u8 ItemCommandUsability(const struct MenuItemDef * def, int number);
 u8 ItemCommandEffect(struct MenuProc * menu, struct MenuItemProc * menuItem);
 int ItemSelectMenu_TextDraw(struct MenuProc * menu, struct MenuItemProc * menuItem);

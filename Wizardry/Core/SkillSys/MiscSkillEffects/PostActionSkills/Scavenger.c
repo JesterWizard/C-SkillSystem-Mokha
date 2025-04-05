@@ -19,8 +19,6 @@ void percentageCheck() {
 void searchItem() {
     int scavengerID = NextRN_N(10);
 
-    NoCashGBAPrintf("scavengerID is: %d", scavengerID);
-
     switch (scavengerID) 
     {
         case 0:

@@ -22,6 +22,7 @@ gPostActionFuncs:
     POIN PostActionMendArms
     POIN PostActionGorillaTactics
     POIN PostActionScavenger
+    POIN PostActionPredation
     POIN ConfigAutoPromotionOnMaxLevel
     POIN PostActionPadFunc PostActionPadFunc PostActionPadFunc PostActionPadFunc
     WORD 0
