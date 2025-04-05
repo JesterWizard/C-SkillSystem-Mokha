@@ -206,3 +206,13 @@ attacking but not defeating enemy.[X]
 Scavenger:[N]
 SKL % chance to pick up an item[N]
 after an action until the 10th turn.[X]
+
+## MSG_SKILL_Predation
+Predation:[N]
+This unit can absorb the first learned[N]
+skill of any enemy they defeat.[X]
+
+## MSG_SKILL_PredationPlus
+Predation+:[N]
+This unit can choose which learned[N]
+skill they absorb from a defeated enemy.[X]

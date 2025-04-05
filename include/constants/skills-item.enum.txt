@@ -282,6 +282,8 @@
 // SID_Canter
 // SID_GorillaTactics
 // SID_Scavenger
+// SID_Predation
+// SID_PredationPlus
 
 ////////// AURA SKILLS
 // SID_Anathema
