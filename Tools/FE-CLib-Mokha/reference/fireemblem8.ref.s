@@ -5095,9 +5095,9 @@ fun 0x08058A8D, IsItemDisplayedInBattle
 fun 0x08058AC9, IsWeaponLegency
 fun 0x08058B09, EkrCheckWeaponSieglindeSiegmund
 fun 0x08058B25, EkrCheckAttackRound
-fun 0x08058B65, SetBattleScriptted
-fun 0x08058B71, SetBattleUnscriptted
-fun 0x08058B7D, CheckBattleScriptted
+fun 0x08058B65, SetBattleScripted
+fun 0x08058B71, SetBattleUnscripted
+fun 0x08058B7D, CheckBattleScripted
 fun 0x08058B99, GetEkrHit
 fun 0x08058BA9, GetEkrDmg
 fun 0x08058BB9, GetEkrCrit

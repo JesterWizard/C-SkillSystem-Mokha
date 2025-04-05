@@ -3002,8 +3002,8 @@ int LevelupAction(DebuggerProc* proc) {
             gBattleActor.weaponBefore = 1; // see BeginMapAnimForSummon
 
             gManimSt.hp_changing = 0;
-            gManimSt.u62 = 0;
-            gManimSt.actorCount_maybe = 1;
+            gManimSt.mapAnimKind = 0;
+            gManimSt.actorCount = 1;
 
             gManimSt.subjectActorId = 0;
             gManimSt.targetActorId = 1;
