@@ -19,11 +19,24 @@ const struct MenuDef RemoveSkillMenuDef = {
 
 STATIC_DECLAR u8 RemoveSkillMenu_HelpBox(struct MenuProc * menu, struct MenuItemProc * item)
 {
-    StartHelpBox(
-        item->xTile * 8,
-        item->yTile * 8,
-        GetSkillDescMsg(UNIT_RAM_SKILLS(gActiveUnit)[MENU_SKILL_INDEX(item->def)])
-    );
+    if (MENU_SKILL_INDEX(item->def) > 6)
+    {
+        // Use gBattleTarget's first skill for help.
+        struct Unit * targetUnit = GetUnit(gBattleTarget.unit.index);
+        StartHelpBox(
+            item->xTile * 8,
+            item->yTile * 8,
+            GetSkillDescMsg(UNIT_RAM_SKILLS(targetUnit)[MENU_SKILL_INDEX(item->def) -  7])
+        );
+    }
+    else
+    {
+        StartHelpBox(
+            item->xTile * 8,
+            item->yTile * 8,
+            GetSkillDescMsg(UNIT_RAM_SKILLS(gActiveUnit)[MENU_SKILL_INDEX(item->def)])
+        );
+    }
     return 0;
 }
 
@@ -51,7 +64,8 @@ STATIC_DECLAR u8 RemoveSkillMenu_OnSelected(struct MenuProc * menu, struct MenuI
     .onSelected = RemoveSkillMenu_OnSelected, \
 }
 
-STATIC_DECLAR const struct MenuItemDef RemoveSkillMenuItems[] = {
+STATIC_DECLAR const struct MenuItemDef RemoveSkillMenuItems[] = 
+{
     RemoveSkillMenuItem(0),
     RemoveSkillMenuItem(1),
     RemoveSkillMenuItem(2),
@@ -60,23 +74,39 @@ STATIC_DECLAR const struct MenuItemDef RemoveSkillMenuItems[] = {
     RemoveSkillMenuItem(5),
     RemoveSkillMenuItem(6),
 
+    /* Enemy skills */
+    RemoveSkillMenuItem(7),
     { 0 }
 };
 
+/* Making it return the menu definition by default for the sake of displaying prospective enemy skills */
 STATIC_DECLAR u8 RemoveSkillMenu_Usability(const struct MenuItemDef * self, int number)
 {
-    int sid = UNIT_RAM_SKILLS(gActiveUnit)[MENU_SKILL_INDEX(self)];
-    if (EQUIPE_SKILL_VALID(sid))
-        return MENU_ENABLED;
+    // int sid = UNIT_RAM_SKILLS(gActiveUnit)[MENU_SKILL_INDEX(self)];
+    // if (EQUIPE_SKILL_VALID(sid))
+    //     return MENU_ENABLED;
 
-    return MENU_NOTSHOWN;
+    // return MENU_NOTSHOWN;
+
+    return MENU_ENABLED;
 }
 
 STATIC_DECLAR int RemoveSkillMenu_OnDraw(struct MenuProc * menu, struct MenuItemProc * item)
 {
-    int sid = UNIT_RAM_SKILLS(gActiveUnit)[MENU_SKILL_INDEX(item->def)];
+    int sid;
+    
+    if (MENU_SKILL_INDEX(item->def) > 6)
+    {
+        struct Unit * targetUnit = GetUnit(gBattleTarget.unit.index);
+        sid = UNIT_RAM_SKILLS(targetUnit)[MENU_SKILL_INDEX(item->def) - 7];
+        Text_SetColor(&item->text, TEXT_COLOR_SYSTEM_GOLD);
+    }
+    else
+    {
+        sid = UNIT_RAM_SKILLS(gActiveUnit)[MENU_SKILL_INDEX(item->def)];
+        Text_SetColor(&item->text, TEXT_COLOR_SYSTEM_WHITE);
+    }
 
-    Text_SetColor(&item->text, TEXT_COLOR_SYSTEM_WHITE);
     Text_DrawString(&item->text, GetSkillNameStr(sid));
     DrawIcon(
         TILEMAP_LOCATED(gBG0TilemapBuffer, item->xTile, item->yTile),
