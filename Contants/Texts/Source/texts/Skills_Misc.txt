@@ -284,3 +284,8 @@ scrolls without consuming them.[X]
 White Mage:[N]
 Boost healing staves[N]
 by 50%.[X]
+
+## MSG_SKILL_ScrollScribe
+Scroll Scribe:[N]
+The unit can generate new scrolls[N]
+from their removed skills.[X]

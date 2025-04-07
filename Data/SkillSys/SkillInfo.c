@@ -5174,4 +5174,12 @@ const struct SkillInfo gSkillInfos[MAX_SKILL_NUM + 1] = {
         .icon = GFX_SkillIcon_WIP,
     },
 #endif
+
+
+#if (defined(SID_ScrollScribe) && COMMON_SKILL_VALID(SID_ScrollScribe))
+    [SID_ScrollScribe] = {
+        .desc = MSG_SKILL_ScrollScribe,
+        .icon = GFX_SkillIcon_WIP,
+    },
+#endif
 };

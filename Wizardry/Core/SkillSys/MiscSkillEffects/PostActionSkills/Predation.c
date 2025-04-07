@@ -39,7 +39,7 @@ static void callback_exec(ProcPtr proc)
     {
         SetPopupItem((targetUnit->supports[0] << 8) | CONFIG_ITEM_INDEX_SKILL_SCROLL);
         NewPopup_Simple(PopupScr_ObtainedSkill, 0x5A, 0, proc);
-        Proc_StartBlocking(ProcScr_SkillScrollUseSoftLock, proc);
+        Proc_StartBlocking(ProcScr_PredationSoftLock, proc);
     }
 }
 
