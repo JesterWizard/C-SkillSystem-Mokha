@@ -8,8 +8,8 @@ Equipped[X]
      Skill removed[X]
 
 ## MSG_PREPSKILL_FailAddSkill
-No enough space to equip,[NL]
-please remve skill first.[X]
+Not enough space to equip,[NL]
+please remove a skill first.[X]
 
 ## MSG_PREPSKILL_FailRemoveSkill
 This skill is[NL]
@@ -36,8 +36,11 @@ Skill Removed.[X]
 ## MSG_Learned
 Learned [X]
 
+## MSG_Obtained
+Holding [X]
+
 ## MSG_RemoveSkillSubtitle
-Select a skill to remove and generate scroll[X]
+Select a skill to remove to make room.[X]
 
 ## MSG_ThousandGoldSpent
 Spent 1000 Gold.[X]

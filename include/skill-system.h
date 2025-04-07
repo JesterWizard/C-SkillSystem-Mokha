@@ -232,6 +232,7 @@ int GetSkillScrollItemUseDescId(int item);
 int GetSkillScrollItemIconId(int item);
 
 extern const struct MenuDef RemoveSkillMenuDef;
+extern const struct ProcCmd ProcScr_SkillScrollUseSoftLock[];
 
 /**
  * Catch Em All
@@ -276,6 +277,7 @@ int AddSkill(struct Unit * unit, const u16 sid);
 void TryAddSkillLvup(struct Unit * unit, int level);
 void TryAddSkillPromotion(struct Unit * unit, int jid);
 
+
 /**
  * Popups
  */
@@ -289,6 +291,7 @@ int PoprGetLen_SkillName(struct PopupProc *proc, const struct PopupInstruction *
 void PoprDisp_SkillName(struct Text *text, const struct PopupInstruction *inst);
 bool PopR_SetupLearnSkill(void);
 extern const struct PopupInstruction PopupScr_LearnSkill[];
+extern const struct PopupInstruction PopupScr_ObtainedSkill[];
 
 /**
  * External MiscSkillEffects

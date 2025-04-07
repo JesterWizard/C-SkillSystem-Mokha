@@ -8,7 +8,7 @@ POP
 
 #include "Source/ItemSysJpt.lyn.event"
 
-InjectItemPrepUsabilityJpt(CONFIG_ITEM_INDEX_SKILL_SCROLL, ItemUsbility_SkillScroll)
+InjectItemPrepUsabilityJpt(CONFIG_ITEM_INDEX_SKILL_SCROLL, ItemUsability_SkillScroll)
 InjectItemPrepEffectJpt(CONFIG_ITEM_INDEX_SKILL_SCROLL, PrepItemEffect_SkillScroll)
 InjectItemUsabilityJpt(CONFIG_ITEM_INDEX_SKILL_SCROLL, ItemUsbilityJpt_SkillScroll)
 InjectItemEffectJpt(CONFIG_ITEM_INDEX_SKILL_SCROLL, ItemUseEffectJpt_SkillScroll)

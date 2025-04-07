@@ -1,6 +1,7 @@
 #include "common-chax.h"
 #include "icon-rework.h"
 #include "skill-system.h"
+#include "battle-system.h"
 
 STATIC_DECLAR const struct MenuItemDef RemoveSkillMenuItems[];
 STATIC_DECLAR u8 RemoveSkillMenu_HelpBox(struct MenuProc * menu, struct MenuItemProc * item);
@@ -89,9 +90,24 @@ STATIC_DECLAR int RemoveSkillMenu_OnDraw(struct MenuProc * menu, struct MenuItem
     return 0;
 }
 
+STATIC_DECLAR void PredationSkillRemove(void) 
+{
+    struct Unit * targetUnit = GetUnit(gBattleTarget.unit.index);
+
+    RemoveSkill(gActiveUnit, gActiveUnit->supports[gActionData.unk08]);
+    AddSkill(gActiveUnit, UNIT_RAM_SKILLS(targetUnit)[0]);
+    SetPopupItem((gActiveUnit->supports[gActionData.unk08] << 8) | CONFIG_ITEM_INDEX_SKILL_SCROLL);
+}
+
 STATIC_DECLAR u8 RemoveSkillMenu_OnSelected(struct MenuProc * menu, struct MenuItemProc * item)
 {
     SetItemUseAction(gActiveUnit);
     gActionData.unk08 = MENU_SKILL_INDEX(item->def);
+
+#if defined(SID_Predation) && (COMMON_SKILL_VALID(SID_Predation))
+    if (SkillTester(gActiveUnit, SID_Predation) && gBattleActorGlobalFlag.enemy_defeated)
+        PredationSkillRemove();
+#endif
+
     return MENU_ACT_SKIPCURSOR | MENU_ACT_END | MENU_ACT_SND6A | MENU_ACT_CLEAR;
 }

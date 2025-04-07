@@ -18,7 +18,7 @@ THUMB_FUNC_START ItemUsbilityJpt_SkillScroll
 ItemUsbilityJpt_SkillScroll:
     mov r0, r4
     mov r1, r5
-    bl ItemUsbility_SkillScroll
+    bl ItemUsability_SkillScroll
     ldr r1, =0x8028C06 + 1
     bx r1
 

@@ -40,12 +40,13 @@ static void call_remove_skill_menu(void)
     );
 }
 
-static const struct ProcCmd ProcScr_SkillScrollUseSoftLock[] = {
+/* After the skill menu is called, this proc ends and what it was blocking resumes */
+const struct ProcCmd ProcScr_SkillScrollUseSoftLock[] = {
     PROC_YIELD,
+    PROC_SLEEP(150),
     PROC_CALL(call_remove_skill_menu),
     PROC_END
 };
-
 
 /**
  * BLOCK USAGE OF SCROLL IF UNIT WOULD BE ABOVE CAPACITY LIMIT AFTER APPLYING IT
@@ -139,7 +140,7 @@ void ItemUseAction_SkillScroll(ProcPtr proc)
     NewPopup_VerySimple(MSG_SkillLearned, 0x5A, proc);
 }
 
-bool ItemUsbility_SkillScroll(struct Unit * unit, int item)
+bool ItemUsability_SkillScroll(struct Unit * unit, int item)
 {
     return !IsSkillLearned(unit, ITEM_USES(item));
 }
@@ -204,7 +205,7 @@ void PrepItemEffect_SkillScroll(struct ProcPrepItemUse * proc, u16 item)
     Proc_StartBlocking(ProcScr_PrepItemUseScroll, proc);
 }
 
-bool PrepItemUsbility_SkillScroll(struct Unit * unit, int item)
+bool PrepItemUsability_SkillScroll(struct Unit * unit, int item)
 {
     if (gpKernelDesigerConfig->gen_new_scroll == false)
     {
