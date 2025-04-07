@@ -5,6 +5,9 @@
 #include "constants/skills.h"
 #include "constants/texts.h"
 
+extern int sExpaConvoyItemCount; // gConvoyItemCount is just a u8 that can be no more than 255, not enough
+extern u16 sExpaConvoyItemArray[CONFIG_INSTALL_CONVOYEXPA_AMT];
+
 struct LearnedSkillList {
     u32 data[8]; /* 8 * 32 = 0x100 */
 };
@@ -78,7 +81,20 @@ struct PopupInstruction const PopupScr_LearnSkill[] = {
     POPUP_SOUND(0x5A),
     POPUP_COLOR(TEXT_COLOR_SYSTEM_WHITE),
     POPUP_MSG(MSG_Learned),
-    POPUP_COLOR(TEXT_COLOR_SYSTEM_BLUE),
+    POPUP_COLOR(TEXT_COLOR_SYSTEM_GOLD),
+    POPUP_ITEM_STR,
+    POPUP_SPACE(1),
+    POPUP_ITEM_ICON,
+    POPUP_COLOR(TEXT_COLOR_SYSTEM_WHITE),
+    POPUP_SPACE(1),
+    POPUP_END
+};
+
+struct PopupInstruction const PopupScr_ObtainedSkill[] = {
+    POPUP_SOUND(0x5A),
+    POPUP_COLOR(TEXT_COLOR_SYSTEM_WHITE),
+    POPUP_MSG(MSG_Obtained),
+    POPUP_COLOR(TEXT_COLOR_SYSTEM_GOLD),
     POPUP_ITEM_STR,
     POPUP_SPACE(1),
     POPUP_ITEM_ICON,
