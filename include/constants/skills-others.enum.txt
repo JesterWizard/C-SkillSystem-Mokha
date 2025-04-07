@@ -728,6 +728,7 @@ SID_Canto
 // SID_ScrollSavant
 // SID_ExplosiveHeal
 // SID_ExplosiveBuff
+// SID_ScrollScribe
 
 ///////// COMBAT ARTS
 // SID_COMBAT_Grounder

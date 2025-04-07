@@ -41,9 +41,16 @@ static void call_remove_skill_menu(void)
 }
 
 /* After the skill menu is called, this proc ends and what it was blocking resumes */
+
 const struct ProcCmd ProcScr_SkillScrollUseSoftLock[] = {
     PROC_YIELD,
-    PROC_SLEEP(150),
+    PROC_CALL(call_remove_skill_menu),
+    PROC_END
+};
+
+const struct ProcCmd ProcScr_PredationSoftLock[] = {
+    PROC_YIELD,
+    PROC_SLEEP(150), /* When predation is active, sleep the thread so the learned skill can be shown in a popup */
     PROC_CALL(call_remove_skill_menu),
     PROC_END
 };
@@ -126,9 +133,18 @@ void ItemUseAction_SkillScroll(ProcPtr proc)
         int slot_rep = gActionData.unk08;
         int sid_rep = UNIT_RAM_SKILLS(unit)[slot_rep];
 
-        unit->items[slot] = ITEM_INDEX(item) | (sid_rep << 8);
         RemoveSkill(unit, sid_rep);
         AddSkill(unit, ITEM_USES(item));
+
+#if defined(SID_ScrollScribe) && (COMMON_SKILL_VALID(SID_ScrollScribe))
+        if (SkillTester(unit, SID_ScrollScribe))
+            unit->items[slot] = ITEM_INDEX(item) | (sid_rep << 8);
+        else 
+            UnitUpdateUsedItem(unit, slot);
+#else 
+        UnitUpdateUsedItem(unit, slot);
+#endif
+
     }
     else
     {
