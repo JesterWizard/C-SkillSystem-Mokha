@@ -10,16 +10,23 @@
 
 static void callback_anim(ProcPtr proc)
 {
-    // PlaySoundEffect(0x269);
-    // Proc_StartBlocking(ProcScr_DanceringAnim, proc);
 
-    // BG_SetPosition(
-    //     BG_0,
-    //     -SCREEN_TILE_IX(gActiveUnit->xPos - 1),
-    //     -SCREEN_TILE_IX(gActiveUnit->yPos - 2));
 }
+#if defined(SID_PredationPlus) && (COMMON_SKILL_VALID(SID_PredationPlus))
+static void callback_exec_predationPlus(ProcPtr proc)
+{
+    struct Unit * targetUnit = GetUnit(gBattleTarget.unit.index);
 
-static void callback_exec(ProcPtr proc)
+    /* If the target unit's first learned skill slot is empty, we can assume they have no skills learned */
+    if (UNIT_RAM_SKILLS(targetUnit)[0] == 0)
+        return;
+
+    Proc_StartBlocking(ProcScr_PredationPlusSoftLock, proc);
+}
+#endif 
+
+#if defined(SID_Predation) && (COMMON_SKILL_VALID(SID_Predation))
+static void callback_exec_predation(ProcPtr proc)
 {
     struct Unit * targetUnit = GetUnit(gBattleTarget.unit.index);
 
@@ -42,6 +49,7 @@ static void callback_exec(ProcPtr proc)
         Proc_StartBlocking(ProcScr_PredationSoftLock, proc);
     }
 }
+#endif
 
 bool PostActionPredation(ProcPtr proc)
 {
@@ -54,15 +62,21 @@ bool PostActionPredation(ProcPtr proc)
     if (gBattleActorGlobalFlag.enemy_defeated == false)
         return false;
 
-#if defined(SID_Predation) && (COMMON_SKILL_VALID(SID_Predation))
-        if (!SkillTester(gActiveUnit, SID_Predation))
-#else
-        if (1)
+#if defined(SID_PredationPlus) && (COMMON_SKILL_VALID(SID_PredationPlus))
+        if (SkillTester(gActiveUnit, SID_PredationPlus))
+        {
+            NewMuSkillAnimOnActiveUnit(gActionData.unk08, callback_anim, callback_exec_predationPlus);
+            return true;
+        }
 #endif
-        return false;
 
-    // KernelCallEvent(EventScr_PostActionPredation, EV_EXEC_CUTSCENE, proc);
-    NewMuSkillAnimOnActiveUnit(gActionData.unk08, callback_anim, callback_exec);
+#if defined(SID_Predation) && (COMMON_SKILL_VALID(SID_Predation))
+        if (SkillTester(gActiveUnit, SID_Predation))
+        {
+            NewMuSkillAnimOnActiveUnit(gActionData.unk08, callback_anim, callback_exec_predation);
+            return true;
+        }
+#endif
 
-    return true;
+    return false;
 }

@@ -92,7 +92,6 @@ extern struct BattleGlobalFlags {
     u32 skill_activated_debilitator : 1;
     u32 skill_activated_resurrection : 1;
 	u32 skill_activated_echo : 1;
-	u32 skill_activated_predation : 1;
 	u32 arenaFix: 1;
 } gBattleActorGlobalFlag, gBattleTargetGlobalFlag;
 
