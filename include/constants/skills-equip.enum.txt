@@ -1,5 +1,4 @@
 ////////MENU SKILLS
-SID_PredationPlus
 // SID_Dismount
 // SID_ReciprocalAid
 // SID_Sacrifice

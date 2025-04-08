@@ -438,13 +438,13 @@ const struct SkillPreloadPConf gSkillPreloadPData[0x100] = {
     // 01
     [CHARACTER_EIRIKA] = {
         .skills = {
-            [0] = SID_PredationPlus,
-            [1] = SID_Chipper,
-            [2] = SID_Acrobat,
-            [3] = SID_TripleUp,
-            [4] = SID_Barricade,
-            [5] = SID_DoubleUp,
-            [6] = SID_GoddessDance
+            // [0] = SID_PredationPlus,
+            // [1] = SID_Chipper,
+            // [2] = SID_Acrobat,
+            // [3] = SID_TripleUp,
+            // [4] = SID_Barricade,
+            // [5] = SID_DoubleUp,
+            // [6] = SID_GoddessDance
         },
     },
     // // 02
@@ -736,17 +736,11 @@ const struct SkillPreloadPConf gSkillPreloadPData[0x100] = {
     //     },
     // },
     // // 46
-    [CHARACTER_BREGUET] = {
-        .skills = {
-            [0] = SID_Pickup,
-            [1] = SID_Piercegift,
-            [2] = SID_Prodigy,
-            [3] = SID_QuickHands,
-            [4] = SID_RampUp,
-            [5] = SID_Reflex,
-            [6] = SID_Intimidate
-        },
-    },
+    // [CHARACTER_BREGUET] = {
+    //     .skills = {
+    //         [0] = SID_Pickup,
+    //     },
+    // },
     // // 47
     // [CHARACTER_BONE] = {
     //     .skills = {
@@ -838,17 +832,11 @@ const struct SkillPreloadPConf gSkillPreloadPData[0x100] = {
     //     },
     // },
     // // 68
-    [CHARACTER_ONEILL] = {
-        .skills = {
-            [0] = SID_Pickup,
-            [1] = SID_Piercegift,
-            [2] = SID_Prodigy,
-            [3] = SID_QuickHands,
-            [4] = SID_RampUp,
-            [5] = SID_Reflex,
-            [6] = SID_Intimidate
-        },
-    },
+    // [CHARACTER_ONEILL] = {
+    //     .skills = {
+    //         [0] = SID_Pickup,
+    //     },
+    // },
     // // 69
     // [CHARACTER_GLEN] = {
     //     .skills = {
