@@ -53,3 +53,5 @@
 35=CID_Galeforce
 36=CID_Gamble
 37=CID_Detonate
+38=CID_AstraStorm
+39=CID_Practice

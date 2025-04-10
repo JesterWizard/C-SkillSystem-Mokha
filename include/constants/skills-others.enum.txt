@@ -758,3 +758,4 @@ SID_Canto
 // SID_COMBAT_Gamble
 // SID_COMBAT_Detonate
 // SID_COMBAT_AstraStorm
+// SID_COMBAT_Practice
