@@ -51,6 +51,8 @@ u8 PlayCommandEffect(struct MenuProc* menu, struct MenuItemProc* menuItem) {
 
     gActionData.unk08 = SID_Dance;
 
+    gBattleActorGlobalFlag.skill_activated_dance = true;
+
     if (hasTargets && !itemUsable) {
         return ItemMenu_Select1stCommand(menu, menuItem);
     } else {

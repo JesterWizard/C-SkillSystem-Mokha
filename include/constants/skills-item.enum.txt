@@ -284,6 +284,7 @@
 // SID_Scavenger
 // SID_Predation
 // SID_PredationPlus
+// SID_SpiritedSteps
 
 ////////// AURA SKILLS
 // SID_Anathema
