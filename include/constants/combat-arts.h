@@ -69,6 +69,7 @@ enum CombatArtIndex {
     CID_Galeforce,
     CID_Gamble,
     CID_Detonate,
+    CID_Practice,
 };
 
 #endif /* CONFIG_COMBAT_ARTS_INSTALLED */

@@ -135,7 +135,10 @@ void PreBattleCalcCombatArt(struct BattleUnit * bu, struct BattleUnit * defender
     case CID_Detonate:
         if (!(GetItemAttributes(bu->weapon) & IA_UNBREAKABLE))
             bu->battleAttack += ITEM_USES(bu->weapon);
+        break;
 
+    case CID_Practice:
+        bu->battleAttack += bu->battleAttack / 2;
         break;
     };
 }

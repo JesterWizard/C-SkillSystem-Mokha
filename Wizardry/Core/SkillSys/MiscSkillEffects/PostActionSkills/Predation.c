@@ -8,10 +8,13 @@
 #include "constants/texts.h"
 #include "strmag.h"
 
+#if defined(SID_Predation) && (COMMON_SKILL_VALID(SID_Predation))
 static void callback_anim(ProcPtr proc)
 {
 
 }
+#endif 
+
 #if defined(SID_PredationPlus) && (COMMON_SKILL_VALID(SID_PredationPlus))
 static void callback_exec_predationPlus(ProcPtr proc)
 {

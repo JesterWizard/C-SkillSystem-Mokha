@@ -4,6 +4,8 @@
 #include "bwl.h"
 #include "constants/skills.h"
 #include "strmag.h"
+#include "combat-art.h"
+#include "constants/combat-arts.h"
 
 LYN_REPLACE_CHECK(GetUnitExpLevel);
 int GetUnitExpLevel(struct Unit *unit)
@@ -22,6 +24,14 @@ int GetUnitExpLevel(struct Unit *unit)
 STATIC_DECLAR int KernelModifyBattleUnitExp(int base, struct BattleUnit *actor, struct BattleUnit *target)
 {
     int status = base;
+    u8 cid = GetCombatArtInForce(&actor->unit);
+
+    switch (cid) {
+    
+    case CID_Practice:
+        status = (status * 3 / 2);
+        break;
+    };
 
 #if defined(SID_Blossom) && (COMMON_SKILL_VALID(SID_Blossom))
     if (BattleSkillTester(actor, SID_Blossom))
