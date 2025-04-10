@@ -216,3 +216,8 @@ skill of any enemy they defeat.[X]
 Predation+:[N]
 This unit can choose which learned[N]
 skill they absorb from a defeated enemy.[X]
+
+## MSG_SKILL_SpiritedSteps
+Spirited Steps:[N]
+This unit has a LVL % chance of moving[N]
+again after dancing for a unit.[X]

@@ -50,6 +50,21 @@ bool PostActionTsuzuku(ProcPtr parent)
             }
 #endif
 
+#if defined(SID_SpiritedSteps) && (COMMON_SKILL_VALID(SID_SpiritedSteps))
+            if (SkillTester(unit, SID_SpiritedSteps))
+            {
+                if (gActionData.unk08 == SID_Dance && gBattleActorGlobalFlag.skill_activated_dance)
+                {
+                    if (NextRN_100() <= unit->level)
+                    {
+                        /* A bit of a hack to prevent this skill from triggering on other commands afterwards */
+                        gBattleActorGlobalFlag.skill_activated_dance = false;
+                        goto refresh_turn_repeatedly;
+                    }
+                }
+            }
+#endif
+
     switch (gActionData.unitActionType)
     {
     case UNIT_ACTION_COMBAT:
@@ -119,7 +134,6 @@ refresh_turn_once:
  *  If more skills are added, this will need to be replaced.
  */
 
-#if defined(SID_QuickHands) && (COMMON_SKILL_VALID(SID_QuickHands))
 refresh_turn_repeatedly:
     if (!UNIT_ALIVE(unit) || UNIT_STONED(unit))
         return false;
@@ -128,7 +142,6 @@ refresh_turn_repeatedly:
     EndAllMus();
     StartStatusHealEffect(unit, parent);
     return true;
-#endif
 
 /**
  *  This is a stopgap measure to ensure the branch isn't unused when all skills are disabled.

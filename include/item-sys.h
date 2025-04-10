@@ -606,6 +606,7 @@ static const KeyValuePair dict_skills[] =
         { "Spec-Boost", {1000, 1}},
         { "Spec-Init", {1000, 1}},
         { "Speed Boost", {1000, 1}},
+        { "Spirited Steps", {1000, 1}},
         { "Spur Def", {1000, 1}},
         { "Spur Mag", {1000, 1}},
         { "Spurn", {1000, 1}},
