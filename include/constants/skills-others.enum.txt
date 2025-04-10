@@ -539,6 +539,7 @@ SID_Canto
 // SID_Echo
 // SID_Flurry
 // SID_RapidFighter
+// SID_AlacrityPlus
 
 ////////// PRE-PHASE SKILLS
 // SID_Renewal

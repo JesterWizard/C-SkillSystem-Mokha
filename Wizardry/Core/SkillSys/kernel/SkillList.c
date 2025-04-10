@@ -97,6 +97,12 @@ const SkillUpgrade skill_upgrades[] = {
 	#if defined(SID_TriangleAdept) && defined(SID_TriangleAdeptPlus) && COMMON_SKILL_VALID(SID_TriangleAdept) && COMMON_SKILL_VALID(SID_TriangleAdeptPlus)
 		{ SID_TriangleAdept, SID_TriangleAdeptPlus },
 	#endif
+	#if defined(SID_Predation) && defined(SID_PredationPlus) && COMMON_SKILL_VALID(SID_Predation) && COMMON_SKILL_VALID(SID_PredationPlus)
+	{ SID_Predation, SID_PredationPlus },
+	#endif
+	#if defined(SID_Alacrity) && defined(SID_AlacrityPlus) && COMMON_SKILL_VALID(SID_Alacrity) && COMMON_SKILL_VALID(SID_AlacrityPlus)
+	{ SID_Alacrity, SID_AlacrityPlus },
+	#endif
 	};
 	
 
