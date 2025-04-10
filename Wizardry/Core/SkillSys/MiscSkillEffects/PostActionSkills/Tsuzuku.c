@@ -65,6 +65,14 @@ bool PostActionTsuzuku(ProcPtr parent)
             }
 #endif
 
+#if defined(SID_Switcher) && (COMMON_SKILL_VALID(SID_Switcher))
+            if (SkillTester(unit, SID_Switcher))
+            {
+                 if (gActionData.unk08 == SID_Switcher)
+                    goto refresh_turn_repeatedly_no_animation;
+            }
+#endif
+
     switch (gActionData.unitActionType)
     {
     case UNIT_ACTION_COMBAT:
@@ -141,6 +149,13 @@ refresh_turn_repeatedly:
     gActionDataExpa.refrain_action = true;
     EndAllMus();
     StartStatusHealEffect(unit, parent);
+    return true;
+
+refresh_turn_repeatedly_no_animation:
+    if (!UNIT_ALIVE(unit) || UNIT_STONED(unit))
+        return false;
+
+    gActionDataExpa.refrain_action = true;
     return true;
 
 /**

@@ -397,6 +397,8 @@ u8 WyvernCrash_Usability(const struct MenuItemDef * def, int number);
 u8 WyvernCrash_OnSelected(struct MenuProc * menu, struct MenuItemProc * item);
 u8 Sellsword_Usability(const struct MenuItemDef * def, int number);
 u8 Sellsword_OnSelected(struct MenuProc * menu, struct MenuItemProc * item);
+u8 Switcher_Usability(const struct MenuItemDef * def, int number);
+u8 Switcher_OnSelected(struct MenuProc * menu, struct MenuItemProc * item);
 
 /* Skill actions */
 bool Action_HealingFocus(ProcPtr proc);
@@ -432,3 +434,4 @@ bool Action_DivineReprieve(ProcPtr parent);
 bool Action_LoadstarRush(ProcPtr parent);
 bool Action_WyvernCrash(ProcPtr parent);
 bool Action_Sellsword(ProcPtr parent);
+bool Action_Switcher(ProcPtr parent);

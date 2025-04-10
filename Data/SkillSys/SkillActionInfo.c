@@ -158,4 +158,8 @@ const SkillActionFunc_t gSkillActionFuncTable[MAX_SKILL_NUM + 1] = {
 #if (defined(SID_Sellsword) && COMMON_SKILL_VALID(SID_Sellsword))
 	[SID_Sellsword] = Action_Sellsword,
 #endif
+
+#if (defined(SID_Switcher) && COMMON_SKILL_VALID(SID_Switcher))
+	[SID_Switcher] = Action_Switcher,
+#endif
 };
