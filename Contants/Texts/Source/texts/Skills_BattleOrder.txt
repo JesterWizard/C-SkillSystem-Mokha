@@ -142,3 +142,8 @@ until a victor is decided.[X]
 Flurry:[N]
 For each time the unit exceeds the[N]
 doubling threshold, +1 attack round.[X]
+
+## MSG_SKILL_AlacrityPlus
+Alacrity+:[N]
+If actor's speed is 5 or more than[N]
+the target's, counterattack first.[X]
