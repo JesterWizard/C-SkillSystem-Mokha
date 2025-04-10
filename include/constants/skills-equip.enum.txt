@@ -47,6 +47,7 @@ SID_DeathBlight
 SID_LoadstarRush
 // SID_WyvernCrash
 // SID_Sellsword
+// SID_Switcher
 
 //////// PRE-BATTLE SKILLS
 // SID_DefiantStr

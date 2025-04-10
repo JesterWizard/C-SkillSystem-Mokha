@@ -64,6 +64,19 @@ bool CheckCanTwiceAttackOrder(struct BattleUnit * actor, struct BattleUnit * tar
     {
         gBattleTemporaryFlag.act_force_twice_order = false;
 
+#if defined(SID_Switcher) && (COMMON_SKILL_VALID(SID_Switcher))
+        if (BattleSkillTester(actor, SID_Switcher))
+        {
+            if (basic_judgement == true && gActionData.unk08 == SID_Switcher)
+            {
+                if (!CheckBitUES(GetUnit(actor->unit.index), UES_BIT_SWITCHER_SKILL_USED))
+                    return true;
+                else
+                    return false;
+            }
+        }
+#endif
+
 #if defined(SID_LastWord) && (COMMON_SKILL_VALID(SID_LastWord))
         if (((target->battleSpeed - actor->battleSpeed) >= BATTLE_FOLLOWUP_SPEED_THRESHOLD) &&
             BattleSkillTester(actor, SID_LastWord))
@@ -205,6 +218,19 @@ bool CheckCanTwiceAttackOrder(struct BattleUnit * actor, struct BattleUnit * tar
     else if (&gBattleTarget == actor)
     {
         gBattleTemporaryFlag.tar_force_twice_order = false;
+
+#if defined(SID_Switcher) && (COMMON_SKILL_VALID(SID_Switcher))
+        if (BattleSkillTester(actor, SID_Switcher))
+        {
+            if (basic_judgement == true && gActionData.unk08 == SID_Switcher)
+            {
+                if (!CheckBitUES(GetUnit(actor->unit.index), UES_BIT_SWITCHER_SKILL_USED))
+                    return true;         
+                else
+                    return false;
+            }
+        }
+#endif
 
 #if defined(SID_RapidFighter) && (COMMON_SKILL_VALID(SID_RapidFighter))
         if (basic_judgement == true && BattleSkillTester(actor, SID_RapidFighter) &&

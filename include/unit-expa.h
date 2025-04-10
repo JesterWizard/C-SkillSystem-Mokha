@@ -65,6 +65,9 @@ enum unit_expa_sus_bitfile_idx {
 #if defined(SID_Sellsword) && (COMMON_SKILL_VALID(SID_Sellsword))
     UES_BIT_SELLSWORD_SKILL_USED,
 #endif
+#if defined(SID_Switcher) && (COMMON_SKILL_VALID(SID_Switcher))
+    UES_BIT_SWITCHER_SKILL_USED,
+#endif
 
     UES_BIT_MAX
 };

@@ -664,6 +664,21 @@ const struct MenuItemDef gSkillMenuInfos[MAX_SKILL_NUM + 1] = {
     },
 #endif
 
+#if (defined(SID_Switcher) && COMMON_SKILL_VALID(SID_Switcher))
+    [SID_Switcher] = {
+        .name = "　光の結界",
+        .nameMsgId = MSG_MenuSkill_SwitcherName,
+        .helpMsgId = MSG_SKILL_Switcher,
+        .color = TEXT_COLOR_SYSTEM_GOLD,
+        .isAvailable = Switcher_Usability,
+        .onDraw = NULL,
+        .onSelected = Switcher_OnSelected,
+        .onIdle = NULL,
+        .onSwitchIn = NULL,
+        .onSwitchOut = NULL,
+    },
+#endif
+
     [0] = {
         .name = "　",
         .nameMsgId = MSG_MenuCommand_RefugeName,
