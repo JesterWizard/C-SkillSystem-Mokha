@@ -654,6 +654,7 @@ SID_Canto
 // SID_MountainClimberPlus
 // SID_Acrobat
 // SID_PhaseShift
+// SID_DesertTiger
 
 ///////// SHOP SKILLS
 // SID_Deal
