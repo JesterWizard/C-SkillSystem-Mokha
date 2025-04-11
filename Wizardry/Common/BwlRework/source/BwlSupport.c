@@ -6,6 +6,11 @@
 #include "eventinfo.h"
 #include "../../../../Contants/Texts/build/msgs.h"
 
+static const int sSupportUnkLut[][2] = {
+    { 0x0100, 0x0100 }, 
+    { 0x0000, 0x0000 }
+};
+
 static const struct SupportTalkEnt gNewSupportTalkList[] = 
 {
     { CHARACTER_EIRIKA,   CHARACTER_EPHRAIM,  {MSG_0C53, MSG_0C54, MSG_0C55} },
@@ -66,6 +71,7 @@ static const struct SupportTalkEnt gNewSupportTalkList[] =
     { CHARACTER_JOSHUA,   CHARACTER_LARACHEL, {MSG_0CF8, MSG_0CF9, MSG_0CFA} },
     { CHARACTER_JOSHUA,   CHARACTER_MARISA,   {MSG_0CFB, MSG_0CFC, MSG_0CFD} },
     { CHARACTER_JOSHUA,   CHARACTER_GERIK,    {MSG_0CFE, MSG_0CFF, MSG_0D00} },
+    { CHARACTER_JOSHUA,   CHARACTER_RENNAC,   {C_Support_Joshua_Rennac, B_Support_Joshua_Rennac, A_Support_Joshua_Rennac}},
     { CHARACTER_KYLE,     CHARACTER_FORDE,    {MSG_0D01, MSG_0D02, MSG_0D03} },
     { CHARACTER_KYLE,     CHARACTER_SYRENE,   {MSG_0D04, MSG_0D05, MSG_0D06} },
     { CHARACTER_TANA,     CHARACTER_SYRENE,   {MSG_0D07, MSG_0D08, MSG_0D09} },
@@ -410,3 +416,154 @@ void UnitLoadSupports(struct Unit * unit)
             supp[i] = GetUnitSupporterInitialExp(unit, i);
     }
 }
+
+/* We need to hook this to view the support conversation menu */
+LYN_REPLACE_CHECK(GetGlobalSupportListFromSave);
+void GetGlobalSupportListFromSave(int unitId, u8* data, struct GlobalSaveInfo* info)
+{
+    struct GlobalSaveInfo local_info;
+    struct SupportTalkEnt* ptr;
+    int i;
+    int j;
+
+    if (gCharacterData[unitId-1].pSupportData == 0) {
+        for (i = 0; i < UNIT_SUPPORT_MAX_COUNT; data++, i++)
+            *data = 0;
+
+        return;
+    }
+
+    j = 0;
+    ptr = GetSupportTalkList();
+
+    if (info == NULL) {
+        info = &local_info;
+        ReadGlobalSaveInfo(info);
+    }
+
+    for (; ; j++, ptr++) {
+        int tmp1, tmp2;
+
+        if (ptr->unitA == 0xFFFF)
+            break;
+
+        if ((ptr->unitA != unitId) && (ptr->unitB != unitId))
+            continue;
+
+        tmp1 = j >> 2;
+        tmp2 = (j & 3) << 1;
+
+        for (i = 0; i < gCharacterData[unitId-1].pSupportData->supportCount; i++) {
+
+            if ((ptr->unitA != gCharacterData[unitId-1].pSupportData->characters[i]) &&
+                (ptr->unitB != gCharacterData[unitId-1].pSupportData->characters[i])) {
+                continue;
+            }
+
+            data[i] = (info->SuppordRecord[tmp1] >> (tmp2)) & 3;
+
+            break;
+        }
+    }
+
+    for (i = gCharacterData[unitId-1].pSupportData->supportCount; i < UNIT_SUPPORT_MAX_COUNT; i++) {
+        data[i] = 0;
+    }
+
+    return;
+}
+
+LYN_REPLACE_CHECK(GetUnitsAverageSupportValue);
+int GetUnitsAverageSupportValue(const int unitA, const int unitB)
+{
+    int i;
+
+    for (i = 0; 0 != sSupportUnkLut[i][0]; i++) {
+        if (sSupportUnkLut[i][0] == unitA)
+            if (sSupportUnkLut[i][1] != unitB)
+                return 2;
+
+        if (sSupportUnkLut[i][0] == unitB)
+            if (sSupportUnkLut[i][1] != unitA)
+                return 2;
+            
+        if (sSupportUnkLut[i][1] == unitA)
+            if (sSupportUnkLut[i][0] != unitB)
+                return 2;
+
+        if (sSupportUnkLut[i][1] == unitB)
+            if (sSupportUnkLut[i][0] != unitA)
+                return 2;
+    }
+
+    return 3;
+}
+
+LYN_REPLACE_CHECK(GetTotalAverageSupportValue);
+int GetTotalAverageSupportValue()
+{
+    int ret = 0;
+    struct SupportTalkEnt *buf = GetSupportTalkList();
+
+    for (; 0xFFFF != buf->unitA; buf++)
+        ret += GetUnitsAverageSupportValue(buf->unitA, buf->unitB);
+
+    return ret;
+}
+
+// LYN_REPLACE_CHECK(GetGlobalSupportListFromSave);
+// void GetGlobalSupportListFromSave(int unitId, u8* data, struct GlobalSaveInfo* info)
+// {
+//     struct GlobalSaveInfo local_info;
+//     struct SupportTalkEnt* ptr;
+//     struct Unit* unit = GetUnit(unitId);
+//     int supportCount, i, j;
+
+//     // If the unit pointer is invalid or has no supports, clear the data.
+//     if (!unit || (supportCount = GetUnitSupporterCount(unit)) <= 0) {
+//         for (i = 0; i < UNIT_SUPPORT_MAX_COUNT; i++, data++)
+//             *data = 0;
+//         return;
+//     }
+
+//     j = 0;
+//     ptr = GetSupportTalkList();
+
+//     if (info == NULL) {
+//         info = &local_info;
+//         ReadGlobalSaveInfo(info);
+//     }
+
+//     // Iterate through support talk records
+//     for ( ; ; j++, ptr++) {
+//         int tmp1, tmp2;
+
+//         if (ptr->unitA == 0xFFFF)
+//             break;
+
+//         // Only consider talk entries for which this unit is involved.
+//         if ((ptr->unitA != unitId) && (ptr->unitB != unitId))
+//             continue;
+
+//         tmp1 = j >> 2;
+//         tmp2 = (j & 3) << 1;
+
+//         // Loop over the supports for this unit.
+//         for (i = 0; i < supportCount; i++) {
+
+//             // Use the new method to get the support character for index i.
+//             if ((ptr->unitA != GetUnitSupporterCharacter(unit, i)) &&
+//                 (ptr->unitB != GetUnitSupporterCharacter(unit, i)))
+//                 continue;
+
+//             data[i] = (info->SuppordRecord[tmp1] >> tmp2) & 3;
+//             break;
+//         }
+//     }
+
+//     // Clear any remaining slots.
+//     for (i = supportCount; i < UNIT_SUPPORT_MAX_COUNT; i++)
+//         data[i] = 0;
+
+//     return;
+// }

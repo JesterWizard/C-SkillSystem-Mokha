@@ -103,4 +103,38 @@ extern CONST_DATA struct SupportData SupportData_Myrrh;
 extern CONST_DATA struct SupportData SupportData_Knoll;
 extern CONST_DATA struct SupportData SupportData_Syrene;
 
+extern const struct SupportData SupportDataNew_Eirika;
+extern const struct SupportData SupportDataNew_Ephraim;
+extern const struct SupportData SupportDataNew_Seth;
+extern const struct SupportData SupportDataNew_Franz;
+extern const struct SupportData SupportDataNew_Gilliam;
+extern const struct SupportData SupportDataNew_Moulder;
+extern const struct SupportData SupportDataNew_Vanessa;
+extern const struct SupportData SupportDataNew_Garcia;
+extern const struct SupportData SupportDataNew_Ross;
+extern const struct SupportData SupportDataNew_Colm;
+extern const struct SupportData SupportDataNew_Neimi;
+extern const struct SupportData SupportDataNew_Artur;
+extern const struct SupportData SupportDataNew_Lute;
+extern const struct SupportData SupportDataNew_Natasha;
+extern const struct SupportData SupportDataNew_Joshua;
+extern const struct SupportData SupportDataNew_Kyle;
+extern const struct SupportData SupportDataNew_Forde;
+extern const struct SupportData SupportDataNew_Tana;
+extern const struct SupportData SupportDataNew_Innes;
+extern const struct SupportData SupportDataNew_Gerik;
+extern const struct SupportData SupportDataNew_Tethys;
+extern const struct SupportData SupportDataNew_Marisa;
+extern const struct SupportData SupportDataNew_Saleh;
+extern const struct SupportData SupportDataNew_Ewan;
+extern const struct SupportData SupportDataNew_LArachel;
+extern const struct SupportData SupportDataNew_Dozla;
+extern const struct SupportData SupportDataNew_Cormag;
+extern const struct SupportData SupportDataNew_Amelia;
+extern const struct SupportData SupportDataNew_Rennac;
+extern const struct SupportData SupportDataNew_Duessel;
+extern const struct SupportData SupportDataNew_Myrrh;
+extern const struct SupportData SupportDataNew_Knoll;
+extern const struct SupportData SupportDataNew_Syrene;
+
 #endif // GUARD_BM_RELIANCE_H
