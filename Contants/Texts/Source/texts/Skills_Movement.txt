@@ -102,3 +102,8 @@ walls.[X]
 Warpath:[N]
 Unit can still attack[N]
 while in canto state.[X]
+
+## MSG_SKILL_Desert_Tiger
+Desert Tiger:[N]
+Allows the unit to walk on sand[N]
+tiles with no move penalty.[X]

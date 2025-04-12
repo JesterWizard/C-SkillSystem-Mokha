@@ -5,10 +5,16 @@ Total[X]
 Total stats[X]
 
 ## MSG_MSS_SkillCapacity
-Load[X]
+Cap[X]
 
 ## MSG_MSS_SkillCapacityDesc
 Total used skill capacity[X]
+
+## MSG_MSS_SkillPoints
+Val[X]
+
+## MSG_MSS_SkillPointsDesc
+Total skill points accrued[X]
 
 ## MSG_MSS_BWL_BATTLE
 B[X]

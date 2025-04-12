@@ -524,6 +524,20 @@ void SetWorkingMoveCosts(const s8 mct[])
     }
 #endif
 
+#if (defined(SID_DesertTiger) && COMMON_SKILL_VALID(SID_DesertTiger))
+    if (SkillTester(gActiveUnit, SID_DesertTiger))
+    {
+        for (i = 0; i < TERRAIN_COUNT; ++i)
+        {
+            if (i == TERRAIN_SAND)
+                gWorkingTerrainMoveCosts[i] = 1;
+            else
+                gWorkingTerrainMoveCosts[i] = mct[i];
+        }
+        return;
+    }
+#endif
+
     for (i = 0; i < TERRAIN_COUNT; ++i)
         gWorkingTerrainMoveCosts[i] = mct[i];
 

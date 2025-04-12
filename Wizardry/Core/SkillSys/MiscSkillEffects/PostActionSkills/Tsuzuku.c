@@ -69,7 +69,7 @@ bool PostActionTsuzuku(ProcPtr parent)
             if (SkillTester(unit, SID_Switcher))
             {
                  if (gActionData.unk08 == SID_Switcher)
-                    goto refresh_turn_repeatedly_no_animation;
+                    refresh_turn_repeatedly_no_animation();
             }
 #endif
 
@@ -151,12 +151,14 @@ refresh_turn_repeatedly:
     StartStatusHealEffect(unit, parent);
     return true;
 
-refresh_turn_repeatedly_no_animation:
+FORCE_DECLARE bool refresh_turn_repeatedly_no_animation(void)
+{
     if (!UNIT_ALIVE(unit) || UNIT_STONED(unit))
         return false;
 
     gActionDataExpa.refrain_action = true;
     return true;
+}
 
 /**
  *  This is a stopgap measure to ensure the branch isn't unused when all skills are disabled.

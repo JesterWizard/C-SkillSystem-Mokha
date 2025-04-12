@@ -235,6 +235,7 @@ SID_Camouflage
 // SID_Trace
 // SID_Transpose
 // SID_SwordSaint
+// SID_GracefulWielder
 
 //////// POST-BATTLE SKILLS
 // SID_Canto
@@ -654,6 +655,7 @@ SID_MountainClimber
 SID_MountainClimberPlus
 SID_Acrobat
 SID_PhaseShift
+// SID_DesertTiger
 
 /////// SHOP SKILLS
 SID_Deal

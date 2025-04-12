@@ -153,7 +153,7 @@ void ComputeBattleUnitSpeed(struct BattleUnit* attacker)
 {
     int effWt;
 
-#ifdef  CONFIG_S_RANK_NO_WEAPON_WEIGHT
+#ifdef CONFIG_S_RANK_NO_WEAPON_WEIGHT
     int itemType = GetItemType(attacker->weaponBefore);
 
     if (GetUnit(attacker->unit.index)->ranks[itemType] == WPN_EXP_S)
@@ -172,10 +172,31 @@ void ComputeBattleUnitSpeed(struct BattleUnit* attacker)
     effWt = GetItemWeight(attacker->weaponBefore);
 
     effWt -= attacker->unit.conBonus;
+#endif
+
+#if (defined(SID_GracefulWielder) && (COMMON_SKILL_VALID(SID_GracefulWielder)))
+        if (SkillTester(GetUnit(attacker->unit.index), SID_GracefulWielder))
+        {
+            if (effWt > 0)
+            {
+                int unitWeaponRank = attacker->unit.ranks[GetItemType(attacker->weapon)];
+
+                if (unitWeaponRank >= WPN_EXP_S)
+                    effWt -= 5;
+                else if (unitWeaponRank >= WPN_EXP_A)
+                    effWt -= 4;
+                else if (unitWeaponRank >= WPN_EXP_B)
+                    effWt -= 3;
+                else if (unitWeaponRank >= WPN_EXP_C)
+                    effWt -= 2;
+                else if (unitWeaponRank >= WPN_EXP_D)
+                    effWt -= 1;
+            }
+        }
+#endif
 
     if (effWt < 0)
         effWt = 0;
-#endif
 
     attacker->battleSpeed = attacker->unit.spd - effWt;
 
@@ -1808,14 +1829,12 @@ void PreBattleCalcSkills(struct BattleUnit *attacker, struct BattleUnit *defende
 #if (defined(SID_KillStreak) && (COMMON_SKILL_VALID(SID_KillStreak)) && defined(CONFIG_RESET_BWL_STATS_EACH_CHAPTER))
         case SID_KillStreak:
             attacker->battleCritRate += (bwl->winAmt * SKILL_EFF0(SID_KillStreak));
-
             break;
 #endif
 
 #if (defined(SID_HyperFocus) && (COMMON_SKILL_VALID(SID_HyperFocus)) && defined(CONFIG_RESET_BWL_STATS_EACH_CHAPTER))
         case SID_HyperFocus:
             attacker->battleHitRate += (bwl->battleAmt * SKILL_EFF0(SID_HyperFocus));
-
             break;
 #endif
 
