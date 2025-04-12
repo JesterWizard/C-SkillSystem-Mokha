@@ -22,7 +22,6 @@ ALIGN 4
 #include "Common/BwlRework/BwlRework.event"
 #include "Common/ItemSys/ItemSys.event"
 #include "Common/ClassTypes/ClassTypes.event"
-#include "Common/Characters/Characters.event"
 #include "Common/RN/RandNumberC.lyn.event"
 #include "Common/MoveLimitViewHack/MoveLimitViewHack.event"
 #include "Common/IconDisplay/IconDisplay.event"
@@ -49,6 +48,7 @@ ALIGN 4
 #include "Common/MapAnims/MapAnims.event"
 #include "Common/UnitTarget/UnitTarget.event"
 #include "Common/UnitSelection/UnitSelection.event"
+#include "Common/Supports/Installer.event"
 
 #include "Core/SkillSys/SkillSys.event"
 #include "Core/DebuffRework/DebuffRework.event"

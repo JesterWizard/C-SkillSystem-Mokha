@@ -375,7 +375,6 @@ extern const struct ClassData gClassData[]; // gClassData
 extern const struct ClassData gNewClassData[]; // gClassData
 
 extern const struct CharacterData gCharacterData[]; // gCharacterData
-extern const struct CharacterData gNewCharacterData[]; // gNewCharacterData
 extern struct UnitDefinition gUnitDef1;
 extern struct UnitDefinition gUnitDef2;
 extern struct UnitDefinition gUnitDefEggHatching;

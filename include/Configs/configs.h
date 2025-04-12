@@ -1,10 +1,7 @@
-#ifndef CONFIG_INSTALLED
-#define CONFIG_INSTALLED
-
 // #include "config-debug.h"
 #include "config-memmap.h"
 
-//#define CONFIG_FE8_REWRITE
+#define CONFIG_FE8_REWRITE
 
 // #define CONFIG_FE8SRR
 
@@ -538,4 +535,4 @@
 // #define SETH_INJURED
 // #define INJURED_TURN_COUNT 5
 
-#endif /* CONFIG_INSTALLED */
+#define CONFIG_SUPPORT_REWARDS

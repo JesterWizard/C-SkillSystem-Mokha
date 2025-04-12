@@ -43,6 +43,7 @@ enum {
     SFX_NULL                    = 0x00,
     SFX_BIRDS_CHIRPING          = 0x52,
     SFX_RIVER                   = 0x53,
+    SFX_UPDATE                  = 0x5A,
     SFX_WEAPON_BROKE            = 0x5C,
     SFX_VILLAGE_DESTROYED       = 0xAB,
     SFX_UNLOCKING_DOOR          = 0xB1,
