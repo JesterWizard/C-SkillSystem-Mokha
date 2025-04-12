@@ -1261,3 +1261,8 @@ AVO terrain boosts.[X]
 Swift Attack:[N]
 Use this unit's SPD instead of[N]
 MAG/POW for damage calculation.[X]
+
+## MSG_SKILL_GracefulWielder
+Graceful Wielder:[N]
+Reduces weapon weight of equipped[N]
+weapon for each rank above E.[X]

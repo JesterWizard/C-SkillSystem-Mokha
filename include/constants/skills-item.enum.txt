@@ -235,6 +235,7 @@
 // SID_Trace
 // SID_Transpose
 // SID_SwordSaint
+// SID_GracefulWielder
 
 ////////// POST-BATTLE SKILLS
 // SID_Canto
