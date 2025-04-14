@@ -37,7 +37,7 @@
 #define IS_UNIT_PTR(unit)    (UNIT_IS_VALID((unit)) /* && IS_ROM_DATA((unit)->pCharacterData) && IS_ROM_DATA((unit)->pClassData) */)
 #define UNIT_ALIVE(unit)     (UNIT_IS_VALID((unit)) && !((unit)->state & US_UNAVAILABLE))
 
-#define UNIT_LEVEL_MAX_RE 25
+#define UNIT_LEVEL_MAX_RE 20
 #define UNIT_RECORDED_LEVEL_MAX 80
 
 extern void SetGameOption(u8 index, u8 newValue);

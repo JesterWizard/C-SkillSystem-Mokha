@@ -131,14 +131,22 @@ struct MuProc {
     /* 4A */ short moveConfig;
 
     // Coordinates are in 16th of pixel
-    /* 4C */ short x_q4;
-    /* 4E */ short y_q4;
-    /* 50 */ short x_offset_q4;
-    /* 52 */ short y_offset_q4;
+    // /* 4C */ short x_q4;
+    // /* 4E */ short y_q4;
+    // /* 50 */ short x_offset_q4;
+    // /* 52 */ short y_offset_q4;
+
+    /* 4C */ short xSubPosition;
+    /* 4E */ short ySubPosition;
+    /* 50 */ short xSubOffset;
+    /* 52 */ short ySubOffset;
 };
 
-#define MU_GetDisplayXOrg(proc) ((((proc)->x_q4 + (proc)->x_offset_q4) >> MU_SUBPIXEL_PRECISION) + 8)
-#define MU_GetDisplayYOrg(proc) ((((proc)->y_q4 + (proc)->y_offset_q4) >> MU_SUBPIXEL_PRECISION) + 8)
+// #define MU_GetDisplayXOrg(proc) ((((proc)->x_q4 + (proc)->x_offset_q4) >> MU_SUBPIXEL_PRECISION) + 8)
+// #define MU_GetDisplayYOrg(proc) ((((proc)->y_q4 + (proc)->y_offset_q4) >> MU_SUBPIXEL_PRECISION) + 8)
+
+#define MU_GetDisplayXOrg(proc) ((((proc)->xSubPosition + (proc)->xSubOffset) >> MU_SUBPIXEL_PRECISION) + 8)
+#define MU_GetDisplayYOrg(proc) ((((proc)->ySubPosition + (proc)->ySubOffset) >> MU_SUBPIXEL_PRECISION) + 8)
 
 
 struct MuConfig {
