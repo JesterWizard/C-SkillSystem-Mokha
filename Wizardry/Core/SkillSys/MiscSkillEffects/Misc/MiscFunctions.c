@@ -22,6 +22,7 @@
 #include "action-expa.h"
 #include "bmusailment.h"
 #include "vanilla.h"
+#include "jester_headers/class-arrays.h"
 
 #if defined(SID_CatchEmAll) && (COMMON_SKILL_VALID(SID_CatchEmAll))
     const unsigned int gCatchEmAllId = SID_CatchEmAll;
@@ -4246,4 +4247,128 @@ bool PrepareBattleGraphicsMaybe(void)
     }
 
     return true;
+}
+
+LYN_REPLACE_CHECK(StartUnitWeaponSelect);
+u8 StartUnitWeaponSelect(struct MenuProc* menu, struct MenuItemProc* menuItem) {
+    
+    bool noPortraitUnit = false;
+
+    ProcPtr proc = StartOrphanMenu(&gUnknownMenuDef);
+
+    if (gActiveUnit->pCharacterData->portraitId == 0)
+        noPortraitUnit = true;
+
+    if (!noPortraitUnit)
+    {
+        StartFace(0, GetUnitPortraitId(gActiveUnit), 0xB0, 0xC, 2);
+        SetFaceBlinkControlById(0, 5);
+    }
+
+    ForceMenuItemPanel(proc, gActiveUnit, 0xF, 0xB);
+
+    sub_80832C4();
+
+    return MENU_ACT_SKIPCURSOR | MENU_ACT_END | MENU_ACT_SND6A | MENU_ACT_CLEAR;
+}
+
+LYN_REPLACE_CHECK(ProcessMenuDpadInput);
+void ProcessMenuDpadInput(struct MenuProc* proc)
+{
+    proc->itemPrevious = proc->itemCurrent;
+
+    // Handle Up keyin
+
+    if (gKeyStatusPtr->repeatedKeys & DPAD_UP)
+    {
+        if (proc->itemCurrent == 0)
+        {
+            if (gKeyStatusPtr->repeatedKeys != gKeyStatusPtr->newKeys)
+                return;
+
+            proc->itemCurrent = proc->itemCount;
+        }
+
+        proc->itemCurrent--;
+
+/* A little something to change the monster image displayed as the user scrolls the summon select screen */
+#if defined(SID_SummonPlus) && (COMMON_SKILL_VALID(SID_SummonPlus))
+        if (gActionData.unk08 == SID_SummonPlus)
+        {
+            if (UNIT_CATTRIBUTES(gActiveUnit) & CA_PROMOTED)
+                PutFace80x72_Core(gBG0TilemapBuffer + 0x63 + 0x40, GetClassData(classPromotedIndexes[proc->itemCurrent])->defaultPortraitId, 0x200, 5);
+            else
+                PutFace80x72_Core(gBG0TilemapBuffer + 0x63 + 0x40, GetClassData(classIndexes[proc->itemCurrent])->defaultPortraitId, 0x200, 5);
+        }
+#endif
+    }
+
+    // Handle down keyin
+
+    if (gKeyStatusPtr->repeatedKeys & DPAD_DOWN)
+    {
+        if (proc->itemCurrent == (proc->itemCount - 1))
+        {
+            if (gKeyStatusPtr->repeatedKeys != gKeyStatusPtr->newKeys)
+                return;
+
+            proc->itemCurrent = -1;
+        }
+
+        proc->itemCurrent++;
+
+/* A little something to change the monster image displayed as the user scrolls the summon select screen */
+#if defined(SID_SummonPlus) && (COMMON_SKILL_VALID(SID_SummonPlus))
+        if (gActionData.unk08 == SID_SummonPlus)
+        {
+            if (UNIT_CATTRIBUTES(gActiveUnit) & CA_PROMOTED)
+                PutFace80x72_Core(gBG0TilemapBuffer + 0x63 + 0x40, GetClassData(classPromotedIndexes[proc->itemCurrent])->defaultPortraitId, 0x200, 5);
+            else
+                PutFace80x72_Core(gBG0TilemapBuffer + 0x63 + 0x40, GetClassData(classIndexes[proc->itemCurrent])->defaultPortraitId, 0x200, 5);
+        }
+#endif
+    }
+
+    // Update hover display
+
+    if (proc->itemPrevious != proc->itemCurrent)
+    {
+        DrawMenuItemHover(proc, proc->itemPrevious, FALSE);
+        DrawMenuItemHover(proc, proc->itemCurrent, TRUE);
+
+        PlaySoundEffect(BGM_SYS_CURSOR_UD1);
+    }
+
+    // Call def's switch in/out funcs
+
+    if (HasMenuChangedItem(proc))
+    {
+        if (proc->menuItems[proc->itemPrevious]->def->onSwitchOut)
+            proc->menuItems[proc->itemPrevious]->def->onSwitchOut(proc, proc->menuItems[proc->itemPrevious]);
+
+        if (proc->menuItems[proc->itemCurrent]->def->onSwitchIn)
+            proc->menuItems[proc->itemCurrent]->def->onSwitchIn(proc, proc->menuItems[proc->itemCurrent]);
+    }
+}
+
+LYN_REPLACE_CHECK(GenericSelection_BackToUM);
+u8 GenericSelection_BackToUM(ProcPtr proc, struct SelectTarget * target) {
+    EndTargetSelection(proc);
+
+    BG_Fill(gBG2TilemapBuffer, 0);
+    BG_EnableSyncByMask(BG2_SYNC_BIT);
+
+    ResetTextFont();
+
+    HideMoveRangeGraphics();
+
+    EnsureCameraOntoPosition(
+        StartSemiCenteredOrphanMenu(&gUnitActionMenuDef, gBmSt.cursorTarget.x - gBmSt.camera.x, 1, 22),
+        gActiveUnit->xPos,
+        gActiveUnit->yPos
+    );
+
+    gActionData.unk08 = 0;
+
+    return MENU_ACT_SKIPCURSOR | MENU_ACT_SND6B | MENU_ACT_CLEAR;
 }

@@ -284,18 +284,17 @@ STATIC_DECLAR u8 PredationSkillMenu_OnSelected(struct MenuProc * menu, struct Me
     if (UNIT_RAM_SKILLS(gActiveUnit)[6] == 0)
     {
         PredationTryAddSkill();
-        return MENU_ACT_SKIPCURSOR | MENU_ACT_END | MENU_ACT_SND6A | MENU_ACT_CLEAR;
     }
     else
     {
         SetPopupItem((targetUnit->supports[gActionData.unk0A] << 8) | CONFIG_ITEM_INDEX_SKILL_SCROLL);
-        // NewPopup_Simple(PopupScr_ObtainedSkill, 0x5A, 0, menu);
         EndSubtitleHelp();
 
         StartSubtitleHelp(
             StartOrphanMenu(&RemoveSkillMenuDef),
             GetStringFromIndex(MSG_RemoveSkillSubtitle)
         );
-        return MENU_ACT_SKIPCURSOR | MENU_ACT_END | MENU_ACT_SND6A | MENU_ACT_CLEAR;
     }
+
+    return MENU_ACT_SKIPCURSOR | MENU_ACT_END | MENU_ACT_SND6A | MENU_ACT_CLEAR;
 }

@@ -48,3 +48,4 @@ void UnitHiddenLevelPreLoad(struct Unit * unit);
 // see limition rule 5
 void WriteUnitLevelSafe(struct Unit *unit, int new_level);
 extern void (*prWriteUnitLevelSafe)(struct Unit *unit, int new_level);
+extern const struct SupportTalkEnt gNewSupportTalkList[];

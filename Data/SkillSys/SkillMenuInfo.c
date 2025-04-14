@@ -679,6 +679,21 @@ const struct MenuItemDef gSkillMenuInfos[MAX_SKILL_NUM + 1] = {
     },
 #endif
 
+#if (defined(SID_SummonPlus) && COMMON_SKILL_VALID(SID_SummonPlus))
+    [SID_SummonPlus] = {
+        .name = "　召喚",
+        .nameMsgId = MSG_MenuSkill_SummonPlusName,
+        .helpMsgId = MSG_SKILL_SummonPlus,
+        .color = TEXT_COLOR_SYSTEM_GOLD,
+        .isAvailable = SummonCommandUsability,
+        .onDraw = NULL,
+        .onSelected = SummonPlusCommandEffect,
+        .onIdle = NULL,
+        .onSwitchIn = NULL,
+        .onSwitchOut = NULL
+    },
+#endif
+
     [0] = {
         .name = "　",
         .nameMsgId = MSG_MenuCommand_RefugeName,

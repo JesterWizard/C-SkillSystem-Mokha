@@ -2,7 +2,6 @@
 [OpenMidRight][LoadFace_Knoll]
 Hmm.[A][N]
 
-
 ## B_Support_Knoll_Myrrh
 [OpenMidRight][LoadFace_Knoll]
 [OpenMidLeft][LoadFace_Myrrh]

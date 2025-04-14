@@ -133,3 +133,5 @@
 #ifdef CONFIG_CUSTOM_CHAPTER_SCREEN
     #include "CustomChapterScreen/Installer.event"
 #endif
+
+#include "ExtrasMenu/Installer.event"

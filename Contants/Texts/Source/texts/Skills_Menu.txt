@@ -477,7 +477,7 @@ effective damage to a single foe.[X]
  Sellsword[X]
 
 ## MSG_SKILL_Sellsword
-Sellsword:[NL]
+Sellsword:[N]
 Spend 1000g to boost all stats by 2[N]
 until the end of the map.[X]
 
@@ -488,3 +488,11 @@ until the end of the map.[X]
 Switcher:[N]
 Unit can choose to toggle their[N]
 ability to double.[X]
+
+## MSG_MenuSkill_SummonPlusName
+ Summon+[X]
+
+## MSG_SKILL_SummonPlus
+Summon+:[N]
+Allows the unit to pick from[N]
+an assorted list of summons.[X]

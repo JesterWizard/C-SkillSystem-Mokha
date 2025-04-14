@@ -435,3 +435,5 @@ bool Action_LoadstarRush(ProcPtr parent);
 bool Action_WyvernCrash(ProcPtr parent);
 bool Action_Sellsword(ProcPtr parent);
 bool Action_Switcher(ProcPtr parent);
+
+u8 SummonPlusCommandEffect(struct MenuProc * menu, struct MenuItemProc * menuItem);
