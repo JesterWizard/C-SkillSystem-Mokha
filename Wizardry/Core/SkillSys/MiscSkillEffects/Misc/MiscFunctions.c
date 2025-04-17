@@ -23,6 +23,8 @@
 #include "bmusailment.h"
 #include "vanilla.h"
 #include "jester_headers/class-arrays.h"
+#include "unitlistscreen.h"
+#include "prepscreen.h"
 
 #if defined(SID_CatchEmAll) && (COMMON_SKILL_VALID(SID_CatchEmAll))
     const unsigned int gCatchEmAllId = SID_CatchEmAll;
@@ -2092,7 +2094,7 @@ void TradeMenu_InitUnitNameDisplay(struct TradeMenuProc * proc)
 #ifdef CONFIG_EXTENDED_HELPBOXES
     /* Maybe change 0x5800 to 0x7080? It doesn't seem clear */
     /* Keeping it at vanilla 0x4800 fpr now because the brown name tile screws up no matter what */
-    StartSysBrownBox(6, 0x4800, 0x08, 0x800, 0x400, (struct Proc *) (proc));
+    StartSysBrownBox(6, 0x5800, 0x08, 0x800, 0x400, (struct Proc *) (proc));
 #else
     StartSysBrownBox(6, 0x4800, 0x08, 0x800, 0x400, (struct Proc *) (proc));
 #endif
@@ -4371,4 +4373,191 @@ u8 GenericSelection_BackToUM(ProcPtr proc, struct SelectTarget * target) {
     gActionData.unk08 = 0;
 
     return MENU_ACT_SKIPCURSOR | MENU_ACT_SND6B | MENU_ACT_CLEAR;
+}
+
+//! FE8U = 0x08090D80
+LYN_REPLACE_CHECK(sub_8090D80);
+void sub_8090D80(struct UnitListScreenProc * proc)
+{
+    int i;
+    u8 val;
+
+    SetDispEnable(1, 1, 1, 1, 1);
+
+    SetInterrupt_LCDVCountMatch(NULL);
+    SetupBackgrounds(NULL);
+    ResetText();
+    ResetTextFont();
+    ResetIconGraphics();
+    ApplyUnitSpritePalettes();
+
+    CpuFastFill(0, gPaletteBuffer + 0x1B0, PLTT_SIZE_4BPP);
+
+    LoadObjUIGfx();
+
+    StartGreenText(proc);
+
+    proc->deployedCount = 0;
+    proc->unk_2e = 6;
+
+    sub_8090D00(proc);
+
+    if ((proc->mode != UNITLIST_MODE_PREPMENU) || (proc->unk_2a == 1))
+    {
+        val = gPlaySt.lastUnitSortType;
+
+        if (val != 0)
+        {
+            proc->unk_33 = (val >> 7) & 1;
+            proc->unk_34 = proc->unk_33;
+            proc->unk_32 = val & 0x7f;
+        }
+
+        if ((proc->unk_29 != 4) && (proc->page != 0))
+        {
+            val = gPlaySt.unk19 / 16;
+
+            if (val != 0)
+            {
+                if (val > 6)
+                {
+                    proc->page = 6;
+                }
+                else
+                {
+                    proc->page = val;
+                }
+
+                proc->pageTarget = proc->page;
+            }
+        }
+
+        SortUnitList(proc->unk_32, proc->unk_34);
+    }
+
+    BG_Fill(gBG0TilemapBuffer, 0);
+    BG_Fill(gBG1TilemapBuffer, 0);
+    BG_Fill(gBG2TilemapBuffer, 0);
+
+    ResetIconGraphics_();
+    LoadIconPalettes(4);
+    LoadUiFrameGraphics();
+
+    ApplyPalettes(Pal_SysBrownBox, 0x19, 2);
+
+    sub_8097FDC();
+
+    CallARM_FillTileRect(gBG1TilemapBuffer, gUnknown_08A1C8B4, 0x1000);
+
+    for (i = 0; i < 7; i++)
+    {
+        InitText(&gUnknown_0200E060[i], 5);
+        InitTextDb(&gUnknown_0200E098[i][0], 8);
+        InitText(&gUnknown_0200E098[i][1], 7);
+        InitText(&gUnknown_0200E098[i][2], 5);
+    }
+
+    InitText(&gUnknown_0200E140, 4);
+    InitText(&gUnknown_0200E148, 20);
+    InitText(&gUnknown_0200E150, 8);
+
+    sub_8090238(proc->unk_32);
+
+    if (proc->unk_29 == 4)
+    {
+        sub_8090418(proc, 0);
+        proc->unk_29 = 0;
+    }
+    else if (proc->mode == UNITLIST_MODE_PREPMENU)
+    {
+        sub_8090418(proc, 1);
+    }
+
+    proc->unk_3c = 0;
+    proc->helpActive = 0;
+
+    ClearText(&gUnknown_0200E140);
+    Text_SetCursor(&gUnknown_0200E140, 4);
+    Text_SetColor(&gUnknown_0200E140, 0);
+    Text_DrawString(&gUnknown_0200E140, GetStringFromIndex(0x4E5));
+    PutText(&gUnknown_0200E140, TILEMAP_LOCATED(gBG2TilemapBuffer, 3, 5));
+
+    for (i = 0; i < 8; i++)
+    {
+        gUnknown_0200F15C[i] = UINT8_MAX;
+    }
+
+    for (i = proc->unk_3e / 16; i < (proc->unk_3e / 16) + 6 && i < gUnknown_0200F158; i++)
+    {
+        UnitList_PutRow(proc, i, gBG0TilemapBuffer, proc->page, 1);
+    }
+
+    sub_8092298(proc->unk_2e, proc->page, 1);
+
+    SetWinEnable(1, 0, 0);
+    SetWin0Box(16, 58, 224, 152);
+    SetWin0Layers(1, 1, 1, 1, 1);
+    SetWOutLayers(0, 1, 1, 1, 1);
+
+    BG_EnableSyncByMask(BG0_SYNC_BIT | BG1_SYNC_BIT | BG2_SYNC_BIT | BG3_SYNC_BIT);
+
+    BG_SetPosition(BG_3, 0, 0);
+    BG_SetPosition(BG_2, 0, 0);
+    BG_SetPosition(BG_1, 0, 0);
+    BG_SetPosition(BG_0, 0, (proc->unk_3e - 56) & 0xff);
+
+    gLCDControlBuffer.bg0cnt.priority = 0;
+    gLCDControlBuffer.bg1cnt.priority = 2;
+    gLCDControlBuffer.bg2cnt.priority = 1;
+    gLCDControlBuffer.bg3cnt.priority = 3;
+
+    Decompress(gImg_UiSpinningArrow_Horizontal, gBG1TilemapBuffer + 0x280);
+    ApplyPalette(Pal_SpinningArrow, 0xf);
+
+    proc->pSpriteProc = Proc_Start(ProcScr_bmview, proc);
+    proc->pMuralProc = StartMuralBackground(0, 0, 10);
+    LoadHelpBoxGfx(0, -1);
+
+    return;
+}
+
+//! FE8U = 0x0804B71C
+LYN_REPLACE_CHECK(sub_804B71C);
+void sub_804B71C(struct SioBattleMapProc * proc)
+{
+    int i;
+
+    LoadHelpBoxGfx((void *)0x06015000, 6);
+    StartHelpBoxExt_Unk(64, 56, 0x756); // TODO: msgid "Each unit receives 30 extra pts."
+
+    for (i = 0; i < 4; i++)
+    {
+        if (!sub_8042194(i))
+        {
+            continue;
+        }
+
+        if (gUnk_Sio_0203DD90.unk_0A[i] == 0)
+        {
+            continue;
+        }
+
+        proc->unk_58 = i;
+    }
+
+    proc->unk_5c = 0;
+
+    return;
+}
+
+extern struct HelpBoxInfo sHelpInfo_ChapterStatus_AllyUnits;
+//! FE8U = 0x0808DCAC
+LYN_REPLACE_CHECK(StartChapterStatusHelpBox);
+void StartChapterStatusHelpBox(ProcPtr proc)
+{
+    LoadHelpBoxGfx(OBJ_CHR_ADDR(0x280), 6);
+
+    StartMovingHelpBox(&sHelpInfo_ChapterStatus_AllyUnits, proc);
+
+    return;
 }

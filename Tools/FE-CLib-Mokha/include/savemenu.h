@@ -380,7 +380,7 @@ ProcPtr StartDrawDifficultyMenuSprites(ProcPtr);
 // extern ??? gBgConfig_SaveMenu
 // extern ??? gProcScr_08A20068
 // extern ??? ProcScr_CallExtraMap
-// extern ??? ProcScr_SaveMenu
+extern struct ProcCmd CONST_DATA ProcScr_SaveMenu[];
 // extern ??? gProcScr_SaveMenuPostChapter
 extern CONST_DATA struct BonusClaimEnt * gpBonusClaimData;
 // extern ??? ProcScr_BonusClaimMenu;

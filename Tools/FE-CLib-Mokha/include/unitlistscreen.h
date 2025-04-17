@@ -182,6 +182,17 @@ bool SortUnitList(u8 key, u8 order);
 extern struct ProcCmd ProcScr_UnitListScreen_PrepMenu[];
 // extern ??? ProcScr_UnitListScreen_SoloAnim
 // extern ??? ProcScr_UnitListScreen_WorldMap
-// extern ??? ProcScr_bmview
+extern struct ProcCmd CONST_DATA ProcScr_bmview[];
+extern EWRAM_OVERLAY(0) struct SortedUnitEnt gSortedUnitsBuf[0x40];
+extern EWRAM_OVERLAY(0) struct SortedUnitEnt * gSortedUnits[0x40];
+extern EWRAM_OVERLAY(0) u16 gUnknown_0200D7E0[0x20][0x20];
+extern EWRAM_OVERLAY(0) u16 gUnknown_0200DFE0[2][0x20];
+extern EWRAM_OVERLAY(0) struct Text gUnknown_0200E060[7];
+extern EWRAM_OVERLAY(0) struct Text gUnknown_0200E098[7][3];
+extern struct Text gUnknown_0200E140;
+extern struct Text gUnknown_0200E148;
+extern struct Text gUnknown_0200E150;
+extern u8 gUnknown_0200F158;
+extern EWRAM_OVERLAY(0) u32 gUnknown_0200F15C[8];
 
 #endif // GUARD_UNITLISTSCREEN_H

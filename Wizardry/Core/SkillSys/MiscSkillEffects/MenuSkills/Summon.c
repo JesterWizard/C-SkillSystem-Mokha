@@ -7,11 +7,12 @@
 
 extern u16 gUnknown_085A0D4C[];
 
-static const u8 gNewSummonConfig[5][2] = {
-    { CHARACTER_EWAN, CHARACTER_SUMMON_EWAN },
-    { CHARACTER_KNOLL, CHARACTER_SUMMON_KNOLL },
-    { CHARACTER_LYON_CC, CHARACTER_SUMMON_LYON },
+static const u8 gNewSummonConfig[6][2] = {
+    { CHARACTER_EWAN, CHARACTER_MONSTER_BD, },
+    { CHARACTER_KNOLL, CHARACTER_MONSTER_BD },
+    { CHARACTER_LYON_CC, CHARACTER_MONSTER_BD },
     { CHARACTER_EIRIKA, CHARACTER_MONSTER_BD },
+    { CHARACTER_SETH, CHARACTER_MONSTER_BD},
     {0}
 };
 
@@ -205,20 +206,20 @@ void GenerateSummonUnitDef(void)
     struct Unit* unit;
     short summonerNum, i;
 
-    // 1. Find summoner number from active unit
-    summonerNum = -1;
-    for (i = 0; i < 4; ++i) {
-        if (UNIT_CHAR_ID(gActiveUnit) == gNewSummonConfig[i][0]) {
-            summonerNum = i;
-            break;
-        }
-    }
-
-    if (summonerNum == -1)
-        return;
-
     if (gActionData.unk08 == SID_SummonPlus)
     {
+        // 1. Find summoner number from active unit
+        summonerNum = -1;
+        for (i = 0; i < (short)ARRAY_COUNT(gNewSummonConfig); ++i) {
+            if (UNIT_CHAR_ID(gActiveUnit) == gNewSummonConfig[i][0]) {
+                summonerNum = i;
+                break;
+            }
+        }
+
+        if (summonerNum == -1)
+            return;
+            
         gUnitDef1.charIndex       = gNewSummonConfig[summonerNum][1];
         gUnitDef1.classIndex      = gEventSlots[EVT_SLOT_7];
         gUnitDef1.leaderCharIndex = CHARACTER_NONE;
@@ -270,6 +271,18 @@ void GenerateSummonUnitDef(void)
     }
     else
     {
+        // 1. Find summoner number from active unit
+        summonerNum = -1;
+        for (i = 0; i < (short)ARRAY_COUNT(gSummonConfig); ++i) {
+            if (UNIT_CHAR_ID(gActiveUnit) == gSummonConfig[i][0]) {
+                summonerNum = i;
+                break;
+            }
+        }
+
+        if (summonerNum == -1)
+            return;
+
         // 2. Clear existing summon
         // NOTE: this may have been a macro? (because of different i and unit?)
         {
@@ -278,7 +291,7 @@ void GenerateSummonUnitDef(void)
                 struct Unit* unit = GetUnit(i);
 
                 if (UNIT_IS_VALID(unit)) {
-                    if (UNIT_CHAR_ID(unit) == gNewSummonConfig[summonerNum][1])
+                    if (UNIT_CHAR_ID(unit) == gSummonConfig[summonerNum][1])
                         ClearUnit(unit);
                 }
             }
@@ -288,7 +301,7 @@ void GenerateSummonUnitDef(void)
         unit = NULL;
 
         // 3.1. Character/Class/Faction/Level/Position
-        gUnitDef1.charIndex       = gNewSummonConfig[summonerNum][1];
+        gUnitDef1.charIndex       = gSummonConfig[summonerNum][1];
         gUnitDef1.classIndex      = CLASS_PHANTOM;
         gUnitDef1.leaderCharIndex = CHARACTER_NONE;
         gUnitDef1.autolevel       = TRUE;
@@ -354,7 +367,7 @@ void GenerateSummonUnitDef(void)
             gUnitDef1.ai[i] = 0;
 
         // 4. Load unit
-        unit = GetUnitFromCharId(gNewSummonConfig[summonerNum][1]);
+        unit = GetUnitFromCharId(gSummonConfig[summonerNum][1]);
 
         if (unit == NULL) {
             struct BattleUnit bu = gBattleActor;
@@ -363,7 +376,7 @@ void GenerateSummonUnitDef(void)
         }
 
         // 5. Set level and weapon ranks
-        unit = GetUnitFromCharId(gNewSummonConfig[summonerNum][1]);
+        unit = GetUnitFromCharId(gSummonConfig[summonerNum][1]);
 
         for (i = 0; i < 4; ++i)
             unit->ranks[i] = 0;

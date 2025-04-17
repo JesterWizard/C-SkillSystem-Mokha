@@ -38,8 +38,8 @@ WORD 0 //Terminator
 ALIGN 4 
 InitItemDescVram: 
 #incbin "InitItemDescVram.dmp" 
-POIN ProcExceptionsList
-POIN InitItemDescVramDoubleProcExceptionsList
+// POIN ProcExceptionsList
+// POIN InitItemDescVramDoubleProcExceptionsList
 
 ALIGN 4 
 InitProcTextHandles:
@@ -109,6 +109,7 @@ PUSH
 // BYTE (4)<<4
 
 
+// LoadHelpBoxGfx
 // // [203E7C4]!!
 // ORG $898A4 // default: used by shop, stat screen, send item to supply, itemMenu, and trading on map 
 // WORD 0x6012000 // 13000 vanilla

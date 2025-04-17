@@ -495,4 +495,6 @@ ability to double.[X]
 ## MSG_SKILL_SummonPlus
 Summon+:[N]
 Allows the unit to pick from[N]
-an assorted list of summons.[X]
+an assorted list of summons.[N]
+4th line.[N]
+5th line.[X]
