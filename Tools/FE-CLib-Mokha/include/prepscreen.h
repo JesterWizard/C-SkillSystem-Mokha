@@ -283,6 +283,10 @@ extern u8 gUnknown_08A1DB80[];
 extern u8 gTsa_SupportSubScreen[];
 extern u8 gGfx_SupportMenu[];
 extern u16 gPal_SupportMenu[];
+extern u8 gUnknown_08A1C8B4[]; // tsa
+extern u8 Img_08A1CD68[];
+extern u8 Img_UnitListBanners[];
+extern u8 Img_UnitListBanner_Animation[];
 
 /* sally-cursor */
 int GetPlayerLeaderUnitId(void);

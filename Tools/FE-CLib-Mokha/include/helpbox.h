@@ -4,6 +4,7 @@
 #include "proc.h"
 #include "fontgrp.h"
 #include "statscreen.h"
+#include "Configs/configs.h"
 
 struct HelpBoxScrollProc {
     /* 00 */ PROC_HEADER;
@@ -114,7 +115,7 @@ extern struct ProcCmd ProcScr_MergeBoxDialogue[];
 extern struct ProcCmd ProcScr_TalkBoxIdle[];
 
 void LoadHelpBoxGfx(void* dest, int pal);
-// ??? sub_80898C4(???);
+void sub_80898C4(void* vram, int palId);
 void DisplayHelpBoxObj(int x, int y, int w, int h, int unk);
 // ??? DrawHelpBoxWeaponLabels(???);
 // ??? DrawHelpBoxWeaponStats(???);
@@ -148,9 +149,9 @@ int sub_808A454(int);
 // ??? StartHelpoxDirect(???);
 // ??? sub_808A4FC(???);
 void SetDialogueBoxConfig(u16);
-// ??? GetDialogueBoxConfig(???);
+u16 GetDialogueBoxConfig(void);
 // ??? sub_808A530(???);
-// ??? InitBoxDialogue(???);
+void InitBoxDialogue(void * vram_dst, int pad_idx);
 // ??? sub_808A7B0(???);
 // ??? SetBoxDialogueSize(???);
 // ??? sub_808A848(???);

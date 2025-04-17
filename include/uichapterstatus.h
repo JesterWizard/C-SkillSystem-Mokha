@@ -1,6 +1,3 @@
-#ifndef GUARD_UICHAPTERSTATUS_H
-#define GUARD_UICHAPTERSTATUS_H
-
 struct ChapterStatusProc
 {
     /* 00 */ PROC_HEADER;
@@ -58,5 +55,3 @@ void StatusScreenSpriteDraw_Loop(struct ChapterStatusProc * proc);
 extern struct ProcCmd gProcScr_ChapterStatusScreen[];
 extern struct ProcCmd ProcScr_ChapterStatusScreen_FromPrep[];
 extern struct ProcCmd ProcScr_StatusScreenSpriteDraw[];
-
-#endif // GUARD_UICHAPTERSTATUS_H

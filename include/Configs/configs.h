@@ -291,12 +291,10 @@
 ** Allows for up to 5 lines of text in a helpbox
 ** Currently it causes graphical glitches during the following:
 ** - When trading on a map,
-** - When the subtitle field is shown during targetting
 ** - When seleecting the R button when looking at the map objectives
-** - When looking at the supply list
 ** - When selecting the R button when looking at the use menu in the manage units panel
 */
-// #define CONFIG_EXTENDED_HELPBOXES
+#define CONFIG_EXTENDED_HELPBOXES
 
 /*
 ** By Stan

@@ -35,6 +35,7 @@ enum {
     BGM_BIRDS_CHIRPING          = 0x52,
     BGM_COMRADES                = 0x54,
     BGM_SYS_CURSOR_UD1          = 0x66,
+    SONG_2E6                    = 0x2E6,
     MUTE                        = 0x7FFF,
     // Lots more to add here
 };

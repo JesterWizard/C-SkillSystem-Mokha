@@ -2,6 +2,8 @@
 #include "stat-screen.h"
 #include "kernel-lib.h"
 #include "skill-system.h"
+#include "savemenu.h"
+#include "uichapterstatus.h"
 
 LYN_REPLACE_CHECK(StartStatScreenHelp);
 void StartStatScreenHelp(int pageid, struct Proc * proc)
@@ -80,7 +82,10 @@ void LoadHelpBoxGfx(void * vram, int palId)
 // Repoint the vram used for the stat screen help box
 #ifdef CONFIG_EXTENDED_HELPBOXES
     if (vram == NULL) {
-        vram = (void *)0x06012000;
+        if (Proc_Find(gProcScr_StatScreen))
+            vram = (void *)0x06012000;
+        else
+            vram = (void *)0x06013000;
     }
 #else
     if (vram == NULL) {
@@ -106,9 +111,13 @@ void LoadHelpBoxGfx(void * vram, int palId)
     InitSpriteText(&gHelpBoxSt.text[1]);
     InitSpriteText(&gHelpBoxSt.text[2]);
 
+    /* Only provide the extra text box tiles if we're not in the save menu or chapter status screens */
 #ifdef CONFIG_EXTENDED_HELPBOXES
-    InitSpriteText(&gHelpBoxSt.text[3]);
-    InitSpriteText(&gHelpBoxSt.text[4]);
+    if (!Proc_Find(ProcScr_SaveMenu) && !Proc_Find(gProcScr_ChapterStatusScreen))
+    {
+        InitSpriteText(&gHelpBoxSt.text[3]);
+        InitSpriteText(&gHelpBoxSt.text[4]);
+    }
 #endif
 
     SetTextFont(0);
@@ -183,4 +192,157 @@ void HelpBoxIntroDrawTexts(struct ProcHelpBoxIntro * proc)
         otherProc->chars_per_step = 0x7f;
         break;
     }
+}
+
+//! FE8U = 0x080898C4
+LYN_REPLACE_CHECK(sub_80898C4);
+void sub_80898C4(void* vram, int palId) {
+
+// Repoint the vram used for the stat screen help box
+#ifdef CONFIG_EXTENDED_HELPBOXES
+    if (vram == NULL) {
+        vram = (void *)0x06012000;
+    }
+#else
+    if (vram == NULL) {
+        vram = (void *)0x06013000;
+    }
+#endif
+
+
+    if (palId < 0) {
+        palId = 5;
+    }
+
+    palId = (palId & 0xf) + 0x10;
+
+    Decompress(gGfx_HelpTextBox, vram + 0x360);
+    Decompress(gGfx_HelpTextBox2, vram + 0x760);
+    Decompress(gGfx_HelpTextBox3, vram + 0xb60);
+    Decompress(gGfx_HelpTextBox4, vram + 0xf60);
+    Decompress(gGfx_HelpTextBox5, vram + 0x1360);
+
+    InitSpriteTextFont(&gHelpBoxSt.font, vram, palId);
+
+    InitSpriteText(&gHelpBoxSt.text[0]);
+    InitSpriteText(&gHelpBoxSt.text[1]);
+    
+#ifdef CONFIG_EXTENDED_HELPBOXES
+    InitSpriteText(&gHelpBoxSt.text[2]);
+    InitSpriteText(&gHelpBoxSt.text[3]);
+    InitSpriteText(&gHelpBoxSt.text[4]);
+#endif
+
+    gHelpBoxSt.text[2].tile_width = 0;
+
+    SetTextFont(0);
+
+    ApplyPalette(Pal_HelpBox, palId);
+
+    gHelpBoxSt.oam2_base = (((u32)vram << 0x11) >> 0x16) + (palId & 0xF) * 0x1000;
+
+    return;
+}
+
+//! FE8U = 0x0808A118
+LYN_REPLACE_CHECK(ClearHelpBoxText);
+void ClearHelpBoxText(void) {
+
+    SetTextFont(&gHelpBoxSt.font);
+
+    SpriteText_DrawBackground(&gHelpBoxSt.text[0]);
+    SpriteText_DrawBackground(&gHelpBoxSt.text[1]);
+    SpriteText_DrawBackground(&gHelpBoxSt.text[2]);
+
+#ifdef CONFIG_EXTENDED_HELPBOXES
+    SpriteText_DrawBackground(&gHelpBoxSt.text[3]);
+    SpriteText_DrawBackground(&gHelpBoxSt.text[4]);
+#endif
+
+    Proc_EndEach(gProcScr_HelpBoxTextScroll);
+    Proc_EndEach(ProcScr_HelpBoxIntro);
+
+    SetTextFont(0);
+
+    return;
+}
+
+LYN_REPLACE_CHECK(AtMenu_Reinitialize);
+void AtMenu_Reinitialize(struct ProcAtMenu* proc)
+{
+    int i;
+
+    SetupBackgrounds(gBgConfig_ItemUseScreen);
+    ResetText();
+    LoadUiFrameGraphics();
+    LoadHelpBoxGfx(NULL, 0xE);
+    SetDispEnable(0, 0, 0, 0, 0);
+    LoadObjUIGfx();
+    ResetUnitSprites();
+    
+    MakePrepUnitList();
+    PrepAutoCapDeployUnits(proc);
+    ReorderPlayerUnitsBasedOnDeployment();
+
+    BG_Fill(gBG0TilemapBuffer, 0);
+    BG_Fill(gBG1TilemapBuffer, 0);
+    BG_Fill(gBG2TilemapBuffer, 0);
+
+    for (i = 0; i < 5; i++)
+        InitText(&gPrepMainMenuTexts[i + 5], 0xE);
+    for (i = 0; i < 4; i++)
+        InitText(&gPrepMainMenuTexts[i + 1], 0x8);
+    InitText(&gPrepMainMenuTexts[0], 0xA);
+
+    /* "Preparations" */
+#ifdef CONFIG_EXTENDED_HELPBOXES
+    Decompress(gUnknown_08A1A4C8, (void*)0x6015800);
+#else
+    Decompress(gUnknown_08A1A4C8, (void*)0x6014800);
+#endif
+    /* "Menu", "Start" button */
+    Decompress(gUnknown_08A1D510, (void*)0x6016000);
+    ApplyPalettes(Pal_SysBrownBox, 0x19, 2);
+    
+    sub_8095C50(0x7000, 0x6);
+    ApplyPalette(gUnknown_08A1D4C8, 0x14);
+    EnablePaletteSync();
+
+    gLCDControlBuffer.bg0cnt.priority = 0;
+    gLCDControlBuffer.bg1cnt.priority = 2;
+    gLCDControlBuffer.bg2cnt.priority = 1;
+    gLCDControlBuffer.bg3cnt.priority = 3;
+
+    gLCDControlBuffer.dispcnt.win0_on = 0;
+    gLCDControlBuffer.dispcnt.win1_on = 0;
+    gLCDControlBuffer.dispcnt.objWin_on  = 0;
+
+    BG_SetPosition(0, 0, 0);
+    BG_SetPosition(1, 0, 0);
+    BG_SetPosition(2, 0, 0);
+
+    InitPrepScreenMainMenu(proc);
+    BG_EnableSyncByMask(0xF);
+    SetDefaultColorEffects();
+
+    StartPrepSpecialCharEffect(proc);
+    RestartMuralBackground();
+    ApplyPalettes(gUiFramePaletteB, 0x2, 3);
+
+    if (CheckInLinkArena()) {
+        Decompress(gUnknown_08A1B698, gGenericBuffer);
+        CallARM_FillTileRect(TILEMAP_LOCATED(gBG1TilemapBuffer, 1, 5), gGenericBuffer, 0x1000);
+    } else {
+        Decompress(gUnknown_08A1B658, gGenericBuffer);
+        CallARM_FillTileRect(TILEMAP_LOCATED(gBG1TilemapBuffer, 0x10, 2), gGenericBuffer, 0x1000);
+        Decompress(gUnknown_08A1B698, gGenericBuffer);
+        CallARM_FillTileRect(TILEMAP_LOCATED(gBG1TilemapBuffer, 1, 6), gGenericBuffer, 0x1000);
+    }
+
+    Prep_DrawChapterGoal(0x5800, 0xB);
+    NewSysBlackBoxHandler(proc);
+    SysBlackBoxSetGfx(0x6800);
+    proc->unk_35 = GetActivePrepMenuItemIndex();
+    ParsePrepMenuDescTexts(sub_8095024());
+    DrawPrepMenuDescTexts();
 }

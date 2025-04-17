@@ -1095,7 +1095,7 @@ extern u16 gTSA_GoalBox_OneLine[];
 // extern ??? gBgConfig_SaveMenu
 // extern ??? gProcScr_08A20068
 // extern ??? ProcScr_CallExtraMap
-// extern ??? ProcScr_SaveMenu
+extern struct ProcCmd CONST_DATA ProcScr_SaveMenu[];
 // extern ??? gProcScr_SaveMenuPostChapter
 // extern ??? gUnknown_08A204B8
 // extern ??? gUnknown_08A204BC
