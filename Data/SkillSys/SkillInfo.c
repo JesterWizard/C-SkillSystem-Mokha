@@ -5223,4 +5223,11 @@ const struct SkillInfo gSkillInfos[MAX_SKILL_NUM + 1] = {
         .icon = GFX_SkillIcon_SummonPlus,
     },
 #endif
+
+#if (defined(SID_LethalityPlus) && COMMON_SKILL_VALID(SID_LethalityPlus))
+    [SID_LethalityPlus] = {
+        .desc = MSG_SKILL_LethalityPlus,
+        .icon = GFX_SkillIcon_WIP,
+    },
+#endif
 };

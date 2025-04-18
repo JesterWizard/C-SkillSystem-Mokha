@@ -674,6 +674,15 @@ int BattleHit_CalcDamage(struct BattleUnit * attacker, struct BattleUnit * defen
         result = 10;
 #endif
 
+#if (defined(SID_LethalityPlus) && (COMMON_SKILL_VALID(SID_LethalityPlus)))
+        if (BattleSkillTester(attacker, SID_LethalityPlus))
+            if (CheckBitUES(gActiveUnit, UES_BIT_LETHALITY_PLUS_SKILL_USED))
+            {
+                ClearBitUES(gActiveUnit, UES_BIT_LETHALITY_PLUS_SKILL_USED);
+                result = defender->unit.curHP;
+            }
+#endif
+
     Printf(
         "[round %d] dmg=%d: base=%d (atk=%d, def=%d, cor=%d), inc=%d, crt=%d, dec=%d, real=%d",
         GetBattleHitRound(gBattleHitIterator), result, gDmg.damage_base, gDmg.attack, gDmg.defense, gDmg.correction,

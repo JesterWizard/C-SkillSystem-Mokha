@@ -49,6 +49,7 @@
 // SID_Sellsword
 // SID_Switcher
 // SID_SummonPlus
+// SID_LethalityPlus
 
 ////////// PRE-BATTLE SKILLS
 // SID_DefiantStr

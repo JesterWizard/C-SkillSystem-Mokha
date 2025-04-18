@@ -286,13 +286,9 @@
 // #define CONFIG_VESLY_RECLASS
 
 /*
-** By Jester 
-** Originally by Vesly, but this has been semi ported to C
+** By Jester & Vesly
+** Originally by Vesly, but this has been reimplemented in C
 ** Allows for up to 5 lines of text in a helpbox
-** Currently it causes graphical glitches during the following:
-** - When trading on a map,
-** - When seleecting the R button when looking at the map objectives
-** - When selecting the R button when looking at the use menu in the manage units panel
 */
 #define CONFIG_EXTENDED_HELPBOXES
 
