@@ -197,6 +197,13 @@ STATIC_DECLAR void BattleCalcReal_ComputSkills(struct BattleUnit * attacker, str
     }   
 #endif
 
+#if (defined(SID_FarWard) && (COMMON_SKILL_VALID(SID_FarWard)))
+    if (BattleSkillTester(attacker, SID_FarWard) && gBattleStats.range >= 3)
+        defender->battleEffectiveHitRate = 0;
+    else if (BattleSkillTester(defender, SID_FarWard) && gBattleStats.range > = 3)
+        attacker->battleEffectiveHitRate = 0;
+#endif
+
 #if (defined(SID_RiskItAll) && (COMMON_SKILL_VALID(SID_RiskItAll)))
     if (BattleSkillTester(attacker, SID_RiskItAll) || BattleSkillTester(defender, SID_RiskItAll))
         attacker->battleEffectiveCritRate = SKILL_EFF0(SID_RiskItAll);
@@ -243,6 +250,8 @@ STATIC_DECLAR void BattleCalcReal_ComputSkills(struct BattleUnit * attacker, str
         }
     }
 #endif
+
+
 }
 
 LYN_REPLACE_CHECK(ComputeBattleUnitSilencerRate);

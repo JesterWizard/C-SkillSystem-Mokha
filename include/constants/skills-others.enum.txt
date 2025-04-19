@@ -238,6 +238,7 @@
 // SID_Transpose
 // SID_SwordSaint
 // SID_GracefulWielder
+// SID_FarWard
 
 ////////// POST-BATTLE SKILLS
 SID_Canto

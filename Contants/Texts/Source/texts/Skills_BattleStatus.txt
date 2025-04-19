@@ -1266,3 +1266,8 @@ MAG/POW for damage calculation.[X]
 Graceful Wielder:[N]
 Reduces weapon weight of equipped[N]
 weapon for each rank above E.[X]
+
+## MSG_SKILL_FarWard
+FarWard:[N]
+Enemies from +3 range or greater[N]
+will always miss this target.[X]

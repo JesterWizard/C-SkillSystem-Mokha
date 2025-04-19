@@ -257,6 +257,7 @@ static const KeyValuePair dict_skills[] =
         { "Faire Lance", {1000, 1}},
         { "Faire Light", {1000, 1}},
         { "Faire Sword", {1000, 1}},
+        { "FarWard", {1000, 1}},
         { "F-T Folk", {1000, 1}},        
         { "Fiendish Blow", {1000, 1}},
         { "Fiery Blood", {1000, 1}},
