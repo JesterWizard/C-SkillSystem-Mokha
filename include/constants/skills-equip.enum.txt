@@ -49,6 +49,8 @@ SID_LoadstarRush
 // SID_Sellsword
 // SID_Switcher
 SID_SummonPlus
+SID_LethalityPlus
+SID_GrimReaper
 
 //////// PRE-BATTLE SKILLS
 // SID_DefiantStr
@@ -237,6 +239,7 @@ SID_Camouflage
 // SID_Transpose
 // SID_SwordSaint
 // SID_GracefulWielder
+// SID_FarWard
 
 //////// POST-BATTLE SKILLS
 // SID_Canto
@@ -288,6 +291,7 @@ SID_GorillaTactics
 // SID_Predation
 // SID_PredationPlus
 // SID_SpiritedSteps
+SID_Heroics
 
 //////// AURA SKILLS
 // SID_Anathema

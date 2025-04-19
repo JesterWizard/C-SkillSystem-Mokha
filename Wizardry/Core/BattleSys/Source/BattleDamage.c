@@ -674,6 +674,31 @@ int BattleHit_CalcDamage(struct BattleUnit * attacker, struct BattleUnit * defen
         result = 10;
 #endif
 
+#if (defined(SID_LethalityPlus) && (COMMON_SKILL_VALID(SID_LethalityPlus)))
+    if (BattleSkillTester(attacker, SID_LethalityPlus))
+        if (gActionData.unk08 == SID_LethalityPlus && CheckBitUES(GetUnit(attacker->unit.index), UES_BIT_LETHALITY_PLUS_SKILL_USED))
+        {
+            ClearBitUES(GetUnit(attacker->unit.index), UES_BIT_LETHALITY_PLUS_SKILL_USED);
+            gActionData.unk08 = 0;
+            result = defender->unit.curHP;
+        }
+#endif
+
+#if (defined(SID_GrimReaper) && (COMMON_SKILL_VALID(SID_GrimReaper)))
+    if (BattleSkillTester(attacker, SID_GrimReaper))
+        if (gActionData.unk08 == SID_GrimReaper && CheckBitUES(GetUnit(attacker->unit.index), UES_BIT_GRIM_REAPER_SKILL_USED))
+        {
+            ClearBitUES(GetUnit(attacker->unit.index), UES_BIT_GRIM_REAPER_SKILL_USED);
+            gActionData.unk08 = 0;
+            result = defender->unit.curHP;
+            
+            if (UNIT_CATTRIBUTES(&defender->unit) && CA_BOSS)
+                GetUnit(attacker->unit.index)->maxHP -= 5;
+            else
+                GetUnit(attacker->unit.index)->maxHP -= 1;
+        }
+#endif
+
     Printf(
         "[round %d] dmg=%d: base=%d (atk=%d, def=%d, cor=%d), inc=%d, crt=%d, dec=%d, real=%d",
         GetBattleHitRound(gBattleHitIterator), result, gDmg.damage_base, gDmg.attack, gDmg.defense, gDmg.correction,

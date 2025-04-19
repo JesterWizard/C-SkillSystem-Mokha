@@ -5223,4 +5223,32 @@ const struct SkillInfo gSkillInfos[MAX_SKILL_NUM + 1] = {
         .icon = GFX_SkillIcon_SummonPlus,
     },
 #endif
+
+#if (defined(SID_LethalityPlus) && COMMON_SKILL_VALID(SID_LethalityPlus))
+    [SID_LethalityPlus] = {
+        .desc = MSG_SKILL_LethalityPlus,
+        .icon = GFX_SkillIcon_WIP,
+    },
+#endif
+
+#if (defined(SID_Heroics) && COMMON_SKILL_VALID(SID_Heroics))
+    [SID_Heroics] = {
+        .desc = MSG_SKILL_Heroics,
+        .icon = GFX_SkillIcon_WIP,
+    },
+#endif
+
+#if (defined(SID_FarWard) && COMMON_SKILL_VALID(SID_FarWard))
+    [SID_FarWard] = {
+        .desc = MSG_SKILL_FarWard,
+        .icon = GFX_SkillIcon_WIP,
+    },
+#endif
+
+#if (defined(SID_GrimReaper) && COMMON_SKILL_VALID(SID_GrimReaper))
+    [SID_GrimReaper] = {
+        .desc = MSG_SKILL_GrimReaper,
+        .icon = GFX_SkillIcon_WIP,
+    },
+#endif
 };

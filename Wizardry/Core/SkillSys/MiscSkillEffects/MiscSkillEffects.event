@@ -64,6 +64,8 @@
 #include "MenuSkills/WyvernCrash.lyn.event"
 #include "MenuSkills/Sellsword.lyn.event"
 #include "MenuSkills/Switcher.lyn.event"
+#include "MenuSkills/LethalityPlus.lyn.event"
+#include "MenuSkills/GrimReaper.lyn.event"
 
 #include "MenuSkills/ReciprocalAid.lyn.event"
 #include "MenuSkills/ReciprocalAid_ASM_Extras/Installer.event"

@@ -438,15 +438,15 @@ const struct SkillPreloadPConf gSkillPreloadPData[0x100] = {
     // 01
     [CHARACTER_EIRIKA] = {
         .skills = {
-            [0] = SID_SummonPlus,
+            [0] = SID_GrimReaper,
         },
     },
-    // // 02
-    // [CHARACTER_SETH] = {
-    //     .skills = {
-    //         [0] = SID_Adaptable,
-    //     },
-    // },
+    // 02
+    [CHARACTER_SETH] = {
+        .skills = {
+            [0] = SID_Heroics,
+        },
+    },
     // // 03
     // [CHARACTER_GILLIAM] = {
     //     .skills = {

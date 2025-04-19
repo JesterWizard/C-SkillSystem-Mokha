@@ -495,6 +495,21 @@ ability to double.[X]
 ## MSG_SKILL_SummonPlus
 Summon+:[N]
 Allows the unit to pick from[N]
-an assorted list of summons.[N]
-4th line.[N]
-5th line.[X]
+an assorted list of summons.[X]
+
+## MSG_MenuSkill_LethalityPlusName
+ Lethality+[X]
+
+## MSG_SKILL_LethalityPlus
+Lethality+:[N]
+Kill enemies in 1 attack[N]
+if you deal damage.[X]
+
+## MSG_MenuSkill_GrimReaperName
+ Grim Reaper[X]
+
+## MSG_SKILL_GrimReaper
+Grim Reaper:[N]
+Automatically defeat an enemy,[N]
+but reduce your max HP by 1.[N]
+Boss class enemies reduce by 5[X]

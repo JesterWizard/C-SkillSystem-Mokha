@@ -58,12 +58,6 @@ static int MenuSkills_StandardDraw(struct MenuProc * menu, struct MenuItemProc *
 
     u8 color = def->color;
 
-// #if defined(SID_Switcher) && (COMMON_SKILL_VALID(SID_Switcher))
-//     if (SkillTester(gActiveUnit, SID_Switcher))
-//         if (CheckBitUES(gActiveUnit, UES_BIT_SWITCHER_SKILL_USED))
-//             color = TEXT_COLOR_SYSTEM_GOLD;
-// #endif
-
     if (color)
         Text_SetColor(&item->text, color);
 

@@ -112,6 +112,13 @@ bool PostActionTsuzuku(ProcPtr parent)
 #endif
         [[fallthrough]];
 
+    case UNIT_ACTION_RESCUE:
+#if defined(SID_Heroics) && (COMMON_SKILL_VALID(SID_Heroics))
+    if (SkillTester(unit, SID_Heroics))
+        goto refresh_turn_repeatedly;
+#endif
+        [[fallthrough]];   
+
         /* fall through */
 
     default:
