@@ -30,9 +30,11 @@ u8 LethalityPlus_OnSelected(struct MenuProc *menu, struct MenuItemProc *item)
 
     SetBitUES(gActiveUnit, UES_BIT_LETHALITY_PLUS_SKILL_USED);
 
+    // return MENU_ACT_SKIPCURSOR | MENU_ACT_END | MENU_ACT_SND6A | MENU_ACT_CLEAR | StartUnitWeaponSelect(menu, item);
     return StartUnitWeaponSelect(menu, item);
 }
 
+/* Unused as we're hijacking the attack command menu in LethalityPlus_OnSelected */
 bool Action_LethalityPlus(ProcPtr parent)
 {
     return true;

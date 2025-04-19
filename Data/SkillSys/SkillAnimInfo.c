@@ -275,6 +275,10 @@ const u8 EfxSkillAnimPriority[MAX_SKILL_NUM + 1] = {
 #if (defined(SID_WyvernCrash) && COMMON_SKILL_VALID(SID_WyvernCrash))
     [SID_WyvernCrash] = EFX_PRIORITY_NORMAL,
 #endif
+
+#if (defined(SID_LethalityPlus) && COMMON_SKILL_VALID(SID_LethalityPlus))
+    [SID_LethalityPlus] = EFX_PRIORITY_NORMAL,
+#endif
 };
 
 struct EfxAnimConf const * const EfxSkillAnims[MAX_SKILL_NUM + 1] = {
@@ -544,5 +548,9 @@ struct EfxAnimConf const * const EfxSkillAnims[MAX_SKILL_NUM + 1] = {
 
 #if (defined(SID_WyvernCrash) && COMMON_SKILL_VALID(SID_WyvernCrash))
     [SID_WyvernCrash] = &EfxSkillVanilla,
+#endif
+
+#if (defined(SID_LethalityPlus) && COMMON_SKILL_VALID(SID_LethalityPlus))
+    [SID_LethalityPlus] = &EfxSkillVanilla,
 #endif
 };

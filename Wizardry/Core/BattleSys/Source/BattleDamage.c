@@ -675,12 +675,13 @@ int BattleHit_CalcDamage(struct BattleUnit * attacker, struct BattleUnit * defen
 #endif
 
 #if (defined(SID_LethalityPlus) && (COMMON_SKILL_VALID(SID_LethalityPlus)))
-        if (BattleSkillTester(attacker, SID_LethalityPlus))
-            if (CheckBitUES(gActiveUnit, UES_BIT_LETHALITY_PLUS_SKILL_USED))
-            {
-                ClearBitUES(gActiveUnit, UES_BIT_LETHALITY_PLUS_SKILL_USED);
-                result = defender->unit.curHP;
-            }
+    if (BattleSkillTester(attacker, SID_LethalityPlus))
+        if (gActionData.unk08 == SID_LethalityPlus && CheckBitUES(GetUnit(attacker->unit.index), UES_BIT_LETHALITY_PLUS_SKILL_USED))
+        {
+            ClearBitUES(GetUnit(attacker->unit.index), UES_BIT_LETHALITY_PLUS_SKILL_USED);
+            gActionData.unk08 = 0;
+            result = defender->unit.curHP;
+        }
 #endif
 
     Printf(
