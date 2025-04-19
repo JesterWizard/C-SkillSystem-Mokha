@@ -50,6 +50,7 @@ SID_LoadstarRush
 // SID_Switcher
 SID_SummonPlus
 SID_LethalityPlus
+SID_GrimReaper
 
 //////// PRE-BATTLE SKILLS
 // SID_DefiantStr

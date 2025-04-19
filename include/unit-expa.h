@@ -71,6 +71,9 @@ enum unit_expa_sus_bitfile_idx {
 #if defined(SID_LethalityPlus) && (COMMON_SKILL_VALID(SID_LethalityPlus))
     UES_BIT_LETHALITY_PLUS_SKILL_USED,
 #endif
+#if defined(SID_GrimReaper) && (COMMON_SKILL_VALID(SID_GrimReaper))
+    UES_BIT_GRIM_REAPER_SKILL_USED,
+#endif
 
     UES_BIT_MAX
 };

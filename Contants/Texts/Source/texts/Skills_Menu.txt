@@ -504,3 +504,12 @@ an assorted list of summons.[X]
 Lethality+:[N]
 Kill enemies in 1 attack[N]
 if you deal damage.[X]
+
+## MSG_MenuSkill_GrimReaperName
+ Grim Reaper[X]
+
+## MSG_SKILL_GrimReaper
+Grim Reaper:[N]
+Automatically defeat an enemy,[N]
+but reduce your max HP by 1.[N]
+Boss class enemies reduce by 5[X]
