@@ -221,3 +221,8 @@ skill they absorb from a defeated enemy.[X]
 Spirited Steps:[N]
 This unit has a LVL % chance of moving[N]
 again after dancing for a unit.[X]
+
+## MSG_SKILL_Heroics
+Heroics:[N]
+This unit can rescue[N]
+as a free action.[X]

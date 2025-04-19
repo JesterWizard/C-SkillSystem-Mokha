@@ -673,6 +673,19 @@ void UnitDrop(struct Unit * actor, int xTarget, int yTarget)
     }
 }
 
+LYN_REPLACE_CHECK(UnitRescue);
+void UnitRescue(struct Unit* actor, struct Unit* target) {
+    actor->state  |= US_RESCUING;
+    target->state |= US_RESCUED | US_HIDDEN;
+
+    actor->rescue = target->index;
+    target->rescue = actor->index;
+
+    target->xPos = actor->xPos;
+    target->yPos = actor->yPos;
+}
+
+
 // use vanilla version so we don't lag by using hooked versions that accounts for pass etc
 s8 Vanilla_CanUnitCrossTerrain(struct Unit * unit, int terrain)
 {
@@ -2699,24 +2712,6 @@ void sub_8099654(struct PrepItemScreenProc* proc) {
 
 //     return;
 // }
-
-LYN_REPLACE_CHECK(UnitRescue);
-void UnitRescue(struct Unit* actor, struct Unit* target) {
-
-#if defined(SID_DangerRanger) && (COMMON_SKILL_VALID(SID_DangerRanger))
-        if (SkillTester(actor, SID_DangerRanger))
-            gActionDataExpa.refrain_action = true;
-#endif
-
-    actor->state  |= US_RESCUING;
-    target->state |= US_RESCUED | US_HIDDEN;
-
-    actor->rescue = target->index;
-    target->rescue = actor->index;
-
-    target->xPos = actor->xPos;
-    target->yPos = actor->yPos;
-}
 
 LYN_REPLACE_CHECK(ApplyHazardHealing);
 void ApplyHazardHealing(ProcPtr proc, struct Unit* unit, int hp, int status) {
