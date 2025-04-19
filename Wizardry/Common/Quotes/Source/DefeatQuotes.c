@@ -59,8 +59,6 @@ struct DefeatTalkEntNew* GetDefeatTalkEntry(u16 pidA) {
     }
 
     return NULL;
-
-    
 }
 
 //! FE8U = 0x080835A8

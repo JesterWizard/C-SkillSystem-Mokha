@@ -154,7 +154,7 @@ bool CheckUnitStatDebuff(struct Unit *unit, enum UNIT_STAT_DEBUFF_IDX debuff)
 
 void MSU_SaveStatDebuff(u8 *dst, const u32 size)
 {
-    if (size < (sizeof(sStatDebuffStatusAlly) + sizeof(sStatDebuffStatusEnemy) + sizeof(sStatDebuffStatusNpc)))
+    if (size < (sizeof(sStatDebuffStatusAlly) + sizeof(sStatDebuffStatusEnemy) + sizeof(sStatDebuffStatusNpc) + sizeof(sStatDebuffStatusFourth)))
     {
         Errorf("ENOMEM: %d", size);
         hang();
@@ -178,11 +178,18 @@ void MSU_SaveStatDebuff(u8 *dst, const u32 size)
         sStatDebuffStatusNpc,
         dst,
         sizeof(sStatDebuffStatusNpc));
+
+    dst += sizeof(sStatDebuffStatusNpc);
+
+    WriteAndVerifySramFast(
+        sStatDebuffStatusFourth,
+        dst,
+        sizeof(sStatDebuffStatusFourth));
 }
 
 void MSU_LoadStatDebuff(u8 *src, const u32 size)
 {
-    if (size < (sizeof(sStatDebuffStatusAlly) + sizeof(sStatDebuffStatusEnemy) + sizeof(sStatDebuffStatusNpc)))
+    if (size < (sizeof(sStatDebuffStatusAlly) + sizeof(sStatDebuffStatusEnemy) + sizeof(sStatDebuffStatusNpc) + sizeof(sStatDebuffStatusFourth)))
     {
         Errorf("ENOMEM: %d", size);
         hang();
@@ -206,6 +213,13 @@ void MSU_LoadStatDebuff(u8 *src, const u32 size)
         src,
         sStatDebuffStatusNpc,
         sizeof(sStatDebuffStatusNpc));
+
+    src += sizeof(sStatDebuffStatusNpc);
+
+    WriteAndVerifySramFast(
+        sStatDebuffStatusFourth,
+        src,
+        sizeof(sStatDebuffStatusFourth));
 }
 
 void TickUnitStatDebuff(struct Unit *unit, enum STATUS_DEBUFF_TICK_TYPE type)
@@ -557,6 +571,7 @@ void ResetStatDeuffBuf(void)
     CpuFastFill16(0, sStatDebuffStatusAlly, sizeof(sStatDebuffStatusAlly));
     CpuFastFill16(0, sStatDebuffStatusEnemy, sizeof(sStatDebuffStatusEnemy));
     memset(sStatDebuffStatusNpc, 0, sizeof(sStatDebuffStatusNpc));
+    memset(sStatDebuffStatusFourth, 0, sizeof(sStatDebuffStatusFourth));
 
     memset(sStatDebuffMsgBuf, 0, sizeof(sStatDebuffMsgBuf));
     sStatDebuffMsgBufNext = 0;

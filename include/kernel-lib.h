@@ -116,12 +116,13 @@ extern const u8 gRange2_In3x3[ARRAY_COUNT_RANGE3x3];
 /**
  * faction
  */
-#define GetFactionUnitAmount(faction)                    \
-(                                                        \
-    (faction) == FACTION_BLUE  ? CONFIG_UNIT_AMT_ALLY  : \
-    (faction) == FACTION_RED   ? CONFIG_UNIT_AMT_ENEMY : \
-    (faction) == FACTION_GREEN ? CONFIG_UNIT_AMT_NPC   : \
-    0                                                    \
+#define GetFactionUnitAmount(faction)                       \
+(                                                           \
+    (faction) == FACTION_BLUE   ? CONFIG_UNIT_AMT_ALLY    : \
+    (faction) == FACTION_RED    ? CONFIG_UNIT_AMT_ENEMY   : \
+    (faction) == FACTION_GREEN  ? CONFIG_UNIT_AMT_NPC     : \
+	(faction) == FACTION_PURPLE ? CONFIG_UNIT_AMT_FOURTH  : \
+    0                                                       \
 )
 
 /**

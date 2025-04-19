@@ -91,7 +91,9 @@
 #endif
 
 // A lot of fixing to do with this, it seems to conflict with an EMS that's already installed?
-// #include "FourthAllegiance/Installer.event"
+#ifdef CONFIG_FOURTH_ALLEGIANCE
+    #include "FourthAllegiance/Installer.event"
+#endif
 
 #ifdef CONFIG_LIMITED_SHOP_STOCK
     #include "LimitedShopStock/Installer.event"

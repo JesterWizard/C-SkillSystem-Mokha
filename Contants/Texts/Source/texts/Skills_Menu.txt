@@ -511,5 +511,5 @@ if you deal damage.[X]
 ## MSG_SKILL_GrimReaper
 Grim Reaper:[N]
 Automatically defeat an enemy,[N]
-but reduce your max HP by 1.[N]
-Boss class enemies reduce by 5[X]
+but reduce this unit's max HP by 1.[N]
+Boss class enemies reduce HP by 5.[X]

@@ -177,12 +177,12 @@ extern struct AiDecision gAiDecision;
 
 extern void(*AiDecideMainFunc)(void);
 
-extern struct ProcCmd CONST_DATA gProcScr_CpPhase[];
-extern struct ProcCmd CONST_DATA gProcScr_BerserkCpPhase[];
-extern struct ProcCmd CONST_DATA gProcScr_CpOrder[];
-extern struct ProcCmd CONST_DATA gProcScr_BerserkCpOrder[];
-extern struct ProcCmd CONST_DATA gProcScr_CpDecide[];
-extern struct ProcCmd CONST_DATA gProcScr_CpPerform[];
+extern struct ProcCmd const gProcScr_CpPhase[];
+extern struct ProcCmd const gProcScr_BerserkCpPhase[];
+extern struct ProcCmd const gProcScr_CpOrder[];
+extern struct ProcCmd const gProcScr_BerserkCpOrder[];
+extern struct ProcCmd const gProcScr_CpDecide[];
+extern struct ProcCmd const gProcScr_CpPerform[];
 
 void AiClearDecision(void);
 void AiSetDecision(s16 xMove, s16 yMove, u8 actionId, u8 targetId, u8 itemSlot, u8 xTarget, u8 yTarget);

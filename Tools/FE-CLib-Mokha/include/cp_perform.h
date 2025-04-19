@@ -29,7 +29,7 @@ void AiRefreshMap(void);
 // ??? AiWaitAndClearScreenAction(???);
 // ??? CpPerform_EquipBest(???);
 
-extern struct ProcCmd CONST_DATA gProcScr_AiTargetCursor[];
-extern struct ProcCmd CONST_DATA gProcScr_CpPerform[];
+extern struct ProcCmd const gProcScr_AiTargetCursor[];
+extern struct ProcCmd const gProcScr_CpPerform[];
 
 #endif // GUARD_CP_PERFORM_H
