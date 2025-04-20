@@ -197,7 +197,11 @@ s8 AiAttemptOffensiveAction(s8 (* isEnemy)(struct Unit * unit))
         move_distance = MovGetter(gActiveUnit) + GetItemMaxRangeRework(item, gActiveUnit);
 #endif
 
+#ifdef CONFIG_FOURTH_ALLEGIANCE
+        for (uid = 1; uid < 0xD0; uid++)
+#else
         for (uid = 1; uid < 0xC0; uid++)
+#endif
         {
             struct Unit * unit = GetUnit(uid);
 

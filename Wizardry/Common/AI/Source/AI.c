@@ -1,48 +1,42 @@
 #include "common-chax.h"
 
-static void CpOrderMain(ProcPtr proc);
-static void CpOrderBerserkInit(ProcPtr proc);
-static void CpOrderFunc_BeginDecide(ProcPtr proc);
-static int GetUnitBattleAiPriority(struct Unit* unit);
-static int GetUnitAiPriority(struct Unit* unit);
-static int BuildAiUnitList(void);
-static void SortAiUnitList(int count);
-static void CpOrderFunc_End(ProcPtr proc);
-
 static u32* const sUnitPriorityArray = (void*) gGenericBuffer;
 
-LYN_REPLACE_CHECK(gProcScr_CpOrder);
-struct ProcCmd const gProcScr_CpOrder[] =
-{
-    PROC_NAME("E_CPORDER"),
+// LYN_REPLACE_CHECK(gProcScr_CpOrder);
+// struct ProcCmd const gProcScr_CpOrder[] =
+// {
+//     PROC_NAME("E_CPORDER"),
 
-    PROC_REPEAT(CpOrderMain),
+//     PROC_REPEAT(CpOrderMain),
 
-    PROC_END,
-};
+//     PROC_END,
+// };
 
-LYN_REPLACE_CHECK(gProcScr_BerserkCpOrder);
-struct ProcCmd const gProcScr_BerserkCpOrder[] =
-{
-    PROC_NAME("E_BSKORDER"),
+// LYN_REPLACE_CHECK(gProcScr_BerserkCpOrder);
+// struct ProcCmd const gProcScr_BerserkCpOrder[] =
+// {
+//     PROC_NAME("E_BSKORDER"),
 
-    PROC_CALL(CpOrderBerserkInit),
-    PROC_REPEAT(CpOrderFunc_End),
+//     PROC_CALL(CpOrderBerserkInit),
+//     PROC_REPEAT(CpOrderFunc_End),
 
-    PROC_END,
-};
+//     PROC_END,
+// };
 
-static ProcFunc const sCpOrderFuncList[] =
-{
-    CpOrderFunc_BeginDecide,
-    CpOrderFunc_End,
-};
+// static ProcFunc const sCpOrderFuncList[] =
+// {
+//     CpOrderFunc_BeginDecide,
+//     CpOrderFunc_End,
+// };
 
-void CpOrderMain(ProcPtr proc)
-{
-    sCpOrderFuncList[gAiState.orderState++](proc);
-}
+// LYN_REPLACE_CHECK(CpOrderMain);
+// void CpOrderMain(ProcPtr proc)
+// {
+//     sCpOrderFuncList[gAiState.orderState++](proc);
+// }
 
+
+LYN_REPLACE_CHECK(CpOrderBerserkInit);
 void CpOrderBerserkInit(ProcPtr proc)
 {
     int i, aiNum = 0;
@@ -82,9 +76,9 @@ void CpOrderBerserkInit(ProcPtr proc)
     }
 }
 
+LYN_REPLACE_CHECK(CpOrderFunc_BeginDecide);
 void CpOrderFunc_BeginDecide(ProcPtr proc)
 {
-    NoCashGBAPrint("Wicked");
     int unitAmt = BuildAiUnitList();
 
     if (unitAmt != 0)
@@ -100,6 +94,7 @@ void CpOrderFunc_BeginDecide(ProcPtr proc)
     }
 }
 
+LYN_REPLACE_CHECK(GetUnitBattleAiPriority);
 int GetUnitBattleAiPriority(struct Unit* unit)
 {
     int i, item;
@@ -137,6 +132,7 @@ int GetUnitBattleAiPriority(struct Unit* unit)
     return 87;
 }
 
+LYN_REPLACE_CHECK(GetUnitAiPriority);
 int GetUnitAiPriority(struct Unit* unit)
 {
     int priority = UNIT_MOV(unit);
@@ -162,12 +158,15 @@ int GetUnitAiPriority(struct Unit* unit)
     return priority;
 }
 
+LYN_REPLACE_CHECK(BuildAiUnitList);
 int BuildAiUnitList(void)
 {
     int i, aiNum = 0;
 
     u32 faction = gPlaySt.faction;
     u32* prioIt = sUnitPriorityArray;
+
+    NoCashGBAPrintf("Faction ID is: %d", faction);
 
 #ifdef CONFIG_FOURTH_ALLEGIANCE
     int factionUnitCountLut[4] = { 62, 20, 50, 20 }; // TODO: named constant for those
@@ -200,6 +199,7 @@ int BuildAiUnitList(void)
     return aiNum;
 }
 
+LYN_REPLACE_CHECK(SortAiUnitList);
 void SortAiUnitList(int count)
 {
     int i, j;
@@ -232,7 +232,180 @@ void SortAiUnitList(int count)
     }
 }
 
-void CpOrderFunc_End(ProcPtr proc)
+// LYN_REPLACE_CHECK(CpOrderFunc_End);
+// void CpOrderFunc_End(ProcPtr proc)
+// {
+//     Proc_Break(proc);
+// }
+
+//! FE8U = 0x0803A788
+LYN_REPLACE_CHECK(AiFindTargetInReachByCharId);
+s8 AiFindTargetInReachByCharId(int uid, struct Vec2* out) 
 {
+
+    int i;
+
+    GenerateExtendedMovementMapOnRange(gActiveUnit->xPos, gActiveUnit->yPos, GetUnitMovementCost(gActiveUnit));
+    MarkWorkingMapEdges();
+
+    out->x = -1;
+
+#ifdef CONFIG_FOURTH_ALLEGIANCE
+    for (i = 1; i < 0xD0; i++)
+#else
+    for (i = 1; i < 0xC0; i++)
+#endif
+    {
+        struct Unit* unit = GetUnit(i);
+
+        if (!UNIT_IS_VALID(unit)) {
+            continue;
+        }
+
+        if (gBmMapRange[unit->yPos][unit->xPos] > MAP_MOVEMENT_MAX) {
+            continue;
+        }
+
+        if (unit->pCharacterData->number != uid) {
+            continue;
+        }
+
+        if (unit->state & US_DEAD) {
+            gAiState.cmd_result[0] = 1;
+            return 0;
+        }
+
+        if (unit->state & US_RESCUED) {
+            gAiState.cmd_result[0] = 3;
+        }
+
+        out->x = unit->xPos;
+        out->y = unit->yPos;
+    }
+
+    if (out->x >= 0) {
+        return 1;
+    }
+
+    if (!(GetUnitFromCharId(uid)->state & US_UNAVAILABLE)) {
+        gAiState.cmd_result[0] = 4;
+        return 0;
+    }
+
+    gAiState.cmd_result[0] = 1;
+
+    return 0;
+}
+
+//! FE8U = 0x0803A878
+LYN_REPLACE_CHECK(AiFindTargetInReachByClassId);
+s8 AiFindTargetInReachByClassId(int classId, struct Vec2* out) {
+    int i;
+
+    u8 bestDistance = 0xff;
+
+    GenerateExtendedMovementMapOnRange(gActiveUnit->xPos, gActiveUnit->yPos, GetUnitMovementCost(gActiveUnit));
+
+    out->x = -1;
+    
+#ifdef CONFIG_FOURTH_ALLEGIANCE
+    for (i = 1; i < 0xD0; i++)
+#else
+    for (i = 1; i < 0xC0; i++)
+#endif
+    {
+        struct Unit* unit = GetUnit(i);
+
+        if (!UNIT_IS_VALID(unit)) {
+            continue;
+        }
+
+        if (unit->state & (US_HIDDEN | US_DEAD | US_RESCUED | US_BIT16)) {
+            continue;
+        }
+
+        if (gBmMapRange[unit->yPos][unit->xPos] > MAP_MOVEMENT_MAX) {
+            continue;
+        }
+
+        if (unit->pClassData->number != classId) {
+            continue;
+        }
+
+        if (bestDistance < gMapRangeSigned[unit->yPos][unit->xPos]) {
+            continue;
+        }
+
+        bestDistance = gBmMapRange[unit->yPos][unit->xPos];
+        out->x = unit->xPos;
+        out->y = unit->yPos;
+    }
+
+    if (out->x >= 0) {
+        return 1;
+    }
+
+    return 0;
+}
+
+//! FE8U = 0x08015450
+LYN_REPLACE_CHECK(BmMain_StartPhase);
+void BmMain_StartPhase(ProcPtr proc)
+{
+    int phaseControl = gPlaySt.faction;
+    if (gPlaySt.faction == FACTION_RED) 
+    { 
+        if (gPlaySt.config.debugControlRed) 
+        { 
+            phaseControl = FACTION_BLUE; 
+        } 
+    } 
+
+#ifdef CONFIG_FOURTH_ALLEGIANCE
+    if (gPlaySt.faction == FACTION_GREEN) 
+    { 
+        if (gPlaySt.config.debugControlGreen) 
+        { 
+            phaseControl = FACTION_PURPLE; 
+        } 
+    } 
+
+    if (gPlaySt.faction == FACTION_PURPLE) 
+    { 
+        if (gPlaySt.config.debugControlPurple) 
+        { 
+            phaseControl = FACTION_BLUE; 
+        } 
+    } 
+#else
+    if (gPlaySt.faction == FACTION_GREEN) 
+    { 
+        if (gPlaySt.config.debugControlGreen) 
+        { 
+            phaseControl = FACTION_BLUE; 
+        } 
+    } 
+#endif
+
+    switch (phaseControl) {
+    case FACTION_BLUE:
+        Proc_StartBlocking(gProcScr_PlayerPhase, proc);
+        break;
+
+    case FACTION_RED:
+        Proc_StartBlocking(gProcScr_CpPhase, proc);
+        break;
+
+    case FACTION_GREEN:
+        Proc_StartBlocking(gProcScr_CpPhase, proc);
+        break;
+
+#ifdef CONFIG_FOURTH_ALLEGIANCE
+    case FACTION_PURPLE:
+        Proc_StartBlocking(gProcScr_CpPhase, proc);
+        break;
+#endif
+    }
+
     Proc_Break(proc);
 }

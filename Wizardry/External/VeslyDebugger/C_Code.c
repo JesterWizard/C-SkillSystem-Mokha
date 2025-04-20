@@ -3658,31 +3658,6 @@ void InitProc(DebuggerProc * proc)
     }
 }
 
-//! FE8U = 0x08015450
-LYN_REPLACE_CHECK(BmMain_StartPhase);
-void BmMain_StartPhase(ProcPtr proc)
-{
-    int phaseControl = gPlaySt.faction;
-    if (gPlaySt.faction == FACTION_RED) { if (gPlaySt.config.debugControlRed) { phaseControl = FACTION_BLUE; } } 
-    if (gPlaySt.faction == FACTION_GREEN) { if (gPlaySt.config.debugControlGreen) { phaseControl = FACTION_BLUE; } } 
-    switch (phaseControl) {
-    case FACTION_BLUE:
-        Proc_StartBlocking(gProcScr_PlayerPhase, proc);
-        break;
-
-    case FACTION_RED:
-        Proc_StartBlocking(gProcScr_CpPhase, proc);
-        break;
-
-    case FACTION_GREEN:
-        Proc_StartBlocking(gProcScr_CpPhase, proc);
-        break;
-    }
-
-    Proc_Break(proc);
-}
-
-
 void RestartDebuggerMenu(DebuggerProc* proc) { 
     ClearActiveUnitStuff(proc); // in case we didn't refresh units before restarting 
     struct Unit * unit = proc->unit; //GetUnit(gBmMapUnit[gBmSt.playerCursor.y][gBmSt.playerCursor.x]);
