@@ -297,7 +297,7 @@ static const struct UnitDefinition UnitDef_Enemy1[] = {
 			ITEM_LANCE_SILVER,
 			ITEM_VULNERARY,
 		},
-		.ai = { NeverMoveAI },
+		.ai = { 3, 3, 4, 20 },
 	},
 	{
 		.charIndex = CHARACTER_RIEV,

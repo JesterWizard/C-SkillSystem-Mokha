@@ -1,4 +1,4 @@
-#define PurpleUnitFreeSpace 0x2026E30 // Offset of the beggining of free space for purple units 
+#define PurpleUnitFreeSpace 0x2026E30 // Offset of the beginning of free space for purple units 
 
 ORG 0x59A8E8
 WORD (PurpleUnitFreeSpace+(0x48*0))

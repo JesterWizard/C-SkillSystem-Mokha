@@ -298,6 +298,8 @@
 ** different factions after each unit moves.
 ** Source: https://feuniverse.us/t/fe8u-stans-asm-stuff/2376/19
 **
+** WARNING - Fourth allegiance might conflict with this now, as it uses BuildAiUnitList. I haven't tested
+**
 */
 // #define CONFIG_LAZBERIAN_TURN_FLOW
 
@@ -454,7 +456,7 @@
  * By Jester
  * Bosses or player units can have multiple death quotes depending on their enemy
  */
-// #define CONFIG_MULTIPLE_DEATH_QUOTES
+#define CONFIG_MULTIPLE_DEATH_QUOTES
 
 /**
  * By Jester
@@ -462,6 +464,12 @@
  * Credit to Dragz for the original idea: https://feuniverse.us/t/dragz-s-backstage/19997/84
  */
 #define CONFIG_GROWTHS_AS_LETTERS
+
+
+/**
+ * By Kirb and Shuusuke
+ */
+#define CONFIG_FOURTH_ALLEGIANCE
 
 #define CONFIG_AFFINITY_SHOW_DESCRIPTIONS
 
@@ -504,11 +512,12 @@
 #define CONFIG_ITEM_INDEX_ARMS_SCROLL 0xBF
 
 /**
- * Unit amount, since it is hard to modify, it is recommanded not change this value
+ * Unit amount, since it is hard to modify, it is recommended to not change this value
  */
-#define CONFIG_UNIT_AMT_ALLY  51
-#define CONFIG_UNIT_AMT_ENEMY 50
-#define CONFIG_UNIT_AMT_NPC   8
+#define CONFIG_UNIT_AMT_ALLY     51
+#define CONFIG_UNIT_AMT_ENEMY    50
+#define CONFIG_UNIT_AMT_NPC      8
+#define CONFIG_UNIT_AMT_FOURTH   8
 
 /**
  * Make skill names narrow by default

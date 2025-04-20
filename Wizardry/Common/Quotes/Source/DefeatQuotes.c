@@ -42,7 +42,7 @@ struct DefeatTalkEntNew* GetDefeatTalkEntry(u16 pidA) {
     const struct DefeatTalkEntNew* it;
 
     for (it = gNewDefeatTalkList; it->pidA != 0xFFFF; it++) {
-        NoCashGBAPrintf("PIDA is: %d", it->pidA);
+        // NoCashGBAPrintf("PIDA is: %d", it->pidA);
         if (it->chapter != 0xff && it->chapter != gPlaySt.chapterIndex) {
             if (it->chapter != 0xfe || BattleIsTriangleAttack() != 1) {
                 continue;
@@ -59,8 +59,6 @@ struct DefeatTalkEntNew* GetDefeatTalkEntry(u16 pidA) {
     }
 
     return NULL;
-
-    
 }
 
 //! FE8U = 0x080835A8
