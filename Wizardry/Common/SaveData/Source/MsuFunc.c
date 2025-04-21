@@ -354,6 +354,34 @@ void MSU_LoadGreenUnits(u8 * src, const u32 size)
     }
 }
 
+void MSU_SaveFourthUnits(u8 * dst, const u32 size)
+{
+    int i, amt = size / SIZE_OF_SUS_UNIT_PACK;
+
+    for (i = 1; i <= amt; i++)
+    {
+        struct EmsPackedSusUnit pack;
+
+        NewPackSuspandUnit(GetUnit(i + FACTION_PURPLE), &pack);
+        WriteAndVerifySramFast(&pack, dst, SIZE_OF_SUS_UNIT_PACK);
+        dst += SIZE_OF_SUS_UNIT_PACK;
+    }
+}
+
+void MSU_LoadFourthUnits(u8 * src, const u32 size)
+{
+    int i, amt = size / SIZE_OF_SUS_UNIT_PACK;
+
+    for (i = 1; i <= amt; i++)
+    {
+        struct EmsPackedSusUnit pack;
+
+        ReadSramFast(src, &pack, SIZE_OF_SUS_UNIT_PACK);
+        NewUnpackSuspandUnit(&pack, GetUnit(i + FACTION_PURPLE));
+        src += SIZE_OF_SUS_UNIT_PACK;
+    }
+}
+
 void MSU_SaveRedUnitExtSkills(u8 * dst, const u32 size)
 {
     int i, amt = size / 4;
@@ -397,6 +425,30 @@ void MSU_LoadGreenUnitExtSkills(u8 * src, const u32 size)
     for (i = 1; i <= amt; i++)
     {
         struct Unit * unit = GetUnit(i + FACTION_GREEN);
+        ReadSramFast(src, &unit->supports[3], 4);
+        src += 4;
+    }
+}
+
+void MSU_SaveFourthUnitExtSkills(u8 * dst, const u32 size)
+{
+    int i, amt = size / 4;
+
+    for (i = 1; i <= amt; i++)
+    {
+        struct Unit * unit = GetUnit(i + FACTION_PURPLE);
+        WriteAndVerifySramFast(&unit->supports[3], dst, 4);
+        dst += 4;
+    }
+}
+
+void MSU_LoadFourthUnitExtSkills(u8 * src, const u32 size)
+{
+    int i, amt = size / 4;
+
+    for (i = 1; i <= amt; i++)
+    {
+        struct Unit * unit = GetUnit(i + FACTION_PURPLE);
         ReadSramFast(src, &unit->supports[3], 4);
         src += 4;
     }

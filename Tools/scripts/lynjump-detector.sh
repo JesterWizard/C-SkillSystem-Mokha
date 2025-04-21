@@ -10,7 +10,7 @@ for SOURCE_CFILE in $(find . -type f -name "*.c"); do
             echo "[ERROR] lynjump file not in the same directory as the C source file: $_function in file $SOURCE_CFILE"
             ret=1
         elif [ -z "$(grep $_function $LYN_JUMP_FILE)" ]; then
-            echo "[ERROR] C function not referenced in lynjump file:: $_function in file $SOURCE_CFILE"
+            echo "[ERROR] C function not referenced in lynjump file: $_function in file $SOURCE_CFILE"
             ret=1
         fi
     done < <(cat $SOURCE_CFILE | grep "LYN_REPLACE_CHECK" | awk -F'[()]' '{print $2}')

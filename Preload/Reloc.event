@@ -56,6 +56,17 @@ gpLeaderShipConf: POIN gLeaderShipConf
 gpLeaderShipPConf: POIN gLeaderShipPConf
 gpLeaderShipJConf: POIN gLeaderShipJConf
 
+gpGfx_ObjSkill: POIN Gfx_ObjSkill
+gpPal_ObjSkill: POIN Pal_ObjSkill
+gpGfx_ObjWindow: POIN Gfx_ObjWindow
+gpPal_ObjWindow: POIN Pal_ObjWindow
+
+gpGfx_PrepPickSkillScreen: POIN Gfx_PrepPickSkillScreen
+gpTsa_PrepSubPickSkillScreen: POIN Tsa_PrepSubPickSkillScreen
+gpGfx_PrepSkillScreen: POIN Gfx_PrepSkillScreen
+gpPal_PrepSkillScreen: POIN Pal_PrepSkillScreen
+gpGfx_PrepSkillScreen2: POIN Gfx_PrepSkillScreen2
+
 gpBattleDamageCalcFuncs: POIN BattleDamageCalcFuncs
 gpBattleRealDamageCalcFuncs: POIN BattleRealDamageCalcFuncs
 

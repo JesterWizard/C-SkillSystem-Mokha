@@ -957,6 +957,9 @@ void Pal_SysBrownBox_Hook()
         ApplyPalettes(Pal_SysBrownBox, 0x19, 2);
     }
 }
+
+void GetMinimugFactionPalette(int faction, int palId);
+
 LYN_REPLACE_CHECK(GetMinimugFactionPalette);
 void GetMinimugFactionPalette(int faction, int palId)
 {

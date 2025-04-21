@@ -244,7 +244,11 @@ void ChapterChangeUnitCleanup(void)
     }
 
     // Clear all non player units (green & red units)
+#ifdef CONFIG_FOURTH_ALLEGIANCE
+    for (i = 0x41; i < 0xD0; ++i)
+#else
     for (i = 0x41; i < 0xC0; ++i)
+#endif
     {
         struct Unit *unit = GetUnit(i);
 

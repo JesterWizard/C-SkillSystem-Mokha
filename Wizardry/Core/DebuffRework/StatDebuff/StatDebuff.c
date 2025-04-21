@@ -154,7 +154,11 @@ bool CheckUnitStatDebuff(struct Unit *unit, enum UNIT_STAT_DEBUFF_IDX debuff)
 
 void MSU_SaveStatDebuff(u8 *dst, const u32 size)
 {
+#ifdef CONFIG_FOURTH_ALLEGIANCE
     if (size < (sizeof(sStatDebuffStatusAlly) + sizeof(sStatDebuffStatusEnemy) + sizeof(sStatDebuffStatusNpc) + sizeof(sStatDebuffStatusFourth)))
+#else
+    if (size < (sizeof(sStatDebuffStatusAlly) + sizeof(sStatDebuffStatusEnemy) + sizeof(sStatDebuffStatusNpc)))
+#endif
     {
         Errorf("ENOMEM: %d", size);
         hang();
@@ -179,17 +183,23 @@ void MSU_SaveStatDebuff(u8 *dst, const u32 size)
         dst,
         sizeof(sStatDebuffStatusNpc));
 
+#ifdef CONFIG_FOURTH_ALLEGIANCE
     dst += sizeof(sStatDebuffStatusNpc);
-
+    
     WriteAndVerifySramFast(
         sStatDebuffStatusFourth,
         dst,
         sizeof(sStatDebuffStatusFourth));
+#endif
 }
 
 void MSU_LoadStatDebuff(u8 *src, const u32 size)
 {
+#ifdef CONFIG_FOURTH_ALLEGIANCE
     if (size < (sizeof(sStatDebuffStatusAlly) + sizeof(sStatDebuffStatusEnemy) + sizeof(sStatDebuffStatusNpc) + sizeof(sStatDebuffStatusFourth)))
+#else
+    if (size < (sizeof(sStatDebuffStatusAlly) + sizeof(sStatDebuffStatusEnemy) + sizeof(sStatDebuffStatusNpc)))
+#endif
     {
         Errorf("ENOMEM: %d", size);
         hang();
@@ -214,12 +224,14 @@ void MSU_LoadStatDebuff(u8 *src, const u32 size)
         sStatDebuffStatusNpc,
         sizeof(sStatDebuffStatusNpc));
 
+#ifdef CONFIG_FOURTH_ALLEGIANCE
     src += sizeof(sStatDebuffStatusNpc);
 
     WriteAndVerifySramFast(
         sStatDebuffStatusFourth,
         src,
         sizeof(sStatDebuffStatusFourth));
+#endif
 }
 
 void TickUnitStatDebuff(struct Unit *unit, enum STATUS_DEBUFF_TICK_TYPE type)
@@ -571,7 +583,10 @@ void ResetStatDeuffBuf(void)
     CpuFastFill16(0, sStatDebuffStatusAlly, sizeof(sStatDebuffStatusAlly));
     CpuFastFill16(0, sStatDebuffStatusEnemy, sizeof(sStatDebuffStatusEnemy));
     memset(sStatDebuffStatusNpc, 0, sizeof(sStatDebuffStatusNpc));
+
+#ifdef CONFIG_FOURTH_ALLEGIANCE
     memset(sStatDebuffStatusFourth, 0, sizeof(sStatDebuffStatusFourth));
+#endif
 
     memset(sStatDebuffMsgBuf, 0, sizeof(sStatDebuffMsgBuf));
     sStatDebuffMsgBufNext = 0;

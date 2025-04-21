@@ -25,6 +25,7 @@
 #include "jester_headers/class-arrays.h"
 #include "unitlistscreen.h"
 #include "prepscreen.h"
+#include "savemenu.h"
 
 #if defined(SID_CatchEmAll) && (COMMON_SKILL_VALID(SID_CatchEmAll))
     const unsigned int gCatchEmAllId = SID_CatchEmAll;
@@ -260,6 +261,7 @@ PROC_LABEL(13),
 
     PROC_END,
 
+#ifdef CONFIG_BEXP
 /* BEXP proc */
 PROC_LABEL(14),
     PROC_CALL_ARG(NewFadeOut, 16),
@@ -280,6 +282,7 @@ PROC_LABEL(14),
     PROC_WHILE(FadeInExists),
 
     PROC_GOTO(3),
+#endif
 };
 
 struct PlayerInterfaceProc {
@@ -1307,7 +1310,6 @@ void CallChapterWMIntroEvents(ProcPtr proc)
 {
     if (Events_WM_ChapterIntro[GetROMChapterStruct(gPlaySt.chapterIndex)->gmapEventId] != NULL)
     {
-
          /**
         * Jester - I've resorted to hooking into the WM call function to directly load the
         * WM events I want based on the supplied eventSCR. It's an unfortunate bit of hardcoding
@@ -2105,8 +2107,6 @@ void TradeMenu_InitUnitNameDisplay(struct TradeMenuProc * proc)
 
     // TODO: constants
 #ifdef CONFIG_EXTENDED_HELPBOXES
-    /* Maybe change 0x5800 to 0x7080? It doesn't seem clear */
-    /* Keeping it at vanilla 0x4800 fpr now because the brown name tile screws up no matter what */
     StartSysBrownBox(6, 0x5800, 0x08, 0x800, 0x400, (struct Proc *) (proc));
 #else
     StartSysBrownBox(6, 0x4800, 0x08, 0x800, 0x400, (struct Proc *) (proc));
@@ -4700,4 +4700,80 @@ struct Unit* LoadUnit(const struct UnitDefinition* uDef) {
         SetUnitHp(unit, 5);
 
     return unit;
+}
+
+//! FE8U = 0x080A8A9C
+LYN_REPLACE_CHECK(SaveMenuPutChapterTitle);
+void SaveMenuPutChapterTitle(struct SaveMenuProc * proc)
+{
+    int i;
+    PutChapterTitleBG(OBJ_PRIORITY(2) + OBJ_CHAR(OBJCHR_SAVEMENU_TITLEBG));
+    for (i = 0; i < 3; i++)
+    {
+        if (proc->chapter_idx[i] != (u8)-1)
+        {
+            PutChapterTitleGfx((((OBJ_PRIORITY(2) + OBJCHR_SAVEMENU_TITLEGFX) * TILE_SIZE_4BPP + (0x800 * (u32)i)) & 0x1FFFF) / TILE_SIZE_4BPP, proc->chapter_idx[i]);
+        }
+        else
+            PutChapterTitleGfx((((OBJ_PRIORITY(2) + OBJCHR_SAVEMENU_TITLEGFX) * TILE_SIZE_4BPP + (0x800 * (u32)i)) & 0x1FFFF) / TILE_SIZE_4BPP, -1);
+    }
+}
+
+//! FE8U = 0x0800D5A4
+LYN_REPLACE_CHECK(Event01_End);
+u8 Event01_End(struct EventEngineProc * proc)
+{
+    s8 i;
+    /* Unused variable */
+    // u16 flag;
+
+    if (!(proc->evStateBits & EV_STATE_ABORT))
+    {
+        if (EVT_SUB_CMD(proc->pEventCurrent) == EVSUBCMD_ENDB)
+        {
+            for (i = 0; i < 8; i++)
+            {
+                gEventActiveQueue[i].evt1 = NULL;
+                gEventActiveQueue[i].evt2 = NULL;
+            }
+        }
+
+        if (gEventActiveQueue[0].evt1 != NULL)
+        {
+            proc->pEventIdk = gEventActiveQueue[0].evt1;
+            proc->pEventCurrent = gEventActiveQueue[0].evt2;
+
+            for (i = 0; i < 7; i++)
+            {
+                gEventActiveQueue[i].evt1 = gEventActiveQueue[i + 1].evt1;
+                gEventActiveQueue[i].evt2 = gEventActiveQueue[i + 1].evt2;
+            }
+
+            gEventActiveQueue[i].evt1 = NULL;
+            gEventActiveQueue[i].evt2 = NULL;
+            return EVC_ADVANCE_CONTINUE;
+        }
+
+        switch (proc->execType) {
+            case EV_EXEC_WORLDMAP:
+                proc->execType = EV_EXEC_UNK4;
+                return EVC_END;
+
+            case EV_EXEC_CUTSCENE:
+                proc->evStateBits &= ~EV_STATE_SKIPPING;
+                proc->evStateBits |= EV_STATE_NOSKIP;
+
+                proc->execType = EV_EXEC_UNK5;
+
+                proc->pEventIdk = (u16 *)EventScr_08592114;
+                proc->pEventCurrent = (u16 *)EventScr_08592114;
+
+                return EVC_STOP_CONTINUE;
+
+            default:
+                return EVC_END;
+        }
+    }
+
+    return EVC_END;
 }

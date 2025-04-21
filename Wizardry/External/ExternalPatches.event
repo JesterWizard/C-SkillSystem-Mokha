@@ -28,6 +28,7 @@
 
 #ifdef CONFIG_INSTALL_VESLY_DEBUGGER
     #include "VeslyDebugger/Installer.event"
+    #include "UI/Installer.event"
 #endif
 
 #ifdef CONFIG_INSTALL_MENU_WIDTHS
@@ -86,11 +87,11 @@
     #include "VeslyExtendedItemDescription/Installer.event"
 #endif
 
+/* This seems to conflict with fourth allegiance now, because of the additional phase */
 #ifdef CONFIG_LAZBERIAN_TURN_FLOW
     #include "LazberianTurnFlow/Installer.event"
 #endif
 
-// A lot of fixing to do with this, it seems to conflict with an EMS that's already installed?
 #ifdef CONFIG_FOURTH_ALLEGIANCE
     #include "FourthAllegiance/Installer.event"
 #endif
@@ -128,9 +129,6 @@
 #include "CasualMode/Installer.event"
 #include "CGEvents/Installer.event"
 #include "GroupAI/Installer.event" // Vesly
-
-/* Requires me to fix a lot of undefined identifiers, fuck that life */
-//#include "UI/Installer.event" // Vesly
 
 #ifdef CONFIG_CUSTOM_CHAPTER_SCREEN
     #include "CustomChapterScreen/Installer.event"

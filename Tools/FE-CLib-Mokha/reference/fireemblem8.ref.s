@@ -35402,3 +35402,37 @@ fun __umodsi3, __aeabi_uidivmod
 dat 0x02000000, gAnims
 dat 0x03000000, gRNSeeds
 dat 0x02020188, gGenericBuffer
+
+
+/* These are for Vesly's UI debugger extension */
+dat 0x085B6470, sUiFrameImage
+dat 0x0808d0ac, poinGfx_PlayerInterfaceFontTiles
+dat 0x0808d0b4, poinGfx_PlayerInterfaceNumbers
+dat 0x0809A8D8, poinUnknown_08A1B730
+dat 0x0809c7fc, poinImg_PrepItemUseScreen
+dat 0x08098468, poinUnknown_08A1B1FC
+dat 0x08098cb4, poinImg_PrepPopupWindow
+dat 0x08051cbc, poinUnknown_0880210C
+dat 0x08051cc0, poinUnknown_088021C0
+dat 0x08051378, poinUnknown_08802274
+dat 0x08051380, poinUnknown_08802348
+dat 0x0805141c, poinUnknown_08802428
+dat 0x08052170, poinUnknown_08802508
+dat 0x08051f68, poinImg_08801C14
+dat 0x08052178, poinUnknown_08802558
+dat 0x08051fc8, poinImg_EfxLeftNameBox
+dat 0x08052028, poinImg_EfxLeftItemBox
+dat 0x08052088, poinImg_EfxRightNameBox
+dat 0x08052164, poinImg_EfxRightItemBox
+dat 0x080b4e70, poinImg_ShopGoldBox
+dat 0x08095eac, poinUnknown_08A1B658
+dat 0x08095e3c, poinUnknown_08A1B698
+dat 0x0809a8e0, poinUnknown_08A1B7C8
+dat 0x089ad9f8, Img_ShopGoldBox
+dat 0x0203e114, gBanimFactionPal
+dat 0x02017648, gBanimFont
+dat 0x02017660, gBanimText
+dat 0x0203e104, gBanimValid
+dat 0x08801C14, Img_08801C14
+dat 0x08802598, gUnknown_08802598
+fun 0x08026629, ApplyUnitSpritePalettes

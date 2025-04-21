@@ -3,41 +3,41 @@
     // No maps for prologue and chapter 1 as they don't have tile changes
 {
     EventPointerTable(0x7, Chapter00Event)
-    #include "Source/Chapter_00_The_Fall_Of_Renais/Chapter_00_The_Fall_Of_Renais.lyn.event"
+    #include "Source/Chapter_00/Chapter_00.lyn.event"
     EventPointerTable(0xA, Chapter01Event)
-    #include "Source/Chapter_01_Escape/Chapter_01_Escape.lyn.event"
+    #include "Source/Chapter_01/Chapter_01_Escape.lyn.event"
     EventPointerTable(0xC5, IntermissionEvent)
     #include "Source/Intermission/Intermission.lyn.event"
     EventPointerTable(0xD, Chapter02Event)
-    #include "Source/Chapter_02_The_Protected/Chapter_02_The_Protected.lyn.event"
-    #include "Source/Chapter_02_The_Protected/Map/Chapter_02_map.event"
+    #include "Source/Chapter_02/Chapter_02_The_Protected.lyn.event"
+    #include "Source/Chapter_02/Map/Chapter_02_map.event"
     EventPointerTable(0x14, Chapter03Event)
-    #include "Source/Chapter_03_Bandits_Of_Borgo/Chapter_03_Bandits_Of_Borgo.lyn.event"
-    #include "Source/Chapter_03_Bandits_Of_Borgo/Map/Chapter_03_map.event"
+    #include "Source/Chapter_03/Chapter_03_Bandits_Of_Borgo.lyn.event"
+    #include "Source/Chapter_03/Map/Chapter_03_map.event"
     EventPointerTable(0x17, Chapter04Event)
-    #include "Source/Chapter_04_Ancient_Horrors/Chapter_04_Ancient_Horrors.lyn.event"
-    #include "Source/Chapter_04_Ancient_Horrors/Map/Chapter_04_map.event"
+    #include "Source/Chapter_04/Chapter_04_Ancient_Horrors.lyn.event"
+    #include "Source/Chapter_04/Map/Chapter_04_map.event"
     EventPointerTable(0x21, Chapter05Event)
-    #include "Source/Chapter_05_The_Empires_Reach/Chapter_05_The_Empires_Reach.lyn.event"
-    #include "Source/Chapter_05_The_Empires_Reach/Map/Chapter_05_map.event"
+    #include "Source/Chapter_05/Chapter_05_The_Empires_Reach.lyn.event"
+    #include "Source/Chapter_05/Map/Chapter_05_map.event"
     EventPointerTable(0x1E, Chapter05xEvent)
-    #include "Source/Chapter_05x_Unbroken_Heart/Chapter_05x_Unbroken_Heart.lyn.event"
-    #include "Source/Chapter_05x_Unbroken_Heart/Map/Chapter_05x_map.event"
+    #include "Source/Chapter_05x/Chapter_05x_Unbroken_Heart.lyn.event"
+    #include "Source/Chapter_05x/Map/Chapter_05x_map.event"
     EventPointerTable(0x24, Chapter06Event)
-    #include "Source/Chapter_06_Victims_Of_War/Chapter_06_Victims_Of_War.lyn.event"
-    #include "Source/Chapter_06_Victims_Of_War/Map/Chapter_06_map.event"
+    #include "Source/Chapter_06/Chapter_06_Victims_Of_War.lyn.event"
+    #include "Source/Chapter_06/Map/Chapter_06_map.event"
     EventPointerTable(0x27, Chapter07Event)
-    #include "Source/Chapter_07_Waterside_Renvall/Chapter_07_Waterside_Renvall.lyn.event"
-    #include "Source/Chapter_07_Waterside_Renvall/Map/Chapter_07_map.event"
+    #include "Source/Chapter_07/Chapter_07_Waterside_Renvall.lyn.event"
+    #include "Source/Chapter_07/Map/Chapter_07_map.event"
     EventPointerTable(0x2A, Chapter08Event)
-    #include "Source/Chapter_08_Broken_Vows/Chapter_08_Broken_Vows.lyn.event"
-    #include "Source/Chapter_08_Broken_Vows/Map/Chapter_08_map.event"
+    #include "Source/Chapter_08/Chapter_08_Broken_Vows.lyn.event"
+    #include "Source/Chapter_08/Map/Chapter_08_map.event"
     EventPointerTable(0x2D, Chapter09Event)
-    #include "Source/Chapter_09_Renewed_Journey/Chapter_09_Renewed_Journey.lyn.event"
-    #include "Source/Chapter_09_Renewed_Journey/Map/Chapter_09_map.event"
+    #include "Source/Chapter_09/Chapter_09_Renewed_Journey.lyn.event"
+    #include "Source/Chapter_09/Map/Chapter_09_map.event"
     EventPointerTable(0x33, Chapter10Event)
-    #include "Source/Chapter_10_Revolt_At_Carcino/Chapter_10_Revolt_At_Carcino.lyn.event"
-    // #include "Source/Chapter_10_Revolt_At_Carcino/Map/Chapter_10_map.event"
+    #include "Source/Chapter_10/Chapter_10_Revolt_At_Carcino.lyn.event"
+    // #include "Source/Chapter_10/Map/Chapter_10_map.event"
 }
 
     #include "Source/World_Map_Events.lyn.event"
