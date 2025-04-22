@@ -513,3 +513,11 @@ Grim Reaper:[N]
 Automatically defeat an enemy,[N]
 but reduce this unit's max HP by 1.[N]
 Boss class enemies reduce HP by 5.[X]
+
+## MSG_MenuSkill_HideName
+ Hide[X]
+
+## MSG_SKILL_Hide
+Hide:[N]
+Prevent this unit from being[N]
+attacked for one turn.[X]

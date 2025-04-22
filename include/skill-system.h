@@ -403,6 +403,8 @@ u8 LethalityPlus_Usability(const struct MenuItemDef * def, int number);
 u8 LethalityPlus_OnSelected(struct MenuProc * menu, struct MenuItemProc * item);
 u8 GrimReaper_Usability(const struct MenuItemDef * def, int number);
 u8 GrimReaper_OnSelected(struct MenuProc * menu, struct MenuItemProc * item);
+u8 Hide_Usability(const struct MenuItemDef * def, int number);
+u8 Hide_OnSelected(struct MenuProc * menu, struct MenuItemProc * item);
 
 /* Skill actions */
 bool Action_HealingFocus(ProcPtr proc);
@@ -441,5 +443,6 @@ bool Action_Sellsword(ProcPtr parent);
 bool Action_Switcher(ProcPtr parent);
 bool Action_LethalityPlus(ProcPtr parent);
 bool Action_GrimReaper(ProcPtr parent);
+bool Action_Hide(ProcPtr parent);
 
 u8 SummonPlusCommandEffect(struct MenuProc * menu, struct MenuItemProc * menuItem);

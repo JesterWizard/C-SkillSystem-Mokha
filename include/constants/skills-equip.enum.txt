@@ -51,6 +51,7 @@ SID_LoadstarRush
 SID_SummonPlus
 SID_LethalityPlus
 SID_GrimReaper
+SID_Hide
 
 //////// PRE-BATTLE SKILLS
 // SID_DefiantStr
@@ -288,8 +289,8 @@ SID_TakerStrength
 SID_Canter
 SID_GorillaTactics
 // SID_Scavenger
-// SID_Predation
-// SID_PredationPlus
+SID_Predation
+SID_PredationPlus
 // SID_SpiritedSteps
 SID_Heroics
 
