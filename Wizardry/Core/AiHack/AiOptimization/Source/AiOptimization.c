@@ -4,6 +4,7 @@
 #include "constants/skills.h"
 #include "weapon-range.h"
 #include "status-getter.h"
+#include "debuff.h"
 
 extern void CpDecide_Main(ProcPtr proc);
 
@@ -232,6 +233,9 @@ s8 AiAttemptOffensiveAction(s8 (* isEnemy)(struct Unit * unit))
                     continue;
             }
 #endif
+
+            if (GetUnitStatusIndex(unit) == NEW_UNIT_STATUS_HIDE)
+                continue;
 
 #if defined(SID_Rampage) && (COMMON_SKILL_VALID(SID_Rampage))
             if (SkillTester(gActiveUnit, SID_Rampage))

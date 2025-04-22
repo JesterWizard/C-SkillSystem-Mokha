@@ -128,6 +128,7 @@ struct StatDebuffStatus * const sStatDebuffStatusPool[0x100] = {
     [FACTION_GREEN + 0x13] = sStatDebuffStatusNpc + 18,
     [FACTION_GREEN + 0x14] = sStatDebuffStatusNpc + 19,
 
+#ifdef CONFIG_FOURTH_ALLEGIANCE
     [FACTION_PURPLE + 0x01] = sStatDebuffStatusFourth + 0,
     [FACTION_PURPLE + 0x02] = sStatDebuffStatusFourth + 1,
     [FACTION_PURPLE + 0x03] = sStatDebuffStatusFourth + 2,
@@ -148,4 +149,5 @@ struct StatDebuffStatus * const sStatDebuffStatusPool[0x100] = {
     [FACTION_PURPLE + 0x12] = sStatDebuffStatusFourth + 17,
     [FACTION_PURPLE + 0x13] = sStatDebuffStatusFourth + 18,
     [FACTION_PURPLE + 0x14] = sStatDebuffStatusFourth + 19,
+#endif
 };

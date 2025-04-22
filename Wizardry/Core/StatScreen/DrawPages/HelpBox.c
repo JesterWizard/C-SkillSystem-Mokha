@@ -4,6 +4,8 @@
 #include "skill-system.h"
 #include "savemenu.h"
 #include "uichapterstatus.h"
+#include "unitlistscreen.h"
+#include "savemenu.h"
 
 LYN_REPLACE_CHECK(StartStatScreenHelp);
 void StartStatScreenHelp(int pageid, struct Proc * proc)
@@ -113,7 +115,33 @@ void LoadHelpBoxGfx(void * vram, int palId)
 
     /* Only provide the extra text box tiles if we're not in the save menu or chapter status screens */
 #ifdef CONFIG_EXTENDED_HELPBOXES
-    if (!Proc_Find(ProcScr_SaveMenu) && !Proc_Find(gProcScr_ChapterStatusScreen))
+
+    const struct ProcCmd * procExceptionsList[10] = 
+    {
+        ProcScr_SaveMenu,
+        gProcScr_SaveMenuPostChapter,
+        gProcScr_ChapterStatusScreen,
+        gProcScr_DrawUnitInfoBgSprites,
+        ProcScr_bmview,
+        ProcScr_UnitListScreen_Field,
+        ProcScr_UnitListScreen_PrepMenu,
+        ProcScr_UnitListScreen_SoloAnim,
+        ProcScr_UnitListScreen_WorldMap,
+        PrepScreenProc_MapIdle,
+    };
+
+    bool procFound = false;
+
+    for (int i = 0; i < (int)ARRAY_COUNT(procExceptionsList); i++)
+    {
+        if (Proc_Find(procExceptionsList[i]))
+        {
+            procFound = true;
+            break;
+        }
+    }
+
+    if (!procFound)
     {
         InitSpriteText(&gHelpBoxSt.text[3]);
         InitSpriteText(&gHelpBoxSt.text[4]);

@@ -170,4 +170,8 @@ const SkillActionFunc_t gSkillActionFuncTable[MAX_SKILL_NUM + 1] = {
 #if (defined(SID_GrimReaper) && COMMON_SKILL_VALID(SID_GrimReaper))
 	[SID_GrimReaper] = Action_GrimReaper,
 #endif
+
+#if (defined(SID_Hide) && COMMON_SKILL_VALID(SID_Hide))
+	[SID_Hide] = Action_Hide,
+#endif
 };

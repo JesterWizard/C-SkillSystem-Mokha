@@ -166,8 +166,6 @@ int BuildAiUnitList(void)
     u32 faction = gPlaySt.faction;
     u32* prioIt = sUnitPriorityArray;
 
-    NoCashGBAPrintf("Faction ID is: %d", faction);
-
 #ifdef CONFIG_FOURTH_ALLEGIANCE
     int factionUnitCountLut[4] = { 62, 20, 50, 20 }; // TODO: named constant for those
 #else
@@ -242,7 +240,6 @@ void SortAiUnitList(int count)
 LYN_REPLACE_CHECK(AiFindTargetInReachByCharId);
 s8 AiFindTargetInReachByCharId(int uid, struct Vec2* out) 
 {
-
     int i;
 
     GenerateExtendedMovementMapOnRange(gActiveUnit->xPos, gActiveUnit->yPos, GetUnitMovementCost(gActiveUnit));

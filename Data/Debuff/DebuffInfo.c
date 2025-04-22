@@ -223,4 +223,13 @@ const struct DebuffInfo gDebuffInfos[NEW_UNIT_STATUS_MAX] = {
         .img = GFX_DebuffMinibox_Panic,
         .efx_config = {EFX_DEBUFF_NORMAL, 0x10, 0, 0x10},
     },
+    [NEW_UNIT_STATUS_HIDE] = {
+        .name = MSG_DEBUFF_HIDE_NAME,
+        .desc = MSG_DEBUFF_HIDE_DESC,
+        .positive_type = STATUS_DEBUFF_POSITIVE,
+        .tick_type = STATUS_DEBUFF_TICK_ON_ALLY,
+        .duration = 1,
+        .img = GFX_DebuffMinibox_Aviod,
+        .efx_config = {EFX_DEBUFF_NORMAL, 0x10, 0, 0x10},
+    },
 };

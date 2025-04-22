@@ -355,3 +355,5 @@ void AddTrapASMC(void);
     SVAL(EVT_SLOT_3, trapID) \
     SVAL(EVT_SLOT_4, terrainType) \
     ASMC(AddTrapASMC)
+
+#define PREP_ALT CALL(EventScr_08591FD8)

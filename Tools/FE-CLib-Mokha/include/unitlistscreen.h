@@ -178,10 +178,10 @@ void UnitList_PutRow(struct UnitListScreenProc * proc, u8 unitNum, u16 * tm, u8 
 int SortUnitList_GetUnitSoloAnimation(struct Unit * unit);
 bool SortUnitList(u8 key, u8 order);
 
-// extern ??? ProcScr_UnitListScreen_Field
+extern struct ProcCmd ProcScr_UnitListScreen_Field[] ;
 extern struct ProcCmd ProcScr_UnitListScreen_PrepMenu[];
-// extern ??? ProcScr_UnitListScreen_SoloAnim
-// extern ??? ProcScr_UnitListScreen_WorldMap
+extern struct ProcCmd ProcScr_UnitListScreen_SoloAnim[];
+extern struct ProcCmd ProcScr_UnitListScreen_WorldMap[];
 extern struct ProcCmd CONST_DATA ProcScr_bmview[];
 extern EWRAM_OVERLAY(0) struct SortedUnitEnt gSortedUnitsBuf[0x40];
 extern EWRAM_OVERLAY(0) struct SortedUnitEnt * gSortedUnits[0x40];

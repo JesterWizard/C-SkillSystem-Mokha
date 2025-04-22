@@ -69,3 +69,11 @@ Doom[X]
 Doom:[N]
 Unit dies when this[N]
 status wears off.[X]
+
+## MSG_DEBUFF_HIDE_NAME
+Hide[X]
+
+## MSG_DEBUFF_HIDE_DESC
+Hide:[N]
+This unit is hidden[N]
+from enemy view.[X]

@@ -28,6 +28,7 @@ enum UNIT_STATUS_IDENTIFIER {
     NEW_UNIT_STATUS_TOXIC_POISON,
     NEW_UNIT_STATUS_DECOY,
     NEW_UNIT_STATUS_DOOM,
+    NEW_UNIT_STATUS_HIDE,
 
     NEW_UNIT_STATUS_MAX = 64
 };
@@ -253,7 +254,9 @@ struct StatDebuffStatus {
 extern struct StatDebuffStatus sStatDebuffStatusAlly[CONFIG_UNIT_AMT_ALLY];
 extern struct StatDebuffStatus sStatDebuffStatusEnemy[CONFIG_UNIT_AMT_ENEMY];
 extern struct StatDebuffStatus sStatDebuffStatusNpc[CONFIG_UNIT_AMT_NPC];
+#ifdef CONFIG_FOURTH_ALLEGIANCE
 extern struct StatDebuffStatus sStatDebuffStatusFourth[CONFIG_UNIT_AMT_FOURTH];
+#endif
 extern struct StatDebuffStatus sStatDebuffStatusBattleUnit[2];
 extern struct StatDebuffStatus * const sStatDebuffStatusPool[0x100];
 
