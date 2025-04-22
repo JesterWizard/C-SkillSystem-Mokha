@@ -226,3 +226,8 @@ again after dancing for a unit.[X]
 Heroics:[N]
 This unit can rescue[N]
 as a free action.[X]
+
+## MSG_SKILL_ShadowStep
+Shadow Step:[N]
+Attacking and defeating an enemy[N]
+hides this unit for 1 turn.[X]

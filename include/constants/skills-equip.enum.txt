@@ -293,6 +293,7 @@ SID_Predation
 SID_PredationPlus
 // SID_SpiritedSteps
 SID_Heroics
+SID_ShadowStep
 
 //////// AURA SKILLS
 // SID_Anathema
