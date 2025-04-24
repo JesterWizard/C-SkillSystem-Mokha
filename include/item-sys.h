@@ -719,7 +719,8 @@ static const KeyValuePair dict_skills[] =
         { "Wrath+", {1000, 1}},
         { "Wrestler", {1000, 1}},
         { "Wyvern Crash", {1000, 1}},
-        { "Yune Whispers", {1000, 1}}
+        { "Yune Whispers", {1000, 1}},
+        { "Zen", {1000, 1}}
 };
 
 // int compare(const void * a, const void * b);

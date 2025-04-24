@@ -241,6 +241,7 @@
 // SID_SwordSaint
 // SID_GracefulWielder
 // SID_FarWard
+// SID_Zen
 
 ////////// POST-BATTLE SKILLS
 SID_Canto

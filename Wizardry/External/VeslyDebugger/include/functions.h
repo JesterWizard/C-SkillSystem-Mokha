@@ -5,6 +5,14 @@
 #include "proc.h"
 #include "types.h"
 
+struct ProcGameOverScreen {
+    PROC_HEADER;
+
+    /* 29 */ u8 _pad_29[0x4C - 0x29];
+    /* 4C */ s16 counter1;
+    /* 4E */ s16 counter2;
+};
+
 // ??? RomHeaderNintendoLogo(???);
 // ??? crt0(???);
 void IrqMain(void);
@@ -294,8 +302,8 @@ void PutScreenFogEffect(void);
 void PutScreenFogEffectOverlayed(void);
 // ??? GameOverScreen_RandomScroll_Init(???);
 // ??? GameOverScreen_RandomScroll_Loop(???);
-// ??? GameOverScreenHBlank(???);
-// ??? GameOverScreen_Init(???);
+void GameOverScreenHBlank(void);
+void GameOverScreen_Init(struct ProcGameOverScreen *proc);
 // ??? GameOverScreen_LoopFadeIn(???);
 // ??? GameOverScreen_BeginIdle(???);
 // ??? GameOverScreen_LoopIdle(???);

@@ -1271,3 +1271,8 @@ weapon for each rank above E.[X]
 FarWard:[N]
 Enemies from +3 range or greater[N]
 will always miss this target.[X]
+
+## MSG_SKILL_Zen
+Zen: [N]
+For every 4 damage taken,[N]
++1 to defense.[X]

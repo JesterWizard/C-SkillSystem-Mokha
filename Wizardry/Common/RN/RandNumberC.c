@@ -29,14 +29,19 @@ void InitRandC(void)
         sRandSeedsC[i] = NextRN();
 }
 
-STATIC_DECLAR int RandNextC(void)
+int RandNextC(void)
 {
     return KernelRandRoll(sRandSeedsC);
 }
 
-STATIC_DECLAR int RandNextC_100(void)
+int RandNextC_100(void)
 {
     return Div(RandNextC() * 100, 0x10000);
+}
+
+int RandNextC_N(int value)
+{
+    return Div(RandNextC() * value, 0x10000);
 }
 
 bool Roll1RandC(int threshold)
