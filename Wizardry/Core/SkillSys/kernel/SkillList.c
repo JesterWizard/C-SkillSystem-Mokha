@@ -106,6 +106,9 @@ const SkillUpgrade skill_upgrades[] = {
 	#if defined(SID_Summon) && defined(SID_SummonPlus) && COMMON_SKILL_VALID(SID_Summon) && COMMON_SKILL_VALID(SID_SummonPlus)
 	{ SID_Summon, SID_SummonPlus },
 	#endif
+	#if defined(SID_HugePower) && defined(SID_HugePowerPlus) && COMMON_SKILL_VALID(SID_HugePower) && COMMON_SKILL_VALID(SID_HugePowerPlus)
+	{ SID_HugePower, SID_HugePowerPlus },
+	#endif
 	};
 	
 

@@ -551,3 +551,7 @@ SPD lost from weapon weight.[X]
 Huge Power:[N]
 Boost this unit's ATK by 50%[N]
 when at full health.[X]
+
+## MSG_SKILL_HugePowerPlus
+Huge Power+:[N]
+Boost this unit's ATK by 50%[X]

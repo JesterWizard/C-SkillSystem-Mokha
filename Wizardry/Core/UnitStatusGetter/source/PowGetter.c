@@ -41,6 +41,8 @@ int PowGetterSkills(int status, struct Unit * unit)
     int cur_hp = GetUnitCurrentHp(unit);
     int max_hp = GetUnitMaxHp(unit);
 
+    FORCE_DECLARE bool hugePowerPlus = false;
+
 #if defined(CONFIG_RESET_BWL_STATS_EACH_CHAPTER)
     struct NewBwl * bwl = GetNewBwl(UNIT_CHAR_ID(unit));
 #endif
@@ -163,8 +165,16 @@ int PowGetterSkills(int status, struct Unit * unit)
     }
 #endif
 
+#if (defined(SID_HugePowerPlus) && (COMMON_SKILL_VALID(SID_HugePowerPlus)))
+    if (SkillTester(unit, SID_HugePowerPlus))
+    {
+        status += unit->pow / 2;
+        hugePowerPlus = true;
+    }
+#endif
+
 #if (defined(SID_HugePower) && (COMMON_SKILL_VALID(SID_HugePower)))
-    if (SkillTester(unit, SID_HugePower))
+    if (SkillTester(unit, SID_HugePower) && !hugePowerPlus)
     {
         if (cur_hp == max_hp)
             status += unit->pow / 2;
