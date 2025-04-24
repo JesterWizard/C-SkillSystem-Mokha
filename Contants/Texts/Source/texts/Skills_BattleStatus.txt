@@ -1276,3 +1276,8 @@ will always miss this target.[X]
 Zen: [N]
 For every 4 damage taken,[N]
 +1 to defense.[X]
+
+## MSG_SKILL_TintedLens
+Tinted Lens:[N]
+Both units' attacks do a[N]
+minimum of 6 damage.[X]

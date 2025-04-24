@@ -242,6 +242,7 @@
 // SID_GracefulWielder
 // SID_FarWard
 // SID_Zen
+// SID_TintedLens
 
 ////////// POST-BATTLE SKILLS
 // SID_Canto

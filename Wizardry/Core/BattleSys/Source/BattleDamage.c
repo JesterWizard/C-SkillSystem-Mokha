@@ -329,7 +329,8 @@ int BattleHit_CalcDamage(struct BattleUnit * attacker, struct BattleUnit * defen
     if (gDmg.damage_base <= 0 && gDmg.real_damage <= 0)
     {
         /* If no damage taken, directly end the damage calculation */
-        return 0;
+        /* Jester turning this off now because of tinted lens, and what time does it save really? */
+        // return 0;
     }
     else
     {
@@ -667,7 +668,15 @@ int BattleHit_CalcDamage(struct BattleUnit * attacker, struct BattleUnit * defen
         result = 1; // at least 1 damage left.
 
     result += gDmg.real_damage;
+    result = 6;
 
+#if (defined(SID_TintedLens) && (COMMON_SKILL_VALID(SID_TintedLens)))
+    if (BattleSkillTester(attacker, SID_TintedLens) || BattleSkillTester(defender, SID_TintedLens))
+    {
+        if (result < 6)
+            result = 6;
+    }
+#endif
 
 #if (defined(SID_Decadon) && (COMMON_SKILL_VALID(SID_Decadon)))
     if (BattleSkillTester(attacker, SID_Decadon))
