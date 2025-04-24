@@ -159,7 +159,15 @@ int PowGetterSkills(int status, struct Unit * unit)
     if (SkillTester(unit, SID_Resolve))
     {
         if ((cur_hp * 2) < max_hp)
-            status += status / 2;
+            status += unit->pow / 2;
+    }
+#endif
+
+#if (defined(SID_HugePower) && (COMMON_SKILL_VALID(SID_HugePower)))
+    if (SkillTester(unit, SID_HugePower))
+    {
+        if (cur_hp == max_hp)
+            status += unit->pow / 2;
     }
 #endif
 

@@ -432,6 +432,7 @@
 // SID_StaffGuard
 // SID_SteadyRider
 // SID_SteadyRiderPlus
+// SID_HugePower
 
 ////////// WEAPON TRIANGLE ADVANTAGE SKILLS
 // SID_SwordBreaker
