@@ -1749,7 +1749,6 @@ const struct SkillInfo gSkillInfos[MAX_SKILL_NUM + 1] = {
 
 #if (defined(SID_StunningSmile) && COMMON_SKILL_VALID(SID_StunningSmile))
     [SID_StunningSmile] = {
-
         .desc = MSG_SKILL_StunningSmile,
         .icon = GFX_SkillIcon_StunningSmile,
     },
@@ -5303,8 +5302,14 @@ const struct SkillInfo gSkillInfos[MAX_SKILL_NUM + 1] = {
 
 #if (defined(SID_TrickRoom) && COMMON_SKILL_VALID(SID_TrickRoom))
     [SID_TrickRoom] = {
-
          .desc = MSG_SKILL_TrickRoom,
+         .icon = GFX_SkillIcon_WIP,
+    },
+#endif
+
+#if (defined(SID_Emulate) && COMMON_SKILL_VALID(SID_Emulate))
+    [SID_Emulate] = {
+         .desc = MSG_SKILL_Emulate,
          .icon = GFX_SkillIcon_WIP,
     },
 #endif

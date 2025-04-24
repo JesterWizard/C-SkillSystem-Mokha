@@ -236,6 +236,7 @@ static const KeyValuePair dict_skills[] =
         { "Eclipse", {1000, 1}},
         { "Effect Spore", {1000, 1}},
         { "Elbow Room", {1000, 1}},
+        { "Emulate", {1000, 1}},
         { "Enrage", {1000, 1}},
         { "Entrepreneur", {1000, 1}},
         { "Equalizer", {1000, 1}},

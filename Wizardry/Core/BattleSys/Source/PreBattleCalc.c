@@ -1852,6 +1852,14 @@ void PreBattleCalcSkills(struct BattleUnit *attacker, struct BattleUnit *defende
             break;
 #endif
 
+#if (defined(SID_Emulate) && (COMMON_SKILL_VALID(SID_Emulate)))
+        case SID_Emulate:
+            attacker->hpInitial = defender->hpInitial;
+            attacker->unit.curHP = defender->unit.curHP;
+            attacker->unit.maxHP = defender->unit.maxHP;
+            break;
+#endif
+
         case MAX_SKILL_NUM:
         default:
             break;

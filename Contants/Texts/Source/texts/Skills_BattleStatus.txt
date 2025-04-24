@@ -1286,3 +1286,8 @@ minimum of 6 damage.[X]
 Tinted Lens+:[N]
 This units' attacks do a[N]
 minimum of  damage.[X]
+
+## MSG_SKILL_Emulate
+Emulate:[N]
+Copy the enemy unit's current HP[N]
+at the start of the battle.[X]

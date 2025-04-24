@@ -670,7 +670,6 @@ int BattleHit_CalcDamage(struct BattleUnit * attacker, struct BattleUnit * defen
         result = 1; // at least 1 damage left.
 
     result += gDmg.real_damage;
-    result = 6;
 
 #if (defined(SID_TintedLens) && (COMMON_SKILL_VALID(SID_TintedLens)))
     if (BattleSkillTester(attacker, SID_TintedLens))
