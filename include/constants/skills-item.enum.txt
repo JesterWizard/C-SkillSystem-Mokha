@@ -555,6 +555,7 @@
 // SID_Flurry
 // SID_RapidFighter
 // SID_AlacrityPlus
+// SID_TrickRoom
 
 ////////// PRE-PHASE SKILLS
 // SID_Renewal

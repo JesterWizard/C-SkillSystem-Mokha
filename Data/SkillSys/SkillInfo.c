@@ -5300,4 +5300,12 @@ const struct SkillInfo gSkillInfos[MAX_SKILL_NUM + 1] = {
         .icon = GFX_SkillIcon_WIP,
     },
 #endif
+
+#if (defined(SID_TrickRoom) && COMMON_SKILL_VALID(SID_TrickRoom))
+    [SID_TrickRoom] = {
+
+         .desc = MSG_SKILL_TrickRoom,
+         .icon = GFX_SkillIcon_WIP,
+    },
+#endif
 };
