@@ -1281,3 +1281,8 @@ For every 4 damage taken,[N]
 Tinted Lens:[N]
 Both units' attacks do a[N]
 minimum of 6 damage.[X]
+
+## MSG_SKILL_TintedLensPlus
+Tinted Lens+:[N]
+This units' attacks do a[N]
+minimum of  damage.[X]

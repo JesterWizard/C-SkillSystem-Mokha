@@ -243,6 +243,7 @@
 // SID_FarWard
 // SID_Zen
 // SID_TintedLens
+// SID_TintedLensPlus
 
 ////////// POST-BATTLE SKILLS
 // SID_Canto

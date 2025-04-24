@@ -58,6 +58,8 @@ int BattleHit_CalcDamage(struct BattleUnit * attacker, struct BattleUnit * defen
     FORCE_DECLARE int roll12_ID =
         15; // Set it to the maximum value for its bitfield, so it won't be accidentally triggered
 
+    FORCE_DECLARE bool tintedLensPlus = false;
+
     FORCE_DECLARE struct BattleGlobalFlags *act_flags, *tar_flags;
 
     /**
@@ -671,7 +673,18 @@ int BattleHit_CalcDamage(struct BattleUnit * attacker, struct BattleUnit * defen
     result = 6;
 
 #if (defined(SID_TintedLens) && (COMMON_SKILL_VALID(SID_TintedLens)))
-    if (BattleSkillTester(attacker, SID_TintedLens) || BattleSkillTester(defender, SID_TintedLens))
+    if (BattleSkillTester(attacker, SID_TintedLens))
+    {
+        if (result < 6)
+        {
+            tintedLensPlus = true;
+            result = 6;
+        }
+    }
+#endif
+
+#if (defined(SID_TintedLens) && (COMMON_SKILL_VALID(SID_TintedLens)))
+    if ((BattleSkillTester(attacker, SID_TintedLens) || BattleSkillTester(defender, SID_TintedLens)) && !tintedLensPlus)
     {
         if (result < 6)
             result = 6;
