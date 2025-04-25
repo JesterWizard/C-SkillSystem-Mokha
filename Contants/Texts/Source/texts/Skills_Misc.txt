@@ -289,3 +289,8 @@ by 50%.[X]
 Scroll Scribe:[N]
 The unit can generate new scrolls[N]
 from their removed skills.[X]
+
+## MSG_SKILL_ItemLore
+Item Lore:[N]
+Double the effects of[N]
+healing items.[X]

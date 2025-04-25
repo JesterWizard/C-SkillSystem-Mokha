@@ -649,6 +649,7 @@ SID_Prodigy
 // SID_KnackResistance
 // SID_KnackHealth
 // SID_PeoplesKnight
+SID_ItemLore
 
 //////// LEGENDARY SKILLS
 // SID_LEGEND_MiracleAtk

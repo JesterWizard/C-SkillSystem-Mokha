@@ -105,7 +105,7 @@ enum {
 struct BattleHit {
 	/* 00:18 */ unsigned attributes : 19;
 	/* 19:23 */ unsigned info       : 5;
-	/* 24:31 */ signed   hpChange   : 8;
+	/* 24:31 */ unsigned hpChange   : 8;
 };
 
 enum {
