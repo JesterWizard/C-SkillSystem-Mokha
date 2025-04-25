@@ -74,6 +74,9 @@ enum unit_expa_sus_bitfile_idx {
 #if defined(SID_GrimReaper) && (COMMON_SKILL_VALID(SID_GrimReaper))
     UES_BIT_GRIM_REAPER_SKILL_USED,
 #endif
+#if defined(SID_CoinFlip) && (COMMON_SKILL_VALID(SID_CoinFlip))
+    UES_BIT_COIN_FLIP_SKILL_USED,
+#endif
 
     UES_BIT_MAX
 };

@@ -521,3 +521,11 @@ Boss class enemies reduce HP by 5.[X]
 Hide:[N]
 Prevent this unit from being[N]
 attacked for one turn.[X]
+
+## MSG_MenuSkill_CoinFlipName
+ Coin Flip[X]
+
+## MSG_SKILL_CoinFlip
+Coin Flip:[N]
+50% chance of getting two[N]
+new moves or ending this one.[X]

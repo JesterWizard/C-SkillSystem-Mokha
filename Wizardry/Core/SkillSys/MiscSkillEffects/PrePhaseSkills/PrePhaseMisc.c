@@ -38,6 +38,9 @@ bool PrePhase_ClearMiscUES(ProcPtr proc)
 #if defined(SID_DeathBlight) && (COMMON_SKILL_VALID(SID_DeathBlight))
             ClearBitUES(unit, UES_BIT_DEATHBLIGHT_SKILL_USED);
 #endif
+#if defined(SID_CoinFlip) && (COMMON_SKILL_VALID(SID_CoinFlip))
+            ClearBitUES(unit, UES_BIT_COIN_FLIP_SKILL_USED);
+#endif
 
             /* We don't clear this bit as it's meant to be once per map */
             // ClearBitUES(unit, UES_BIT_LOADSTAR_RUSH_SKILL_USED);

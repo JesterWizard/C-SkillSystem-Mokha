@@ -294,3 +294,8 @@ from their removed skills.[X]
 Item Lore:[N]
 Double the effects of[N]
 healing items.[X]
+
+## MSG_SKILL_ItemLorePlus
+Item Lore+:[N]
+Double the effects of[N]
+all items.[X]

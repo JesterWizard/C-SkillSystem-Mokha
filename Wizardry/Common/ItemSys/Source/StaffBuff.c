@@ -15,6 +15,11 @@ void ExecBarrierStaff(ProcPtr proc) {
 
     unit_tar->barrierDuration = 7;
 
+#if (defined(SID_ItemLorePlus) && (COMMON_SKILL_VALID(SID_ItemLorePlus)))
+    if (SkillTester(gActiveUnit, SID_ItemLorePlus))
+        unit_tar->barrierDuration *= 2;
+#endif
+
 #if defined(SID_ExplosiveBuff) && (COMMON_SKILL_VALID(SID_ExplosiveBuff))
     if (SkillTester(unit_act, SID_ExplosiveBuff))
     {

@@ -52,6 +52,7 @@
 // SID_LethalityPlus
 // SID_GrimReaper
 // SID_Hide
+// SID_CoinFlip
 
 ////////// PRE-BATTLE SKILLS
 // SID_DefiantStr
@@ -650,6 +651,7 @@
 // SID_KnackHealth
 // SID_PeoplesKnight
 // SID_ItemLore
+// SID_ItemLorePlus
 
 ////////// LEGENDARY SKILLS
 // SID_LEGEND_MiracleAtk

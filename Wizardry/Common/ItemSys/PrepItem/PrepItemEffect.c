@@ -31,7 +31,17 @@ void PrepItemEffect_JunaFruit(struct ProcPrepItemUse * proc, u16 item)
 
 LYN_REPLACE_CHECK(ExecVulneraryItem);
 void ExecVulneraryItem(ProcPtr proc, int amount) {
+    FORCE_DECLARE bool itemLorePlus = false;
+
     BattleInitItemEffect(GetUnit(gActionData.subjectIndex), gActionData.itemSlotIndex);
+
+#if (defined(SID_ItemLorePlus) && (COMMON_SKILL_VALID(SID_ItemLorePlus)))
+    if (SkillTester(gActiveUnit, SID_ItemLorePlus))
+    {
+        itemLorePlus = true;
+        amount *= 2;
+    }
+#endif
 
 #if (defined(SID_ItemLore) && (COMMON_SKILL_VALID(SID_ItemLore)))
     if (SkillTester(gActiveUnit, SID_ItemLore))
@@ -54,12 +64,22 @@ void ExecVulneraryItem(ProcPtr proc, int amount) {
 
 LYN_REPLACE_CHECK(ExecElixirItem);
 void ExecElixirItem(ProcPtr proc) {
+    FORCE_DECLARE bool itemLorePlus = false;
+
     BattleInitItemEffect(GetUnit(gActionData.subjectIndex), gActionData.itemSlotIndex);
 
     int amount = 80;
 
+#if (defined(SID_ItemLorePlus) && (COMMON_SKILL_VALID(SID_ItemLorePlus)))
+    if (SkillTester(gActiveUnit, SID_ItemLorePlus))
+    {
+        itemLorePlus = true;
+        amount *= 2;
+    }
+#endif
+
 #if (defined(SID_ItemLore) && (COMMON_SKILL_VALID(SID_ItemLore)))
-    if (SkillTester(gActiveUnit, SID_ItemLore))
+    if (SkillTester(gActiveUnit, SID_ItemLore) && !itemLorePlus)
         amount *= 2;
 #endif
 
@@ -69,6 +89,24 @@ void ExecElixirItem(ProcPtr proc) {
     gBattleHitIterator->hpChange = abs(gBattleActor.unit.curHP - GetUnitCurrentHp(GetUnit(gActionData.subjectIndex)));
 
     gBattleActor.unit.curHP = GetUnitCurrentHp(GetUnit(gActionData.subjectIndex));
+
+    BattleApplyItemEffect(proc);
+    BeginBattleAnimations();
+
+    return;
+}
+
+LYN_REPLACE_CHECK(ExecPureWaterItem);
+void ExecPureWaterItem(ProcPtr proc) {
+    BattleInitItemEffect(GetUnit(gActionData.subjectIndex),
+        gActionData.itemSlotIndex);
+
+    GetUnit(gActionData.subjectIndex)->barrierDuration = 7;
+
+#if (defined(SID_ItemLorePlus) && (COMMON_SKILL_VALID(SID_ItemLorePlus)))
+    if (SkillTester(gActiveUnit, SID_ItemLorePlus))
+        GetUnit(gActionData.subjectIndex)->barrierDuration *= 2;
+#endif
 
     BattleApplyItemEffect(proc);
     BeginBattleAnimations();
