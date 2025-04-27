@@ -171,3 +171,11 @@ int MagPsychUpCheck(int status, struct Unit *unit)
 
     return status;
 }
+
+int MagGetterStaffBoost(int status, struct Unit *unit)
+{
+    if (unit->boostType == 1)
+	    return status + unit->barrierDuration;
+
+    return status;
+}

@@ -13,6 +13,36 @@ void ExecBarrierStaff(ProcPtr proc) {
 
     BattleInitItemEffectTarget(unit_tar);
 
+    int itemId = GetItemIndex(unit_act->items[0]);
+
+    switch (itemId)
+    {
+    case CONFIG_ITEM_INDEX_FORCE_STAFF:
+        unit_tar->boostType = 0;
+        break;
+    case CONFIG_ITEM_INDEX_TEMPEST_STAFF:
+        unit_tar->boostType = 1;
+        break;
+    case CONFIG_ITEM_INDEX_ACUITY_STAFF:
+        unit_tar->boostType = 2;
+        break;
+    case CONFIG_ITEM_INDEX_SPRINT_STAFF:
+        unit_tar->boostType = 3;
+        break;
+    case CONFIG_ITEM_INDEX_FORTUNE_STAFF:
+        unit_tar->boostType = 4;
+        break;
+    case CONFIG_ITEM_INDEX_IRON_STAFF:
+        unit_tar->boostType = 5;
+        break;
+    case ITEM_STAFF_BARRIER:
+        unit_tar->boostType = 6;
+        break;
+    
+    default:
+        break;
+    }
+
     unit_tar->barrierDuration = 7;
 
 #if defined(SID_ExplosiveBuff) && (COMMON_SKILL_VALID(SID_ExplosiveBuff))

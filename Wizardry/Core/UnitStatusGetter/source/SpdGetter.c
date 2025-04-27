@@ -214,3 +214,11 @@ int SpdPsychUpCheck(int status, struct Unit *unit)
 
     return status;
 }
+
+int SpdGetterStaffBoost(int status, struct Unit *unit)
+{
+    if (unit->boostType == 3)
+	    return status + unit->barrierDuration;
+
+    return status;
+}

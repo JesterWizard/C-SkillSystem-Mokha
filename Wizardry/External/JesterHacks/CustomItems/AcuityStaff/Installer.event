@@ -1,0 +1,10 @@
+/* Physical offensive version of barrier staff */
+/* Uses existing item functions for barrier staff, so no need for custom injection hooks */
+
+PUSH
+    ORG CONFIG_PR_ITEM_ICON + CONFIG_ICON_INDEX_ACUITY_STAFF * 0x80
+        #incbin "AcuityStaff.4bpp"
+
+    ORG CONFIG_PR_ITEM_TABLE + CONFIG_ITEM_INDEX_ACUITY_STAFF * 0x24
+        #include "ItemData_AcuityStaff.lyn.event"
+POP

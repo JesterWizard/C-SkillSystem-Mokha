@@ -6,28 +6,7 @@
 
 extern u16 gUnknown_085A0D4C[];
 
-enum
-{
-    LINES_MAX = 5
-};
-
-struct UnitInfoWindowProc
-{
-    /* 00 */ PROC_HEADER;
-
-    /* 2C */ struct Unit *unit;
-
-    /* 30 */ struct Text name;
-    /* 38 */ struct Text lines[LINES_MAX];
-
-    /* 60 */ u8 x;
-    /* 61 */ u8 y;
-    /* 62 */ u8 xUnitSprite;
-    /* 63 */ u8 xNameText;
-};
-
 int GetUnitInfoWindowX(struct Unit *unit, int width);
-struct UnitInfoWindowProc *UnitInfoWindow_DrawBase(struct UnitInfoWindowProc *proc, struct Unit *unit, int x, int y, int width, int lines);
 
 u8 StealPlus_Usability(const struct MenuItemDef *def, int number)
 {

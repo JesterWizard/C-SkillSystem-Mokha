@@ -171,8 +171,9 @@ struct Unit {
 	/* 30 */ u8 statusIndex : 4;
 	/* 30 */ u8 statusDuration : 4;
 
-	/* 31 */ u8 torchDuration : 4;
-	/* 31 */ u8 barrierDuration : 4;
+    /* 31 */ u8 torchDuration : 2;
+    /* 31 */ u8 barrierDuration : 3;
+    /* 31 */ u8 boostType : 3;
 
 	/* 32 */ u8 supports[6];
 	/* 38 */ u8 unitLeader;

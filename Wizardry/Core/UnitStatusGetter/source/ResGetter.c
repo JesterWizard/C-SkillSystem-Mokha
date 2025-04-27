@@ -202,7 +202,10 @@ int ResPsychUpCheck(int status, struct Unit *unit)
     return status;
 }
 
-int ResGetterPureWater(int status, struct Unit *unit)
+int ResGetterStaffBoost(int status, struct Unit *unit)
 {
-	return status + unit->barrierDuration;
+    if (unit->boostType == 6)
+	    return status + unit->barrierDuration;
+
+    return status;
 }

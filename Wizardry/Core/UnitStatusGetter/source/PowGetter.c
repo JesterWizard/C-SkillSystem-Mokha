@@ -221,3 +221,11 @@ int PowPsychUpCheck(int status, struct Unit * unit)
 
     return status;
 }
+
+int PowGetterStaffBoost(int status, struct Unit *unit)
+{
+    if (unit->boostType == 0)
+	    return status + unit->barrierDuration;
+
+    return status;
+}

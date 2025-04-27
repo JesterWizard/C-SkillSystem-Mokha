@@ -19,6 +19,8 @@ gHealAmountGetters:
 #include "PrepItem/PrepItemUsability.lyn.event"
 #include "PrepItem/PrepItemEffect.lyn.event"
 #include "PrepItem/PrepItemUseScreen.lyn.event"
+#include "PrepItem/PrepItemEffect.lyn.event"
+#include "PrepItem/BoostStaves.lyn.event"
 
 PUSH
 ORG $A190D4
