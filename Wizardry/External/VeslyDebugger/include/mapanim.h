@@ -373,6 +373,10 @@ extern CONST_DATA struct ProcCmd ProcScr_EggDmgMapEffect2[];
 extern CONST_DATA struct ProcCmd ProcScr_CritAtkMapEffect[];
 extern CONST_DATA struct ProcCmd ProcScr_SpellAssocBarrier[];
 extern CONST_DATA struct ProcCmd ProcScr_SpellAssocWarp[];
+
+/* Jester - Custom */
+extern CONST_DATA struct ProcCmd ProcScr_LightRuneAnim[];
+
 // extern ??? gUnknown_089A52FC
 extern u16 SpriteAnim_ManimStatGain[];
 extern u16 gUnknown_089A5A6C[];

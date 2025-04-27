@@ -1,6 +1,6 @@
 void SetGameOptions() 
 {
-    SetGameOption(GAME_OPTION_ANIMATION, 2); // Set battle animations off
+    SetGameOption(GAME_OPTION_ANIMATION, 2);  // Set battle animations off
     SetGameOption(GAME_OPTION_TEXT_SPEED, 1); // Set game speed to max
     SetGameOption(GAME_OPTION_GAME_SPEED, 3); // Set text speed to max
 
@@ -9,4 +9,7 @@ void SetGameOptions()
     struct Unit * unit = GetUnitFromCharId(CHARACTER_EIRIKA);
     unit->maxHP = 26;
     unit->curHP = 26;
+
+    unit->ranks[ITYPE_STAFF] = WPN_EXP_C;
+    unit->items[0] = MakeNewItem(CONFIG_ITEM_INDEX_RUNE_STAFF);
 }

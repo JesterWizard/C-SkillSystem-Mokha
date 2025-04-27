@@ -455,7 +455,6 @@ extern u16 CONST_DATA obj_0859AEC8[];
 // extern ??? ProcScr_Popup2
  extern struct ProcCmd gProcScr_ChapterIntro[];
 // extern ??? ProcScr_GameOverScreen
-// extern ??? ProcScr_LightRuneAnim
 // extern ??? ProcScr_LightRuneAnim2
 // extern ??? ProcScr_LightRuneAnim3
 // extern ??? ProcScr_DanceringAnim

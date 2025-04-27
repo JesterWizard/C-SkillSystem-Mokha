@@ -1,3 +1,7 @@
+
+## MSG_Weapon_Rank_Increased
+Weapon rank increased.[X]
+
 ## MSG_ITEM_SKILLSTEALER_NAME
 Skill Stealer[X]
 
@@ -92,5 +96,13 @@ Increase DEF by 7[N]
 for as many turns.[N]
 Reduces by 1 per turn.[X]
 
-## MSG_Weapon_Rank_Increased
-Weapon rank increased.[X]
+## MSG_ITEM_RUNE_STAFF_NAME
+Rune[X]
+
+## MSG_ITEM_RUNE_STAFF_DESC
+Place a Light Rune[N]
+on an open tile.[X]
+
+## MSG_ITEM_RUNE_STAFF_USEDESC
+Place a Light Rune[N]
+on an open tile.[X]

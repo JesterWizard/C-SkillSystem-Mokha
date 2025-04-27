@@ -127,6 +127,7 @@ s8 CanUnitUseItem(struct Unit* unit, int item)
     case ITEM_MINE:
         return HasSelectTarget(unit, MakeTargetListForMine);
 
+    case CONFIG_ITEM_INDEX_RUNE_STAFF:
     case ITEM_LIGHTRUNE:
         return HasSelectTarget(unit, MakeTargetListForLightRune);
 
@@ -272,6 +273,7 @@ void DoItemUse(struct Unit* unit, int item)
         DoUsePutTrap(unit, MakeTargetListForMine, 0x87D); // TODO: msgid "Select an area to trap."
         break;
 
+    case CONFIG_ITEM_INDEX_RUNE_STAFF:
     case ITEM_LIGHTRUNE:
         DoUsePutTrap(unit, MakeTargetListForLightRune, 0x87E); // TODO: msgid "Select an area to trap."
         break;

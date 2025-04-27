@@ -186,6 +186,7 @@ void ActionStaffDoorChestUseItem(ProcPtr proc) {
         case ITEM_MINE:
             ExecMine(proc);
             break;
+        case CONFIG_ITEM_INDEX_RUNE_STAFF:
         case ITEM_LIGHTRUNE:
             ExecLightRune(proc);
             break;
