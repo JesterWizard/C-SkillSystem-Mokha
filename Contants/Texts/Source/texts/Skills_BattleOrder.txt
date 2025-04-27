@@ -147,3 +147,8 @@ doubling threshold, +1 attack round.[X]
 Alacrity+:[N]
 If actor's speed is 5 or more than[N]
 the target's, counterattack first.[X]
+
+## MSG_SKILL_TrickRoom
+Trick Room:[N]
+If this unit would be doubled, invert[N]
+the doubling mechanics and vice versa.[X]

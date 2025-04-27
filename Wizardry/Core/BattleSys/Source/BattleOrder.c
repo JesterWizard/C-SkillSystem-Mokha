@@ -64,6 +64,23 @@ bool CheckCanTwiceAttackOrder(struct BattleUnit * actor, struct BattleUnit * tar
     {
         gBattleTemporaryFlag.act_force_twice_order = false;
 
+#if defined(SID_TrickRoom) && (COMMON_SKILL_VALID(SID_TrickRoom))
+    if (BattleSkillTester(actor, SID_TrickRoom))
+    {
+        if (basic_judgement == false)
+            return true;
+        else
+            return false;
+    }
+    else if (BattleSkillTester(target, SID_TrickRoom))
+    {
+        if (basic_judgement == false)
+            return true;
+        else
+            return false;
+    }
+#endif
+
 #if defined(SID_Switcher) && (COMMON_SKILL_VALID(SID_Switcher))
         if (BattleSkillTester(actor, SID_Switcher))
         {
@@ -218,6 +235,23 @@ bool CheckCanTwiceAttackOrder(struct BattleUnit * actor, struct BattleUnit * tar
     else if (&gBattleTarget == actor)
     {
         gBattleTemporaryFlag.tar_force_twice_order = false;
+
+#if defined(SID_TrickRoom) && (COMMON_SKILL_VALID(SID_TrickRoom))
+    if (BattleSkillTester(actor, SID_TrickRoom))
+    {
+        if (basic_judgement == false)
+            return true;
+        else
+            return false;
+    }
+    else if (BattleSkillTester(target, SID_TrickRoom))
+    {
+        if (basic_judgement == false)
+            return true;
+        else
+            return false;
+    }
+#endif
 
 #if defined(SID_Switcher) && (COMMON_SKILL_VALID(SID_Switcher))
         if (BattleSkillTester(actor, SID_Switcher))

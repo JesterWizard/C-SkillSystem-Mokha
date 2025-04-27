@@ -241,6 +241,10 @@ SID_Camouflage
 // SID_SwordSaint
 // SID_GracefulWielder
 // SID_FarWard
+SID_Zen
+SID_TintedLens
+SID_TintedLensPlus
+SID_Emulate
 
 //////// POST-BATTLE SKILLS
 // SID_Canto
@@ -431,6 +435,8 @@ SID_Unaware
 // SID_StaffGuard
 // SID_SteadyRider
 // SID_SteadyRiderPlus
+SID_HugePower
+SID_HugePowerPlus
 
 //////// WEAPON TRIANGLE ADVANTAGE SKILLS
 // SID_SwordBreaker
@@ -550,6 +556,7 @@ SID_Echo
 SID_Flurry
 SID_RapidFighter
 // SID_AlacrityPlus
+SID_TrickRoom
 
 //////// PRE-PHASE SKILLS
 SID_Renewal
@@ -642,6 +649,7 @@ SID_Prodigy
 // SID_KnackResistance
 // SID_KnackHealth
 // SID_PeoplesKnight
+SID_ItemLore
 
 //////// LEGENDARY SKILLS
 // SID_LEGEND_MiracleAtk

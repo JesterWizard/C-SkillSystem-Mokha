@@ -751,6 +751,14 @@ void PreBattleCalcSkills(struct BattleUnit *attacker, struct BattleUnit *defende
             break;
 #endif
 
+#if (defined(SID_Zen) && (COMMON_SKILL_VALID(SID_Zen)))
+        case SID_Zen:
+            if ((attacker->unit.maxHP - attacker->hpInitial) >= 4)
+                attacker->battleDefense += (attacker->unit.maxHP - attacker->hpInitial) / 4;
+
+            break;
+#endif
+
 #if (defined(SID_KillingMachine) && (COMMON_SKILL_VALID(SID_KillingMachine)))
         case SID_KillingMachine:
             attacker->battleCritRate *= 2;
@@ -1841,6 +1849,14 @@ void PreBattleCalcSkills(struct BattleUnit *attacker, struct BattleUnit *defende
 #if (defined(SID_MountainMan) && (COMMON_SKILL_VALID(SID_MountainMan)))
         case SID_MountainMan:
             attacker->battleHitRate += attacker->terrainAvoid;
+            break;
+#endif
+
+#if (defined(SID_Emulate) && (COMMON_SKILL_VALID(SID_Emulate)))
+        case SID_Emulate:
+            attacker->hpInitial = defender->hpInitial;
+            attacker->unit.curHP = defender->unit.curHP;
+            attacker->unit.maxHP = defender->unit.maxHP;
             break;
 #endif
 

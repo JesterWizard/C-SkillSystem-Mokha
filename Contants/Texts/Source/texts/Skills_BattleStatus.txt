@@ -1271,3 +1271,23 @@ weapon for each rank above E.[X]
 FarWard:[N]
 Enemies from +3 range or greater[N]
 will always miss this target.[X]
+
+## MSG_SKILL_Zen
+Zen: [N]
+For every 4 damage taken,[N]
++1 to defense.[X]
+
+## MSG_SKILL_TintedLens
+Tinted Lens:[N]
+Both units' attacks do a[N]
+minimum of 6 damage.[X]
+
+## MSG_SKILL_TintedLensPlus
+Tinted Lens+:[N]
+This units' attacks do a[N]
+minimum of  damage.[X]
+
+## MSG_SKILL_Emulate
+Emulate:[N]
+Copy the enemy unit's current HP[N]
+at the start of the battle.[X]

@@ -546,3 +546,12 @@ lost from weapon weight.[X]
 Steady Rider+:[N]
 Unit gains DEF and RES equal to[N]
 SPD lost from weapon weight.[X]
+
+## MSG_SKILL_HugePower
+Huge Power:[N]
+Boost this unit's ATK by 50%[N]
+when at full health.[X]
+
+## MSG_SKILL_HugePowerPlus
+Huge Power+:[N]
+Boost this unit's ATK by 50%[X]

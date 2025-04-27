@@ -159,7 +159,8 @@
 /* BROKEN - DO NOT USE */
 // #define CONFIG_AUTO_PROMOTION_ON_MAX_LEVEL
 
-#define CONFIG_MULTIPLE_DEATH_QUOTES
+/* Don't turn this on until I have defeat quotes for everyone as MC dying without a quote doesn't trigger a game over screen */
+//#define CONFIG_MULTIPLE_DEATH_QUOTES
 
 #define CONFIG_GROWTHS_AS_LETTERS
 
@@ -208,3 +209,8 @@
 // #define INJURED_TURN_COUNT 5
 
 #define CONFIG_SUPPORT_REWARDS
+
+#define CONFIG_GAMEOVER_QUOTES
+//#define CONFIG_GAMEOVER_GENERIC
+#define CONFIG_GAMEOVER_SPECIFIC
+//#define CONFIG_GAMEOVER_COMEDIC

@@ -236,6 +236,7 @@ static const KeyValuePair dict_skills[] =
         { "Eclipse", {1000, 1}},
         { "Effect Spore", {1000, 1}},
         { "Elbow Room", {1000, 1}},
+        { "Emulate", {1000, 1}},
         { "Enrage", {1000, 1}},
         { "Entrepreneur", {1000, 1}},
         { "Equalizer", {1000, 1}},
@@ -331,6 +332,8 @@ static const KeyValuePair dict_skills[] =
         { "Hone Flier", {1000, 1}},
         { "Horse guard", {1000, 1}},
         { "Hp+5", {1000, 1}},
+        { "Huge Power", {1000, 1}},
+        { "Huge Power+", {1000, 1}},
         { "Hyper Cutter", {1000, 1}},
         { "Hyper Focus", {1000, 1}},
         { "I-Problems", {1000, 1}},
@@ -344,6 +347,7 @@ static const KeyValuePair dict_skills[] =
         { "Inspiration", {1000, 1}},
         { "Intimidate", {1000, 1}},
         { "Iron Dome", {1000, 1}},
+        { "Item Lore", {1000, 1}},
         { "Keen Fighter", {1000, 1}},
         { "Keep Up", {1000, 1}},
         { "Killing Blow", {1000, 1}},
@@ -674,6 +678,8 @@ static const KeyValuePair dict_skills[] =
         { "Thighdeology", {1000, 1}},
         { "Thot Slayer", {1000, 1}},
         { "Thunderstorm", {1000, 1}},
+        { "Tinted Lens", {1000, 1}},
+        { "Tinted Lens+", {1000, 1}},
         { "Tower Shield", {1000, 1}},
         { "Tower Shield+", {1000, 1}},
         { "Toxic", {1000, 1}},
@@ -685,6 +691,7 @@ static const KeyValuePair dict_skills[] =
         { "T-Adept", {1000, 1}},
         { "T-Adept+", {1000, 1}},
         { "Tri-Attack", {1000, 1}},
+        { "Trick Room", {1000, 1}},
         { "Triple Up", {1000, 1}},
         { "Trip Up", {1000, 1}},
         { "Tsuzuku", {1000, 1}},
@@ -719,7 +726,8 @@ static const KeyValuePair dict_skills[] =
         { "Wrath+", {1000, 1}},
         { "Wrestler", {1000, 1}},
         { "Wyvern Crash", {1000, 1}},
-        { "Yune Whispers", {1000, 1}}
+        { "Yune Whispers", {1000, 1}},
+        { "Zen", {1000, 1}}
 };
 
 // int compare(const void * a, const void * b);

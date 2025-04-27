@@ -26,6 +26,7 @@
 #include "unitlistscreen.h"
 #include "prepscreen.h"
 #include "savemenu.h"
+#include "rn.h"
 
 #if defined(SID_CatchEmAll) && (COMMON_SKILL_VALID(SID_CatchEmAll))
     const unsigned int gCatchEmAllId = SID_CatchEmAll;

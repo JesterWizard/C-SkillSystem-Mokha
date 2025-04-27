@@ -283,6 +283,10 @@ const u8 EfxSkillAnimPriority[MAX_SKILL_NUM + 1] = {
 #if (defined(SID_GrimReaper) && COMMON_SKILL_VALID(SID_GrimReaper))
     [SID_GrimReaper] = EFX_PRIORITY_NORMAL,
 #endif
+
+#if (defined(SID_TrickRoom) && COMMON_SKILL_VALID(SID_TrickRoom))
+    [SID_TrickRoom] = EFX_PRIORITY_NORMAL,
+#endif
 };
 
 struct EfxAnimConf const * const EfxSkillAnims[MAX_SKILL_NUM + 1] = {
@@ -560,5 +564,9 @@ struct EfxAnimConf const * const EfxSkillAnims[MAX_SKILL_NUM + 1] = {
 
 #if (defined(SID_GrimReaper) && COMMON_SKILL_VALID(SID_GrimReaper))
     [SID_GrimReaper] = &EfxSkillVanilla,
+#endif
+
+#if (defined(SID_TrickRoom) && COMMON_SKILL_VALID(SID_TrickRoom))
+    [SID_TrickRoom] = &EfxSkillVanilla,
 #endif
 };

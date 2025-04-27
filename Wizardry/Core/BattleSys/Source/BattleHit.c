@@ -637,6 +637,14 @@ bool BattleGenerateHit(struct BattleUnit * attacker, struct BattleUnit * defende
             }
 #endif
 
+#if (defined(SID_Emulate) && (COMMON_SKILL_VALID(SID_Emulate)))
+            if (SkillTester(GetUnit(gBattleActor.unit.index), SID_Emulate))
+            {
+                if (gBattleActor.unit.curHP > GetUnit(gBattleActor.unit.index)->maxHP)
+                    gBattleActor.unit.curHP = GetUnit(gBattleActor.unit.index)->maxHP;
+            }
+#endif
+
 #if (defined(SID_Galeforce) && (COMMON_SKILL_VALID(SID_Galeforce)))
             if (CheckBattleSkillActivate(&gBattleActor, &gBattleTarget, SID_Galeforce, gBattleActor.unit.skl))
                 gBattleActorGlobalFlag.skill_activated_galeforce = true;

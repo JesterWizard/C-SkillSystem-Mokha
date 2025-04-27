@@ -1749,7 +1749,6 @@ const struct SkillInfo gSkillInfos[MAX_SKILL_NUM + 1] = {
 
 #if (defined(SID_StunningSmile) && COMMON_SKILL_VALID(SID_StunningSmile))
     [SID_StunningSmile] = {
-
         .desc = MSG_SKILL_StunningSmile,
         .icon = GFX_SkillIcon_StunningSmile,
     },
@@ -5263,6 +5262,62 @@ const struct SkillInfo gSkillInfos[MAX_SKILL_NUM + 1] = {
     [SID_ShadowStep] = {
         .desc = MSG_SKILL_ShadowStep,
         .icon = GFX_SkillIcon_WIP,
+    },
+#endif
+
+#if (defined(SID_Zen) && COMMON_SKILL_VALID(SID_Zen))
+    [SID_Zen] = {
+        .desc = MSG_SKILL_Zen,
+        .icon = GFX_SkillIcon_WIP,
+    },
+#endif
+
+#if (defined(SID_HugePower) && COMMON_SKILL_VALID(SID_HugePower))
+    [SID_HugePower] = {
+        .desc = MSG_SKILL_HugePower,
+        .icon = GFX_SkillIcon_WIP,
+    },
+#endif
+
+#if (defined(SID_HugePowerPlus) && COMMON_SKILL_VALID(SID_HugePowerPlus))
+    [SID_HugePowerPlus] = {
+        .desc = MSG_SKILL_HugePowerPlus,
+        .icon = GFX_SkillIcon_WIP,
+    },
+#endif
+
+#if (defined(SID_TintedLens) && COMMON_SKILL_VALID(SID_TintedLens))
+    [SID_TintedLens] = {
+        .desc = MSG_SKILL_TintedLens,
+        .icon = GFX_SkillIcon_WIP,
+    },
+#endif
+
+#if (defined(SID_TintedLensPlus) && COMMON_SKILL_VALID(SID_TintedLensPlus))
+    [SID_TintedLensPlus] = {
+        .desc = MSG_SKILL_TintedLensPlus,
+        .icon = GFX_SkillIcon_WIP,
+    },
+#endif
+
+#if (defined(SID_TrickRoom) && COMMON_SKILL_VALID(SID_TrickRoom))
+    [SID_TrickRoom] = {
+         .desc = MSG_SKILL_TrickRoom,
+         .icon = GFX_SkillIcon_WIP,
+    },
+#endif
+
+#if (defined(SID_Emulate) && COMMON_SKILL_VALID(SID_Emulate))
+    [SID_Emulate] = {
+         .desc = MSG_SKILL_Emulate,
+         .icon = GFX_SkillIcon_WIP,
+    },
+#endif
+
+#if (defined(SID_ItemLore) && COMMON_SKILL_VALID(SID_ItemLore))
+    [SID_ItemLore] = {
+         .desc = MSG_SKILL_ItemLore,
+         .icon = GFX_SkillIcon_WIP,
     },
 #endif
 };
