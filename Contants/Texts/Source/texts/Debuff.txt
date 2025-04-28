@@ -77,3 +77,10 @@ Hide[X]
 Hide:[N]
 This unit is hidden[N]
 from enemy view.[X]
+
+## MSG_DEBUFF_SLOW_NAME
+Slow[X]
+
+## MSG_DEBUFF_SLOW_DESC
+Slow:[N]
+Movement is halved.[X]

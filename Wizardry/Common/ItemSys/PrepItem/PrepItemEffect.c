@@ -202,6 +202,10 @@ void ActionStaffDoorChestUseItem(ProcPtr proc) {
             break;
         case ITEM_JUNAFRUIT:
             ExecJunaFruitItem(proc);
+            break;
+        case CONFIG_ITEM_INDEX_SLOW_STAFF:
+            ExecCustomStaves(proc);
+            break;
     }
 
     if (itemId == ITEM_NIGHTMARE) {

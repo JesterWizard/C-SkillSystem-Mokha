@@ -114,5 +114,8 @@ int MovGetterSkills(int status, struct Unit * unit)
     }
 #endif
 
+    if (GetUnitStatusIndex(unit) == NEW_UNIT_STATUS_SLOW)
+        status /= 2;
+
     return status;
 }

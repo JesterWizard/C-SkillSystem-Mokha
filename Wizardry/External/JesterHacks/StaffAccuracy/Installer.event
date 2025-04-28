@@ -1,0 +1,3 @@
+ORG 0xE9F5C // Final calculation for staff accuracy
+BYTE CONFIG_CUSTOM_STAFF_ACCURACY
+BYTE 0x20  // mov r0, XX

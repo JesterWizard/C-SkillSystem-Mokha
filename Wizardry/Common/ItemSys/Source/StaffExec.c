@@ -3,6 +3,7 @@
 #include "skill-system.h"
 #include "constants/skills.h"
 #include "mapanim.h"
+#include "debuff.h"
 
 // LYN_REPLACE_CHECK(BeginBattleAnimations);
 // void BeginBattleAnimations(void) {
@@ -64,5 +65,32 @@ void ExecMine(ProcPtr proc) {
 
     gBattleTarget.statusOut = -1;
 
+    return;
+}
+
+void ExecCustomStaves(ProcPtr proc) {
+    // struct Unit * unit_act = GetUnit(gActionData.subjectIndex);
+    // struct Unit * unit_tar = GetUnit(gActionData.targetIndex);
+
+    // BattleInitItemEffect(unit_act, gActionData.itemSlotIndex);
+
+    // BattleInitItemEffectTarget(unit_tar);
+
+    // BattleApplyItemEffect(proc);
+
+    // int itemId = GetItemIndex(unit_act->items[0]);
+
+    // switch (itemId)
+    // {   
+    // case CONFIG_ITEM_INDEX_SLOW_STAFF:
+    //     SetUnitStatus(unit_tar, NEW_UNIT_STATUS_SLOW);
+    //     break;
+
+    // default:
+    //     break;
+    // }
+
+    // BeginBattleAnimations();
+    
     return;
 }

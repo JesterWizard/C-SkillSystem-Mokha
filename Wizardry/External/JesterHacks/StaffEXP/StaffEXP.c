@@ -33,6 +33,7 @@ u8 StaffEXP(int weapon)
     case ITEM_STAFF_SILENCE:
     case ITEM_STAFF_PHYSIC:
     case CONFIG_ITEM_INDEX_RUNE_STAFF:
+    case CONFIG_ITEM_INDEX_SLOW_STAFF:
         exp = 30;
         break;
     case ITEM_STAFF_RESCUE:

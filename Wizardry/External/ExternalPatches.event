@@ -135,3 +135,7 @@
 #ifdef CONFIG_CUSTOM_ITEMS
     #include "JesterHacks/CustomItems/Installer.event"
 #endif
+
+#ifdef CONFIG_CUSTOM_STAFF_ACCURACY
+    #include "JesterHacks/StaffAccuracy/Installer.event"
+#endif

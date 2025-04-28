@@ -117,3 +117,14 @@ an open tile.[X]
 ## MSG_ITEM_MINE_STAFF_USEDESC
 Place a Mine on[N]
 an open tile.[X]
+
+## MSG_ITEM_SLOW_STAFF_NAME
+Slow[X]
+
+## MSG_ITEM_SLOW_STAFF_DESC
+Half the target's[N]
+movement.[X]
+
+## MSG_ITEM_SLOW_STAFF_USEDESC
+Half the target's[N]
+movement.[X]

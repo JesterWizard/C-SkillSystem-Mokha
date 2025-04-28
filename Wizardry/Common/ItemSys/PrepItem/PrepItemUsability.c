@@ -58,6 +58,7 @@ s8 CanUnitUseItem(struct Unit* unit, int item)
     case ITEM_STAFF_SILENCE:
         return HasSelectTarget(unit, MakeTargetListForSilence);
 
+    case CONFIG_ITEM_INDEX_SLOW_STAFF:
     case ITEM_STAFF_SLEEP:
         return HasSelectTarget(unit, MakeTargetListForSleep);
 
@@ -235,6 +236,7 @@ void DoItemUse(struct Unit* unit, int item)
         DoUseAttackStaff(unit, MakeTargetListForSilence);
         break;
 
+    case CONFIG_ITEM_INDEX_SLOW_STAFF:
     case ITEM_STAFF_SLEEP:
         DoUseAttackStaff(unit, MakeTargetListForSleep);
         break;
