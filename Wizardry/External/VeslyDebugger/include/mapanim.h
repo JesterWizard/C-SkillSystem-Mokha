@@ -376,6 +376,7 @@ extern CONST_DATA struct ProcCmd ProcScr_SpellAssocWarp[];
 
 /* Jester - Custom */
 extern CONST_DATA struct ProcCmd ProcScr_LightRuneAnim[];
+extern CONST_DATA struct ProcCmd ProcScr_MineFx[];
 
 // extern ??? gUnknown_089A52FC
 extern u16 SpriteAnim_ManimStatGain[];

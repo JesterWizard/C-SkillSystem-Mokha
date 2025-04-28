@@ -10,3 +10,4 @@
 #include "IronStaff/Installer.event"    // DEF boost
 
 #include "RuneStaff/Installer.event"
+#include "MineStaff/Installer.event"

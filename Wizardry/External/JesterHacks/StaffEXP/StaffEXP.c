@@ -19,6 +19,7 @@ u8 StaffEXP(int weapon)
     case ITEM_STAFF_BARRIER:
         exp = 17;
         break;
+    case CONFIG_ITEM_INDEX_MINE_STAFF:
     case ITEM_STAFF_MEND:
         exp = 20;
         break;

@@ -106,3 +106,14 @@ on an open tile.[X]
 ## MSG_ITEM_RUNE_STAFF_USEDESC
 Place a Light Rune[N]
 on an open tile.[X]
+
+## MSG_ITEM_MINE_STAFF_NAME
+Mine[X]
+
+## MSG_ITEM_MINE_STAFF_DESC
+Place a Mine on[N]
+an open tile.[X]
+
+## MSG_ITEM_MINE_STAFF_USEDESC
+Place a Mine on[N]
+an open tile.[X]

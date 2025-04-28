@@ -11,5 +11,5 @@ void SetGameOptions()
     unit->curHP = 26;
 
     unit->ranks[ITYPE_STAFF] = WPN_EXP_C;
-    unit->items[0] = MakeNewItem(CONFIG_ITEM_INDEX_RUNE_STAFF);
+    unit->items[0] = MakeNewItem(CONFIG_ITEM_INDEX_MINE_STAFF);
 }

@@ -183,6 +183,7 @@ void ActionStaffDoorChestUseItem(ProcPtr proc) {
         case ITEM_STAFF_LATONA:
             ExecLatona(proc);
             break;
+        case CONFIG_ITEM_INDEX_MINE_STAFF:
         case ITEM_MINE:
             ExecMine(proc);
             break;

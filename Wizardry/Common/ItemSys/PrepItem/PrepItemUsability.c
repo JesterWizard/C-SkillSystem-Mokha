@@ -124,6 +124,7 @@ s8 CanUnitUseItem(struct Unit* unit, int item)
     case ITEM_STAFF_LATONA:
         return HasSelectTarget(unit, MakeTargetListForLatona);
 
+    case CONFIG_ITEM_INDEX_MINE_STAFF:
     case ITEM_MINE:
         return HasSelectTarget(unit, MakeTargetListForMine);
 
@@ -269,6 +270,7 @@ void DoItemUse(struct Unit* unit, int item)
         SetStaffUseAction(unit);
         break;
 
+    case CONFIG_ITEM_INDEX_MINE_STAFF:
     case ITEM_MINE:
         DoUsePutTrap(unit, MakeTargetListForMine, 0x87D); // TODO: msgid "Select an area to trap."
         break;
