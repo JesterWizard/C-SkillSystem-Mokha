@@ -42,10 +42,7 @@ int PowGetterSkills(int status, struct Unit * unit)
     int max_hp = GetUnitMaxHp(unit);
 
     FORCE_DECLARE bool hugePowerPlus = false;
-
-#if defined(CONFIG_RESET_BWL_STATS_EACH_CHAPTER)
-    struct NewBwl * bwl = GetNewBwl(UNIT_CHAR_ID(unit));
-#endif
+    FORCE_DECLARE struct NewBwl * bwl = GetNewBwl(UNIT_CHAR_ID(unit));
 
 #if defined(SID_LifeAndDeath) && (COMMON_SKILL_VALID(SID_LifeAndDeath))
     if (SkillTester(unit, SID_LifeAndDeath))
@@ -218,6 +215,14 @@ int PowPsychUpCheck(int status, struct Unit * unit)
         return status + stolen_status;
     }
 #endif
+
+    return status;
+}
+
+int PowGetterStaffBoost(int status, struct Unit *unit)
+{
+    if (unit->boostType == 0)
+	    return status + unit->barrierDuration;
 
     return status;
 }

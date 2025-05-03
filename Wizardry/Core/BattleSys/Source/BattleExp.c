@@ -6,6 +6,9 @@
 #include "strmag.h"
 #include "combat-art.h"
 #include "constants/combat-arts.h"
+#ifdef CONFIG_MODULAR_STAFF_EXP
+    #include "../../../External/JesterHacks/StaffEXP/StaffEXP.h"
+#endif
 
 LYN_REPLACE_CHECK(GetUnitExpLevel);
 int GetUnitExpLevel(struct Unit *unit)
@@ -171,7 +174,11 @@ int GetBattleUnitStaffExp(struct BattleUnit *bu)
     if (gBattleHitArrayRe->attributes & BATTLE_HIT_ATTR_MISS)
         return 1;
 
+#ifdef CONFIG_MODULAR_STAFF_EXP
+    result = StaffEXP(GetItemIndex(bu->weapon));
+#else
     result = 10 + GetItemCostPerUse(bu->weapon) / 20;
+#endif
 
     if (UNIT_CATTRIBUTES(&bu->unit) & CA_PROMOTED)
         result = result / 2;

@@ -1,3 +1,7 @@
+
+## MSG_Weapon_Rank_Increased
+Weapon rank increased.[X]
+
 ## MSG_ITEM_SKILLSTEALER_NAME
 Skill Stealer[X]
 
@@ -5,19 +9,122 @@ Skill Stealer[X]
 Steal a skill from a defeated boss[X]
 
 ## MSG_ITEM_SKILLSTEALER_USEDESC
-Steal a skill from a defeated boss.[X]
+Steal a skill from[N]
+a defeated boss.[X]
 
 ## MSG_ITEM_ArmsScroll_NAME
 Arms Scroll[X]
 
 ## MSG_ITEM_ArmsScroll_DESC
-Increase highest weapon rank by[NL]
+Increase highest weapon rank by[N]
 1 stage[X]
 
 ## MSG_ITEM_ArmsScroll_USEDESC
-Increase highest[NL]
-weapon rank by[NL]
+Increase highest[N]
+weapon rank by[N]
 1 stage[X]
 
-## MSG_Weapon_Rank_Increased
-Weapon rank increased.[X]
+## MSG_ITEM_FORCE_STAFF_NAME
+Force[X]
+
+## MSG_ITEM_FORCE_STAFF_DESC
+Increase ATK by 7 for as many[N]
+turns. Reduces by 1 per turn.[X]
+
+## MSG_ITEM_FORCE_STAFF_USEDESC
+Increase ATK by 7[N]
+for as many turns.[N]
+Reduces by 1 per turn.[X]
+
+## MSG_ITEM_TEMPEST_STAFF_NAME
+Tempest[X]
+
+## MSG_ITEM_TEMPEST_STAFF_DESC
+Increase MAG by 7 for as many[N]
+turns. Reduces by 1 per turn.[X]
+
+## MSG_ITEM_TEMPEST_STAFF_USEDESC
+Increase MAG by 7[N]
+for as many turns.[N]
+Reduces by 1 per turn.[X]
+
+## MSG_ITEM_ACUITY_STAFF_NAME
+Acuity[X]
+
+## MSG_ITEM_ACUITY_STAFF_DESC
+Increase SKL by 7 for as many[N]
+turns. Reduces by 1 per turn.[X]
+
+## MSG_ITEM_ACUITY_STAFF_USEDESC
+Increase SKL by 7[N]
+for as many turns.[N]
+Reduces by 1 per turn.[X]
+
+## MSG_ITEM_SPRINT_STAFF_NAME
+Sprint[X]
+
+## MSG_ITEM_SPRINT_STAFF_DESC
+Increase SPD by 7 for as many[N]
+turns. Reduces by 1 per turn.[X]
+
+## MSG_ITEM_SPRINT_STAFF_USEDESC
+Increase SPD by 7[N]
+for as many turns.[N]
+Reduces by 1 per turn.[X]
+
+## MSG_ITEM_FORTUNE_STAFF_NAME
+Fortune[X]
+
+## MSG_ITEM_FORTUNE_STAFF_DESC
+Increase LCK by 7 for as many[N]
+turns. Reduces by 1 per turn.[X]
+
+## MSG_ITEM_FORTUNE_STAFF_USEDESC
+Increase LCK by 7[N]
+for as many turns.[N]
+Reduces by 1 per turn.[X]
+
+## MSG_ITEM_IRON_STAFF_NAME
+Iron[X]
+
+## MSG_ITEM_IRON_STAFF_DESC
+Increase DEF by 7 for as many[N]
+turns. Reduces by 1 per turn.[X]
+
+## MSG_ITEM_IRON_STAFF_USEDESC
+Increase DEF by 7[N]
+for as many turns.[N]
+Reduces by 1 per turn.[X]
+
+## MSG_ITEM_RUNE_STAFF_NAME
+Rune[X]
+
+## MSG_ITEM_RUNE_STAFF_DESC
+Place a Light Rune[N]
+on an open tile.[X]
+
+## MSG_ITEM_RUNE_STAFF_USEDESC
+Place a Light Rune[N]
+on an open tile.[X]
+
+## MSG_ITEM_MINE_STAFF_NAME
+Mine[X]
+
+## MSG_ITEM_MINE_STAFF_DESC
+Place a Mine on[N]
+an open tile.[X]
+
+## MSG_ITEM_MINE_STAFF_USEDESC
+Place a Mine on[N]
+an open tile.[X]
+
+## MSG_ITEM_SLOW_STAFF_NAME
+Slow[X]
+
+## MSG_ITEM_SLOW_STAFF_DESC
+Half the target's[N]
+movement.[X]
+
+## MSG_ITEM_SLOW_STAFF_USEDESC
+Half the target's[N]
+movement.[X]

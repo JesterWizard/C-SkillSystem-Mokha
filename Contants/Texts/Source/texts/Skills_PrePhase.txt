@@ -1,108 +1,139 @@
-## MSG_SKILL_Renewal
-Renewal:[NL]
-Restore 30% of max HP[NL]
+## MSG_SKILL_Renewal_NAME
+Renewal[X]
+## MSG_SKILL_Renewal_DESC
+Renewal:[N]
+Restore 30% of max HP[N]
 at the start of each turn.[X]
 
-## MSG_SKILL_RenewalPlus
-Renewal+:[NL]
-Restore 100% of max HP[NL]
+## MSG_SKILL_RenewalPlus_NAME
+Renewal+[X]
+## MSG_SKILL_RenewalPlus_DESC
+Renewal+:[N]
+Restore 100% of max HP[N]
 at the start of each turn.[X]
 
-## MSG_SKILL_Imbue
-Imbue:[NL]
-Recover HP equal to MAG[NL]
+## MSG_SKILL_Imbue_NAME
+Imbue[X]
+## MSG_SKILL_Imbue_DESC
+Imbue:[N]
+Recover HP equal to MAG[N]
 at the start of each turn.[X]
 
-## MSG_SKILL_Forager
-Forager:[NL]
-Recover 20% HP each turn if[NL]
+## MSG_SKILL_Forager_NAME
+Forager[X]
+## MSG_SKILL_Forager_DESC
+Forager:[N]
+Recover 20% HP each turn if[N]
 on a Plain, Forest or Mountain.[X]
 
-## MSG_SKILL_Airlock
-Airlock:[NL]
-Set weather to clear at[NL]
+## MSG_SKILL_Airlock_NAME
+Airlock[X]
+## MSG_SKILL_Airlock_DESC
+Airlock:[N]
+Set weather to clear at[N]
 the start of the turn.[X]
 
-## MSG_SKILL_Drizzle
-Drizzle:[NL]
-Set weather to rain at[NL]
+## MSG_SKILL_Drizzle_NAME
+Drizzle[X]
+## MSG_SKILL_Drizzle_DESC
+Drizzle:[N]
+Set weather to rain at[N]
 the start of the turn.[X]
 
-## MSG_SKILL_Drought
-Drought:[NL]
-Set weather to sunny at[NL]
+## MSG_SKILL_Drought_NAME
+Drought[X]
+## MSG_SKILL_Drought_DESC
+Drought:[N]
+Set weather to sunny at[N]
 the start of the turn.[X]
 
-## MSG_SKILL_SnowWarning
-SnowWarning:[NL]
-Set weather to snowing at[NL]
+## MSG_SKILL_SnowWarning_NAME
+Snow Warning[X]
+## MSG_SKILL_SnowWarning_DESC
+Snow Warning:[N]
+Set weather to snowing at[N]
 the start of the turn.[X]
 
-## MSG_SKILL_SandStream
-SandStream:[NL]
-Set weather to a sandstorm[NL]
+## MSG_SKILL_SandStream_NAME
+Sand Stream[X]
+## MSG_SKILL_SandStream_DESC
+Sand Stream:[N]
+Set weather to a sandstorm[N]
 at the start of the turn.[X]
 
 ## MSG_SKILL_YuneWhispers_NAME
 Yune Whispers[X]
-
-## MSG_SKILL_YuneWhispers
-Yune Whispers: At start[NL]
-of turn, put ATK/SPD -6 to enemy[NL]
+## MSG_SKILL_YuneWhispers_DESC
+Yune Whispers: At start[N]
+of turn, put ATK/SPD -6 to enemy[N]
 who's RES is 3 less than unit's[X]
 
-## MSG_SKILL_RainDish
-RainDish:[NL]
-If it is raining, then restore 30%[NL]
+## MSG_SKILL_RainDish_NAME
+Rain Dish[X]
+## MSG_SKILL_RainDish_DESC
+Rain Dish:[N]
+If it is raining, then restore 30%[N]
 of max HP at the start of each turn.[X]
 
-## MSG_SKILL_Boon
-Boon:[NL]
-Heal bad status effects at the[NL]
+## MSG_SKILL_Boon_NAME
+Boon[X]
+## MSG_SKILL_Boon_DESC
+Boon:[N]
+Heal bad status effects at the[N]
 beginning of the turn.[X]
 
-## MSG_SKILL_Relief
-Relief:[NL]
-Restore 20% of max HP at the start of[NL]
+## MSG_SKILL_Relief_NAME
+Relief[X]
+## MSG_SKILL_Relief_DESC
+Relief:[N]
+Restore 20% of max HP at the start of[N]
 turn, if there are no allies within 2 tiles.[X]
 
-## MSG_SKILL_Camaraderie
-Camaraderie:[NL]
-Restore 10% of max HP at the start of[NL]
+## MSG_SKILL_Camaraderie_NAME
+Camaraderie[X]
+## MSG_SKILL_Camaraderie_DESC
+Camaraderie:[N]
+Restore 10% of max HP at the start of[N]
 turn, if there are allies within 2 tiles.[X]
 
-## MSG_SKILL_Amaterasu
-Amaterasu:[NL]
-Allies within 2 tiles 
+## MSG_SKILL_Amaterasu_NAME
+Amaterasu[X]
+## MSG_SKILL_Amaterasu_DESC
+Amaterasu:[N]
+Allies within 2 tiles[N]
 recover 20% HP each turn.[X]
 
 ## MSG_SKILL_IndoorMarch_NAME
 Indoor-M[X]
-
-## MSG_SKILL_IndoorMarch
-Indoor March:[NL]
-+2 MOV at the start of the turn,[NL]
+## MSG_SKILL_IndoorMarch_DESC
+Indoor March:[N]
++2 MOV at the start of the turn,[N]
 if the unit is on indoor terrain.[X]
 
 ## MSG_SKILL_NatureRush_NAME
-Nature-R[X]
-
-## MSG_SKILL_NatureRush
-Nature Rush:[NL]
-+2 MOV at the start of the turn,[NL]
+Nature Rush[X]
+## MSG_SKILL_NatureRush_DESC
+Nature Rush:[N]
++2 MOV at the start of the turn,[N]
 if the unit is on outdoor terrain.[X]
 
-## MSG_SKILL_GoodyBasket
-Goody Basket:[NL]
-Restore a LCK % amount of[NL]
+## MSG_SKILL_GoodyBasket_NAME
+Goody Basket[X]
+## MSG_SKILL_GoodyBasket_DESC
+Goody Basket:[N]
+Restore a LCK % amount of[N]
 max HP each turn.[X]
 
-## MSG_SKILL_BlacksmithPlus
+## MSG_SKILL_BlacksmithPlus_NAME
+Blacksmith+[X]
+## MSG_SKILL_BlacksmithPlus_DESC
 Blacksmith+:[N]
 Restore 1 weapon use per turn[N]
 to the unit's equipped weapon.[X]
 
-## MSG_SKILL_Lifefont
+## MSG_SKILL_Lifefont_NAME
+Lifefont[X]
+## MSG_SKILL_Lifefont_DESC
 Lifefont: When standing on terrain that[N]
 heals you while at max HP, temporarily[N]
 boost HP by that amount.[X]

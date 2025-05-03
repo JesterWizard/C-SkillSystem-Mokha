@@ -5,19 +5,17 @@
 #include "constants/skills.h"
 #include "mu.h"
 
-#if defined(SID_GorillaTactics) && (COMMON_SKILL_VALID(SID_GorillaTactics))
-
-static inline bool IsPosInvalid(s8 x, s8 y)
+FORCE_DECLARE static inline bool IsPosInvalid(s8 x, s8 y)
 {
     return ((x < 0) & (x > gBmMapSize.x) & (y < 0) & (y > gBmMapSize.y));
 }
 
-static void callback_anim(ProcPtr proc)
+FORCE_DECLARE static void callback_anim(ProcPtr proc)
 {
 
 }
 
-static void callback_exec(ProcPtr proc)
+FORCE_DECLARE static void callback_exec(ProcPtr proc)
 {
     gActiveUnit->state |= US_HAS_MOVED | US_CANTOING;
 
@@ -28,6 +26,7 @@ static void callback_exec(ProcPtr proc)
 
 bool PostActionGorillaTactics(ProcPtr parent)
 {
+#if defined(SID_GorillaTactics) && (COMMON_SKILL_VALID(SID_GorillaTactics))
     if (gActionData.unitActionType != UNIT_ACTION_COMBAT)
         return false;
 
@@ -49,6 +48,6 @@ bool PostActionGorillaTactics(ProcPtr parent)
     NewMuSkillAnimOnActiveUnit(gActionData.unk08, callback_anim, callback_exec);
 
     return true;
-}
-
 #endif
+    return false;
+}

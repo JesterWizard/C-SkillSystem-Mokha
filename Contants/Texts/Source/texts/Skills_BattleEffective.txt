@@ -1,31 +1,43 @@
-## MSG_SKILL_Nullify
-Nullify: Unit is protected[NL]
+## MSG_SKILL_Nullify_NAME
+Nullify[X]
+
+## MSG_SKILL_Nullify_DESC
+Nullify: Unit is protected[N]
 from all effective attacks.[X]
 
-## MSG_SKILL_Slayer
-Slayer: Deal effective damage[NL]
+## MSG_SKILL_Slayer_NAME
+Slayer[X]
+
+## MSG_SKILL_Slayer_DESC
+Slayer: Deal effective damage[N]
 to monster units.[X]
 
 ## MSG_SKILL_Skybreaker_NAME
-Sky-K[X]
+Sky Breaker[X]
 
-## MSG_SKILL_Skybreaker
-Sky breaker: Deal effective[NL]
+## MSG_SKILL_Skybreaker_DESC
+Sky Breaker: Deal effective[N]
 damage to flying units.[X]
 
 ## MSG_SKILL_Resourceful_NAME
 Resourceful[X]
 
-## MSG_SKILL_Resourceful
-Resourceful: Double bonus[NL]
+## MSG_SKILL_Resourceful_DESC
+Resourceful: Double bonus[N]
 effectiveness multipliers.[X]
 
-## MSG_SKILL_SolidRock
-Solid Rock:[NL]
-Halves effective damage[NL]
+## MSG_SKILL_SolidRock_NAME
+Solid Rock[X]
+
+## MSG_SKILL_SolidRock_DESC
+Solid Rock:[N]
+Halves effective damage[N]
 against this unit.[X]
 
-## MSG_SKILL_BanditBane
+## MSG_SKILL_BanditBane_NAME
+Bandit Bane[X]
+
+## MSG_SKILL_BanditBane_DESC
 Bandit Bane:[N]
 Deals effective damage to[N]
 bandits, pirates and berserkers.[X]

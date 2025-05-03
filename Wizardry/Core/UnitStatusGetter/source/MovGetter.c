@@ -25,9 +25,7 @@ int MovGetterSkills(int status, struct Unit * unit)
     int cur_hp = GetUnitCurrentHp(unit);
     int max_hp = GetUnitMaxHp(unit);
 
-#if defined(CONFIG_RESET_BWL_STATS_EACH_CHAPTER)
-    struct NewBwl * bwl = GetNewBwl(UNIT_CHAR_ID(unit));
-#endif
+    FORCE_DECLARE struct NewBwl * bwl = GetNewBwl(UNIT_CHAR_ID(unit));
 
 #if defined(SID_MovBonus) && (COMMON_SKILL_VALID(SID_MovBonus))
     if (SkillTester(unit, SID_MovBonus))
@@ -113,6 +111,9 @@ int MovGetterSkills(int status, struct Unit * unit)
             status += takerBoost;
     }
 #endif
+
+    if (GetUnitStatusIndex(unit) == NEW_UNIT_STATUS_SLOW)
+        status /= 2;
 
     return status;
 }

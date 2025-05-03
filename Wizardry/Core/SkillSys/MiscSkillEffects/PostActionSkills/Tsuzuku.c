@@ -11,6 +11,55 @@
 
 extern u8 gPostActionGaleforceFlag;
 
+FORCE_DECLARE static void refresh_turn_once(struct Unit * unit, ProcPtr parent)
+{
+    if (!UNIT_ALIVE(unit) || UNIT_STONED(unit))
+        return;
+
+    SetBitUES(unit, UES_BIT_TSZUKU_SKILL_USED);
+    gActionDataExpa.refrain_action = true;
+    EndAllMus();
+    StartStatusHealEffect(unit, parent);
+    return;
+}
+
+FORCE_DECLARE static void refresh_turn_repeatedly(struct Unit * unit, ProcPtr parent)
+{
+    if (!UNIT_ALIVE(unit) || UNIT_STONED(unit))
+        return;
+
+    gActionDataExpa.refrain_action = true;
+    EndAllMus();
+    StartStatusHealEffect(unit, parent);
+}
+
+FORCE_DECLARE static void refresh_turn_repeatedly_no_animation(struct Unit * unit, ProcPtr parent)
+{
+    if (!UNIT_ALIVE(unit) || UNIT_STONED(unit))
+        return;
+
+    gActionDataExpa.refrain_action = true;
+}
+
+FORCE_DECLARE static void refresh_turn_once_aura(struct Unit * unit, ProcPtr parent)
+{
+    for (int i = 0; i < ARRAY_COUNT_RANGE1x1; i++)
+    {
+        int _x = unit->xPos + gVecs_1x1[i].x;
+        int _y = unit->yPos + gVecs_1x1[i].y;
+
+        struct Unit *unit_ally = GetUnitAtPosition(_x, _y);
+
+        if (!UNIT_IS_VALID(unit_ally) || UNIT_STONED(unit_ally) || !AreUnitsAllied(unit->index, unit_ally->index))
+            continue;
+
+        SetBitUES(unit_ally, UES_BIT_TSZUKU_SKILL_USED);
+        unit_ally->state &= ~(US_UNSELECTABLE | US_HAS_MOVED | US_HAS_MOVED_AI);
+    }
+    SetBitUES(unit, UES_BIT_TSZUKU_SKILL_USED);
+}
+
+
 bool PostActionTsuzuku(ProcPtr parent)
 {
     FORCE_DECLARE struct Unit * unit = gActiveUnit;
@@ -39,14 +88,14 @@ bool PostActionTsuzuku(ProcPtr parent)
         }
 
     if (nice_thighs)
-        goto refresh_turn_once;
+        refresh_turn_once(unit, parent);
 #endif
 
 #if defined(SID_AdrenalineRush) && (COMMON_SKILL_VALID(SID_AdrenalineRush))
             if (SkillTester(unit, SID_AdrenalineRush))
             {
                 if (unit->curHP <= unit->maxHP / 4)
-                    goto refresh_turn_once;
+                    refresh_turn_once(unit, parent);
             }
 #endif
 
@@ -59,7 +108,7 @@ bool PostActionTsuzuku(ProcPtr parent)
                     {
                         /* A bit of a hack to prevent this skill from triggering on other commands afterwards */
                         gBattleActorGlobalFlag.skill_activated_dance = false;
-                        goto refresh_turn_repeatedly;
+                        refresh_turn_repeatedly(unit, parent);
                     }
                 }
             }
@@ -69,7 +118,7 @@ bool PostActionTsuzuku(ProcPtr parent)
             if (SkillTester(unit, SID_Switcher))
             {
                  if (gActionData.unk08 == SID_Switcher)
-                    refresh_turn_repeatedly_no_animation();
+                    refresh_turn_repeatedly_no_animation(unit, parent);
             }
 #endif
 
@@ -78,21 +127,21 @@ bool PostActionTsuzuku(ProcPtr parent)
     case UNIT_ACTION_COMBAT:
 #if defined(SID_Galeforce) && (COMMON_SKILL_VALID(SID_Galeforce))
         if (SkillTester(unit, SID_Galeforce) && gBattleActorGlobalFlag.skill_activated_galeforce)
-            goto refresh_turn_once;
+            refresh_turn_once(unit, parent);
 #endif
 
 #if defined(SID_FailGale) && (COMMON_SKILL_VALID(SID_FailGale))
         if (SkillTester(unit, SID_FailGale) && !gBattleActor.nonZeroDamage)
-            goto refresh_turn_once;
+            refresh_turn_once(unit, parent);
 #endif
 
 #if defined(SID_LeadByExample) && (COMMON_SKILL_VALID(SID_LeadByExample))
         if (SkillTester(unit, SID_LeadByExample) && gBattleActorGlobalFlag.skill_activated_lead_by_example)
-            goto refresh_turn_once_aura;
+            refresh_turn_once_aura(unit, parent);
 #endif
 
         if ((GetCombatArtInForce(unit) == CID_Galeforce) && gBattleActorGlobalFlag.enemy_defeated)
-            goto refresh_turn_once;
+            refresh_turn_once(unit, parent);
             
         [[fallthrough]];
 
@@ -101,21 +150,21 @@ bool PostActionTsuzuku(ProcPtr parent)
     case UNIT_ACTION_STAFF:
 #if defined(SID_PowerStaff) && (COMMON_SKILL_VALID(SID_PowerStaff))
         if (SkillTester(unit, SID_PowerStaff) && Roll1RN(LckGetter(unit)))
-            goto refresh_turn_once;
+            refresh_turn_once(unit, parent);
 #endif
         [[fallthrough]];
 
     case UNIT_ACTION_USE_ITEM:
 #if defined(SID_QuickHands) && (COMMON_SKILL_VALID(SID_QuickHands))
         if (SkillTester(unit, SID_QuickHands))
-            goto refresh_turn_repeatedly;
+            refresh_turn_repeatedly(unit, parent);
 #endif
         [[fallthrough]];
 
     case UNIT_ACTION_RESCUE:
 #if defined(SID_Heroics) && (COMMON_SKILL_VALID(SID_Heroics))
     if (SkillTester(unit, SID_Heroics))
-        goto refresh_turn_repeatedly;
+        refresh_turn_repeatedly(unit, parent);
 #endif
         [[fallthrough]];   
 
@@ -124,7 +173,7 @@ bool PostActionTsuzuku(ProcPtr parent)
     default:
 #if defined(SID_Tsuzuku) && (COMMON_SKILL_VALID(SID_Tsuzuku))
         if (SkillTester(unit, SID_Tsuzuku) && Roll1RN(SklGetter(unit)))
-            goto refresh_turn_once;
+            refresh_turn_once(unit, parent);
 #endif
         break;
 
@@ -134,59 +183,4 @@ bool PostActionTsuzuku(ProcPtr parent)
 
     return false;
 
-refresh_turn_once:
-    if (!UNIT_ALIVE(unit) || UNIT_STONED(unit))
-        return false;
-
-    SetBitUES(unit, UES_BIT_TSZUKU_SKILL_USED);
-    gActionDataExpa.refrain_action = true;
-    EndAllMus();
-    StartStatusHealEffect(unit, parent);
-    return true;
-
-/**
- *  This is a stopgap measure to ensure the branch isn't unused when all skills are disabled.
- *  If more skills are added, this will need to be replaced.
- */
-
-refresh_turn_repeatedly:
-    if (!UNIT_ALIVE(unit) || UNIT_STONED(unit))
-        return false;
-
-    gActionDataExpa.refrain_action = true;
-    EndAllMus();
-    StartStatusHealEffect(unit, parent);
-    return true;
-
-FORCE_DECLARE bool refresh_turn_repeatedly_no_animation(void)
-{
-    if (!UNIT_ALIVE(unit) || UNIT_STONED(unit))
-        return false;
-
-    gActionDataExpa.refrain_action = true;
-    return true;
-}
-
-/**
- *  This is a stopgap measure to ensure the branch isn't unused when all skills are disabled.
- *  If more skills are added, this will need to be replaced.
- */
-#if defined(SID_LeadByExample) && (COMMON_SKILL_VALID(SID_LeadByExample))
-refresh_turn_once_aura:
-    for (int i = 0; i < ARRAY_COUNT_RANGE1x1; i++)
-    {
-        int _x = unit->xPos + gVecs_1x1[i].x;
-        int _y = unit->yPos + gVecs_1x1[i].y;
-
-        struct Unit *unit_ally = GetUnitAtPosition(_x, _y);
-
-        if (!UNIT_IS_VALID(unit_ally) || UNIT_STONED(unit_ally) || !AreUnitsAllied(unit->index, unit_ally->index))
-            continue;
-
-        SetBitUES(unit_ally, UES_BIT_TSZUKU_SKILL_USED);
-        unit_ally->state &= ~(US_UNSELECTABLE | US_HAS_MOVED | US_HAS_MOVED_AI);
-    }
-    SetBitUES(unit, UES_BIT_TSZUKU_SKILL_USED);
-    return true;
-#endif
 }

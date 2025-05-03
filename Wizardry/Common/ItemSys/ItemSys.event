@@ -5,6 +5,7 @@
 #include "Source/StaffAccuracy.lyn.event"
 #include "Source/StaffHeal.lyn.event"
 #include "Source/StaffBuff.lyn.event"
+#include "Source/StaffExec.lyn.event"
 
 #include "ItemInfoRemap/ItemInfoRemap.event"
 
@@ -19,6 +20,8 @@ gHealAmountGetters:
 #include "PrepItem/PrepItemUsability.lyn.event"
 #include "PrepItem/PrepItemEffect.lyn.event"
 #include "PrepItem/PrepItemUseScreen.lyn.event"
+#include "PrepItem/PrepItemEffect.lyn.event"
+#include "PrepItem/BoostStaves.lyn.event"
 
 PUSH
 ORG $A190D4

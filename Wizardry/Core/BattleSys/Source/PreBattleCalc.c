@@ -330,7 +330,7 @@ void PreBattleCalcSkills(struct BattleUnit *attacker, struct BattleUnit *defende
     FORCE_DECLARE int tmp, i;
     int _skill_list_cnt;
     struct SkillList *list;
-    struct NewBwl * bwl = GetNewBwl(UNIT_CHAR_ID(GetUnit(attacker->unit.index)));
+    FORCE_DECLARE struct NewBwl * bwl = GetNewBwl(UNIT_CHAR_ID(GetUnit(attacker->unit.index)));
     FORCE_DECLARE bool wrathPlusActivated;
 
     /**

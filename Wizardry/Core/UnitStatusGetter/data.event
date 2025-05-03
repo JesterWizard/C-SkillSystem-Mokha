@@ -8,18 +8,21 @@ gHpGetters:
 
 gPowGetters:
     POIN PowGetterWeaponBonus PowGetterSkills PowPsychUpCheck PowGetterDebuff
+    POIN PowGetterStaffBoost
     POIN PowGetterStatDebuff
     POIN StatusGetterCheckCpas
     MSG_END
 
 gMagGetters:
     POIN MagGetterSkills MagPsychUpCheck MagGetterDebuff
+    POIN MagGetterStaffBoost
     POIN MagGetterStatDebuff
     POIN StatusGetterCheckCpas
     MSG_END
 
 gSklGetters:
     POIN SklGetterWeaponBonus SklGetterSkills SklPsychUpCheck SklGetterDebuff
+    POIN SklGetterStaffBoost
     POIN SklGetterStatDebuff
     POIN StatusGetterCheckCpas
     MSG_END
@@ -27,12 +30,14 @@ gSklGetters:
 gSpdGetters:
     POIN SpdGetterWeaponBonus SpdGetterSkills SpdPsychUpCheck SpdGetterDebuff
     // POIN SpdGetterLegendSkills
+    POIN SpdGetterStaffBoost
     POIN SpdGetterStatDebuff
     POIN StatusGetterCheckCpas
     MSG_END
 
 gLckGetters:
     POIN LckGetterWeaponBonus LckGetterSkills LckPsychUpCheck LckGetterDebuff
+    POIN LckGetterStaffBoost
     POIN LckGetterStatDebuff
     POIN StatusGetterCheckCpas
     MSG_END
@@ -40,6 +45,7 @@ gLckGetters:
 gDefGetters:
     POIN DefGetterWeaponBonus DefGetterSkills DefPsychUpCheck DefGetterDebuff
     // POIN DefGetterLegendSkills
+    POIN DefGetterStaffBoost
     POIN DefGetterStatDebuff
     POIN StatusGetterCheckCpas
     MSG_END
@@ -47,7 +53,7 @@ gDefGetters:
 gResGetters:
     POIN ResGetterWeaponBonus ResGetterSkills ResPsychUpCheck ResGetterDebuff
     // POIN ResGetterLegendSkills
-    POIN ResGetterPureWater
+    POIN ResGetterStaffBoost
     POIN ResGetterStatDebuff
     POIN StatusGetterCheckCpas
     MSG_END

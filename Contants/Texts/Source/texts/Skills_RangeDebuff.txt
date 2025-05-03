@@ -1,180 +1,258 @@
-## MSG_SKILL_Anathema
-Anathema:[NL]
--10 Avoid/Dodge to all[NL]
+## MSG_SKILL_Anathema_NAME
+Anathema[X]
+## MSG_SKILL_Anathema_DESC
+Anathema:[N]
+-10 Avoid/Dodge to all[N]
 enemies within 3 tiles.[X]
 
-## MSG_SKILL_Bond
-Bond:[NL]
-+10 Hit, +3 damage to all[NL]
+## MSG_SKILL_Bond_NAME
+Bond[X]
+## MSG_SKILL_Bond_DESC
+Bond:[N]
++10 Hit, +3 damage to all[N]
 allies within 3 tiles.[X]
 
-## MSG_SKILL_Intimidate
-Intimidate:[NL]
--10 Avoid to all[NL]
+## MSG_SKILL_Intimidate_NAME
+Intimidate[X]
+## MSG_SKILL_Intimidate_DESC
+Intimidate:[N]
+-10 Avoid to all[N]
 enemies within 2 tiles.[X]
 
-## MSG_SKILL_Tantivy
-Tantivy:[NL]
-+10 Hit/Avoid if there are[NL]
+## MSG_SKILL_Tantivy_NAME
+Tantivy[X]
+## MSG_SKILL_Tantivy_DESC
+Tantivy:[N]
++10 Hit/Avoid if there are[N]
 no allies within 3 tiles.[X]
 
-## MSG_SKILL_Focus
-Focus:[NL]
-+10 Crit if there are[NL]
+## MSG_SKILL_Focus_NAME
+Focus[X]
+## MSG_SKILL_Focus_DESC
+Focus:[N]
++10 Crit if there are[N]
 no allies within 3 tiles.[X]
 
-## MSG_SKILL_Hex
-Hex:[NL]
--15 Avoid to all[NL]
+## MSG_SKILL_Hex_NAME
+Hex[X]
+## MSG_SKILL_Hex_DESC
+Hex:[N]
+-15 Avoid to all[N]
 adjacent enemies.[X]
 
-## MSG_SKILL_Charm
-Charm:[NL]
-Allies within 2[NL]
+## MSG_SKILL_Charm_NAME
+Charm[X]
+## MSG_SKILL_Charm_DESC
+Charm:[N]
+Allies within 2[N]
 tiles deal +3 attack.[X]
 
-## MSG_SKILL_Infiltrator
-Infiltrator:[NL]
-If within 2 spaces of two or more[NL]
+## MSG_SKILL_Infiltrator_NAME
+Infiltrator[X]
+## MSG_SKILL_Infiltrator_DESC
+Infiltrator:[N]
+If within 2 spaces of two or more[N]
 enemies, gain +3 damage and +15% Hit.[X]
 
-## MSG_SKILL_Inspiration
-Inspiration:[NL]
-Allies within 2 tiles deal[NL]
+## MSG_SKILL_Inspiration_NAME
+Inspiration[X]
+## MSG_SKILL_Inspiration_DESC
+Inspiration:[N]
+Allies within 2 tiles deal[N]
 +2 damage and receive -2 damage.[X]
 
-## MSG_SKILL_DivinelyInspiring
-D-Inspir:[NL]
-Adjacent allies deal +3 damage[NL]
+## MSG_SKILL_DivinelyInspiring_NAME
+Divinely Inspiring[X]
+## MSG_SKILL_DivinelyInspiring_DESC
+Divinely Inspiring:[N]
+Adjacent allies deal +3 damage[N]
 and receive -1 damage.[X]
 
-## MSG_SKILL_LilysPoise
-Lily's Poise:[NL]
-Adjacent allies deal +1 damage[NL]
+## MSG_SKILL_LilysPoise_NAME
+Lily's Poise[X]
+## MSG_SKILL_LilysPoise_DESC
+Lily's Poise:[N]
+Adjacent allies deal +1 damage[N]
 and receive -3 damage.[X]
 
-## MSG_SKILL_VoiceOfPeace
-Voice Of Peace:[NL]
-Enemies within[NL]
+## MSG_SKILL_VoiceOfPeace_NAME
+Voice Of Peace[X]
+## MSG_SKILL_VoiceOfPeace_DESC
+Voice Of Peace:[N]
+Enemies within[N]
 2 tiles deal -2 damage.[X]
 
-## MSG_SKILL_BattleRange1
-Battle Range 1:[NL]
-ATK +10 if[NL]
+## MSG_SKILL_BattleRange1_NAME
+Battle Range 1[X]
+## MSG_SKILL_BattleRange1_DESC
+Battle Range 1:[N]
+ATK +10 if[N]
 no ally with 3 tiles.[X]
 
-## MSG_SKILL_BattleRange2
-Battle Range 2:[NL]
-ATK +7 if[NL]
+## MSG_SKILL_BattleRange2_NAME
+Battle Range 2[X]
+## MSG_SKILL_BattleRange2_DESC
+Battle Range 2:[N]
+ATK +7 if[N]
 no ally with 2 tiles.[X]
 
-## MSG_SKILL_BattleRange3
-Battle Range 3:[NL]
-ATK +5 if[NL]
+## MSG_SKILL_BattleRange3_NAME
+Battle Range 3[X]
+## MSG_SKILL_BattleRange3_DESC
+Battle Range 3:[N]
+ATK +5 if[N]
 no ally with 1 tiles.[X]
 
-## MSG_SKILL_Peacebringer
-Peacebringer:[NL]
-Allies and enemies within[NL]
+## MSG_SKILL_Peacebringer_NAME
+Peacebringer[X]
+## MSG_SKILL_Peacebringer_DESC
+Peacebringer:[N]
+Allies and enemies within[N]
 2 tiles deal -2 damage.[X]
 
-## MSG_SKILL_DriveStr
-Drive Str:[NL]
+## MSG_SKILL_DriveStr_NAME
+Drive Strength[X]
+## MSG_SKILL_DriveStr_DESC
+Drive Strength:[N]
 Allies within 2 tiles receive +4 STR.[X]
 
-## MSG_SKILL_DriveMag
-Drive Mag:[NL]
+## MSG_SKILL_DriveMag_NAME
+Drive Magic[X]
+## MSG_SKILL_DriveMag_DESC
+Drive Magic:[N]
 Allies within 2 tiles receive +4 MAG.[X]
 
-## MSG_SKILL_DriveSpd
-Drive Spd:[NL]
+## MSG_SKILL_DriveSpd_NAME
+Drive Speed[X]
+## MSG_SKILL_DriveSpd_DESC
+Drive Speed:[N]
 Allies within 2 tiles receive +4 SPD.[X]
 
-## MSG_SKILL_DriveDef
-Drive Def:[NL]
+## MSG_SKILL_DriveDef_NAME
+Drive Defense[X]
+## MSG_SKILL_DriveDef_DESC
+Drive Defense:[N]
 Allies within 2 tiles receive +4 DEF.[X]
 
-## MSG_SKILL_DriveRes
-Drive Res:[NL]
+## MSG_SKILL_DriveRes_NAME
+Drive Resistance[X]
+## MSG_SKILL_DriveRes_DESC
+Drive Resistance:[N]
 Allies within 2 tiles receive +4 RES.[X]
 
-## MSG_SKILL_Charisma
-Charisma:[NL]
+## MSG_SKILL_Charisma_NAME
+Charisma[X]
+## MSG_SKILL_Charisma_DESC
+Charisma:[N]
 Grants +10 Hit/Avoid to all allies within three tiles.[X]
 
-## MSG_SKILL_Daunt
-Daunt:[NL]
--5 Hit and Crit to all enemy[NL]
+## MSG_SKILL_Daunt_NAME
+Daunt[X]
+## MSG_SKILL_Daunt_DESC
+Daunt:[N]
+-5 Hit and Crit to all enemy[N]
 units in a 3-tile radius.[X]
 
-## MSG_SKILL_BloodTide
-Blood Tide:[NL]
-Grants +5 ATK and Hit[NL]
+## MSG_SKILL_BloodTide_NAME
+Blood Tide[X]
+## MSG_SKILL_BloodTide_DESC
+Blood Tide:[N]
+Grants +5 ATK and Hit[N]
 to adjacent allies.[X]
 
-## MSG_SKILL_WhitePool
-White Pool:[NL]
-Grants +5 ATK and AS[NL]
+## MSG_SKILL_WhitePool_NAME
+White Pool[X]
+## MSG_SKILL_WhitePool_DESC
+White Pool:[N]
+Grants +5 ATK and AS[N]
 to adjacent allies.[X]
 
-## MSG_SKILL_NightTide
-Night Tide:[NL]
-Grants +5 DEF and RES[NL]
+## MSG_SKILL_NightTide_NAME
+Night Tide[X]
+## MSG_SKILL_NightTide_DESC
+Night Tide:[N]
+Grants +5 DEF and RES[N]
 to adjacent allies.[X]
 
-## MSG_SKILL_SpurStr
-Spur Str:[NL]
+## MSG_SKILL_SpurStr_NAME
+Spur Strength[X]
+## MSG_SKILL_SpurStr_DESC
+Spur Strength:[N]
 Adjacent allies gain +4 STR.[X]
 
-## MSG_SKILL_SpurMag
-Spur Mag:[NL]
+## MSG_SKILL_SpurMag_NAME
+Spur Magic[X]
+## MSG_SKILL_SpurMag_DESC
+Spur Magic:[N]
 Adjacent allies gain +4 MAG.[X]
 
-## MSG_SKILL_SpurSpd
-Spur Spd:[NL]
+## MSG_SKILL_SpurSpd_NAME
+Spur Speed[X]
+## MSG_SKILL_SpurSpd_DESC
+Spur Speed:[N]
 Adjacent allies gain +4 SPD.[X]
 
-## MSG_SKILL_SpurDef
-Spur Def:[NL]
+## MSG_SKILL_SpurDef_NAME
+Spur Defense[X]
+## MSG_SKILL_SpurDef_DESC
+Spur Defense:[N]
 Adjacent allies gain +4 DEF.[X]
 
-## MSG_SKILL_SpurRes
-Spur Res:[NL]
+## MSG_SKILL_SpurRes_NAME
+Spur Resistance[X]
+## MSG_SKILL_SpurRes_DESC
+Spur Resistance:[N]
 Adjacent allies gain +4 RES.[X]
 
-## MSG_SKILL_Gentilhomme
-Gentilhomme:[NL]
+## MSG_SKILL_Gentilhomme_NAME
+Gentilhomme[X]
+## MSG_SKILL_Gentilhomme_DESC
+Gentilhomme:[N]
 Female allies within 2 tiles receive -2 damage.[X]
 
-## MSG_SKILL_Demoiselle
-Demoiselle:[NL]
+## MSG_SKILL_Demoiselle_NAME
+Demoiselle[X]
+## MSG_SKILL_Demoiselle_DESC
+Demoiselle:[N]
 Male allies within 2 tiles receive -2 damage.[X]
 
-## MSG_SKILL_Solidarity
-Solidarity:[NL]
+## MSG_SKILL_Solidarity_NAME
+Solidarity[X]
+## MSG_SKILL_Solidarity_DESC
+Solidarity:[N]
 +10 Crit and Crit Avoid to adjacent allies.[X]
 
-## MSG_SKILL_Plus
-Plus: At the start of the turn,[NL]
-+4 to all combat stats for adjacent[NL]
+## MSG_SKILL_Plus_NAME
+Plus[X]
+## MSG_SKILL_Plus_DESC
+Plus: At the start of the turn,[N]
++4 to all combat stats for adjacent[N]
 allies that have the 'Minus' skill.[X]
 
-## MSG_SKILL_Minus
-Minus: At the start of the turn,[NL]
-+4 to all combat stats for adjacent[NL]
+## MSG_SKILL_Minus_NAME
+Minus[X]
+## MSG_SKILL_Minus_DESC
+Minus: At the start of the turn,[N]
++4 to all combat stats for adjacent[N]
 allies that have the 'Plus' skill.[X]
 
-## MSG_SKILL_MaleficAura
-Malefic Aura:[NL]
-Enemies within 2 tiles[NL]
+## MSG_SKILL_MaleficAura_NAME
+Malefic Aura[X]
+## MSG_SKILL_MaleficAura_DESC
+Malefic Aura:[N]
+Enemies within 2 tiles[N]
 receive +2 magic damage.[X]
 
-## MSG_SKILL_KeepUp
-Keep Up: +2 to MOV at the start of[NL]
-the turn, if within 3 tiles of an[NL]
+## MSG_SKILL_KeepUp_NAME
+Keep Up[X]
+## MSG_SKILL_KeepUp_DESC
+Keep Up: +2 to MOV at the start of[N]
+the turn, if within 3 tiles of an[N]
 ally with Canto or Canto+.[X]
 
-## MSG_SKILL_UpWithArch
-Up With Arch: Adjacent ally units[NL]
-gain might equal to half this unit's[NL]
+## MSG_SKILL_UpWithArch_NAME
+Up With Arch[X]
+## MSG_SKILL_UpWithArch_DESC
+Up With Arch: Adjacent ally units[N]
+gain might equal to half this unit's[N]
 might. (Only if name starts with "Arch").[X]

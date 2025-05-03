@@ -1,79 +1,111 @@
-## MSG_SKILL_Blossom
-Blossom:[NL]
-2x growth rates,[NL]
+## MSG_SKILL_Blossom_NAME
+Blossom[X]
+## MSG_SKILL_Blossom_DESC
+Blossom:[N]
+2x growth rates,[N]
 but 1/2 EXP gain.[X]
 
-## MSG_SKILL_Paragon
-Paragon:[NL]
-Experience gained[NL]
+## MSG_SKILL_Paragon_NAME
+Paragon[X]
+## MSG_SKILL_Paragon_DESC
+Paragon:[N]
+Experience gained[N]
 is doubled.[X]
 
-## MSG_SKILL_VoidCurse
-V-Curse:[NL]
-This unit gives no[NL]
+## MSG_SKILL_VoidCurse_NAME
+Void Curse[X]
+## MSG_SKILL_VoidCurse_DESC
+Void Curse:[N]
+This unit gives no[N]
 experience when defeated.[X]
 
-## MSG_SKILL_Aptitude
-Aptitude:[NL]
-+20% to all[NL]
+## MSG_SKILL_Aptitude_NAME
+Aptitude[X]
+## MSG_SKILL_Aptitude_DESC
+Aptitude:[N]
++20% to all[N]
 growth rates.[X]
 
-## MSG_SKILL_Mentorship
-Mentorship:[NL]
-Increase experience of this unit[NL]
+## MSG_SKILL_Mentorship_NAME
+Mentorship[X]
+## MSG_SKILL_Mentorship_DESC
+Mentorship:[N]
+Increase experience of this unit[N]
 allies within 2 tiles by 1.2x.[X]
 
-## MSG_SKILL_DarkHorse
-Dark Horse:[NL]
-Increase unit's growths[NL]
+## MSG_SKILL_DarkHorse_NAME
+Dark Horse[X]
+## MSG_SKILL_DarkHorse_DESC
+Dark Horse:[N]
+Increase unit's growths[N]
 by their base stats.[X]
 
-## MSG_SKILL_Prodigy
+## MSG_SKILL_Prodigy_NAME
+Prodigy[X]
+## MSG_SKILL_Prodigy_DESC
 Prodigy:[N]
 Unit can gain over[N]
 100 EXP in a round.[X]
 
-## MSG_SKILL_KnackStrength
+## MSG_SKILL_KnackStrength_NAME
+Knack Strength[X]
+## MSG_SKILL_KnackStrength_DESC
 Knack Strength:[N]
 Increase unit's STR growth[N]
 by 10%.[X]
 
-## MSG_SKILL_KnackMagic
+## MSG_SKILL_KnackMagic_NAME
+Knack Magic[X]
+## MSG_SKILL_KnackMagic_DESC
 Knack Magic:[N]
 Increase unit's MAG growth[N]
 by 10%.[X]
 
-## MSG_SKILL_KnackSkill
+## MSG_SKILL_KnackSkill_NAME
+Knack Skill[X]
+## MSG_SKILL_KnackSkill_DESC
 Knack Skill:[N]
 Increase unit's SKL growth[N]
 by 10%.[X]
 
-## MSG_SKILL_KnackSpeed
+## MSG_SKILL_KnackSpeed_NAME
+Knack Speed[X]
+## MSG_SKILL_KnackSpeed_DESC
 Knack Speed:[N]
 Increase unit's SPD growth[N]
 by 10%.[X]
 
-## MSG_SKILL_KnackLuck
+## MSG_SKILL_KnackLuck_NAME
+Knack Luck[X]
+## MSG_SKILL_KnackLuck_DESC
 Knack Luck:[N]
 Increase unit's LCK growth[N]
 by 10%.[X]
 
-## MSG_SKILL_KnackDefense
+## MSG_SKILL_KnackDefense_NAME
+Knack Defense[X]
+## MSG_SKILL_KnackDefense_DESC
 Knack Defense:[N]
 Increase unit's DEF growth[N]
 by 10%.[X]
 
-## MSG_SKILL_KnackResistance
+## MSG_SKILL_KnackResistance_NAME
+Knack Resistance[X]
+## MSG_SKILL_KnackResistance_DESC
 Knack Resistance:[N]
 Increase unit's RES growth[N]
 by 10%.[X]
 
-## MSG_SKILL_KnackHealth
+## MSG_SKILL_KnackHealth_NAME
+Knack Health[X]
+## MSG_SKILL_KnackHealth_DESC
 Knack Health:[N]
 Increase unit's HP growth[N]
 by 10%.[X]
 
-## MSG_SKILL_PeoplesKnight
+## MSG_SKILL_PeoplesKnight_NAME
+People's Knight[X]
+## MSG_SKILL_PeoplesKnight_DESC
 People's Knight:[N]
 Gain +3% to all growths for[N]
 each support level this unit has.[X]

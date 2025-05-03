@@ -67,16 +67,8 @@
     #include "VeslySupportPostBattle/Installer.event"
 #endif
 
-#ifdef CONFIG_ITEM_INDEX_SKILL_STEALER
-    #include "JesterHacks/SkillStealer/Installer.event"
-#endif
-
 #ifdef CONFIG_INSTANT_LEVEL_UP
     #include "InstantLevelUp/Installer.event"
-#endif
-
-#ifdef CONFIG_ITEM_INDEX_ARMS_SCROLL
-    #include "JesterHacks/ArmsScroll/Installer.event"
 #endif
 
 #ifdef CONFIG_VESLY_RECLASS
@@ -135,3 +127,15 @@
 #endif
 
 #include "ExtrasMenu/Installer.event"
+
+#ifdef CONFIG_MODULAR_STAFF_EXP
+    #include "JesterHacks/StaffEXP/StaffEXP.lyn.event"
+#endif
+
+#ifdef CONFIG_CUSTOM_ITEMS
+    #include "JesterHacks/CustomItems/Installer.event"
+#endif
+
+#ifdef CONFIG_CUSTOM_STAFF_ACCURACY
+    #include "JesterHacks/StaffAccuracy/Installer.event"
+#endif

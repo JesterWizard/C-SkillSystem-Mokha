@@ -436,15 +436,15 @@ const struct SkillPreloadPConf gSkillPreloadPData[0x100] = {
 #else
 const struct SkillPreloadPConf gSkillPreloadPData[0x100] = {
     // 01
-    [CHARACTER_EIRIKA] = {
-        .skills = {
-            [0] = SID_ItemLore,
-        },
-    },
-    // 02
+    // [CHARACTER_EIRIKA] = {
+    //     .skills = {
+    //         [0] = 0,
+    //     },
+    // },
+    // // 02
     [CHARACTER_SETH] = {
         .skills = {
-            [0] = SID_Heroics,
+            [0] = SID_Turncoat,
         },
     },
     // // 03

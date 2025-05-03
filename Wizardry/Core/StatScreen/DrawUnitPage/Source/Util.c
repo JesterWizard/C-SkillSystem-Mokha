@@ -5,8 +5,6 @@
 #include "constants/skills.h"
 #include "item-sys.h"
 
-static const int dict_size = sizeof(dict_skills) / sizeof(dict_skills[0]);
-
 int GetUnitBattleAmt(struct Unit * unit)
 {
     int total = 0;
@@ -16,12 +14,10 @@ int GetUnitBattleAmt(struct Unit * unit)
     list = GetUnitSkillList(unit);
     int i;
     int value = -1;
-    char * key;
 
     for (i = 0; i < list->amt; i++)
     {
-        key = GetDuraItemName((list->sid[i] << 8) | CONFIG_ITEM_INDEX_SKILL_SCROLL);
-        value = binary_search_skills(dict_skills, dict_size, key, 1);
+        value = GetSkillCapacity(list->sid[i]);
 
         if (value == -1 ) 
             value = 0;

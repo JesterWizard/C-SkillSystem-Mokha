@@ -87,7 +87,7 @@ static void UnitLvup_Vanilla(struct BattleUnit * bu, int bonus)
             *statChanges[0] = GetStatIncrease((GetUnitHpGrowth(unit) + bonus), expGained);
 #else
     if (unit->maxHP < unit->pClassData->maxHP + limitBreaker)
-        *statChanges[0] = GetStatIncrease(GetUnitHpGrowth(unit) + bonus);
+        *statChanges[0] = GetStatIncrease(GetUnitHpGrowth(unit) + bonus, expGained);
 #endif
     if (unit->pow < unit->pClassData->maxPow + limitBreaker)
         *statChanges[1] = GetStatIncrease((GetUnitPowGrowth(unit) + bonus), expGained);

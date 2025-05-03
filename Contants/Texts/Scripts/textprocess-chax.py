@@ -4,7 +4,7 @@
 import os, re, sys, struct
 import huffman
 
-MSG_LENGTH = 0x1400
+MSG_LENGTH = 0x1800
 DEBUG = False
 
 RE_MSGIDX = re.compile(r"^#([0-9a-fA-Fx]+)")

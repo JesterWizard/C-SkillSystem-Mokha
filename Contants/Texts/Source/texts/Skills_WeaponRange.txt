@@ -1,78 +1,106 @@
-
-## MSG_SKILL_RangeBonusBMag1
-B.Mag RNG+1:[NL]
+## MSG_SKILL_RangeBonusBMag1_NAME
+Magic Range +1[X]
+## MSG_SKILL_RangeBonusBMag1_DESC
+Magic Range +1:[N]
 Increases black magic range by 1[X]
 
-## MSG_SKILL_RangeBonusBMag2
-B.Mag RNG+2:[NL]
+## MSG_SKILL_RangeBonusBMag2_NAME
+Magic Range +2[X]
+## MSG_SKILL_RangeBonusBMag2_DESC
+Magic Range +2:[N]
 Increases black magic range by 2[X]
 
-## MSG_SKILL_RangeBonusBow1
-Bow RNG+1:[NL]
+## MSG_SKILL_RangeBonusBow1_NAME
+Bow Range +1[X]
+## MSG_SKILL_RangeBonusBow1_DESC
+Bow Range +1:[N]
 Increases bow range by 1[X]
 
-## MSG_SKILL_RangeBonusBow2
-Bow RNG+2:[NL]
+## MSG_SKILL_RangeBonusBow2_NAME
+Bow Range +2[X]
+## MSG_SKILL_RangeBonusBow2_DESC
+Bow Range +2:[N]
 Increases bow range by 2[X]
 
 ## MSG_SKILL_RunningStart_NAME
-R-Start[X]
-
-## MSG_SKILL_RunningStart
-Running Start:[NL]
-+1 attack range for[NL]
+Running Start:[X]
+## MSG_SKILL_RunningStart_DESC
+Running Start:[N]
++1 attack range for[N]
 every two tiles moved.[X]
 
-## MSG_SKILL_HighGround
-High Ground:[NL]
-+2 range for bows and tomes[NL]
+## MSG_SKILL_HighGround_NAME
+High Ground[X]
+## MSG_SKILL_HighGround_DESC
+High Ground:[N]
++2 range for bows and tomes[N]
 when unit is atop forts.[X]
 
-## MSG_SKILL_PointBlank
-Point Blank:[NL]
-Set minimum range[NL]
+## MSG_SKILL_PointBlank_NAME
+Point Blank[X]
+## MSG_SKILL_PointBlank_DESC
+Point Blank:[N]
+Set minimum range[N]
 of bows to 1.[X]
 
-## MSG_SKILL_StaffSavant
-Staff Savant:[NL]
+## MSG_SKILL_StaffSavant_NAME
+Staff Savant[X]
+## MSG_SKILL_StaffSavant_DESC
+Staff Savant:[N]
 +1 range for staves.[X]
 
-## MSG_SKILL_SelfHealing
-Self Healing:[NL]
+## MSG_SKILL_SelfHealing_NAME
+Self Healing[X]
+## MSG_SKILL_SelfHealing_DESC
+Self Healing:[N]
 Unit can target themselves[N]
 with healing staves.[X]
 
-## MSG_SKILL_Counterattack
+## MSG_SKILL_Counterattack_NAME
+Counterattack[X]
+## MSG_SKILL_Counterattack_DESC
 Counterattack:[N]
 The unit is able to[N]
 counterattack from any distance.[X]
 
-## MSG_SKILL_Saint
-Saint:[NL]
+## MSG_SKILL_Saint_NAME
+Saint[X]
+## MSG_SKILL_Saint_DESC
+Saint:[N]
 Unit can target enemies[N]
 with healing staves.[X]
 
-## MSG_SKILL_AidRefusal
+## MSG_SKILL_AidRefusal_NAME
+Aid Refusal[X]
+## MSG_SKILL_AidRefusal_DESC
 Aid Refusal:[N]
 This unit cannot be[N]
 targeted by staves.[X]
 
-## MSG_SKILL_SwordSaint
+## MSG_SKILL_SwordSaint_NAME
+Sword Saint[X]
+## MSG_SKILL_SwordSaint_DESC
 Sword Saint:[N]
 Unit can use all swords[N]
 at 1-2 range.[X]
 
-## MSG_SKILL_CursedHeal
+## MSG_SKILL_CursedHeal_NAME
+Cursed Heal[X]
+## MSG_SKILL_CursedHeal_DESC
 Cursed Heal:[N]
 Healing through this unit [N]
 damages target, but cannot kill.[X]
 
-## MSG_SKILL_ExplosiveHeal
+## MSG_SKILL_ExplosiveHeal_NAME
+Explosive Heal[X]
+## MSG_SKILL_ExplosiveHeal_DESC
 Explosive Heal:[N]
 Single target healing staves also apply[N]
 their effects to all adjacent allies.[X]
 
-## MSG_SKILL_ExplosiveBuff
+## MSG_SKILL_ExplosiveBuff_NAME
+Explosive Buff[X]
+## MSG_SKILL_ExplosiveBuff_DESC
 Explosive Buff:[N]
 Single target buff staves also apply[N]
 their effects to all adjacent allies.[X]

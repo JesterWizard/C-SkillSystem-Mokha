@@ -1,0 +1,7 @@
+PUSH
+    ORG CONFIG_PR_ITEM_ICON + CONFIG_ICON_INDEX_RUNE_STAFF * 0x80
+        #incbin "RuneStaff.4bpp"
+
+    ORG CONFIG_PR_ITEM_TABLE + CONFIG_ITEM_INDEX_RUNE_STAFF * 0x24
+        #include "ItemData_RuneStaff.lyn.event"
+POP

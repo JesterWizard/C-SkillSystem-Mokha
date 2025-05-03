@@ -38,7 +38,7 @@ static void set_position(void)
     gActiveUnit->yPos = gActionData.yMove;
 }
 
-STATIC_DECLAR const EventScr EventScr_ActionTeleportation[] = {
+FORCE_DECLARE static const EventScr EventScr_ActionTeleportation[] = {
     EVBIT_MODIFY(0x4)
     STAL(20)
 
@@ -59,6 +59,7 @@ LABEL(99)
 };
 
 /* Action */
+#if defined(SID_Teleportation) && (COMMON_SKILL_VALID(SID_Teleportation))
 bool Action_Teleportation(ProcPtr parent)
 {
     gActionDataExpa.refrain_action = true;
@@ -67,3 +68,4 @@ bool Action_Teleportation(ProcPtr parent)
     KernelCallEvent(EventScr_ActionTeleportation, EV_EXEC_CUTSCENE, parent);
     return false;
 }
+#endif

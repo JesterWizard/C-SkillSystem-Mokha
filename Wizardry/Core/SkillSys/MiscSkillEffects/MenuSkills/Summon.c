@@ -7,7 +7,7 @@
 
 extern u16 gUnknown_085A0D4C[];
 
-static const u8 gNewSummonConfig[6][2] = {
+FORCE_DECLARE static const u8 gNewSummonConfig[6][2] = {
     { CHARACTER_EWAN, CHARACTER_MONSTER_BD, },
     { CHARACTER_KNOLL, CHARACTER_MONSTER_BD },
     { CHARACTER_LYON_CC, CHARACTER_MONSTER_BD },
@@ -106,7 +106,9 @@ STATIC_DECLAR u8 GenerateSummons_Usability(const struct MenuItemDef * self, int 
 
 STATIC_DECLAR int GenerateSummons_OnDraw(struct MenuProc * menu, struct MenuItemProc * item)
 {
+#if defined(SID_SummonPlus) && defined(SID_SummonPlus)
     gActionData.unk08 = SID_SummonPlus;
+#endif
 
     const u8 menuIndex = MENU_SKILL_INDEX(item->def);
 
@@ -188,6 +190,7 @@ const struct MenuDef gSelectInfo_SummonPlus = {
     GenerateSummons_HelpBox
 };
 
+#if defined(SID_SummonPlusCommandEffect) && defined(SID_SummonPlusCommandEffect)
 u8 SummonPlusCommandEffect(struct MenuProc* menu, struct MenuItemProc* menuItem) 
 {
     StartSubtitleHelp(
@@ -197,6 +200,7 @@ u8 SummonPlusCommandEffect(struct MenuProc* menu, struct MenuItemProc* menuItem)
 
     return MENU_ACT_SKIPCURSOR | MENU_ACT_END | MENU_ACT_SND6A | MENU_ACT_CLEAR;
 }
+#endif
 
 LYN_REPLACE_CHECK(GenerateSummonUnitDef);
 void GenerateSummonUnitDef(void)
@@ -206,6 +210,7 @@ void GenerateSummonUnitDef(void)
     struct Unit* unit;
     short summonerNum, i;
 
+#if defined(SID_SummonPlus) && defined(SID_SummonPlus)
     if (gActionData.unk08 == SID_SummonPlus)
     {
         // 1. Find summoner number from active unit
@@ -271,6 +276,7 @@ void GenerateSummonUnitDef(void)
     }
     else
     {
+#endif
         // 1. Find summoner number from active unit
         summonerNum = -1;
         for (i = 0; i < (short)ARRAY_COUNT(gSummonConfig); ++i) {
@@ -392,6 +398,7 @@ void GenerateSummonUnitDef(void)
             unit->ranks[ITYPE_AXE] = WPN_EXP_B;
         else if (gActiveUnit->level <= 20)
             unit->ranks[ITYPE_AXE] = WPN_EXP_A;
-
+#if defined(SummonPlusCommandEffect) && defined(SummonPlusCommandEffect)
     }
+#endif
 }

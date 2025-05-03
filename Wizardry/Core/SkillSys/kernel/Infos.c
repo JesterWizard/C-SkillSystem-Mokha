@@ -27,6 +27,16 @@ u16 GetSkillNameMsg(const u16 sid)
     return gpSkillInfos[sid].name;
 }
 
+u16 GetSkillPrice(const u16 sid)
+{
+    return gpSkillInfos[sid].price;
+}
+
+u16 GetSkillCapacity(const u16 sid)
+{
+    return gpSkillInfos[sid].capacity;
+}
+
 char * GetSkillDescStr(const u16 sid)
 {
 	char *str = NULL;
@@ -82,11 +92,24 @@ char *GetSkillNameStr(const u16 sid)
 		str = GetSkillNameStrFormDesc(sid);
 	else
 		str = GetStringFromIndex(msg);
-
+		
 	if (gpKernelDesigerConfig->auto_narrow_font)
 		return Utf8ToNarrowFonts(str);
 	else
 		return str;
+}
+
+char *GetSkillNameStr_NormalFont(const u16 sid)
+{
+	char *str;
+	u16 msg = GetSkillNameMsg(sid);
+
+	if (msg == 0)
+		str = GetSkillNameStrFormDesc(sid);
+	else
+		str = GetStringFromIndex(msg);
+		
+	return str;
 }
 
 int GetEfxSkillPriority(const u16 sid)

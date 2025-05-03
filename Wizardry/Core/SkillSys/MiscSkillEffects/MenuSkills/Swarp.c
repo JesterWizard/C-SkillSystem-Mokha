@@ -131,7 +131,7 @@ u8 Swarp_OnSelected(struct MenuProc * menu, struct MenuItemProc * item)
 {
     if (item->availability == MENU_DISABLED)
     {
-        MenuFrozenHelpBox(menu, MSG_MenuSkill_Swarp_FRtext);
+        MenuFrozenHelpBox(menu, MSG_No_Allies);
         return MENU_ACT_SND6B;
     }
 

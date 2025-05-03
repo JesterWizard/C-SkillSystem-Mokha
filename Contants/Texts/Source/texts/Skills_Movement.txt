@@ -1,109 +1,132 @@
-## MSG_SKILL_Pass
+## MSG_SKILL_Pass_NAME
+Pass[X]
+## MSG_SKILL_Pass_DESC
 Pass:[NL]
 If HP more than 25% unit can[NL]
 move through foes' spaces.[X]
 
-## MSG_SKILL_Obstruct
+## MSG_SKILL_Obstruct_NAME
+Obstruct[X]
+## MSG_SKILL_Obstruct_DESC
 Obstruct: If HP more than 50%,[NL]
 foes cannot move through adjacent[NL]
-to unit. (Null on Pass skill)[X]
+to unit. (Null on Pass skill).[X]
 
-## MSG_SKILL_Guidance
+## MSG_SKILL_Guidance_NAME
+Guidance[X]
+## MSG_SKILL_Guidance_DESC
 Guidance:[NL]
 Provide 2 additional movement[NL]
 for non-flier allies[X]
 
 ## MSG_SKILL_FlierGuidance_NAME
-F-Guidance[X]
-
-## MSG_SKILL_FlierGuidance
+Flier Guidance[X]
+## MSG_SKILL_FlierGuidance_DESC
 Flier Guidance:[NL]
 Provide 3 additional movement[NL]
 for flier allies[X]
 
 ## MSG_SKILL_SoaringGuidance_NAME
-S-Guidance[X]
-
-## MSG_SKILL_SoaringGuidance
+Soaring Guidance[X]
+## MSG_SKILL_SoaringGuidance_DESC
 Soaring Guidance:[NL]
 Provide 1 additional movement[NL]
 for allies[X]
 
-## MSG_SKILL_Aerobatics
+## MSG_SKILL_Aerobatics_NAME
+Aerobatics[X]
+## MSG_SKILL_Aerobatics_DESC
 Aerobatics:[NL]
 Non-flier allies can provides 2[NL]
 additional movement for the unit[X]
 
 ## MSG_SKILL_FlierFormation_NAME
-F-Formation[X]
-
-## MSG_SKILL_FlierFormation
+Flier Formation[X]
+## MSG_SKILL_FlierFormation_DESC
 Flier Formation:[NL]
 Flier allies can provides 3[NL]
 additional movement for the unit[X]
 
 ## MSG_SKILL_SoaringWings_NAME
-Soar-Wings[X]
-
-## MSG_SKILL_SoaringWings
+Soaring Wings[X]
+## MSG_SKILL_SoaringWings_DESC
 Soaring Wings:[NL]
 Allies can provides 1[NL]
 additional movement for the unit[X]
 
 ## MSG_SKILL_DetailedReport_NAME
-D-Report[X]
-
-## MSG_SKILL_DetailedReport
+Detailed Report[X]
+## MSG_SKILL_DetailedReport_DESC
 Detailed Report:[NL]
-if HP>50%, ranged foes cannot[NL]
+if HP > 50%, ranged foes cannot[NL]
 move throgh 2x2 spaces adjacent.[X]
 
-## MSG_SKILL_GridMaster
+## MSG_SKILL_GridMaster_NAME
+Grid Master[X]
+## MSG_SKILL_GridMaster_DESC
 Grid Master:[NL]
 Menu movement skills do not[NL]
 end this unit's turn.[X]
 
-## MSG_SKILL_Acrobat
+## MSG_SKILL_Acrobat_NAME
+Acrobat[X]
+## MSG_SKILL_Acrobat_DESC
 Acrobat:[NL]
 All traversable terrain for[NL]
 this unit costs 1 movement.[X]
 
-## MSG_SKILL_WaterWalking
+## MSG_SKILL_WaterWalking_NAME
+Water Walking[X]
+## MSG_SKILL_WaterWalking_DESC
 Water Walking:[NL]
 Allows the unit to[NL]
 walk on water tiles.[X]
 
-## MSG_SKILL_WaterWalkingPlus
+## MSG_SKILL_WaterWalkingPlus_NAME
+Water Walking+[X]
+## MSG_SKILL_WaterWalkingPlus_DESC
 Water Walking+:[NL]
 Allows the unit to walk on water[NL]
 tiles with no move penalty.[X]
 
-## MSG_SKILL_MountainClimber
+## MSG_SKILL_MountainClimber_NAME
+Mountain Climber[X]
+## MSG_SKILL_MountainClimber_DESC
 Mountain Climber:[NL]
 Allows the unit to[NL]
 walk on mountain tiles.[X]
 
-## MSG_SKILL_MountainClimberPlus
+## MSG_SKILL_MountainClimberPlus_NAME
+Mountain Climber+[X]
+## MSG_SKILL_MountainClimberPlus_DESC
 Mountain Climber+:[NL]
 Allows the unit to walk on mountain[NL]
 tiles with no move penalty.[X]
 
-## MSG_SKILL_GridMasterAtk
-Grid Master Atk:[NL]
+## MSG_SKILL_GridMasterAtk_NAME
+Grid Master Attack[X]
+## MSG_SKILL_GridMasterAtk_DESC
+Grid Master Attack:[NL]
 Unit can still attack after[N]
 using menu movement skills.[A][X]
 
-## MSG_SKILL_PhaseShift
+## MSG_SKILL_PhaseShift_NAME
+Phase Shift[X]
+## MSG_SKILL_PhaseShift_DESC
 Phase Shift:[N]
 Unit can move through[N]
 walls.[X]
 
-## MSG_SKILL_Warpath
+## MSG_SKILL_Warpath_NAME
+Warpath[X]
+## MSG_SKILL_Warpath_DESC
 Warpath:[N]
 Unit can still attack[N]
 while in canto state.[X]
 
-## MSG_SKILL_Desert_Tiger
+## MSG_SKILL_DesertTiger_NAME
+Desert Tiger[X]
+## MSG_SKILL_DesertTiger_DESC
 Desert Tiger:[N]
 Allows the unit to walk on sand[N]
 tiles with no move penalty.[X]

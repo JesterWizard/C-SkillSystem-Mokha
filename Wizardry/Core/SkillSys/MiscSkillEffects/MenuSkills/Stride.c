@@ -56,7 +56,7 @@ u8 Stride_OnSelected(struct MenuProc * menu, struct MenuItemProc * item)
 {
     if (item->availability == MENU_DISABLED)
     {
-        MenuFrozenHelpBox(menu, MSG_MenuSkill_Stride_FRtext);
+        MenuFrozenHelpBox(menu, MSG_No_Allies);
         return MENU_ACT_SND6B;
     }
 
