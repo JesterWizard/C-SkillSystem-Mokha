@@ -114,7 +114,11 @@ const SkillUpgrade skill_upgrades[] = {
 
 // Function to find the "plus" version
 int get_plus_version(int sid) {
-    for (size_t i = 0; i < sizeof(skill_upgrades)/sizeof(skill_upgrades[0]); i++) {
+    size_t count = sizeof(skill_upgrades) / sizeof(skill_upgrades[0]);
+    if (count == 0)
+        return sid;
+        
+    for (size_t i = 0; i < count; i++) {
         if (skill_upgrades[i].base == sid) {
             return skill_upgrades[i].plus;
         }
@@ -145,14 +149,7 @@ void GenerateSkillListExt(struct Unit * unit, struct SkillList * list)
     int i, sid;
     int pid = UNIT_CHAR_ID(unit);
     int jid = UNIT_CLASS_ID(unit);
-    // int player = UNIT_FACTION(unit) == FACTION_BLUE;
-    // int class = 0;
 	bool upgrade = false;
-    // if (player)
-    // {
-    //     player = pid;
-    //     class = jid;
-    // }
 
 #if defined(SID_Upgrade) && (COMMON_SKILL_VALID(SID_Upgrade))
 	if (SkillTester(unit, SID_Upgrade))
@@ -165,20 +162,10 @@ void GenerateSkillListExt(struct Unit * unit, struct SkillList * list)
     memset(tmp_list, 0, MAX_SKILL_NUM + 1);
 
     /* person */
-
-#ifdef CONFIG_FE8SRR
-    sid = RandSkill(gpConstSkillTable_Person[pid * 2], unit);
-#else
 	sid = gpConstSkillTable_Person[pid * 2];
-#endif
 
 	if (upgrade)
 		sid = get_plus_version(sid);
-
-	// if (sid != 0)
-	// {
-	// 	sid = getRandom(254);
-	// }
 
     if (COMMON_SKILL_VALID(sid))
     {
@@ -186,20 +173,10 @@ void GenerateSkillListExt(struct Unit * unit, struct SkillList * list)
         list->sid[list->amt++] = sid;
     }
 
-#ifdef CONFIG_FE8SRR
-    sid = RandSkill(gpConstSkillTable_Person[pid * 2 + 1] + player, unit);
-#else
-	// sid = gpConstSkillTable_Person[pid * 2 + 1] + player;
 	sid = gpConstSkillTable_Person[pid * 2 + 1];
-#endif
 
 	if (upgrade)
 		sid = get_plus_version(sid);
-
-	// if (sid != 0)
-	// {
-	// 	sid = getRandom(254);
-	// }
 
     if (COMMON_SKILL_VALID(sid) && !tmp_list[sid])
     {
@@ -208,19 +185,10 @@ void GenerateSkillListExt(struct Unit * unit, struct SkillList * list)
     }
 
     /* job */
-#ifdef CONFIG_FE8SRR
-	sid = RandSkill(gpConstSkillTable_Job[jid * 2], unit);
-#else
 	sid = gpConstSkillTable_Job[jid * 2];
-#endif
 
 	if (upgrade)
 		sid = get_plus_version(sid);
-
-	// if (sid != 0)
-	// {
-	// 	sid = getRandom(254);
-	// }
 
     if (COMMON_SKILL_VALID(sid) && !tmp_list[sid])
     {
@@ -228,20 +196,10 @@ void GenerateSkillListExt(struct Unit * unit, struct SkillList * list)
         list->sid[list->amt++] = sid;
     }
 
-#ifdef CONFIG_FE8SRR
-    sid = RandSkill(gpConstSkillTable_Job[jid * 2 + 1] + class, unit);
-#else
-	// sid = gpConstSkillTable_Job[jid * 2 + 1] + class;
 	sid = gpConstSkillTable_Job[jid * 2 + 1];
-#endif
 
 	if (upgrade)
 		sid = get_plus_version(sid);
-
-	// if (sid != 0)
-	// {
-	// 	sid = getRandom(254);
-	// }
 
     if (COMMON_SKILL_VALID(sid) && !tmp_list[sid])
     {
@@ -254,19 +212,10 @@ void GenerateSkillListExt(struct Unit * unit, struct SkillList * list)
     {
         u8 iid = ITEM_INDEX(unit->items[i]);
 
-#ifdef CONFIG_FE8SRR
-        sid = RandSkill(gpConstSkillTable_Item[iid * 2], unit);
-#else
 		sid = gpConstSkillTable_Item[iid * 2];
-#endif
 
 		if (upgrade)
 			sid = get_plus_version(sid);
-
-		// if (sid != 0)
-		// {
-		// 	sid = getRandom(254);
-		// }
 
         if (COMMON_SKILL_VALID(sid) && !tmp_list[sid])
         {
@@ -274,19 +223,10 @@ void GenerateSkillListExt(struct Unit * unit, struct SkillList * list)
             list->sid[list->amt++] = sid;
         }
 
-#ifdef CONFIG_FE8SRR
-        sid = RandSkill(gpConstSkillTable_Item[iid * 2 + 1], unit);
-#else
 		sid = gpConstSkillTable_Item[iid * 2 + 1];
-#endif
 
 		if (upgrade)
 			sid = get_plus_version(sid);
-
-		// if (sid != 0)
-		// {
-		// 	sid = getRandom(254);
-		// }
 
         if (COMMON_SKILL_VALID(sid) && !tmp_list[sid])
         {
@@ -298,19 +238,10 @@ void GenerateSkillListExt(struct Unit * unit, struct SkillList * list)
     /* generic */
     for (i = 0; i < UNIT_RAM_SKILLS_LEN; i++)
     {
-#ifdef CONFIG_FE8SRR
-        sid = RandSkill(UNIT_RAM_SKILLS(unit)[i], unit);
-#else
 		sid = UNIT_RAM_SKILLS(unit)[i];
-#endif
 
 		if (upgrade)
 			sid = get_plus_version(sid);
-
-		// if (sid != 0)
-		// {
-		// 	sid = getRandom(254);
-		// }
 		
         if (COMMON_SKILL_VALID(sid) && !tmp_list[sid])
         {

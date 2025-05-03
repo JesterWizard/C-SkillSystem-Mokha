@@ -88,7 +88,9 @@ LABEL(0x2)
     TEXTSHOW(Chapter_04_Scene_10_Convo_01)
     TEXTEND
     REMA
+#if defined(SID_Aptitude) && (COMMON_SKILL_VALID(SID_Aptitude))
     GIVE_SKILL_SCROLL_TO(SID_Aptitude, CHARACTER_ROSS)
+#endif
     GOTO(0x3)
 LABEL(0x3)
     SET_BACKGROUND(BLACK_BACKGROUND)
@@ -231,7 +233,9 @@ static const EventListScr EventListScr_VILLAGE_2_TALK[] = {
 
 LABEL(0x0)
     HOUSE_EVENT_NO_END(0x2, Chapter_04_VILLAGE_LUTE_ARTUR)
+#if defined(SID_Paragon) && (COMMON_SKILL_VALID(SID_Paragon))
     GIVE_SKILL_SCROLL_TO(SID_Paragon, CHARACTER_ARTUR)
+#endif
     GOTO(0x3)
 
 LABEL(0x1)

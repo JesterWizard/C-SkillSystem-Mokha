@@ -41,9 +41,7 @@ int DefGetterSkills(int status, struct Unit * unit)
     int cur_hp = GetUnitCurrentHp(unit);
     int max_hp = GetUnitMaxHp(unit);
 
-#if defined(CONFIG_RESET_BWL_STATS_EACH_CHAPTER)
-    struct NewBwl * bwl = GetNewBwl(UNIT_CHAR_ID(unit));
-#endif
+    FORCE_DECLARE struct NewBwl * bwl = GetNewBwl(UNIT_CHAR_ID(unit));
 
 #if defined(SID_Sellsword) && (COMMON_SKILL_VALID(SID_Sellsword))
     if (SkillTester(unit, SID_Sellsword) && CheckBitUES(unit, UES_BIT_SELLSWORD_SKILL_USED))

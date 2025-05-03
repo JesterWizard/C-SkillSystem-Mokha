@@ -48,9 +48,9 @@ u8 PlayCommandEffect(struct MenuProc* menu, struct MenuItemProc* menuItem) {
 
         itemUsable = 1;
     }
-
+#if defined(SID_Dance) && defined(SID_Dance)
     gActionData.unk08 = SID_Dance;
-
+#endif
     gBattleActorGlobalFlag.skill_activated_dance = true;
 
     if (hasTargets && !itemUsable) {

@@ -102,7 +102,9 @@ static const EventScr EventScr_Ending[] = {
  */
 
 static const EventScr EventScr_GiveScroll_1[] = {
+#if defined(SID_KillStreak) && (COMMON_SKILL_VALID(SID_KillStreak))
     GIVE_SKILL_SCROLL_TO(SID_KillStreak, 0xFFFF)
+#endif
     NOFADE
     ENDA
 };

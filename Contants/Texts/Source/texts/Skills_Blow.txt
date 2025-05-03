@@ -1,39 +1,55 @@
-## MSG_SKILL_BlowDarting
-Darting Blow:[NL]
-If unit initiates combat,[NL]
+## MSG_SKILL_BlowDarting_NAME
+Darting Blow[X]
+## MSG_SKILL_BlowDarting_DESC
+Darting Blow:[N]
+If unit initiates combat,[N]
 grants +6 AS during combat.[X]
 
-## MSG_SKILL_BlowDeath
-Death Blow:[NL]
-If unit initiates combat,[NL]
+## MSG_SKILL_BlowDeath_NAME
+Death Blow[X]
+## MSG_SKILL_BlowDeath_DESC
+Death Blow:[N]
+If unit initiates combat,[N]
 grants +6 STR during combat.[X]
 
-## MSG_SKILL_BlowArmored
-Armored Blow:[NL]
-If unit initiates combat,[NL]
+## MSG_SKILL_BlowArmored_NAME
+Armored Blow[X]
+## MSG_SKILL_BlowArmored_DESC
+Armored Blow:[N]
+If unit initiates combat,[N]
 grants +6 DEF during combat.[X]
 
-## MSG_SKILL_BlowFiendish
-Fiendish Blow:[NL]
-If unit initiates combat,[NL]
+## MSG_SKILL_BlowFiendish_NAME
+Fiendish Blow[X]
+## MSG_SKILL_BlowFiendish_DESC
+Fiendish Blow:[N]
+If unit initiates combat,[N]
 grants +6 MAG during combat.[X]
 
-## MSG_SKILL_BlowWarding
-Warding Blow:[NL]
-If unit initiates combat,[NL]
+## MSG_SKILL_BlowWarding_NAME
+Warding Blow[X]
+## MSG_SKILL_BlowWarding_DESC
+Warding Blow:[N]
+If unit initiates combat,[N]
 grants +6 RES during combat.[X]
 
-## MSG_SKILL_BlowDuelist
-Duelist Blow:[NL]
-If unit initiates combat,[NL]
+## MSG_SKILL_BlowDuelist_NAME
+Duelist Blow[X]
+## MSG_SKILL_BlowDuelist_DESC
+Duelist Blow:[N]
+If unit initiates combat,[N]
 grants +20 Avoid during combat.[X]
 
-## MSG_SKILL_BlowUncanny
-Uncanny Blow:[NL]
-If unit initiates combat,[NL]
+## MSG_SKILL_BlowUncanny_NAME
+Uncanny Blow[X]
+## MSG_SKILL_BlowUncanny_DESC
+Uncanny Blow:[N]
+If unit initiates combat,[N]
 grants +30 Hit during combat.[X]
 
-## MSG_SKILL_BlowKilling
-Killing Blow:[NL]
-If unit initiates combat,[NL]
+## MSG_SKILL_BlowKilling_NAME
+Killing Blow[X]
+## MSG_SKILL_BlowKilling_DESC
+Killing Blow:[N]
+If unit initiates combat,[N]
 grants +20 Crit during combat.[X]

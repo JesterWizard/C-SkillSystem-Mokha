@@ -47,7 +47,7 @@ extern u16 const * const gpConstSkillTable_Weapon;
 
 struct SkillInfo {
     const u8 * icon;
-    u16 name, desc;
+    u16 name, desc, price, capacity;
 };
 
 extern struct SkillInfo const * const gpSkillInfos;
@@ -63,6 +63,13 @@ char * GetSkillDescStr(const u16 sid);
 char * SkillDescToName(char * str);
 char * GetSkillNameStrFormDesc(const u16 sid);
 char * GetSkillNameStr(const u16 sid);
+
+/* An interesting quirk of the narrow font transformer in GetSkillNameStr is that the output is impossible
+ to perform string comparisons on. Hence, a seconddary function is need that just gives the raw output */
+char * GetSkillNameStr_NormalFont(const u16 sid);
+
+u16 GetSkillPrice(const u16 sid);
+u16 GetSkillCapacity(const u16 sid);
 
 /**
  * 7 generic skill

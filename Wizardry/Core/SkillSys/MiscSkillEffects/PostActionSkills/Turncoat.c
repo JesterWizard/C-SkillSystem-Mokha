@@ -9,6 +9,7 @@
 
 bool PostActionTurncoat(ProcPtr parent)
 {
+#if defined(SID_Turncoat) && defined(SID_Turncoat)
     struct Unit *unit = gActiveUnit;
     struct Unit *unit_tar = GetUnit(gActionData.targetIndex);
 
@@ -48,4 +49,6 @@ bool PostActionTurncoat(ProcPtr parent)
 #endif
 
     return true;
+#endif
+    return false;
 }

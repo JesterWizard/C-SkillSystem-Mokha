@@ -116,7 +116,7 @@ void LoadHelpBoxGfx(void * vram, int palId)
     /* Only provide the extra text box tiles if we're not in the save menu or chapter status screens */
 #ifdef CONFIG_EXTENDED_HELPBOXES
 
-    const struct ProcCmd * procExceptionsList[10] = 
+    const struct ProcCmd * procExceptionsList[9] = 
     {
         ProcScr_SaveMenu,
         gProcScr_SaveMenuPostChapter,
@@ -127,7 +127,7 @@ void LoadHelpBoxGfx(void * vram, int palId)
         ProcScr_UnitListScreen_PrepMenu,
         ProcScr_UnitListScreen_SoloAnim,
         ProcScr_UnitListScreen_WorldMap,
-        PrepScreenProc_MapIdle,
+        // PrepScreenProc_MapIdle,
     };
 
     bool procFound = false;

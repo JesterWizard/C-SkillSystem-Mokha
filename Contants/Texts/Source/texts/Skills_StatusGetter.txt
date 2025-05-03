@@ -1,557 +1,641 @@
-## MSG_SKILL_LifeAndDeath
-Life-Death:[NL]
-For both unit and enemy,[NL]
+## MSG_SKILL_LifeAndDeath_NAME
+Life And Death[X]
+## MSG_SKILL_LifeAndDeath_DESC
+Life And Death:[N]
+For both unit and enemy,[N]
 STR/MAG +5, DEF/RES -5.[X]
 
-## MSG_SKILL_Fury
-Fury:[NL]
+## MSG_SKILL_Fury_NAME
+Fury[X]
+## MSG_SKILL_Fury_DESC
+Fury:[N]
 All stats +3, HP -6 after combat.[X]
 
-## MSG_SKILL_FuryPlus
-Fury+:[NL]
+## MSG_SKILL_FuryPlus_NAME
+Fury+[X]
+## MSG_SKILL_FuryPlus_DESC
+Fury+:[N]
 All stats +4, HP -8 after combat.[X]
 
-## MSG_SKILL_FortressDef
-Fortress Def:[NL]
+## MSG_SKILL_FortressDef_NAME
+Fortress Defense[X]
+## MSG_SKILL_FortressDef_DESC
+Fortress Defense:[N]
 STR/MAG -3, DEF +5.[X]
 
-## MSG_SKILL_FortressRes
-Fortress Res:[NL]
+## MSG_SKILL_FortressRes_NAME
+Fortress Resistance[X]
+## MSG_SKILL_FortressRes_DESC
+Fortress Resistance:[N]
 STR/MAG -3, RES +5.[X]
 
-## MSG_SKILL_HpBonus
-Hp+5:[NL]
+## MSG_SKILL_HpBonus_NAME
+HP +5[X]
+## MSG_SKILL_HpBonus_DESC
+HP +5:[N]
 Unit is granted HP +5.[X]
 
-## MSG_SKILL_StrBonus
-Str+2:[NL]
+## MSG_SKILL_StrBonus_NAME
+STR +2[X]
+## MSG_SKILL_StrBonus_DESC
+STR +2:[N]
 Unit is granted STR +2.[X]
 
-## MSG_SKILL_MagBonus
-Mag+2:[NL]
+## MSG_SKILL_MagBonus_NAME
+MAG +2[X]
+## MSG_SKILL_MagBonus_DESC
+MAG +2:[N]
 Unit is granted MAG +2.[X]
 
-## MSG_SKILL_SklBonus
-Skl+2:[NL]
+## MSG_SKILL_SklBonus_NAME
+SKL +2[X]
+## MSG_SKILL_SklBonus_DESC
+SKL +2:[N]
 Unit is granted SKL +2.[X]
 
-## MSG_SKILL_SpdBonus
-Spd+2:[NL]
+## MSG_SKILL_SpdBonus_NAME
+SPD +2[X]
+## MSG_SKILL_SpdBonus_DESC
+SPD +2:[N]
 Unit is granted SPD +2.[X]
 
-## MSG_SKILL_LukBonus
-Luck+2:[NL]
+## MSG_SKILL_LukBonus_NAME
+LCK +2[X]
+## MSG_SKILL_LukBonus_DESC
+LCK +2:[N]
 Unit is granted LUCK +2.[X]
 
-## MSG_SKILL_DefBonus
-Def+2:[NL]
+## MSG_SKILL_DefBonus_NAME
+DEF +2[X]
+## MSG_SKILL_DefBonus_DESC
+DEF +2:[N]
 Unit is granted DEF +2.[X]
 
-## MSG_SKILL_ResBonus
-Res+2:[NL]
+## MSG_SKILL_ResBonus_NAME
+RES +2[X]
+## MSG_SKILL_ResBonus_DESC
+RES +2:[N]
 Unit is granted RES +2.[X]
 
-## MSG_SKILL_MovBonus
-Mov+2:[NL]
+## MSG_SKILL_MovBonus_NAME
+MOV +2[X]
+## MSG_SKILL_MovBonus_DESC
+MOV +2:[N]
 Unit is granted MOV +2.[X]
 
-## MSG_SKILL_DefiantCrit
-Defiant Crit:[NL]
-Crit Rate +50%,[NL]
+## MSG_SKILL_DefiantCrit_NAME
+Defiant Crit[X]
+## MSG_SKILL_DefiantCrit_DESC
+Defiant Crit:[N]
+Crit Rate +50%,[N]
 if HP < 25%.[X]
 
-## MSG_SKILL_DefiantAvoid
-Defiant Avoid:[NL]
-Avoid Rate +30%,[NL]
+## MSG_SKILL_DefiantAvoid_NAME
+Defiant Avoid[X]
+## MSG_SKILL_DefiantAvoid_DESC
+Defiant Avoid:[N]
+Avoid Rate +30%,[N]
 if HP < 25%.[X]
 
-## MSG_SKILL_DefiantStr
-Defiant Str:[NL]
+## MSG_SKILL_DefiantStr_NAME
+Defiant Str[X]
+## MSG_SKILL_DefiantStr_DESC
+Defiant Str:[N]
 STR +7 if HP < 25%[X]
 
-## MSG_SKILL_DefiantMag
-Defiant Mag: [NL]
+## MSG_SKILL_DefiantMag_NAME
+Defiant Mag[X]
+## MSG_SKILL_DefiantMag_DESC
+Defiant Mag: [N]
 MAG +7 if HP < 25%[X]
 
-## MSG_SKILL_DefiantSkl
-Defiant Skl: [NL]
+## MSG_SKILL_DefiantSkl_NAME
+Defiant Skl[X]
+## MSG_SKILL_DefiantSkl_DESC
+Defiant Skl: [N]
 SKL +7 if HP < 25%[X]
 
-## MSG_SKILL_DefiantSpd
-Defiant Spd: [NL]
+## MSG_SKILL_DefiantSpd_NAME
+Defiant Spd[X]
+## MSG_SKILL_DefiantSpd_DESC
+Defiant Spd: [N]
 SPD +7 if HP < 25%[X]
 
-## MSG_SKILL_DefiantLck
-Defiant Luk: [NL]
+## MSG_SKILL_DefiantLck_NAME
+Defiant Luk[X]
+## MSG_SKILL_DefiantLck_DESC
+Defiant Luk: [N]
 LUCK +7 if HP < 25%[X]
 
-## MSG_SKILL_DefiantDef
-Defiant Def: [NL]
+## MSG_SKILL_DefiantDef_NAME
+Defiant Def[X]
+## MSG_SKILL_DefiantDef_DESC
+Defiant Def: [N]
 DEF +7 if HP < 25%[X]
 
-## MSG_SKILL_DefiantRes
-Defiant Res: [NL]
+## MSG_SKILL_DefiantRes_NAME
+Defiant Res[X]
+## MSG_SKILL_DefiantRes_DESC
+Defiant Res: [N]
 RES +7 if HP < 25%[X]
 
-## MSG_SKILL_LuckySeven
-Lucky 7: [NL]
-Apply a fresh +7 stat bonus[NL]
+## MSG_SKILL_LuckySeven_NAME
+Lucky 7[X]
+## MSG_SKILL_LuckySeven_DESC
+Lucky 7: [N]
+Apply a fresh +7 stat bonus[N]
 on each subsequent turn.[X]
 
 ## MSG_SKILL_PushDefense_NAME
-P-Defense[X]
-
-## MSG_SKILL_PushDefense
-PushDefense:[NL]
+Push Defense[X]
+## MSG_SKILL_PushDefense_DESC
+Push Defense:[N]
 +5 DEF if HP is full.[X]
 
 ## MSG_SKILL_PushMagic_NAME
-P-Magic[X]
-
-## MSG_SKILL_PushMagic
-PushMagic:[NL]
+Push Magic[X]
+## MSG_SKILL_PushMagic_DESC
+Push Magic:[N]
 +5 MAG if HP is full.[X]
 
 ## MSG_SKILL_PushResistance_NAME
 P-Resistance[X]
-
-## MSG_SKILL_PushResistance
-Push Resistance:[NL]
+## MSG_SKILL_PushResistance_DESC
+Push Resistance:[N]
 +5 RES when HP is full.[X]
 
 ## MSG_SKILL_PushSkill_NAME
-P-Skill[X]
-
-## MSG_SKILL_PushSkill
-Push Skill:[NL]
+Push Skill[X]
+## MSG_SKILL_PushSkill_DESC
+Push Skill:[N]
 +5 SKL if HP is full.[X]
 
 ## MSG_SKILL_PushSpeed_NAME
-P-Speed[X]
-
-## MSG_SKILL_PushSpeed
-Push Speed:[NL]
+Push Speed[X]
+## MSG_SKILL_PushSpeed_DESC
+Push Speed:[N]
 +5 SPD if HP is full.[X]
 
 ## MSG_SKILL_PushStrength_NAME
-P-Strength[X]
-
-## MSG_SKILL_PushStrength
-Push Strength:[NL]
+Push Strength[X]
+## MSG_SKILL_PushStrength_DESC
+Push Strength:[N]
 +5 STR if HP is full.[X]
 
 ## MSG_SKILL_PushLuck_NAME
-P-Luck[X]
-
-## MSG_SKILL_PushLuck
-Push Luck:[NL]
+Push Luck[X]
+## MSG_SKILL_PushLuck_DESC
+Push Luck:[N]
 +5 LUCK if HP is full.[X]
 
 ## MSG_SKILL_PushMovement_NAME
-P-Movement[X]
-
-## MSG_SKILL_PushMovement
-Push Movement:[NL]
+Push Movement[X]
+## MSG_SKILL_PushMovement_DESC
+Push Movement:[N]
 +5 MOV if HP is full.[X]
 
 ## MSG_SKILL_PushSpectrum_NAME
-P-Spectrum[X]
-
-## MSG_SKILL_PushSpectrum
-Push Spectrum:[NL]
+Push Spectrum[X]
+## MSG_SKILL_PushSpectrum_DESC
+Push Spectrum:[N]
 +5 to all stats if HP is full.[X]
 
-## MSG_SKILL_EvenFooted
-EvenFooted:[NL]
-+1 MOV on even[NL]
+## MSG_SKILL_EvenFooted_NAME
+Even Footed[X]
+## MSG_SKILL_EvenFooted_DESC
+Even Footed:[N]
++1 MOV on even[N]
 numbered turns.[X]
 
-## MSG_SKILL_OddFooted
-OddFooted:[NL]
-+1 MOV on odd[NL]
+## MSG_SKILL_OddFooted_NAME
+Odd Footed[X]
+## MSG_SKILL_OddFooted_DESC
+Odd Footed:[N]
++1 MOV on odd[N]
 numbered turns.[X]
 
-## MSG_SKILL_Resolve
-Resolve:[NL]
-When HP < 50%,[NL]
+## MSG_SKILL_Resolve_NAME
+Resolve[X]
+## MSG_SKILL_Resolve_DESC
+Resolve:[N]
+When HP < 50%,[N]
 STR/SKL/SPD +50% bonus.[X]
 
 ## MSG_SKILL_InitCalm_NAME
-Calm-Init[X]
+Calm Initiative[X]
 
-## MSG_SKILL_InitCalm
-Calm Initiative:[NL]
-+7 RES at the[NL]
+## MSG_SKILL_InitCalm_DESC
+Calm Initiative:[N]
++7 RES at the[N]
 beginning of the turn.[X]
 
 ## MSG_SKILL_InitStrong_NAME
-Strong-Init[X]
+Strong Initiative[X]
 
-## MSG_SKILL_InitStrong
-Strong Initiative:[NL]
-+7 STR at the[NL]
+## MSG_SKILL_InitStrong_DESC
+Strong Initiative:[N]
++7 STR at the[N]
 beginning of the turn.[X]
 
 ## MSG_SKILL_InitDeft_NAME
-Deft-Init[X]
+Deft Initiative[X]
 
-## MSG_SKILL_InitDeft
-Deft Initiative:[NL]
-+7 SKL at the[NL]
+## MSG_SKILL_InitDeft_DESC
+Deft Initiative:[N]
++7 SKL at the[N]
 beginning of the turn.[X]
 
 ## MSG_SKILL_InitQuick_NAME
-Quick-Init[X]
+Quick Initiative[X]
 
-## MSG_SKILL_InitQuick
-Quick Initiative:[NL]
-+7 SPD at the[NL]
+## MSG_SKILL_InitQuick_DESC
+Quick Initiative:[N]
++7 SPD at the[N]
 beginning of the turn.[X]
 
 ## MSG_SKILL_InitSturdy_NAME
-Sturdy-Init[X]
+Sturdy Initiative[X]
 
-## MSG_SKILL_InitSturdy
-Sturdy Initiative:[NL]
-+7 DEF at the[NL]
+## MSG_SKILL_InitSturdy_DESC
+Sturdy Initiative:[N]
++7 DEF at the[N]
 beginning of the turn.[X]
 
 ## MSG_SKILL_InitClever_NAME
-Clever-Init[X]
+Clever Initiative[X]
 
-## MSG_SKILL_InitClever
-Clever Initiative:[NL]
-+7 MAG at the[NL]
+## MSG_SKILL_InitClever_DESC
+Clever Initiative:[N]
++7 MAG at the[N]
 beginning of the turn.[X]
 
 ## MSG_SKILL_InitLucky_NAME
-Lucky-Init[X]
+Lucky Initiative[X]
 
-## MSG_SKILL_InitLucky
-Lucky Initiative:[NL]
-+7 LUCK at the[NL]
+## MSG_SKILL_InitLucky_DESC
+Lucky Initiative:[N]
++7 LUCK at the[N]
 beginning of the turn.[X]
 
 ## MSG_SKILL_InitNimble_NAME
-Nimble-Init[X]
+Nimble Initiative[X]
 
-## MSG_SKILL_InitNimble
-Nimble Initiative:[NL]
-+7 MOV at the[NL]
+## MSG_SKILL_InitNimble_DESC
+Nimble Initiative:[N]
++7 MOV at the[N]
 beginning of the turn.[X]
 
 ## MSG_SKILL_InitSpectrum_NAME
-Spec-Init[X]
+Spectrum Initiative[X]
 
-## MSG_SKILL_InitSpectrum
-Spectrum Initiative:[NL]
-+7 to all stats at the[NL]
+## MSG_SKILL_InitSpectrum_DESC
+Spectrum Initiative:[N]
++7 to all stats at the[N]
 beginning of the turn.[X]
 
 ## MSG_SKILL_OathDefense_NAME
-O-Defense[X]
+Oath Defense[X]
 
-## MSG_SKILL_OathDefense
-Oath Defense:[NL]
-+4 DEF at the start of the turn[NL]
+## MSG_SKILL_OathDefense_DESC
+Oath Defense:[N]
++4 DEF at the start of the turn[N]
 if an adjacent ally is present.[X]
 
 ## MSG_SKILL_OathLuck_NAME
-O-Luck[X]
+Oath Luck[X]
 
-## MSG_SKILL_OathLuck
-Oath Luck:[NL]
-+4 LUCK at the start of the turn[NL]
+## MSG_SKILL_OathLuck_DESC
+Oath Luck:[N]
++4 LUCK at the start of the turn[N]
 if an adjacent ally is present.[X]
 
 ## MSG_SKILL_OathMagic_NAME
-O-Magic[X]
+Oath Magic[X]
 
-## MSG_SKILL_OathMagic
-Oath Magic:[NL]
-+4 MAG at the start of the turn[NL]
+## MSG_SKILL_OathMagic_DESC
+Oath Magic:[N]
++4 MAG at the start of the turn[N]
 if an adjacent ally is present.[X]
 
 ## MSG_SKILL_OathMovement_NAME
-O-Movement[X]
+Oath Movement[X]
 
-## MSG_SKILL_OathMovement
-Oath Movement:[NL]
-+4 MOV at the start of the turn[NL]
+## MSG_SKILL_OathMovement_DESC
+Oath Movement:[N]
++4 MOV at the start of the turn[N]
 if an adjacent ally is present.[X]
 
 ## MSG_SKILL_OathResistance_NAME
-O-Resistance[X]
+Oath Resistance[X]
 
-## MSG_SKILL_OathResistance
-Oath Resistance:[NL]
-+4 RES at the start of the turn[NL]
+## MSG_SKILL_OathResistance_DESC
+Oath Resistance:[N]
++4 RES at the start of the turn[N]
 if an adjacent ally is present.[X]
 
 ## MSG_SKILL_OathSkill_NAME
-O-Skill[X]
+Oath Skill[X]
 
-## MSG_SKILL_OathSkill
-Oath Skill:[NL]
-+4 SKL at the start of the turn[NL]
+## MSG_SKILL_OathSkill_DESC
+Oath Skill:[N]
++4 SKL at the start of the turn[N]
 if an adjacent ally is present.[X]
 
 ## MSG_SKILL_OathSpeed_NAME
-O-Speed[X]
+Oath Speed[X]
 
-## MSG_SKILL_OathSpeed
-Oath Speed:[NL]
-+4 SPD at the start of the turn[NL]
+## MSG_SKILL_OathSpeed_DESC
+Oath Speed:[N]
++4 SPD at the start of the turn[N]
 if an adjacent ally is present.[X]
 
 ## MSG_SKILL_OathStrength_NAME
-O-Strength[X]
+Oath Strength[X]
 
-## MSG_SKILL_OathStrength
-Oath Strength:[NL]
-+4 STR at the start of the turn[NL]
+## MSG_SKILL_OathStrength_DESC
+Oath Strength:[N]
++4 STR at the start of the turn[N]
 if an adjacent ally is present.[X]
 
 ## MSG_SKILL_RouseDefense_NAME
-R-Defense[X]
+Rouse Defense[X]
 
-## MSG_SKILL_RouseDefense
-Rouse Defense:[NL]
-+4 DEF at the start of the turn[NL]
+## MSG_SKILL_RouseDefense_DESC
+Rouse Defense:[N]
++4 DEF at the start of the turn[N]
 if an adjacent ally isn't present.[X]
 
 ## MSG_SKILL_RouseLuck_NAME
-R-Luck[X]
+Rouse Luck[X]
 
-## MSG_SKILL_RouseLuck
-Rouse Luck:[NL]
-+4 LUCK at the start of the turn[NL]
+## MSG_SKILL_RouseLuck_DESC
+Rouse Luck:[N]
++4 LUCK at the start of the turn[N]
 if an adjacent ally isn't present.[X]
 
 ## MSG_SKILL_RouseMagic_NAME
-R-Magic[X]
+Rouse Magic[X]
 
-## MSG_SKILL_RouseMagic
-Rouse Magic:[NL]
-+4 MAG at the start of the turn[NL]
+## MSG_SKILL_RouseMagic_DESC
+Rouse Magic:[N]
++4 MAG at the start of the turn[N]
 if an adjacent ally isn't present.[X]
 
 ## MSG_SKILL_RouseMovement_NAME
-R-Movement[X]
+Rouse Movement[X]
 
-## MSG_SKILL_RouseMovement
-Rouse Movement:[NL]
-+4 MOV at the start of the turn[NL]
+## MSG_SKILL_RouseMovement_DESC
+Rouse Movement:[N]
++4 MOV at the start of the turn[N]
 if an adjacent ally isn't present.[X]
 
 ## MSG_SKILL_RouseResistance_NAME
-R-Resistance[X]
+Rouse Resistance[X]
 
-## MSG_SKILL_RouseResistance
-Rouse Resistance:[NL]
-+4 RES at the start of the turn[NL]
+## MSG_SKILL_RouseResistance_DESC
+Rouse Resistance:[N]
++4 RES at the start of the turn[N]
 if an adjacent ally isn't present.[X]
 
 ## MSG_SKILL_RouseSkill_NAME
-R-Skill[X]
+Rouse Skill[X]
 
-## MSG_SKILL_RouseSkill
-Rouse Skill:[NL]
-+4 SKL at the start of the turn[NL]
+## MSG_SKILL_RouseSkill_DESC
+Rouse Skill:[N]
++4 SKL at the start of the turn[N]
 if an adjacent ally isn't present.[X]
 
 ## MSG_SKILL_RouseSpeed_NAME
-R-Speed[X]
+Rouse Speed[X]
 
-## MSG_SKILL_RouseSpeed
-Rouse Speed:[NL]
-+4 SPD at the start of the turn[NL]
+## MSG_SKILL_RouseSpeed_DESC
+Rouse Speed:[N]
++4 SPD at the start of the turn[N]
 if an adjacent ally isn't present.[X]
 
 ## MSG_SKILL_RouseStrength_NAME
-R-Strength[X]
+Rouse Strength[X]
 
-## MSG_SKILL_RouseStrength
-Rouse Strength:[NL]
-+4 STR at the start of the turn[NL]
+## MSG_SKILL_RouseStrength_DESC
+Rouse Strength:[N]
++4 STR at the start of the turn[N]
 if an adjacent ally isn't present.[X]
 
-## MSG_SKILL_Poise
-Poise:[NL]
-+1 MOV. Negates enemy weapon[NL]
+## MSG_SKILL_Poise_NAME
+Poise[X]
+
+## MSG_SKILL_Poise_DESC
+Poise:[N]
++1 MOV. Negates enemy weapon[N]
 triangle advantage.[X]
 
 ## MSG_SKILL_DefenseBoost_NAME
-Def-Boost[X]
+Defense Boost[X]
 
-## MSG_SKILL_DefenseBoost
-Defense Boost:[NL]
-+1 DEF per turn up[NL]
+## MSG_SKILL_DefenseBoost_DESC
+Defense Boost:[N]
++1 DEF per turn up[N]
 to a maximum of 6 turns.[X]
 
 ## MSG_SKILL_LuckBoost_NAME
-Lck-Boost[X]
+Luck Boost[X]
 
-## MSG_SKILL_LuckBoost
-Luck Boost:[NL]
-+1 LUCK per turn up[NL]
+## MSG_SKILL_LuckBoost_DESC
+Luck Boost:[N]
++1 LUCK per turn up[N]
 to a maximum of 6 turns.[X]
 
 ## MSG_SKILL_MagicBoost_NAME
-Mag-Boost[X]
+Magic Boost[X]
 
-## MSG_SKILL_MagicBoost
-Magic Boost:[NL]
-+1 MAG per turn up[NL]
+## MSG_SKILL_MagicBoost_DESC
+Magic Boost:[N]
++1 MAG per turn up[N]
 to a maximum of 6 turns.[X]
 
 ## MSG_SKILL_MoveBoost_NAME
-Mov-Boost[X]
+Move Boost[X]
 
-## MSG_SKILL_MoveBoost
-Move Boost:[NL]
-+1 MOV per turn up[NL]
+## MSG_SKILL_MoveBoost_DESC
+Move Boost:[N]
++1 MOV per turn up[N]
 to a maximum of 6 turns.[X]
 
 ## MSG_SKILL_ResistanceBoost_NAME
-Res-Boost[X]
+Resistance Boost[X]
 
-## MSG_SKILL_ResistanceBoost
-Resistance Boost:[NL]
-+1 RES per turn up[NL]
+## MSG_SKILL_ResistanceBoost_DESC
+Resistance Boost:[N]
++1 RES per turn up[N]
 to a maximum of 6 turns.[X]
 
 ## MSG_SKILL_SkillBoost_NAME
-Skl-Boost[X]
+Skill Boost[X]
 
-## MSG_SKILL_SkillBoost
-Skill Boost:[NL]
-+1 SKL per turn up[NL]
+## MSG_SKILL_SkillBoost_DESC
+Skill Boost:[N]
++1 SKL per turn up[N]
 to a maximum of 6 turns.[X]
 
 ## MSG_SKILL_SpeedBoost_NAME
-Spd-Boost[X]
+Speed Boost[X]
 
-## MSG_SKILL_SpeedBoost
-Speed Boost:[NL]
-+1 SPD per turn up[NL]
+## MSG_SKILL_SpeedBoost_DESC
+Speed Boost:[N]
++1 SPD per turn up[N]
 to a maximum of 6 turns.[X]
 
 ## MSG_SKILL_StrengthBoost_NAME
-Str-Boost[X]
+Strength Boost[X]
 
-## MSG_SKILL_StrengthBoost
-Strength Boost:[NL]
-+1 STR per turn up[NL]
+## MSG_SKILL_StrengthBoost_DESC
+Strength Boost:[N]
++1 STR per turn up[N]
 to a maximum of 6 turns.[X]
 
 ## MSG_SKILL_SpectrumBoost_NAME
-Spec-Boost[X]
+Spectrum Boost[X]
 
-## MSG_SKILL_SpectrumBoost
-Spectrum Boost:[NL]
-+1 to all stats per turn up[NL]
+## MSG_SKILL_SpectrumBoost_DESC
+Spectrum Boost:[N]
++1 to all stats per turn up[N]
 to a maximum of 6 turns.[X]
 
 ## MSG_SKILL_ShrewdPotential_NAME
-Shrewd-P[X]
+Shrewd Potential[X]
 
-## MSG_SKILL_ShrewdPotential
-Shrewd Potential:[NL]
-+1 to stat boosters used[NL]
+## MSG_SKILL_ShrewdPotential_DESC
+Shrewd Potential:[N]
++1 to stat boosters used[N]
 by this unit.[X]
 
 ## MSG_SKILL_ArmorMarch_NAME
-Armor-M[X]
+Armor March[X]
 
-## MSG_SKILL_ArmorMarch
-Armor March: At the start of the turn,[NL]
-if unit is adjacent to an armor ally,[NL]
+## MSG_SKILL_ArmorMarch_DESC
+Armor March: At the start of the turn,[N]
+if unit is adjacent to an armor ally,[N]
 unit and adjacent armor allies +2 MOV.[X]
 
-## MSG_SKILL_ArenaTrap
-Arena Trap:[NL]
-Enemy units within 2[NL]
+## MSG_SKILL_ArenaTrap_NAME
+Arena Trap[X]
+## MSG_SKILL_ArenaTrap_DESC
+Arena Trap:[N]
+Enemy units within 2[N]
 spaces cannot move.[X]
 
-## MSG_SKILL_HyperCutter
-Hyper Cutter:[NL]
-This unit is immune[NL]
+## MSG_SKILL_HyperCutter_NAME
+Hyper Cutter[X]
+## MSG_SKILL_HyperCutter_DESC
+Hyper Cutter:[N]
+This unit is immune[N]
 to STR reductions.[X]
 
-## MSG_SKILL_ClearBody
-Clear Body:[NL]
-This unit is immune to[NL]
+## MSG_SKILL_ClearBody_NAME
+Clear Body[X]
+## MSG_SKILL_ClearBody_DESC
+Clear Body:[N]
+This unit is immune to[N]
 all stat reductions.[X]
 
-## MSG_SKILL_PsychUp
-Psych Up:[NL]
-Copy the enemy's stat[NL]
+## MSG_SKILL_PsychUp_NAME
+Psych Up[X]
+## MSG_SKILL_PsychUp_DESC
+Psych Up:[N]
+Copy the enemy's stat[N]
 boosts during battle.[X]
 
-## MSG_SKILL_Moody
-Moody:[NL]
-Buff one stat by 8 and debuff[NL]
+## MSG_SKILL_Moody_NAME
+Moody[X]
+## MSG_SKILL_Moody_DESC
+Moody:[N]
+Buff one stat by 8 and debuff[N]
 another by 4 every turn.[X]
 
-## MSG_SKILL_HeavyMetal
-Heavy Metal:[NL]
-Increase this unit's[NL]
+## MSG_SKILL_HeavyMetal_NAME
+Heavy Metal[X]
+## MSG_SKILL_HeavyMetal_DESC
+Heavy Metal:[N]
+Increase this unit's[N]
 CON by 5.[X]
 
-## MSG_SKILL_Contrary
-Contrary:[NL]
-Invert the effects of all[NL]
+## MSG_SKILL_Contrary_NAME
+Contrary[X]
+## MSG_SKILL_Contrary_DESC
+Contrary:[N]
+Invert the effects of all[N]
 debuffs to this unit.[X]
 
-## MSG_SKILL_MoonBow
-Moon Bow:[NL]
+## MSG_SKILL_MoonBow_NAME
+Moon Bow[X]
+## MSG_SKILL_MoonBow_DESC
+Moon Bow:[N]
 Reduce enemy's DEF/RES by 25%.[X]
 
-## MSG_SKILL_RiskItAll
-Risk It All:[NL]
+## MSG_SKILL_RiskItAll_NAME
+Risk It All[X]
+## MSG_SKILL_RiskItAll_DESC
+Risk It All:[N]
 Both sides have 100% crit.[X]
 
-## MSG_SKILL_Unaware
-Unaware:[NL]
-Ignore the enemy's[NL]
+## MSG_SKILL_Unaware_NAME
+Unaware[X]
+## MSG_SKILL_Unaware_DESC
+Unaware:[N]
+Ignore the enemy's[N]
 stat boosts.[X]
 
-## MSG_SKILL_Adaptable
-Adaptable: Equip the unit's strongest[NL]
-weapon taking into account range,[NL]
+## MSG_SKILL_Adaptable_NAME
+Adaptable[X]
+## MSG_SKILL_Adaptable_DESC
+Adaptable: Equip the unit's strongest[N]
+weapon taking into account range,[N]
 WTA, abilities, and weapon might.[X]
 
-## MSG_SKILL_MoreForMe
+## MSG_SKILL_MoreForMe_NAME
+More For Me[X]
+## MSG_SKILL_MoreForMe_DESC
 More For Me:[N]
 If not within range of a rally[N]
 target, apply the rally to this unit.[X]
 
-## MSG_SKILL_Mimicry
+## MSG_SKILL_Mimicry_NAME
+Mimicry[X]
+## MSG_SKILL_Mimicry_DESC
 Mimicry:[N]
 If a rally target, apply the[N]
 rally to the user as well.[X]
 
-## MSG_SKILL_EternalVanity
+## MSG_SKILL_EternalVanity_NAME
+Eternal Vanity[X]
+## MSG_SKILL_EternalVanity_DESC
 Eternal Vanity:[N]
 Turn based stat buffs do not[N]
 deplete for this unit.[X]
 
-## MSG_SKILL_SteadyRider
+## MSG_SKILL_SteadyRider_NAME
+Steady Rider[X]
+## MSG_SKILL_SteadyRider_DESC
 Steady Rider:[N]
 Unit gains DEF equal to SPD[N]
 lost from weapon weight.[X]
 
-## MSG_SKILL_SteadyRiderPlus
+## MSG_SKILL_SteadyRiderPlus_NAME
+Steady Rider+[X]
+## MSG_SKILL_SteadyRiderPlus_DESC
 Steady Rider+:[N]
 Unit gains DEF and RES equal to[N]
 SPD lost from weapon weight.[X]
 
-## MSG_SKILL_HugePower
+## MSG_SKILL_HugePower_NAME
+Huge Power[X]
+## MSG_SKILL_HugePower_DESC
 Huge Power:[N]
 Boost this unit's ATK by 50%[N]
 when at full health.[X]
 
-## MSG_SKILL_HugePowerPlus
+## MSG_SKILL_HugePowerPlus_NAME
+Huge Power+[X]
+## MSG_SKILL_HugePowerPlus_DESC
 Huge Power+:[N]
 Boost this unit's ATK by 50%[X]

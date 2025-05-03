@@ -7,517 +7,435 @@ Select a unit.[X]
 ## MSG_No_Allies
 There are no allies in range![X]
 
-## MSG_SKILL_Dance
-Dance:[NL]
-Unit can use[NL]
-"Dance" command.[X]
-
-## MSG_SKILL_LockTouch
-Lock Touch:[NL]
-Unit can use[NL]
-"Pick" command.[X]
-
-## MSG_SKILL_Summon
-Summon:[NL]
-Unit summon a[NL]
-monter on assistance[X]
-
-## MSG_SKILL_Supply
-Supply:[NL]
-Unit can use[NL]
-"Supply" command.[X]
-
-## MSG_SKILL_Steal
-Steal:[NL]
-Unit can use[NL]
-"Steal" command.[X]
-
-## MSG_SKILL_HealingFocus
-Heal Focus:[NL]
-Unit recovers 50% HP.[X]
-
-## MSG_MenuSkill_HealingFocusName
- Heal-F[X]
-
 ## MSG_MenuSkill_HealingFocus_FRtext
-Unit has already full on HP![X]
-
-## MSG_SkillEffect_Teleportation
- Teleport[X]
-
-## MSG_MenuSkill__Teleportation_Rtext
-Randomly teleport to a place where[NL]
-you can hit someone..Good luck![X]
-
-## MSG_SKILL_LightRune
-Light Rune:[NL]
-Consumes 20 HP to[NL]
-seal an area[X]
-
-## MSG_MenuSkill_LightRuneName
- Light-R[X]
-
-## MSG_SKILL_Mine
-Mine:[NL]
-Consumes 20 HP to[NL]
-plant a mine in an area[X]
-
-## MSG_MenuSkill_MineName
- Mine[X]
+Unit already has full HP![X]
 
 ## MSG_MenuSkill_Rally_FRtext
-No allies are in range,[NL]
+No allies are in range,[N]
 or Lull skill in effect.[X]
 
-## MSG_SKILL_RallyDefense
-Rally Defense:[NL]
-+4 DEF to all allies[NL]
-in a 2x2 radius of user.[X]
-
-## MSG_SKILL_RallyDefense_NAME
-Rally-Def[X]
-
-## MSG_MenuSkill_RallyDefenseName
- R-Def[X]
-
-## MSG_SKILL_RallyLuck
-Rally Luck:[NL]
-+4 LCK to all allies[NL]
-in a 2x2 radius of user.[X]
-
-## MSG_SKILL_RallyLuck_NAME
-Rally-Lck[X]
-
-## MSG_MenuSkill_RallyLuckName
- R-Lck[X]
-
-## MSG_SKILL_RallyMagic
-Rally Magic:[NL]
-+4 MAG to all allies[NL]
-in a 2x2 radius of user.[X]
-
-## MSG_SKILL_RallyMagic_NAME
-Rally-Mag[X]
-
-## MSG_MenuSkill_RallyMagicName
- R-Mag[X]
-
-## MSG_SKILL_RallyMovement
-Rally Movement:[NL]
-+4 MOV to all allies[NL]
-in a 2x2 radius of user.[X]
-
-## MSG_SKILL_RallyMovement_NAME
-Rally-Mov[X]
-
-## MSG_MenuSkill_RallyMovementName
- R-Mov[X]
-
-## MSG_SKILL_RallyResistance
-Rally Resistance:[NL]
-+4 RES to all allies[NL]
-in a 2x2 radius of user.[X]
-
-## MSG_SKILL_RallyResistance_NAME
-Rally-Res[X]
-
-## MSG_MenuSkill_RallyResistanceName
- R-Res[X]
-
-## MSG_SKILL_RallySkill
-Rally Skill:[NL]
-+4 SKL to all allies[NL]
-in a 2x2 radius of user.[X]
-
-## MSG_SKILL_RallySkill_NAME
-Rally-Skl[X]
-
-## MSG_MenuSkill_RallySkillName
- R-Skl[X]
-
-## MSG_SKILL_RallySpeed
-Rally Speed:[NL]
-+4 SPD to all allies[NL]
-in a 2x2 radius of user.[X]
-
-## MSG_SKILL_RallySpeed_NAME
-Rally-Spd[X]
-
-## MSG_MenuSkill_RallySpeedName
- R-Spd[X]
-
-## MSG_SKILL_RallyStrength
-Rally Strength:[NL]
-+4 STR to all allies[NL]
-in a 2x2 radius of user.[X]
-
-## MSG_SKILL_RallyStrength_NAME
-Rally-Str[X]
-
-## MSG_MenuSkill_RallyStrengthName
- R-Str[X]
-
-## MSG_SKILL_RallySpectrum
-Rally Spectrum:[NL]
-+4 all stats for all allies[NL]
-in a 2x2 radius of user.[X]
-
-## MSG_SKILL_RallySpectrum_NAME
-Rally-Spec[X]
-
-## MSG_MenuSkill_RallySpectrumName
- R-Spec[X]
-
-## MSG_SKILL_GoddessDance
-Goddess Dance:[NL]
-Refresh all adjacent[NL]
-allies to the user.[X]
-
-## MSG_SKILL_GoddessDance_NAME
-Gᵒᵈᵈᵉˢˢ Dᵃⁿᶜᵉ[X]
-
-## MSG_MenuSkill_GoddessDanceName
- Gᵒᵈ Dᵃⁿᶜᵉ[X]
-
-## MSG_MenuSkill_GoddessDance_FRtext
-No allies are in range![X]
-
-## MSG_SKILL_Stride
-Stride:[NL]
-Increase the movement of all[NL]
-allies within 3 tiles by 3.[X]
-
-## MSG_MenuSkill_StrideName
- Stride[X]
-
-## MSG_MenuSkill_Stride_FRtext
-No allies are in range![X]
-
-## MSG_MenuSkill_SwarpName
- Swarp[X]
-
-## MSG_SKILL_Swarp
-Swarp:[NL]
-Swap positions with[NL]
-a distant ally.[X]
-
-## MSG_MenuSkill_Swarp_FRtext
-No allies are in range![X]
-
-## MSG_SKILL_Blacksmith
-Blacksmith: Pay 1000 gold to[NL]
-restore the user's equipped weapon,[NL]
-if from armory and C rank or less.[X]
-
-## MSG_MenuSkill_BlacksmithName
- B-smith[X]
-
 ## MSG_MenuSkill_Blacksmith_FRtext
-No restorable weapons[NL]
+No restorable weapons[N]
 or enough gold![X]
-
-## MSG_MenuSkill_SwapName
- Swap[X]
-
-## MSG_SKILL_Swap
-Swap:[NL]
-Swap positions with[NL]
-an adjacent ally.[X]
 
 ## MSG_MenuSkill_Swap_FRtext
 No allies are in range![X]
 
-## MSG_SKILL_VigorDance
-Vigor Dance:[NL]
-Boost ally's POW/DEF +2 for[NL]
-1 turn after dancing.[X]
-
-## MSG_SKILL_Transform
-Transform:[NL]
-Allows the unit to transform[NL]
-into a selected class.[X]
-
-## MSG_MenuSkill_TransformName
- Transform[X]
-
-## MSG_SKILL_Transform_FRtext
-This unit is already[NL]
+## MSG_MenuSkill_Transform_FRtext
+This unit is already[N]
 transformed![X]
-
-## MSG_MenuSkill_DrawBackName
- DrawBack[X]
 
 ## MSG_MenuSkill_DrawBack_FRtext
 Cannot safely draw back.[X]
 
-## MSG_SKILL_DrawBack
-DrawBack: Unit moves 1 space[NL]
-away from target ally. Ally moves[NL]
-to unit's previous space.[X]
-
-## MSG_MenuSkill_PivotName
- Pivot[X]
-
 ## MSG_MenuSkill_Pivot_FRtext
 Cannot safely pivot.[X]
-
-## MSG_SKILL_Pivot
-Pivot:[NL]
-Allows unit to move to the[NL]
-opposite side of an adjacent ally.[X]
-
-## MSG_MenuSkill_RepositionName
- Reposition[X]
 
 ## MSG_MenuSkill_Reposition_FRtext
 Cannot safely reposition.[X]
 
-## MSG_SKILL_Reposition
-Reposition:[NL]
-Allows unit to pull an adjacent[NL]
-ally to its opposite side.[X]
-
-## MSG_MenuSkill_ShoveName
- Shove[X]
-
 ## MSG_MenuSkill_Shove_FRtext
 Cannot safely shove.[X]
-
-## MSG_SKILL_Shove
-Shove:[NL]
-Allows unit to push other[NL]
-allied units one tile away.[X]
-
-## MSG_MenuSkill_SmiteName
- Smite[X]
 
 ## MSG_MenuSkill_Smite_FRtext
 Cannot safely smite.[X]
 
-## MSG_SKILL_Smite
-Smite:[NL]
-Allows unit to push other[NL]
-allied units two tiles away.[X]
-
-## MSG_MenuSkill_StealPlusName
- Steal+[X]
-
 ## MSG_MenuSkill_StealPlus_FRtext
 Cannot steal.[X]
 
-## MSG_SKILL_StealPlus
-Steal+:[NL]
-Unit can steal unequipped weapons[NL]
-and staves if CON > Weight.[X]
-
-## MSG_SKILL_ArdentSacrifice
-Ardent Sacrifice:[NL]
-Restores 10 HP to target,[NL]
-but drops user’s HP by 10.[X]
-
-## MSG_SKILL_ArdentSacrifice_NAME
-Ardent-S[X]
-
-## MSG_MenuSkill_ArdentSacrificeName
- Ardent-S[X]
-
 ## MSG_MenuSkill_ArdentSacrifice_FRtext
-Unit is below HP threshold or[NL]
+Unit is below HP threshold or[N]
 no healable targets in range.[X]
-
-## MSG_MenuSkill_ReciprocalAidName
- R-Aid[X]
 
 ## MSG_MenuSkill_ReciprocalAid_FRtext
 No allies to switch HP with.[X]
 
-## MSG_SKILL_ReciprocalAid
-Reciprocal Aid:[NL]
-The user and target switch[NL]
-their current HP totals.[X]
-
-## MSG_SKILL_ReciprocalAid_NAME
-R-Aid[X]
-
 ## MSG_MenuSkill_Sacrifice_FRtext
 No allies to heal.[X]
-
-## MSG_MenuSkill_SacrificeName
- Sacrifice[X]
-
-## MSG_SKILL_Sacrifice
-Sacrifice: Drains HP from the[N]
-user to restore the HP and cure[N]
-status of another allied unit.[X]
-
-## MSG_SKILL_Sacrifice_NAME
-Sacrifice[X]
 
 ## MSG_MenuSkill_Capture_FRtext
 No enemies to capture.[X]
 
-## MSG_MenuSkill_CaptureName
- Capture[X]
-
-## MSG_SKILL_Capture
-Capture:[NL]
-Capture an enemy after defeating[NL]
-it with reduced stats.[X]
-
-## MSG_SKILL_Capture_NAME
-Capture[X]
-
-## MSG_MenuSkill_DopplegangerName
- D-Ganger[X]
-
 ## MSG_MenuSkill_Doppleganger_FRtext
 No allies in range to copy![X]
-
-## MSG_SKILL_Doppleganger
-Doppleganger:[NL]
-Copy the class of an[NL]
-adjacent ally for a turn.[X]
-
-## MSG_SKILL_Dismount
-Dismount:[NL]
-Allow mounted classes to[NL]
-dismount, and revert.[X]
-
-## MSG_MenuSkill_DismountName
- Dismount[X]
-
-## MSG_MenuSkill_EntrepreneurName
- Entrepreneur[X]
-
-## MSG_SKILL_Entrepreneur
-Entrepreneur:[NL]
-Unit moves with the preparation[NL]
-shop attached to them.[X]
-
-## MSG_MenuSkill_Entrepreneur_FRtext
-No allies are in range![X]
-
-## MSG_MenuSkill_AriseName
- Arise[X]
-
-## MSG_SKILL_Arise
-Arise:[NL]
-Revive a unit that died this[NL]
-chapter. Once only.[X]
 
 ## MSG_MenuSkill_Arise_FRtext
 No allies to revive![X]
 
-## MSG_MenuSkill_AssignDecoyName
- Assign Decoy[X]
+## MSG_MenuSkill_DivineReprieve_FRtext
+Cannot use again this chapter![X]
 
-## MSG_SKILL_AssignDecoy
-Assign Decoy:[NL]
-Give an allied unit the[NL]
+## MSG_MenuSkill_LightRune_FRtext
+No free tiles or HP is below[N]
+the required threshold.[X]
+
+## MSG_MenuSkill_Mine_FRtext
+No free tiles or HP is below[N]
+the required threshold.[X]
+
+## MSG_MenuSkill_Dance_NAME
+Dance[X]
+## MSG_MenuSkill_Dance_DESC
+Dance:[N]
+Unit can use[N]
+"Dance" command.[X]
+
+## MSG_MenuSkill_LockTouch_NAME
+Lock Touch[X]
+## MSG_MenuSkill_LockTouch_DESC
+Lock Touch:[N]
+Unit can use[N]
+"Pick" command.[X]
+
+## MSG_MenuSkill_Summon_NAME
+Summon[X]
+## MSG_MenuSkill_Summon_DESC
+Summon:[N]
+Unit summon a[N]
+monter on assistance[X]
+
+## MSG_MenuSkill_Supply_NAME
+Supply[X]
+## MSG_MenuSkill_Supply_DESC
+Supply:[N]
+Unit can use[N]
+"Supply" command.[X]
+
+## MSG_MenuSkill_Steal_NAME
+Steal[X]
+## MSG_MenuSkill_Steal_DESC
+Steal:[N]
+Unit can use[N]
+"Steal" command.[X]
+
+## MSG_MenuSkill_HealingFocus_NAME
+Healing Focus[X]
+## MSG_MenuSkill_HealingFocus_DESC
+Heal Focus:[N]
+Unit recovers 50% HP.[X]
+
+## MSG_MenuSkill_Teleportation_NAME
+Teleport[X]
+## MSG_MenuSkill_Teleportation_DESC
+Teleport:[N]
+Randomly teleport to an open tile[N]
+on the map... good luck![X]
+
+## MSG_MenuSkill_LightRune_NAME
+Light Rune[X]
+## MSG_MenuSkill_LightRune_DESC
+Light Rune:[N]
+Consumes 20 HP to[N]
+seal an area[X]
+
+## MSG_MenuSkill_Mine_NAME
+Mine[X]
+## MSG_MenuSkill_Mine_DESC
+Mine:[N]
+Consumes 20 HP to[N]
+plant a mine in an area[X]
+
+## MSG_MenuSkill_RallyDefense_NAME
+Rally Defense[X]
+## MSG_MenuSkill_RallyDefense_DESC
+Rally Defense:[N]
++4 DEF to all allies[N]
+in a 2x2 radius of user.[X]
+
+## MSG_MenuSkill_RallyLuck_NAME
+Rally Luck[X]
+## MSG_MenuSkill_RallyLuck_DESC
+Rally Luck:[N]
++4 LCK to all allies[N]
+in a 2x2 radius of user.[X]
+
+## MSG_MenuSkill_RallyMagic_NAME
+Rally Magic[X]
+## MSG_MenuSkill_RallyMagic_DESC
+Rally Magic:[N]
++4 MAG to all allies[N]
+in a 2x2 radius of user.[X]
+
+## MSG_MenuSkill_RallyMovement_NAME
+Rally Movement[X]
+## MSG_MenuSkill_RallyMovement_DESC
+Rally Movement:[N]
++4 MOV to all allies[N]
+in a 2x2 radius of user.[X]
+
+## MSG_MenuSkill_RallyResistance_NAME
+Rally Resistance[X]
+## MSG_MenuSkill_RallyResistance_DESC
+Rally Resistance:[N]
++4 RES to all allies[N]
+in a 2x2 radius of user.[X]
+
+## MSG_MenuSkill_RallySkill_NAME
+Rally Skill[X]
+## MSG_MenuSkill_RallySkill_DESC
+Rally Skill:[N]
++4 SKL to all allies[N]
+in a 2x2 radius of user.[X]
+
+## MSG_MenuSkill_RallySpeed_NAME
+Rall Speed[X]
+## MSG_MenuSkill_RallySpeed_DESC
+Rally Speed:[N]
++4 SPD to all allies[N]
+in a 2x2 radius of user.[X]
+
+## MSG_MenuSkill_RallyStrength_NAME
+Rally Strength[X]
+## MSG_MenuSkill_RallyStrength_DESC
+Rally Strength:[N]
++4 STR to all allies[N]
+in a 2x2 radius of user.[X]
+
+## MSG_MenuSkill_RallySpectrum_NAME
+Rally Spectrum[X]
+## MSG_MenuSkill_RallySpectrum_DESC
+Rally Spectrum:[N]
++4 all stats for all allies[N]
+in a 2x2 radius of user.[X]
+
+## MSG_MenuSkill_GoddessDance_NAME
+Goddess Dance[X]
+## MSG_MenuSkill_GoddessDance_DESC
+Goddess Dance:[N]
+Refresh all adjacent[N]
+allies to the user.[X]
+
+## MSG_MenuSkill_Stride_NAME
+Stride[X]
+## MSG_MenuSkill_Stride_DESC
+Stride:[N]
+Increase the movement of all[N]
+allies within 3 tiles by 3.[X]
+
+## MSG_MenuSkill_Swarp_NAME
+Swarp[X]
+## MSG_MenuSkill_Swarp_DESC
+Swarp:[N]
+Swap positions with[N]
+a distant ally.[X]
+
+## MSG_MenuSkill_Blacksmith_NAME
+Blacksmith[X]
+## MSG_MenuSkill_Blacksmith_DESC
+Blacksmith: Pay 1000 gold to[N]
+restore the user's equipped weapon,[N]
+if from armory and C rank or less.[X]
+
+## MSG_MenuSkill_Swap_NAME
+Swap[X]
+## MSG_MenuSkill_Swap_DESC
+Swap:[N]
+Swap positions with[N]
+an adjacent ally.[X]
+
+## MSG_MenuSkill_VigorDance_NAME
+Vigor Dance[X]
+## MSG_MenuSkill_VigorDance_DESC
+Vigor Dance:[N]
+Boost ally's POW/DEF +2 for[N]
+1 turn after dancing.[X]
+
+## MSG_MenuSkill_Transform_NAME
+Transform[X]
+## MSG_MenuSkill_Transform_DESC
+Transform:[N]
+Allows the unit to transform[N]
+into a selected class.[X]
+
+## MSG_MenuSkill_DrawBack_NAME
+Draw Back[X]
+## MSG_MenuSkill_DrawBack_DESC
+Draw Back: Unit moves 1 space[N]
+away from target ally. Ally moves[N]
+to unit's previous space.[X]
+
+## MSG_MenuSkill_Pivot_NAME
+Pivot[X]
+## MSG_MenuSkill_Pivot_DESC
+Pivot:[N]
+Allows unit to move to the[N]
+opposite side of an adjacent ally.[X]
+
+## MSG_MenuSkill_Reposition_NAME
+Reposition[X]
+## MSG_MenuSkill_Reposition_DESC
+Reposition:[N]
+Allows unit to pull an adjacent[N]
+ally to its opposite side.[X]
+
+## MSG_MenuSkill_Shove_NAME
+Shove[X]
+## MSG_MenuSkill_Shove_DESC
+Shove:[N]
+Allows unit to push other[N]
+allied units one tile away.[X]
+
+## MSG_MenuSkill_Smite_NAME
+Smite[X]
+## MSG_MenuSkill_Smite_DESC
+Smite:[N]
+Allows unit to push other[N]
+allied units two tiles away.[X]
+
+## MSG_MenuSkill_StealPlus_NAME
+Steal+[X]
+## MSG_MenuSkill_StealPlus_DESC
+Steal+:[N]
+Unit can steal unequipped weapons[N]
+and staves if CON > Weight.[X]
+
+## MSG_MenuSkill_ArdentSacrifice_NAME
+Ardent Sacrifice[X]
+## MSG_MenuSkill_ArdentSacrifice_DESC
+Ardent Sacrifice:[N]
+Restores 10 HP to target,[N]
+but drops user’s HP by 10.[X]
+
+## MSG_MenuSkill_ReciprocalAid_NAME
+Reciprocal Aid[X]
+## MSG_MenuSkill_ReciprocalAid_DESC
+Reciprocal Aid:[N]
+The user and target switch[N]
+their current HP totals.[X]
+
+## MSG_MenuSkill_Sacrifice_NAME
+Sacrifice[X]
+## MSG_MenuSkill_Sacrifice_DESC
+Sacrifice: Drains HP from the[N]
+user to restore the HP and cure[N]
+status of another allied unit.[X]
+
+## MSG_MenuSkill_Capture_NAME
+Capture[X]
+## MSG_MenuSkill_Capture_DESC
+Capture:[N]
+Capture an enemy after defeating[N]
+it with reduced stats.[X]
+
+## MSG_MenuSkill_Doppleganger_NAME
+DoppleGanger[X]
+## MSG_MenuSkill_Doppleganger_DESC
+Doppleganger:[N]
+Copy the class of an[N]
+adjacent ally for a turn.[X]
+
+## MSG_MenuSkill_Dismount_NAME
+Dismount[X]
+## MSG_MenuSkill_Dismount_DESC
+Dismount:[N]
+Allow mounted classes to[N]
+dismount, and revert.[X]
+
+## MSG_MenuSkill_Entrepreneur_NAME
+Entrepreneur[X]
+## MSG_MenuSkill_Entrepreneur_DESC
+Entrepreneur:[N]
+Unit moves with the preparation[N]
+shop attached to them.[X]
+
+## MSG_MenuSkill_Arise_NAME
+Arise[X]
+## MSG_MenuSkill_Arise_DESC
+Arise:[N]
+Revive a unit that died this[N]
+chapter. Once oNy.[X]
+
+## MSG_MenuSkill_AssignDecoy_NAME
+Assign Decoy[X]
+## MSG_MenuSkill_AssignDecoy_DESC
+Assign Decoy:[N]
+Give an allied unit the[N]
 decoy status for a turn.[X]
 
-## MSG_MenuSkill_ShadowFlashName
- Shadow Flash[X]
-
-## MSG_SKILL_ShadowFlash
+## MSG_MenuSkill_ShadowFlash_NAME
+Shadow Flash[X]
+## MSG_MenuSkill_ShadowFlash_DESC
 Shadow Flash:[N]
 Warp in a 3 tile radius, at 10 HP[N]
 cost, and move again afterwards.[X]
 
-## MSG_MenuCommand_RefugeName
- Refuge[X]
-
-## MSG_MenuCommand_Refuge
-Retreat into an ally who's[N]
-AID >= the unit's CON.[X]
-
-## MSG_MenuSkill_DeathBlightName
- Death Blight[X]
-
-## MSG_SKILL_DeathBlight
-Death Blight:[NL]
+## MSG_MenuSkill_DeathBlight_NAME
+Death Blight[X]
+## MSG_MenuSkill_DeathBlight_DESC
+Death Blight:[N]
 Inflict the "Damned" status on[N]
 enemies. Usable once per map.[X]
 
 ## MSG_MenuSkill_DivineReprieve_NAME
-D-Reprieve[X]
-
+Divine Reprieve[X]
 ## MSG_MenuSkill_DivineReprieve_DESC
-Divine Reprieve:[NL]
-Once per chapter, immediately[NL]
+Divine Reprieve:[N]
+Once per chapter, immediately[N]
 start next player phase.[X]
-
-## MSG_MenuSkill_DivineReprieveMenuName
- D-Reprieve[X]
-
-## MSG_MenuSkill_DivineReprieve_FRtext
-You have used this skill![X]
-
 ## MSG_MenuSkill_DivineReprieve_Confirm
 This skill may directly end your phase[A][N]
 Are you sure?           [N][Yes][X]
 
-## MSG_MenuSkill_LoadstarRushName
- Loadstar Rush[X]
-
-## MSG_SKILL_LoadstarRush
+## MSG_MenuSkill_LoadstarRush_NAME
+Loadstar Rush[X]
+## MSG_MenuSkill_LoadstarRush_DESC
 Loadstar Rush:[N]
 Unit attacks 7 times but[N]
 damage is 30% per attack.[X]
 
-## MSG_MenuSkill_WyvernCrashName
- Wyvern Crash[X]
-
-## MSG_SKILL_WyvernCrash
+## MSG_MenuSkill_WyvernCrash_NAME
+Wyvern Crash[X]
+## MSG_MenuSkill_WyvernCrash_DESC
 Wyvern Crash:[N]
 Once per map, this unit can deal[N]
 effective damage to a single foe.[X]
 
-## MSG_MenuSkill_SellswordName
- Sellsword[X]
-
-## MSG_SKILL_Sellsword
+## MSG_MenuSkill_Sellsword_NAME
+Sellsword[X]
+## MSG_MenuSkill_Sellsword_DESC
 Sellsword:[N]
 Spend 1000g to boost all stats by 2[N]
 until the end of the map.[X]
 
-## MSG_MenuSkill_SwitcherName
- Switcher[X]
-
-## MSG_SKILL_Switcher
+## MSG_MenuSkill_Switcher_NAME
+Switcher[X]
+## MSG_MenuSkill_Switcher_DESC
 Switcher:[N]
 Unit can choose to toggle their[N]
 ability to double.[X]
 
-## MSG_MenuSkill_SummonPlusName
- Summon+[X]
-
-## MSG_SKILL_SummonPlus
+## MSG_MenuSkill_SummonPlus_NAME
+Summon+[X]
+## MSG_MenuSkill_SummonPlus_DESC
 Summon+:[N]
 Allows the unit to pick from[N]
 an assorted list of summons.[X]
 
-## MSG_MenuSkill_LethalityPlusName
- Lethality+[X]
-
-## MSG_SKILL_LethalityPlus
+## MSG_MenuSkill_LethalityPlus_NAME
+Lethality+[X]
+## MSG_MenuSkill_LethalityPlus_DESC
 Lethality+:[N]
 Kill enemies in 1 attack[N]
 if you deal damage.[X]
 
-## MSG_MenuSkill_GrimReaperName
- Grim Reaper[X]
-
-## MSG_SKILL_GrimReaper
+## MSG_MenuSkill_GrimReaper_NAME
+Grim Reaper[X]
+## MSG_MenuSkill_GrimReaper_DESC
 Grim Reaper:[N]
 Automatically defeat an enemy,[N]
 but reduce this unit's max HP by 1.[N]
 Boss class enemies reduce HP by 5.[X]
 
-## MSG_MenuSkill_HideName
- Hide[X]
-
-## MSG_SKILL_Hide
+## MSG_MenuSkill_Hide_NAME
+Hide[X]
+## MSG_MenuSkill_Hide_DESC
 Hide:[N]
 Prevent this unit from being[N]
 attacked for one turn.[X]
+
+## MSG_MenuCommand_Refuge_NAME
+Refuge[X]
+## MSG_MenuCommand_Refuge_DESC
+Refuge:[N]
+Retreat into an ally who's[N]
+AID >= the unit's CON.[X]

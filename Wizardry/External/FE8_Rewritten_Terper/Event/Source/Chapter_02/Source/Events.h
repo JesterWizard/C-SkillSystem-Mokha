@@ -103,7 +103,9 @@ LABEL(0x1)
 
 LABEL(0x2)
     CALL(EventScr_RemoveBGIfNeeded) // This is vital, the game crashes without it for this event
+#if defined(SID_GoldDigger) && (COMMON_SKILL_VALID(SID_GoldDigger))
     GIVE_SKILL_SCROLL_TO(SID_GoldDigger, CHARACTER_EVT_ACTIVE)
+#endif
     GOTO(0x4)
 
 LABEL(0x3)

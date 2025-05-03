@@ -1,259 +1,382 @@
-## MSG_SKILL_Aegis
+## MSG_SKILL_Aegis_NAME
+Aegis[X]
+
+## MSG_SKILL_Aegis_DESC
 Aegis:[N]
 Nullify a magic attack.[N]
 (Skill % activation).[X]
 
-## MSG_SKILL_Pavise
+## MSG_SKILL_Pavise_NAME
+Pavise[X]
+
+## MSG_SKILL_Pavise_DESC
 Pavise:[N]
 Nullify a physical attack.[N]
 (Skill % activation).[X]
 
-## MSG_SKILL_Mercy
+## MSG_SKILL_Mercy_NAME
+Mercy[X]
+
+## MSG_SKILL_Mercy_DESC
 Mercy: Leave the opponent at[N]
 1 HP if the attack would kill.[N]
 (Skill % activation).[X]
 
-## MSG_SKILL_MercyPlus
+## MSG_SKILL_MercyPlus_NAME
+Mercy+[X]
+
+## MSG_SKILL_MercyPlus_DESC
 Mercy+:[N]
 This unit cannot kill enemy[N]
 units under any circumstances.[X]
 
-## MSG_SKILL_Bane
+## MSG_SKILL_Bane_NAME
+Bane[X]
+
+## MSG_SKILL_Bane_DESC
 Bane:[N]
 Leave the opponent at 1 HP[N]
 (Skill % activation).[X]
 
-## MSG_SKILL_Aether
+## MSG_SKILL_Aether_NAME
+Aether[X]
+
+## MSG_SKILL_Aether_DESC
 Aether: Negate 80% of enemy[N]
 defenses and absorb HP.[N]
 (Skill/2 % activation).[X]
 
-## MSG_SKILL_Corona
+## MSG_SKILL_Corona_NAME
+Corona[X]
+
+## MSG_SKILL_Corona_DESC
 Corona:[N]
 Negate enemy resistance.[N]
 (Skill % activation).[X]
 
-## MSG_SKILL_Luna
+## MSG_SKILL_Luna_NAME
+Luna[X]
+
+## MSG_SKILL_Luna_DESC
 Luna:[N]
 Negates enemy defense.[N]
 (Skill % activation).[X]
 
-## MSG_SKILL_Flare
+## MSG_SKILL_Flare_NAME
+Flare[X]
+
+## MSG_SKILL_Flare_DESC
 Flare:[N]
 Halve enemy resistance.[N]
 (Skill % activation).[X]
 
-## MSG_SKILL_Foresight
+## MSG_SKILL_Foresight_NAME
+Foresight[X]
+
+## MSG_SKILL_Foresight_DESC
 Foresight: Avoid the damage[N]
 from enemy Critical Hits and[N]
 Skill Activations.[X]
 
-## MSG_SKILL_Sol
+## MSG_SKILL_Sol_NAME
+Sol[X]
+
+## MSG_SKILL_Sol_DESC
 Sol:[N]
 Restore damage dealt as HP.[N]
 (Skill % activation).[X]
 
-## MSG_SKILL_DragonFang
+## MSG_SKILL_DragonFang_NAME
+DragonFang[X]
+
+## MSG_SKILL_DragonFang_DESC
 DragonFang:[N]
 Damage +50%.[N]
 (Skill % activation).[X]
 
-## MSG_SKILL_Colossus
+## MSG_SKILL_Colossus_NAME
+Colossus[X]
+
+## MSG_SKILL_Colossus_DESC
 Colossus:[N]
 Damage +200%.[N]
 (Skill % activation).[X]
 
-## MSG_SKILL_Impale
+## MSG_SKILL_Impale_NAME
+Impale[X]
+
+## MSG_SKILL_Impale_DESC
 Impale:[N]
 Damage +300%.[N]
 (Skill % activation).[X]
 
-## MSG_SKILL_Miracle
+## MSG_SKILL_Miracle_NAME
+Miracle[X]
+
+## MSG_SKILL_Miracle_DESC
 Miracle:[N]
 Unit may not die if attacked[N]
 to 0 HP (Luck % activation).[X]
 
-## MSG_SKILL_Corrosion
+## MSG_SKILL_Corrosion_NAME
+Corrosion[X]
+
+## MSG_SKILL_Corrosion_DESC
 Corrosion:[N]
 Reduce enemy's weapon durability[N]
 by user's level (Skill % activation).[X]
 
-## MSG_SKILL_Ignis
+## MSG_SKILL_Ignis_NAME
+Ignis[X]
+
+## MSG_SKILL_Ignis_DESC
 Ignis:[N]
 Add DEF/2 or RES/2 to attack based[N]
 on weapon type (Skill % activation).[X]
 
-## MSG_SKILL_RightfulKing
+## MSG_SKILL_RightfulKing_NAME
+Rightful King[X]
+
+## MSG_SKILL_RightfulKing_DESC
 Rightful King:[N]
 Add +10% to the activation[N]
 rate of this unit's skills.[X]
 
-## MSG_SKILL_RightfulGod
+## MSG_SKILL_RightfulGod_NAME
+Rightful God[X]
+
+## MSG_SKILL_RightfulGod_DESC
 Rightful God:[N]
 Add +30% to the activation[N]
 rate of this unit's skills.[X]
 
-## MSG_SKILL_RightfulArch
+## MSG_SKILL_RightfulArch_NAME
+Rightful Arch[X]
+
+## MSG_SKILL_RightfulArch_DESC
 Rightful Arch:[N]
 Set activation rate of[N]
 this unit's skills to 100%.[X]
 
-## MSG_SKILL_Glacies
+## MSG_SKILL_Glacies_NAME
+Glacies[X]
+
+## MSG_SKILL_Glacies_DESC
 Glacies:[N]
 Add unit resistance to damage dealt.[N] 
 (Skill % activation).[X]
 
-## MSG_SKILL_GreatShield
+## MSG_SKILL_GreatShield_NAME
+Great Shield[X]
+
+## MSG_SKILL_GreatShield_DESC
 Great Shield:[N]
 Nullify all attacks.[N]
 (Skill % activation).[X]
 
-## MSG_SKILL_Vengeance
+## MSG_SKILL_Vengeance_NAME
+Vengeance[X]
+
+## MSG_SKILL_Vengeance_DESC
 Vengeance:[N]
 Add damage taken to attack.[N]
 (Skill % activation).[X]
 
-## MSG_SKILL_Deadeye
+## MSG_SKILL_Deadeye_NAME
+Deadeye[X]
+
+## MSG_SKILL_Deadeye_DESC
 Deadeye:[N]
 Doubles hit rate and inflict sleep.[N]
 (Skill % activation).[X]
 
-## MSG_SKILL_AxeFaith
-AxeFaith:[N]
+## MSG_SKILL_AxeFaith_NAME
+Axe Faith[X]
+
+## MSG_SKILL_AxeFaith_DESC
+Axe Faith:[N]
 When attacking with an Axe, hit + attack%.[N]
 (Attack % activation).[X]
 
-## MSG_SKILL_Armsthrift
+## MSG_SKILL_Armsthrift_NAME
+Armsthrift[X]
+
+## MSG_SKILL_Armsthrift_DESC
 Armsthrift:[N]
 A weapon use is not consumed.[N]
 (Skill % activation).[X]
 
-## MSG_SKILL_SureShot
-SureShot:[N]
+## MSG_SKILL_SureShot_NAME
+Sure Shot[X]
+
+## MSG_SKILL_SureShot_DESC
+Sure Shot:[N]
 100% hit rate, damage +50%.[N]
 (Skill % activation).[X]
 
 ## MSG_SKILL_DivinePulse_NAME
-D-Pulse[X]
+Divine Pulse[X]
 
-## MSG_SKILL_DivinePulse
+## MSG_SKILL_DivinePulse_DESC
 Divine Pulse:[N]
 Turn a missed attack into a hit[N]
 (30% + Luck % activation).[X]
 
-## MSG_SKILL_Discipline
+## MSG_SKILL_Discipline_NAME
+Discipline[X]
+
+## MSG_SKILL_Discipline_DESC
 Discipline:[N]
 Weapon experience gains are[N]
 doubled for this unit.[X]
 
-## MSG_SKILL_Counter
+## MSG_SKILL_Counter_NAME
+Counter[X]
+
+## MSG_SKILL_Counter_DESC
 Counter:[N]
 Reflect physical damage[N]
 dealt at melee range.[X]
 
 ## MSG_SKILL_DevilsPact_NAME
-D-Pact[X]
+Devil's Pact[X]
 
-## MSG_SKILL_DevilsPact
+## MSG_SKILL_DevilsPact_DESC
 Devil's Pact:[N]
 Inflict the Devil effect[N]
 upon the enemy unit.[X]
 
 ## MSG_SKILL_DevilsWhim_NAME
-D-Whim[X]
+Devil's Whim[X]
 
-## MSG_SKILL_DevilsWhim
+## MSG_SKILL_DevilsWhim_DESC
 Devil's Whim:[N]
 Inflict the Devil effect[N]
 upon both units.[X]
 
 ## MSG_SKILL_DevilsLuck_NAME
-D-Luck[X]
+Devil's Luck[X]
 
-## MSG_SKILL_DevilsLuck
+## MSG_SKILL_DevilsLuck_DESC
 Devil's Luck:[N]
 Give the unit's devil effect[N]
 to the enemy in battle.[X]
 
 ## MSG_SKILL_CounterMagic_NAME
-C-Magic:[X]
+Counter Magic[X]
 
-## MSG_SKILL_CounterMagic
+## MSG_SKILL_CounterMagic_DESC
 Counter Magic:[N]
 Reflect magical damage[N]
 dealt at range.[X]
 
-## MSG_SKILL_Eclipse
+## MSG_SKILL_Eclipse_NAME
+Eclipse[X]
+
+## MSG_SKILL_Eclipse_DESC
 Eclipse:[N]
 Halve the opponent's current HP.[N]
 (Skill % activation).[X]
 
-## MSG_SKILL_Sturdy
+## MSG_SKILL_Sturdy_NAME
+Sturdy[X]
+
+## MSG_SKILL_Sturdy_DESC
 Sturdy:[N]
 If the unit has full HP at the[N]
 start of the fight, they cannot die.[X]
 
-## MSG_SKILL_HoldOut
-HoldOut:[N]
+## MSG_SKILL_HoldOut_NAME
+Hold Out[X]
+
+## MSG_SKILL_HoldOut_DESC
+Hold Out:[N]
 If the unit has >= 30% HP at the[N]
 start of the fight, they cannot die.[X]
 
-## MSG_SKILL_ArmsthriftPlus
+## MSG_SKILL_ArmsthriftPlus_NAME
+Armsthrift+[X]
+
+## MSG_SKILL_ArmsthriftPlus_DESC
 Armsthrift+:[N]
 Weapon uses are not consumed.[X]
 
 ## MSG_SKILL_DownWithArch_NAME
-Down-Arch[X]
+Down With Arch[X]
 
-## MSG_SKILL_DownWithArch
+## MSG_SKILL_DownWithArch_DESC
 Down With Arch:[N]
 Instantly kill enemy if their[N]
 name is the specified name.[X]
 
-## MSG_SKILL_RampUp
-RampUp:[N]
+## MSG_SKILL_RampUp_NAME
+Ramp Up[X]
+
+## MSG_SKILL_RampUp_DESC
+Ramp Up:[N]
 Crits deal x2 damage, but[N]
 apply before enemy defense.[X]
 
 ## MSG_SKILL_TriangleAttack_NAME
-Tri-Atk[X]
+Triangle Attack[X]
 
-## MSG_SKILL_TriangleAttack
+## MSG_SKILL_TriangleAttack_DESC
 Triangle Attack: Two other units with[N]
 this skill adjacent to an enemy can[N]
 perform a triangle attack.[X]
 
-## MSG_SKILL_AngerPoint
+## MSG_SKILL_AngerPoint_NAME
+Anger Point[X]
+
+## MSG_SKILL_AngerPoint_DESC
 Anger Point:[N]
 Gai +10 attack for the phase[N]
 if you've taken a critical hit.[X]
 
-## MSG_SKILL_Debilitator
+## MSG_SKILL_Debilitator_NAME
+Debilitator[X]
+
+## MSG_SKILL_Debilitator_DESC
 Debilitator:[N]
 If this unit deals no damage,[N]
 -4 to all enemy's stats this turn.[X]
 
-## MSG_SKILL_Chipper
+## MSG_SKILL_Chipper_NAME
+Chipper[X]
+
+## MSG_SKILL_Chipper_DESC
 Chipper:[N]
 Gain +50g after every[N]
 hit on the enemy.[X]
 
-## MSG_SKILL_GrazingBlow
+## MSG_SKILL_GrazingBlow_NAME
+Grazing Blow[X]
+
+## MSG_SKILL_GrazingBlow_DESC
 Grazing Blow:[N]
 This unit's missed attacks[N]
 deal half damage.[X]
 
-## MSG_SKILL_AbsorbMelee
+## MSG_SKILL_AbsorbMelee_NAME
+Absorb Melee[X]
+
+## MSG_SKILL_AbsorbMelee_DESC
 Absorb Melee:[N]
 This unit can absorb damage[N]
 from melee attacks to restore HP.[X]
 
-## MSG_SKILL_AbsorbMagic
+## MSG_SKILL_AbsorbMagic_NAME
+Absorb Magic[X]
+
+## MSG_SKILL_AbsorbMagic_DESC
 Absorb Magic:[N]
 This unit can absorb damage[N]
 from magic attacks to restore HP.[X]
 
-## MSG_SKILL_Antihex
+## MSG_SKILL_Antihex_NAME
+Antihex[X]
+
+## MSG_SKILL_Antihex_DESC
 Antihex:[N]
 Disables the devil backfire[N]
 chance for this unit.[X]

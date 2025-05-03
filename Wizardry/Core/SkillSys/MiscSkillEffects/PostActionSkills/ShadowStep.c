@@ -8,8 +8,7 @@
 #include "constants/texts.h"
 #include "strmag.h"
 
-#if defined(SID_ShadowStep) && (COMMON_SKILL_VALID(SID_ShadowStep))
-static void callback_anim(ProcPtr proc)
+FORCE_DECLARE static void callback_anim(ProcPtr proc)
 {
     PlaySoundEffect(0x269);
     Proc_StartBlocking(ProcScr_DanceringAnim, proc);
@@ -20,13 +19,14 @@ static void callback_anim(ProcPtr proc)
         -SCREEN_TILE_IX(gActiveUnit->yPos - 2));
 }
 
-static void callback_exec(ProcPtr proc)
+FORCE_DECLARE static void callback_exec(ProcPtr proc)
 {
     SetUnitStatus(gActiveUnit, NEW_UNIT_STATUS_HIDE);
 }
 
 bool PostActionShadowStep(ProcPtr proc)
 {
+#if defined(SID_ShadowStep) && (COMMON_SKILL_VALID(SID_ShadowStep))
     if (gActionData.unitActionType != UNIT_ACTION_COMBAT)
         return false;
 
@@ -45,5 +45,6 @@ bool PostActionShadowStep(ProcPtr proc)
 #endif
 
     return false;
-}
 #endif
+    return false;
+}

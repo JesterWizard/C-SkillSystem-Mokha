@@ -1424,7 +1424,7 @@ void GiveScroll(void)
     unit = GetUnitFromCharId(charId);
 
     for (int i = 0; i < 5; i++) {
-        if(unit->items[i] == ((SID_Supply << 8) | CONFIG_ITEM_INDEX_SKILL_SCROLL))
+        if(unit->items[i] == ((skillId << 8) | CONFIG_ITEM_INDEX_SKILL_SCROLL))
         {
             unit->items[i] = (skillId << 8) | CONFIG_ITEM_INDEX_SKILL_SCROLL;
             break;
@@ -1435,7 +1435,7 @@ void GiveScroll(void)
     items = GetConvoyItemArray();
 
     for (int i = 0; i < CONFIG_INSTALL_CONVOYEXPA_AMT; i++) {
-        if(items[i] == ((SID_Supply << 8) | CONFIG_ITEM_INDEX_SKILL_SCROLL))
+        if(items[i] == ((skillId << 8) | CONFIG_ITEM_INDEX_SKILL_SCROLL))
         {
             items[i] = (skillId << 8) | CONFIG_ITEM_INDEX_SKILL_SCROLL;
             break;
@@ -4192,8 +4192,10 @@ bool PrepareBattleGraphicsMaybe(void)
         return false;
 
     /* JESTER - Added here as a bugfix for using the dance skill on characters without those animations */
+#if defined(SID_Dance) && defined(SID_Dance)
     if(unit_bu1->pClassData->number != CLASS_DANCER && gActionData.unk08 == SID_Dance)
         return false;
+#endif
 
     if (char_cnt != 1 && unit_bu1->pClassData->number == CLASS_DEMON_KING && GetItemIndex(bu1->weaponBefore) != ITEM_NIGHTMARE &&
         unit_bu2->pClassData->number != CLASS_PHANTOM && unit_bu2->pClassData->number != CLASS_DRACO_ZOMBIE)

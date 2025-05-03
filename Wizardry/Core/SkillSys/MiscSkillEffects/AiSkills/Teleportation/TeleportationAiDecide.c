@@ -9,7 +9,7 @@
 
 #define LOCAL_TRACE 0
 
-STATIC_DECLAR bool AiTryTeleportationExt(void)
+FORCE_DECLARE static bool AiTryTeleportationExt(void)
 {
     struct Vec2 vec;
 
@@ -34,6 +34,7 @@ STATIC_DECLAR bool AiTryTeleportationExt(void)
 /* External hook */
 bool Ai2Decide_TryTeleportation(void)
 {
+#if defined(SID_Teleportation) && (COMMON_SKILL_VALID(SID_Teleportation))
     /**
      * This function may just hook at AI-2 decided
      */
@@ -64,5 +65,7 @@ bool Ai2Decide_TryTeleportation(void)
         SetBitUES(gActiveUnit, UES_BIT_TELEPORTATION_SKILL_USED);
         return true;
     }
+    return false;
+#endif
     return false;
 }
