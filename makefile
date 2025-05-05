@@ -334,7 +334,8 @@ SKILLS_ENUM_DIR  := $(MK_DIR)include/constants
 SKILLS_COMBO_DIR := $(MK_DIR)Patches
 
 SKILLS_ENUM_SRC := $(SKILLS_ENUM_DIR)/skills-equip.enum.txt
-SKILLS_ENUM_SRC += $(SKILLS_ENUM_DIR)/skills-others.enum.txt
+SKILLS_ENUM_SRC += $(SKILLS_ENUM_DIR)/skills-class.enum.txt
+SKILLS_ENUM_SRC += $(SKILLS_ENUM_DIR)/skills-person.enum.txt
 SKILLS_ENUM_SRC += $(SKILLS_ENUM_DIR)/skills-item.enum.txt
 
 SKILLS_ENUM_HEADER := $(SKILLS_ENUM_DIR)/skills.h
@@ -346,13 +347,16 @@ $(SKILLS_ENUM_HEADER): $(SKILLS_ENUM_SRC)
 	@echo "#pragma once" > $(SKILLS_ENUM_HEADER)
 ifeq ($(CONFIG_CI_NO_SKILL_TEST), 0)
 	@python3 $(ENUM2H) 0x000 $(SKILLS_ENUM_DIR)/skills-equip.enum.txt 	>> $(SKILLS_ENUM_HEADER)
-	@python3 $(ENUM2H) 0x100 $(SKILLS_ENUM_DIR)/skills-others.enum.txt  >> $(SKILLS_ENUM_HEADER)
+	@python3 $(ENUM2H) 0x100 $(SKILLS_ENUM_DIR)/skills-class.enum.txt   >> $(SKILLS_ENUM_HEADER)
+	@python3 $(ENUM2H) 0x200 $(SKILLS_ENUM_DIR)/skills-person.enum.txt  >> $(SKILLS_ENUM_HEADER)
 	@python3 $(ENUM2H) 0x300 $(SKILLS_ENUM_DIR)/skills-item.enum.txt    >> $(SKILLS_ENUM_HEADER)
 	@python3 $(ENUM2C) 0x000 $(SKILLS_ENUM_DIR)/skills-equip.enum.txt 	>  $(SKILLS_COMBO_DIR)/combo.skills_equip.txt
-	@python3 $(ENUM2C) 0x100 $(SKILLS_ENUM_DIR)/skills-others.enum.txt  >  $(SKILLS_COMBO_DIR)/combo.skills_others.txt
+	@python3 $(ENUM2C) 0x100 $(SKILLS_ENUM_DIR)/skills-class.enum.txt   >  $(SKILLS_COMBO_DIR)/combo.skills_class.txt
+	@python3 $(ENUM2H) 0x200 $(SKILLS_ENUM_DIR)/skills-person.enum.txt  >> $(SKILLS_COMBO_DIR)/combo.skills.person.txt
 	@python3 $(ENUM2C) 0x300 $(SKILLS_ENUM_DIR)/skills-item.enum.txt    >  $(SKILLS_COMBO_DIR)/combo.skills_item.txt
 	@python3 $(ENUM2C) 0x000 $(SKILLS_ENUM_DIR)/skills-equip.enum.txt 	>  $(SKILLS_COMBO_DIR)/combo.skills.txt
-	@python3 $(ENUM2C) 0x100 $(SKILLS_ENUM_DIR)/skills-others.enum.txt  >> $(SKILLS_COMBO_DIR)/combo.skills.txt
+	@python3 $(ENUM2C) 0x100 $(SKILLS_ENUM_DIR)/skills-class.enum.txt   >> $(SKILLS_COMBO_DIR)/combo.skills.txt
+	@python3 $(ENUM2H) 0x200 $(SKILLS_ENUM_DIR)/skills-person.enum.txt  >> $(SKILLS_COMBO_DIR)/combo.skills.txt
 	@python3 $(ENUM2C) 0x300 $(SKILLS_ENUM_DIR)/skills-item.enum.txt    >> $(SKILLS_COMBO_DIR)/combo.skills.txt
 else
 	@echo "[WARNNING] ======================================"
@@ -366,7 +370,8 @@ PRE_BUILD += enum
 CLEAN_FILES += $(SKILLS_ENUM_HEADER)
 CLEAN_FILES += $(MK_DIR)Patches/combo.skills.txt
 CLEAN_FILES += $(MK_DIR)Patches/combo.skills_equip.txt
-CLEAN_FILES += $(MK_DIR)Patches/combo.skills_others.txt
+CLEAN_FILES += $(MK_DIR)Patches/combo.skills_class.txt
+CLEAN_FILES += $(MK_DIR)Patches/combo.skills_person.txt
 CLEAN_FILES += $(MK_DIR)Patches/combo.skills_item.txt
 
 # =============
