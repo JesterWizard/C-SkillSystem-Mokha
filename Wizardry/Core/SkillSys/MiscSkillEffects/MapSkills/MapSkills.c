@@ -6,6 +6,16 @@
 #include "bwl.h"
 #include "jester_headers/class-pairs.h"
 
+#if (defined(SID_Doppleganger) && (COMMON_SKILL_VALID(SID_Doppleganger)))
+
+// Predefine an array of key-value pairs
+const int dopplegangerPairs[1][2] = { { CHARACTER_EIRIKA, CLASS_EIRIKA_LORD } };
+// Define the size of the array
+const int dopplegangerListSize = sizeof(dopplegangerPairs) / sizeof(dopplegangerPairs[0]);
+
+#endif
+
+
 /*
 ** This array is static in the decomp, but it wouldn't compile for me otherwise
 ** I also had to define it in the vanilla.h file

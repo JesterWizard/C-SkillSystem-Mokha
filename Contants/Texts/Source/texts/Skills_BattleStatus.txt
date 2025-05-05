@@ -787,10 +787,10 @@ Dazzle:[N]
 Enemy cannot counterattack[N]
 this unit.[X]
 
-## MSG_SKILL_MooNight_NAME
-Moon Night[X]
-## MSG_SKILL_MooNight_DESC
-Moon Night:[N]
+## MSG_SKILL_Moonlight_NAME
+Moonlight[X]
+## MSG_SKILL_Moonlight_DESC
+Moonlight:[N]
 This unit cannot double, but[N]
 the enemy cannot counterattack.[X]
 
@@ -924,63 +924,63 @@ double weapon might.[X]
 Lull Defense[X]
 ## MSG_SKILL_LullDefense_DESC
 Lull Defense:[N]
-Negates the application of
+Negates the application of[N]
 DEF rallies in a 3 tile range.[X]
 
 ## MSG_SKILL_LullLuck_NAME
 Lull Luck[X]
 ## MSG_SKILL_LullLuck_DESC
 Lull Luck:[N]
-Negates the application of
+Negates the application of[N]
 LCK rallies in a 3 tile range.[X]
 
 ## MSG_SKILL_LullMagic_NAME
 Lull Magic[X]
 ## MSG_SKILL_LullMagic_DESC
 Lull Magic:[N]
-Negates the application of
+Negates the application of[N]
 MAG rallies in a 3 tile range.[X]
 
 ## MSG_SKILL_LullMovement_NAME
 Lull Movement[X]
 ## MSG_SKILL_LullMovement_DESC
 Lull Movement:[N]
-Negates the application of
+Negates the application of[N]
 MOV rallies in a 3 tile range.[X]
 
 ## MSG_SKILL_LullResistance_NAME
 Lull Resistance[X]
 ## MSG_SKILL_LullResistance_DESC
 Lull Resistance:[N]
-Negates the application of
+Negates the application of[N]
 RES rallies in a 3 tile range.[X]
 
 ## MSG_SKILL_LullSkill_NAME
 Lull Skill[X]
 ## MSG_SKILL_LullSkill_DESC
 Lull Skill:[N]
-Negates the application of
+Negates the application of[N]
 SKL rallies in a 3 tile range.[X]
 
 ## MSG_SKILL_LullSpectrum_NAME
 Lull Spectrum[X]
 ## MSG_SKILL_LullSpectrum_DESC
 Lull Spectrum:[N]
-Negates the application of
+Negates the application of[N]
 ALL rallies in a 3 tile range.[X]
 
 ## MSG_SKILL_LullSpeed_NAME
 Lull Speed[X]
 ## MSG_SKILL_LullSpeed_DESC
 Lull Speed:[N]
-Negates the application of
+Negates the application of[N]
 SPD rallies in a 3 tile range.[X]
 
 ## MSG_SKILL_LullStrength_NAME
 Lull Strength[X]
 ## MSG_SKILL_LullStrength_DESC
 Lull Strength:[N]
-Negates the application of
+Negates the application of[N]
 STR rallies in a 3 tile range.[X]
 
 ## MSG_SKILL_SteadyBrawler_NAME

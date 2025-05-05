@@ -1,4 +1,4 @@
-////////// MENU SKILLS
+//////// MENU SKILLS
 // SID_Dismount
 // SID_ReciprocalAid
 // SID_Sacrifice
@@ -53,7 +53,7 @@
 // SID_GrimReaper
 // SID_Hide
 
-////////// PRE-BATTLE SKILLS
+//////// PRE-BATTLE SKILLS
 // SID_DefiantStr
 // SID_DefiantMag
 // SID_DefiantSkl
@@ -155,7 +155,7 @@
 // SID_SandRush
 // SID_SwiftSwim
 // SID_SolarPower
-// SID_RangeBonusBMag1
+// SID_RangeBonusBMag
 // SID_RangeBonusBMag2
 // SID_RangeBonusBow1
 // SID_RangeBonusBow2
@@ -192,7 +192,6 @@
 // SID_LightWeight
 // SID_Analytic
 // SID_StunningSmile
-// SID_Comatose
 // SID_Mimic
 // SID_Bushido
 // SID_DragonWall
@@ -246,8 +245,8 @@
 // SID_TintedLensPlus
 // SID_Emulate
 
-////////// POST-BATTLE SKILLS
-SID_Canto
+//////// POST-BATTLE SKILLS
+// SID_Canto
 // SID_CantoPlus
 // SID_Galeforce
 // SID_AlertStance
@@ -299,7 +298,7 @@ SID_Canto
 // SID_Heroics
 // SID_ShadowStep
 
-////////// AURA SKILLS
+//////// AURA SKILLS
 // SID_Anathema
 // SID_Bond
 // SID_Charm
@@ -360,7 +359,7 @@ SID_Canto
 // SID_HolyAura
 // SID_BlueFlame
 
-////////// STAT MODIFIER SKILLS
+//////// STAT MODIFIER SKILLS
 // SID_HpBonus
 // SID_StrBonus
 // SID_MagBonus
@@ -438,7 +437,7 @@ SID_Canto
 // SID_HugePower
 // SID_HugePowerPlus
 
-////////// WEAPON TRIANGLE ADVANTAGE SKILLS
+//////// WEAPON TRIANGLE ADVANTAGE SKILLS
 // SID_SwordBreaker
 // SID_AxeBreaker
 // SID_LanceBreaker
@@ -451,7 +450,7 @@ SID_Canto
 // SID_Poise
 // SID_Break
 
-////////// PROC/MID-BATTLE SKILLS
+//////// PROC/MID-BATTLE SKILLS
 // SID_Astra
 // SID_Aegis
 // SID_Pavise
@@ -483,7 +482,7 @@ SID_Canto
 // SID_InfinityEdge
 // SID_MoonBow
 // SID_LiquidOoze
-// SID_Miracle  // This is miracle
+// SID_Miracle  //This is miracle
 // SID_Armsthrift
 // SID_GoodAsGold
 // SID_Multiscale
@@ -527,13 +526,13 @@ SID_Canto
 // SID_ShedSkin
 // SID_HoldOut
 
-////////// EFFECTIVENESS SKILLS
+//////// EFFECTIVENESS SKILLS
 // SID_Resourceful
 // SID_Slayer
 // SID_Skybreaker
 // SID_BanditBane
 
-////////// BATTLE ORDER SKILLS
+//////// BATTLE ORDER SKILLS
 // SID_Vantage
 // SID_Desperation
 // SID_QuickRiposte
@@ -558,7 +557,7 @@ SID_Canto
 // SID_AlacrityPlus
 // SID_TrickRoom
 
-////////// PRE-PHASE SKILLS
+//////// PRE-PHASE SKILLS
 // SID_Renewal
 // SID_RenewalPlus
 // SID_Imbue
@@ -620,12 +619,12 @@ SID_Canto
 // SID_Lifefont
 // SID_EternalVanity
 
-////////// POST-PHASE SKILLS
+//////// POST-PHASE SKILLS
 // SID_HoardersBane
 // SID_DarkBargain
 // SID_Rampage
 
-////////// LEVEL UP SKILLS
+//////// LEVEL UP SKILLS
 // SID_Blossom
 // SID_Paragon
 // SID_VoidCurse
@@ -651,14 +650,7 @@ SID_Canto
 // SID_PeoplesKnight
 // SID_ItemLore
 
-////////// LEGENDARY SKILLS
-// SID_LEGEND_MiracleAtk
-// SID_LEGEND_MiracleAvo
-// SID_LEGEND_MiracleDef
-// SID_LEGEND_4
-// SID_LEGEND_5
-
-////////// MOVEMENT SKILLS
+//////// MOVEMENT SKILLS
 // SID_Pass
 // SID_Obstruct
 // SID_Aerobatics
@@ -672,23 +664,23 @@ SID_Canto
 // SID_PhaseShift
 // SID_DesertTiger
 
-///////// SHOP SKILLS
+//////// SHOP SKILLS
 // SID_Deal
 // SID_Bargain
 // SID_Secret
 // SID_Trader
 
-///////// ARENA SKILLS
+//////// ARENA SKILLS
 // SID_Ludopathy
 // SID_ConcealedWeapon
 
-///////// AI SKILLS
+//////// AI SKILLS
 // SID_Shade
 // SID_ShadePlus
 // SID_Provoke
 // SID_Guardian
 
-////////// STANDALONE SKILLS
+//////// STANDALONE SKILLS
 // SID_IdentityProblems
 // SID_DemolitionExpert
 // SID_TriangleAttack
@@ -711,7 +703,7 @@ SID_Canto
 // SID_ArcgiftPlus
 // SID_NiceThighs
 // SID_Casual
-// SID_CatchEmAll  // Doesn't work
+// SID_CatchEmAll
 // SID_LiveToServe
 // SID_Reflex
 // SID_Nullify
@@ -750,7 +742,7 @@ SID_Canto
 // SID_ExplosiveBuff
 // SID_ScrollScribe
 
-///////// COMBAT ARTS
+//////// COMBAT ARTS
 // SID_COMBAT_Grounder
 // SID_COMBAT_BaneOfMonsters
 // SID_COMBAT_Hexblade

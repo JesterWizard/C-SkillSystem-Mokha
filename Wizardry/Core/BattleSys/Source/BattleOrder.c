@@ -126,7 +126,7 @@ bool CheckCanTwiceAttackOrder(struct BattleUnit * actor, struct BattleUnit * tar
             if (GetEffLvl(actor) < GetEffLvl(target))
             {
                 gBattleTemporaryFlag.act_force_twice_order = true;
-                RegisterBattleOrderSkill(SID_BoldFighter, BORDER_ACT_TWICE);
+                RegisterBattleOrderSkill(SID_QuickLearner, BORDER_ACT_TWICE);
                 return true;
             }
         }
@@ -390,7 +390,7 @@ STATIC_DECLAR bool CheckDesperationOrder(void)
 #if defined(SID_AlacrityPlus) && (COMMON_SKILL_VALID(SID_AlacrityPlus))
     if (BattleSkillTester(&gBattleActor, SID_AlacrityPlus))
     {
-        if ((gBattleActor.battleSpeed - ) >= gBattleTarget.battleSpeed)
+        if ((gBattleActor.battleSpeed - 5) >= gBattleTarget.battleSpeed)
         {
             gBattleTemporaryFlag.desperation_order = true;
             RegisterBattleOrderSkill(SID_AlacrityPlus, BORDER_DESPERATION);

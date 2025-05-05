@@ -22,14 +22,6 @@ Provoke:[N]
 Enemies are more likely[N]
 to target this unit.[X]
 
-## MSG_SKILL_Teleportation_NAME
-Teleportation[X]
-
-## MSG_SKILL_Teleportation_DESC
-Teleportation: Allows unit[N]
-to teleport before attack if[N]
-unit have more than 50% HP.[X]
-
 ## MSG_SKILL_Rampage_NAME
 Rampage[X]
 

@@ -620,10 +620,10 @@ const struct SkillInfo gSkillInfos[MAX_SKILL_NUM + 1] = {
 
 #if (defined(SID_LoadstarRush) && COMMON_SKILL_VALID(SID_LoadstarRush))
     [SID_LoadstarRush] = {
-        .name = MSG_MenuSkill_LoadstarRush_NAME,
-        .desc = MSG_MenuSkill_LoadstarRush_DESC,
-        .capacity = MSG_MenuSkill_LoadstarRush_CAPACITY,
-        .price = MSG_MenuSkill_LoadstarRush_PRICE,
+        .name = MSG_SKILL_LoadstarRush_NAME,
+        .desc = MSG_SKILL_LoadstarRush_DESC,
+        .capacity = MSG_SKILL_LoadstarRush_CAPACITY,
+        .price = MSG_SKILL_LoadstarRush_PRICE,
         .icon = GFX_SkillIcon_Astra,
     },
 #endif
@@ -1347,20 +1347,20 @@ const struct SkillInfo gSkillInfos[MAX_SKILL_NUM + 1] = {
 
 #if (defined(SID_Steal) && COMMON_SKILL_VALID(SID_Steal))
     [SID_Steal] = {
-        .name = MSG_MenuSkill_Steal_NAME,
-        .desc = MSG_MenuSkill_Steal_DESC,
-        .capacity = MSG_MenuSkill_Steal_CAPACITY,
-        .price = MSG_MenuSkill_Steal_PRICE,
+        .name = MSG_SKILL_Steal_NAME,
+        .desc = MSG_SKILL_Steal_DESC,
+        .capacity = MSG_SKILL_Steal_CAPACITY,
+        .price = MSG_SKILL_Steal_PRICE,
         .icon = GFX_SkillIcon_Steal,
     },
 #endif
 
 #if (defined(SID_HealingFocus) && COMMON_SKILL_VALID(SID_HealingFocus))
     [SID_HealingFocus] = {
-        .name = MSG_MenuSkill_HealingFocus_NAME,
-        .desc = MSG_MenuSkill_HealingFocus_DESC,
-        .capacity = MSG_MenuSkill_HealingFocus_CAPACITY,
-        .price = MSG_MenuSkill_HealingFocus_PRICE,
+        .name = MSG_SKILL_HealingFocus_NAME,
+        .desc = MSG_SKILL_HealingFocus_DESC,
+        .capacity = MSG_SKILL_HealingFocus_CAPACITY,
+        .price = MSG_SKILL_HealingFocus_PRICE,
         .icon = GFX_SkillIcon_WIP,
     },
 #endif
@@ -1768,7 +1768,10 @@ const struct SkillInfo gSkillInfos[MAX_SKILL_NUM + 1] = {
 
 #if (defined(SID_MaleficAura) && (SID_MaleficAura < MAX_SKILL_NUM)) 
     [SID_MaleficAura] = {
-        .desc = MSG_SKILL_MaleficAura,
+        .name = MSG_SKILL_MaleficAura_NAME,
+        .desc = MSG_SKILL_MaleficAura_DESC,
+        .capacity = MSG_SKILL_MaleficAura_CAPACITY,
+        .price = MSG_SKILL_MaleficAura_PRICE,
         .icon = GFX_SkillIcon_MaleficAura,
       },
 #endif
@@ -2956,30 +2959,30 @@ const struct SkillInfo gSkillInfos[MAX_SKILL_NUM + 1] = {
 
 #if (defined(SID_Dance) && COMMON_SKILL_VALID(SID_Dance))
     [SID_Dance] = {
-        .name = MSG_MenuSkill_Dance_NAME,
-        .desc = MSG_MenuSkill_Dance_DESC,
-        .capacity = MSG_MenuSkill_Dance_CAPACITY,
-        .price = MSG_MenuSkill_Dance_PRICE,
+        .name = MSG_SKILL_Dance_NAME,
+        .desc = MSG_SKILL_Dance_DESC,
+        .capacity = MSG_SKILL_Dance_CAPACITY,
+        .price = MSG_SKILL_Dance_PRICE,
         .icon = GFX_SkillIcon_Dance,
     },
 #endif
 
 #if (defined(SID_LockTouch) && COMMON_SKILL_VALID(SID_LockTouch))
     [SID_LockTouch] = {
-        .name = MSG_MenuSkill_LockTouch_NAME,
-        .desc = MSG_MenuSkill_LockTouch_DESC,
-        .capacity = MSG_MenuSkill_LockTouch_CAPACITY,
-        .price = MSG_MenuSkill_LockTouch_PRICE,
+        .name = MSG_SKILL_LockTouch_NAME,
+        .desc = MSG_SKILL_LockTouch_DESC,
+        .capacity = MSG_SKILL_LockTouch_CAPACITY,
+        .price = MSG_SKILL_LockTouch_PRICE,
         .icon = GFX_SkillIcon_LockTouch,
     },
 #endif
 
 #if (defined(SID_Summon) && COMMON_SKILL_VALID(SID_Summon))
     [SID_Summon] = {
-        .name = MSG_MenuSkill_Summon_NAME,
-        .desc = MSG_MenuSkill_Summon_DESC,
-        .capacity = MSG_MenuSkill_Summon_CAPACITY,
-        .price = MSG_MenuSkill_Summon_PRICE,
+        .name = MSG_SKILL_Summon_NAME,
+        .desc = MSG_SKILL_Summon_DESC,
+        .capacity = MSG_SKILL_Summon_CAPACITY,
+        .price = MSG_SKILL_Summon_PRICE,
         .icon = GFX_SkillIcon_Summon,
     },
 #endif
@@ -3036,40 +3039,40 @@ const struct SkillInfo gSkillInfos[MAX_SKILL_NUM + 1] = {
 
 #if (defined(SID_AversaNight) && COMMON_SKILL_VALID(SID_AversaNight))
     [SID_AversaNight] = {
-        .name = MSG_SKILL_DEBUFF_Aversa_NAME,
-        .desc = MSG_SKILL_DEBUFF_Aversa_DESC,
-        .capacity = MSG_SKILL_DEBUFF_Aversa_CAPACITY,
-        .price = MSG_SKILL_DEBUFF_Aversa_PRICE,
+        .name = MSG_SKILL_Aversa_NAME,
+        .desc = MSG_SKILL_Aversa_DESC,
+        .capacity = MSG_SKILL_Aversa_CAPACITY,
+        .price = MSG_SKILL_Aversa_PRICE,
         .icon = GFX_SkillIcon_AversaNight,
     },
 #endif
 
 #if (defined(SID_Supply) && COMMON_SKILL_VALID(SID_Supply))
     [SID_Supply] = {
-        .name = MSG_MenuSkill_Supply_NAME,
-        .desc = MSG_MenuSkill_Supply_DESC,
-        .capacity = MSG_MenuSkill_Supply_CAPACITY,
-        .price = MSG_MenuSkill_Supply_PRICE,
+        .name = MSG_SKILL_Supply_NAME,
+        .desc = MSG_SKILL_Supply_DESC,
+        .capacity = MSG_SKILL_Supply_CAPACITY,
+        .price = MSG_SKILL_Supply_PRICE,
         .icon = GFX_SkillIcon_Supply,
     },
 #endif
 
 #if (defined(SID_LightRune) && COMMON_SKILL_VALID(SID_LightRune))
     [SID_LightRune] = {
-        .name = MSG_MenuSkill_LightRune_NAME,
-        .desc = MSG_MenuSkill_LightRune_DESC,
-        .capacity = MSG_MenuSkill_LightRune_CAPACITY,
-        .price = MSG_MenuSkill_LightRune_PRICE,
+        .name = MSG_SKILL_LightRune_NAME,
+        .desc = MSG_SKILL_LightRune_DESC,
+        .capacity = MSG_SKILL_LightRune_CAPACITY,
+        .price = MSG_SKILL_LightRune_PRICE,
         .icon = GFX_SkillIcon_WIP,
     },
 #endif
 
 #if (defined(SID_Mine) && COMMON_SKILL_VALID(SID_Mine))
     [SID_Mine] = {
-        .name = MSG_MenuSkill_Mine_NAME,
-        .desc = MSG_MenuSkill_Mine_DESC,
-        .capacity = MSG_MenuSkill_Mine_CAPACITY,
-        .price = MSG_MenuSkill_Mine_PRICE,
+        .name = MSG_SKILL_Mine_NAME,
+        .desc = MSG_SKILL_Mine_DESC,
+        .capacity = MSG_SKILL_Mine_CAPACITY,
+        .price = MSG_SKILL_Mine_PRICE,
         .icon = GFX_SkillIcon_Mine,
     },
 #endif
@@ -3887,8 +3890,8 @@ const struct SkillInfo gSkillInfos[MAX_SKILL_NUM + 1] = {
 #if (defined(SID_Moonlight) && COMMON_SKILL_VALID(SID_Moonlight))
     [SID_Moonlight] = {
         .name = MSG_SKILL_Moonlight_NAME,
-         .desc = MSG_SKILL_Moonlight_DESC,
-         .capacity = MSG_SKILL_Moonlight_CAPACITY,
+        .desc = MSG_SKILL_Moonlight_DESC,
+        .capacity = MSG_SKILL_Moonlight_CAPACITY,
         .price = MSG_SKILL_Moonlight_PRICE,
         .icon = GFX_SkillIcon_Moonlight,
     },
@@ -4006,7 +4009,10 @@ const struct SkillInfo gSkillInfos[MAX_SKILL_NUM + 1] = {
 
 #if (defined(SID_Amaterasu) && (SID_Amaterasu < MAX_SKILL_NUM)) 
     [SID_Amaterasu] = {
-        .desc = MSG_SKILL_Amaterasu,
+        .name = MSG_SKILL_Amaterasu_NAME,
+        .desc = MSG_SKILL_Amaterasu_DESC,
+        .capacity = MSG_SKILL_Amaterasu_CAPACITY,
+        .price = MSG_SKILL_Amaterasu_PRICE,
         .icon = GFX_SkillIcon_Amaterasu,
       },
 #endif
@@ -4685,10 +4691,10 @@ const struct SkillInfo gSkillInfos[MAX_SKILL_NUM + 1] = {
 
 #if (defined(SID_GoddessDance) && COMMON_SKILL_VALID(SID_GoddessDance))
     [SID_GoddessDance] = {
-        .name = MSG_MenuSkill_GoddessDance_NAME,
-        .desc = MSG_MenuSkill_GoddessDance_DESC,
-        .capacity = MSG_MenuSkill_GoddessDance_CAPACITY,
-        .price = MSG_MenuSkill_GoddessDance_PRICE,
+        .name = MSG_SKILL_GoddessDance_NAME,
+        .desc = MSG_SKILL_GoddessDance_DESC,
+        .capacity = MSG_SKILL_GoddessDance_CAPACITY,
+        .price = MSG_SKILL_GoddessDance_PRICE,
         .icon = GFX_SkillIcon_GoddessDance,
     },
 #endif
@@ -4805,10 +4811,10 @@ const struct SkillInfo gSkillInfos[MAX_SKILL_NUM + 1] = {
 
 #if (defined(SID_Stride) && COMMON_SKILL_VALID(SID_Stride))
     [SID_Stride] = {
-        .name = MSG_MenuSkill_Stride_NAME,
-        .desc = MSG_MenuSkill_Stride_DESC,
-        .capacity = MSG_MenuSkill_Stride_CAPACITY,
-        .price = MSG_MenuSkill_Stride_PRICE,
+        .name = MSG_SKILL_Stride_NAME,
+        .desc = MSG_SKILL_Stride_DESC,
+        .capacity = MSG_SKILL_Stride_CAPACITY,
+        .price = MSG_SKILL_Stride_PRICE,
         .icon = GFX_SkillIcon_WIP,
     },
 #endif
@@ -4935,20 +4941,20 @@ const struct SkillInfo gSkillInfos[MAX_SKILL_NUM + 1] = {
 
 #if (defined(SID_Swarp) && COMMON_SKILL_VALID(SID_Swarp))
     [SID_Swarp] = {
-        .name = MSG_MenuSkill_Swarp_NAME,
-        .desc = MSG_MenuSkill_Swarp_DESC,
-        .capacity = MSG_MenuSkill_Swarp_CAPACITY,
-        .price = MSG_MenuSkill_Swap_PRICE,
+        .name = MSG_SKILL_Swarp_NAME,
+        .desc = MSG_SKILL_Swarp_DESC,
+        .capacity = MSG_SKILL_Swarp_CAPACITY,
+        .price = MSG_SKILL_Swap_PRICE,
         .icon = GFX_SkillIcon_WIP,
     },
 #endif
 
 #if (defined(SID_Blacksmith) && COMMON_SKILL_VALID(SID_Blacksmith))
     [SID_Blacksmith] = {
-        .name = MSG_MenuSkill_Blacksmith_NAME,
-        .desc = MSG_MenuSkill_Blacksmith_DESC,
-        .capacity = MSG_MenuSkill_Blacksmith_CAPACITY,
-        .price = MSG_MenuSkill_Blacksmith_PRICE,
+        .name = MSG_SKILL_Blacksmith_NAME,
+        .desc = MSG_SKILL_Blacksmith_DESC,
+        .capacity = MSG_SKILL_Blacksmith_CAPACITY,
+        .price = MSG_SKILL_Blacksmith_PRICE,
         .icon = GFX_SkillIcon_Blacksmith,
     },
 #endif
@@ -5015,10 +5021,10 @@ const struct SkillInfo gSkillInfos[MAX_SKILL_NUM + 1] = {
 
 #if (defined(SID_Swap) && COMMON_SKILL_VALID(SID_Swap))
     [SID_Swap] = {
-        .name = MSG_MenuSkill_Swap_NAME,
-        .desc = MSG_MenuSkill_Swap_DESC,
-        .capacity = MSG_MenuSkill_Swap_CAPACITY,
-        .price = MSG_MenuSkill_Swap_PRICE,
+        .name = MSG_SKILL_Swap_NAME,
+        .desc = MSG_SKILL_Swap_DESC,
+        .capacity = MSG_SKILL_Swap_CAPACITY,
+        .price = MSG_SKILL_Swap_PRICE,
         .icon = GFX_SkillIcon_Swap,
     },
 #endif
@@ -5295,50 +5301,50 @@ const struct SkillInfo gSkillInfos[MAX_SKILL_NUM + 1] = {
 
 #if (defined(SID_DrawBack) && COMMON_SKILL_VALID(SID_DrawBack))
     [SID_DrawBack] = {
-        .name = MSG_MenuSkill_DrawBack_NAME,
-        .desc = MSG_MenuSkill_DrawBack_DESC,
-        .capacity = MSG_MenuSkill_DrawBack_CAPACITY,
-        .price = MSG_MenuSkill_DrawBack_PRICE,
+        .name = MSG_SKILL_DrawBack_NAME,
+        .desc = MSG_SKILL_DrawBack_DESC,
+        .capacity = MSG_SKILL_DrawBack_CAPACITY,
+        .price = MSG_SKILL_DrawBack_PRICE,
         .icon = GFX_SkillIcon_WIP,
     },
 #endif
 
 #if (defined(SID_Pivot) && COMMON_SKILL_VALID(SID_Pivot))
     [SID_Pivot] = {
-        .name = MSG_MenuSkill_Pivot_NAME,
-        .desc = MSG_MenuSkill_Pivot_DESC,
-        .capacity = MSG_MenuSkill_Pivot_CAPACITY,
-        .price = MSG_MenuSkill_Pivot_PRICE,
+        .name = MSG_SKILL_Pivot_NAME,
+        .desc = MSG_SKILL_Pivot_DESC,
+        .capacity = MSG_SKILL_Pivot_CAPACITY,
+        .price = MSG_SKILL_Pivot_PRICE,
         .icon = GFX_SkillIcon_WIP,
     },
 #endif
 
 #if (defined(SID_Reposition) && COMMON_SKILL_VALID(SID_Reposition))
     [SID_Reposition] = {
-        .name = MSG_MenuSkill_Reposition_NAME,
-        .desc = MSG_MenuSkill_Reposition_DESC,
-        .capacity = MSG_MenuSkill_Reposition_CAPACITY,
-        .price = MSG_MenuSkill_Reposition_PRICE,
+        .name = MSG_SKILL_Reposition_NAME,
+        .desc = MSG_SKILL_Reposition_DESC,
+        .capacity = MSG_SKILL_Reposition_CAPACITY,
+        .price = MSG_SKILL_Reposition_PRICE,
         .icon = GFX_SkillIcon_WIP,
     },
 #endif
 
 #if (defined(SID_Shove) && COMMON_SKILL_VALID(SID_Shove))
     [SID_Shove] = {
-        .name = MSG_MenuSkill_Shove_NAME,
-        .desc = MSG_MenuSkill_Shove_DESC,
-        .capacity = MSG_MenuSkill_Shove_CAPACITY,
-        .price = MSG_MenuSkill_Shove_PRICE,
+        .name = MSG_SKILL_Shove_NAME,
+        .desc = MSG_SKILL_Shove_DESC,
+        .capacity = MSG_SKILL_Shove_CAPACITY,
+        .price = MSG_SKILL_Shove_PRICE,
         .icon = GFX_SkillIcon_WIP,
     },
 #endif
 
 #if (defined(SID_Smite) && COMMON_SKILL_VALID(SID_Smite))
     [SID_Smite] = {
-        .name = MSG_MenuSkill_Smite_NAME,
-        .desc = MSG_MenuSkill_Smite_DESC,
-        .capacity = MSG_MenuSkill_Smite_CAPACITY,
-        .price = MSG_MenuSkill_Smite_PRICE,
+        .name = MSG_SKILL_Smite_NAME,
+        .desc = MSG_SKILL_Smite_DESC,
+        .capacity = MSG_SKILL_Smite_CAPACITY,
+        .price = MSG_SKILL_Smite_PRICE,
         .icon = GFX_SkillIcon_WIP,
     },
 #endif
@@ -5505,10 +5511,10 @@ const struct SkillInfo gSkillInfos[MAX_SKILL_NUM + 1] = {
 
 #if (defined(SID_StealPlus) && COMMON_SKILL_VALID(SID_StealPlus))
     [SID_StealPlus] = {
-        .name = MSG_MenuSkill_StealPlus_NAME,
-        .desc = MSG_MenuSkill_StealPlus_DESC,
-        .capacity = MSG_MenuSkill_StealPlus_CAPACITY,
-        .price = MSG_MenuSkill_StealPlus_PRICE,
+        .name = MSG_SKILL_StealPlus_NAME,
+        .desc = MSG_SKILL_StealPlus_DESC,
+        .capacity = MSG_SKILL_StealPlus_CAPACITY,
+        .price = MSG_SKILL_StealPlus_PRICE,
         .icon = GFX_SkillIcon_StealPlus,
     },
 #endif
@@ -6026,10 +6032,10 @@ const struct SkillInfo gSkillInfos[MAX_SKILL_NUM + 1] = {
 
 #if (defined(SID_Entrepreneur) && COMMON_SKILL_VALID(SID_Entrepreneur))
     [SID_Entrepreneur] = {
-        .name = MSG_MenuSkill_Entrepreneur_NAME,
-        .desc = MSG_MenuSkill_Entrepreneur_DESC,
-        .capacity = MSG_MenuSkill_Entrepreneur_CAPACITY,
-        .price = MSG_MenuSkill_Entrepreneur_PRICE,
+        .name = MSG_SKILL_Entrepreneur_NAME,
+        .desc = MSG_SKILL_Entrepreneur_DESC,
+        .capacity = MSG_SKILL_Entrepreneur_CAPACITY,
+        .price = MSG_SKILL_Entrepreneur_PRICE,
         .icon = GFX_SkillIcon_Entrepreneur,
     },
 #endif
@@ -6336,10 +6342,10 @@ const struct SkillInfo gSkillInfos[MAX_SKILL_NUM + 1] = {
 
 #if (defined(SID_Arise) && COMMON_SKILL_VALID(SID_Arise))
     [SID_Arise] = {
-        .name = MSG_MenuSkill_Arise_NAME,
-        .desc = MSG_MenuSkill_Arise_DESC,
-        .capacity = MSG_MenuSkill_Arise_CAPACITY,
-        .price = MSG_MenuSkill_Arise_PRICE,
+        .name = MSG_SKILL_Arise_NAME,
+        .desc = MSG_SKILL_Arise_DESC,
+        .capacity = MSG_SKILL_Arise_CAPACITY,
+        .price = MSG_SKILL_Arise_PRICE,
         .icon = GFX_SkillIcon_Arise,
     },
 #endif
@@ -6576,10 +6582,10 @@ const struct SkillInfo gSkillInfos[MAX_SKILL_NUM + 1] = {
 
 #if (defined(SID_AssignDecoy) && COMMON_SKILL_VALID(SID_AssignDecoy))
     [SID_AssignDecoy] = {
-        .name = MSG_MenuSkill_AssignDecoy_NAME,
-        .desc = MSG_MenuSkill_AssignDecoy_DESC,
-        .capacity = MSG_MenuSkill_AssignDecoy_CAPACITY,
-        .price = MSG_MenuSkill_AssignDecoy_PRICE,
+        .name = MSG_SKILL_AssignDecoy_NAME,
+        .desc = MSG_SKILL_AssignDecoy_DESC,
+        .capacity = MSG_SKILL_AssignDecoy_CAPACITY,
+        .price = MSG_SKILL_AssignDecoy_PRICE,
         .icon = GFX_SkillIcon_AssignDecoy,
     },
 #endif
@@ -6616,10 +6622,10 @@ const struct SkillInfo gSkillInfos[MAX_SKILL_NUM + 1] = {
 
 #if (defined(SID_ShadowFlash) && COMMON_SKILL_VALID(SID_ShadowFlash))
     [SID_ShadowFlash] = {
-        .name = MSG_MenuSkill_ShadowFlash_NAME,
-        .desc = MSG_MenuSkill_ShadowFlash_DESC,
-        .capacity = MSG_MenuSkill_ShadowFlash_CAPACITY,
-        .price = MSG_MenuSkill_ShadowFlash_PRICE,
+        .name = MSG_SKILL_ShadowFlash_NAME,
+        .desc = MSG_SKILL_ShadowFlash_DESC,
+        .capacity = MSG_SKILL_ShadowFlash_CAPACITY,
+        .price = MSG_SKILL_ShadowFlash_PRICE,
         .icon = GFX_SkillIcon_WIP,
     },
 #endif
@@ -6906,10 +6912,10 @@ const struct SkillInfo gSkillInfos[MAX_SKILL_NUM + 1] = {
 
 #if (defined(SID_DeathBlight) && COMMON_SKILL_VALID(SID_DeathBlight))
     [SID_DeathBlight] = {
-        .name = MSG_MenuSkill_DeathBlight_NAME,
-        .desc = MSG_MenuSkill_DeathBlight_DESC,
-        .capacity = MSG_MenuSkill_DeathBlight_CAPACITY,
-        .price = MSG_MenuSkill_DeathBlight_PRICE,
+        .name = MSG_SKILL_DeathBlight_NAME,
+        .desc = MSG_SKILL_DeathBlight_DESC,
+        .capacity = MSG_SKILL_DeathBlight_CAPACITY,
+        .price = MSG_SKILL_DeathBlight_PRICE,
         .icon = GFX_SkillIcon_DeathBlight,
     },
 #endif
@@ -7264,20 +7270,20 @@ const struct SkillInfo gSkillInfos[MAX_SKILL_NUM + 1] = {
 
 #if (defined(SID_SummonPlus) && COMMON_SKILL_VALID(SID_SummonPlus))
     [SID_SummonPlus] = {
-        .name = MSG_MenuSkill_SummonPlus_NAME,
-        .desc = MSG_MenuSkill_SummonPlus_DESC,
-        .capacity = MSG_MenuSkill_SummonPlus_CAPACITY,
-        .price = MSG_MenuSkill_SummonPlus_PRICE,
+        .name = MSG_SKILL_SummonPlus_NAME,
+        .desc = MSG_SKILL_SummonPlus_DESC,
+        .capacity = MSG_SKILL_SummonPlus_CAPACITY,
+        .price = MSG_SKILL_SummonPlus_PRICE,
         .icon = GFX_SkillIcon_SummonPlus,
     },
 #endif
 
 #if (defined(SID_LethalityPlus) && COMMON_SKILL_VALID(SID_LethalityPlus))
     [SID_LethalityPlus] = {
-        .name = MSG_MenuSkill_LethalityPlus_NAME,
-        .desc = MSG_MenuSkill_LethalityPlus_DESC,
-        .capacity = MSG_MenuSkill_LethalityPlus_CAPACITY,
-        .price = MSG_MenuSkill_LethalityPlus_PRICE,
+        .name = MSG_SKILL_LethalityPlus_NAME,
+        .desc = MSG_SKILL_LethalityPlus_DESC,
+        .capacity = MSG_SKILL_LethalityPlus_CAPACITY,
+        .price = MSG_SKILL_LethalityPlus_PRICE,
         .icon = GFX_SkillIcon_WIP,
     },
 #endif
@@ -7304,20 +7310,20 @@ const struct SkillInfo gSkillInfos[MAX_SKILL_NUM + 1] = {
 
 #if (defined(SID_GrimReaper) && COMMON_SKILL_VALID(SID_GrimReaper))
     [SID_GrimReaper] = {
-        .name = MSG_MenuSkill_GrimReaper_NAME,
-        .desc = MSG_MenuSkill_GrimReaper_DESC,
-        .capacity = MSG_MenuSkill_GrimReaper_CAPACITY,
-        .price = MSG_MenuSkill_GrimReaper_PRICE,
+        .name = MSG_SKILL_GrimReaper_NAME,
+        .desc = MSG_SKILL_GrimReaper_DESC,
+        .capacity = MSG_SKILL_GrimReaper_CAPACITY,
+        .price = MSG_SKILL_GrimReaper_PRICE,
         .icon = GFX_SkillIcon_WIP,
     },
 #endif
 
 #if (defined(SID_Hide) && COMMON_SKILL_VALID(SID_Hide))
     [SID_Hide] = {
-        .name = MSG_MenuSkill_Hide_NAME,
-        .desc = MSG_MenuSkill_Hide_DESC,
-        .capacity = MSG_MenuSkill_Hide_CAPACITY,
-        .price = MSG_MenuSkill_Hide_PRICE,
+        .name = MSG_SKILL_Hide_NAME,
+        .desc = MSG_SKILL_Hide_DESC,
+        .capacity = MSG_SKILL_Hide_CAPACITY,
+        .price = MSG_SKILL_Hide_PRICE,
         .icon = GFX_SkillIcon_WIP,
     },
 #endif

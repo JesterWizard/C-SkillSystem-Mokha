@@ -200,7 +200,7 @@ STATIC_DECLAR void BattleCalcReal_ComputSkills(struct BattleUnit * attacker, str
 #if (defined(SID_FarWard) && (COMMON_SKILL_VALID(SID_FarWard)))
     if (BattleSkillTester(attacker, SID_FarWard) && gBattleStats.range >= 3)
         defender->battleEffectiveHitRate = 0;
-    else if (BattleSkillTester(defender, SID_FarWard) && gBattleStats.range > = 3)
+    else if (BattleSkillTester(defender, SID_FarWard) && gBattleStats.range >= 3)
         attacker->battleEffectiveHitRate = 0;
 #endif
 
