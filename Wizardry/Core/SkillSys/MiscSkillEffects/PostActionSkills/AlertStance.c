@@ -43,7 +43,7 @@ bool PostActionAlertStance(ProcPtr parent)
 #if defined(SID_AlertStance) && (COMMON_SKILL_VALID(SID_AlertStance))
         if (SkillTester(unit, SID_AlertStance))
         {
-            NewMuSkillAnimOnActiveUnit(SID_AlertStancePlus, callback_anim, callback_refrain);
+            NewMuSkillAnimOnActiveUnit(SID_AlertStance, callback_anim, callback_refrain);
             SetUnitStatus(unit, NEW_UNIT_STATUS_AVOID);
             return true;
         }

@@ -59,12 +59,12 @@
 | Shed Skin         |  GratedShtick   |
 | Duel              |  GratedShtick   |
 | Limit Breaker     |  Jester         |
-| Limit Breaker +   |  Jester         |
+| Limit Breaker+    |  Jester         |
 | No Guard          |  Jester         |
-| No Guard +        |  Jester         |
+| No Guard+         |  Jester         |
 | Storm Gift        |  Jester         |
-| Storm Gift +      |  Jester         |
-| Renewal +         |  Jester         |
+| Storm Gift+       |  Jester         |
+| Renewal+          |  Jester         |
 | Gorilla Tactics   |  Jester         |
 | Fluffy            |  Jester         |
 | Goody Basket      |  Jester         |

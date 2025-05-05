@@ -11,7 +11,7 @@
 
 void PostActionSealSkills(ProcPtr parent)
 {
-    struct Unit * unit = gActiveUnit;
+    FORCE_DECLARE struct Unit * unit = gActiveUnit;
     bool fullMetalBodyProc = false;
 
 #if defined(SID_FullMetalBody) && (COMMON_SKILL_VALID(SID_FullMetalBody))
@@ -73,12 +73,7 @@ void PostActionSealSkills(ProcPtr parent)
                 SetUnitStatDebuff(GetUnit(gActionData.subjectIndex), UNIT_STAT_DEBUFF_SEAL_POW);
 #endif
 
-        /* Temp fix to get compiler to stop whining about unit being an unused variable */
-        default:
-            if(unit == gActiveUnit)
-                break;
-            else 
-                break;
+            break;
         }
     }
 }

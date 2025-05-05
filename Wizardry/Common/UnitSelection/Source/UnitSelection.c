@@ -76,12 +76,21 @@ void MakeMoveunitForActiveUnit(void)
                 StartMu(gActiveUnit);
                 HideUnitSprite(gActiveUnit);
             }
-#endif
+            else
+            {
+                if ((gActiveUnit->statusIndex != UNIT_STATUS_SLEEP) && (gActiveUnit->statusIndex != UNIT_STATUS_BERSERK))
+                {
+                    StartMu(gActiveUnit);
+                    HideUnitSprite(gActiveUnit);
+                }
+            }
+#else
             if ((gActiveUnit->statusIndex != UNIT_STATUS_SLEEP) && (gActiveUnit->statusIndex != UNIT_STATUS_BERSERK))
             {
                 StartMu(gActiveUnit);
                 HideUnitSprite(gActiveUnit);
             }
+#endif
         }
     }
 

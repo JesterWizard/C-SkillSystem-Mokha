@@ -67,7 +67,7 @@ Rapid Fighter[X]
 
 ## MSG_SKILL_RapidFighter_DESC
 Rapid Fighter:[N]
-Unit oNy doubles when they're[N]
+Unit only doubles when they're[N]
 battling on their phase.[X]
 
 ## MSG_SKILL_RecklessFighter_NAME

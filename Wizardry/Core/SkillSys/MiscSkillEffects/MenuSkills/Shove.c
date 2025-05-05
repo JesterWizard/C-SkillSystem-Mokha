@@ -54,7 +54,7 @@ u8 Shove_OnSelected(struct MenuProc * menu, struct MenuItemProc * item)
 {
     if (item->availability == MENU_DISABLED)
     {
-        MenuFrozenHelpBox(menu, MSG_MenuSkill_Shove_FRtext);
+        MenuFrozenHelpBox(menu, MSG_SKILL_Shove_FRtext);
         return MENU_ACT_SND6B;
     }
 
@@ -65,7 +65,7 @@ u8 Shove_OnSelected(struct MenuProc * menu, struct MenuItemProc * item)
 
     StartSubtitleHelp(
         NewTargetSelection_Specialized(&gSelectInfo_PutTrap, Shove_OnSelectTarget),
-        GetStringFromIndex(MSG_MenuSkill_Common_Target));
+        GetStringFromIndex(MSG_SKILL_Common_Target));
 
     PlaySoundEffect(0x6A);
     return MENU_ACT_SKIPCURSOR | MENU_ACT_END | MENU_ACT_SND6A;

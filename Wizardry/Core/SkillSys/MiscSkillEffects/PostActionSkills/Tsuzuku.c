@@ -99,7 +99,7 @@ bool PostActionTsuzuku(ProcPtr parent)
             }
 #endif
 
-#if defined(SID_SpiritedSteps) && (COMMON_SKILL_VALID(SID_SpiritedSteps))
+#if defined(SID_SpiritedSteps) && (COMMON_SKILL_VALID(SID_SpiritedSteps) && defined(SID_Dance) && (COMMON_SKILL_VALID(SID_Dance)))
             if (SkillTester(unit, SID_SpiritedSteps))
             {
                 if (gActionData.unk08 == SID_Dance && gBattleActorGlobalFlag.skill_activated_dance)

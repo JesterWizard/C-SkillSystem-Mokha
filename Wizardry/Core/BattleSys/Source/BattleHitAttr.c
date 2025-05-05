@@ -215,16 +215,16 @@ bool CheckBattleMiracle(struct BattleUnit *attacker, struct BattleUnit *defender
     }
 #endif
 
-#if (defined(SID_LEGEND_MiracleDef) && (COMMON_SKILL_VALID(SID_LEGEND_MiracleDef)))
-    if (CheckBattleSkillActivate(defender, attacker, SID_LEGEND_MiracleDef, 100))
-    {
-        if (TryActivateLegendSkill(&defender->unit, SID_LEGEND_MiracleDef) == 0)
-        {
-            RegisterTargetEfxSkill(GetBattleHitRound(gBattleHitIterator), SID_LEGEND_MiracleDef);
-            return true;
-        }
-    }
-#endif
+// #if (defined(SID_LEGEND_MiracleDef) && (COMMON_SKILL_VALID(SID_LEGEND_MiracleDef)))
+//     if (CheckBattleSkillActivate(defender, attacker, SID_LEGEND_MiracleDef, 100))
+//     {
+//         if (TryActivateLegendSkill(&defender->unit, SID_LEGEND_MiracleDef) == 0)
+//         {
+//             RegisterTargetEfxSkill(GetBattleHitRound(gBattleHitIterator), SID_LEGEND_MiracleDef);
+//             return true;
+//         }
+//     }
+// #endif
 
     return false;
 }
