@@ -6,7 +6,7 @@ ORG CURRENTOFFSET+$10;GetArmsScrollItemUseDescId:
 ORG CURRENTOFFSET+$8;GetArmsScrollItemIconId:
 ORG CURRENTOFFSET+$c;ItemUseEffect_ArmsScroll:
 ORG CURRENTOFFSET+$74;ItemUseAction_ArmsScroll:
-ORG CURRENTOFFSET+$2c;ItemUsbility_ArmsScroll:
+ORG CURRENTOFFSET+$2c;ItemUsability_ArmsScroll:
 ORG CURRENTOFFSET+$38;PrepItemEffect_ArmsScroll:
 POP
 WORD $4B510 $332C6943

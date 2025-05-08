@@ -25,6 +25,10 @@ PrepItemEffectFunc_t const gPrepItemEffectFunc[0x100] = {
     [ITEM_BOOSTER_RES] = PrepItemEffect_StatBooster,
     [ITEM_BOOSTER_MOV] = PrepItemEffect_StatBooster,
     [ITEM_BOOSTER_CON] = PrepItemEffect_StatBooster,
+
+#ifdef CONFIG_ITEM_INDEX_SKILL_SCROLL
+    [0xBD] = PrepItemEffect_SkillScroll,
+#endif
 };
 
 PrepItemUsabilityFunc_t const gPrepItemUsabilityFuncs[0x100] = {
@@ -52,4 +56,7 @@ PrepItemUsabilityFunc_t const gPrepItemUsabilityFuncs[0x100] = {
 
     [ITEM_METISSTOME] = CanUnitUseMetiStome,
     [ITEM_JUNAFRUIT] = (void *)CanUnitUseFruitItem,
+#ifdef CONFIG_ITEM_INDEX_SKILL_SCROLL
+    [0xBD] = PrepItemUsability_SkillScroll,
+#endif
 };

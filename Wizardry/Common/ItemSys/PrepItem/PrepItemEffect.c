@@ -206,6 +206,12 @@ void ActionStaffDoorChestUseItem(ProcPtr proc) {
         case CONFIG_ITEM_INDEX_SLOW_STAFF:
             ExecCustomStaves(proc);
             break;
+
+#ifdef CONFIG_ITEM_INDEX_SKILL_SCROLL
+        case CONFIG_ITEM_INDEX_SKILL_SCROLL:
+            ItemUseAction_SkillScroll(proc);
+            break;
+#endif
     }
 
     if (itemId == ITEM_NIGHTMARE) {

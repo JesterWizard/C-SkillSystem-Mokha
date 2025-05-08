@@ -21,6 +21,12 @@ void PrepItemEffect_StatBooster(struct ProcPrepItemUse * proc, u16 item);
 void PrepItemEffect_Promotion(struct ProcPrepItemUse * proc, u16 item);
 void PrepItemEffect_JunaFruit(struct ProcPrepItemUse * proc, u16 item);
 
+void ItemUseAction_SkillScroll(ProcPtr proc);
+void ItemUseEffect_SkillScroll(struct Unit * unit);
+
+bool PrepItemUsability_SkillScroll(struct Unit * unit, int item);
+void PrepItemEffect_SkillScroll(struct ProcPrepItemUse * proc, u16 item);
+
 // Struct for key-value pairs
 typedef struct
 {

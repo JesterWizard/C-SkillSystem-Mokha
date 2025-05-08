@@ -14,8 +14,8 @@ ItemUseActionJpt_SkillScroll:
     ldr r0, =0x802FF76 + 1
     bx r0
 
-THUMB_FUNC_START ItemUsbilityJpt_SkillScroll
-ItemUsbilityJpt_SkillScroll:
+THUMB_FUNC_START ItemUsabilityJpt_SkillScroll
+ItemUsabilityJpt_SkillScroll:
     mov r0, r4
     mov r1, r5
     bl ItemUsability_SkillScroll
@@ -37,10 +37,10 @@ ItemUseActionJpt_ArmsScroll:
     ldr r0, =0x802FF76 + 1
     bx r0
 
-THUMB_FUNC_START ItemUsbilityJpt_ArmsScroll
-ItemUsbilityJpt_ArmsScroll:
+THUMB_FUNC_START ItemUsabilityJpt_ArmsScroll
+ItemUsabilityJpt_ArmsScroll:
     mov r0, r4
     mov r1, r5
-    bl ItemUsbility_ArmsScroll
+    bl ItemUsability_ArmsScroll
     ldr r1, =0x8028C06 + 1
     bx r1
