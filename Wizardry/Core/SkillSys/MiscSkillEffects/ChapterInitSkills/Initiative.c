@@ -108,7 +108,7 @@ bool ChapterInit_SetInitiativeStatus(ProcPtr proc)
     return false;
 }
 
-bool PrePhsae_TickInitativeSkillStatus(ProcPtr proc)
+bool PrePhase_TickInitativeSkillStatus(ProcPtr proc)
 {
     int i;
     struct Unit *unit;

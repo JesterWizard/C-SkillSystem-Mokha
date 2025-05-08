@@ -14,22 +14,22 @@ void SetGameOptions()
     SetGameOption(GAME_OPTION_TEXT_SPEED, 1); // Set game speed to max
     SetGameOption(GAME_OPTION_GAME_SPEED, 3); // Set text speed to max
 
-    // SetPartyGoldAmount(10000);
+    // // SetPartyGoldAmount(10000);
 
-    struct Unit * unit = GetUnitFromCharId(CHARACTER_EIRIKA);
-    // unit->maxHP = 26;
-    // unit->curHP = 26;
+    // struct Unit * unit = GetUnitFromCharId(CHARACTER_EIRIKA);
+    // // unit->maxHP = 26;
+    // // unit->curHP = 26;
 
-    // unit->ranks[ITYPE_STAFF] = WPN_EXP_C;
-    // unit->items[0] = MakeNewItem(CONFIG_ITEM_INDEX_MINE_STAFF);
+    // // unit->ranks[ITYPE_STAFF] = WPN_EXP_C;
+    // // unit->items[0] = MakeNewItem(CONFIG_ITEM_INDEX_MINE_STAFF);
 
-    // Seed the random number generator
-    InitRandC();
+    // // Seed the random number generator
+    // InitRandC();
 
-    // Randomly generate items for the unit
-    for (int i = 0; i < 5; i++)
-        unit->items[i] = MakeNewItem(RandNextC_N(200));
+    // // Randomly generate items for the unit
+    // for (int i = 0; i < 5; i++)
+    //     unit->items[i] = MakeNewItem(RandNextC_N(200));
 
-    for (int i = 0; i < SKILL_ROM_DATA_AMT; i++)
-        unit->supports[i] = RandNextC_N(254);
+    // // for (int i = 0; i < SKILL_ROM_DATA_AMT; i++)
+    // //     unit->supports[i] = RandNextC_N(254);
 }

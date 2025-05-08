@@ -288,6 +288,19 @@ void ChapterChangeUnitCleanup(void)
         }
 #endif
 
+#ifdef CONFIG_LAGUZ_BARS
+        for (int i = 0; i < transformationListSize; i++)
+        {
+            if (gActiveUnit->pClassData->number == transformationPairs[i][1])
+            {
+                unit->pClassData = GetClassData(transformationPairs[i][0]);
+                ClearUnitStatDebuff(gActiveUnit, UNIT_STAT_BUFF_LAGUZ);
+                unit->maxHP -= 7;
+                break;
+            }
+        }
+#endif
+
         /* Reset the doppleganger state of any units with the skill */
 #if defined(SID_Doppleganger) && (COMMON_SKILL_VALID(SID_Doppleganger))
         if (SkillTester(unit, SID_Doppleganger))

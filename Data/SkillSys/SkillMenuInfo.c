@@ -3,7 +3,9 @@
 #include "constants/skills.h"
 #include "constants/texts.h"
 
-const struct MenuItemDef gSkillMenuInfos[MAX_SKILL_NUM + 1] = {
+#define MAX 0x410
+
+const struct MenuItemDef gSkillMenuInfos[MAX] = {
 #if (defined(SID_Dance) && COMMON_SKILL_VALID(SID_Dance))
     [SID_Dance] = {
         .name = "　踊る",
@@ -740,7 +742,7 @@ const struct MenuItemDef gSkillMenuInfos[MAX_SKILL_NUM + 1] = {
 #endif
 
     [0] = {
-        .name = "　",
+        .name = "　光の結界",
         .nameMsgId = MSG_MenuCommand_Refuge_NAME,
         .helpMsgId = MSG_MenuCommand_Refuge_DESC,
         .color = TEXT_COLOR_SYSTEM_WHITE,

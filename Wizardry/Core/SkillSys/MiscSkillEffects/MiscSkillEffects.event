@@ -72,6 +72,8 @@
 #include "MenuSkills/ReciprocalAid.lyn.event"
 #include "MenuSkills/ReciprocalAid_ASM_Extras/Installer.event"
 
+#include "MenuSkills/Laguz.lyn.event"
+
 #include "Misc/LynJump.event"
 #include "Misc/HealAmount.lyn.event"
 #include "Misc/MiscFunctions.lyn.event"
@@ -117,3 +119,5 @@
 
 #include "MapSkills/LynJump.event"
 #include "MapSkills/MapSkills.lyn.event"
+
+#include "PrePhaseSkills/PrePhase_LaguzBars.lyn.event"

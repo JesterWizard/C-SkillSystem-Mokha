@@ -56,7 +56,16 @@ void BattleHit_CalcHpDrain(struct BattleUnit *attacker, struct BattleUnit *defen
 
 	if (drain > 0) {
 		GetCurrentExtBattleHit()->hp_drain += drain;
-		attacker->unit.curHP += drain;
+    
+#if (defined(SID_LiquidOoze) && (COMMON_SKILL_VALID(SID_LiquidOoze)))
+        if (BattleSkillTester(defender, SID_LiquidOoze))
+            attacker->unit.curHP -= drain;
+        else
+            attacker->unit.curHP += drain;
+#else
+        attacker->unit.curHP += drain;
+#endif
+
 		gBattleHitIterator->attributes |= BATTLE_HIT_ATTR_HPSTEAL;
 	}
 }
