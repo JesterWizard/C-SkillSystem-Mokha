@@ -56,6 +56,7 @@ PrepItemUsabilityFunc_t const gPrepItemUsabilityFuncs[0x100] = {
 
     [ITEM_METISSTOME] = CanUnitUseMetiStome,
     [ITEM_JUNAFRUIT] = (void *)CanUnitUseFruitItem,
+    
 #ifdef CONFIG_ITEM_INDEX_SKILL_SCROLL
     [0xBD] = PrepItemUsability_SkillScroll,
 #endif
