@@ -470,12 +470,13 @@ void TryAddUnitToTradeTargetList(struct Unit * unit)
      *  With capture, a unit should be able to trade with rescued enemies
      */
 #if (defined(SID_Capture) && (COMMON_SKILL_VALID(SID_Capture)))
-    FORCE_DECLARE bool capture_active = false;
+    bool capture_active = false;
 
-    if (!SkillTester(gSubjectUnit, SID_Capture))
-        capture_active = true;
+    if (SkillTester(gSubjectUnit, SID_Capture) && gSubjectUnit->rescue)
+        if (!IsSameAllegiance(gSubjectUnit->index, gSubjectUnit->rescue))
+            capture_active = true;
     
-    if (!IsSameAllegiance(gSubjectUnit->index, unit->index) && capture_active)
+    if (!IsSameAllegiance(gSubjectUnit->index, unit->index) && !capture_active)
         return;
 
 #else 
@@ -2969,6 +2970,7 @@ s8 PlayerPhase_PrepareAction(ProcPtr proc)
     switch (gActionData.unitActionType)
     {
         case 0:
+        case CONFIG_UNIT_ACTION_EXPA_ExecSkill: // For backing out the attack forecast for menu skills
             /**
              * If the unit has used action, such as trading,
              * then the unit may take another menu action
@@ -4820,3 +4822,4 @@ void TradeMenu_InitItemDisplay(struct TradeMenuProc * proc)
 
     BG_EnableSyncByMask(BG0_SYNC_BIT | BG1_SYNC_BIT);
 }
+
