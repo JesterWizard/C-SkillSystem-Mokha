@@ -154,7 +154,6 @@ void StartManimLevelUp(int actor_id, ProcPtr parent)
     proc = Proc_StartBlocking(ProcScr_ManimLevelUp_CUSTOM, parent);
     proc->actor_id = actor_id;
 }
-
 #ifdef CONFIG_TALK_LEVEL_UP
 
 typedef struct
@@ -202,6 +201,7 @@ static const LevelUpStrings character_level_up_strings[] =
     { CHARACTER_TANA,      {"I won't let this slow me down.", "Not bad! I'll soar higher soon.", "Amazing! I'll protect everyone with this strength!"} },
     { CHARACTER_LYON,      {"This... This isn't enough to help them.", "A modest gain. I can't stop here.", "My power grows... I must use it wisely."} },
     { CHARACTER_ORSON,     {"Even now, I can't do enough.", "This strength... It feels bittersweet to gain.", "I'll fight harder. For the ones I lost."} },
+    { CHARACTER_ORSON_CH5X,{"Have I reached my limit?", "My strength is waning, but I endure.", "This strength I gain for you, my love..."} },
     { CHARACTER_GLEN,      {"A minor setback. I'll do better.", "Steady progress. A knight's work is unending.", "This strength will ensure victory for Grado!"} },
     { CHARACTER_SELENA,    {"Even the storm falters. I'll recover.", "Power flows steadily, like a calm river.", "The thunder within me grows stronger still!"} },
     { CHARACTER_VALTER,    {"Hah, is that all? Pathetic gains.", "Acceptable. I'll savor the next battle.", "Hah! This strength will bring more chaos!"} },
