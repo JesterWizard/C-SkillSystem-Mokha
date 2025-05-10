@@ -33,11 +33,11 @@ STATIC_DECLAR void CheckBattleUnitStatCapsVanilla(struct Unit *unit, struct Batt
 #endif
 
 #ifdef CONFIG_UNLOCK_ALLY_MHP_LIMIT
-    if (unit->maxHP > KUNIT_MHP_MAX(unit) + limitBreaker)
-        unit->maxHP = KUNIT_MHP_MAX(unit) + limitBreaker;
+    if (unit->maxHP + bu->changeHP > KUNIT_MHP_MAX(unit) + limitBreaker)
+        bu->changeHP = (KUNIT_MHP_MAX(unit) + limitBreaker) - unit->maxHP;
 #else
-    if (unit->maxHP > UNIT_MHP_MAX(unit) + limitBreaker)
-        unit->maxHP = UNIT_MHP_MAX(unit) + limitBreaker;
+    if (unit->maxHP + bu->changeHP > UNIT_MHP_MAX(unit) + limitBreaker)
+        bu->changeHP = (UNIT_MHP_MAX(unit) + limitBreaker) - unit->maxHP;
 #endif
 
     if ((unit->pow + bu->changePow) > UNIT_POW_MAX(unit) + limitBreaker)
@@ -63,14 +63,14 @@ STATIC_DECLAR void UnitCheckStatCapsVanilla(struct Unit *unit)
 {
     int limitBreaker = 0;
 
-#if defined(SID_LimitBreaker) && (COMMON_SKILL_VALID(SID_LimitBreaker))
-    if (SkillTester(unit, SID_LimitBreaker))
-        limitBreaker = SKILL_EFF0(SID_LimitBreaker);
-#endif
-
 #if defined(SID_LimitBreakerPlus) && (COMMON_SKILL_VALID(SID_LimitBreakerPlus))
     if (SkillTester(unit, SID_LimitBreakerPlus))
         limitBreaker = SKILL_EFF0(SID_LimitBreakerPlus);
+#endif
+
+#if defined(SID_LimitBreaker) && (COMMON_SKILL_VALID(SID_LimitBreaker))
+    if (SkillTester(unit, SID_LimitBreaker) && limitBreaker == 0)
+        limitBreaker = SKILL_EFF0(SID_LimitBreaker);
 #endif
 
 #if defined(SID_OgreBody) && (COMMON_SKILL_VALID(SID_OgreBody))
@@ -88,7 +88,7 @@ STATIC_DECLAR void UnitCheckStatCapsVanilla(struct Unit *unit)
 
 #ifdef CONFIG_UNLOCK_ALLY_MHP_LIMIT
     if (unit->maxHP > KUNIT_MHP_MAX(unit) + limitBreaker)
-        unit->maxHP = KUNIT_MHP_MAX(unit) + limitBreaker;
+        unit->maxHP = KUNIT_MHP_MAX(unit);
 #else
     if (unit->maxHP > UNIT_MHP_MAX(unit) + limitBreaker)
         unit->maxHP = UNIT_MHP_MAX(unit) + limitBreaker;
@@ -126,14 +126,15 @@ void CheckBattleUnitStatCaps(struct Unit *unit, struct BattleUnit *bu)
 
     int limitBreaker = 0;
 
-#if defined(SID_LimitBreaker) && (COMMON_SKILL_VALID(SID_LimitBreaker))
-    if (SkillTester(unit, SID_LimitBreaker))
-        limitBreaker = SKILL_EFF0(SID_LimitBreaker);
-#endif
 
 #if defined(SID_LimitBreakerPlus) && (COMMON_SKILL_VALID(SID_LimitBreakerPlus))
     if (SkillTester(unit, SID_LimitBreakerPlus))
         limitBreaker = SKILL_EFF0(SID_LimitBreakerPlus);
+#endif
+
+#if defined(SID_LimitBreaker) && (COMMON_SKILL_VALID(SID_LimitBreaker))
+    if (SkillTester(unit, SID_LimitBreaker) && limitBreaker == 0)
+        limitBreaker = SKILL_EFF0(SID_LimitBreaker);
 #endif
 
     /* Hooks */
@@ -141,26 +142,21 @@ void CheckBattleUnitStatCaps(struct Unit *unit, struct BattleUnit *bu)
         BU_CHG_MAG(bu) = (GetUnitMaxMagic(unit) + limitBreaker) - UNIT_MAG(unit);
 }
 
-#if 0
-LYN_UNUSED_REPLACE_CHECK(UnitCheckStatCaps);
+LYN_REPLACE_CHECK(UnitCheckStatCaps);
 void UnitCheckStatCaps(struct Unit * unit)
-#else
-/* External hook to save spaces */
-void _UnitCheckStatCaps(struct Unit * unit)
-#endif
 {
     UnitCheckStatCapsVanilla(unit);
 
     int limitBreaker = 0;
 
-#if defined(SID_LimitBreaker) && (COMMON_SKILL_VALID(SID_LimitBreaker))
-    if (SkillTester(unit, SID_LimitBreaker))
-        limitBreaker = SKILL_EFF0(SID_LimitBreaker);
-#endif
-
 #if defined(SID_LimitBreakerPlus) && (COMMON_SKILL_VALID(SID_LimitBreakerPlus))
     if (SkillTester(unit, SID_LimitBreakerPlus))
         limitBreaker = SKILL_EFF0(SID_LimitBreakerPlus);
+#endif
+
+#if defined(SID_LimitBreaker) && (COMMON_SKILL_VALID(SID_LimitBreaker))
+    if (SkillTester(unit, SID_LimitBreaker) && limitBreaker == 0)
+        limitBreaker = SKILL_EFF0(SID_LimitBreaker);
 #endif
 
     /* Hooks */
