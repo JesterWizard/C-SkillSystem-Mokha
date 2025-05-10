@@ -442,11 +442,11 @@ const struct SkillPreloadPConf gSkillPreloadPData[0x100] = {
     //     },
     // },
     // // 02
-    // [CHARACTER_SETH] = {
-    //     .skills = {
-    //         [0] = SID_Turncoat,
-    //     },
-    // },
+    [CHARACTER_SETH] = {
+        .skills = {
+            [0] = SID_Capture,
+        },
+    },
     // // 03
     // [CHARACTER_GILLIAM] = {
     //     .skills = {

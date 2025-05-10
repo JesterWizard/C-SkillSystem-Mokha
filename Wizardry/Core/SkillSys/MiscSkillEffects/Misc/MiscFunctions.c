@@ -581,8 +581,7 @@ void KillUnitOnCombatDeath(struct Unit * unitA, struct Unit * unitB)
     }
 
 #if (defined(SID_Capture) && (COMMON_SKILL_VALID(SID_Capture)))
-    // CheckBitUES(unitB, UES_BIT_CAPTURE_SKILL_USED)
-    if (SkillTester(unitB, SID_Capture) && unitB->_u3A == 8)
+    if (SkillTester(unitB, SID_Capture) && CheckBitUES(unitB, UES_BIT_CAPTURE_SKILL_USED))
     {
         UnitRescue(unitB, unitA);
         HideUnitSprite(unitA);
@@ -4779,4 +4778,45 @@ u8 Event01_End(struct EventEngineProc * proc)
     }
 
     return EVC_END;
+}
+
+LYN_REPLACE_CHECK(TradeMenu_InitItemDisplay);
+void TradeMenu_InitItemDisplay(struct TradeMenuProc * proc)
+{
+    DrawUiFrame2(1,  8, 14, 12, 0);
+    DrawUiFrame2(15, 8, 14, 12, 0);
+
+    ResetTextFont();
+
+    ResetIconGraphics();
+    LoadIconPalettes(4); // TODO: palette id constant
+
+    TradeMenu_InitItemText(proc);
+    TradeMenu_RefreshItemText(proc);
+
+#ifdef CONFIG_ESSENTIALS_AI_TRADE_FIX
+    bool noPortraitUnit_1 = false;
+    bool noPortraitUnit_2 = false;
+
+    if (proc->units[0]->pCharacterData->portraitId == 0)
+        noPortraitUnit_1 = true;
+
+    if (proc->units[1]->pCharacterData->portraitId == 0)
+        noPortraitUnit_2 = true;
+
+    if (!noPortraitUnit_1)
+        StartFace(0, GetUnitPortraitId(proc->units[0]), 64,  -4, 3);
+    if (!noPortraitUnit_2)
+        StartFace(1, GetUnitPortraitId(proc->units[1]), 176, -4, 2);
+
+#else
+    // TODO: face display type (arg 5) constants
+    StartFace(0, GetUnitPortraitId(proc->units[0]), 64,  -4, 3);
+    StartFace(1, GetUnitPortraitId(proc->units[1]), 176, -4, 2);
+#endif
+
+    SetFaceBlinkControlById(0, 5);
+    SetFaceBlinkControlById(1, 5);
+
+    BG_EnableSyncByMask(BG0_SYNC_BIT | BG1_SYNC_BIT);
 }

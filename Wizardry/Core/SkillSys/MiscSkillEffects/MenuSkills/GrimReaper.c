@@ -30,7 +30,7 @@ u8 GrimReaper_OnSelected(struct MenuProc *menu, struct MenuItemProc *item)
 
     SetBitUES(gActiveUnit, UES_BIT_GRIM_REAPER_SKILL_USED);
 
-    // return MENU_ACT_SKIPCURSOR | MENU_ACT_END | MENU_ACT_SND6A | MENU_ACT_CLEAR | StartUnitWeaponSelect(menu, item);
+    // return MENU_ACT_SKIPCURSOR | MENU_ACT_END | MENU_ACT_SND6A | MENU_ACT_CLEAR;
     return StartUnitWeaponSelect(menu, item);
 }
 
