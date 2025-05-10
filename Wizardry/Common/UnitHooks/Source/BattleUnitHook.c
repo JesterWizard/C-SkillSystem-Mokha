@@ -253,6 +253,11 @@ void UpdateUnitFromBattle(struct Unit * unit, struct BattleUnit * bu)
         SetBitUES_BU(bu, UES_BIT_WYVERN_CRASH_SKILL_USED);
 #endif
 
+#if defined(SID_Capture) && (COMMON_SKILL_VALID(SID_Capture))
+    if (SkillTester(unit, SID_Capture) && gActionData.unk08 == SID_Capture && !CheckBitUES(unit, UES_BIT_CAPTURE_SKILL_USED))
+        SetBitUES_BU(bu, UES_BIT_CAPTURE_SKILL_USED);
+#endif
+
     UNIT_MAG(unit) += BU_CHG_MAG(bu);
 
     /* Unit expa sus */
