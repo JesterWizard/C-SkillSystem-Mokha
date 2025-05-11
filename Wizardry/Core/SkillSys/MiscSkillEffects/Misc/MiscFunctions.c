@@ -4850,80 +4850,80 @@ void ApplyUnitMapUiFramePal(int faction, int palId)
 
 /* This fucks up the position of the unit's name in the minimug box when I hook it, even without changing anything */
 
-//! FE8U = 0x0808C5D0
-LYN_REPLACE_CHECK(DrawUnitMapUi);
-void DrawUnitMapUi(struct PlayerInterfaceProc * proc, struct Unit * unit)
-{
-    char * str;
-    int pos;
-    int faceId;
+// //! FE8U = 0x0808C5D0
+// LYN_REPLACE_CHECK(DrawUnitMapUi);
+// void DrawUnitMapUi(struct PlayerInterfaceProc * proc, struct Unit * unit)
+// {
+//     char * str;
+//     int pos;
+//     int faceId;
 
-    CpuFastFill(0, gUiTmScratchA, 6 * CHR_SIZE * sizeof(u16));
+//     CpuFastFill(0, gUiTmScratchA, 6 * CHR_SIZE * sizeof(u16));
 
-    str = GetStringFromIndex(unit->pCharacterData->nameTextId);
-    pos = GetStringTextCenteredPos(56, str);
+//     str = GetStringFromIndex(unit->pCharacterData->nameTextId);
+//     pos = GetStringTextCenteredPos(56, str);
 
-    ClearText(proc->texts);
-    Text_SetParams(proc->texts, pos, TEXT_COLOR_SYSTEM_BLACK);
+//     ClearText(proc->texts);
+//     Text_SetParams(proc->texts, pos, TEXT_COLOR_SYSTEM_BLACK);
 
-    /* Draw unit name */
-    Text_DrawString(proc->texts, str);
-    PutText(proc->texts, gUiTmScratchA + TILEMAP_INDEX(15, 1));
+//     /* Draw unit name */
+//     Text_DrawString(proc->texts, str);
+//     PutText(proc->texts, gUiTmScratchA + TILEMAP_INDEX(15, 1));
 
-    faceId = GetUnitMiniPortraitId(unit);
+//     faceId = GetUnitMiniPortraitId(unit);
 
-    if (unit->state & US_BIT23)
-    {
-        faceId = faceId + 1;
-    }
+//     if (unit->state & US_BIT23)
+//     {
+//         faceId = faceId + 1;
+//     }
 
-    PutFaceChibi(faceId, gUiTmScratchA + TILEMAP_INDEX(1, 1), 0xF0, 4, 0);
+//     PutFaceChibi(faceId, gUiTmScratchA + TILEMAP_INDEX(1, 1), 0xF0, 4, 0);
 
-    proc->statusTm = gUiTmScratchA + TILEMAP_INDEX(5, 3);
-    proc->unitClock = 0;
+//     proc->statusTm = gUiTmScratchA + TILEMAP_INDEX(5, 3);
+//     proc->unitClock = 0;
 
-    if (sPlayerInterfaceConfigLut[proc->cursorQuadrant].xMinimug < 0)
-    {
-        proc->xHp = 5;
-    }
-    else
-    {
-        proc->xHp = 23;
-    }
+//     if (sPlayerInterfaceConfigLut[proc->cursorQuadrant].xMinimug < 0)
+//     {
+//         proc->xHp = 5;
+//     }
+//     else
+//     {
+//         proc->xHp = 23;
+//     }
 
-    if (sPlayerInterfaceConfigLut[proc->cursorQuadrant].yMinimug < 0)
-    {
-        proc->yHp = 3;
-    }
-    else
-    {
-        proc->yHp = 17;
-    }
+//     if (sPlayerInterfaceConfigLut[proc->cursorQuadrant].yMinimug < 0)
+//     {
+//         proc->yHp = 3;
+//     }
+//     else
+//     {
+//         proc->yHp = 17;
+//     }
 
-    UnitMapUiUpdate(proc, unit);
-    DrawHpBar(gUiTmScratchA + TILEMAP_INDEX(5, 4), unit, TILEREF(0x140, 1));
+//     UnitMapUiUpdate(proc, unit);
+//     DrawHpBar(gUiTmScratchA + TILEMAP_INDEX(5, 4), unit, TILEREF(0x140, 1));
 
-    /* This function arranges the tiles in gTSA_MinimugBox and displays the box */
-    CallARM_FillTileRect(gUiTmScratchB, gTSA_MinimugBox, TILEREF(0x0, 3));
-    ApplyUnitMapUiFramePal(UNIT_FACTION(unit), 3);
+//     /* This function arranges the tiles in gTSA_MinimugBox and displays the box */
+//     CallARM_FillTileRect(gUiTmScratchB, gTSA_MinimugBox, TILEREF(0x0, 3));
+//     ApplyUnitMapUiFramePal(UNIT_FACTION(unit), 3);
 
 
-    // /* Custom code I've added to place skill icons where the unit name originally was */
-    // LoadIconPalettes(STATSCREEN_BGPAL_ITEMICONS);
+//     // /* Custom code I've added to place skill icons where the unit name originally was */
+//     // LoadIconPalettes(STATSCREEN_BGPAL_ITEMICONS);
 
-    // struct SkillList *list = GetUnitSkillList(unit);
+//     // struct SkillList *list = GetUnitSkillList(unit);
 
-    // #define STAT_SKILL_NUM_MAX 8
+//     // #define STAT_SKILL_NUM_MAX 8
 
-    // for (int i = 0; i < STAT_SKILL_NUM_MAX; i++) {
+//     // for (int i = 0; i < STAT_SKILL_NUM_MAX; i++) {
 
-	// 	if (i >= list->amt)
-	// 		break;
+// 	// 	if (i >= list->amt)
+// 	// 		break;
 
-	// 	DrawIcon(gUiTmScratchA + TILEMAP_INDEX((5 + 2 * i), 1),
-	// 			 SKILL_ICON(list->sid[i]),
-	// 			 TILEREF(0x0, STATSCREEN_BGPAL_ITEMICONS));
-	// }
+// 	// 	DrawIcon(gUiTmScratchA + TILEMAP_INDEX((5 + 2 * i), 1),
+// 	// 			 SKILL_ICON(list->sid[i]),
+// 	// 			 TILEREF(0x0, STATSCREEN_BGPAL_ITEMICONS));
+// 	// }
 
-    return;
-}
+//     return;
+// }
