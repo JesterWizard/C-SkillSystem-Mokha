@@ -362,5 +362,20 @@ void ManimLevelUp_ScrollOut(struct ManimLevelUpProc *proc)
     gFaces[0]->yPos = 32 - proc->y_scroll_offset;
 
     if (proc->y_scroll_offset <= -144)
+    {
+#ifdef CONFIG_PROMOTION_ON_MAX_LEVEL
+        if (gActiveUnit->level == UNIT_LEVEL_MAX_RE - 1  & !(UNIT_CATTRIBUTES(gActiveUnit) & CA_PROMOTED))
+            StartBmPromotion(proc);
+#endif
         Proc_Break(proc);
+    }
+}
+
+LYN_REPLACE_CHECK(ResetDialogueScreen);
+void ResetDialogueScreen(void) // function: MapLevelUp_EndFace
+{
+    ClearTalkBubble();
+    Proc_EndEach(gProcScr_E_FACE);
+    ResetFaces();
+    ClearTalkFaceRefs();
 }

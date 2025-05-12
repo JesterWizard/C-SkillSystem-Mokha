@@ -143,3 +143,6 @@
 #ifdef CONFIG_DENY_STAT_SCREEN
     #include "DenyStatScreen/Installer.event"
 #endif
+
+/* Not really sure what to do with this, it doesn't seem easy to just replace the tsx */
+// #include "ModularMinimugBox/Installer.event"
