@@ -13,6 +13,13 @@ Total used skill capacity[X]
 ## MSG_MSS_SkillPoints
 Val[X]
 
+## MSG_MSS_LaguzBar
+Bar[X]
+
+## MSG_MSS_LaguzBarDesc
+Transformation points.[N]
+Transform when full.[X]
+
 ## MSG_MSS_SkillPointsDesc
 Total skill points accrued[X]
 

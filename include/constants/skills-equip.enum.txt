@@ -5,9 +5,9 @@ SID_ReciprocalAid
 // SID_Doppleganger
 // SID_Turncoat
 // SID_ArdentSacrifice
-// SID_Capture
+SID_Capture
 // SID_Teleportation
-SID_Swarp
+// SID_Swarp
 SID_Swap
 SID_HealingFocus
 SID_Dance

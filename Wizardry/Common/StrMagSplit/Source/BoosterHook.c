@@ -50,8 +50,10 @@ int ApplyStatBoostItem(struct Unit * unit, int itemIdx)
     }
 #endif
 
-    unit->maxHP += statBonuses->hpBonus;
-    unit->curHP += statBonuses->hpBonus;
+    // unit->maxHP += statBonuses->hpBonus;
+    // unit->curHP += statBonuses->hpBonus;
+    unit->maxHP = (unit->maxHP + statBonuses->hpBonus > KUNIT_MHP_MAX(unit)) ? KUNIT_MHP_MAX(unit) : unit->maxHP + statBonuses->hpBonus;
+    unit->curHP = (unit->curHP + statBonuses->hpBonus > KUNIT_MHP_MAX(unit)) ? KUNIT_MHP_MAX(unit) : unit->curHP + statBonuses->hpBonus;
     unit->pow += statBonuses->powBonus;
     unit->skl += statBonuses->sklBonus;
     unit->spd += statBonuses->spdBonus;
@@ -66,6 +68,7 @@ int ApplyStatBoostItem(struct Unit * unit, int itemIdx)
     UnitCheckStatCaps(unit);
     UnitUpdateUsedItem(unit, itemIdx);
 
+    /* JESTER - all these returns are message IDs for the different stat boosts */
     if (statBonuses->hpBonus > 0)
         return 0x1C;
     else if (statBonuses->powBonus > 0)

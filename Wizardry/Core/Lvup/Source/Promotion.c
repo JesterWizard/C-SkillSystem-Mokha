@@ -12,10 +12,18 @@ STATIC_DECLAR void ApplyUnitPromotionVanilla(struct Unit * unit, u8 classId)
 
     // Apply stat ups
 
-    unit->maxHP += promotedClass->promotionHp;
+    // unit->maxHP += promotedClass->promotionHp;
 
-    if (unit->maxHP > promotedClass->maxHP)
-        unit->maxHP = promotedClass->maxHP;
+    // if (unit->maxHP > promotedClass->maxHP)
+    //     unit->maxHP = promotedClass->maxHP;
+
+    // unit->curHP += promotedClass->promotionHp;
+
+    // if (unit->curHP > GetUnitMaxHp(unit))
+    //     unit->curHP = GetUnitMaxHp(unit);
+
+    unit->maxHP = (unit->maxHP + promotedClass->promotionHp > KUNIT_MHP_MAX(unit)) ? KUNIT_MHP_MAX(unit) : unit->maxHP + promotedClass->promotionHp;
+    unit->curHP = (unit->curHP + promotedClass->promotionHp > KUNIT_MHP_MAX(unit)) ? KUNIT_MHP_MAX(unit) : unit->curHP + promotedClass->promotionHp;
 
     unit->pow += promotedClass->promotionPow;
 
@@ -64,11 +72,6 @@ STATIC_DECLAR void ApplyUnitPromotionVanilla(struct Unit * unit, u8 classId)
 
     unit->level = 1;
     unit->exp   = 0;
-
-    unit->curHP += promotedClass->promotionHp;
-
-    if (unit->curHP > GetUnitMaxHp(unit))
-        unit->curHP = GetUnitMaxHp(unit);
 }
 
 void GenerateBattleUnitStatGainsComparativelyVanilla(struct BattleUnit * bu, struct Unit * unit)

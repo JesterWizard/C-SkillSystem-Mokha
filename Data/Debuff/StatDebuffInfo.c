@@ -529,4 +529,17 @@ const struct DebuffInfo gStatDebuffInfos[UNIT_STAT_DEBUFF_MAX] = {
             .res = +6,
         },
     },
+    [UNIT_STAT_BUFF_LAGUZ] = {
+        .positive_type = STATUS_DEBUFF_POSITIVE,
+        .tick_type = STATUS_DEBUFF_NO_TICK,
+        .unit_status = {
+            .pow = +6,
+            .mag = +6,
+            .skl = +6,
+            .spd = +6,
+            .lck = +6,
+            .def = +6,
+            .res = +6,
+        },
+    },
 };

@@ -1,14 +1,15 @@
 /* bool (*)(ProcPtr proc) */
 ALIGN 4
 gPrePhaseFuncs:
-    POIN PrePhsae_TickInitativeSkillStatus
-    POIN PrePhsae_TickOathRouthSkillStatus
-    POIN PrePhsae_TickPlusAndMinusSkillStatus
+    POIN PrePhase_TickInitativeSkillStatus
+    POIN PrePhase_TickOathRouthSkillStatus
+    POIN PrePhase_TickPlusAndMinusSkillStatus
     POIN PrePhase_TickKeepUpSkillStatus
     POIN PrePhase_TickArmorMarchSkillStatus
     POIN PrePhase_TickMoodySkillStatus
     POIN PrePhase_TickHoneChaosSkillStatus
     POIN PrePhase_ClearMiscUES
+    POIN PrePhase_LaguzBars
     // POIN PrePhase_UpdateLengendSkillStatus
     POIN PrePhase_UnitStatusEffectSkills
     POIN PrePhase_TickDopplegangerSkillStatus
@@ -18,5 +19,5 @@ gPrePhaseFuncs:
     POIN PrePhaseFunc_HoneFortify
     POIN PrePhase_ControlWeatherSkill
     POIN PrePhase_CheckTile
-    POIN PrePhsae_ExecYuneWhisperSkills
+    POIN PrePhase_ExecYuneWhisperSkills
     WORD 0 0 0 0 0

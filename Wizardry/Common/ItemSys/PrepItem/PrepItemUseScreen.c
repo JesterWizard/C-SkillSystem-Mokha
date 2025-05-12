@@ -130,6 +130,13 @@ void DrawPrepScreenItemUseStatBars(struct Unit * unit, int mask)
     #else
         stat_pack[0] = GetUnitCurrentHp(unit) * 24 / UNIT_MHP_MAX(unit) + limitBreaker;
     #endif
+
+#else
+    #ifdef CONFIG_UNLOCK_ALLY_MHP_LIMIT
+    stat_pack[0] = GetUnitCurrentHp(unit) * 24 / KUNIT_MHP_MAX(unit) + limitBreaker;
+    #else
+    stat_pack[0] = GetUnitCurrentHp(unit) * 24 / UNIT_MHP_MAX(unit) + limitBreaker;
+    #endif
 #endif
 
     stat_pack[1] = PowGetter(unit) * 24 / UNIT_POW_MAX(unit) + limitBreaker;

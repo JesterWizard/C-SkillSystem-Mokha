@@ -151,6 +151,11 @@ s8 CanUnitUseItem(struct Unit* unit, int item)
     case ITEM_JUNAFRUIT:
         return CanUnitUseFruitItem(unit);
 
+#ifdef CONFIG_ITEM_INDEX_SKILL_SCROLL
+    case CONFIG_ITEM_INDEX_SKILL_SCROLL:
+        return PrepItemUsability_SkillScroll(unit, item);
+#endif
+
     default:
         return FALSE;
 

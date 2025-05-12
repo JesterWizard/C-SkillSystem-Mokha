@@ -10,6 +10,7 @@
 #include "kernel-tutorial.h"
 #include "constants/skills.h"
 #include "bmarena.h"
+#include "unit-expa.h"
 
 typedef void (*PreBattleCalcFunc)(struct BattleUnit *buA, struct BattleUnit *buB);
 extern PreBattleCalcFunc const *const gpPreBattleCalcFuncs;
@@ -1531,11 +1532,8 @@ void PreBattleCalcSkills(struct BattleUnit *attacker, struct BattleUnit *defende
 #endif
 
 #if (defined(SID_Capture) && (COMMON_SKILL_VALID(SID_Capture)))
-        /**
-         * I should be using CheckBitUES but it won't persist, so I check _3A directly
-         */
         case SID_Capture:
-            if (BattleSkillTester(attacker, SID_Capture) && GetUnit(attacker->unit.index)->_u3A == 8)
+            if (BattleSkillTester(attacker, SID_Capture) && CheckBitUES(GetUnit(attacker->unit.index), UES_BIT_CAPTURE_SKILL_USED))
             {
                 attacker->battleAttack -= Div(attacker->battleAttack * SKILL_EFF0(SID_Capture), 100);
                 attacker->battleHitRate -= Div(attacker->battleHitRate * SKILL_EFF0(SID_Capture), 100);

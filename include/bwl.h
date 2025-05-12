@@ -49,3 +49,5 @@ void UnitHiddenLevelPreLoad(struct Unit * unit);
 void WriteUnitLevelSafe(struct Unit *unit, int new_level);
 extern void (*prWriteUnitLevelSafe)(struct Unit *unit, int new_level);
 extern const struct SupportTalkEnt gNewSupportTalkList[];
+
+void DrawPage1BWL(void);

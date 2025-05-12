@@ -103,7 +103,7 @@ PROC_LABEL(99),
     PROC_END
 };
 
-bool PrePhsae_ExecYuneWhisperSkills(ProcPtr proc)
+bool PrePhase_ExecYuneWhisperSkills(ProcPtr proc)
 {
 #if (defined(SID_YuneWhispers) && (COMMON_SKILL_VALID(SID_YuneWhispers)))
     Proc_StartBlocking(ProcScr_PrePhaseYuneWhisper, proc);

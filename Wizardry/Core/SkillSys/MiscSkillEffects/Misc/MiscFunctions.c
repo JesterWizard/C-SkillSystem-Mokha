@@ -27,6 +27,7 @@
 #include "prepscreen.h"
 #include "savemenu.h"
 #include "rn.h"
+#include "icon-rework.h"
 
 #if defined(SID_CatchEmAll) && (COMMON_SKILL_VALID(SID_CatchEmAll))
     const unsigned int gCatchEmAllId = SID_CatchEmAll;
@@ -286,43 +287,6 @@ PROC_LABEL(14),
 #endif
 };
 
-struct PlayerInterfaceProc {
-    PROC_HEADER;
-
-    struct Text unk_2c[2];
-
-    s8 unk_3c;
-    s8 unk_3d;
-    s8 unk_3e;
-    s8 unk_3f;
-
-    u16* unk_40;
-    s16 unk_44;
-    s16 unk_46;
-    s16 unk_48;
-    u8 unk_4a;
-    u8 unk_4b;
-    u8 xCursorPrev;
-    u8 yCursorPrev;
-    u8 xCursor;
-    u8 yCursor;
-    s8 unk_50;
-    u8 unk_51;
-    u8 unk_52;
-    u8 unk_53;
-    u8 unk_54;
-    s8 unk_55;
-    s8 isRetracting;
-    s8 quadrant;
-    int unk_58;
-};
-
-struct PlayerInterfaceConfigEntry {
-    s8 xTerrain, yTerrain;
-    s8 xMinimug, yMinimug;
-    s8 xGoal, yGoal;
-};
-
 // static struct PlayerInterfaceConfigEntry const sPlayerInterfaceConfigLut[4] = {
 //     {
 //         +1, +1,
@@ -348,12 +312,8 @@ struct PlayerInterfaceConfigEntry {
 
 extern void DrawHpBar(u16* buffer, struct Unit* unit, int tileBase);
 extern void sub_808C360(struct PlayerInterfaceProc* proc, u16* buffer, struct Unit* unit);
-extern void InitMinimugBoxMaybe(struct PlayerInterfaceProc* proc, struct Unit* unit);
 extern void GetMinimugFactionPalette(int faction, int palId);
 extern void DrawUnitDisplayHpOrStatus(struct PlayerInterfaceProc*, struct Unit*);
-
-
-// struct PrepItemSuppyText PrepItemSuppyTexts = {};
 
 //! FE8U: 0x080B1F64
 LYN_REPLACE_CHECK(SetGameOption);
@@ -470,12 +430,13 @@ void TryAddUnitToTradeTargetList(struct Unit * unit)
      *  With capture, a unit should be able to trade with rescued enemies
      */
 #if (defined(SID_Capture) && (COMMON_SKILL_VALID(SID_Capture)))
-    FORCE_DECLARE bool capture_active = false;
+    bool capture_active = false;
 
-    if (!SkillTester(gSubjectUnit, SID_Capture))
-        capture_active = true;
+    if (SkillTester(gSubjectUnit, SID_Capture) && gSubjectUnit->rescue)
+        if (!IsSameAllegiance(gSubjectUnit->index, gSubjectUnit->rescue))
+            capture_active = true;
     
-    if (!IsSameAllegiance(gSubjectUnit->index, unit->index) && capture_active)
+    if (!IsSameAllegiance(gSubjectUnit->index, unit->index) && !capture_active)
         return;
 
 #else 
@@ -581,8 +542,7 @@ void KillUnitOnCombatDeath(struct Unit * unitA, struct Unit * unitB)
     }
 
 #if (defined(SID_Capture) && (COMMON_SKILL_VALID(SID_Capture)))
-    // CheckBitUES(unitB, UES_BIT_CAPTURE_SKILL_USED)
-    if (SkillTester(unitB, SID_Capture) && unitB->_u3A == 8)
+    if (SkillTester(unitB, SID_Capture) && CheckBitUES(unitB, UES_BIT_CAPTURE_SKILL_USED))
     {
         UnitRescue(unitB, unitA);
         HideUnitSprite(unitA);
@@ -2970,6 +2930,7 @@ s8 PlayerPhase_PrepareAction(ProcPtr proc)
     switch (gActionData.unitActionType)
     {
         case 0:
+        case CONFIG_UNIT_ACTION_EXPA_ExecSkill: // For backing out the attack forecast for menu skills
             /**
              * If the unit has used action, such as trading,
              * then the unit may take another menu action
@@ -3244,17 +3205,17 @@ void sub_808C360(struct PlayerInterfaceProc* proc, u16* buffer, struct Unit* uni
     return;
 }
 
-LYN_REPLACE_CHECK(DrawUnitDisplayHpOrStatus);
-void DrawUnitDisplayHpOrStatus(struct PlayerInterfaceProc* proc, struct Unit* unit) {
-    s16 frameCount = proc->unk_44;
+LYN_REPLACE_CHECK(UnitMapUiUpdate);
+void UnitMapUiUpdate(struct PlayerInterfaceProc* proc, struct Unit* unit) {
+    s16 frameCount = proc->unitClock;
 
     if (unit->statusIndex == UNIT_STATUS_RECOVER) {
         frameCount = 0;
     }
 
-    if ((frameCount & 0x3F) == 0) {
-        if ((frameCount & 0x40) != 0) {
-            MMB_DrawStatusText(proc->unk_40, unit);
+    if ((frameCount & 63) == 0) {
+        if ((frameCount & 64) != 0) {
+            MMB_DrawStatusText(proc->statusTm, unit);
 
             BG_EnableSyncByMask(BG0_SYNC_BIT);
         } else {
@@ -3268,8 +3229,8 @@ void DrawUnitDisplayHpOrStatus(struct PlayerInterfaceProc* proc, struct Unit* un
             }
 #endif
 
-            proc->unk_51 = gUnknown_02028E44[6] - 0x30;
-            proc->unk_52 = gUnknown_02028E44[7] - 0x30;
+            proc->hpCurHi = gUnknown_02028E44[6] - 0x30;
+            proc->hpCurLo = gUnknown_02028E44[7] - 0x30;
 
 #ifdef CONFIG_UNLOCK_ALLY_MHP_LIMIT
             StoreNumberStringOrDashesToSmallBuffer(GetUnitMaxHp(unit));
@@ -3281,44 +3242,39 @@ void DrawUnitDisplayHpOrStatus(struct PlayerInterfaceProc* proc, struct Unit* un
             }
 #endif
 
-            proc->unk_53 = gUnknown_02028E44[6] - 0x30;
-            proc->unk_54 = gUnknown_02028E44[7] - 0x30;
+            proc->hpMaxHi = gUnknown_02028E44[6] - 0x30;
+            proc->hpMaxLo = gUnknown_02028E44[7] - 0x30;
 
-            sub_808C360(proc, proc->unk_40, unit);
+            sub_808C360(proc, proc->statusTm, unit);
 
             BG_EnableSyncByMask(BG0_SYNC_BIT);
         }
     }
 
-    if ((proc->unk_55 == 0) && ((frameCount & 0x40) == 0 || (unit->statusIndex == UNIT_STATUS_NONE))) {
+    if ((proc->hideContents == false) && ((frameCount & 64) == 0 || (unit->statusIndex == UNIT_STATUS_NONE))) {
         int x;
         int y;
 
         int x2;
 
-        x = proc->unk_46 * 8;
+        x = proc->xHp * 8;
         x2 = x + 0x11;
 
-        y = proc->unk_48 * 8;
+        y = proc->yHp * 8;
 
 
 #ifdef CONFIG_UNLOCK_ALLY_MHP_LIMIT
         if (GetUnitMaxHp(unit) < 100)
         {
             /* Tens character current HP */
-            if (proc->unk_51 != 0xF0) {
-                CallARM_PushToSecondaryOAM(x2, y, gObject_8x8, proc->unk_51 + 0x82E0);
-            }
-            /* Single character currenty HP */
-            CallARM_PushToSecondaryOAM(x + 0x18, y, gObject_8x8, proc->unk_52 + 0x82E0);
-
+            CallARM_PushToSecondaryOAM(x2, y, gObject_8x8, proc->hpCurHi + 0x82E0);
+            /* Single character current HP */
+            CallARM_PushToSecondaryOAM(x + 24, y, gObject_8x8, proc->hpCurLo + 0x82E0);
+            
             /* Tens character max HP */
-            if (proc->unk_53 != 0xF0) {
-                CallARM_PushToSecondaryOAM(x + 0x29, y, gObject_8x8, proc->unk_53 + 0x82E0);
-            }
-
+            CallARM_PushToSecondaryOAM(x + 41, y, gObject_8x8, proc->hpMaxHi + 0x82E0);
             /* Single character max HP */
-            CallARM_PushToSecondaryOAM(x + 0x30, y, gObject_8x8, proc->unk_54 + 0x82E0);
+            CallARM_PushToSecondaryOAM(x + 48, y, gObject_8x8, proc->hpCurLo + 0x82E0);
         }
         else {
             /* Hundreds character current HP */
@@ -3326,84 +3282,34 @@ void DrawUnitDisplayHpOrStatus(struct PlayerInterfaceProc* proc, struct Unit* un
 
             if (hundreds > 0) {
                 CallARM_PushToSecondaryOAM(x2, y, gObject_8x8, hundreds + 0x82E0);
+                /* Tens character current HP */
+                CallARM_PushToSecondaryOAM(x + 24, y, gObject_8x8, proc->hpCurHi + 0x82E0);
+                /* Single character currenty HP */
+                CallARM_PushToSecondaryOAM(x + 32, y, gObject_8x8, proc->hpCurLo + 0x82E0);
             }
-            /* Tens character current HP */
-            if (proc->unk_51 != 0xF0) {
-                CallARM_PushToSecondaryOAM(x + 0x18, y, gObject_8x8, proc->unk_51 + 0x82E0);
+            else
+            {
+                /* Tens character current HP */
+                CallARM_PushToSecondaryOAM(x2, y, gObject_8x8, proc->hpCurHi + 0x82E0);
+                /* Single character currenty HP */
+                CallARM_PushToSecondaryOAM(x + 24, y, gObject_8x8, proc->hpCurLo + 0x82E0);
             }
-            /* Single character currenty HP */
-            CallARM_PushToSecondaryOAM(x + 0x20, y, gObject_8x8, proc->unk_52 + 0x82E0);
         }
 #else
         /* Tens character current HP */
-        if (proc->unk_51 != 0xF0) {
-            CallARM_PushToSecondaryOAM(x2, y, gObject_8x8, proc->unk_51 + 0x82E0);
-        }
-
+        CallARM_PushToSecondaryOAM(x2, y, gObject_8x8, proc->hpCurHi + 0x82E0);
         /* Single character current HP */
-        CallARM_PushToSecondaryOAM(x + 0x18, y, gObject_8x8, proc->unk_52 + 0x82E0);
+        CallARM_PushToSecondaryOAM(x + 24, y, gObject_8x8, proc->hpCurLow + 0x82E0);
 
         /* Tens character max HP */
-        if (proc->unk_53 != 0xF0) {
-            CallARM_PushToSecondaryOAM(x + 0x29, y, gObject_8x8, proc->unk_53 + 0x82E0);
-        }
-
+        CallARM_PushToSecondaryOAM(x + 41, y, gObject_8x8, proc->hpMaxHi + 0x82E0);
         /* Single character max HP */
-        CallARM_PushToSecondaryOAM(x + 0x30, y, gObject_8x8, proc->unk_54 + 0x82E0);
+        CallARM_PushToSecondaryOAM(x + 48, y, gObject_8x8, proc->hpMaxLo + 0x82E0);
 #endif
     }
 
     return;
 }
-
-// LYN_REPLACE_CHECK(InitMinimugBoxMaybe);
-// void InitMinimugBoxMaybe(struct PlayerInterfaceProc* proc, struct Unit* unit) {
-//     char* str;
-//     int pos;
-//     int faceId;
-
-//     CpuFastFill(0, gUiTmScratchA, 0x180);
-
-//     str = GetStringFromIndex(unit->pCharacterData->nameTextId);
-//     pos = GetStringTextCenteredPos(0x38, str); // Adjusted width for 3 digits
-
-//     ClearText(proc->unk_2c);
-//     Text_SetParams(proc->unk_2c, pos, 5);
-//     Text_DrawString(proc->unk_2c, str);
-//     PutText(proc->unk_2c, gUiTmScratchA + 0x25);
-
-//     faceId = GetUnitMiniPortraitId(unit);
-
-//     if (unit->state & US_BIT23) {
-//         faceId = faceId + 1;
-//     }
-
-//     PutFaceChibi(faceId, gUiTmScratchA + 0x21, 0xF0, 4, 0);
-
-//     proc->unk_40 = gUiTmScratchA + 0x65;
-
-//     proc->unk_44 = 0;
-
-//     if (sPlayerInterfaceConfigLut[proc->unk_50].xMinimug < 0) {
-//         proc->unk_46 = 5;
-//     } else {
-//         proc->unk_46 = 23;
-//     }
-
-//     if (sPlayerInterfaceConfigLut[proc->unk_50].yMinimug < 0) {
-//         proc->unk_48 = 3;
-//     } else {
-//         proc->unk_48 = 17;
-//     }
-
-//     DrawUnitDisplayHpOrStatus(proc, unit);
-//     DrawHpBar(&gUiTmScratchA[0x85], unit, 0x1140);
-
-//     CallARM_FillTileRect(gUiTmScratchB, gTSA_MinimugBox, 0x3000);
-//     GetMinimugFactionPalette(UNIT_FACTION(unit), 3);
-
-//     return;
-// }
 
 LYN_REPLACE_CHECK(BattleUnitTargetCheckCanCounter);
 void BattleUnitTargetCheckCanCounter(struct BattleUnit* bu) {
@@ -4780,3 +4686,244 @@ u8 Event01_End(struct EventEngineProc * proc)
 
     return EVC_END;
 }
+
+LYN_REPLACE_CHECK(TradeMenu_InitItemDisplay);
+void TradeMenu_InitItemDisplay(struct TradeMenuProc * proc)
+{
+    DrawUiFrame2(1,  8, 14, 12, 0);
+    DrawUiFrame2(15, 8, 14, 12, 0);
+
+    ResetTextFont();
+
+    ResetIconGraphics();
+    LoadIconPalettes(4); // TODO: palette id constant
+
+    TradeMenu_InitItemText(proc);
+    TradeMenu_RefreshItemText(proc);
+
+#ifdef CONFIG_ESSENTIALS_AI_TRADE_FIX
+    bool noPortraitUnit_1 = false;
+    bool noPortraitUnit_2 = false;
+
+    if (proc->units[0]->pCharacterData->portraitId == 0)
+        noPortraitUnit_1 = true;
+
+    if (proc->units[1]->pCharacterData->portraitId == 0)
+        noPortraitUnit_2 = true;
+
+    if (!noPortraitUnit_1)
+        StartFace(0, GetUnitPortraitId(proc->units[0]), 64,  -4, 3);
+    if (!noPortraitUnit_2)
+        StartFace(1, GetUnitPortraitId(proc->units[1]), 176, -4, 2);
+
+#else
+    // TODO: face display type (arg 5) constants
+    StartFace(0, GetUnitPortraitId(proc->units[0]), 64,  -4, 3);
+    StartFace(1, GetUnitPortraitId(proc->units[1]), 176, -4, 2);
+#endif
+
+    SetFaceBlinkControlById(0, 5);
+    SetFaceBlinkControlById(1, 5);
+
+    BG_EnableSyncByMask(BG0_SYNC_BIT | BG1_SYNC_BIT);
+}
+
+//! FE8U = 0x0808C388
+LYN_REPLACE_CHECK(PutUnitMapUiStatus);
+void PutUnitMapUiStatus(u16 * buffer, struct Unit * unit)
+{
+    int offset = 0;
+
+    int tileIdx = TILEREF(0x16F, 0);
+
+    if (unit == NULL)
+    {
+        return;
+    }
+
+    switch (unit->statusIndex)
+    {
+    case UNIT_STATUS_POISON:
+        offset = 0;
+        break;
+
+    case UNIT_STATUS_SLEEP:
+        offset = 0xA0;
+        break;
+
+    case UNIT_STATUS_SILENCED:
+        offset = 0x140;
+        break;
+
+    case UNIT_STATUS_BERSERK:
+        offset = 0x1E0;
+        break;
+
+    case UNIT_STATUS_ATTACK:
+        offset = 0x280;
+        break;
+
+    case UNIT_STATUS_DEFENSE:
+        offset = 0x320;
+        break;
+
+    case UNIT_STATUS_CRIT:
+        offset = 0x3C0;
+        break;
+
+    case UNIT_STATUS_AVOID:
+        offset = 0x460;
+        break;
+
+    case UNIT_STATUS_PETRIFY:
+    case UNIT_STATUS_13:
+        offset = 0x500;
+        break;
+
+    case UNIT_STATUS_NONE:
+    case UNIT_STATUS_SICK:
+    case UNIT_STATUS_RECOVER:
+        return;
+
+    case UNIT_STATUS_12:
+        break;
+    }
+
+    CpuFastCopy(gGfx_StatusText + offset, BG_CHR_ADDR(0x16F), 5 * CHR_SIZE);
+
+    buffer[0] = tileIdx++;
+    buffer[1] = tileIdx++;
+    buffer[2] = tileIdx++;
+    buffer[3] = tileIdx++;
+    buffer[4] = tileIdx++;
+    buffer[5] = 0;
+    buffer[6] = TILEREF(0x128 + unit->statusDuration, 1);
+
+    return;
+}
+
+//! FE8U = 0x0808C360
+LYN_REPLACE_CHECK(ClearUnitMapUiStatus);
+void ClearUnitMapUiStatus(struct PlayerInterfaceProc * proc, u16 * buffer, struct Unit * unit)
+{
+    buffer[0] = TILEREF(0x120, 2);
+    buffer[1] = TILEREF(0x121, 2);
+    buffer[2] = 0;
+    buffer[3] = 0;
+    buffer[4] = TILEREF(0x13E, 2);
+    buffer[5] = 0;
+    buffer[6] = 0;
+
+    return;
+}
+
+//! FE8U = 0x0808C2CC
+LYN_REPLACE_CHECK(ApplyUnitMapUiFramePal);
+void ApplyUnitMapUiFramePal(int faction, int palId)
+{
+    u16 * pal = NULL;
+
+    switch (faction)
+    {
+    case FACTION_BLUE:
+        pal = gPal_PlayerInterface_Blue;
+        break;
+
+    case FACTION_RED:
+        pal = gPal_PlayerInterface_Red;
+        break;
+
+    case FACTION_GREEN:
+        pal = gPal_PlayerInterface_Green;
+        break;
+
+    default:
+        nullsub_8();
+        break;
+    }
+
+    ApplyPalette(pal, palId);
+
+    return;
+}
+
+
+/* This fucks up the position of the unit's name in the minimug box when I hook it, even without changing anything */
+
+// //! FE8U = 0x0808C5D0
+// LYN_REPLACE_CHECK(DrawUnitMapUi);
+// void DrawUnitMapUi(struct PlayerInterfaceProc * proc, struct Unit * unit)
+// {
+//     char * str;
+//     int pos;
+//     int faceId;
+
+//     CpuFastFill(0, gUiTmScratchA, 6 * CHR_SIZE * sizeof(u16));
+
+//     str = GetStringFromIndex(unit->pCharacterData->nameTextId);
+//     pos = GetStringTextCenteredPos(56, str);
+
+//     ClearText(proc->texts);
+//     Text_SetParams(proc->texts, pos, TEXT_COLOR_SYSTEM_BLACK);
+
+//     /* Draw unit name */
+//     Text_DrawString(proc->texts, str);
+//     PutText(proc->texts, gUiTmScratchA + TILEMAP_INDEX(15, 1));
+
+//     faceId = GetUnitMiniPortraitId(unit);
+
+//     if (unit->state & US_BIT23)
+//     {
+//         faceId = faceId + 1;
+//     }
+
+//     PutFaceChibi(faceId, gUiTmScratchA + TILEMAP_INDEX(1, 1), 0xF0, 4, 0);
+
+//     proc->statusTm = gUiTmScratchA + TILEMAP_INDEX(5, 3);
+//     proc->unitClock = 0;
+
+//     if (sPlayerInterfaceConfigLut[proc->cursorQuadrant].xMinimug < 0)
+//     {
+//         proc->xHp = 5;
+//     }
+//     else
+//     {
+//         proc->xHp = 23;
+//     }
+
+//     if (sPlayerInterfaceConfigLut[proc->cursorQuadrant].yMinimug < 0)
+//     {
+//         proc->yHp = 3;
+//     }
+//     else
+//     {
+//         proc->yHp = 17;
+//     }
+
+//     UnitMapUiUpdate(proc, unit);
+//     DrawHpBar(gUiTmScratchA + TILEMAP_INDEX(5, 4), unit, TILEREF(0x140, 1));
+
+//     /* This function arranges the tiles in gTSA_MinimugBox and displays the box */
+//     CallARM_FillTileRect(gUiTmScratchB, gTSA_MinimugBox, TILEREF(0x0, 3));
+//     ApplyUnitMapUiFramePal(UNIT_FACTION(unit), 3);
+
+
+//     // /* Custom code I've added to place skill icons where the unit name originally was */
+//     // LoadIconPalettes(STATSCREEN_BGPAL_ITEMICONS);
+
+//     // struct SkillList *list = GetUnitSkillList(unit);
+
+//     // #define STAT_SKILL_NUM_MAX 8
+
+//     // for (int i = 0; i < STAT_SKILL_NUM_MAX; i++) {
+
+// 	// 	if (i >= list->amt)
+// 	// 		break;
+
+// 	// 	DrawIcon(gUiTmScratchA + TILEMAP_INDEX((5 + 2 * i), 1),
+// 	// 			 SKILL_ICON(list->sid[i]),
+// 	// 			 TILEREF(0x0, STATSCREEN_BGPAL_ITEMICONS));
+// 	// }
+
+//     return;
+// }

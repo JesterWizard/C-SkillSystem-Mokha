@@ -413,6 +413,10 @@ u8 GrimReaper_OnSelected(struct MenuProc * menu, struct MenuItemProc * item);
 u8 Hide_Usability(const struct MenuItemDef * def, int number);
 u8 Hide_OnSelected(struct MenuProc * menu, struct MenuItemProc * item);
 
+u8 Transform_Laguz_Usability(const struct MenuItemDef * def, int number);
+u8 Transform_Laguz_OnSelected(struct MenuProc * menu, struct MenuItemProc * item);
+u8 Transform_Laguz_Effect(struct MenuProc * menu, struct MenuItemProc * item);
+
 /* Skill actions */
 bool Action_HealingFocus(ProcPtr proc);
 bool Action_Teleportation(ProcPtr parent);
@@ -451,5 +455,7 @@ bool Action_Switcher(ProcPtr parent);
 bool Action_LethalityPlus(ProcPtr parent);
 bool Action_GrimReaper(ProcPtr parent);
 bool Action_Hide(ProcPtr parent);
+
+bool Action_Transform_Laguz(ProcPtr parent);
 
 u8 SummonPlusCommandEffect(struct MenuProc * menu, struct MenuItemProc * menuItem);

@@ -105,3 +105,9 @@ Dead units will not be revived[X]
 If unit dies, revive them next chapter[X]
 ## MENU_Casual_Text
 Casual[X]
+
+## MSG_MenuCommand_Transform_Laguz_NAME
+ Laguz-T[X]
+## MSG_MenuCommand_Transform_Laguz_DESC
+Transform into a Laguz[N]
+form, gaining stat boosts.[X]

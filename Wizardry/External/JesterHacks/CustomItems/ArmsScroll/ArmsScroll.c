@@ -72,7 +72,7 @@ void ItemUseAction_ArmsScroll(ProcPtr proc)
     NewPopup_VerySimple(MSG_Weapon_Rank_Increased, 0x5A, proc);
 }
 
-bool ItemUsbility_ArmsScroll(struct Unit * unit, int item)
+bool ItemUsability_ArmsScroll(struct Unit * unit, int item)
 {
     if (GetHighestWeaponRank(unit) == -1)
         return false;

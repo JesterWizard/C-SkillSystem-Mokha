@@ -5,6 +5,7 @@
 #include "constants/texts.h"
 #include "battle-system.h"
 #include "unit-expa.h"
+#include "action-expa.h"
 
 #if defined(SID_Capture) && (COMMON_SKILL_VALID(SID_Capture))
 u8 Capture_Usability(const struct MenuItemDef * def, int number)
@@ -71,17 +72,11 @@ u8 Capture_OnSelected(struct MenuProc * menu, struct MenuItemProc * item)
     gActionData.unk08 = SID_Capture;
     gActionData.unitActionType = CONFIG_UNIT_ACTION_EXPA_ExecSkill;
 
-    /**
-     * Usually SetBitUES is preferred, but for some fucking insane reason
-     * the bit won't persist when I check unitB (the active unit) in the 'KillUnitOnCombatDeath' function.
-     * So I'm having to set the bit directly using its positional value in unit-expa.h
-     */
-    // SetBitUES(gActiveUnit, UES_BIT_CAPTURE_SKILL_USED);
-    gActiveUnit->_u3A = 8;
-
+    // return MENU_ACT_SKIPCURSOR | MENU_ACT_END | MENU_ACT_SND6A | MENU_ACT_CLEAR;
     return StartUnitWeaponSelect(menu, item);
 }
 
+/* Unused as we're hijacking the attack command in Capture_OnSelected */
 bool Action_Capture(ProcPtr parent)
 {
     return true;

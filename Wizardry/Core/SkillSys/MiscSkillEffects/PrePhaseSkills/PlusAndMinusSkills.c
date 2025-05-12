@@ -9,7 +9,7 @@ static void _SetPlusAndMinusStatDebuff(struct Unit * unit)
     SetUnitStatDebuff(unit, UNIT_STAT_BUFF_PLUSMINUS);
 }
 
-bool PrePhsae_TickPlusAndMinusSkillStatus(ProcPtr proc)
+bool PrePhase_TickPlusAndMinusSkillStatus(ProcPtr proc)
 {
     int i, j;
 

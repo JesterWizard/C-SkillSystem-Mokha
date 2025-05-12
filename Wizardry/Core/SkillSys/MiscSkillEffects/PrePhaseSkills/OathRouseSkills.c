@@ -90,7 +90,7 @@ static void _SetRouseStatDebuf(struct Unit * unit)
 #endif
 }
 
-bool PrePhsae_TickOathRouthSkillStatus(ProcPtr proc)
+bool PrePhase_TickOathRouthSkillStatus(ProcPtr proc)
 {
     int i, j;
 

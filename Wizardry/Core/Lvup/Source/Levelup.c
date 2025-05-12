@@ -296,13 +296,23 @@ void CheckBattleUnitLevelUp(struct BattleUnit * bu)
     if (CanBattleUnitGainLevels(bu) && totalExp >= 100)
     {
         int bonus = (bu->unit.state & US_GROWTH_BOOST) ? get_metis_tome_growth_bonus() : 0;
+
+        while (CanBattleUnitGainLevels(bu) && totalExp >= 100)
+        {
+            totalExp -= 100;
+            bu->unit.level++;
+    
+            if (totalExp < 100)
+                bu->unit.exp = totalExp;
+        }
         
         if (UNIT_CATTRIBUTES(&bu->unit) & CA_MAXLEVEL10)
         {
-            if (bu->unit.level == 10)
+            if (bu->unit.level >= 10)
             {
                 bu->expGain -= bu->unit.exp;
                 bu->unit.exp = UNIT_EXP_DISABLED;
+                bu->unit.level = 10;
             }
         }
         else if (
@@ -311,18 +321,10 @@ void CheckBattleUnitLevelUp(struct BattleUnit * bu)
         {
             bu->expGain -= bu->unit.exp;
             bu->unit.exp = UNIT_EXP_DISABLED;
+            bu->unit.level = UNIT_LEVEL_MAX_RE;
         }
 
         TryAddSkillLvup(GetUnitFromCharIdAndFaction(UNIT_CHAR_ID(&bu->unit), FACTION_BLUE), bu->unit.level);
         UnitLvupCore(bu, bonus);
-    }
-
-    while (CanBattleUnitGainLevels(bu) && totalExp >= 100)
-    {
-        totalExp -= 100;
-        bu->unit.level++;
-
-        if (totalExp < 100)
-            bu->unit.exp = totalExp;
     }
 }

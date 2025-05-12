@@ -5,8 +5,8 @@ PUSH
         #include "ItemData_ArmsScroll.lyn.event"
 POP
 
-InjectItemPrepUsabilityJpt(CONFIG_ITEM_INDEX_ARMS_SCROLL, ItemUsbility_ArmsScroll)
+InjectItemPrepUsabilityJpt(CONFIG_ITEM_INDEX_ARMS_SCROLL, ItemUsability_ArmsScroll)
 InjectItemPrepEffectJpt(CONFIG_ITEM_INDEX_ARMS_SCROLL, PrepItemEffect_ArmsScroll)
-InjectItemUsabilityJpt(CONFIG_ITEM_INDEX_ARMS_SCROLL, ItemUsbilityJpt_ArmsScroll)
+InjectItemUsabilityJpt(CONFIG_ITEM_INDEX_ARMS_SCROLL, ItemUsabilityJpt_ArmsScroll)
 InjectItemEffectJpt(CONFIG_ITEM_INDEX_ARMS_SCROLL, ItemUseEffectJpt_ArmsScroll)
 InjectItemActionJpt(CONFIG_ITEM_INDEX_ARMS_SCROLL, ItemUseActionJpt_ArmsScroll)
