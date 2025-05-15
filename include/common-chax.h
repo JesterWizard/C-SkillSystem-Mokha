@@ -39,6 +39,7 @@
 
 #define UNIT_LEVEL_MAX_RE 20
 #define UNIT_RECORDED_LEVEL_MAX 80
+#define UNIT_MAX_INVENTORY 5
 
 extern void SetGameOption(u8 index, u8 newValue);
 extern void TryAddUnitToTradeTargetList(struct Unit* unit);

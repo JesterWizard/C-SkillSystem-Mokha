@@ -736,3 +736,4 @@
 #define MSG_SKILL_Emulate_CAPACITY 1
 #define MSG_SKILL_ItemLore_CAPACITY 1
 #define MSG_SKILL_MaleficAura_CAPACITY 1
+#define MSG_SKILL_DualWield_CAPACITY 1

@@ -736,3 +736,4 @@
 #define MSG_SKILL_Emulate_PRICE 1000
 #define MSG_SKILL_ItemLore_PRICE 1000
 #define MSG_SKILL_MaleficAura_PRICE 1000
+#define MSG_SKILL_DualWield_PRICE 1000

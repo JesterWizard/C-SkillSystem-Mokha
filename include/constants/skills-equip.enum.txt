@@ -239,11 +239,12 @@ SID_SwiftAttack
 // SID_Transpose
 // SID_SwordSaint
 SID_GracefulWielder
-SID_FarWard
+// SID_FarWard
 // SID_Zen
 // SID_TintedLens
 // SID_TintedLensPlus
 // SID_Emulate
+SID_DualWield
 
 //////// POST-BATTLE SKILLS
 SID_Canto

@@ -1561,3 +1561,10 @@ Emulate[X]
 Emulate:[N]
 Copy the enemy unit's current HP[N]
 at the start of the battle.[X]
+
+## MSG_SKILL_DualWield_NAME
+Dual Wield[X]
+## MSG_SKILL_DualWield_DESC
+Dual Wield:[N]
+Equip a secondary weapon,[N]
+using half of its stats.[X]

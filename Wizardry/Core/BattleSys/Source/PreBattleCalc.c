@@ -54,6 +54,17 @@ void ComputeBattleUnitAttack(struct BattleUnit *attacker, struct BattleUnit *def
         status = status + attacker->unit.pow;
 #endif
 
+#if defined(SID_DualWield) && (COMMON_SKILL_VALID(SID_DualWield))
+    if (BattleSkillTester(attacker, SID_DualWield))
+    {
+        for (int i = 1; i < UNIT_MAX_INVENTORY; i++)
+        {
+            if (GetItemMight(attacker->unit.items[i]) > 0 && CanUnitUseWeapon(GetUnit(attacker->unit.index), attacker->unit.items[i]))
+                status += GetItemMight(attacker->unit.items[i]) / 2;
+        }
+    }
+#endif
+
     attacker->battleAttack = status;
 }
 
@@ -143,6 +154,17 @@ void ComputeBattleUnitCritRate(struct BattleUnit *bu)
 
     status += GetItemCrit(bu->weapon);
 
+#if defined(SID_DualWield) && (COMMON_SKILL_VALID(SID_DualWield))
+    if (SkillTester(&bu->unit, SID_DualWield))
+    {
+        for (int i = 1; i < UNIT_MAX_INVENTORY; i++)
+        {
+            if (GetItemCrit(bu->unit.items[i]) > 0 && CanUnitUseWeapon(GetUnit(bu->unit.index), bu->unit.items[i]))
+                status += GetItemCrit(bu->unit.items[i]) / 2;
+        }
+    }
+#endif
+
     if (UNIT_CATTRIBUTES(&bu->unit) & CA_CRITBONUS)
         bu->battleCritRate += 15;
 
@@ -203,6 +225,24 @@ void ComputeBattleUnitSpeed(struct BattleUnit* attacker)
 
     if (attacker->battleSpeed < 0)
         attacker->battleSpeed = 0;
+}
+
+LYN_REPLACE_CHECK(ComputeBattleUnitHitRate);
+void ComputeBattleUnitHitRate(struct BattleUnit* bu) {
+    int status = (bu->unit.skl * 2) + GetItemHit(bu->weapon) + (bu->unit.lck / 2) + bu->wTriangleHitBonus;
+
+#if defined(SID_DualWield) && (COMMON_SKILL_VALID(SID_DualWield))
+    if (SkillTester(&bu->unit, SID_DualWield))
+    {
+        for (int i = 1; i < UNIT_MAX_INVENTORY; i++)
+        {
+            if (GetItemHit(bu->unit.items[i]) > 0 && CanUnitUseWeapon(GetUnit(bu->unit.index), bu->unit.items[i]))
+                status += GetItemHit(bu->unit.items[i]) / 2;
+        }
+    }
+#endif
+
+    bu->battleHitRate = status;
 }
 
 LYN_REPLACE_CHECK(ComputeBattleUnitSupportBonuses);

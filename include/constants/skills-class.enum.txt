@@ -244,6 +244,7 @@
 // SID_TintedLens
 // SID_TintedLensPlus
 // SID_Emulate
+// SID_DualWield
 
 //////// POST-BATTLE SKILLS
 // SID_Canto
