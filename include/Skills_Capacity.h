@@ -738,3 +738,4 @@
 #define MSG_SKILL_MaleficAura_CAPACITY 1
 #define MSG_SKILL_DualWield_CAPACITY 1
 #define MSG_SKILL_DualWieldPlus_CAPACITY 1
+#define MSG_SKILL_Ruinator_CAPACITY 1

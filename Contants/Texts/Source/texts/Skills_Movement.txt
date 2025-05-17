@@ -130,3 +130,10 @@ Desert Tiger[X]
 Desert Tiger:[N]
 Allows the unit to walk on sand[N]
 tiles with no move penalty.[X]
+
+## MSG_SKILL_Ruinator_NAME
+Ruinator[X]
+## MSG_SKILL_Ruinator_DESC
+Ruinator:[N]
+Allows the unit to walk over[N]
+Light Rune traps.[X]

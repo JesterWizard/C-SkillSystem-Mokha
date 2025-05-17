@@ -7437,4 +7437,14 @@ const struct SkillInfo gSkillInfos[MAX_SKILL_NUM + 1] = {
         .icon = GFX_SkillIcon_WIP,
     },
 #endif
+
+#if (defined(SID_Ruinator) && COMMON_SKILL_VALID(SID_Ruinator))
+    [SID_Ruinator] = {
+        .name = MSG_SKILL_Ruinator_NAME,
+        .desc = MSG_SKILL_Ruinator_DESC,
+        .capacity = MSG_SKILL_Ruinator_CAPACITY,
+        .price = MSG_SKILL_Ruinator_PRICE,
+        .icon = GFX_SkillIcon_WIP,
+    },
+#endif
 };
