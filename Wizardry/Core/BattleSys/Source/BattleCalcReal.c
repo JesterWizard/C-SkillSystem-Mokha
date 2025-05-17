@@ -121,6 +121,25 @@ void ComputeBattleUnitSpecialWeaponStats(struct BattleUnit * attacker, struct Ba
 
         if (attacker->weaponAttributes & IA_NEGATE_DEFENSE)
             defender->battleDefense = 0;
+        else
+        {
+#if defined(SID_DualWieldPlus) && (COMMON_SKILL_VALID(SID_DualWieldPlus))
+            if (BattleSkillTester(attacker, SID_DualWieldPlus))
+            {
+                for (int i = 1; i < UNIT_MAX_INVENTORY; i++)
+                {
+                    if (GetItemHit(attacker->unit.items[i]) > 0 && CanUnitUseWeapon(GetUnit(attacker->unit.index), attacker->unit.items[i]))
+                    {
+                        if (GetItemAttributes(attacker->unit.items[i]) & IA_NEGATE_DEFENSE)
+                        {
+                            defender->battleDefense = 0;
+                            break;
+                        }
+                    }
+                }
+            }
+#endif
+        }
 
 #ifdef CHAX
         if (GetUnitStatusIndex(&defender->unit) == UNIT_STATUS_PETRIFY ||

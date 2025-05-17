@@ -7,6 +7,7 @@
 #include "combo-attack.h"
 #include "constants/skills.h"
 #include "unit-expa.h"
+#include "bmitem.h"
 
 #define LOCAL_TRACE 1
 
@@ -835,4 +836,38 @@ int GetBattleUnitHitCount(struct BattleUnit * actor)
 #endif
 
     return result;
+}
+
+LYN_REPLACE_CHECK(BattleCheckBraveEffect);
+int BattleCheckBraveEffect(struct BattleUnit* attacker) {
+    bool braveEffect = false;
+    
+    if (attacker->weaponAttributes & IA_BRAVE)
+    {
+        braveEffect = true;
+    }
+    else
+    {
+#if defined(SID_DualWieldPlus) && (COMMON_SKILL_VALID(SID_DualWieldPlus))
+        if (BattleSkillTester(attacker, SID_DualWieldPlus))
+        {
+            for (int i = 1; i < UNIT_MAX_INVENTORY; i++)
+            {
+                if (GetItemMight(attacker->unit.items[i]) > 0 && CanUnitUseWeapon(GetUnit(attacker->unit.index), attacker->unit.items[i]))
+                {
+                    if (GetItemAttributes(attacker->unit.items[i]) & IA_BRAVE)
+                    {
+                        braveEffect = true;
+                        break;
+                    }
+                }
+            }
+        }
+#endif 
+    }
+
+    if (braveEffect)
+        gBattleHitIterator->attributes |= BATTLE_HIT_ATTR_BRAVE;
+
+    return braveEffect;
 }

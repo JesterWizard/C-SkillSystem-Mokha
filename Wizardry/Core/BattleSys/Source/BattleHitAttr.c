@@ -16,7 +16,8 @@ void BattleHit_CalcHpDrain(struct BattleUnit *attacker, struct BattleUnit *defen
 	/**
 	 * Step 1: calculate drain percentage
 	 */
-	if (GetItemWeaponEffect(attacker->weapon) == WPN_EFFECT_HPDRAIN) {
+	if (GetItemWeaponEffect(attacker->weapon) == WPN_EFFECT_HPDRAIN) 
+    {
 		percentage += gpKernelBattleDesignerConfig->nosferatu_hpdrain_perc;
 
 		/**
@@ -26,6 +27,26 @@ void BattleHit_CalcHpDrain(struct BattleUnit *attacker, struct BattleUnit *defen
 		 */
 		gBattleHitIterator->attributes |= BATTLE_HIT_ATTR_HPSTEAL;
 	}
+    else
+    {
+#if defined(SID_DualWieldPlus) && (COMMON_SKILL_VALID(SID_DualWieldPlus))
+        if (BattleSkillTester(attacker, SID_DualWieldPlus))
+        {
+            for (int i = 1; i < UNIT_MAX_INVENTORY; i++)
+            {
+                if (GetItemMight(attacker->unit.items[i]) > 0 && CanUnitUseWeapon(GetUnit(attacker->unit.index), attacker->unit.items[i]))
+                {
+                    if (GetItemWeaponEffect(attacker->unit.items[i]) == WPN_EFFECT_HPDRAIN)
+                    {
+                        percentage += gpKernelBattleDesignerConfig->nosferatu_hpdrain_perc;
+                        gBattleHitIterator->attributes |= BATTLE_HIT_ATTR_HPSTEAL;
+                        break;
+                    }
+                }
+            }
+        }
+#endif
+    }
 
 	if (gBattleTemporaryFlag.skill_activated_aether)
 		percentage += 100;
@@ -81,6 +102,22 @@ bool CheckBattleHpHalve(struct BattleUnit *attacker, struct BattleUnit *defender
         RegisterActorEfxSkill(GetBattleHitRound(gBattleHitIterator), SID_Eclipse);
         return true;
     }
+#endif
+
+#if defined(SID_DualWieldPlus) && (COMMON_SKILL_VALID(SID_DualWieldPlus))
+        if (BattleSkillTester(attacker, SID_DualWieldPlus))
+        {
+            for (int i = 1; i < UNIT_MAX_INVENTORY; i++)
+            {
+                if (GetItemMight(attacker->unit.items[i]) > 0 && CanUnitUseWeapon(GetUnit(attacker->unit.index), attacker->unit.items[i]))
+                {
+                    if (GetItemWeaponEffect(attacker->unit.items[i]) == WPN_EFFECT_HPHALVE)
+                    {
+                        return true;
+                    }
+                }
+            }
+        }
 #endif
 
     return false;
@@ -149,6 +186,22 @@ bool CheckDevilAttack(struct BattleUnit *attacker, struct BattleUnit *defender)
         RegisterActorEfxSkill(GetBattleHitRound(gBattleHitIterator), SID_DevilsWhim);
         return true;
     }
+#endif
+
+#if defined(SID_DualWieldPlus) && (COMMON_SKILL_VALID(SID_DualWieldPlus))
+        if (BattleSkillTester(attacker, SID_DualWieldPlus))
+        {
+            for (int i = 1; i < UNIT_MAX_INVENTORY; i++)
+            {
+                if (GetItemMight(attacker->unit.items[i]) > 0 && CanUnitUseWeapon(GetUnit(attacker->unit.index), attacker->unit.items[i]))
+                {
+                    if (GetItemWeaponEffect(attacker->unit.items[i]) == WPN_EFFECT_DEVIL)
+                    {
+                        return true;
+                    }
+                }
+            }
+        }
 #endif
 
     return false;

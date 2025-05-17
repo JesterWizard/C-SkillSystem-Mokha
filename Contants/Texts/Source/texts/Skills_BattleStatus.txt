@@ -1568,3 +1568,11 @@ Dual Wield[X]
 Dual Wield:[N]
 Equip a secondary weapon,[N]
 using half of its stats.[X]
+
+## MSG_SKILL_DualWieldPlus_NAME
+Dual Wield+[X]
+## MSG_SKILL_DualWieldPlus_DESC
+Dual Wield+:[N]
+Equip a secondary weapon,[N]
+using half of its stats.[N]
+and its effects.[X]
