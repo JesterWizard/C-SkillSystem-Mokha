@@ -7,7 +7,6 @@ PikminStyleFlag:
 WORD 0xAC
 
 
-
 ALIGN 4 
 gUiFrameImage_Stephano:
 #incbin "png/Stephano_Main.dmp" 
@@ -124,8 +123,6 @@ MenuTilesPalette_Pikmin:
 #incbin "png/PikminMain.pal.bin"
 #incbin "png/PikminMain.pal.bin"
 
-
-
 ALIGN 4 
 gUnknown_08802558_Sokaballa: // Battle UI Palette 
 BYTE  $0E $52 $A6 $10 $BE $77 $AA $00 $13 $1E $65 $62 $08 $7F $48 $24 $41 $30 $FC $36 $83 $1C $E7 $65 $86 $55 $25 $49 $82 $48 $6D $1D $0E $52 $A6 $10 $BE $77 $AA $00 $13 $1E $B8 $14 $DF $5A $49 $08 $59 $29 $FC $36 $87 $0C $39 $11 $F5 $0C $B0 $08 $8D $04 $6D $1D $0E $52 $A6 $10 $BE $77 $AA $00 $13 $1E $67 $2F $EB $3F $22 $0D $66 $02 $FC $36 $C2 $08 $A6 $1E $25 $0A $82 $05 $21 $05 $6D $1D $0E $52 $A6 $10 $BE $77 $AA $00 $13 $1E $DE $77 $BD $73 $9C $6F $7B $6B $FC $36 $53 $46 $32 $46 $F0 $3D $CF $39 $8D $31 $6D $1D;
@@ -135,8 +132,6 @@ gUnknown_08802558_Gamma: // Battle UI Palette
 ALIGN 4 
 gUnknown_08802558_Fenreir: // Battle UI Palette 
 #incbin "png/Fenreir_Battle.pal.bin" 
-
-
 
 // Battle TSA below 
 ALIGN 4 
@@ -155,9 +150,6 @@ BYTE  $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $1
 ALIGN 4 
 gUnknown_08802508_Alt:
 BYTE  $03 $00 $03 $14 $10 $00 $10 $14 $11 $00 $11 $14 $0F $00 $0F $14 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $13 $00 $13 $14 $22 $00 $22 $14 $22 $00 $22 $14 $22 $00 $22 $14 $23 $00 $23 $14 $22 $00 $22 $14;
-
-
-
 
 ALIGN 4 
 gUnknown_0880201C_Gamma:
@@ -206,7 +198,6 @@ BYTE 0 0 0 0
 	#define callHackNew(offset) 		"BYTE $01 $4B $9E $46 $00 $F8 $01 $E0; POIN (offset|0x1)"
 #endif 
 
-
 PUSH 
 
 /* 
@@ -238,8 +229,6 @@ SHORT 0x3090 //original is 308E
 ORG 0x518A2  //When two HP Bars, Bottom HP BAR on Right Side
 SHORT 0x3097 //original is 3095
 */ 
-
-
 
 ORG $8D04C 
 callHackNew(PlayerPhaseInterfaceNumbersHook)
@@ -281,10 +270,6 @@ callHackNew(RestoreLinkArenaUI)
 // ORG $98D84 // sub_8098CC0	
 // POIN MenuTilesPalette_Pikmin
 
-
-
-
-
 ORG $986B8 
 callHackNew(PrepItemScreen_SetupGfx_Hook)
 
@@ -321,20 +306,8 @@ callHackNew(ekrGaugeMain_Hook2)
 // ORG $51384 
 // jumpToHack(ekrGaugeMain_Hook3)
 
-
-
 POP 
-
-
 
 #include "C_Code.lyn.event" 
 #include "Hooks.lyn.event" 
 #include "LynJump.event"
-
-
-
-
-
-
-
-

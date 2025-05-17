@@ -364,8 +364,12 @@ void ManimLevelUp_ScrollOut(struct ManimLevelUpProc *proc)
     if (proc->y_scroll_offset <= -144)
     {
 #ifdef CONFIG_PROMOTION_ON_MAX_LEVEL
-        if (gActiveUnit->level == UNIT_LEVEL_MAX_RE - 1  & !(UNIT_CATTRIBUTES(gActiveUnit) & CA_PROMOTED))
+        if (gManimSt.actor[proc->actor_id].unit->level == UNIT_LEVEL_MAX_RE && !(UNIT_CATTRIBUTES(gManimSt.actor[proc->actor_id].unit) & CA_PROMOTED))
+        {
+            gActionData.subjectIndex = gManimSt.actor[proc->actor_id].unit->index;
             StartBmPromotion(proc);
+            gActionData.subjectIndex = 0;
+        }
 #endif
         Proc_Break(proc);
     }

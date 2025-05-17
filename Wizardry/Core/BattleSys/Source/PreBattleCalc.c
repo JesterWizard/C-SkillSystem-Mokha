@@ -21,6 +21,7 @@ void ComputeBattleUnitAttack(struct BattleUnit *attacker, struct BattleUnit *def
 {
     int status;
     status = GetItemMight(attacker->weapon);
+    bool dualWieldPlus = false;
 
     if (IsUnitEffectiveAgainst(&attacker->unit, &defender->unit) || IsItemEffectiveAgainst(attacker->weapon, &defender->unit))
     {
@@ -52,6 +53,31 @@ void ComputeBattleUnitAttack(struct BattleUnit *attacker, struct BattleUnit *def
         status = status + UNIT_MAG(&attacker->unit);
     else
         status = status + attacker->unit.pow;
+#endif
+
+#if defined(SID_DualWieldPlus) && (COMMON_SKILL_VALID(SID_DualWieldPlus))
+    if (BattleSkillTester(attacker, SID_DualWieldPlus))
+    {
+        for (int i = 1; i < UNIT_MAX_INVENTORY; i++)
+        {
+            if (GetItemMight(attacker->unit.items[i]) > 0 && CanUnitUseWeapon(GetUnit(attacker->unit.index), attacker->unit.items[i]))
+            {
+                status += GetItemMight(attacker->unit.items[i]) / 2;
+                dualWieldPlus = true;
+            }
+        }
+    }
+#endif
+
+#if defined(SID_DualWield) && (COMMON_SKILL_VALID(SID_DualWield))
+    if (BattleSkillTester(attacker, SID_DualWield) && !dualWieldPlus)
+    {
+        for (int i = 1; i < UNIT_MAX_INVENTORY; i++)
+        {
+            if (GetItemMight(attacker->unit.items[i]) > 0 && CanUnitUseWeapon(GetUnit(attacker->unit.index), attacker->unit.items[i]))
+                status += GetItemMight(attacker->unit.items[i]) / 2;
+        }
+    }
 #endif
 
     attacker->battleAttack = status;
@@ -133,6 +159,7 @@ void ComputeBattleUnitAvoidRate(struct BattleUnit *attacker, struct BattleUnit *
 LYN_REPLACE_CHECK(ComputeBattleUnitCritRate);
 void ComputeBattleUnitCritRate(struct BattleUnit *bu)
 {
+    bool dualWieldPlus = false;
     int status;
     status = bu->unit.skl / 2;
 
@@ -142,6 +169,31 @@ void ComputeBattleUnitCritRate(struct BattleUnit *bu)
 #endif
 
     status += GetItemCrit(bu->weapon);
+
+#if defined(SID_DualWieldPlus) && (COMMON_SKILL_VALID(SID_DualWieldPlus))
+    if (SkillTester(&bu->unit, SID_DualWieldPlus))
+    {
+        for (int i = 1; i < UNIT_MAX_INVENTORY; i++)
+        {
+            if (GetItemCrit(bu->unit.items[i]) > 0 && CanUnitUseWeapon(GetUnit(bu->unit.index), bu->unit.items[i]))
+            {
+                status += GetItemCrit(bu->unit.items[i]) / 2;
+                dualWieldPlus = true;
+            }
+        }
+    }
+#endif
+
+#if defined(SID_DualWield) && (COMMON_SKILL_VALID(SID_DualWield))
+    if (SkillTester(&bu->unit, SID_DualWield) && !dualWieldPlus)
+    {
+        for (int i = 1; i < UNIT_MAX_INVENTORY; i++)
+        {
+            if (GetItemCrit(bu->unit.items[i]) > 0 && CanUnitUseWeapon(GetUnit(bu->unit.index), bu->unit.items[i]))
+                status += GetItemCrit(bu->unit.items[i]) / 2;
+        }
+    }
+#endif
 
     if (UNIT_CATTRIBUTES(&bu->unit) & CA_CRITBONUS)
         bu->battleCritRate += 15;
@@ -203,6 +255,39 @@ void ComputeBattleUnitSpeed(struct BattleUnit* attacker)
 
     if (attacker->battleSpeed < 0)
         attacker->battleSpeed = 0;
+}
+
+LYN_REPLACE_CHECK(ComputeBattleUnitHitRate);
+void ComputeBattleUnitHitRate(struct BattleUnit* bu) {
+    bool dualWieldPlus = false;
+    int status = (bu->unit.skl * 2) + GetItemHit(bu->weapon) + (bu->unit.lck / 2) + bu->wTriangleHitBonus;
+
+#if defined(SID_DualWieldPlus) && (COMMON_SKILL_VALID(SID_DualWieldPlus))
+    if (SkillTester(&bu->unit, SID_DualWieldPlus))
+    {
+        for (int i = 1; i < UNIT_MAX_INVENTORY; i++)
+        {
+            if (GetItemHit(bu->unit.items[i]) > 0 && CanUnitUseWeapon(GetUnit(bu->unit.index), bu->unit.items[i]))
+            {
+                dualWieldPlus = true;
+                status += GetItemHit(bu->unit.items[i]) / 2;
+            }
+        }
+    }
+#endif
+
+#if defined(SID_DualWield) && (COMMON_SKILL_VALID(SID_DualWield))
+    if (SkillTester(&bu->unit, SID_DualWield) && !dualWieldPlus)
+    {
+        for (int i = 1; i < UNIT_MAX_INVENTORY; i++)
+        {
+            if (GetItemHit(bu->unit.items[i]) > 0 && CanUnitUseWeapon(GetUnit(bu->unit.index), bu->unit.items[i]))
+                status += GetItemHit(bu->unit.items[i]) / 2;
+        }
+    }
+#endif
+
+    bu->battleHitRate = status;
 }
 
 LYN_REPLACE_CHECK(ComputeBattleUnitSupportBonuses);

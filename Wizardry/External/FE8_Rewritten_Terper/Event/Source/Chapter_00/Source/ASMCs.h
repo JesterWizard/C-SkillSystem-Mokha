@@ -32,4 +32,6 @@ void SetGameOptions()
 
     // // for (int i = 0; i < SKILL_ROM_DATA_AMT; i++)
     // //     unit->supports[i] = RandNextC_N(254);
+
+    SetFlag(0xAB); // Gamma UI flag
 }

@@ -440,7 +440,21 @@ void SetWorkingMoveCosts(const s8 mct[])
      */
 
 
-     #if (defined(SID_PhaseShift) && COMMON_SKILL_VALID(SID_PhaseShift))
+#if (defined(SID_Ruinator) && COMMON_SKILL_VALID(SID_Ruinator))
+     if (SkillTester(gActiveUnit, SID_Ruinator))
+     {
+         for (i = 0; i < TERRAIN_COUNT; ++i)
+         {
+             if (i == TERRAIN_TILE_00)
+                 gWorkingTerrainMoveCosts[i] = 1;
+             else
+                 gWorkingTerrainMoveCosts[i] = mct[i];
+         }
+         return;
+     }
+#endif
+
+#if (defined(SID_PhaseShift) && COMMON_SKILL_VALID(SID_PhaseShift))
      if (SkillTester(gActiveUnit, SID_PhaseShift))
      {
          for (i = 0; i < TERRAIN_COUNT; ++i)

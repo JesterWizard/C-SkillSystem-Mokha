@@ -663,6 +663,7 @@
 // SID_Acrobat
 // SID_PhaseShift
 // SID_DesertTiger
+// SID_Ruinator
 
 //////// SHOP SKILLS
 // SID_Deal

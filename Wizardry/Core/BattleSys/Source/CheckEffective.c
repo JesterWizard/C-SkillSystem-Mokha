@@ -40,7 +40,37 @@ bool IsItemEffectiveAgainst(u16 item, struct Unit * unit)
     list = GetItemEffectiveness(item);
 
     if (!list)
+    {
+#if defined(SID_DualWieldPlus) && (COMMON_SKILL_VALID(SID_DualWieldPlus))
+        // We have to make the skill holder unit the opposite of whichever side "unit" is on
+        struct Unit * skillHolderUnit = (unit == GetUnit(gBattleActor.unit.index)) ? GetUnit(gBattleTarget.unit.index) : GetUnit(gBattleActor.unit.index);
+        if (SkillTester(skillHolderUnit, SID_DualWieldPlus))
+        {
+            for (int i = 1; i < UNIT_MAX_INVENTORY; i++)
+            {
+                if (GetItemHit(skillHolderUnit->items[i]) > 0 && CanUnitUseWeapon(skillHolderUnit, skillHolderUnit->items[i]))
+                {
+                    if (GetItemEffectiveness(skillHolderUnit->items[i]))
+                    {
+                        FORCE_DECLARE const u8 * newListItem = GetItemEffectiveness(skillHolderUnit->items[i]);
+                        for (i = 0; newListItem[i]; i++)
+                            if (newListItem[i] == jid)
+                                goto check_null_effective;
+                    }
+                }
+            }
+            
+            // We've reached the end and no items the unit has are effective
+            return false;
+        }
+        else 
+        {
+            return false;
+        }
+#else   
         return false;
+#endif
+    }
 
     for (i = 0; list[i]; i++)
         if (list[i] == jid)

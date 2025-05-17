@@ -3347,6 +3347,26 @@ void BattleInitTargetCanCounter(void) {
         gBattleTarget.weapon = 0;
         gBattleTarget.canCounter = FALSE;
     }
+    else
+    {
+#if defined(SID_DualWieldPlus) && (COMMON_SKILL_VALID(SID_DualWieldPlus))
+        if (SkillTester(GetUnit(gBattleActor.unit.index), SID_DualWieldPlus))
+        {
+            for (int i = 1; i < UNIT_MAX_INVENTORY; i++)
+            {
+                if (GetItemMight(gBattleActor.unit.items[i]) > 0 && CanUnitUseWeapon(GetUnit(gBattleActor.unit.index), gBattleActor.unit.items[i]))
+                {
+                    if (GetItemAttributes(gBattleActor.unit.items[i]) & IA_UNCOUNTERABLE)
+                    {
+                        gBattleTarget.weapon = 0;
+                        gBattleTarget.canCounter = FALSE;
+                        break;
+                    }
+                }
+            }
+        }
+#endif
+    }
 #endif
 
     // Target cannot counter if a berserked player unit is attacking another player unit
