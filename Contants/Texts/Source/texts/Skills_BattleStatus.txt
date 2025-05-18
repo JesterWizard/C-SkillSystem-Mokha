@@ -1553,7 +1553,7 @@ Tinted Lens+[X]
 ## MSG_SKILL_TintedLensPlus_DESC
 Tinted Lens+:[N]
 This units' attacks do a[N]
-minimum of  damage.[X]
+minimum of 6 damage.[X]
 
 ## MSG_SKILL_Emulate_NAME
 Emulate[X]
