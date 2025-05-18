@@ -283,8 +283,7 @@ Heroics[X]
 ## MSG_SKILL_Heroics_DESC
 Heroics:[N]
 This unit can rescue[N]
-as a free action.[N]
-FILLER[X]
+as a free action.[X]
 
 ## MSG_SKILL_ShadowStep_NAME
 Shadow Step[X]
