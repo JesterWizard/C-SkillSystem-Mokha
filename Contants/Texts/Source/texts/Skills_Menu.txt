@@ -178,7 +178,7 @@ Rally Skill:[N]
 in a 2x2 radius of user.[X]
 
 ## MSG_SKILL_RallySpeed_NAME
-Rall Speed[X]
+Rally Speed[X]
 ## MSG_SKILL_RallySpeed_DESC
 Rally Speed:[N]
 +4 SPD to all allies[N]
