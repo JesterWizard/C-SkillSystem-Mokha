@@ -23,7 +23,7 @@ Bow Range +2:[N]
 Increases bow range by 2[X]
 
 ## MSG_SKILL_RunningStart_NAME
-Running Start:[X]
+Running Start[X]
 ## MSG_SKILL_RunningStart_DESC
 Running Start:[N]
 +1 attack range for[N]
