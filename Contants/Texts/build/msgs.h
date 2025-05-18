@@ -3798,8 +3798,6 @@
 #define MSG_SKILL_DragonSkin_DESC 0x0ED0
 #define MSG_SKILL_Hawkeye_NAME 0x0ED1
 #define MSG_SKILL_Hawkeye_DESC 0x0ED2
-#define MSG_SKILL_MagicEye_NAME 0x0ED3
-#define MSG_SKILL_MagicEye_DESC 0x0ED4
 #define MSG_SKILL_KeenFighter_NAME 0x0ED5
 #define MSG_SKILL_KeenFighter_DESC 0x0ED6
 #define MSG_SKILL_CounterRoar_NAME 0x0ED7
