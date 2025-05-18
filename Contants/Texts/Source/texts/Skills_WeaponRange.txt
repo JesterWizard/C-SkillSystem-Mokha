@@ -95,8 +95,8 @@ damages target, but cannot kill.[X]
 Explosive Heal[X]
 ## MSG_SKILL_ExplosiveHeal_DESC
 Explosive Heal:[N]
-Single target healing staves also apply[N]
-their effects to all adjacent allies.[X]
+When this unit heals a target, adjacent[N]
+allies to this unit are also healed.[X]
 
 ## MSG_SKILL_ExplosiveBuff_NAME
 Explosive Buff[X]
