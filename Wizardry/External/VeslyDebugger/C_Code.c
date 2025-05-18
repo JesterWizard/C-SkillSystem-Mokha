@@ -968,20 +968,36 @@ void EditWExpIdle(DebuggerProc* proc) {
 } 
 
 #define SkillsWidth 12
-#define SkillsOptions 7 
+
+#ifdef CONFIG_TURN_ON_ALL_SKILLS
+    #define SkillsLearnable 5
+#else
+    #define SkillsLearnable 7
+#endif
+
 void RedrawUnitSkillsMenu(DebuggerProc* proc);
 void EditSkillsInit(DebuggerProc* proc) { 
     SomeMenuInit(proc); 
     LoadIconPalettes(4);
     struct Unit* unit = proc->unit; 
-    for (int i = 0; i < SkillsOptions; ++i) { 
-        proc->tmp[i] = unit->supports[i]; 
-    } 
+
+#ifdef CONFIG_TURN_ON_ALL_SKILLS
+    u64 buffer = 0;
+    for (int i = 0; i < 7; ++i)
+        buffer |= ((u64)unit->supports[i]) << (8 * i);
+
+    for (int i = 0; i < SkillsLearnable; ++i)
+        proc->tmp[i] = (buffer >> (i * 10)) & 0x3FF;
+#else
+    for (int i = 0; i < SkillsLearnable; ++i)
+        proc->tmp[i] = unit->supports[i];
+#endif
+
     
     int x = NUMBER_X - SkillsWidth + 1; 
     int y = Y_HAND - 1; 
     int w = SkillsWidth + (START_X - NUMBER_X) + 3; 
-    int h = (SkillsOptions * 2) + 2; 
+    int h = (SkillsLearnable * 2) + 2; 
     
     DrawUiFrame(
         BG_GetMapBuffer(1), // back BG
@@ -1000,7 +1016,7 @@ void EditSkillsInit(DebuggerProc* proc) {
     } 
     
     int uid; 
-    for (int i = 0; i < SkillsOptions; ++i) { 
+    for (int i = 0; i < SkillsLearnable; ++i) { 
         uid = unit->supports[i]; 
         if (uid) { 
         Text_DrawString(&th[i], GetSkillNameStr(uid));
@@ -1025,12 +1041,8 @@ enum icon_sheet_idx {
 
 #define SKILL_ICON(sid)   ((ICON_SHEET_SKILL0 << 8) + (sid))
 
-#ifdef CONFIG_FE8SRR
-extern int RandSkill(int id, struct Unit * unit);
-#endif
-
 void RedrawUnitSkillsMenu(DebuggerProc* proc) { 
-    TileMap_FillRect(gBG0TilemapBuffer + TILEMAP_INDEX(NUMBER_X-2, Y_HAND), 9, 2 * SkillsOptions, 0);
+    TileMap_FillRect(gBG0TilemapBuffer + TILEMAP_INDEX(NUMBER_X-2, Y_HAND), 9, 2 * SkillsLearnable, 0);
     BG_EnableSyncByMask(BG0_SYNC_BIT);
     ResetIconGraphics(); // Add this to reset icon state
 
@@ -1038,17 +1050,13 @@ void RedrawUnitSkillsMenu(DebuggerProc* proc) {
     int x = NUMBER_X - SkillsWidth + 2;
 
     // Clear and redraw all skill name texts
-    for (int i = 0; i < SkillsOptions; ++i) {
+    for (int i = 0; i < SkillsLearnable; ++i) {
         ClearText(&th[i]);
         // Only draw name if skill ID is non-zero
         if (proc->tmp[i]) {
             // Add extra space at start of text for icon
             Text_SetCursor(&th[i], 2);
-#ifdef CONFIG_FE8SRR
-            Text_DrawString(&th[i], GetSkillNameStr(RandSkill(proc->tmp[i], gActiveUnit)));
-#else
             Text_DrawString(&th[i], GetSkillNameStr(proc->tmp[i]));
-#endif
         }
         PutText(&th[i], gBG0TilemapBuffer + TILEMAP_INDEX(x+2, Y_HAND + (i*2)));
 
@@ -1056,13 +1064,8 @@ void RedrawUnitSkillsMenu(DebuggerProc* proc) {
         PutNumber(gBG0TilemapBuffer + TILEMAP_INDEX(START_X+2, Y_HAND + (i*2)), 
         TEXT_COLOR_SYSTEM_GOLD, proc->tmp[i]);
 
-#ifdef CONFIG_FE8SRR
-        // Draw skill icon
-        DrawIcon(TILEMAP_LOCATED(gBG0TilemapBuffer, x, Y_HAND + (i*2)), SKILL_ICON(RandSkill(proc->tmp[i], gActiveUnit)), 0x4000);
-#else
         // Draw skill icon
         DrawIcon(TILEMAP_LOCATED(gBG0TilemapBuffer, x, Y_HAND + (i*2)), SKILL_ICON(proc->tmp[i]), 0x4000);
-#endif
     }
 
     BG_EnableSyncByMask(BG0_SYNC_BIT);
@@ -1070,10 +1073,30 @@ void RedrawUnitSkillsMenu(DebuggerProc* proc) {
 
 void SaveSkills(DebuggerProc* proc) { 
     struct Unit* unit = proc->unit; 
-    for (int i = 0; i < SkillsOptions; ++i) { 
+
+#ifdef CONFIG_TURN_ON_ALL_SKILLS
+    // Compose the 5 skill IDs into a bit buffer
+    u64 bitbuf = 0;
+    for (int i = 0; i < SkillsLearnable; ++i) {
+        bitbuf |= ((u64)(proc->tmp[i] & 0x3FF)) << (i * 10); // store 10 bits per skill
+    }
+
+    // Write the packed buffer into unit->supports[7]
+    for (int i = 0; i < 7; ++i) {
+        unit->supports[i] = (bitbuf >> (i * 8)) & 0xFF;
+    }
+#else
+    for (int i = 0; i < SkillsLearnable; ++i) { 
         unit->supports[i] = proc->tmp[i]; 
     } 
+#endif
 } 
+
+#ifdef CONFIG_TURN_ON_ALL_SKILLS
+    const int max = 0x3FF;
+#else
+    const int max = 0xFF;
+#endif
 
 void EditSkillsIdle(DebuggerProc* proc) { 
     
@@ -1083,14 +1106,14 @@ void EditSkillsIdle(DebuggerProc* proc) {
         Proc_Goto(proc, RestartLabel);
         m4aSongNumStart(0x6B); 
     };
-    if ((keys & START_BUTTON)||(keys & A_BUTTON)) { //press A or Start to update Supports and continue 
+    if ((keys & START_BUTTON)||(keys & A_BUTTON)) { // press A or Start to update Supports and continue 
         SaveSkills(proc); 
         Proc_Goto(proc, RestartLabel);
         m4aSongNumStart(0x6B); 
     };
     if (proc->editing) { 
         DisplayVertUiHand(CursorLocationTable[proc->digit].x+16, (Y_HAND + (proc->id * 2)) * 8); 	
-        int max = 255; 
+
         int min = 0; 
         int max_digits = GetMaxDigits(max, 0); 
         
@@ -1137,12 +1160,12 @@ void EditSkillsIdle(DebuggerProc* proc) {
         
         if (keys & DPAD_UP) {
             proc->id--; 
-            if (proc->id < 0) { proc->id = SkillsOptions - 1; } 
+            if (proc->id < 0) { proc->id = SkillsLearnable - 1; } 
             RedrawUnitSkillsMenu(proc); 
         }
         if (keys & DPAD_DOWN) {
             proc->id++; 
-            if (proc->id >= SkillsOptions) { proc->id = 0; } 
+            if (proc->id >= SkillsLearnable) { proc->id = 0; } 
             
             RedrawUnitSkillsMenu(proc); 
         }

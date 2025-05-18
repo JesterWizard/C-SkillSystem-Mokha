@@ -134,7 +134,7 @@ STATIC_DECLAR const struct MenuItemDef PredationSkillMenuItems[] =
 STATIC_DECLAR u8 RemoveSkillMenu_Usability(const struct MenuItemDef * self, int number)
 {
     // int sid = UNIT_RAM_SKILLS(gActiveUnit)[MENU_SKILL_INDEX(self)];
-    // if (EQUIPE_SKILL_VALID(sid))
+    // if (EQUIP_SKILL_VALID(sid))
     //     return MENU_ENABLED;
 
     // return MENU_NOTSHOWN;
@@ -147,7 +147,7 @@ STATIC_DECLAR u8 PredationSkillMenu_Usability(const struct MenuItemDef * self, i
     struct Unit * targetUnit = GetUnit(gBattleTarget.unit.index);
 
     int sid = UNIT_RAM_SKILLS(targetUnit)[MENU_SKILL_INDEX(self)];
-    if (EQUIPE_SKILL_VALID(sid))
+    if (EQUIP_SKILL_VALID(sid))
         return MENU_ENABLED;
 
     return MENU_NOTSHOWN;

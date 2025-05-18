@@ -609,7 +609,7 @@ const struct MenuItemDef gSkillMenuInfos[MAX] = {
 #if (defined(SID_DivineReprieve) && COMMON_SKILL_VALID(SID_DivineReprieve))
 	[SID_DivineReprieve] = {
 		.name = "　神裁の恩寵",
-		.nameMsgId = MSG_SKILL_DivineReprieveMenu_NAME,
+		.nameMsgId = MSG_SKILL_DivineReprieve_NAME,
 		.helpMsgId = MSG_SKILL_DivineReprieve_DESC,
 		.color = TEXT_COLOR_SYSTEM_WHITE,
 		.isAvailable = DivineReprieve_Usability,

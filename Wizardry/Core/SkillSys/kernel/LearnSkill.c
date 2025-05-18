@@ -43,7 +43,7 @@ void LoadUnitLearnedSkillLists(u8 * src, const u32 size)
 bool IsSkillLearned(struct Unit * unit, const u16 sid)
 {
     u8 pid = UNIT_CHAR_ID(unit);
-    if (EQUIPE_SKILL_VALID(sid) && pid < NEW_BWL_ARRAY_NUM && _BIT_CHK(sLearnedSkillPLists[pid].data, sid))
+    if (EQUIP_SKILL_VALID(sid) && pid < NEW_BWL_ARRAY_NUM && _BIT_CHK(sLearnedSkillPLists[pid].data, sid))
         return true;
 
     struct SkillList *list;
@@ -66,14 +66,14 @@ void LearnSkill(struct Unit * unit, const u16 sid)
     if (UNIT_FACTION(unit) != FACTION_BLUE)
         return;
 
-    if (EQUIPE_SKILL_VALID(sid) && pid < NEW_BWL_ARRAY_NUM)
+    if (EQUIP_SKILL_VALID(sid) && pid < NEW_BWL_ARRAY_NUM)
         _BIT_SET(sLearnedSkillPLists[pid].data, sid);
 }
 
 void ForgetSkill(struct Unit * unit, const u16 sid)
 {
     u8 pid = UNIT_CHAR_ID(unit);
-    if (EQUIPE_SKILL_VALID(sid) && pid < NEW_BWL_ARRAY_NUM)
+    if (EQUIP_SKILL_VALID(sid) && pid < NEW_BWL_ARRAY_NUM)
         _BIT_CLR(sLearnedSkillPLists[pid].data, sid);
 }
 

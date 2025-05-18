@@ -3,8 +3,6 @@
 
 #define CONFIG_FE8_REWRITE
 
-// #define CONFIG_FE8SRR
-
 // #define CONFIG_CROP_VANILLA_MSG
 
 /* CommonProtection.event */
@@ -246,3 +244,6 @@
 #define CONFIG_ESSENTIALS_AI_TRADE_FIX // Needed for the Capture skill
 
 #define CONFIG_PROMOTION_ON_MAX_LEVEL
+
+// This is also defined in Wizardry/Core/SkillSys/data.event
+#define CONFIG_TURN_ON_ALL_SKILLS

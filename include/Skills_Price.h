@@ -137,6 +137,7 @@
 #define MSG_SKILL_Paragon_PRICE 1000
 #define MSG_SKILL_VoidCurse_PRICE 1000
 #define MSG_SKILL_Aptitude_PRICE 1000
+#define MSG_SKILL_Peacebringer_PRICE 1000
 #define MSG_SKILL_LEGEND_MiracleAtk_PRICE 1000
 #define MSG_SKILL_LEGEND_MiracleAvo_PRICE 1000
 #define MSG_SKILL_LEGEND_MiracleDef_PRICE 1000
@@ -693,7 +694,7 @@
 #define MSG_SKILL_Extrovert_PRICE 1000
 #define MSG_SKILL_Transpose_PRICE 1000
 #define MSG_SKILL_Lifefont_PRICE 1000
-#define MSG_Skill_DivineReprieve_PRICE 1000
+#define MSG_SKILL_DivineReprieve_PRICE 1000
 #define MSG_SKILL_EternalVanity_PRICE 1000
 #define MSG_SKILL_KnackStrength_PRICE 1000
 #define MSG_SKILL_KnackMagic_PRICE 1000

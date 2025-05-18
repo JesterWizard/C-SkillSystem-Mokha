@@ -28,7 +28,8 @@ _ARM_SkillTester_CopyStart:
      * 2. SKILL_INDEX_LIST(sid) valid
      */
     mov r2, r1
-    lsr r3, r1, #8          // r3 = sid_list
+    // lsr r3, r1, #8          // r3 = sid_list
+    mov r3, #0                 // Force return a 0 so that the jump table always uses the generic skill tester
     add pc, pc, r3, lsl #2
 
 .4byte 0
@@ -55,7 +56,25 @@ _ARM_SkillTester_CopyStart:
     pop {r4, r5, lr}
     bx lr
 
+@ Used for 254 skills in RAM
 _SkillTester_Generic:
+@     add r1, r0, #0x32
+@     ldrh r3, [r1], #2
+@     cmp r2, r3
+@     beq .Lend_true
+@     ldrh r3, [r1], #2
+@     cmp r2, r3
+@     beq .Lend_true
+@     ldrh r3, [r1], #2
+@     cmp r2, r3
+@     beq .Lend_true
+@     ldrh r3, [r1], #2
+@     cmp r2, r3
+@     beq .Lend_true
+@     ldrh r3, [r1], #2
+@     cmp r2, r3
+@     beq .Lend_true
+@     // b .Lend_false
     add r1, r0, #0x32
     ldrb r3, [r1], #1
     cmp r2, r3

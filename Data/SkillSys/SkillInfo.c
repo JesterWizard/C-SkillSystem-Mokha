@@ -1405,9 +1405,12 @@ const struct SkillInfo gSkillInfos[MAX_SKILL_NUM + 1] = {
     },
 #endif
 
-#if (defined(SID_Peacebringer) && COMMON_SKILL_VALID(SID_VoiceOfPeace))
+#if (defined(SID_Peacebringer) && COMMON_SKILL_VALID(SID_Peacebringer))
     [SID_Peacebringer] = {
-        .desc = MSG_SKILL_Peacebringer,
+        .name = MSG_SKILL_Peacebringer_NAME,
+        .desc = MSG_SKILL_Peacebringer_DESC,
+        .capacity = MSG_SKILL_Peacebringer_CAPACITY,
+        .price = MSG_SKILL_Peacebringer_PRICE,
         .icon = GFX_SkillIcon_Peacebringer,
     },
 #endif
@@ -7002,9 +7005,11 @@ const struct SkillInfo gSkillInfos[MAX_SKILL_NUM + 1] = {
 
 #if (defined(SID_DivineReprieve) && COMMON_SKILL_VALID(SID_DivineReprieve))
 	[SID_DivineReprieve] = {
-		.name = MSG_Skill_DivineReprieve_NAME,
-		.desc = MSG_Skill_DivineReprieve_DESC,
-		        .icon = GFX_SkillIcon_WIP,
+		.name = MSG_SKILL_DivineReprieve_NAME,
+		.desc = MSG_SKILL_DivineReprieve_DESC,
+        .capacity = MSG_SKILL_DivineReprieve_CAPACITY,
+        .price = MSG_SKILL_DivineReprieve_PRICE,
+		.icon = GFX_SkillIcon_WIP,
 	},
 #endif
 

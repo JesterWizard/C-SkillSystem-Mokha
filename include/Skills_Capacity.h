@@ -137,6 +137,7 @@
 #define MSG_SKILL_Paragon_CAPACITY 1
 #define MSG_SKILL_VoidCurse_CAPACITY 1
 #define MSG_SKILL_Aptitude_CAPACITY 1
+#define MSG_SKILL_Peacebringer_CAPACITY 1
 #define MSG_SKILL_LEGEND_MiracleAtk_CAPACITY 1
 #define MSG_SKILL_LEGEND_MiracleAvo_CAPACITY 1
 #define MSG_SKILL_LEGEND_MiracleDef_CAPACITY 1
@@ -693,7 +694,7 @@
 #define MSG_SKILL_Extrovert_CAPACITY 1
 #define MSG_SKILL_Transpose_CAPACITY 1
 #define MSG_SKILL_Lifefont_CAPACITY 1
-#define MSG_Skill_DivineReprieve_CAPACITY 1
+#define MSG_SKILL_DivineReprieve_CAPACITY 1
 #define MSG_SKILL_EternalVanity_CAPACITY 1
 #define MSG_SKILL_KnackStrength_CAPACITY 1
 #define MSG_SKILL_KnackMagic_CAPACITY 1

@@ -190,7 +190,7 @@ const struct MenuDef gSelectInfo_SummonPlus = {
     GenerateSummons_HelpBox
 };
 
-#if defined(SID_SummonPlusCommandEffect) && defined(SID_SummonPlusCommandEffect)
+#if defined(SID_SummonPlus) && defined(SID_SummonPlus)
 u8 SummonPlusCommandEffect(struct MenuProc* menu, struct MenuItemProc* menuItem) 
 {
     StartSubtitleHelp(

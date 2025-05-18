@@ -8,31 +8,61 @@
 #include "constants/skills.h"
 
 #ifndef MAX_SKILL_NUM
-#define MAX_SKILL_NUM 0x3FF
+    #define MAX_SKILL_NUM 0x3FF
 #endif
 
-#define MAX_GENERIC_SKILL_NUM 0xFF
+#ifdef CONFIG_TURN_ON_ALL_SKILLS
+    #define MAX_EQUIP_SKILL_NUM 0x3FF
+#else
+    #define MAX_EQUIP_SKILL_NUM 0xFF
+#endif
 
 enum SkillInfoListss
 {
-    Skill_INFO_GENERIC,
-    Skill_INFO_PERSON,
-    Skill_INFO_JOB,
-    Skill_INFO_ITEM,
+    SKILL_INFO_EQUIP,
+    SKILL_INFO_CHARACTER,
+    SKILL_INFO_CLASS,
+    SKILL_INFO_ITEM,
 
     Skill_INFO_MAX
 };
 
-#define SKILL_INDEX_REAL(sid) ((sid) & 0xFF)
-#define SKILL_INDEX_LIST(sid) (((sid) >> 8) & 0xFF)
+#ifdef CONFIG_TURN_ON_ALL_SKILLS
+    #define MAX_EQUIP_SKILL_NUM 0x3FF
+    // For extended equippable skills, always use generic tester.
+    #define SKILL_INDEX_LIST(sid) (0)
+#else
+    #define MAX_EQUIP_SKILL_NUM 0xFF
+    #define SKILL_INDEX_LIST(sid) (((sid) >> 8) & 0x3FF)
+#endif
 
-#define EQUIPE_SKILL_VALID(sid) (sid > 0x000 && sid < 0x0FF)
+#ifdef CONFIG_TURN_ON_ALL_SKILLS
+    #define EQUIP_SKILL_VALID(sid) (sid > 0x000 && sid < 0x400)
+#else
+    #define EQUIP_SKILL_VALID(sid) (sid > 0x000 && sid < 0x0FF)
+#endif
+
 #define COMMON_SKILL_VALID(sid) (sid > 0x000 && sid < 0x400)
 
 /**
  * Generic skills
  */
-#define UNIT_RAM_SKILLS_LEN 7
+#ifdef CONFIG_TURN_ON_ALL_SKILLS
+    #define UNIT_RAM_SKILLS_LEN 5
+#else
+    #define UNIT_RAM_SKILLS_LEN 7
+#endif
+
+#define GET_UNIT_SKILL(unit, i) (                  \
+    (((((u64)(unit)->supports[0]))     |           \
+    (((u64)(unit)->supports[1]) << 8)  |           \
+    (((u64)(unit)->supports[2]) << 16) |           \
+    (((u64)(unit)->supports[3]) << 24) |           \
+    (((u64)(unit)->supports[4]) << 32) |           \
+    (((u64)(unit)->supports[5]) << 40) |           \
+    (((u64)(unit)->supports[6]) << 48)) >> ((i) * 10)) & 0x3FF)
+    
+
 #define UNIT_RAM_SKILLS(unit) ((u8 *)((unit)->supports))
 
 #define RAM_SKILL_LEN_EXT (                                             \
@@ -65,7 +95,7 @@ char * GetSkillNameStrFormDesc(const u16 sid);
 char * GetSkillNameStr(const u16 sid);
 
 /* An interesting quirk of the narrow font transformer in GetSkillNameStr is that the output is impossible
- to perform string comparisons on. Hence, a seconddary function is need that just gives the raw output */
+ to perform string comparisons on. Hence, a secondary function is need that just gives the raw output */
 char * GetSkillNameStr_NormalFont(const u16 sid);
 
 u16 GetSkillPrice(const u16 sid);
@@ -116,19 +146,22 @@ bool CheckBattleSkillActivate(struct BattleUnit *actor, struct BattleUnit *targe
 /* Prep equip skill list */
 struct PrepEquipSkillList {
     struct UnitListHeader header;
-    u8 amt;
-    u8 sid[0xFE];
+    u16 amt;
+    u16 sid[0x3FF];
 };
 
 void ResetPrepEquipSkillList(void);
 struct PrepEquipSkillList * GetPrepEquipSkillList(struct Unit * unit);
 
-
-/* JESTER - I'm editing the number of learned skills from 5 to 7, preventing class and personals from being saved in the unit struct */
 /* Game data */
-#define SKILL_ROM_DATA_AMT 7 /* Unit can learn 7 skills on lv0/5/10/15/20 */
-struct SkillPreloadJConf { u8 skills[SKILL_ROM_DATA_AMT * (UNIT_LEVEL_MAX_RE / 5 + 1)];};
-struct SkillPreloadPConf { u8 skills[SKILL_ROM_DATA_AMT * (UNIT_RECORDED_LEVEL_MAX / 5 + 1)];};
+#ifdef CONFIG_TURN_ON_ALL_SKILLS
+    #define SKILL_ROM_DATA_AMT 5
+#else
+    #define SKILL_ROM_DATA_AMT 7 /* Unit can learn 7 skills on lv0/5/10/15/20 */
+#endif
+
+struct SkillPreloadJConf { u16 skills[SKILL_ROM_DATA_AMT * (UNIT_LEVEL_MAX_RE / 5 + 1)];};
+struct SkillPreloadPConf { u16 skills[SKILL_ROM_DATA_AMT * (UNIT_RECORDED_LEVEL_MAX / 5 + 1)];};
 
 extern const struct SkillPreloadJConf gSkillPreloadJData[0x100];
 extern const struct SkillPreloadPConf gSkillPreloadPData[0x100];

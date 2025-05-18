@@ -20,7 +20,7 @@ extern u32 sSkillFastList[0x40];
 #define SkillFastListActor  (&sSkillFastList[0])
 #define SkillFastListTarget (&sSkillFastList[0x20])
 
-extern void (*gpExternalSkillListGenerator)(struct Unit * unit, struct SkillList * list, u8 * ref);
+extern void (*gpExternalSkillListGenerator)(struct Unit * unit, struct SkillList * list, u16 * ref);
 
 typedef struct {
     int base;
@@ -98,16 +98,19 @@ const SkillUpgrade skill_upgrades[] = {
 		{ SID_TriangleAdept, SID_TriangleAdeptPlus },
 	#endif
 	#if defined(SID_Predation) && defined(SID_PredationPlus) && COMMON_SKILL_VALID(SID_Predation) && COMMON_SKILL_VALID(SID_PredationPlus)
-	{ SID_Predation, SID_PredationPlus },
+		{ SID_Predation, SID_PredationPlus },
 	#endif
 	#if defined(SID_Alacrity) && defined(SID_AlacrityPlus) && COMMON_SKILL_VALID(SID_Alacrity) && COMMON_SKILL_VALID(SID_AlacrityPlus)
-	{ SID_Alacrity, SID_AlacrityPlus },
+		{ SID_Alacrity, SID_AlacrityPlus },
 	#endif
 	#if defined(SID_Summon) && defined(SID_SummonPlus) && COMMON_SKILL_VALID(SID_Summon) && COMMON_SKILL_VALID(SID_SummonPlus)
-	{ SID_Summon, SID_SummonPlus },
+		{ SID_Summon, SID_SummonPlus },
 	#endif
 	#if defined(SID_HugePower) && defined(SID_HugePowerPlus) && COMMON_SKILL_VALID(SID_HugePower) && COMMON_SKILL_VALID(SID_HugePowerPlus)
-	{ SID_HugePower, SID_HugePowerPlus },
+		{ SID_HugePower, SID_HugePowerPlus },
+	#endif
+	#if defined(SID_DualWield) && defined(SID_DualWieldPlus) && COMMON_SKILL_VALID(SID_DualWield) && COMMON_SKILL_VALID(SID_DualWieldPlus)
+		{ SID_DualWield, SID_DualWieldPlus },
 	#endif
 	};
 	
@@ -125,10 +128,6 @@ int get_plus_version(int sid) {
     }
     return sid; // Return original if no upgrade
 }
-
-#ifdef CONFIG_FE8SRR
-extern int RandSkill(int id, struct Unit * unit);
-#endif
 
 #define REG_VCOUNT_CUSTOM (*(volatile unsigned short*)0x04000006)
 #define REG_TM0CNT_L_CUSTOM (*(volatile unsigned short*)0x04000100)
@@ -156,10 +155,14 @@ void GenerateSkillListExt(struct Unit * unit, struct SkillList * list)
 		upgrade = true;
 #endif
 
-    u8 * tmp_list = gGenericBuffer;
+    u16 * tmp_list = (u16 *)gGenericBuffer;
 
     memset(list, 0, sizeof(*list));
+#ifdef CONFIG_TURN_ON_ALL_SKILLS
+	memset(tmp_list, 0, (MAX_SKILL_NUM + 1) * sizeof(u16));
+#else
     memset(tmp_list, 0, MAX_SKILL_NUM + 1);
+#endif
 
     /* person */
 	sid = gpConstSkillTable_Person[pid * 2];
@@ -235,10 +238,14 @@ void GenerateSkillListExt(struct Unit * unit, struct SkillList * list)
         }
     }
 
-    /* generic */
+    /* equippable */
     for (i = 0; i < UNIT_RAM_SKILLS_LEN; i++)
     {
+#ifdef CONFIG_TURN_ON_ALL_SKILLS
+		sid = GET_UNIT_SKILL(unit, i);
+#else
 		sid = UNIT_RAM_SKILLS(unit)[i];
+#endif
 
 		if (upgrade)
 			sid = get_plus_version(sid);
