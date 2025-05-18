@@ -154,13 +154,13 @@ int SklGetterSkills(int status, struct Unit * unit)
     if (SkillTester(unit, SID_Resolve))
     {
         if ((cur_hp * 2) < max_hp)
-            status += status / 2;
+            status += unit->skl / 2;
     }
 #endif
 
 #if (defined(SID_Rampage) && (COMMON_SKILL_VALID(SID_Rampage))) 
     if (SkillTester(unit, SID_Rampage))
-            status += status / 2;
+            status += unit->skl / 2;
 #endif
 
 #if (defined(SID_PairUp) && (COMMON_SKILL_VALID(SID_PairUp)))

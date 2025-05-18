@@ -180,7 +180,7 @@ int PowGetterSkills(int status, struct Unit * unit)
 
 #if (defined(SID_Rampage) && (COMMON_SKILL_VALID(SID_Rampage)))
     if (SkillTester(unit, SID_Rampage))
-        status += _GetUnitPower(unit) / 2;
+        status += unit->pow / 2;
 #endif
 
 #if (defined(SID_PairUp) && (COMMON_SKILL_VALID(SID_PairUp)))

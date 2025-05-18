@@ -1,4 +1,5 @@
 #include "common-chax.h"
+#include "skill-system.h"
 
 static u32* const sUnitPriorityArray = (void*) gGenericBuffer;
 
@@ -56,7 +57,13 @@ void CpOrderBerserkInit(ProcPtr proc)
         if (!unit->pCharacterData)
             continue;
 
-        if (unit->statusIndex != UNIT_STATUS_BERSERK)
+        if 
+        (
+            unit->statusIndex != UNIT_STATUS_BERSERK &&
+#if (defined(SID_Rampage) && (COMMON_SKILL_VALID(SID_Rampage)))
+                !SkillTester(unit, SID_Rampage)
+#endif
+        )
             continue;
 
         if (unit->state & (US_HIDDEN | US_UNSELECTABLE | US_DEAD | US_RESCUED | US_HAS_MOVED_AI))

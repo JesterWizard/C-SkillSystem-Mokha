@@ -416,74 +416,74 @@ int ShouldAIControlRemainingUnits(void)
     return false;
 }
 
-extern void AiPhaseBerserkInit(struct Proc* proc);
+// extern void AiPhaseBerserkInit(struct Proc* proc);
 
-LYN_REPLACE_CHECK(AiPhaseBerserkInit);
-void AiPhaseBerserkInit(struct Proc * proc)
-{
-    int i;
+// LYN_REPLACE_CHECK(AiPhaseBerserkInit);
+// void AiPhaseBerserkInit(struct Proc * proc)
+// {
+//     int i;
 
-    gAiState.flags = AI_FLAG_BERSERKED;
-    if (ShouldAIControlRemainingUnits())
-    {
-        gAiState.flags = AI_FLAG_0; // do not attack allies
-    }
-    gAiState.unk7E = -1;
+//     gAiState.flags = AI_FLAG_BERSERKED;
+//     if (ShouldAIControlRemainingUnits())
+//     {
+//         gAiState.flags = AI_FLAG_0; // do not attack allies
+//     }
+//     gAiState.unk7E = -1;
 
-    for (i = 0; i < 8; ++i)
-        gAiState.unk86[i] = 0; // cmd_result
+//     for (i = 0; i < 8; ++i)
+//         gAiState.unk86[i] = 0; // cmd_result
 
-    gAiState.specialItemFlags = gAiItemConfigTable[gPlaySt.chapterIndex];
+//     gAiState.specialItemFlags = gAiItemConfigTable[gPlaySt.chapterIndex];
 
-    UpdateAllPhaseHealingAIStatus();
-    SetupUnitInventoryAIFlags();
+//     UpdateAllPhaseHealingAIStatus();
+//     SetupUnitInventoryAIFlags();
 
-    Proc_StartBlocking(gProcScr_BerserkCpOrder, proc);
-}
+//     Proc_StartBlocking(gProcScr_BerserkCpOrder, proc);
+// }
 
-extern void CpOrderBerserkInit(ProcPtr proc);
+// extern void CpOrderBerserkInit(ProcPtr proc);
 
-LYN_REPLACE_CHECK(CpOrderBerserkInit);
-void CpOrderBerserkInit(ProcPtr proc)
-{
-    int i, aiNum = 0;
+// LYN_REPLACE_CHECK(CpOrderBerserkInit);
+// void CpOrderBerserkInit(ProcPtr proc)
+// {
+//     int i, aiNum = 0;
 
-    u32 faction = gPlaySt.faction;
-    int AIControl = ShouldAIControlRemainingUnits();
+//     u32 faction = gPlaySt.faction;
+//     int AIControl = ShouldAIControlRemainingUnits();
 
-    int factionUnitCountLut[3] = { 62, 20, 50 }; // TODO: named constant for those
+//     int factionUnitCountLut[3] = { 62, 20, 50 }; // TODO: named constant for those
 
-    for (i = 0; i < factionUnitCountLut[faction >> 6]; ++i)
-    {
-        struct Unit * unit = GetUnit(faction + i + 1);
+//     for (i = 0; i < factionUnitCountLut[faction >> 6]; ++i)
+//     {
+//         struct Unit * unit = GetUnit(faction + i + 1);
 
-        if (!unit->pCharacterData)
-            continue;
+//         if (!unit->pCharacterData)
+//             continue;
 
-        if (!AIControl) // all units act this way, even if not berserked
-        {
-            if (unit->statusIndex != UNIT_STATUS_BERSERK)
-            {
-                continue;
-            }
-        }
+//         if (!AIControl) // all units act this way, even if not berserked
+//         {
+//             if (unit->statusIndex != UNIT_STATUS_BERSERK)
+//             {
+//                 continue;
+//             }
+//         }
 
-        if (unit->state & (US_HIDDEN | US_UNSELECTABLE | US_DEAD | US_RESCUED | US_HAS_MOVED_AI))
-            continue;
+//         if (unit->state & (US_HIDDEN | US_UNSELECTABLE | US_DEAD | US_RESCUED | US_HAS_MOVED_AI))
+//             continue;
 
-        gAiState.units[aiNum++] = faction + i + 1;
-    }
+//         gAiState.units[aiNum++] = faction + i + 1;
+//     }
 
-    if (aiNum != 0)
-    {
-        gAiState.units[aiNum] = 0;
-        gAiState.unitIt = gAiState.units;
+//     if (aiNum != 0)
+//     {
+//         gAiState.units[aiNum] = 0;
+//         gAiState.unitIt = gAiState.units;
 
-        AiDecideMainFunc = AiDecideMain;
+//         AiDecideMainFunc = AiDecideMain;
 
-        Proc_StartBlocking(gProcScr_CpDecide, proc);
-    }
-}
+//         Proc_StartBlocking(gProcScr_CpDecide, proc);
+//     }
+// }
 
 //const char* UnitStats
 #define NumberOfOptions 9 
