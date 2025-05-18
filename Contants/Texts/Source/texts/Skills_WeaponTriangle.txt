@@ -40,9 +40,9 @@ Invert the effect of the weapon[N]
 triangle for both units in battle.[X]
 
 ## MSG_SKILL_TriangleAdept_NAME
-Triangle Adapt;[X]
+Triangle Adept[X]
 ## MSG_SKILL_TriangleAdept_DESC
-Triangle Adapt:[N]
+Triangle Adept:[N]
 Doubles weapon triangle[N]
 effects for this unit.[X]
 
