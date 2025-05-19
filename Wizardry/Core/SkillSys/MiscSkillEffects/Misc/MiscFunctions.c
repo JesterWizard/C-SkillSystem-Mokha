@@ -3487,6 +3487,35 @@ void AddTrapASMC(void) {
         gBmMapTerrain[y][x] = terrainType;
 }
 
+void TryAddUnitToAdjacentSameFactionTargetList(struct Unit* unit) {
+
+    if (UNIT_FACTION(gSubjectUnit) != UNIT_FACTION(unit))
+    {
+        return;
+    }
+
+    if (unit->state & US_RESCUED) {
+        return;
+    }
+
+    AddTarget(unit->xPos, unit->yPos, unit->index, 0);
+
+    return;
+}
+
+void MakeTargetListForAdjacentSameFaction(struct Unit* unit) {
+    int x = unit->xPos;
+    int y = unit->yPos;
+
+    gSubjectUnit = unit;
+
+    BmMapFill(gBmMapRange, 0);
+
+    ForEachAdjacentUnit(x, y, TryAddUnitToAdjacentSameFactionTargetList);
+
+    return;
+}
+
 void TryAddUnitToAdjacentEnemyTargetList(struct Unit* unit) {
 
     if (AreUnitsAllied(gSubjectUnit->index, unit->index)) {

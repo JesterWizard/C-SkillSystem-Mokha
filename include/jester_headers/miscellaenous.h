@@ -36,3 +36,6 @@ extern void IsTraineeLevelCappedOrPromoted(void);
 
 extern void TryAddUnitToAdjacentEnemyTargetList(struct Unit* unit);
 extern void MakeTargetListForAdjacentEnemies(struct Unit* unit);
+
+extern void TryAddUnitToAdjacentSameFactionTargetList(struct Unit* unit);
+extern void MakeTargetListForAdjacentSameFaction(struct Unit* unit);

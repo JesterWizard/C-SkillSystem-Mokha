@@ -4,6 +4,7 @@
 #include "constants/skills.h"
 #include "constants/texts.h"
 #include "debuff.h"
+#include "jester_headers/miscellaenous.h"
 
 #if defined(SID_AssignDecoy) && (COMMON_SKILL_VALID(SID_AssignDecoy))
 
@@ -12,7 +13,7 @@ u8 AssignDecoy_Usability(const struct MenuItemDef * def, int number)
     if (gActiveUnit->state & US_CANTOING)
         return MENU_NOTSHOWN;
 
-    if (!HasSelectTarget(gActiveUnit, MakeTargetListForAdjacentHeal))
+    if (!HasSelectTarget(gActiveUnit, MakeTargetListForAdjacentSameFaction))
 		return MENU_DISABLED;
 
     return MENU_ENABLED;
@@ -46,7 +47,7 @@ u8 AssignDecoy_OnSelected(struct MenuProc * menu, struct MenuItemProc * item)
 
     ClearBg0Bg1();
 
-    MakeTargetListForAdjacentHeal(gActiveUnit);
+    MakeTargetListForAdjacentSameFaction(gActiveUnit);
     BmMapFill(gBmMapMovement, -1);
 
     StartSubtitleHelp(
