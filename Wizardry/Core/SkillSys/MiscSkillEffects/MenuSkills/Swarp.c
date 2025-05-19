@@ -175,6 +175,7 @@ LABEL(99)
 
 bool Action_Swarp(ProcPtr parent)
 {
+    NoCashGBAPrint("gag");
     SetBitUES(gActiveUnit, UES_BIT_SWARP_SKILL_USED);
     KernelCallEvent(EventScr_MenuPositionSwarp, EV_EXEC_CUTSCENE, parent);
     return true;

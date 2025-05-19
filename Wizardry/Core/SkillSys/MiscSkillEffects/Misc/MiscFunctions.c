@@ -2930,7 +2930,7 @@ s8 PlayerPhase_PrepareAction(ProcPtr proc)
     switch (gActionData.unitActionType)
     {
         case 0:
-        case CONFIG_UNIT_ACTION_EXPA_ExecSkill: // For backing out the attack forecast for menu skills
+        // case CONFIG_UNIT_ACTION_EXPA_ExecSkill: // For backing out the attack forecast for menu skills
             /**
              * If the unit has used action, such as trading,
              * then the unit may take another menu action

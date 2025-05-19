@@ -9,11 +9,6 @@
  */
 
 enum unit_expa_sus_bitfile_idx {
-    /**
-     * I have no idea what guards to put on these, there's like 5 different "legendary" skills
-     */
-    // UES_BIT_LEGENDARY_SKILL_USED,
-    // UES_BIT_LEGENDARY_SKILL_ACTIVE,
 #if defined(SID_GuardBearing) && (COMMON_SKILL_VALID(SID_GuardBearing))
     UES_BIT_GUARDBEAR_SKILL_USED,
 #endif

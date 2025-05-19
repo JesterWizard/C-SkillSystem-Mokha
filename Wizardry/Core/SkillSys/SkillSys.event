@@ -10,7 +10,7 @@
 #include "kernel/SkillAction.lyn.event"
 #include "kernel/SkillListHook.event"
 
-InjectUnitAction(CONFIG_UNIT_ACTION_EXPA_ExecSkill, ActionExecSkill)
+// InjectUnitAction(CONFIG_UNIT_ACTION_EXPA_ExecSkill, ActionExecSkill)
 
 // #include "data.event"
 // #include "def.event"
