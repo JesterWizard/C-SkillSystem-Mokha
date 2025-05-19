@@ -1641,7 +1641,7 @@ void PreBattleCalcSkills(struct BattleUnit *attacker, struct BattleUnit *defende
             if (defender->unit.pCharacterData == GetCharacterData(CHARACTER_WALL) || 
                 defender->unit.pCharacterData == GetCharacterData(CHARACTER_SNAG))
                 {
-                    attacker->battleAttack = defender->hpInitial;
+                    attacker->battleAttack = defender->unit.maxHP;
                 }
             break;
 #endif
