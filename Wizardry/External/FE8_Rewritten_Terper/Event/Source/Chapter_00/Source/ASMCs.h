@@ -16,12 +16,12 @@ void SetGameOptions()
 
     // // SetPartyGoldAmount(10000);
 
-    // struct Unit * unit = GetUnitFromCharId(CHARACTER_EIRIKA);
+    struct Unit * unit = GetUnitFromCharId(CHARACTER_EIRIKA);
     // // unit->maxHP = 26;
     // // unit->curHP = 26;
 
-    // // unit->ranks[ITYPE_STAFF] = WPN_EXP_C;
-    // // unit->items[0] = MakeNewItem(CONFIG_ITEM_INDEX_MINE_STAFF);
+    unit->ranks[ITYPE_STAFF] = WPN_EXP_C;
+    unit->items[0] = MakeNewItem(ITEM_STAFF_HEAL);
 
     // // Seed the random number generator
     // InitRandC();

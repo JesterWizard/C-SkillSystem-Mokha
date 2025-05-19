@@ -156,7 +156,7 @@ allies can move again this turn.[X]
 Dark Bargain[X]
 ## MSG_SKILL_DarkBargain_DESC
 Dark Bargain:[N]
-At the end of this unit's turn,[N]
+At the end of this unit's action,[N]
 heal missing HP by using EXP.[X]
 
 ## MSG_SKILL_HoardersBane_NAME
