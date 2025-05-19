@@ -5,42 +5,6 @@
 
 #define LOCAL_TRACE 0
 
-#ifdef CONFIG_TURN_ON_ALL_SKILLS
-
-static inline u16 GetUnitSkillIndex(const struct Unit* unit, int index) {
-    if (index < 0 || index >= UNIT_RAM_SKILLS_LEN) return 0xFFFF;
-
-    u64 buffer = 0;
-    for (int i = 0; i < 7; ++i)
-        buffer |= ((u64)unit->supports[i]) << (8 * i);
-
-    return (buffer >> (index * 10)) & 0x3FF;
-}
-
-static inline void SetUnitSkillIndex(struct Unit* unit, int index, u16 sid) {
-    if (index < 0 || index >= UNIT_RAM_SKILLS_LEN) return;
-
-    u64 buffer = 0;
-    for (int i = 0; i < 7; ++i)
-        buffer |= ((u64)unit->supports[i]) << (8 * i);
-
-    buffer &= ~(((u64)0x3FF) << (index * 10));
-    buffer |= ((u64)(sid & 0x3FF)) << (index * 10);
-
-    for (int i = 0; i < 7; ++i)
-        unit->supports[i] = (buffer >> (8 * i)) & 0xFF;
-}
-
-#define GET_SKILL(unit, i) GetUnitSkillIndex(unit, i)
-#define SET_SKILL(unit, i, sid) SetUnitSkillIndex(unit, i, sid)
-
-#else
-
-#define GET_SKILL(unit, i) (UNIT_RAM_SKILLS(unit)[i])
-#define SET_SKILL(unit, i, sid) (UNIT_RAM_SKILLS(unit)[i] = (sid))
-
-#endif
-
 // ---------------------------------------------------------------
 // Skill management
 

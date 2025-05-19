@@ -2,6 +2,7 @@
 #include "rn.h"
 #include "bwl.h"
 #include "bmunit.h"
+#include "skill-system.h"
 struct LearnedSkillList {
     u32 data[8]; /* 8 * 32 = 0x100 */
 };
@@ -20,18 +21,18 @@ void SetGameOptions()
     // // unit->maxHP = 26;
     // // unit->curHP = 26;
 
-    unit->ranks[ITYPE_STAFF] = WPN_EXP_C;
-    unit->items[0] = MakeNewItem(ITEM_STAFF_HEAL);
+    // unit->ranks[ITYPE_STAFF] = WPN_EXP_C;
+    // unit->items[0] = MakeNewItem(ITEM_STAFF_HEAL);
 
-    // // Seed the random number generator
-    // InitRandC();
+    // Seed the random number generator
+    InitRandC();
 
-    // // Randomly generate items for the unit
-    // for (int i = 0; i < 5; i++)
-    //     unit->items[i] = MakeNewItem(RandNextC_N(200));
+    // Randomly generate items for the unit
+    for (int i = 0; i < 5; i++)
+        unit->items[i] = MakeNewItem(RandNextC_N(200));
 
-    // // for (int i = 0; i < SKILL_ROM_DATA_AMT; i++)
-    // //     unit->supports[i] = RandNextC_N(254);
+    for (int i = 0; i < SKILL_ROM_DATA_AMT; i++)
+        SET_SKILL(unit, i, RandNextC_N(711));
 
-    SetFlag(0xAB); // Gamma UI flag
+    //SetFlag(0xAB); // Gamma UI flag
 }

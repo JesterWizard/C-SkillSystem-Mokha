@@ -158,7 +158,7 @@
 /* Don't turn this on until I have defeat quotes for everyone as MC dying without a quote doesn't trigger a game over screen */
 //#define CONFIG_MULTIPLE_DEATH_QUOTES
 
-#define CONFIG_GROWTHS_AS_LETTERS
+// #define CONFIG_GROWTHS_AS_LETTERS
 
 // #define CONFIG_FOURTH_ALLEGIANCE
 

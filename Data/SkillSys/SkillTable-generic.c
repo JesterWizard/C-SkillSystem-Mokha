@@ -5,11 +5,11 @@
 /* Maximum of 7 skills here */
 const struct SkillPreloadPConf gSkillPreloadPData[0x100] = {
     // 01
-    [CHARACTER_EIRIKA] = {
-        .skills = {
-            [0] = SID_Swarp,
-        },
-    },
+    // [CHARACTER_EIRIKA] = {
+    //     .skills = {
+    //         [0] = SID_Swarp,
+    //     },
+    // },
     // // 02
     // [CHARACTER_SETH] = {
     //     .skills = {
