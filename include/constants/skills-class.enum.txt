@@ -713,6 +713,7 @@
 // SID_MagicSeal
 // SID_HazeHunter
 // SID_Insomnia
+// SID_Comatose
 // SID_Survivor
 // SID_Anchor
 // SID_Absolve

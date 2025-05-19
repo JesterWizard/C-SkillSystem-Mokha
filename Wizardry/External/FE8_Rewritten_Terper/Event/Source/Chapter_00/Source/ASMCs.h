@@ -1,7 +1,7 @@
 #include "common-chax.h"
 #include "rn.h"
 #include "bwl.h"
-
+#include "bmunit.h"
 struct LearnedSkillList {
     u32 data[8]; /* 8 * 32 = 0x100 */
 };
@@ -34,4 +34,6 @@ void SetGameOptions()
     // //     unit->supports[i] = RandNextC_N(254);
 
     SetFlag(0xAB); // Gamma UI flag
+
+    SetUnitStatus(GetUnitFromCharId(CHARACTER_EIRIKA), UNIT_STATUS_SLEEP);
 }
