@@ -17,7 +17,7 @@ enum weather_skills_priority {
     WEATHER_PRIORITY_AIR_LOCK,
 };
 
-static void _check_weather_skill(struct Unit * unit, int * priv, int * weather)
+static void _check_weather_skill(struct Unit * unit, int * weather, int * priv)
 {
     if (!UNIT_IS_VALID(unit))
         return;
@@ -78,7 +78,6 @@ bool PrePhase_ControlWeatherSkill(ProcPtr proc)
     case FACTION_BLUE:
         for (uid = FACTION_BLUE + 1; uid < FACTION_BLUE + 1 + CONFIG_UNIT_AMT_ALLY; uid++)
             _check_weather_skill(GetUnit(uid), &weather, &priv_level);
-
         break;
 
     case FACTION_GREEN:

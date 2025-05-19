@@ -34,6 +34,4 @@ void SetGameOptions()
     // //     unit->supports[i] = RandNextC_N(254);
 
     SetFlag(0xAB); // Gamma UI flag
-
-    SetUnitStatus(GetUnitFromCharId(CHARACTER_EIRIKA), UNIT_STATUS_SLEEP);
 }
