@@ -4870,7 +4870,7 @@ void ApplyUnitMapUiFramePal(int faction, int palId)
 
 /* This fucks up the position of the unit's name in the minimug box when I hook it, even without changing anything */
 
-// //! FE8U = 0x0808C5D0
+// ! FE8U = 0x0808C5D0
 // LYN_REPLACE_CHECK(DrawUnitMapUi);
 // void DrawUnitMapUi(struct PlayerInterfaceProc * proc, struct Unit * unit)
 // {
@@ -4885,10 +4885,8 @@ void ApplyUnitMapUiFramePal(int faction, int palId)
 
 //     ClearText(proc->texts);
 //     Text_SetParams(proc->texts, pos, TEXT_COLOR_SYSTEM_BLACK);
-
-//     /* Draw unit name */
 //     Text_DrawString(proc->texts, str);
-//     PutText(proc->texts, gUiTmScratchA + TILEMAP_INDEX(15, 1));
+//     PutText(proc->texts, gUiTmScratchA + TILEMAP_INDEX(5, 1));
 
 //     faceId = GetUnitMiniPortraitId(unit);
 
@@ -4923,27 +4921,8 @@ void ApplyUnitMapUiFramePal(int faction, int palId)
 //     UnitMapUiUpdate(proc, unit);
 //     DrawHpBar(gUiTmScratchA + TILEMAP_INDEX(5, 4), unit, TILEREF(0x140, 1));
 
-//     /* This function arranges the tiles in gTSA_MinimugBox and displays the box */
 //     CallARM_FillTileRect(gUiTmScratchB, gTSA_MinimugBox, TILEREF(0x0, 3));
 //     ApplyUnitMapUiFramePal(UNIT_FACTION(unit), 3);
-
-
-//     // /* Custom code I've added to place skill icons where the unit name originally was */
-//     // LoadIconPalettes(STATSCREEN_BGPAL_ITEMICONS);
-
-//     // struct SkillList *list = GetUnitSkillList(unit);
-
-//     // #define STAT_SKILL_NUM_MAX 8
-
-//     // for (int i = 0; i < STAT_SKILL_NUM_MAX; i++) {
-
-// 	// 	if (i >= list->amt)
-// 	// 		break;
-
-// 	// 	DrawIcon(gUiTmScratchA + TILEMAP_INDEX((5 + 2 * i), 1),
-// 	// 			 SKILL_ICON(list->sid[i]),
-// 	// 			 TILEREF(0x0, STATSCREEN_BGPAL_ITEMICONS));
-// 	// }
 
 //     return;
 // }
