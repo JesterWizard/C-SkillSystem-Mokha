@@ -28,6 +28,7 @@
 #include "savemenu.h"
 #include "rn.h"
 #include "icon-rework.h"
+#include "status-getter.h"
 
 #if defined(SID_CatchEmAll) && (COMMON_SKILL_VALID(SID_CatchEmAll))
     const unsigned int gCatchEmAllId = SID_CatchEmAll;
@@ -4955,3 +4956,74 @@ void ApplyUnitMapUiFramePal(int faction, int palId)
 
 //     return;
 // }
+
+LYN_REPLACE_CHECK(IsItemStealable);
+s8 IsItemStealable(int item) {
+
+    bool stealable = false;
+
+#if defined(SID_StealPlus) && (COMMON_SKILL_VALID(SID_StealPlus))
+    if (SkillTester(gActiveUnit, SID_StealPlus))
+        stealable = (GetItemType(item) == ITYPE_ITEM  || 
+        GetItemType(item) == ITYPE_ANIMA ||
+        GetItemType(item) == ITYPE_LIGHT ||
+        GetItemType(item) == ITYPE_DARK  ||
+        GetItemType(item) == ITYPE_STAFF ||
+        GetItemType(item) == ITYPE_AXE   ||
+        GetItemType(item) == ITYPE_BOW   ||
+        GetItemType(item) == ITYPE_SWORD ||
+        GetItemType(item) == ITYPE_LANCE);
+    else
+        stealable = GetItemType(item) == ITYPE_ITEM;
+#else
+    stealable = GetItemType(item) == ITYPE_ITEM;
+#endif
+
+    return stealable;
+
+};
+
+extern int _GetUnitCon(struct Unit * unit); 
+
+LYN_REPLACE_CHECK(AddAsTarget_IfCanStealFrom);
+void AddAsTarget_IfCanStealFrom(struct Unit* unit) {
+    int i;
+
+    if (UNIT_FACTION(unit) != FACTION_RED) {
+        return;
+    }
+
+    if (gActiveUnit->spd < unit->spd) {
+        return;
+    }
+
+    for (i = 0; i < UNIT_ITEM_COUNT; i++) {
+        u16 item = unit->items[i];
+
+        if (item == 0) {
+            return;
+        }
+
+        if (!IsItemStealable(item)) {
+            continue;
+        }
+
+#if defined(SID_StealPlus) && (COMMON_SKILL_VALID(SID_StealPlus))
+        if (SkillTester(gActiveUnit, SID_StealPlus)) 
+        {
+            if (GetUnitEquippedWeaponSlot(unit) == i) {
+                continue;
+            }
+
+            if (_GetUnitCon(gActiveUnit) <= GetItemWeight(unit->items[i])) {
+                continue;
+            }
+        }
+#endif
+
+        AddTarget(unit->xPos, unit->yPos, unit->index, 0);
+        return;
+    }
+
+    return;
+}

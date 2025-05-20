@@ -2,6 +2,10 @@
 ## MSG_Weapon_Rank_Increased
 Weapon rank increased.[X]
 
+## MSG_ITEM_CANT_STEAL_PLUS
+Can't steal equipped weapons[N]
+or weapons heavier than unit.[X]
+
 ## MSG_ITEM_SKILLSTEALER_NAME
 Skill Stealer[X]
 
