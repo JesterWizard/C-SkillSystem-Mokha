@@ -3,13 +3,14 @@
 #include "bwl.h"
 #include "bmunit.h"
 #include "skill-system.h"
+#include "jester_headers/miscellaenous.h"
 struct LearnedSkillList {
     u32 data[8]; /* 8 * 32 = 0x100 */
 };
 
 extern struct LearnedSkillList sLearnedSkillPLists[NEW_BWL_ARRAY_NUM];
 
-void SetGameOptions() 
+void SetGameOptions_Chapter0() 
 {
     SetGameOption(GAME_OPTION_ANIMATION, 2);  // Set battle animations off
     SetGameOption(GAME_OPTION_TEXT_SPEED, 1); // Set game speed to max
@@ -35,4 +36,10 @@ void SetGameOptions()
     //     SET_SKILL(unit, i, RandNextC_N(711));
 
     //SetFlag(0xAB); // Gamma UI flag
+
+    NoCashGBAPrintf("Chapter 1 - Total BEXP BEFORE is: %d", sBEXP);
+
+    sBEXP.value += 100;
+
+    NoCashGBAPrintf("Chapter 1 - Total BEXP AFTER is: %d", sBEXP);
 }

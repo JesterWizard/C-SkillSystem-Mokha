@@ -40,6 +40,8 @@ static const EventScr EventScr_Beginning[] = {
     HIGHLIGHT_CHARACTER(CHARACTER_EIRIKA, 60)
     TEXT(Chapter_01_Scene_04_Convo_01)
 
+    ASMC(SetGameOptions_Chapter1)
+
     /* Temporary flag(11) is used for triggering event: EventScr_Ch1_Turn_EnemyReinforceArrive, this flag will be unset by event: EventScr_Ch1_Misc_Area */
     ENUT(EVFLAG_TMP(11))
     NOFADE

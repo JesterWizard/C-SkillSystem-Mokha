@@ -78,7 +78,7 @@ _kernel_malloc gpTargetShileInfo, 4
 _kernel_malloc sShileldInfoCache, 0x14
 _kernel_malloc sPopupSkillStack, 0x10
 _kernel_malloc gPlayStExpa, 0x10
-_kernel_malloc sBEXP, 2 * 1
+_kernel_malloc sBEXP, 0x02
 
 /* u8 x4 to share one u32 */
 _kernel_malloc sKernelHookSkippingFlag, 1
