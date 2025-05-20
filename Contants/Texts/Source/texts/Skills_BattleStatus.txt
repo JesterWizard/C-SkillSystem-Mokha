@@ -198,9 +198,9 @@ For every 4 damage taken,[N]
 +1 to damage dealt.[X]
 
 ## MSG_SKILL_WonderGuard_NAME
-WonderGuard[X]
+Wonder Guard[X]
 ## MSG_SKILL_WonderGuard_DESC
-WonderGuard:[N]
+Wonder Guard:[N]
 Cannot be damaged by weapons of[N]
 the same weapon type as the user's.[X]
 

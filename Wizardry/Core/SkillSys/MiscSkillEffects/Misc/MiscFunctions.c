@@ -4897,65 +4897,87 @@ void ApplyUnitMapUiFramePal(int faction, int palId)
     return;
 }
 
+static char * fe8_characters[62] = {
+    // Main Story Characters
+    "Eirika", "Seth", "Franz", "Gilliam", "Moulder", "Vanessa", "Ross", "Garcia",
+    "Neimi", "Colm", "Lute", "Artur", "Natasha", "Joshua", "Ephraim", "Forde",
+    "Kyle", "Tana", "Amelia", "Duessel", "Cormag", "L'Arachel", "Dozla", "Ewan",
+    "Marisa", "Tethys", "Gerik", "Rennac", "Saleh", "Knoll", "Innes", "Myrrh", "Syrene",
 
-/* This fucks up the position of the unit's name in the minimug box when I hook it, even without changing anything */
+    // Bosses
+    "O'Neill", "Berguet", "Bones", "Bazba", "Saar", "Novala", "Murray", "Tirado",
+    "Binks", "Pablo", "Aias", "Carlyle", "Gheb", "Beran", "Zonta", "Vigarde",
+    
+    //Extras
+    "Mansel", "Klimt", "Dara",
+
+    // Post-Game Unlockable Characters
+    "Caellach", "Orson", "Riev", "Ismaire", "Selena", "Hayden", "Glen", "Valter",
+    "Fado", "Lyon"
+};
 
 // ! FE8U = 0x0808C5D0
-// LYN_REPLACE_CHECK(DrawUnitMapUi);
-// void DrawUnitMapUi(struct PlayerInterfaceProc * proc, struct Unit * unit)
-// {
-//     char * str;
-//     int pos;
-//     int faceId;
+LYN_REPLACE_CHECK(DrawUnitMapUi);
+void DrawUnitMapUi(struct PlayerInterfaceProc * proc, struct Unit * unit)
+{
+    char * str;
+    int pos;
+    int faceId;
 
-//     CpuFastFill(0, gUiTmScratchA, 6 * CHR_SIZE * sizeof(u16));
+    CpuFastFill(0, gUiTmScratchA, 6 * CHR_SIZE * sizeof(u16));
 
-//     str = GetStringFromIndex(unit->pCharacterData->nameTextId);
-//     pos = GetStringTextCenteredPos(56, str);
+    str = GetStringFromIndex(unit->pCharacterData->nameTextId);
 
-//     ClearText(proc->texts);
-//     Text_SetParams(proc->texts, pos, TEXT_COLOR_SYSTEM_BLACK);
-//     Text_DrawString(proc->texts, str);
-//     PutText(proc->texts, gUiTmScratchA + TILEMAP_INDEX(5, 1));
+#if (defined(SID_IdentityProblems) && (COMMON_SKILL_VALID(SID_IdentityProblems)))
+    if (SkillTester(unit, SID_IdentityProblems))
+        str = fe8_characters[NextRN_N(sizeof(fe8_characters) / sizeof((fe8_characters)[0]))];
+#endif
 
-//     faceId = GetUnitMiniPortraitId(unit);
+    pos = GetStringTextCenteredPos(56, str);
 
-//     if (unit->state & US_BIT23)
-//     {
-//         faceId = faceId + 1;
-//     }
+    ClearText(proc->texts);
+    Text_SetParams(proc->texts, pos, TEXT_COLOR_SYSTEM_BLACK);
+    Text_DrawString(proc->texts, str);
+    PutText(proc->texts, gUiTmScratchA + TILEMAP_INDEX(5, 1));
 
-//     PutFaceChibi(faceId, gUiTmScratchA + TILEMAP_INDEX(1, 1), 0xF0, 4, 0);
+    faceId = GetUnitMiniPortraitId(unit);
 
-//     proc->statusTm = gUiTmScratchA + TILEMAP_INDEX(5, 3);
-//     proc->unitClock = 0;
+    if (unit->state & US_BIT23)
+    {
+        faceId = faceId + 1;
+    }
 
-//     if (sPlayerInterfaceConfigLut[proc->cursorQuadrant].xMinimug < 0)
-//     {
-//         proc->xHp = 5;
-//     }
-//     else
-//     {
-//         proc->xHp = 23;
-//     }
+    PutFaceChibi(faceId, gUiTmScratchA + TILEMAP_INDEX(1, 1), 0xF0, 4, 0);
 
-//     if (sPlayerInterfaceConfigLut[proc->cursorQuadrant].yMinimug < 0)
-//     {
-//         proc->yHp = 3;
-//     }
-//     else
-//     {
-//         proc->yHp = 17;
-//     }
+    proc->statusTm = gUiTmScratchA + TILEMAP_INDEX(5, 3);
+    proc->unitClock = 0;
 
-//     UnitMapUiUpdate(proc, unit);
-//     DrawHpBar(gUiTmScratchA + TILEMAP_INDEX(5, 4), unit, TILEREF(0x140, 1));
+    if (sPlayerInterfaceConfigLut[proc->cursorQuadrant].xMinimug < 0)
+    {
+        proc->xHp = 5;
+    }
+    else
+    {
+        proc->xHp = 23;
+    }
 
-//     CallARM_FillTileRect(gUiTmScratchB, gTSA_MinimugBox, TILEREF(0x0, 3));
-//     ApplyUnitMapUiFramePal(UNIT_FACTION(unit), 3);
+    if (sPlayerInterfaceConfigLut[proc->cursorQuadrant].yMinimug < 0)
+    {
+        proc->yHp = 3;
+    }
+    else
+    {
+        proc->yHp = 17;
+    }
 
-//     return;
-// }
+    UnitMapUiUpdate(proc, unit);
+    DrawHpBar(gUiTmScratchA + TILEMAP_INDEX(5, 4), unit, TILEREF(0x140, 1));
+
+    CallARM_FillTileRect(gUiTmScratchB, gTSA_MinimugBox, TILEREF(0x0, 3));
+    ApplyUnitMapUiFramePal(UNIT_FACTION(unit), 3);
+
+    return;
+}
 
 LYN_REPLACE_CHECK(IsItemStealable);
 s8 IsItemStealable(int item) {

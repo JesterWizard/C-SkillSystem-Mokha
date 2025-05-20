@@ -82,27 +82,6 @@ Voice Of Peace:[N]
 Enemies within[N]
 2 tiles deal -2 damage.[X]
 
-## MSG_SKILL_BattleRange1_NAME
-Battle Range 1[X]
-## MSG_SKILL_BattleRange1_DESC
-Battle Range 1:[N]
-ATK +10 if[N]
-no ally with 3 tiles.[X]
-
-## MSG_SKILL_BattleRange2_NAME
-Battle Range 2[X]
-## MSG_SKILL_BattleRange2_DESC
-Battle Range 2:[N]
-ATK +7 if[N]
-no ally with 2 tiles.[X]
-
-## MSG_SKILL_BattleRange3_NAME
-Battle Range 3[X]
-## MSG_SKILL_BattleRange3_DESC
-Battle Range 3:[N]
-ATK +5 if[N]
-no ally with 1 tiles.[X]
-
 ## MSG_SKILL_Peacebringer_NAME
 Peacebringer[X]
 ## MSG_SKILL_Peacebringer_DESC

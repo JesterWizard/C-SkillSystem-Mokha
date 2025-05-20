@@ -41,7 +41,6 @@
 // SID_Arise
 // SID_AssignDecoy
 // SID_ShadowFlash
-// SID_Refuge
 // SID_DeathBlight
 // SID_DivineReprieve
 // SID_LoadstarRush
@@ -154,14 +153,11 @@
 // SID_SandRush
 // SID_SwiftSwim
 // SID_SolarPower
-// SID_RangeBonusBMag
-// SID_RangeBonusBMag2
-// SID_RangeBonusBow1
-// SID_RangeBonusBow2
+// SID_MagicRangePlus1
+// SID_MagicRangePlus2
+// SID_BowRangePlus1
+// SID_BowRangePlus2
 // SID_RunningStart
-// SID_BattleRange_Todo1
-// SID_BattleRange_Todo2
-// SID_BattleRange_Todo3
 // SID_RuinedBladePlus
 // SID_AirRaidAttack
 // SID_AirRaidAvoid

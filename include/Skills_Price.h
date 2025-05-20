@@ -89,10 +89,10 @@
 #define MSG_SKILL_StanceSturdy_PRICE 1000
 #define MSG_SKILL_StanceSwift_PRICE 1000
 #define MSG_SKILL_StanceWarding_PRICE 1000
-#define MSG_SKILL_RangeBonusBMag1_PRICE 1000
-#define MSG_SKILL_RangeBonusBMag2_PRICE 1000
-#define MSG_SKILL_RangeBonusBow1_PRICE 1000
-#define MSG_SKILL_RangeBonusBow2_PRICE 1000
+#define MSG_SKILL_MagicRangePlus1_PRICE 1000
+#define MSG_SKILL_MagicRangePlus2_PRICE 1000
+#define MSG_SKILL_BowRangePlus1_PRICE 1000
+#define MSG_SKILL_BowRangePlus2_PRICE 1000
 #define MSG_SKILL_RunningStart_PRICE 1000
 #define MSG_SKILL_Canto_PRICE 1000
 #define MSG_SKILL_CantoPlus_PRICE 1000
@@ -106,6 +106,7 @@
 #define MSG_SKILL_PosReturn_PRICE 1000
 #define MSG_SKILL_Lunge_PRICE 1000
 #define MSG_SKILL_Renewal_PRICE 1000
+#define MSG_SKILL_RenewalPlus_PRICE 1000
 #define MSG_SKILL_Imbue_PRICE 1000
 #define MSG_SKILL_Forager_PRICE 1000
 #define MSG_SKILL_Anathema_PRICE 1000
@@ -128,9 +129,6 @@
 #define MSG_SKILL_ResHone_PRICE 1000
 #define MSG_SKILL_MovHone_PRICE 1000
 #define MSG_SKILL_HoneChaos_PRICE 1000
-#define MSG_SKILL_BattleRange1_PRICE 1000
-#define MSG_SKILL_BattleRange2_PRICE 1000
-#define MSG_SKILL_BattleRange3_PRICE 1000
 #define MSG_SKILL_Steal_PRICE 1000
 #define MSG_SKILL_HealingFocus_PRICE 1000
 #define MSG_SKILL_Blossom_PRICE 1000

@@ -2351,24 +2351,12 @@ void PreBattleCalcAuraEffect(struct BattleUnit *attacker, struct BattleUnit *def
     /* AND skills */
     if (allies_gRange3_In3x3 == 0)
     {
-#if (defined(SID_BattleRange_Todo1) && (COMMON_SKILL_VALID(SID_BattleRange_Todo1)))
-        if (BattleSkillTester(attacker, SID_BattleRange_Todo1))
-            attacker->battleAttack += SKILL_EFF0(SID_BattleRange_Todo1);
-#endif
     }
     else if (allies_gRange2_In3x3 == 0)
     {
-#if (defined(SID_BattleRange_Todo2) && (COMMON_SKILL_VALID(SID_BattleRange_Todo2)))
-        if (BattleSkillTester(attacker, SID_BattleRange_Todo2))
-            attacker->battleAttack += SKILL_EFF0(SID_BattleRange_Todo2);
-#endif
     }
     else if (allies_gRange1_In3x3 == 0)
     {
-#if (defined(SID_BattleRange_Todo3) && (COMMON_SKILL_VALID(SID_BattleRange_Todo3)))
-        if (BattleSkillTester(attacker, SID_BattleRange_Todo3))
-            attacker->battleAttack += SKILL_EFF0(SID_BattleRange_Todo3);
-#endif
     }
     else
     {

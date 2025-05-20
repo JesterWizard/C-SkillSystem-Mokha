@@ -624,7 +624,7 @@ const struct SkillInfo gSkillInfos[MAX_SKILL_NUM + 1] = {
         .desc = MSG_SKILL_LoadstarRush_DESC,
         .capacity = MSG_SKILL_LoadstarRush_CAPACITY,
         .price = MSG_SKILL_LoadstarRush_PRICE,
-        .icon = GFX_SkillIcon_Astra,
+        .icon = GFX_SkillIcon_WIP,
     },
 #endif
 
@@ -918,43 +918,43 @@ const struct SkillInfo gSkillInfos[MAX_SKILL_NUM + 1] = {
     },
 #endif
 
-#if (defined(SID_RangeBonusBMag1) && COMMON_SKILL_VALID(SID_RangeBonusBMag1))
-    [SID_RangeBonusBMag1] = {
-        .name = MSG_SKILL_RangeBonusBMag1_NAME,
-        .desc = MSG_SKILL_RangeBonusBMag1_DESC,
-        .capacity = MSG_SKILL_RangeBonusBMag1_CAPACITY,
-        .price = MSG_SKILL_RangeBonusBMag1_PRICE,
-        .icon = GFX_SkillIcon_RangeBonusBMag1,
+#if (defined(SID_MagicRangePlus1) && COMMON_SKILL_VALID(SID_MagicRangePlus1))
+    [SID_MagicRangePlus1] = {
+        .name = MSG_SKILL_MagicRangePlus1_NAME,
+        .desc = MSG_SKILL_MagicRangePlus1_DESC,
+        .capacity = MSG_SKILL_MagicRangePlus1_CAPACITY,
+        .price = MSG_SKILL_MagicRangePlus1_PRICE,
+        .icon = GFX_SkillIcon_MagicRangePlus1,
     },
 #endif
 
-#if (defined(SID_RangeBonusBMag2) && COMMON_SKILL_VALID(SID_RangeBonusBMag2))
-    [SID_RangeBonusBMag2] = {
-        .name = MSG_SKILL_RangeBonusBMag2_NAME,
-        .desc = MSG_SKILL_RangeBonusBMag2_DESC,
-        .capacity = MSG_SKILL_RangeBonusBMag2_CAPACITY,
-        .price = MSG_SKILL_RangeBonusBMag2_PRICE,
-        .icon = GFX_SkillIcon_RangeBonusBMag2,
+#if (defined(SID_MagicRangePlus2) && COMMON_SKILL_VALID(SID_MagicRangePlus2))
+    [SID_MagicRangePlus2] = {
+        .name = MSG_SKILL_MagicRangePlus2_NAME,
+        .desc = MSG_SKILL_MagicRangePlus2_DESC,
+        .capacity = MSG_SKILL_MagicRangePlus2_CAPACITY,
+        .price = MSG_SKILL_MagicRangePlus2_PRICE,
+        .icon = GFX_SkillIcon_MagicRangePlus2,
     },
 #endif
 
-#if (defined(SID_RangeBonusBow1) && COMMON_SKILL_VALID(SID_RangeBonusBow1))
-    [SID_RangeBonusBow1] = {
-        .name = MSG_SKILL_RangeBonusBow1_NAME,
-        .desc = MSG_SKILL_RangeBonusBow1_DESC,
-        .capacity = MSG_SKILL_RangeBonusBow1_CAPACITY,
-        .price = MSG_SKILL_RangeBonusBow1_PRICE,
-        .icon = GFX_SkillIcon_RangeBonusBow1,
+#if (defined(SID_BowRangePlus1) && COMMON_SKILL_VALID(SID_BowRangePlus1))
+    [SID_BowRangePlus1] = {
+        .name = MSG_SKILL_BowRangePlus1_NAME,
+        .desc = MSG_SKILL_BowRangePlus1_DESC,
+        .capacity = MSG_SKILL_BowRangePlus1_CAPACITY,
+        .price = MSG_SKILL_BowRangePlus1_PRICE,
+        .icon = GFX_SkillIcon_BowRangePlus1,
     },
 #endif
 
-#if (defined(SID_RangeBonusBow2) && COMMON_SKILL_VALID(SID_RangeBonusBow2))
-    [SID_RangeBonusBow2] = {
-        .name = MSG_SKILL_RangeBonusBow2_NAME,
-        .desc = MSG_SKILL_RangeBonusBow2_DESC,
-        .capacity = MSG_SKILL_RangeBonusBow2_CAPACITY,
-        .price = MSG_SKILL_RangeBonusBow2_PRICE,
-        .icon = GFX_SkillIcon_RangeBonusBow2,
+#if (defined(SID_BowRangePlus2) && COMMON_SKILL_VALID(SID_BowRangePlus2))
+    [SID_BowRangePlus2] = {
+        .name = MSG_SKILL_BowRangePlus2_NAME,
+        .desc = MSG_SKILL_BowRangePlus2_DESC,
+        .capacity = MSG_SKILL_BowRangePlus2_CAPACITY,
+        .price = MSG_SKILL_BowRangePlus2_PRICE,
+        .icon = GFX_SkillIcon_BowRangePlus2,
     },
 #endif
 
@@ -1088,10 +1088,13 @@ const struct SkillInfo gSkillInfos[MAX_SKILL_NUM + 1] = {
     },
 #endif
 
-#if (defined(SID_RenewalPlus) && COMMON_SKILL_VALID(SID_Renewallus))
+#if (defined(SID_RenewalPlus) && COMMON_SKILL_VALID(SID_RenewalPlus))
     [SID_RenewalPlus] = {
-        .desc = MSG_SKILL_RenewalPlus,
-        .icon = GFX_SkillIcon_RenewalPlus,
+        .name = MSG_SKILL_RenewalPlus_NAME,
+        .desc = MSG_SKILL_RenewalPlus_DESC,
+        .capacity = MSG_SKILL_RenewalPlus_CAPACITY,
+        .price = MSG_SKILL_RenewalPlus_PRICE,
+        .icon = GFX_SkillIcon_WIP,
     },
 #endif
 
@@ -1312,36 +1315,6 @@ const struct SkillInfo gSkillInfos[MAX_SKILL_NUM + 1] = {
         .capacity = MSG_SKILL_HoneChaos_CAPACITY,
         .price = MSG_SKILL_HoneChaos_PRICE,
         .icon = GFX_SkillIcon_HoneChaos
-    },
-#endif
-
-#if (defined(SID_BattleRange_Todo1) && COMMON_SKILL_VALID(SID_BattleRange_Todo1))
-    [SID_BattleRange_Todo1] = {
-        .name = MSG_SKILL_BattleRange1_NAME,
-        .desc = MSG_SKILL_BattleRange1_DESC,
-        .capacity = MSG_SKILL_BattleRange1_CAPACITY,
-        .price = MSG_SKILL_BattleRange1_PRICE,
-        .icon = GFX_SkillIcon_WIP,
-    },
-#endif
-
-#if (defined(SID_BattleRange_Todo2) && COMMON_SKILL_VALID(SID_BattleRange_Todo2))
-    [SID_BattleRange_Todo2] = {
-        .name = MSG_SKILL_BattleRange2_NAME,
-        .desc = MSG_SKILL_BattleRange2_DESC,
-        .capacity = MSG_SKILL_BattleRange2_CAPACITY,
-        .price = MSG_SKILL_BattleRange2_PRICE,
-        .icon = GFX_SkillIcon_WIP,
-    },
-#endif
-
-#if (defined(SID_BattleRange_Todo3) && COMMON_SKILL_VALID(SID_BattleRange_Todo3))
-    [SID_BattleRange_Todo3] = {
-        .name = MSG_SKILL_BattleRange3_NAME,
-        .desc = MSG_SKILL_BattleRange3_DESC,
-        .capacity = MSG_SKILL_BattleRange3_CAPACITY,
-        .price = MSG_SKILL_BattleRange3_PRICE,
-        .icon = GFX_SkillIcon_WIP,
     },
 #endif
 

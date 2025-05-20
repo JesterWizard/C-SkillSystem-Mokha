@@ -89,10 +89,10 @@
 #define MSG_SKILL_StanceSturdy_CAPACITY 1
 #define MSG_SKILL_StanceSwift_CAPACITY 1
 #define MSG_SKILL_StanceWarding_CAPACITY 1
-#define MSG_SKILL_RangeBonusBMag1_CAPACITY 1
-#define MSG_SKILL_RangeBonusBMag2_CAPACITY 1
-#define MSG_SKILL_RangeBonusBow1_CAPACITY 1
-#define MSG_SKILL_RangeBonusBow2_CAPACITY 1
+#define MSG_SKILL_MagicRangePlus1_CAPACITY 1
+#define MSG_SKILL_MagicRangePlus2_CAPACITY 1
+#define MSG_SKILL_BowRangePlus1_CAPACITY 1
+#define MSG_SKILL_BowRangePlus2_CAPACITY 1
 #define MSG_SKILL_RunningStart_CAPACITY 1
 #define MSG_SKILL_Canto_CAPACITY 1
 #define MSG_SKILL_CantoPlus_CAPACITY 1
@@ -106,6 +106,7 @@
 #define MSG_SKILL_PosReturn_CAPACITY 1
 #define MSG_SKILL_Lunge_CAPACITY 1
 #define MSG_SKILL_Renewal_CAPACITY 1
+#define MSG_SKILL_RenewalPlus_CAPACITY 1
 #define MSG_SKILL_Imbue_CAPACITY 1
 #define MSG_SKILL_Forager_CAPACITY 1
 #define MSG_SKILL_Anathema_CAPACITY 1
@@ -128,9 +129,6 @@
 #define MSG_SKILL_ResHone_CAPACITY 1
 #define MSG_SKILL_MovHone_CAPACITY 1
 #define MSG_SKILL_HoneChaos_CAPACITY 1
-#define MSG_SKILL_BattleRange1_CAPACITY 1
-#define MSG_SKILL_BattleRange2_CAPACITY 1
-#define MSG_SKILL_BattleRange3_CAPACITY 1
 #define MSG_SKILL_Steal_CAPACITY 1
 #define MSG_SKILL_HealingFocus_CAPACITY 1
 #define MSG_SKILL_Blossom_CAPACITY 1

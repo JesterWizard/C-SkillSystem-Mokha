@@ -1,24 +1,24 @@
-## MSG_SKILL_RangeBonusBMag1_NAME
+## MSG_SKILL_MagicRangePlus1_NAME
 Magic Range +1[X]
-## MSG_SKILL_RangeBonusBMag1_DESC
+## MSG_SKILL_MagicRangePlus1_DESC
 Magic Range +1:[N]
 Increases black magic range by 1[X]
 
-## MSG_SKILL_RangeBonusBMag2_NAME
+## MSG_SKILL_MagicRangePlus2_NAME
 Magic Range +2[X]
-## MSG_SKILL_RangeBonusBMag2_DESC
+## MSG_SKILL_MagicRangePlus2_DESC
 Magic Range +2:[N]
 Increases black magic range by 2[X]
 
-## MSG_SKILL_RangeBonusBow1_NAME
+## MSG_SKILL_BowRangePlus1_NAME
 Bow Range +1[X]
-## MSG_SKILL_RangeBonusBow1_DESC
+## MSG_SKILL_BowRangePlus1_DESC
 Bow Range +1:[N]
 Increases bow range by 1[X]
 
-## MSG_SKILL_RangeBonusBow2_NAME
+## MSG_SKILL_BowRangePlus2_NAME
 Bow Range +2[X]
-## MSG_SKILL_RangeBonusBow2_DESC
+## MSG_SKILL_BowRangePlus2_DESC
 Bow Range +2:[N]
 Increases bow range by 2[X]
 
