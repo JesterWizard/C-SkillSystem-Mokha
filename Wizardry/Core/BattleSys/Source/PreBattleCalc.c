@@ -1616,17 +1616,6 @@ void PreBattleCalcSkills(struct BattleUnit *attacker, struct BattleUnit *defende
             break;
 #endif
 
-#if (defined(SID_Capture) && (COMMON_SKILL_VALID(SID_Capture)))
-        case SID_Capture:
-            if (BattleSkillTester(attacker, SID_Capture) && CheckBitUES(GetUnit(attacker->unit.index), UES_BIT_CAPTURE_SKILL_USED))
-            {
-                attacker->battleAttack -= Div(attacker->battleAttack * SKILL_EFF0(SID_Capture), 100);
-                attacker->battleHitRate -= Div(attacker->battleHitRate * SKILL_EFF0(SID_Capture), 100);
-                attacker->battleSpeed -= Div(attacker->battleSpeed * SKILL_EFF0(SID_Capture), 100);
-            }
-            break;
-#endif
-
 #if (defined(SID_AdaptiveStance) && (COMMON_SKILL_VALID(SID_AdaptiveStance)))
         case SID_AdaptiveStance:
             int attackerRes = GetUnit(attacker->unit.index)->res;
@@ -1941,6 +1930,17 @@ void PreBattleCalcSkills(struct BattleUnit *attacker, struct BattleUnit *defende
             attacker->hpInitial = defender->hpInitial;
             attacker->unit.curHP = defender->unit.curHP;
             attacker->unit.maxHP = defender->unit.maxHP;
+            break;
+#endif
+
+#if (defined(SID_Capture) && (COMMON_SKILL_VALID(SID_Capture)))
+        case SID_Capture:
+            if (gActionData.unk08 == SID_Capture)
+            {
+                attacker->battleAttack -= Div(attacker->battleAttack * SKILL_EFF0(SID_Capture), 100);
+                attacker->battleHitRate -= Div(attacker->battleHitRate * SKILL_EFF0(SID_Capture), 100);
+                attacker->battleSpeed -= Div(attacker->battleSpeed * SKILL_EFF0(SID_Capture), 100);
+            }
             break;
 #endif
 

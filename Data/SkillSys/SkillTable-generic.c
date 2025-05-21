@@ -10,12 +10,12 @@ const struct SkillPreloadPConf gSkillPreloadPData[0x100] = {
             [0] = SID_IdentityProblems,
         },
     },
-    // // 02
-    // [CHARACTER_SETH] = {
-    //     .skills = {
-    //         [0] = SID_Mimic,
-    //     },
-    // },
+    // 02
+    [CHARACTER_SETH] = {
+        .skills = {
+            [0] = SID_Capture,
+        },
+    },
     // // 03
     // [CHARACTER_GILLIAM] = {
     //     .skills = {
