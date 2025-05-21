@@ -1001,8 +1001,8 @@ being struck.[X]
 Barricade+[X]
 ## MSG_SKILL_BarricadePlus_DESC
 Barricade+: Damage taken is halved[N]
-in this combat oNy, after every[N]
-strike against this unit.[X]
+in this combat only, after every[N]
+subsequent strike against this unit.[X]
 
 ## MSG_SKILL_Pursuer_NAME
 Pursuer[X]
