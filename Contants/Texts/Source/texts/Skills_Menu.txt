@@ -111,7 +111,7 @@ Unit can use[N]
 ## MSG_SKILL_HealingFocus_NAME
 Healing Focus[X]
 ## MSG_SKILL_HealingFocus_DESC
-Heal Focus:[N]
+Healing Focus:[N]
 Unit recovers 50% HP.[X]
 
 ## MSG_SKILL_Teleportation_NAME
