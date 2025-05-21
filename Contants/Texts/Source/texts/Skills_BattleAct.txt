@@ -195,7 +195,8 @@ Axe Faith[X]
 
 ## MSG_SKILL_AxeFaith_DESC
 Axe Faith:[N]
-When attacking with an Axe, hit + attack%.[N]
+When attacking with an axe,[N]
+add battle attack to hit rate.[N]
 (Attack % activation).[X]
 
 ## MSG_SKILL_Armsthrift_NAME
