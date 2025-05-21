@@ -95,6 +95,7 @@ const struct DebuffInfo gDebuffInfos[NEW_UNIT_STATUS_MAX] = {
     },
     [UNIT_STATUS_PETRIFY] = {
         .name = 0x51A,
+        .desc = 0x557,
         .positive_type = STATUS_DEBUFF_NEGATIVE,
         .tick_type = STATUS_DEBUFF_TICK_ON_ENEMY,
         .duration = 3,
