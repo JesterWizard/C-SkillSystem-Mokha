@@ -294,7 +294,7 @@ Ardent Sacrifice[X]
 ## MSG_SKILL_ArdentSacrifice_DESC
 Ardent Sacrifice:[N]
 Restores 10 HP to target,[N]
-but drops user’s HP by 10.[X]
+but reduces user's HP by 10.[X]
 
 ## MSG_SKILL_ReciprocalAid_NAME
 Reciprocal Aid[X]
