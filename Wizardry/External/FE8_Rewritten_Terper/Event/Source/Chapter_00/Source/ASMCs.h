@@ -4,6 +4,7 @@
 #include "bmunit.h"
 #include "skill-system.h"
 #include "jester_headers/miscellaenous.h"
+#include "debuff.h"
 struct LearnedSkillList {
     u32 data[8]; /* 8 * 32 = 0x100 */
 };
@@ -42,4 +43,9 @@ void SetGameOptions_Chapter0()
     sBEXP.value += 100;
 
     NoCashGBAPrintf("Chapter 1 - Total BEXP AFTER is: %d", sBEXP);
+
+    // struct Unit * unit_seth = GetUnitFromCharId(CHARACTER_SETH);
+
+    // SetUnitStatusIndex(unit_seth, NEW_UNIT_STATUS_DOOM);
+    // SetUnitStatusDuration(unit_seth, 2);
 }
