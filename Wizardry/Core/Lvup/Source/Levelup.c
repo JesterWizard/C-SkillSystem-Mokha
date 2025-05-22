@@ -8,6 +8,30 @@
 #include "constants/skills.h"
 #include "mapanim.h"
 
+static bool IsStatUncapped(struct Unit *unit, int statIndex, int limitBreaker)
+{
+    switch (statIndex) {
+        case 0: // HP
+            return unit->maxHP < unit->pClassData->maxHP + limitBreaker;
+        case 1: // POW
+            return unit->pow < unit->pClassData->maxPow + limitBreaker;
+        case 2: // SKL
+            return unit->skl < unit->pClassData->maxSkl + limitBreaker;
+        case 3: // SPD
+            return unit->spd < unit->pClassData->maxSpd + limitBreaker;
+        case 4: // LCK
+            return unit->lck < (30 + limitBreaker);
+        case 5: // DEF
+            return unit->def < unit->pClassData->maxDef + limitBreaker;
+        case 6: // RES
+            return unit->res < unit->pClassData->maxRes + limitBreaker;
+        case 7: // MAG
+            return GetUnitMagic(unit) < GetUnitMaxMagic(unit) + limitBreaker;
+        default:
+            return false;
+    }
+}
+
 STATIC_DECLAR int GetStatIncreaseRandC(int growth)
 {
     int result = 0;
@@ -137,11 +161,19 @@ static void UnitLvup_Vanilla(struct BattleUnit * bu, int bonus)
             // Set the upper limit of stats to increase (accounting for previous increases before this skill)
             while (statCounter < 3)
             {
-                // Get a random index using NextRN_N and ARRAY_COUNT
+                // Count available uncapped stats that haven't increased yet
+                int available = 0;
+                for (u8 i = 0; i < ARRAY_COUNT(statChanges); i++)
+                {
+                    if (*statChanges[i] == 0 && IsStatUncapped(unit, i, limitBreaker))
+                        available++;
+                }
+                if (available == 0)
+                    break; // Exit if none are available
+
                 int randIndex = NextRN_N(ARRAY_COUNT(statChanges));
 
-                // If the randomly chosen stat hasn't increased, force it to increase
-                if (*statChanges[randIndex] == 0)
+                if (*statChanges[randIndex] == 0 && IsStatUncapped(unit, randIndex, limitBreaker))
                 {
                     *statChanges[randIndex] = 1;
                     statCounter++;
@@ -171,11 +203,19 @@ static void UnitLvup_Vanilla(struct BattleUnit * bu, int bonus)
             // Set the upper limit of stats to increase (accounting for previous increases before this skill)
             while (statCounter < 2)
             {
-                // Get a random index using NextRN_N and ARRAY_COUNT
+               // Count available uncapped stats that haven't increased yet
+                int available = 0;
+                for (u8 i = 0; i < ARRAY_COUNT(statChanges); i++)
+                {
+                    if (*statChanges[i] == 0 && IsStatUncapped(unit, i, limitBreaker))
+                        available++;
+                }
+                if (available == 0)
+                    break; // Exit if none are available
+
                 int randIndex = NextRN_N(ARRAY_COUNT(statChanges));
 
-                // If the randomly chosen stat hasn't increased, force it to increase
-                if (*statChanges[randIndex] == 0)
+                if (*statChanges[randIndex] == 0 && IsStatUncapped(unit, randIndex, limitBreaker))
                 {
                     *statChanges[randIndex] = 1;
                     statCounter++;

@@ -284,9 +284,9 @@ int ResGetterStatDebuff(int status, struct Unit * unit);
 int LckGetterStatDebuff(int status, struct Unit * unit);
 int MovGetterStatDebuff(int status, struct Unit * unit);
 
-void StatDeuff_OnNewGameInit(void);
-void ResetStatDeuffBuf(void);
-void StatDeuff_OnLoadUnit(struct Unit * unit);
+void StatDebuff_OnNewGameInit(void);
+void ResetStatDebuffBuff(void);
+void StatDebuff_OnLoadUnit(struct Unit * unit);
 
 /* Misc API */
 bool UnitHasNegativeStatus(struct Unit * unit);

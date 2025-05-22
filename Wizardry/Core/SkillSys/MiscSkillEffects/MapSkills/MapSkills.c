@@ -277,10 +277,10 @@ void ChapterChangeUnitCleanup(void)
         {
             for (int i = 0; i < transformationListSize; i++)
             {
-                if (gActiveUnit->pClassData->number == transformationPairs[i][1])
+                if (unit->pClassData->number == transformationPairs[i][1])
                 {
                     unit->pClassData = GetClassData(transformationPairs[i][0]);
-                    ClearUnitStatDebuff(gActiveUnit, UNIT_STAT_BUFF_TRANSFORM);
+                    ClearUnitStatDebuff(unit, UNIT_STAT_BUFF_TRANSFORM);
                     unit->maxHP -= 7;
                     break;
                 }
@@ -291,10 +291,10 @@ void ChapterChangeUnitCleanup(void)
 #ifdef CONFIG_LAGUZ_BARS
         for (int i = 0; i < transformationListSize; i++)
         {
-            if (gActiveUnit->pClassData->number == transformationPairs[i][1])
+            if (unit->pClassData->number == transformationPairs[i][1])
             {
                 unit->pClassData = GetClassData(transformationPairs[i][0]);
-                ClearUnitStatDebuff(gActiveUnit, UNIT_STAT_BUFF_LAGUZ);
+                ClearUnitStatDebuff(unit, UNIT_STAT_BUFF_LAGUZ);
                 unit->maxHP -= 7;
                 break;
             }
@@ -307,7 +307,7 @@ void ChapterChangeUnitCleanup(void)
         {
             for (int i = 0; i < dopplegangerListSize; i++)
             {
-                if (gActiveUnit->pCharacterData->number == dopplegangerPairs[i][0])
+                if (unit->pCharacterData->number == dopplegangerPairs[i][0])
                 {
                     unit->pClassData = GetClassData(dopplegangerPairs[i][1]);
                     break;
@@ -322,7 +322,7 @@ void ChapterChangeUnitCleanup(void)
         {
             for (int i = 0; i < dismountListSize; i++)
             {
-                if (gActiveUnit->pClassData->number == dismountPairs[i][1])
+                if (unit->pClassData->number == dismountPairs[i][1])
                 {
                     unit->pClassData = GetClassData(dismountPairs[i][0]);
                     break;
@@ -339,10 +339,13 @@ void ChapterChangeUnitCleanup(void)
 
         /* Boost gold of party by 10%, doesn't stack */
 #if defined(SID_HedgeFund) && (COMMON_SKILL_VALID(SID_HedgeFund))
-        if (SkillTester(unit, SID_HedgeFund) && !hedgeFundActivated)
+        if (!hedgeFundActivated)
         {
-            hedgeFundActivated = true;
-            gPlaySt.partyGoldAmount += gPlaySt.partyGoldAmount / SKILL_EFF0(SID_HedgeFund);
+            if (SkillTester(unit, SID_HedgeFund))
+            {
+                hedgeFundActivated = true;
+                gPlaySt.partyGoldAmount += gPlaySt.partyGoldAmount / SKILL_EFF0(SID_HedgeFund);
+            }
         }
 #endif
 

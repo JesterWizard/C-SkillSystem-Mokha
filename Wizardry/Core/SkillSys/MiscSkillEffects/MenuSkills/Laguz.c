@@ -23,7 +23,6 @@ u8 Transform_Laguz_Usability(const struct MenuItemDef *def, int number)
     FORCE_DECLARE struct NewBwl * bwl;
     bwl = GetNewBwl(UNIT_CHAR_ID(gActiveUnit));
 
-    NoCashGBAPrintf("Current Laguz bar value is: %d", bwl->_pad_[1]);
     if (bwl->_pad_[1] != 30)
         return MENU_NOTSHOWN;
 

@@ -2692,30 +2692,6 @@ void ApplyHazardHealing(ProcPtr proc, struct Unit* unit, int hp, int status) {
     return;
 }
 
-// LYN_REPLACE_CHECK(StatusDecayDisplay_Display);
-// void StatusDecayDisplay_Display(struct UnknownBMUSAilmentProc* proc) {
-//     struct SelectTarget* target = GetTarget(proc->unk_4C);
-//     int status = GetUnit(gActionData.subjectIndex)->statusIndex;
-
-//     proc->unk_58 = status;
-
-//     SetUnitStatus(GetUnit(gActionData.subjectIndex), UNIT_STATUS_NONE);
-
-//     switch (status) {
-//         case UNIT_STATUS_POISON:
-//         case UNIT_STATUS_SLEEP:
-//         case UNIT_STATUS_SILENCED:
-//         case UNIT_STATUS_BERSERK:
-//         case UNIT_STATUS_RECOVER:
-//         case UNIT_STATUS_PETRIFY:
-//         case UNIT_STATUS_13:
-//             StartStatusHealEffect(GetUnit(target->uid), proc);
-//             break;
-//     }
-
-//     return;
-// }
-
 LYN_REPLACE_CHECK(MakePoisonDamageTargetList);
 void MakePoisonDamageTargetList(int faction) {
 

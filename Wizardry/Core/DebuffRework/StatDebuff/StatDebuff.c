@@ -205,7 +205,7 @@ void MSU_LoadStatDebuff(u8 *src, const u32 size)
         hang();
     }
 
-    ReadSramFast(
+    WriteAndVerifySramFast(
         src,
         sStatDebuffStatusAlly,
         sizeof(sStatDebuffStatusAlly));
@@ -237,7 +237,6 @@ void MSU_LoadStatDebuff(u8 *src, const u32 size)
 void TickUnitStatDebuff(struct Unit *unit, enum STATUS_DEBUFF_TICK_TYPE type)
 {
     bool ticked = false;
-    ;
     int i;
     u32 *bitfile = GetUnitStatDebuffStatus(unit)->st.bitmask;
     for (i = UNIT_STAT_DEBUFF_IDX_START; i < UNIT_STAT_DEBUFF_MAX; i++)
@@ -578,7 +577,7 @@ int MovGetterStatDebuff(int status, struct Unit *unit)
     return status + GetStatDebuffMsgBuf(unit)->mov;
 }
 
-void ResetStatDeuffBuf(void)
+void ResetStatDebuffBuff(void)
 {
     CpuFastFill16(0, sStatDebuffStatusAlly, sizeof(sStatDebuffStatusAlly));
     CpuFastFill16(0, sStatDebuffStatusEnemy, sizeof(sStatDebuffStatusEnemy));
@@ -592,25 +591,25 @@ void ResetStatDeuffBuf(void)
     sStatDebuffMsgBufNext = 0;
 }
 
-void StatDeuff_OnNewGameInit(void)
+void StatDebuff_OnNewGameInit(void)
 {
     Assert(UNIT_STAT_DEBUFF_MAX == 128);
     Assert(UNIT_STAT_DEBUFF_MAX_REAL < 128);
 
-    ResetStatDeuffBuf();
+    ResetStatDebuffBuff();
 }
 
-void StatDeuff_OnClearUnit(struct Unit *unit)
+void StatDebuff_OnClearUnit(struct Unit *unit)
 {
     memset(GetUnitStatDebuffStatus(unit)->st.bitmask, 0, sizeof(struct StatDebuffStatus));
 }
 
-void StatDeuff_OnLoadUnit(struct Unit *unit)
+void StatDebuff_OnLoadUnit(struct Unit *unit)
 {
-    StatDeuff_OnClearUnit(unit);
+    StatDebuff_OnClearUnit(unit);
 }
 
-void StatDeuff_OnCopyUnit(struct Unit *from, struct Unit *to)
+void StatDebuff_OnCopyUnit(struct Unit *from, struct Unit *to)
 {
     memcpy(
         GetUnitStatDebuffStatus(to)->st.bitmask,
