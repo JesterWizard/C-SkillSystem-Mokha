@@ -4,51 +4,38 @@
 #include "bwl.h"
 #include "skill-system.h"
 
-STATIC_DECLAR void ApplyUnitPromotionVanilla(struct Unit * unit, u8 classId)
+STATIC_DECLAR void ApplyUnitPromotionVanilla(struct Unit * unit, u8 classId, u8 bonusCaps)
 {
     const struct ClassData* promotedClass = GetClassData(classId);
 
     int i;
 
-    // Apply stat ups
-
-    // unit->maxHP += promotedClass->promotionHp;
-
-    // if (unit->maxHP > promotedClass->maxHP)
-    //     unit->maxHP = promotedClass->maxHP;
-
-    // unit->curHP += promotedClass->promotionHp;
-
-    // if (unit->curHP > GetUnitMaxHp(unit))
-    //     unit->curHP = GetUnitMaxHp(unit);
-
     unit->maxHP = (unit->maxHP + promotedClass->promotionHp > KUNIT_MHP_MAX(unit)) ? KUNIT_MHP_MAX(unit) : unit->maxHP + promotedClass->promotionHp;
     unit->curHP = (unit->curHP + promotedClass->promotionHp > KUNIT_MHP_MAX(unit)) ? KUNIT_MHP_MAX(unit) : unit->curHP + promotedClass->promotionHp;
 
     unit->pow += promotedClass->promotionPow;
-
-    if (unit->pow > promotedClass->maxPow)
-        unit->pow = promotedClass->maxPow;
-
     unit->skl += promotedClass->promotionSkl;
-
-    if (unit->skl > promotedClass->maxSkl)
-        unit->skl = promotedClass->maxSkl;
-
     unit->spd += promotedClass->promotionSpd;
-
-    if (unit->spd > promotedClass->maxSpd)
-        unit->spd = promotedClass->maxSpd;
-
     unit->def += promotedClass->promotionDef;
-
-    if (unit->def > promotedClass->maxDef)
-        unit->def = promotedClass->maxDef;
-
     unit->res += promotedClass->promotionRes;
 
-    if (unit->res > promotedClass->maxRes)
-        unit->res = promotedClass->maxRes;
+    if (bonusCaps == 0)
+    {
+        if (unit->pow > promotedClass->maxPow)
+            unit->pow = promotedClass->maxPow;
+
+        if (unit->skl > promotedClass->maxSkl)
+            unit->skl = promotedClass->maxSkl;
+
+        if (unit->spd > promotedClass->maxSpd)
+            unit->spd = promotedClass->maxSpd;
+
+        if (unit->def > promotedClass->maxDef)
+            unit->def = promotedClass->maxDef;
+
+        if (unit->res > promotedClass->maxRes)
+            unit->res = promotedClass->maxRes;
+    }
 
     // Remove base class' base wexp from unit wexp
     for (i = 0; i < 8; ++i)
@@ -76,13 +63,27 @@ STATIC_DECLAR void ApplyUnitPromotionVanilla(struct Unit * unit, u8 classId)
 
 void GenerateBattleUnitStatGainsComparativelyVanilla(struct BattleUnit * bu, struct Unit * unit)
 {
-    bu->changeHP  = bu->unit.maxHP - unit->maxHP;
-    bu->changePow = bu->unit.pow   - unit->pow;
-    bu->changeSkl = bu->unit.skl   - unit->skl;
-    bu->changeSpd = bu->unit.spd   - unit->spd;
-    bu->changeDef = bu->unit.def   - unit->def;
-    bu->changeRes = bu->unit.res   - unit->res;
-    bu->changeLck = bu->unit.lck   - unit->lck;
+
+    int bonusCaps = 0;
+
+#if defined(SID_LimitBreaker) && (COMMON_SKILL_VALID(SID_LimitBreaker))
+        if (SkillTester(unit, SID_LimitBreaker))
+            bonusCaps = 5;
+#endif
+
+#if defined(SID_LimitBreakerPlus) && (COMMON_SKILL_VALID(SID_LimitBreakerPlus))
+        if (SkillTester(unit, SID_LimitBreakerPlus))
+            bonusCaps = 10;
+#endif
+
+    bu->changeHP  = (bu->unit.maxHP + bonusCaps) - unit->maxHP;
+    bu->changePow = (bu->unit.pow + bonusCaps)   - unit->pow;
+    bu->changeSkl = (bu->unit.skl + bonusCaps)   - unit->skl;
+    bu->changeSpd = (bu->unit.spd + bonusCaps)   - unit->spd;
+    bu->changeDef = (bu->unit.def + bonusCaps)   - unit->def;
+    bu->changeRes = (bu->unit.res + bonusCaps)   - unit->res;
+    bu->changeLck = (bu->unit.lck + bonusCaps)   - unit->lck;
+    BU_CHG_MAG(bu) = (UNIT_MAG(&bu->unit) + bonusCaps) - UNIT_MAG(unit);
 
     if (bu->unit.conBonus != unit->conBonus)
         bu->changeCon = bu->unit.conBonus - unit->conBonus;
@@ -96,14 +97,30 @@ void GenerateBattleUnitStatGainsComparativelyVanilla(struct BattleUnit * bu, str
 LYN_REPLACE_CHECK(ApplyUnitPromotion);
 void ApplyUnitPromotion(struct Unit * unit, u8 jid)
 {
+    int bonusCaps = 0;
+
+#if defined(SID_LimitBreaker) && (COMMON_SKILL_VALID(SID_LimitBreaker))
+    if (SkillTester(unit, SID_LimitBreaker))
+        bonusCaps = 5;
+#endif
+
+#if defined(SID_LimitBreakerPlus) && (COMMON_SKILL_VALID(SID_LimitBreakerPlus))
+    if (SkillTester(unit, SID_LimitBreakerPlus))
+        bonusCaps = 10;
+#endif
+
     NewBwlRecordHiddenLevel(unit);
-    ApplyUnitPromotionVanilla(unit, jid);
+    ApplyUnitPromotionVanilla(unit, jid, bonusCaps);
     TryAddSkillPromotion(unit, jid);
 
     /* Hooks */
     UNIT_MAG(unit) += GetClassChgMagicBonus(jid);
-    if (UNIT_MAG(unit) > GetUnitMaxMagic(unit))
-        UNIT_MAG(unit) = GetUnitMaxMagic(unit);
+
+    if (bonusCaps == 0)
+    {
+        if (UNIT_MAG(unit) > GetUnitMaxMagic(unit))
+            UNIT_MAG(unit) = GetUnitMaxMagic(unit);
+    }
 }
 
 LYN_REPLACE_CHECK(ApplyUnitDefaultPromotion);
@@ -116,7 +133,4 @@ LYN_REPLACE_CHECK(GenerateBattleUnitStatGainsComparatively);
 void GenerateBattleUnitStatGainsComparatively(struct BattleUnit * bu, struct Unit * unit)
 {
     GenerateBattleUnitStatGainsComparativelyVanilla(bu, unit);
-
-    /* Hooks */
-    BU_CHG_MAG(bu) = UNIT_MAG(&bu->unit) - UNIT_MAG(unit);
 }
