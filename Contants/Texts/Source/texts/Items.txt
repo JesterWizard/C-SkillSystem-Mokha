@@ -132,3 +132,7 @@ movement.[X]
 ## MSG_ITEM_SLOW_STAFF_USEDESC
 Half the target's[N]
 movement.[X]
+
+## MSG_ITEM_METIS_TOME_DESC
+Boost all of this unit's[N]
+growths by 5%.[X]

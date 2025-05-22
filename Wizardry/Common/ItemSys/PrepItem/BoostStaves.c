@@ -16,30 +16,42 @@ void DrawUnitResChangeText(struct Text* text, struct Unit* unit, int bonus) {
 
     switch (itemId)
     {
+#ifdef CONFIG_ITEM_INDEX_FORCE_STAFF
     case CONFIG_ITEM_INDEX_FORCE_STAFF:
         statName = "Str";
         statNumber = GetUnitPower(unit);
         break;
+#endif
+#ifdef CONFIG_ITEM_INDEX_TEMPEST_STAFF
     case CONFIG_ITEM_INDEX_TEMPEST_STAFF:
         statName = "Mag";
         statNumber = GetUnitMagic(unit);
         break;
+#endif
+#ifdef CONFIG_ITEM_INDEX_ACUITY_STAFF
     case CONFIG_ITEM_INDEX_ACUITY_STAFF:
         statName = "Skl";
         statNumber = GetUnitSkill(unit);
         break;
+#endif
+#ifdef CONFIG_ITEM_INDEX_SPRINT_STAFF
     case CONFIG_ITEM_INDEX_SPRINT_STAFF:
         statName = "Spd";
         statNumber = GetUnitSpeed(unit);
         break;
+#endif
+#ifdef CONFIG_ITEM_INDEX_FORTUNE_STAFF
     case CONFIG_ITEM_INDEX_FORTUNE_STAFF:
         statName = "Lck";
         statNumber = GetUnitLuck(unit);
         break;
+#endif
+#ifdef CONFIG_ITEM_INDEX_IRON_STAFF
     case CONFIG_ITEM_INDEX_IRON_STAFF:
         statName = "Def";
         statNumber = GetUnitDefense(unit);
         break;
+#endif
     case ITEM_STAFF_BARRIER:
         statName = "Res";
         statNumber = GetUnitResistance(unit);

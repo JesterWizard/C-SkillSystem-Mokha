@@ -5,7 +5,9 @@ const struct ItemData ItemData_SkillScroll = {
     .nameTextId = MSG_ITEM_SkillScrollName,
     .descTextId = MSG_ITEM_SkillScrollName,
     .useDescTextId = MSG_ITEM_SkillScrollUseDesc,
+#ifdef CONFIG_ITEM_INDEX_SKILL_SCROLL
     .number = CONFIG_ITEM_INDEX_SKILL_SCROLL,
+#endif
     .weaponType = ITYPE_ITEM,
     .pStatBonuses = NULL,
     .maxUses = 1,

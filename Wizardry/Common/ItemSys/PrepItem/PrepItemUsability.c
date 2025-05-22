@@ -46,19 +46,32 @@ s8 CanUnitUseItem(struct Unit* unit, int item)
     case ITEM_STAFF_RESCUE:
         return HasSelectTarget(unit, MakeTargetListForRescueStaff);
 
+#ifdef CONFIG_ITEM_INDEX_FORCE_STAFF
     case CONFIG_ITEM_INDEX_FORCE_STAFF:
+#endif
+#ifdef CONFIG_ITEM_INDEX_TEMPEST_STAFF
     case CONFIG_ITEM_INDEX_TEMPEST_STAFF:
+#endif
+#ifdef CONFIG_ITEM_INDEX_ACUITY_STAFF
     case CONFIG_ITEM_INDEX_ACUITY_STAFF:
+#endif
+#ifdef CONFIG_ITEM_INDEX_SPRINT_STAFF
     case CONFIG_ITEM_INDEX_SPRINT_STAFF:
+#endif
+#ifdef CONFIG_ITEM_INDEX_FORTUNE_STAFF
     case CONFIG_ITEM_INDEX_FORTUNE_STAFF:
+#endif
+#ifdef CONFIG_ITEM_INDEX_IRON_STAFF
     case CONFIG_ITEM_INDEX_IRON_STAFF:
+#endif
     case ITEM_STAFF_BARRIER:
         return HasSelectTarget(unit, MakeTargetListForBarrier);
 
     case ITEM_STAFF_SILENCE:
         return HasSelectTarget(unit, MakeTargetListForSilence);
-
+#ifdef CONFIG_ITEM_INDEX_SLOW_STAFF
     case CONFIG_ITEM_INDEX_SLOW_STAFF:
+#endif
     case ITEM_STAFF_SLEEP:
         return HasSelectTarget(unit, MakeTargetListForSleep);
 
@@ -124,12 +137,15 @@ s8 CanUnitUseItem(struct Unit* unit, int item)
 
     case ITEM_STAFF_LATONA:
         return HasSelectTarget(unit, MakeTargetListForLatona);
-
+#ifdef CONFIG_ITEM_INDEX_MINE_STAFF
     case CONFIG_ITEM_INDEX_MINE_STAFF:
+#endif
     case ITEM_MINE:
         return HasSelectTarget(unit, MakeTargetListForMine);
 
+#ifdef CONFIG_ITEM_INDEX_RUNE_STAFF
     case CONFIG_ITEM_INDEX_RUNE_STAFF:
+#endif
     case ITEM_LIGHTRUNE:
         return HasSelectTarget(unit, MakeTargetListForLightRune);
 
@@ -173,30 +189,36 @@ void DoUseBarrierStaff(struct Unit* unit)
 
     switch (itemId)
     {
+#ifdef CONFIG_ITEM_INDEX_FORCE_STAFF
     case CONFIG_ITEM_INDEX_FORCE_STAFF:
         str = "Select which character's strength to bolster";
         break;
-
+#endif
+#ifdef CONFIG_ITEM_INDEX_TEMPEST_STAFF
     case CONFIG_ITEM_INDEX_TEMPEST_STAFF:
         str = "Select which character's magic to bolster";
         break;
-
+#endif
+#ifdef CONFIG_ITEM_INDEX_ACUITY_STAFF
     case CONFIG_ITEM_INDEX_ACUITY_STAFF:
         str = "Select which character's skill to bolster";
         break;
-
+#endif
+#ifdef CONFIG_ITEM_INDEX_SPRINT_STAFF
     case CONFIG_ITEM_INDEX_SPRINT_STAFF:
         str = "Select which character's speed to bolster";
         break;
-
+#endif
+#ifdef CONFIG_ITEM_INDEX_FORTUNE_STAFF
     case CONFIG_ITEM_INDEX_FORTUNE_STAFF:
         str = "Select which character's luck to bolster";
         break;
-
+#endif
+#ifdef CONFIG_ITEM_INDEX_IRON_STAFF
     case CONFIG_ITEM_INDEX_IRON_STAFF:
         str = "Select which character's defense to bolster";
         break;
-
+#endif
     case ITEM_STAFF_BARRIER:
         str = "Select which character's resistance to bolster";
         break;
@@ -240,8 +262,9 @@ void DoItemUse(struct Unit* unit, int item)
     case ITEM_STAFF_SILENCE:
         DoUseAttackStaff(unit, MakeTargetListForSilence);
         break;
-
+#ifdef CONFIG_ITEM_INDEX_SLOW_STAFF
     case CONFIG_ITEM_INDEX_SLOW_STAFF:
+#endif
     case ITEM_STAFF_SLEEP:
         DoUseAttackStaff(unit, MakeTargetListForSleep);
         break;
@@ -249,13 +272,24 @@ void DoItemUse(struct Unit* unit, int item)
     case ITEM_STAFF_BERSERK:
         DoUseAttackStaff(unit, MakeTargetListForBerserk);
         break;
-
+#ifdef CONFIG_ITEM_INDEX_FORCE_STAFF
     case CONFIG_ITEM_INDEX_FORCE_STAFF:
+#endif
+#ifdef CONFIG_ITEM_INDEX_TEMPEST_STAFF
     case CONFIG_ITEM_INDEX_TEMPEST_STAFF:
+#endif
+#ifdef CONFIG_ITEM_INDEX_ACUITY_STAFF
     case CONFIG_ITEM_INDEX_ACUITY_STAFF:
+#endif
+#ifdef CONFIG_ITEM_INDEX_SPRINT_STAFF
     case CONFIG_ITEM_INDEX_SPRINT_STAFF:
+#endif
+#ifdef CONFIG_ITEM_INDEX_FORTUNE_STAFF
     case CONFIG_ITEM_INDEX_FORTUNE_STAFF:
+#endif
+#ifdef CONFIG_ITEM_INDEX_IRON_STAFF
     case CONFIG_ITEM_INDEX_IRON_STAFF:
+#endif
     case ITEM_STAFF_BARRIER:
         DoUseBarrierStaff(unit);
         break;
@@ -276,13 +310,16 @@ void DoItemUse(struct Unit* unit, int item)
     case ITEM_STAFF_LATONA:
         SetStaffUseAction(unit);
         break;
-
+#ifdef CONFIG_ITEM_INDEX_MINE_STAFF
     case CONFIG_ITEM_INDEX_MINE_STAFF:
+#endif
     case ITEM_MINE:
         DoUsePutTrap(unit, MakeTargetListForMine, 0x87D); // TODO: msgid "Select an area to trap."
         break;
 
+#ifdef CONFIG_ITEM_INDEX_RUNE_STAFF
     case CONFIG_ITEM_INDEX_RUNE_STAFF:
+#endif
     case ITEM_LIGHTRUNE:
         DoUsePutTrap(unit, MakeTargetListForLightRune, 0x87E); // TODO: msgid "Select an area to trap."
         break;

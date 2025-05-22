@@ -3,6 +3,12 @@
 #include "skill-system.h"
 #include "constants/skills.h"
 #include "constants/texts.h"
+#include "bmitem.h"
+
+LYN_REPLACE_CHECK(GetItemData);
+const struct ItemData * GetItemData(int itemIndex) {
+    return gItemData_New + itemIndex;
+}
 
 LYN_REPLACE_CHECK(GetItemNameWithArticle);
 char * GetItemNameWithArticle(int item, s8 capitalize)

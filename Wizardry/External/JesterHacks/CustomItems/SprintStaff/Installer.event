@@ -1,10 +1,12 @@
 /* Physical offensive version of barrier staff */
 /* Uses existing item functions for barrier staff, so no need for custom injection hooks */
 
-PUSH
-    ORG CONFIG_PR_ITEM_ICON + CONFIG_ICON_INDEX_SPRINT_STAFF * 0x80
-        #incbin "SprintStaff.4bpp"
+#ifdef CONFIG_ITEM_INDEX_SPRINT_STAFF
+    PUSH
+        ORG CONFIG_PR_ITEM_ICON + CONFIG_ICON_INDEX_SPRINT_STAFF * 0x80
+            #incbin "SprintStaff.4bpp"
 
-    ORG CONFIG_PR_ITEM_TABLE + CONFIG_ITEM_INDEX_SPRINT_STAFF * 0x24
-        #include "ItemData_SprintStaff.lyn.event"
-POP
+        ORG CONFIG_PR_ITEM_TABLE + CONFIG_ITEM_INDEX_SPRINT_STAFF * 0x24
+            #include "ItemData_SprintStaff.lyn.event"
+    POP
+#endif

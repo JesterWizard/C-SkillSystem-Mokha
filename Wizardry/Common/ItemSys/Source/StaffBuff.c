@@ -17,24 +17,36 @@ void ExecBarrierStaff(ProcPtr proc) {
 
     switch (itemId)
     {
+#ifdef CONFIG_ITEM_INDEX_FORCE_STAFF
     case CONFIG_ITEM_INDEX_FORCE_STAFF:
         unit_tar->boostType = 0;
         break;
+#endif
+#ifdef CONFIG_ITEM_INDEX_TEMPEST_STAFF
     case CONFIG_ITEM_INDEX_TEMPEST_STAFF:
         unit_tar->boostType = 1;
         break;
+#endif
+#ifdef CONFIG_ITEM_INDEX_ACUITY_STAFF
     case CONFIG_ITEM_INDEX_ACUITY_STAFF:
         unit_tar->boostType = 2;
         break;
+#endif
+#ifdef CONFIG_ITEM_INDEX_SPRINT_STAFF
     case CONFIG_ITEM_INDEX_SPRINT_STAFF:
         unit_tar->boostType = 3;
         break;
+#endif
+#ifdef CONFIG_ITEM_INDEX_FORTUNE_STAFF
     case CONFIG_ITEM_INDEX_FORTUNE_STAFF:
         unit_tar->boostType = 4;
         break;
+#endif
+#ifdef CONFIG_ITEM_INDEX_IRON_STAFF
     case CONFIG_ITEM_INDEX_IRON_STAFF:
         unit_tar->boostType = 5;
         break;
+#endif
     case ITEM_STAFF_BARRIER:
         unit_tar->boostType = 6;
         break;

@@ -1,5 +1,8 @@
-PUSH
-    /* ITEM TABLE */
-    ORG CONFIG_PR_ITEM_TABLE + CONFIG_ITEM_INDEX_SKILL_STEALER * 0x24
-        #include "ItemData_SkillStealer.lyn.event"
-POP
+
+#ifdef CONFIG_ITEM_INDEX_SKILL_STEALER
+    PUSH
+        /* ITEM TABLE */
+        ORG CONFIG_PR_ITEM_TABLE + CONFIG_ITEM_INDEX_SKILL_STEALER * 0x24
+            #include "ItemData_SkillStealer.lyn.event"
+    POP
+#endif

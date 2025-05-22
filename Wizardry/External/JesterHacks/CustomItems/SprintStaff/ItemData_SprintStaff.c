@@ -5,13 +5,17 @@ const struct ItemData ItemData_SprintStaff = {
     .nameTextId = MSG_ITEM_SPRINT_STAFF_NAME,
     .descTextId = MSG_ITEM_SPRINT_STAFF_DESC,
     .useDescTextId = MSG_ITEM_SPRINT_STAFF_USEDESC,
+#ifdef CONFIG_ITEM_INDEX_SPRINT_STAFF
     .number = CONFIG_ITEM_INDEX_SPRINT_STAFF,
+#endif
     .weaponType = ITYPE_STAFF,
     .pStatBonuses = 0,
     .maxUses = 15,
     .encodedRange = 0x11, // Adjacent allies only 1-1
     .costPerUse = 500,
+#ifdef CONFIG_ITEM_INDEX_SPRINT_STAFF
     .iconId = CONFIG_ICON_INDEX_SPRINT_STAFF,
+#endif
     .useEffectId = 0xF, // Barrier
     .weaponRank = WPN_EXP_C,
     .weaponExp = 4,

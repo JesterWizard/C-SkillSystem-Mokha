@@ -40,6 +40,8 @@
 #include "JobGrowth/JobGrowth.lyn.event"
 #include "Shield/ShieldConfig.lyn.event"
 
+#include "Items/Items.lyn.event"
+
 #include "../Wizardry/data.event"
 
 #endif
