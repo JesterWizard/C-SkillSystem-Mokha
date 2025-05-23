@@ -6,41 +6,9 @@
 #include "../../../include/skill-system.h"
 #include "../../../include/common-chax.h"
 #include "../../../include/debuff.h"
+#include "../../../include/bwl.h"
 
 #define PACKED __attribute__((packed))
-
-struct NewBwl {
-    /* vanilla */
-    u32 battleAmt : 12;
-    u32 winAmt    : 11;
-    u32 lossAmt   : 8;
-    u32 levelGain : 9;
-
-    /* bwl support */
-    u8 supports[UNIT_SUPPORT_MAX_COUNT];
-
-    u8 _pad_[0x10 - 0x0C];
-};
-
-static inline bool CheckHasBwl(u8 pid)
-{
-    if (pid >= BWL_ARRAY_NUM)
-        return false;
-
-    if (GetCharacterData(pid)->affinity == 0)
-        return false;
-
-    return true;
-}
-
-static inline struct NewBwl * GetNewBwl(u8 pid)
-{
-    struct NewBwl * entry = (struct NewBwl *)gPidStatsData;
-    if (!CheckHasBwl(pid))
-        return NULL;
-
-    return entry + (pid);
-}
 
 extern char * GetSkillNameStr(const u16 sid);
 
@@ -68,8 +36,6 @@ typedef struct {
     struct Unit* unit; 
     s16 tmp[tmpSize];
 } DebuggerProc;
-
-
 
 typedef struct { 
     /* 00 */ PROC_HEADER;
