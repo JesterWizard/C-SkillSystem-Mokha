@@ -5,6 +5,7 @@
 #include "../../../include/Configs/configs.h"
 #include "../../../include/skill-system.h"
 #include "../../../include/common-chax.h"
+#include "../../../include/debuff.h"
 
 #define PACKED __attribute__((packed))
 
@@ -2319,8 +2320,8 @@ void SaveMisc(DebuggerProc* proc) {
     unit->conBonus = proc->tmp[4]; 
     unit->movBonus = proc->tmp[5]; 
     if (UNIT_MOV(unit) > 15) { unit->movBonus = 15 - UNIT_MOV_BASE(unit); } 
-    unit->statusIndex = proc->tmp[6] & 0xF;
-    if (unit->statusIndex) { unit->statusDuration = 5; } 
+    SetUnitStatusIndex(unit, proc->tmp[6] & 0x3F);
+    if (unit->statusIndex) { SetUnitStatusDuration(unit, 3); }
 
 }  
 
@@ -2338,7 +2339,7 @@ void EditMiscInit(DebuggerProc* proc) {
     proc->tmp[3] = unit->exp; 
     proc->tmp[4] = unit->conBonus; 
     proc->tmp[5] = unit->movBonus; 
-    proc->tmp[6] = unit->statusIndex; 
+    proc->tmp[6] = (GetUnitStatusIndex(unit) & 0x3F);
     
     
     int x = NUMBER_X - MiscNameWidth - 1; 
@@ -2392,7 +2393,7 @@ void RedrawMiscMenu(DebuggerProc* proc) {
     } 
     else { 
         
-        Text_DrawString(&th[i], GetStringFromIndex(sStatusNameTextIdLookup[proc->tmp[6]])); i++; 
+        Text_DrawString(&th[i], GetStringFromIndex(gpDebuffInfos[proc->tmp[6] & 0x3F].name)); i++;
     } 
     
     int x = NUMBER_X - (MiscNameWidth); 
@@ -2470,7 +2471,7 @@ int GetMiscMax(int id) {
         case 3: { result = 100; break; } // exp  
         case 4: { result = 15; break; } // + con 
         case 5: { result = 15; break; } // + mov  
-        case 6: { result = 15; break; } // status  
+        case 6: { result = 63; break; } // status  
         default: 
     } 
     return result; 
