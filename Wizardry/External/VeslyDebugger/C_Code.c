@@ -1315,11 +1315,14 @@ void EditSkillsIdle(DebuggerProc* proc) {
     
 	//DisplayVertUiHand(CursorLocationTable[proc->digit].x, CursorLocationTable[proc->digit].y); // 6 is the tile of the downwards hand 	
 	u16 keys = sKeyStatusBuffer.repeatedKeys; 
-    if (keys & B_BUTTON) { //press B to not save Supports 
+    if (keys & B_BUTTON) {
+        // Otherwise, close the Supports/Skills window
+        CloseHelpBox();
         Proc_Goto(proc, RestartLabel);
-        m4aSongNumStart(0x6B); 
-    };
-    if ((keys & START_BUTTON)||(keys & A_BUTTON)) { // press A or Start to update Supports and continue 
+        m4aSongNumStart(0x6B);
+    }
+    if ((keys & START_BUTTON)||(keys & A_BUTTON)) { // press A or Start to update Supports and continue
+        CloseHelpBox(); 
         SaveSkills(proc); 
         Proc_Goto(proc, RestartLabel);
         m4aSongNumStart(0x6B); 
@@ -1344,10 +1347,18 @@ void EditSkillsIdle(DebuggerProc* proc) {
         if (keys & DPAD_UP) {
             if (proc->tmp[proc->id] == max) { proc->tmp[proc->id] = min; } 
             else { 
-                proc->tmp[proc->id] += DigitDecimalTable[proc->digit]; 
+                proc->tmp[proc->id] += DigitDecimalTable[proc->digit];
+                
                 if (proc->tmp[proc->id] > max) { proc->tmp[proc->id] = max; } 
             } 
             RedrawUnitSkillsMenu(proc); 
+
+            if (Proc_Find(gProcScr_HelpBox)) {
+                const u16 skillId = proc->tmp[proc->id];
+                u16 msg = GetSkillDescMsg(skillId);
+                char * skillDesc = GetStringFromIndex(msg); // Clear any leftover tile data     
+                StartHelpBoxString(11 * 8, 10 * 8, skillDesc);
+            }
         }
         if (keys & DPAD_DOWN) {
             
@@ -1358,6 +1369,21 @@ void EditSkillsIdle(DebuggerProc* proc) {
             } 
             
             RedrawUnitSkillsMenu(proc); 
+
+            if (Proc_Find(gProcScr_HelpBox)) {
+                const u16 skillId = proc->tmp[proc->id];
+                u16 msg = GetSkillDescMsg(skillId);
+                char * skillDesc = GetStringFromIndex(msg); // Clear any leftover tile data     
+                StartHelpBoxString(11 * 8, 10 * 8, skillDesc);
+            }
+        }
+
+        if (keys & R_BUTTON) {
+            const u16 skillId = proc->tmp[proc->id];
+            u16 msg = GetSkillDescMsg(skillId);
+            char * skillDesc = GetStringFromIndex(msg); // Clear any leftover tile data     
+            LoadHelpBoxGfx(NULL, -1); // TODO: default constants?
+            StartHelpBoxString(11 * 8, 10 * 8, skillDesc);
         }
     }
     else { 
@@ -1374,21 +1400,36 @@ void EditSkillsIdle(DebuggerProc* proc) {
         if (keys & DPAD_UP) {
             proc->id--; 
             if (proc->id < 0) { proc->id = SkillsLearnable - 1; } 
-            RedrawUnitSkillsMenu(proc); 
+            RedrawUnitSkillsMenu(proc);
+
+            if (Proc_Find(gProcScr_HelpBox)) {
+                const u16 skillId = proc->tmp[proc->id];
+                u16 msg = GetSkillDescMsg(skillId);
+                char * skillDesc = GetStringFromIndex(msg); // Clear any leftover tile data     
+                StartHelpBoxString(11 * 8, 10 * 8, skillDesc);
+            }
+
         }
         if (keys & DPAD_DOWN) {
-            proc->id++; 
-            if (proc->id >= SkillsLearnable) { proc->id = 0; } 
-            
+            proc->id++;
+            if (proc->id >= SkillsLearnable) { proc->id = 0; }    
             RedrawUnitSkillsMenu(proc); 
+
+            if (Proc_Find(gProcScr_HelpBox)) {
+                const u16 skillId = proc->tmp[proc->id];
+                u16 msg = GetSkillDescMsg(skillId);
+                char * skillDesc = GetStringFromIndex(msg); // Clear any leftover tile data     
+                StartHelpBoxString(11 * 8, 10 * 8, skillDesc);
+            }
+            
         }
 
         if (keys & R_BUTTON) {
-            //StartHelpBox(5, 6, proc->id);
             const u16 skillId = proc->tmp[proc->id];
             u16 msg = GetSkillDescMsg(skillId);
-            char * skillDesc = GetStringFromIndex(msg);
-            StartHelpBoxString(5 * 8, 6 * 8, skillDesc);
+            char * skillDesc = GetStringFromIndex(msg); // Clear any leftover tile data     
+            LoadHelpBoxGfx(NULL, -1); // TODO: default constants?
+            StartHelpBoxString(11 * 8, 10 * 8, skillDesc);
         }
     } 
 } 
@@ -1443,19 +1484,6 @@ void EditSupportsInit(DebuggerProc* proc) {
     }
     RedrawUnitSupportsMenu(proc);
 }
-
-// struct MuProc * StartUiMu(struct Unit * unit, int x, int y)
-// {
-//     struct MuProc * proc = StartMu(unit);
-
-//     if (!proc)
-//         return NULL;
-
-//     proc->xSubPosition = x << MU_SUBPIXEL_PRECISION;
-//     proc->ySubPosition = y << MU_SUBPIXEL_PRECISION;
-//     proc->stateId = MU_STATE_UI_DISPLAY;
-//     return proc;
-// }
 
 void RedrawUnitSupportsMenu(DebuggerProc* proc) {
     TileMap_FillRect(gBG0TilemapBuffer + TILEMAP_INDEX(NUMBER_X-2, Y_HAND), 9, 2 * SupportsOptions, 0);
