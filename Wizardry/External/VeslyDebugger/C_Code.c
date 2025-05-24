@@ -772,10 +772,10 @@ void EditWExpInit(DebuggerProc* proc) {
     int h = (WExpOptions * 2) + 2; 
     
     DrawUiFrame(
-        BG_GetMapBuffer(2), // back BG
+        BG_GetMapBuffer(1), // back BG
         x, y, w, h,
         TILEREF(0, 0), 0); // style as 0 ? 
-    BG_EnableSyncByMask(BG2_SYNC_BIT); 
+    BG_EnableSyncByMask(BG1_SYNC_BIT); 
     
     struct Text* th = gStatScreen.text;
     
