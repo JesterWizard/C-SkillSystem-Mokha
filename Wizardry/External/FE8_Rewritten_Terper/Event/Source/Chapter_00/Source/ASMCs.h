@@ -19,7 +19,7 @@ void SetGameOptions_Chapter0()
 
     // // SetPartyGoldAmount(10000);
 
-    // struct Unit * unit = GetUnitFromCharId(CHARACTER_EIRIKA);
+    //struct Unit * unit = GetUnitFromCharId(CHARACTER_EIRIKA);
     // unit->maxHP = 26;
     // unit->curHP = 26;
 

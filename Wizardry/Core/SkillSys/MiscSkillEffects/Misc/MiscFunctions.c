@@ -1385,20 +1385,50 @@ void GiveScroll(void)
     unit = GetUnitFromCharId(charId);
 
     for (int i = 0; i < 5; i++) {
-        if(unit->items[i] == ((skillId << 8) | CONFIG_ITEM_INDEX_SKILL_SCROLL))
+        if(unit->items[i] == ((skillId << 8) | CONFIG_ITEM_INDEX_SKILL_SCROLL_1))
         {
-            unit->items[i] = (skillId << 8) | CONFIG_ITEM_INDEX_SKILL_SCROLL;
+            unit->items[i] = (skillId << 8) | CONFIG_ITEM_INDEX_SKILL_SCROLL_1;
+            break;
+        }
+        else if(unit->items[i] == ((skillId << 8) | CONFIG_ITEM_INDEX_SKILL_SCROLL_2))
+        {
+            unit->items[i] = (skillId << 8) | CONFIG_ITEM_INDEX_SKILL_SCROLL_2;
+            break;
+        }
+        else if(unit->items[i] == ((skillId << 8) | CONFIG_ITEM_INDEX_SKILL_SCROLL_3))
+        {
+            unit->items[i] = (skillId << 8) | CONFIG_ITEM_INDEX_SKILL_SCROLL_3;
+            break;
+        }
+        else if(unit->items[i] == ((skillId << 8) | CONFIG_ITEM_INDEX_SKILL_SCROLL_4))
+        {
+            unit->items[i] = (skillId << 8) | CONFIG_ITEM_INDEX_SKILL_SCROLL_4;
             break;
         }
     }
 
-    unsigned short *items;
-    items = GetConvoyItemArray();
+    // unsigned short *items;
+    // items = GetConvoyItemArray();
 
     for (int i = 0; i < CONFIG_INSTALL_CONVOYEXPA_AMT; i++) {
-        if(items[i] == ((skillId << 8) | CONFIG_ITEM_INDEX_SKILL_SCROLL))
+        if(unit->items[i] == ((skillId << 8) | CONFIG_ITEM_INDEX_SKILL_SCROLL_1))
         {
-            items[i] = (skillId << 8) | CONFIG_ITEM_INDEX_SKILL_SCROLL;
+            unit->items[i] = (skillId << 8) | CONFIG_ITEM_INDEX_SKILL_SCROLL_1;
+            break;
+        }
+        else if(unit->items[i] == ((skillId << 8) | CONFIG_ITEM_INDEX_SKILL_SCROLL_2))
+        {
+            unit->items[i] = (skillId << 8) | CONFIG_ITEM_INDEX_SKILL_SCROLL_2;
+            break;
+        }
+        else if(unit->items[i] == ((skillId << 8) | CONFIG_ITEM_INDEX_SKILL_SCROLL_3))
+        {
+            unit->items[i] = (skillId << 8) | CONFIG_ITEM_INDEX_SKILL_SCROLL_3;
+            break;
+        }
+        else if(unit->items[i] == ((skillId << 8) | CONFIG_ITEM_INDEX_SKILL_SCROLL_4))
+        {
+            unit->items[i] = (skillId << 8) | CONFIG_ITEM_INDEX_SKILL_SCROLL_4;
             break;
         }
     }

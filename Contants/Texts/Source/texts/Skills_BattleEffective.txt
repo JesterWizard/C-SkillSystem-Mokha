@@ -2,14 +2,16 @@
 Nullify[X]
 
 ## MSG_SKILL_Nullify_DESC
-Nullify: Unit is protected[N]
+Nullify:[N]
+Unit is protected[N]
 from all effective attacks.[X]
 
 ## MSG_SKILL_Slayer_NAME
 Slayer[X]
 
 ## MSG_SKILL_Slayer_DESC
-Slayer: Deal effective damage[N]
+Slayer:[N]
+Deal effective damage[N]
 to monster units.[X]
 
 ## MSG_SKILL_Skybreaker_NAME
@@ -23,8 +25,9 @@ damage to flying units.[X]
 Resourceful[X]
 
 ## MSG_SKILL_Resourceful_DESC
-Resourceful: Double bonus[N]
-effectiveness multipliers.[X]
+Resourceful:[N]
+Double bonus effectiveness[N]
+multipliers.[X]
 
 ## MSG_SKILL_SolidRock_NAME
 Solid Rock[X]

@@ -2,14 +2,38 @@
 #include "Source/RemoveSkillMenu.lyn.event"
 
 PUSH
-    ORG CONFIG_PR_ITEM_TABLE + CONFIG_ITEM_INDEX_SKILL_SCROLL * 0x24
-        #include "Source/ItemData_Scroll.lyn.event"
+    ORG CONFIG_PR_ITEM_TABLE + CONFIG_ITEM_INDEX_SKILL_SCROLL_1 * 0x24
+        #include "Source/ItemData_Scroll_1.lyn.event"
+    ORG CONFIG_PR_ITEM_TABLE + CONFIG_ITEM_INDEX_SKILL_SCROLL_2 * 0x24
+        #include "Source/ItemData_Scroll_2.lyn.event"
+    ORG CONFIG_PR_ITEM_TABLE + CONFIG_ITEM_INDEX_SKILL_SCROLL_3 * 0x24
+        #include "Source/ItemData_Scroll_3.lyn.event"
+    ORG CONFIG_PR_ITEM_TABLE + CONFIG_ITEM_INDEX_SKILL_SCROLL_4 * 0x24
+        #include "Source/ItemData_Scroll_4.lyn.event"
 POP
 
 #include "Source/ItemSysJpt.lyn.event"
 
-InjectItemPrepUsabilityJpt(CONFIG_ITEM_INDEX_SKILL_SCROLL, PrepItemUsability_SkillScroll)
-InjectItemPrepEffectJpt(CONFIG_ITEM_INDEX_SKILL_SCROLL, PrepItemEffect_SkillScroll)
-InjectItemUsabilityJpt(CONFIG_ITEM_INDEX_SKILL_SCROLL, ItemUsabilityJpt_SkillScroll)
-InjectItemEffectJpt(CONFIG_ITEM_INDEX_SKILL_SCROLL, ItemUseEffectJpt_SkillScroll)
-InjectItemActionJpt(CONFIG_ITEM_INDEX_SKILL_SCROLL, ItemUseActionJpt_SkillScroll)
+InjectItemPrepUsabilityJpt(CONFIG_ITEM_INDEX_SKILL_SCROLL_1, PrepItemUsability_SkillScroll)
+InjectItemPrepEffectJpt(CONFIG_ITEM_INDEX_SKILL_SCROLL_1, PrepItemEffect_SkillScroll)
+InjectItemUsabilityJpt(CONFIG_ITEM_INDEX_SKILL_SCROLL_1, ItemUsabilityJpt_SkillScroll)
+InjectItemEffectJpt(CONFIG_ITEM_INDEX_SKILL_SCROLL_1, ItemUseEffectJpt_SkillScroll)
+InjectItemActionJpt(CONFIG_ITEM_INDEX_SKILL_SCROLL_1, ItemUseActionJpt_SkillScroll)
+
+InjectItemPrepUsabilityJpt(CONFIG_ITEM_INDEX_SKILL_SCROLL_2, PrepItemUsability_SkillScroll)
+InjectItemPrepEffectJpt(CONFIG_ITEM_INDEX_SKILL_SCROLL_2, PrepItemEffect_SkillScroll)
+InjectItemUsabilityJpt(CONFIG_ITEM_INDEX_SKILL_SCROLL_2, ItemUsabilityJpt_SkillScroll)
+InjectItemEffectJpt(CONFIG_ITEM_INDEX_SKILL_SCROLL_2, ItemUseEffectJpt_SkillScroll)
+InjectItemActionJpt(CONFIG_ITEM_INDEX_SKILL_SCROLL_2, ItemUseActionJpt_SkillScroll)
+
+InjectItemPrepUsabilityJpt(CONFIG_ITEM_INDEX_SKILL_SCROLL_3, PrepItemUsability_SkillScroll)
+InjectItemPrepEffectJpt(CONFIG_ITEM_INDEX_SKILL_SCROLL_3, PrepItemEffect_SkillScroll)
+InjectItemUsabilityJpt(CONFIG_ITEM_INDEX_SKILL_SCROLL_3, ItemUsabilityJpt_SkillScroll)
+InjectItemEffectJpt(CONFIG_ITEM_INDEX_SKILL_SCROLL_3, ItemUseEffectJpt_SkillScroll)
+InjectItemActionJpt(CONFIG_ITEM_INDEX_SKILL_SCROLL_3, ItemUseActionJpt_SkillScroll)
+
+InjectItemPrepUsabilityJpt(CONFIG_ITEM_INDEX_SKILL_SCROLL_4, PrepItemUsability_SkillScroll)
+InjectItemPrepEffectJpt(CONFIG_ITEM_INDEX_SKILL_SCROLL_4, PrepItemEffect_SkillScroll)
+InjectItemUsabilityJpt(CONFIG_ITEM_INDEX_SKILL_SCROLL_4, ItemUsabilityJpt_SkillScroll)
+InjectItemEffectJpt(CONFIG_ITEM_INDEX_SKILL_SCROLL_4, ItemUseEffectJpt_SkillScroll)
+InjectItemActionJpt(CONFIG_ITEM_INDEX_SKILL_SCROLL_4, ItemUseActionJpt_SkillScroll)

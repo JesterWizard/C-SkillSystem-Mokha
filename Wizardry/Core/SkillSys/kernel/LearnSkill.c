@@ -8,9 +8,15 @@
 extern int sExpaConvoyItemCount; // gConvoyItemCount is just a u8 that can be no more than 255, not enough
 extern u16 sExpaConvoyItemArray[CONFIG_INSTALL_CONVOYEXPA_AMT];
 
+#ifdef CONFIG_TURN_ON_ALL_SKILLS
 struct LearnedSkillList {
-    u32 data[8]; /* 8 * 32 = 0x100 */
+    u32 data[32]; // 32 * 32 = 1024 bits needed for 10-bit skill IDs
 };
+#else
+struct LearnedSkillList {
+    u32 data[8];
+};
+#endif
 
 extern struct LearnedSkillList sLearnedSkillPLists[NEW_BWL_ARRAY_NUM];
 

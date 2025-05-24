@@ -1877,7 +1877,7 @@ void EditItemsIdle(DebuggerProc* proc) {
         }
         else { 
             DisplayVertUiHand(CursorLocationTable[proc->digit].x + (3 * 8), (Y_HAND + (proc->id * 2)) * 8); 	
-            int max = 255 << 8; // skill scrolls
+            int max = 255 << 10; // skill scrolls
             int min = 0 << 8; 
             int max_digits = GetMaxDigits(max >> 8, 0); 
             

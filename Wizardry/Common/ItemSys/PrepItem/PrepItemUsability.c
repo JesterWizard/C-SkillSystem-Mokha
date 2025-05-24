@@ -167,9 +167,25 @@ s8 CanUnitUseItem(struct Unit* unit, int item)
     case ITEM_JUNAFRUIT:
         return CanUnitUseFruitItem(unit);
 
-#ifdef CONFIG_ITEM_INDEX_SKILL_SCROLL
-    case CONFIG_ITEM_INDEX_SKILL_SCROLL:
-        return PrepItemUsability_SkillScroll(unit, item);
+#ifdef CONFIG_ITEM_INDEX_SKILL_SCROLL_1
+    case CONFIG_ITEM_INDEX_SKILL_SCROLL_1:
+        ItemUseEffect_SkillScroll(unit);
+        return TRUE;
+#endif
+#ifdef CONFIG_ITEM_INDEX_SKILL_SCROLL_2
+    case CONFIG_ITEM_INDEX_SKILL_SCROLL_2:
+        ItemUseEffect_SkillScroll(unit);
+        return TRUE;
+#endif
+#ifdef CONFIG_ITEM_INDEX_SKILL_SCROLL_3
+    case CONFIG_ITEM_INDEX_SKILL_SCROLL_3:
+        ItemUseEffect_SkillScroll(unit);
+        return TRUE;
+#endif
+#ifdef CONFIG_ITEM_INDEX_SKILL_SCROLL_4
+    case CONFIG_ITEM_INDEX_SKILL_SCROLL_4:
+        ItemUseEffect_SkillScroll(unit);
+        return TRUE;
 #endif
 
     default:
