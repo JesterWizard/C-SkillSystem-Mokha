@@ -118,7 +118,7 @@ static void NewPackSuspandUnit(struct Unit * src, struct EmsPackedSusUnit * dst)
 
     if (!src || !UNIT_IS_VALID(src))
     {
-        ClearUnit(&tmp_unit);
+        ClearUnit(src);
         src = &tmp_unit;
         dst->jid = 0;
         dst->pid = 0;
