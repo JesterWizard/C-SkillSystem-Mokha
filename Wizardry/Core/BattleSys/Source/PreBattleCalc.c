@@ -1551,21 +1551,9 @@ void PreBattleCalcSkills(struct BattleUnit *attacker, struct BattleUnit *defende
 
 #if (defined(SID_GoodAsGold) && (COMMON_SKILL_VALID(SID_GoodAsGold)))
         case SID_GoodAsGold:
-            static const u8 _debuffs[9] = {
-                UNIT_STATUS_POISON,
-                UNIT_STATUS_SLEEP,
-                UNIT_STATUS_SILENCED,
-                UNIT_STATUS_BERSERK,
-                UNIT_STATUS_PETRIFY,
-                NEW_UNIT_STATUS_HEAVY_GRAVITY,
-                NEW_UNIT_STATUS_WEAKEN,
-                NEW_UNIT_STATUS_PANIC,
-                NEW_UNIT_STATUS_BREAK,
-            };
-
             for (int i = 0; i < 9; i++)
             {
-                if (GetUnitStatusIndex(GetUnit(attacker->unit.index)) == _debuffs[i])
+                if (GetUnitStatusIndex(GetUnit(attacker->unit.index)) == debuffs[i])
                 {
                     SetUnitStatus(GetUnit(attacker->unit.index), UNIT_STATUS_NONE);
                     break;
