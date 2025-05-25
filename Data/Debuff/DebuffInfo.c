@@ -80,7 +80,7 @@ const struct DebuffInfo gDebuffInfos[NEW_UNIT_STATUS_MAX] = {
         .tick_type = STATUS_DEBUFF_TICK_ON_ALLY,
         .duration = 3,
         .battle_status.avo = 15,
-        .img = GFX_DebuffMinibox_Aviod,
+        .img = GFX_DebuffMinibox_Avoid,
         .on_draw = PutUnitDanceRingBuffIcon,
     },
     [UNIT_STATUS_SICK] = {
@@ -167,7 +167,7 @@ const struct DebuffInfo gDebuffInfos[NEW_UNIT_STATUS_MAX] = {
         .duration = 1,
         .efx_config = {EFX_DEBUFF_NORMAL, 0x8, 0x8, 0x8},
         .battle_status.avo = 15,
-        .img = GFX_DebuffMinibox_Aviod,
+        .img = GFX_DebuffMinibox_Avoid,
     },
     [NEW_UNIT_STATUS_AVOID_PLUS] = {
         .name = MSG_DEBUFF_AVOID_PLUS_NAME,
@@ -230,7 +230,7 @@ const struct DebuffInfo gDebuffInfos[NEW_UNIT_STATUS_MAX] = {
         .positive_type = STATUS_DEBUFF_POSITIVE,
         .tick_type = STATUS_DEBUFF_TICK_ON_ALLY,
         .duration = 1,
-        .img = GFX_DebuffMinibox_Aviod,
+        .img = GFX_DebuffMinibox_Avoid,
         .efx_config = {EFX_DEBUFF_NORMAL, 0x10, 0, 0x10},
     },
     [NEW_UNIT_STATUS_SLOW] = {
@@ -239,7 +239,15 @@ const struct DebuffInfo gDebuffInfos[NEW_UNIT_STATUS_MAX] = {
         .positive_type = STATUS_DEBUFF_NEGATIVE,
         .tick_type = STATUS_DEBUFF_TICK_ON_ENEMY,
         .duration = 2,
-        .img = GFX_DebuffMinibox_Aviod,
+        .img = GFX_DebuffMinibox_Avoid,
+        .efx_config = {EFX_DEBUFF_NORMAL, 0x10, 0, 0x10},
+    },
+    [NEW_UNIT_STATUS_DISMOUNT] = {
+        .name = MSG_DEBUFF_DISMOUNT_NAME,
+        .desc = MSG_DEBUFF_DISMOUNT_DESC,
+        .positive_type = STATUS_DEBUFF_POSITIVE,
+        .tick_type = STATUS_DEBUFF_NO_TICK,
+        .img = GFX_DebuffMinibox_Avoid,
         .efx_config = {EFX_DEBUFF_NORMAL, 0x10, 0, 0x10},
     },
 };

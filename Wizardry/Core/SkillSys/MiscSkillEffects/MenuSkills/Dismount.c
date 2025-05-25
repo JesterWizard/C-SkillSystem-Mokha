@@ -7,26 +7,6 @@
 #include "jester_headers/class-pairs.h"
 
 #if defined(SID_Dismount) && (COMMON_SKILL_VALID(SID_Dismount))
-// Predefine an array of key-value pairs
-const int dismountPairs[14][2] = {
-    { CLASS_EIRIKA_MASTER_LORD, CLASS_EIRIKA_LORD },
-    { CLASS_EPHRAIM_MASTER_LORD, CLASS_EPHRAIM_LORD },
-    { CLASS_PALADIN, CLASS_SOLDIER },
-    { CLASS_PALADIN_F, CLASS_SOLDIER },
-    { CLASS_GREAT_KNIGHT, CLASS_SOLDIER },
-    { CLASS_GREAT_KNIGHT_F, CLASS_SOLDIER },
-    { CLASS_PEGASUS_KNIGHT, CLASS_SOLDIER },
-    { CLASS_FALCON_KNIGHT, CLASS_SOLDIER },
-    { CLASS_WYVERN_RIDER, CLASS_SOLDIER },
-    { CLASS_WYVERN_RIDER_F, CLASS_SOLDIER },
-    { CLASS_WYVERN_KNIGHT, CLASS_SOLDIER },
-    { CLASS_WYVERN_KNIGHT_F, CLASS_SOLDIER },
-    { CLASS_WYVERN_LORD, CLASS_SOLDIER },
-    { CLASS_WYVERN_LORD_F, CLASS_SOLDIER },
-};
-
-// Define the size of the array
-const int dismountListSize = sizeof(dismountPairs) / sizeof(dismountPairs[0]);
 
 u8 Dismount_Usability(const struct MenuItemDef * def, int number)
 {
@@ -66,9 +46,17 @@ static void callback_exec(ProcPtr proc)
     for (int i = 0; i < dismountListSize; i++)
     {
         if (gActiveUnit->pClassData->number == dismountPairs[i][0])
+        {
             gActiveUnit->pClassData = GetClassData(dismountPairs[i][1]);
+            SetUnitStatusIndex(gActiveUnit, NEW_UNIT_STATUS_DISMOUNT);
+            break;
+        }
         else if (gActiveUnit->pClassData->number == dismountPairs[i][1])
+        {
             gActiveUnit->pClassData = GetClassData(dismountPairs[i][0]);
+            SetUnitStatusIndex(gActiveUnit, NEW_UNIT_STATUS_DISMOUNT);
+            break;
+        }
     }
 }
 

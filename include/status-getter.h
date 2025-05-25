@@ -58,3 +58,5 @@ int GetUnitMaxStatusDef(struct Unit *unit);
 int GetUnitMaxStatusRes(struct Unit *unit);
 int GetUnitMaxStatusMov(struct Unit *unit);
 int GetUnitMaxStatusCon(struct Unit *unit);
+
+#define MAX_LUCK 30
