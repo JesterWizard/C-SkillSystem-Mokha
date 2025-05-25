@@ -48,7 +48,7 @@ static const u8 debuffs[12] = {
     NEW_UNIT_STATUS_TOXIC_POISON,
     NEW_UNIT_STATUS_DOOM,
     NEW_UNIT_STATUS_SLOW,
-}
+};
 
 enum DEBUFF_POSITIVE_TYPE {
     /* DebuffInfo::positive_type */
