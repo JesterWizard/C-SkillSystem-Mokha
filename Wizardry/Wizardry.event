@@ -1,5 +1,4 @@
 ALIGN 4
-
 #include "Core/DebuffRework/Source/MiscHooks.event"
 #include "Core/UnitStatusGetter/source/InjectHPGetters.event"
 #include "Core/UnitStatusGetter/source/InjectMovGetters.event"

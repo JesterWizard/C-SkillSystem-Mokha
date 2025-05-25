@@ -5055,3 +5055,187 @@ void AddAsTarget_IfCanStealFrom(struct Unit* unit) {
 
     return;
 }
+
+extern struct ProcCmd CONST_DATA gProcScr_SupportScreen[];
+
+//! FE8U = 0x080A1984
+LYN_REPLACE_CHECK(StartSupportScreen);
+void StartSupportScreen(ProcPtr parent) {
+    struct SupportScreenProc* proc = Proc_StartBlocking(gProcScr_SupportScreen, parent);
+    proc->fromPrepScreen = FALSE;
+    return;
+}
+
+//! FE8U = 0x080A21D0
+LYN_REPLACE_CHECK(SupportSubScreen_Init);
+void SupportSubScreen_Init(struct SubScreenProc* proc) {
+    proc->x = 0;
+    proc->y = 0;
+    proc->unk_39 &= 0xfc;
+    proc->unk_39 &= 0xe3;
+    proc->partnerCount = GetSupportScreenPartnerCount(GetSupportScreenCharIdAt(proc->unitIdx));
+
+    InitSupportSubScreenPartners(proc);
+    InitSupportSubScreenPartnerLevels(proc);
+    InitSupportSubScreenRemainingSupports(proc);
+    SupportSubScreen_MoveCursorToNextValidUnit(proc, 0, +1);
+
+    return;
+}
+
+//! FE8U = 0x080A2274
+LYN_REPLACE_CHECK(SupportSubScreen_SetupGraphics);
+void SupportSubScreen_SetupGraphics(struct SubScreenProc* proc) {
+    gLCDControlBuffer.dispcnt.mode = 0;
+
+    SetupBackgrounds(0);
+
+    gLCDControlBuffer.bg0cnt.priority = 1;
+    gLCDControlBuffer.bg1cnt.priority = 3;
+    gLCDControlBuffer.bg2cnt.priority = 1;
+    gLCDControlBuffer.bg3cnt.priority = 3;
+
+    ResetText();
+    ResetIconGraphics_();
+
+    LoadUiFrameGraphics();
+    LoadObjUIGfx();
+
+    ApplyUnitSpritePalettes();
+    sub_80A221C();
+    LoadIconPalettes(0xd);
+
+    StartGreenText((void*)proc);
+
+    if (!proc->fromPrepScreen) {
+        gPlaySt.config.textSpeed = 1; // TODO: Text speed constants
+
+        ResetSysHandCursor(proc);
+        DisplaySysHandCursorTextShadow(0x600, 1);
+        ConfigSysHandCursorShadowEnabled(1);
+
+        proc->unk_3a = -1;
+
+        if (proc->unk_3b != 0) {
+            ShowSysHandCursor(
+                (proc->unk_39 & 3) * 8 + 0xc4,
+                ((proc->unk_39 >> 2) & 7) * 16 + 0x18,
+                1,
+                0x800
+            );
+        }
+    }
+
+    BG_SetPosition(0, 4, 0);
+    BG_SetPosition(1, 4, 0);
+    BG_SetPosition(2, 0, 0);
+
+    SetBlendConfig(1, 0xd, 3, 0);
+    SetBlendTargetA(0, 1, 0, 0, 0);
+    SetBlendTargetB(0, 0, 0, 1, 0);
+
+    SetBlendBackdropA(0);
+    SetBlendBackdropB(0);
+
+    RestartMuralBackground();
+
+    PutImg_PrepItemUseUnk(0x4000, 5);
+
+    Decompress(gTsa_SupportSubScreen, gGenericBuffer);
+    CallARM_FillTileRect(gBG1TilemapBuffer, gGenericBuffer, 0x1000);
+
+    PutFace80x72(
+        (struct Proc*)proc,
+        TILEMAP_LOCATED(gBG0TilemapBuffer, 2, 1),
+        gCharacterData[GetSupportScreenCharIdAt(proc->unitIdx) - 1].portraitId,
+        0x200,
+        2
+    );
+
+    DrawSupportSubScreenUnitPartnerDetails(proc);
+    DrawSupportSubScreenRemainingText(proc);
+
+    Decompress(gGfx_SupportMenu, (void*)0x06017800);
+    ApplyPalette(gPal_SupportMenu, 0x1A);
+    ApplyPalette(Pal_MapBattleInfoNum, 0x12);
+
+    StartParallelWorker(DrawSupportSubScreenSprites, proc);
+
+    return;
+}
+
+//! FE8U = 0x080A2448
+LYN_REPLACE_CHECK(SupportSubScreen_Loop_KeyHandler);
+void SupportSubScreen_Loop_KeyHandler(struct SubScreenProc* proc) {
+    NoCashGBAPrint("Fuck shit fuck");
+    if (gKeyStatusPtr->newKeys & B_BUTTON) {
+        PlaySoundEffect(SONG_SE_SYS_WINDOW_CANSEL1);
+        Proc_Goto(proc, 3);
+        return;
+    }
+
+    if (gKeyStatusPtr->repeatedKeys & R_BUTTON) {
+        Proc_Goto(proc, 4);
+        return;
+    }
+
+    if (gKeyStatusPtr->repeatedKeys & L_BUTTON) {
+        Proc_Goto(proc, 5);
+        return;
+    }
+
+    if (proc->fromPrepScreen) {
+        return;
+    }
+
+    if (proc->unk_3b != 0) {
+        u32 previous = proc->unk_39;
+
+        if (gKeyStatusPtr->newKeys & A_BUTTON) {
+            PlaySoundEffect(SONG_SE_SYS_WINDOW_SELECT1);
+            Proc_Goto(proc, 2);
+            return;
+        }
+
+        if (gKeyStatusPtr->repeatedKeys & DPAD_LEFT) {
+            if ((proc->unk_39 & 3) != 0) {
+                int unk = (proc->unk_39 & 0xfc) + 0xFF;
+                proc->unk_39 = unk + (proc->unk_39 & 3);
+            }
+        }
+
+        if (gKeyStatusPtr->repeatedKeys & DPAD_RIGHT) {
+            if ((proc->unk_39 & 3) < GetSupportScreenPartnerSupportLevel(proc->unitIdx, (proc->unk_39 >> 2) & 7) - 1) {
+                int unk = (proc->unk_39 & 0xfc) + 1;
+                proc->unk_39 = unk + (proc->unk_39 & 3);
+            }
+        }
+
+        if (gKeyStatusPtr->repeatedKeys & DPAD_UP) {
+            SupportSubScreen_MoveCursorToNextValidUnit(proc, ((proc->unk_39 >> 2) & 7) - 1, -1);
+        }
+
+        if (gKeyStatusPtr->repeatedKeys & DPAD_DOWN) {
+            SupportSubScreen_MoveCursorToNextValidUnit(proc, ((proc->unk_39 >> 2) & 7) + 1, +1);
+        }
+
+        if (previous != proc->unk_39) {
+            ShowSysHandCursor(
+                (proc->unk_39 & 3) * 8 + 0xc4,
+                ((proc->unk_39 >> 2) & 7) * 16  + 0x18,
+                1,
+                0x800
+            );
+            PlaySoundEffect(SONG_65);
+        }
+
+    } else {
+        if (gKeyStatusPtr->newKeys & A_BUTTON) {
+            PlaySoundEffect(SONG_6C);
+        }
+
+        return;
+    }
+
+    return;
+}

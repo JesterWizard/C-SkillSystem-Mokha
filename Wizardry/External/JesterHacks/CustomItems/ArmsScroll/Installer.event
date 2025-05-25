@@ -1,5 +1,7 @@
-    #include "ArmsScroll.lyn.event"
+
 #ifdef CONFIG_ITEM_INDEX_ARMS_SCROLL
+
+    #include "ArmsScroll.lyn.event"
 
     PUSH
         ORG CONFIG_PR_ITEM_TABLE + CONFIG_ITEM_INDEX_ARMS_SCROLL * 0x24

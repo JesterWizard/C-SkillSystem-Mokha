@@ -4,8 +4,6 @@
 #include "kernel-lib.h"
 #include "constants/texts.h"
 
-
-
 /* External hooks */
 char * GetArmsScrollItemName(int item)
 {

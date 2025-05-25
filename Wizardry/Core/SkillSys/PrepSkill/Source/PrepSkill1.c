@@ -243,9 +243,6 @@ void StartPrepEquipScreen(struct ProcAtMenu *pproc)
 	MakePrepUnitList();
 	proc->list_num_cur = UnitGetIndexInPrepList(PrepGetLatestCharId());
 	proc->list_num_pre = proc->list_num_cur;
-
-	/* Heisenbug */
-	NoCashGBAPrint("Needed to prevent a crash");
 	
 	proc->max_counter  = pproc->max_counter;
 	proc->cur_counter  = pproc->cur_counter;
