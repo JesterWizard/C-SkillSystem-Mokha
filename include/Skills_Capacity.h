@@ -739,3 +739,4 @@
 #define MSG_SKILL_Ruinator_CAPACITY 1
 #define MSG_SKILL_MarkOfTheBeast_CAPACITY 1
 #define MSG_SKILL_Rampart_CAPACITY 1
+#define MSG_SKILL_RampartPlus_CAPACITY 1

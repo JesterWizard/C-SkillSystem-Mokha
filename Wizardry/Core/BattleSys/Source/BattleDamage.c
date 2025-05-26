@@ -538,8 +538,22 @@ int BattleHit_CalcDamage(struct BattleUnit * attacker, struct BattleUnit * defen
     }
 #endif
 
+bool rampartPlus_activated = false;
+
+#if defined(SID_RampartPlus) && (COMMON_SKILL_VALID(SID_RampartPlus))
+    if (BattleSkillTester(defender, SID_RampartPlus))
+    {
+        if (!AreUnitsAllied(defender->unit.index, gPlaySt.faction) && act_flags->round_cnt_hit == 1)
+        {
+            RegisterTargetEfxSkill(GetBattleHitRound(gBattleHitIterator), SID_RampartPlus);
+            gDmg.decrease += DAMAGE_DECREASE(SKILL_EFF0(SID_RampartPlus));
+            rampartPlus_activated = true;
+        }
+    }
+#endif
+
 #if defined(SID_Rampart) && (COMMON_SKILL_VALID(SID_Rampart))
-    if (BattleSkillTester(defender, SID_Rampart))
+    if (BattleSkillTester(defender, SID_Rampart) && !rampartPlus_activated)
     {
         if (!AreUnitsAllied(defender->unit.index, gPlaySt.faction) && act_flags->round_cnt_hit == 1)
         {

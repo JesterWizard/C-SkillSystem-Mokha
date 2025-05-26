@@ -1576,3 +1576,10 @@ Rampart.[X]
 Rampart:[N]
 If attacked, reduces the damage[N]
 of the first hit by 30%.[X]
+
+## MSG_SKILL_RampartPlus_NAME
+Rampart+.[X]
+## MSG_SKILL_RampartPlus_DESC
+Rampart+:[N]
+If attacked, reduces the damage[N]
+of the first hit by 50%.[X]

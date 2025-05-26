@@ -524,6 +524,7 @@ SID_Offhand
 SID_ShedSkin
 SID_HoldOut
 SID_Rampart
+SID_RampartPlus
 
 //////// EFFECTIVENESS SKILLS
 SID_Resourceful
