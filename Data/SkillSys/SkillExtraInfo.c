@@ -1310,4 +1310,8 @@ const struct SkillExtraInfo gSkillExtraInfo[MAX_SKILL_NUM + 1] = {
 #if (defined(SID_RampartPlus) && COMMON_SKILL_VALID(SID_RampartPlus))
     [SID_RampartPlus] = {{50}},
 #endif
+
+#if (defined(SID_SlowStart) && COMMON_SKILL_VALID(SID_SlowStart))
+    [SID_SlowStart] = {{50}},
+#endif
 };

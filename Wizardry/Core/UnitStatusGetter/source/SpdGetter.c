@@ -190,6 +190,11 @@ int SpdGetterSkills(int status, struct Unit * unit)
         status += SKILL_EFF0(SID_Sellsword);
 #endif
 
+#if defined(SID_SlowStart) && (COMMON_SKILL_VALID(SID_SlowStart))
+    if (SkillTester(unit, SID_SlowStart) && gPlaySt.chapterTurnNumber < 6)
+        status -= Div(status * SKILL_EFF0(SID_SlowStart), 100);
+#endif
+
     return status;
 }
 
