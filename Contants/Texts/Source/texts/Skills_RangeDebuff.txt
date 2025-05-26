@@ -235,3 +235,10 @@ Up With Arch[X]
 Up With Arch: Adjacent ally units[N]
 gain might equal to half this unit's[N]
 might. (Only if name starts with "Arch").[X]
+
+## MSG_SKILL_MarkOfTheBeast_NAME
+Mark of the Beast[X]
+## MSG_SKILL_MarkOfTheBeast_DESC
+Mark of the Beast:[N]
+Grants +3 stats to all ally monster[N]
+classes within 3 tiles of this unit.[X]

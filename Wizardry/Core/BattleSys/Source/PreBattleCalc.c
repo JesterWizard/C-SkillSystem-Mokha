@@ -11,6 +11,7 @@
 #include "constants/skills.h"
 #include "bmarena.h"
 #include "unit-expa.h"
+#include "jester_headers/custom-functions.h"
 
 typedef void (*PreBattleCalcFunc)(struct BattleUnit *buA, struct BattleUnit *buB);
 extern PreBattleCalcFunc const *const gpPreBattleCalcFuncs;
@@ -2196,6 +2197,18 @@ void PreBattleCalcAuraEffect(struct BattleUnit *attacker, struct BattleUnit *def
             }
 #endif
 
+#if (defined(SID_MarkOfTheBeast) && (COMMON_SKILL_VALID(SID_MarkOfTheBeast)))
+        if (SkillTester(unit, SID_MarkOfTheBeast) && isMonsterClass(attacker->unit.pClassData->number))
+        {
+            attacker->battleAttack += SKILL_EFF0(SID_MarkOfTheBeast);
+            attacker->battleDefense += SKILL_EFF0(SID_MarkOfTheBeast);
+            attacker->battleCritRate += SKILL_EFF0(SID_MarkOfTheBeast);
+            attacker->battleSpeed += SKILL_EFF0(SID_MarkOfTheBeast);
+            attacker->battleAvoidRate += SKILL_EFF0(SID_MarkOfTheBeast);
+            attacker->battleDodgeRate += SKILL_EFF0(SID_MarkOfTheBeast);
+        }
+#endif
+
             /* Since we just calc in 3x3, so here is always true */
             allies_gRange3_In3x3++;
 
@@ -2290,7 +2303,7 @@ void PreBattleCalcAuraEffect(struct BattleUnit *attacker, struct BattleUnit *def
 
     if (allies_gRange3_In3x3 != 0)
     {
-        /* Todo */
+        // TO DO
     }
     else
     {

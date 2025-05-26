@@ -4693,7 +4693,7 @@ const struct ClassData gNewClassData[] = {
         .nameTextId = 0x2f2,
         .descTextId = 0x33e,
         .number = CLASS_REVENANT,
-        .promotion = CLASS_ENTOUMBED,
+        .promotion = CLASS_ENTOMBED,
         .SMSId = 0x43,
         .defaultPortraitId = 0x99,
 
@@ -4742,10 +4742,10 @@ const struct ClassData gNewClassData[] = {
         .pTerrainDefenseLookup = TerrainTable_Def_Common,
         .pTerrainResistanceLookup = TerrainTable_Res_Common,
     },
-    [CLASS_ENTOUMBED - 1] = {
+    [CLASS_ENTOMBED - 1] = {
         .nameTextId = 0x2f3,
         .descTextId = 0x33f,
-        .number = CLASS_ENTOUMBED,
+        .number = CLASS_ENTOMBED,
         .promotion = CLASS_REVENANT,
         .SMSId = 0x44,
         .defaultPortraitId = 0x9a,

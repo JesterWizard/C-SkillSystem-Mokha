@@ -66,7 +66,7 @@ const u8 KernelClassList_Dragon[] = {
 
 const u8 KernelClassList_Beast[] = {
     CLASS_REVENANT,
-    CLASS_ENTOUMBED,
+    CLASS_ENTOMBED,
     CLASS_BONEWALKER,
     CLASS_BONEWALKER_BOW,
     CLASS_WIGHT,

@@ -353,6 +353,7 @@
 // SID_Mentorship
 // SID_HolyAura
 // SID_BlueFlame
+// SID_MarkOfTheBeast
 
 //////// STAT MODIFIER SKILLS
 // SID_HpBonus

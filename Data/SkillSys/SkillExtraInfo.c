@@ -1298,4 +1298,8 @@ const struct SkillExtraInfo gSkillExtraInfo[MAX_SKILL_NUM + 1] = {
 #if (defined(SID_PeoplesKnight) && COMMON_SKILL_VALID(SID_PeoplesKnight))
     [SID_PeoplesKnight] = {{3}},
 #endif
+
+#if (defined(SID_MarkOfTheBeast) && COMMON_SKILL_VALID(SID_MarkOfTheBeast))
+    [SID_MarkOfTheBeast] = {{3}},
+#endif
 };
