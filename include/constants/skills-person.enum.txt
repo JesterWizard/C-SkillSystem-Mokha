@@ -295,6 +295,7 @@
 // SID_SpiritedSteps
 // SID_Heroics
 // SID_ShadowStep
+// SID_Zenkai
 
 //////// AURA SKILLS
 // SID_Anathema

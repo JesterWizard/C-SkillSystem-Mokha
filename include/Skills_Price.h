@@ -742,3 +742,4 @@
 #define MSG_SKILL_RampartPlus_PRICE 1000
 #define MSG_SKILL_SlowStart_PRICE 1000
 #define MSG_SKILL_Truant_PRICE 1000
+#define MSG_SKILL_Zenkai_PRICE 1000

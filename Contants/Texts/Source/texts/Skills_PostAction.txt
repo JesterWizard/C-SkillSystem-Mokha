@@ -291,3 +291,10 @@ Shadow Step[X]
 Shadow Step:[N]
 Attacking and defeating an enemy[N]
 hides this unit for 1 turn.[X]
+
+## MSG_SKILL_Zenkai_NAME
+Zenkai[X]
+## MSG_SKILL_Zenkai_DESC
+Zenkai:[N]
+This unit gains 30 EXP after being[N]
+healed to full HP from < 30% HP.[X]

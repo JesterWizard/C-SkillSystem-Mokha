@@ -7465,4 +7465,14 @@ const struct SkillInfo gSkillInfos[MAX_SKILL_NUM + 1] = {
         .icon = GFX_SkillIcon_WIP,
     },
 #endif
+
+#if (defined(SID_Zenkai) && COMMON_SKILL_VALID(SID_Zenkai))
+    [SID_Zenkai] = {
+        .name = MSG_SKILL_Zenkai_NAME,
+        .desc = MSG_SKILL_Zenkai_DESC,
+        .capacity = MSG_SKILL_Zenkai_CAPACITY,
+        .price = MSG_SKILL_Zenkai_PRICE,
+        .icon = GFX_SkillIcon_WIP,
+    },
+#endif
 };

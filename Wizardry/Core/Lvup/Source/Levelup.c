@@ -60,7 +60,7 @@ int GetStatIncrease(int growth, int expGained) {
     if (expGained >= 200)
         growth *= (expGained / 100);
 
-    while (growth > 100) {
+    while (growth >= 100) {
         result++;
         growth -= 100;
     }
@@ -71,7 +71,7 @@ int GetStatIncrease(int growth, int expGained) {
     return result;
 }
 
-static void UnitLvup_Vanilla(struct BattleUnit * bu, int bonus)
+void UnitLvup_Vanilla(struct BattleUnit * bu, int bonus)
 {
     int expGained = bu->expPrevious + bu->expGain;
     struct Unit * unit = GetUnit(bu->unit.index);
@@ -119,7 +119,7 @@ static void UnitLvup_Vanilla(struct BattleUnit * bu, int bonus)
         *statChanges[2] = GetStatIncrease((GetUnitSklGrowth(unit) + bonus), expGained);
     if (unit->spd < unit->pClassData->maxSpd + limitBreaker)
         *statChanges[3] = GetStatIncrease((GetUnitSpdGrowth(unit) + bonus), expGained);
-    if (unit->lck < 30 + limitBreaker) // subject to change
+    if (unit->lck < UNIT_LCK_MAX(unit) + limitBreaker) // subject to change
         *statChanges[4] = GetStatIncrease((GetUnitLckGrowth(unit) + bonus), expGained);
     if (unit->def < unit->pClassData->maxDef + limitBreaker)
         *statChanges[5] = GetStatIncrease((GetUnitDefGrowth(unit) + bonus), expGained);
