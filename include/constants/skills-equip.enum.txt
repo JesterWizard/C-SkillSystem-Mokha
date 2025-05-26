@@ -619,6 +619,7 @@ SID_GoodyBasket
 SID_BlacksmithPlus
 SID_Lifefont
 SID_EternalVanity
+SID_Truant
 
 //////// POST-PHASE SKILLS
 SID_HoardersBane

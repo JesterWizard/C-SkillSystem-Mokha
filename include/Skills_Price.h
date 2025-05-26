@@ -739,5 +739,6 @@
 #define MSG_SKILL_Ruinator_PRICE 1000
 #define MSG_SKILL_MarkOfTheBeast_PRICE 1000
 #define MSG_SKILL_Rampart_PRICE 1000
-#define MSG_SKILL_RampartPlus_PRICE 1
-#define MSG_SKILL_SlowStart_PRICE 1
+#define MSG_SKILL_RampartPlus_PRICE 1000
+#define MSG_SKILL_SlowStart_PRICE 1000
+#define MSG_SKILL_Truant_PRICE 1000

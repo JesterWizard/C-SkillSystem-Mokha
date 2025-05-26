@@ -20,4 +20,5 @@ gPrePhaseFuncs:
     POIN PrePhase_ControlWeatherSkill
     POIN PrePhase_CheckTile
     POIN PrePhase_ExecYuneWhisperSkills
+    POIN PrePhase_Truant
     WORD 0 0 0 0 0

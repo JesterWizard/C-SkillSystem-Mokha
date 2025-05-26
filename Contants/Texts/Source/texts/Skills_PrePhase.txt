@@ -137,3 +137,10 @@ Lifefont[X]
 Lifefont: When standing on terrain that[N]
 heals you while at max HP, temporarily[N]
 boost HP by that amount.[X]
+
+## MSG_SKILL_Truant_NAME
+Truant[X]
+## MSG_SKILL_Truant_DESC
+Truant:[N]
+Unit can only take an[N]
+action every other turn.[X]

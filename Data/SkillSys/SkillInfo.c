@@ -7455,4 +7455,14 @@ const struct SkillInfo gSkillInfos[MAX_SKILL_NUM + 1] = {
         .icon = GFX_SkillIcon_WIP,
     },
 #endif
+
+#if (defined(SID_Truant) && COMMON_SKILL_VALID(SID_Truant))
+    [SID_Truant] = {
+        .name = MSG_SKILL_Truant_NAME,
+        .desc = MSG_SKILL_Truant_DESC,
+        .capacity = MSG_SKILL_Truant_CAPACITY,
+        .price = MSG_SKILL_Truant_PRICE,
+        .icon = GFX_SkillIcon_WIP,
+    },
+#endif
 };
