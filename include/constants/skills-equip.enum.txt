@@ -523,6 +523,7 @@ SID_Duel
 SID_Offhand
 SID_ShedSkin
 SID_HoldOut
+SID_Rampart
 
 //////// EFFECTIVENESS SKILLS
 SID_Resourceful

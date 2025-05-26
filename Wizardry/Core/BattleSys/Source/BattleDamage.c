@@ -538,6 +538,17 @@ int BattleHit_CalcDamage(struct BattleUnit * attacker, struct BattleUnit * defen
     }
 #endif
 
+#if defined(SID_Rampart) && (COMMON_SKILL_VALID(SID_Rampart))
+    if (BattleSkillTester(defender, SID_Rampart))
+    {
+        if (!AreUnitsAllied(defender->unit.index, gPlaySt.faction) && act_flags->round_cnt_hit == 1)
+        {
+            RegisterTargetEfxSkill(GetBattleHitRound(gBattleHitIterator), SID_Rampart);
+            gDmg.decrease += DAMAGE_DECREASE(SKILL_EFF0(SID_Rampart));
+        }
+    }
+#endif
+
 #if (defined(SID_BeastAssault) && (COMMON_SKILL_VALID(SID_BeastAssault)))
     if (BattleSkillTester(defender, SID_BeastAssault))
         gDmg.decrease += DAMAGE_DECREASE(SKILL_EFF0(SID_BeastAssault));

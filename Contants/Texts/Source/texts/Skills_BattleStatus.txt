@@ -694,7 +694,7 @@ Guard Bearing[X]
 ## MSG_SKILL_GuardBearing_DESC
 Guard Bearing: During first combat[N]
 in enemy phase, if attacked, reduces[N]
-50 %damage from foe's first attack.[X]
+50% damage from foe's first attack.[X]
 
 ## MSG_SKILL_Spurn_NAME
 Spurn[X]
@@ -1569,3 +1569,10 @@ Dual Wield+:[N]
 Equip a secondary weapon,[N]
 using half of its stats.[N]
 and its effects.[X]
+
+## MSG_SKILL_Rampart_NAME
+Rampart.[X]
+## MSG_SKILL_Rampart_DESC
+Rampart:[N]
+If attacked, reduces the damage[N]
+of the first hit by 30%.[X]
