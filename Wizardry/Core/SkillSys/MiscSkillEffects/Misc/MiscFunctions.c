@@ -1506,36 +1506,6 @@ bool IsCharacterForceDeployed_(u16 pid)
     return false;
 }
 
-LYN_REPLACE_CHECK(GetUnitEquippedWeaponSlot);
-int GetUnitEquippedWeaponSlot(struct Unit* unit) {
-
-    if (GetUnitStatusIndex(unit) == NEW_UNIT_STATUS_BREAK)
-        return -1;
-
-    int i;
-
-    for (i = 0; i < UNIT_ITEM_COUNT; ++i)
-        if (CanUnitUseWeaponNow(unit, unit->items[i]) == TRUE)
-            return i;
-
-    return -1;
-}
-
-LYN_REPLACE_CHECK(GetUnitEquippedWeapon);
-u16 GetUnitEquippedWeapon(struct Unit* unit) {
-    
-    if (GetUnitStatusIndex(unit) == NEW_UNIT_STATUS_BREAK)
-        return 0;
-
-    int i;
-
-    for (i = 0; i < UNIT_ITEM_COUNT; ++i)
-        if (CanUnitUseWeapon(unit, unit->items[i]) == TRUE)
-            return unit->items[i];
-
-    return 0;
-}
-
 LYN_REPLACE_CHECK(AddArrowTrap);
 void AddArrowTrap(int x, int turnCountdown, int turnInterval)
 {

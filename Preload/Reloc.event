@@ -1,3 +1,6 @@
+ORG FreeSpaceKernel_Reloc
+
+ALIGN 4
 KERNEL_RELOC_START:
 
 // MESSAGE CURRENTOFFSET
@@ -86,6 +89,28 @@ gpLoadUnitHooks: POIN gLoadUnitHooks
 
 gpExternalSkillListGenerator: WORD 0
 
+_thumb(pr_CombatArtActionCommandUsability)  jumpToHack(CombatArtActionCommandUsability)
+_thumb(pr_CombatArtActionCommandOnDarw)     jumpToHack(CombatArtActionCommandOnDarw)
+_thumb(pr_CombatArtActionCommandEffect)     jumpToHack(CombatArtActionCommandEffect)
+_thumb(pr_CombatArtActionCommandHover)      jumpToHack(CombatArtActionCommandHover)
+_thumb(pr_CombatArtActionCommandUnhover)    jumpToHack(CombatArtActionCommandUnhover)
+_thumb(pr_GaidenBMagActionCommandUsability) jumpToHack(GaidenBMagActionCommandUsability)
+_thumb(pr_GaidenBMagActionCommandOnDarw)    jumpToHack(GaidenBMagActionCommandOnDarw)
+_thumb(pr_GaidenBMagActionCommandEffect)    jumpToHack(GaidenBMagActionCommandEffect)
+_thumb(pr_GaidenBMagActionCommandHover)     jumpToHack(GaidenBMagActionCommandHover)
+_thumb(pr_GaidenBMagActionCommandUnhover)   jumpToHack(GaidenBMagActionCommandUnhover)
+_thumb(pr_GaidenWMagActionCommandUsability) jumpToHack(GaidenWMagActionCommandUsability)
+_thumb(pr_GaidenWMagActionCommandOnDarw)    jumpToHack(GaidenWMagActionCommandOnDarw)
+_thumb(pr_GaidenWMagActionCommandEffect)    jumpToHack(GaidenWMagActionCommandEffect)
+_thumb(pr_GaidenWMagActionCommandHover)     jumpToHack(GaidenWMagActionCommandHover)
+_thumb(pr_UpperMenuSkill_Usability)         jumpToHack(UpperMenuSkill_Usability)
+_thumb(pr_UpperMenuSkill_OnSelected)        jumpToHack(UpperMenuSkill_OnSelected)
+
+_thumb(pr_AttackCommandUsabilityFix)        jumpToHack(AttackCommandUsabilityFix)
+_thumb(pr_AttackBallistaCommandUsabilityFix) jumpToHack(AttackBallistaCommandUsabilityFix)
+_thumb(pr_AttackActionCommandHoverFix)      jumpToHack(AttackActionCommandHoverFix)
+_thumb(pr_AttackActionCommandUnhoverFix)    jumpToHack(AttackActionCommandUnhoverFix)
+
 gpHpGetters:    POIN gHpGetters
 gpPowGetters:   POIN gPowGetters
 gpMagGetters:   POIN gMagGetters
@@ -125,6 +150,9 @@ gpPreBattleCalcFuncs: POIN PreBattleCalcFuncs
 gpClassPreLoadHiddenLevel: POIN gClassPreLoadHiddenLevel
 gpKernelArmFunConfig: POIN gKernelArmFunConfig
 
+pr_gpGaidenPinfoConfigList: POIN gpGaidenPinfoConfigList
+pr_gpGaidenWeaponCostList:  POIN gpGaidenWeaponCostList
+
 gpMapTaskConfs: POIN gMapTaskConfs
 gpHpBarChr: POIN gHpBarChr
 
@@ -156,5 +184,8 @@ prWriteUnitLevelSafe: POIN WriteUnitLevelSafe
 
 gpAutoNarrowFontConf: POIN AutoNarrowFontConf
 gpAutoNarrowFontConfToUnicode: POIN AutoNarrowFontConfToUnicode
+
+gpWeaponHpDrainConfig: POIN WeaponHpDrainConfig
+gpWeaponHpCostConfig:  POIN WeaponHpCostConfig
 
 KERNEL_RELOC_END:

@@ -138,13 +138,10 @@ bool AiRideBallistaAction(struct CpPerformProc *);
 bool AiExitBallistaAction(struct CpPerformProc *);
 bool AiPickAction(struct CpPerformProc *);
 
-void AiStartCombatAction(struct CpPerformProc * proc);
 void AiStartEscapeAction(struct CpPerformProc * proc);
 void AiStartStealAction(struct CpPerformProc * proc);
 void AiDKNightmareAction(struct CpPerformProc * proc);
 void AiDKSummonAction(struct CpPerformProc * proc);
-void AiStartCombatAction(struct CpPerformProc * proc);
-void AiStartCombatAction(struct CpPerformProc * proc);
 void AiStartCombatAction(struct CpPerformProc * proc);
 
 enum ScriptKind {

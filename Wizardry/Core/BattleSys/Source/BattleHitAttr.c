@@ -6,8 +6,27 @@
 #include "debuff.h"
 #include "kernel-tutorial.h"
 #include "constants/skills.h"
+#include "battle-system.h"
+
+#include "gaiden-magic.h"
 
 #define LOCAL_TRACE 0
+
+extern u8 const *const gpWeaponHpCostConfig;
+
+void BattleHit_CalcWeaponHpCost(struct BattleUnit *attacker, struct BattleUnit *defender)
+{
+	int cost = gpWeaponHpCostConfig[ITEM_INDEX(attacker->weapon)];
+
+	if (cost > 0) {
+		int round = GetCurrentBattleHitRound();
+
+		if (cost >= attacker->unit.curHP)
+			cost = attacker->unit.curHP - 1;
+
+		AddBattleHpCost(attacker, round, cost);
+	}
+}
 
 void BattleHit_CalcHpDrain(struct BattleUnit *attacker, struct BattleUnit *defender)
 {

@@ -7,86 +7,146 @@
 
 #define MenuItemsEnd {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}
 
-/* Placement in this struct determins priority order */
+u8 pr_CombatArtActionCommandUsability(const struct MenuItemDef *def, int number);
+int pr_CombatArtActionCommandOnDarw(struct MenuProc *menu, struct MenuItemProc *item);
+u8 pr_CombatArtActionCommandEffect(struct MenuProc *menu, struct MenuItemProc *menuItem);
+int pr_CombatArtActionCommandHover(struct MenuProc *menu, struct MenuItemProc *menuItem);
+int pr_CombatArtActionCommandUnhover(struct MenuProc *menu, struct MenuItemProc *menuItem);
+u8 pr_GaidenBMagActionCommandUsability(const struct MenuItemDef *def, int number);
+int pr_GaidenBMagActionCommandOnDarw(struct MenuProc *menu, struct MenuItemProc *item);
+u8 pr_GaidenBMagActionCommandEffect(struct MenuProc *menu, struct MenuItemProc *menuItem);
+int pr_GaidenBMagActionCommandHover(struct MenuProc *menu, struct MenuItemProc *menuItem);
+int pr_GaidenBMagActionCommandUnhover(struct MenuProc *menu, struct MenuItemProc *menuItem);
+u8 pr_GaidenWMagActionCommandUsability(const struct MenuItemDef *def, int number);
+int pr_GaidenWMagActionCommandOnDarw(struct MenuProc *menu, struct MenuItemProc *item);
+u8 pr_GaidenWMagActionCommandEffect(struct MenuProc *menu, struct MenuItemProc *menuItem);
+int pr_GaidenWMagActionCommandHover(struct MenuProc *menu, struct MenuItemProc *menuItem);
+u8 pr_UpperMenuSkill_Usability(const struct MenuItemDef *self, int number);
+u8 pr_UpperMenuSkill_OnSelected(struct MenuProc *menu, struct MenuItemProc *item);
+u8 pr_AttackCommandUsabilityFix(const struct MenuItemDef *def, int number);
+u8 pr_AttackBallistaCommandUsabilityFix(const struct MenuItemDef *def, int number);
+int pr_AttackActionCommandHoverFix(struct MenuProc *menu, struct MenuItemProc *menuItem);
+int pr_AttackActionCommandUnhoverFix(struct MenuProc *menu, struct MenuItemProc *menuItem);
+
+/* Placement in this struct determines priority order */
 
 const struct MenuItemDef gUnitActionMenuItemsRework[] = {
-    {"　脱出", TILE_COMMAND_TEXT_ESCAPE, R_TEXT_COMMAND_ESCAPE, TEXT_COLOR_SYSTEM_WHITE, 0x6D, EscapeCommandUsability, 0, EscapeCommandEffect, 0, 0, 0}, // Escape > 
-    {"　制圧", 0x67A, 0x6CC, 0, 0x4E, UnitActionMenu_CanSeize, 0, UnitActionMenu_Seize, 0, 0, 0}, // Seize
-    {"　攻撃", 0x67B, 0x6C0, 0, 0x4F, AttackCommandUsability, 0, UnitActionMenu_Attack, 0, DisplayUnitStandingAttackRange, HideMoveRangeGraphicsWrapper}, // Attack >
-    {"　攻撃", 0x67B, 0x6C0, 0, 0x50, AttackBallistaCommandUsability, 0, UnitActionMenu_Attack, 0, DisplayUnitStandingAttackRange, HideMoveRangeGraphicsWrapper}, // Attack w/Ballista >
+	{"　制圧", 0x67A, 0x6CC, 0, 0x4E, UnitActionMenu_CanSeize, 0, UnitActionMenu_Seize, 0, 0, 0}, // Seize
+	{"　攻撃", 0x67B, 0x6C0, 0, 0x4F, pr_AttackCommandUsabilityFix, 0, UnitActionMenu_Attack, 0, pr_AttackActionCommandHoverFix, pr_AttackActionCommandUnhoverFix}, // Attack >
+	{"　攻撃", 0x67B, 0x6C0, 0, 0x50, pr_AttackBallistaCommandUsabilityFix, 0, UnitActionMenu_Attack, 0, pr_AttackActionCommandHoverFix, pr_AttackActionCommandUnhoverFix}, // Attack w/Ballista >
 
-    /* Combat Art */
-    {
-        "　戰技",
-        MSG_COMBATART_UM_NAME,
-        MSG_COMBATART_UM_DESC,
-        TEXT_COLOR_SYSTEM_WHITE,
-        0x6C,
-        CombatArtActionCommandUsability,
-        CombatArtActionCommandOnDarw,
-        CombatArtActionCommandEffect,
-        NULL,
-        CombatArtActionCommandHover,
-        CombatArtActionCommandUnhover
-    },
+	/* Combat Art */
+	{
+		"　戰技",
+		MSG_COMBATART_UM_NAME,
+		MSG_COMBATART_UM_DESC,
+		TEXT_COLOR_SYSTEM_WHITE,
+		0x6C,
+		pr_CombatArtActionCommandUsability,
+		pr_CombatArtActionCommandOnDarw,
+		pr_CombatArtActionCommandEffect,
+		NULL,
+		pr_CombatArtActionCommandHover,
+		pr_CombatArtActionCommandUnhover
+	},
 
-    {"　杖", 0x67C, 0x6C1, 0, 0x51, StaffCommandUsability, 0, StaffCommandEffect, 0, StaffCommandRange, HideMoveRangeGraphicsWrapper2}, // Staff
-    {"　乗る", 0x691, 0x6D6, 4, 0x52, RideCommandUsability, 0, RideCommandEffect, 0, 0, 0}, // Ride (Ballista) >
-    {"　降りる", 0x692, 0x6D7, 4, 0x53, ExitCommandUsability, 0, ExitCommandEffect, 0, 0, 0}, // Exit (Ballista) >
+	{"　杖", 0x67C, 0x6C1, 0, 0x51, StaffCommandUsability, 0, StaffCommandEffect, 0, StaffCommandRange, HideMoveRangeGraphicsWrapper2}, // Staff
+	{"　乗る", 0x691, 0x6D6, 4, 0x52, RideCommandUsability, 0, RideCommandEffect, 0, 0, 0}, // Ride (Ballista) >
+	{"　降りる", 0x692, 0x6D7, 4, 0x53, ExitCommandUsability, 0, ExitCommandEffect, 0, 0, 0}, // Exit (Ballista) >
 
 #if CHAX
-    {
-        "　特技",
-        0x4EC,
-        0,
-        TEXT_COLOR_SYSTEM_WHITE,
-        0x54,
-        MenuSkills_Usability,
-        MenuSkills_OnDraw,
-        MenuSkills_OnSelected,
-        MenuSkills_Idle,
-        MenuSkills_Hover,
-        MenuSkills_Unhover
-    },
-    {
-        "　特技",
-        0x4EC,
-        1,
-        TEXT_COLOR_SYSTEM_WHITE,
-        0x55,
-        MenuSkills_Usability,
-        MenuSkills_OnDraw,
-        MenuSkills_OnSelected,
-        MenuSkills_Idle,
-        MenuSkills_Hover,
-        MenuSkills_Unhover
-    },
-    {
-        "　特技",
-        0x4EC,
-        2,
-        TEXT_COLOR_SYSTEM_WHITE,
-        0x56,
-        MenuSkills_Usability,
-        MenuSkills_OnDraw,
-        MenuSkills_OnSelected,
-        MenuSkills_Idle,
-        MenuSkills_Hover,
-        MenuSkills_Unhover
-    },
-    {
-        "　特技",
-        0x4EC,
-        3,
-        TEXT_COLOR_SYSTEM_WHITE,
-        0x57,
-        MenuSkills_Usability,
-        MenuSkills_OnDraw,
-        MenuSkills_OnSelected,
-        MenuSkills_Idle,
-        MenuSkills_Hover,
-        MenuSkills_Unhover
-    },
+	{
+		"　黑魔法",
+		MSG_GaidenBMagic_UM_NAME,
+		MSG_GaidenBMagic_UM_DESC,
+		TEXT_COLOR_SYSTEM_GOLD,
+		0x80,
+		pr_GaidenBMagActionCommandUsability,
+		pr_GaidenBMagActionCommandOnDarw,
+		pr_GaidenBMagActionCommandEffect,
+		0,
+		pr_GaidenBMagActionCommandHover,
+		pr_GaidenBMagActionCommandUnhover
+	},
+	{
+		"　白魔法",
+		MSG_GaidenWMagic_UM_NAME,
+		MSG_GaidenWMagic_UM_DESC,
+		TEXT_COLOR_SYSTEM_GOLD,
+		0x80,
+		pr_GaidenWMagActionCommandUsability,
+		pr_GaidenWMagActionCommandOnDarw,
+		pr_GaidenWMagActionCommandEffect,
+		0,
+		pr_GaidenWMagActionCommandHover,
+		HideMoveRangeGraphicsWrapper2
+	},
+#ifdef CONFIG_MENU_SKILL_NOT_IN_UPPER
+	{
+		"　特技",
+		MSG_MenuSkill_UM_NAME,
+		MSG_MenuSkill_UM_DESC,
+		TEXT_COLOR_SYSTEM_GOLD,
+		0x80,
+		pr_UpperMenuSkill_Usability,
+		NULL,
+		pr_UpperMenuSkill_OnSelected,
+		NULL, NULL, NULL
+	},
+#else
+	{
+		"　特技",
+		0x4EC,
+		0,
+		TEXT_COLOR_SYSTEM_WHITE,
+		0x54,
+		MenuSkills_Usability,
+		MenuSkills_OnDraw,
+		MenuSkills_OnSelected,
+		MenuSkills_Idle,
+		MenuSkills_Hover,
+		MenuSkills_Unhover
+	},
+	{
+		"　特技",
+		0x4EC,
+		1,
+		TEXT_COLOR_SYSTEM_WHITE,
+		0x55,
+		MenuSkills_Usability,
+		MenuSkills_OnDraw,
+		MenuSkills_OnSelected,
+		MenuSkills_Idle,
+		MenuSkills_Hover,
+		MenuSkills_Unhover
+	},
+	{
+		"　特技",
+		0x4EC,
+		2,
+		TEXT_COLOR_SYSTEM_WHITE,
+		0x56,
+		MenuSkills_Usability,
+		MenuSkills_OnDraw,
+		MenuSkills_OnSelected,
+		MenuSkills_Idle,
+		MenuSkills_Hover,
+		MenuSkills_Unhover
+	},
+	{
+		"　特技",
+		0x4EC,
+		3,
+		TEXT_COLOR_SYSTEM_WHITE,
+		0x57,
+		MenuSkills_Usability,
+		MenuSkills_OnDraw,
+		MenuSkills_OnSelected,
+		MenuSkills_Idle,
+		MenuSkills_Hover,
+		MenuSkills_Unhover
+	},
+#endif /* MENU_SKILL_NOT_IN_UPPER */
 #else
     {"　奏でる", 0x67D, 0x6C3, TEXT_COLOR_SYSTEM_WHITE, 0x54, PlayCommandUsability, 0, PlayCommandEffect, 0, 0, 0}, // Play >
     {"　踊る", 0x67E, 0x6C2, TEXT_COLOR_SYSTEM_WHITE, 0x55, DanceCommandUsability, 0, PlayCommandEffect, 0, 0, 0}, // Dance

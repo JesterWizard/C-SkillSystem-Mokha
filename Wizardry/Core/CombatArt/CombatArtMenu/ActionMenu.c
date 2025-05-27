@@ -120,3 +120,36 @@ int CombatArtActionCommandUnhover(struct MenuProc * menu, struct MenuItemProc * 
     HideMoveRangeGraphics();
     return 0;
 }
+
+/**
+ * Attack menu fix
+ */
+u8 AttackCommandUsabilityFix(const struct MenuItemDef *def, int number)
+{
+	ResetCombatArtList();
+	ResetCombatArtStatus();
+
+	return AttackCommandUsability(def, number);
+}
+
+u8 AttackBallistaCommandUsabilityFix(const struct MenuItemDef *def, int number)
+{
+	ResetCombatArtList();
+	ResetCombatArtStatus();
+
+	return AttackBallistaCommandUsability(def, number);
+}
+
+int AttackActionCommandHoverFix(struct MenuProc *menu, struct MenuItemProc *menuItem)
+{
+	ResetCombatArtList();
+	ResetCombatArtStatus();
+	return DisplayUnitStandingAttackRange(menu, menuItem);
+}
+
+int AttackActionCommandUnhoverFix(struct MenuProc *menu, struct MenuItemProc *menuItem)
+{
+	ResetCombatArtList();
+	ResetCombatArtStatus();
+	return HideMoveRangeGraphicsWrapper(menu, menuItem);
+}

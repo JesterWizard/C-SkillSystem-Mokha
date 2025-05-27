@@ -8,18 +8,8 @@ bool _ActionStaffDoorChestUseItem(ProcPtr proc);
 bool _ActionPick(ProcPtr proc);
 bool ActionExecSkill(ProcPtr proc);
 
-/* 
-** JESTER - I still do not know why I had to move this here, or even
-** what broke in the first place, but this fixes menu skills
-*/
-// bool ActionExecSkill(ProcPtr proc)
-// {
-//     u16 sid = gActionData.unk08;
-//     if (!COMMON_SKILL_VALID(sid) || gpSkillActionFuncTable[sid] == NULL)
-//         return false;
-
-//     return gpSkillActionFuncTable[sid](proc);
-// }
+bool ActionGaidenMagicCombat(ProcPtr proc);
+bool ActionGaidenMagicStaff(ProcPtr proc);
 
 const UnitActionFunc_t gUnitActionTable[CONFIG_UNIT_ACTION_AMT] = {
     [UNIT_ACTION_WAIT] = _ActionWait,
@@ -43,4 +33,6 @@ const UnitActionFunc_t gUnitActionTable[CONFIG_UNIT_ACTION_AMT] = {
     [UNIT_ACTION_PICK] = _ActionPick,
     
     [CONFIG_UNIT_ACTION_EXPA_ExecSkill] = ActionExecSkill,
+    [CONFIG_UNIT_ACTION_EXPA_GaidenMagicCombat] = ActionGaidenMagicCombat,
+	[CONFIG_UNIT_ACTION_EXPA_GaidenMagicStaff] = ActionGaidenMagicStaff,
 };

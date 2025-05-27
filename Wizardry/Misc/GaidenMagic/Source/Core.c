@@ -5,12 +5,10 @@
 #include <bwl.h>
 #include <list-verify.h>
 #include <gaiden-magic.h>
-#include <kernel-tutorial.h>
-#include <constants/texts.h>
 
 struct GaidenMagicList *const gGaidenMagicList = &sGaidenMagicListObj;
 
-static bool IsBMag(int iid)
+NOINLINE static bool IsBMag(int iid)
 {
 	u32 attr = GetItemAttributes(iid);
 
@@ -24,7 +22,7 @@ static bool IsBMag(int iid)
 	return true;
 }
 
-static bool IsWMag(int iid)
+NOINLINE static bool IsWMag(int iid)
 {
 	if (GetItemType(iid) != ITYPE_STAFF)
 		return false;
@@ -40,10 +38,10 @@ void ResetGaidenMagicList(struct GaidenMagicList *list)
 void UpdateGaidenMagicList(struct Unit *unit, struct GaidenMagicList *list)
 {
 	int i;
-	const struct GaidenPinfoConfigEnt *conf1 = gpGaidenPinfoConfigList[UNIT_CHAR_ID(unit)].ent;
+	const struct GaidenPinfoConfigEnt *conf1 = GetGaidenPinfoConfigList()[UNIT_CHAR_ID(unit)].ent;
 	const struct GaidenChaxConfigEnt  *conf2 = gpGaidenChaxConfigs;
 
-	u8 *tmpbuf = gGenericBuffer;
+	u8 tmpbuf[0x100];
 
 	CpuFastFill16(0, tmpbuf, 0x100);
 

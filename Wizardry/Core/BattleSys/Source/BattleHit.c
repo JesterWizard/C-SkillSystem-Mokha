@@ -10,6 +10,8 @@
 #include "unit-expa.h"
 #include "jester_headers/custom-structs.h"
 
+#include "gaiden-magic.h"
+
 #ifdef CONFIG_BEXP
     extern u16 sBEXP[CONFIG_BEXP];
 #endif
@@ -491,20 +493,25 @@ bool BattleGenerateHit(struct BattleUnit * attacker, struct BattleUnit * defende
 
     BattleUpdateBattleStats(attacker, defender);
 
-// #if CHAX
-// 	/**
-// 	 * Gaiden magic needs hp-cost
-// 	 */
-// 	if (CheckGaidenMagicAttack(attacker)) {
-// 		int hp_cost = GetGaidenWeaponHpCost(&attacker->unit, attacker->weapon);
+#if CHAX
+	/**
+	 * Gaiden magic needs hp-cost
+	 */
+	if (CheckGaidenMagicAttack(attacker)) {
+		int hp_cost = GetGaidenWeaponHpCost(&attacker->unit, attacker->weapon);
 
-// 		if (!TryBattleHpCost(attacker, hp_cost)) {
-// 			gBattleHitIterator->info |= BATTLE_HIT_INFO_FINISHES;
-// 			gBattleHitIterator++;
-// 			return true;
-// 		}
-// 	}
-// #endif
+		if (!TryBattleHpCost(attacker, hp_cost)) {
+			gBattleHitIterator->info |= BATTLE_HIT_INFO_FINISHES;
+			gBattleHitIterator++;
+			return true;
+		}
+	}
+#endif
+
+	/**
+	 * Hp cost must be calculated first
+	 */
+	BattleGenerateHitHpCost(attacker, defender);
 
     BattleGenerateHitTriangleAttack(attacker, defender);
     BattleGenerateHitAttributes(attacker, defender);

@@ -23,6 +23,7 @@ bool PostAction_BattleActorHeal(ProcPtr parent)
     switch (gActionData.unitActionType)
     {
     case UNIT_ACTION_COMBAT:
+    case CONFIG_UNIT_ACTION_EXPA_GaidenMagicCombat:
     
 #if defined(SID_BoundlessVitality) && (COMMON_SKILL_VALID(SID_BoundlessVitality))
         if (SkillTester(gActiveUnit, SID_BoundlessVitality))

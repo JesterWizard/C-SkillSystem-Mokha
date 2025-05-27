@@ -2,6 +2,7 @@
 #include "skill-system.h"
 #include "status-getter.h"
 #include "weapon-range.h"
+#include "gaiden-magic.h"
 #include "constants/skills.h"
 
 #define LOCAL_TRACE 0
@@ -125,6 +126,37 @@ int GetUnitMinRange(struct Unit * unit)
                 ret = _ret;
         }
     }
+
+    
+	if (gpKernelDesigerConfig->gaiden_magic_en) {
+		struct GaidenMagicList *list = GetGaidenMagicList(unit);
+
+		for (i = 0; i < GAIDEN_MAGIC_LIST_LEN; i++) {
+			item = list->bmags[i];
+
+			if (item == ITEM_NONE)
+				break;
+
+			if (CanUnitUseGaidenMagic(unit, item) && GetItemAttributes(item) & IA_WEAPON) {
+				_ret = GetItemMinRangeRework(item, unit);
+				if (_ret < ret)
+					ret = _ret;
+			}
+		}
+
+		for (i = 0; i < GAIDEN_MAGIC_LIST_LEN; i++) {
+			item = list->wmags[i];
+
+			if (item == ITEM_NONE)
+				break;
+
+			if (CanUnitUseGaidenMagic(unit, item) && GetItemAttributes(item) & IA_WEAPON) {
+				_ret = GetItemMinRangeRework(item, unit);
+				if (_ret < ret)
+					ret = _ret;
+			}
+		}
+	}
     return ret;
 }
 
@@ -145,5 +177,35 @@ int GetUnitMaxRange(struct Unit * unit)
                 ret = _ret;
         }
     }
+
+    if (gpKernelDesigerConfig->gaiden_magic_en) {
+		struct GaidenMagicList *list = GetGaidenMagicList(unit);
+
+		for (i = 0; i < GAIDEN_MAGIC_LIST_LEN; i++) {
+			item = list->bmags[i];
+
+			if (item == ITEM_NONE)
+				break;
+
+			if (CanUnitUseGaidenMagic(unit, item) && GetItemAttributes(item) & IA_WEAPON) {
+				_ret = GetItemMaxRangeRework(item, unit);
+				if (_ret > ret)
+					ret = _ret;
+			}
+		}
+
+		for (i = 0; i < GAIDEN_MAGIC_LIST_LEN; i++) {
+			item = list->wmags[i];
+
+			if (item == ITEM_NONE)
+				break;
+
+			if (CanUnitUseGaidenMagic(unit, item) && GetItemAttributes(item) & IA_WEAPON) {
+				_ret = GetItemMaxRangeRework(item, unit);
+				if (_ret > ret)
+					ret = _ret;
+			}
+		}
+	}
     return ret;
 }

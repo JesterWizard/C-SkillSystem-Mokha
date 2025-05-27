@@ -8,6 +8,7 @@
 #include "constants/items.h"
 #include "constants/skills.h"
 #include "constants/combat-arts.h"
+#include "debuff.h"
 
 int GetItemFromSlot(struct Unit *unit, int slot)
 {
@@ -33,7 +34,14 @@ int GetItemFromSlot(struct Unit *unit, int slot)
 
 	case CHAX_BUISLOT_GAIDEN_BMAG1 ... CHAX_BUISLOT_GAIDEN_BMAG7:
 	case CHAX_BUISLOT_GAIDEN_WMAG1 ... CHAX_BUISLOT_GAIDEN_WMAG7:
+#if 0
+		/**
+		 * Well, if someone forget to give the gaiden magic item the duration, then he may report bug :\
+		 */
 		return MakeNewItem(GetGaidenMagicItem(unit, slot));
+#else
+		return ITEM_INDEX(GetGaidenMagicItem(unit, slot)) | (0xFF << 8);
+#endif
 
 	/* reserved */
 	case CHAX_BUISLOT_THREEHOUSES_BMAG1 ... CHAX_BUISLOT_THREEHOUSES_BMAG7:
@@ -43,6 +51,51 @@ int GetItemFromSlot(struct Unit *unit, int slot)
 	default:
 		return 0;
 	}
+}
+
+LYN_REPLACE_CHECK(GetUnitEquippedWeaponSlot);
+int GetUnitEquippedWeaponSlot(struct Unit* unit) {
+
+    if (GetUnitStatusIndex(unit) == NEW_UNIT_STATUS_BREAK)
+        return -1;
+
+    int i;
+
+    for (i = 0; i < UNIT_ITEM_COUNT; ++i)
+        if (CanUnitUseWeaponNow(unit, unit->items[i]) == TRUE)
+            return i;
+
+#if CHAX
+	/* gaiden magic */
+	if (gpKernelDesigerConfig->gaiden_magic_en) {
+		i = GetGaidenMagicAutoEquipSlot(unit);
+		if (i > 0)
+			return i;
+	}
+
+	/* thress houses magic */
+
+	/* engage weapon */
+#endif /* CHAX */
+
+    return -1;
+}
+
+LYN_REPLACE_CHECK(GetUnitEquippedWeapon);
+u16 GetUnitEquippedWeapon(struct Unit* unit) {
+    
+    if (GetUnitStatusIndex(unit) == NEW_UNIT_STATUS_BREAK)
+        return 0;
+
+    // int i;
+
+    // for (i = 0; i < UNIT_ITEM_COUNT; ++i)
+    //     if (CanUnitUseWeapon(unit, unit->items[i]) == TRUE)
+    //         return unit->items[i];
+
+    // return 0;
+
+    return GetItemFromSlot(unit, GetUnitEquippedWeaponSlot(unit));
 }
 
 STATIC_DECLAR void SetBattleUnitWeaponVanilla(struct BattleUnit *bu, int itemSlot)
@@ -95,6 +148,20 @@ STATIC_DECLAR void SetBattleUnitWeaponVanilla(struct BattleUnit *bu, int itemSlo
         bu->weapon = GetBallistaItemAt(bu->unit.xPos, bu->unit.yPos);
         bu->canCounter = false;
         break;
+
+#if CHAX
+	case CHAX_BUISLOT_GAIDEN_BMAG1 ... CHAX_BUISLOT_GAIDEN_BMAG7:
+	case CHAX_BUISLOT_GAIDEN_WMAG1 ... CHAX_BUISLOT_GAIDEN_WMAG7:
+		bu->weaponSlotIndex = itemSlot;
+		bu->weapon = MakeNewItem(GetGaidenMagicItem(&bu->unit, itemSlot));
+		bu->canCounter = false;
+		break;
+
+	/* reserved */
+	case CHAX_BUISLOT_THREEHOUSES_BMAG1 ... CHAX_BUISLOT_THREEHOUSES_BMAG7:
+	case CHAX_BUISLOT_THREEHOUSES_WMAG1 ... CHAX_BUISLOT_THREEHOUSES_WMAG7:
+	case CHAX_BUISLOT_ENGAGE_WEAPON1    ... CHAX_BUISLOT_ENGAGE_WEAPON7:
+#endif
 
     default:
         bu->weaponSlotIndex = 0xFF;
@@ -543,4 +610,102 @@ int GetWeaponCost(struct BattleUnit *bu, u16 item)
 
     LIMIT_AREA(cost, 0, 255);
     return cost;
+}
+
+LYN_REPLACE_CHECK(GetUnitWeaponUsabilityBits);
+int GetUnitWeaponUsabilityBits(struct Unit *unit)
+{
+	int i, item, result = 0;
+
+	for (i = 0; (i < UNIT_ITEM_COUNT) && (item = unit->items[i]); ++i) {
+		if ((GetItemAttributes(item) & IA_WEAPON) && CanUnitUseWeapon(unit, item))
+			result |= UNIT_USEBIT_WEAPON;
+
+		if ((GetItemAttributes(item) & IA_STAFF) && CanUnitUseStaff(unit, item))
+			result |= UNIT_USEBIT_STAFF;
+	}
+
+#if CHAX
+	/* gaiden magic */
+	if (gpKernelDesigerConfig->gaiden_magic_en) {
+		struct GaidenMagicList *list = GetGaidenMagicList(unit);
+
+		for (i = 0; i < GAIDEN_MAGIC_LIST_LEN; i++) {
+			item = list->bmags[i];
+
+			if (item == ITEM_NONE)
+				break;
+
+			if (!CanUnitUseGaidenMagic(unit, item))
+				continue;
+
+			if (GetItemAttributes(item) & IA_WEAPON)
+				result |= UNIT_USEBIT_WEAPON;
+
+			if (GetItemAttributes(item) & IA_STAFF)
+				result |= UNIT_USEBIT_STAFF;
+		}
+
+		for (i = 0; i < GAIDEN_MAGIC_LIST_LEN; i++) {
+			item = list->wmags[i];
+
+			if (item == ITEM_NONE)
+				break;
+
+			if (!CanUnitUseGaidenMagic(unit, item))
+				continue;
+
+			if (GetItemAttributes(item) & IA_WEAPON)
+				result |= UNIT_USEBIT_WEAPON;
+
+			if (GetItemAttributes(item) & IA_STAFF)
+				result |= UNIT_USEBIT_STAFF;
+		}
+	}
+
+	/* thress houses magic */
+
+	/* engage weapon */
+#endif
+
+	return result;
+}
+
+LYN_REPLACE_CHECK(BattleUnitTargetSetEquippedWeapon);
+void BattleUnitTargetSetEquippedWeapon(struct BattleUnit *bu)
+{
+	int i, item;
+
+	if (bu->weaponBefore)
+		return;
+
+	bu->weaponBefore = GetUnitEquippedWeapon(&bu->unit);
+	if (bu->weaponBefore)
+		return;
+
+	if (!UnitHasMagicRank(&bu->unit))
+		return;
+
+	for (i = 0; i < UNIT_ITEM_COUNT; ++i) {
+		item = bu->unit.items[i];
+
+		if (item == 0)
+			break;
+
+		if (CanUnitUseStaff(&bu->unit, item)) {
+			bu->weaponBefore = item;
+			return;
+		}
+	}
+
+#if CHAX
+	if (gpKernelDesigerConfig->gaiden_magic_en) {
+		item = GetGaidenMagicAutoEquipStaff(&bu->unit);
+
+		if (item != ITEM_NONE) {
+			bu->weaponBefore = MakeNewItem(item);
+			return;
+		}
+	}
+#endif
 }

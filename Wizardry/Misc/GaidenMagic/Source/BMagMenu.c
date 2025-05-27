@@ -5,11 +5,13 @@
 #include <combat-art.h>
 #include <kernel-tutorial.h>
 #include <constants/texts.h>
+#include "bm.h"
 
 #include <gaiden-magic.h>
 
 STATIC_DECLAR const struct MenuDef sGaidenBMagItemMenuDef;
 STATIC_DECLAR const struct MenuItemDef sGaidenBMagItemMenuItems[];
+STATIC_DECLAR u8 GaidenBMagHelpbox(struct MenuProc *menu, struct MenuItemProc *menuItem);
 STATIC_DECLAR u8 GaidenBMagItemSelMenuOnCancel(struct MenuProc *menu, struct MenuItemProc *menuItem);
 STATIC_DECLAR u8 GaidenBMagItemSelUsability(const struct MenuItemDef *def, int number);
 STATIC_DECLAR int GaidenBMagItemSelOnDraw(struct MenuProc *menu, struct MenuItemProc *menuItem);
@@ -41,6 +43,9 @@ u8 GaidenBMagActionCommandUsability(const struct MenuItemDef *def, int number)
 
 	if (!list)
 		return MENU_NOTSHOWN;
+
+	ResetCombatArtList();
+	ResetCombatArtStatus();
 
 	for (i = 0; i < list->bmag_cnt; i++) {
 		int item = list->bmags[i];
@@ -111,6 +116,9 @@ int GaidenBMagActionCommandHover(struct MenuProc *menu, struct MenuItemProc *men
 	struct Unit *unit = gActiveUnit;
 	struct GaidenMagicList *list = GetGaidenMagicList(unit);
 
+	ResetCombatArtList();
+	ResetCombatArtStatus();
+
 	BmMapFill(gBmMapMovement, -1);
 	BmMapFill(gBmMapRange, 0);
 
@@ -136,6 +144,7 @@ int GaidenBMagActionCommandHover(struct MenuProc *menu, struct MenuItemProc *men
 
 int GaidenBMagActionCommandUnhover(struct MenuProc *menu, struct MenuItemProc *menuItem)
 {
+	ResetCombatArtList();
 	ResetCombatArtStatus();
 	HideMoveRangeGraphics();
 	return 0;
@@ -151,8 +160,20 @@ STATIC_DECLAR const struct MenuDef sGaidenBMagItemMenuDef = {
 	0, 0, 0,
 	GaidenBMagItemSelMenuOnCancel,
 	MenuAutoHelpBoxSelect,
-	ConvoyMenu_HelpBox
+	GaidenBMagHelpbox
 };
+
+u8 GaidenBMagHelpbox(struct MenuProc *menu, struct MenuItemProc *menuItem)
+{
+	struct GaidenMagicList *list = GetGaidenMagicList(gActiveUnit);
+
+	StartItemHelpBox(
+		menuItem->xTile << 3,
+		menuItem->yTile << 3,
+		list->bmags[menuItem->itemNumber]);
+
+	return 0;
+}
 
 STATIC_DECLAR u8 GaidenBMagItemSelMenuOnCancel(struct MenuProc *menu, struct MenuItemProc *menuItem)
 {

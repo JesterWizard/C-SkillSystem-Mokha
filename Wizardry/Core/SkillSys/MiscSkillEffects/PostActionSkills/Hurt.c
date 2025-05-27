@@ -13,6 +13,7 @@ bool PostActionBattleActorHurt(ProcPtr parent)
 
     switch (gActionData.unitActionType) {
     case UNIT_ACTION_COMBAT:
+    case CONFIG_UNIT_ACTION_EXPA_GaidenMagicCombat:
 #if defined(SID_GrislyWound) && (COMMON_SKILL_VALID(SID_GrislyWound))
         if (SkillTester(target, SID_GrislyWound))
         {
@@ -28,6 +29,7 @@ bool PostActionBattleActorHurt(ProcPtr parent)
     /* fall through */
 
     case UNIT_ACTION_STAFF:
+    case CONFIG_UNIT_ACTION_EXPA_GaidenMagicStaff:
 #if defined(SID_Fury) && (COMMON_SKILL_VALID(SID_Fury))
         if (SkillTester(unit, SID_Fury))
             damage += 6;
@@ -68,6 +70,7 @@ bool PostActionBattleTargetHurt(ProcPtr parent)
 
     switch (gActionData.unitActionType) {
     case UNIT_ACTION_COMBAT:
+    case CONFIG_UNIT_ACTION_EXPA_GaidenMagicCombat:
 #if defined(SID_PoisonStrike) && (COMMON_SKILL_VALID(SID_PoisonStrike))
         if (SkillTester(actor, SID_PoisonStrike))
         {
@@ -95,6 +98,7 @@ bool PostActionBattleTargetHurt(ProcPtr parent)
     /* fall through */
 
     case UNIT_ACTION_STAFF:
+    case CONFIG_UNIT_ACTION_EXPA_GaidenMagicStaff:
 #if defined(SID_Fury) && (COMMON_SKILL_VALID(SID_Fury))
         if (SkillTester(unit, SID_Fury))
             damage += 6;

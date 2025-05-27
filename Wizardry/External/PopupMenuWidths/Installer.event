@@ -1,12 +1,3 @@
-
-
-
-// Action Menu
-PUSH
-ORG $59D1F2
-BYTE 9 // Default is 7 pixels
-POP
-
 // Weapon Select Menu
 PUSH
 ORG $59D1CE

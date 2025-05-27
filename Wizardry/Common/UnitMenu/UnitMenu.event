@@ -21,15 +21,17 @@
 //  #endif
 
 #include "Source/hooks.lyn.event"
-// #include "data.event"
 
 PUSH
-    // Repoint Unit Menu
-    ORG $59D1F8
-        POIN gUnitActionMenuItemsRework
+    ORG pr_UnitActionMenuDef + 0x18
+    POIN UnitActionMenu_CancelRe
 
+#ifndef CONFIG_MENU_SKILL_NOT_IN_UPPER
     ORG pr_UnitActionMenuDef + 0x20
-        POIN UnitActionMenu_OnHelpBoxRe
+    POIN UnitActionMenu_OnHelpBoxRe
+#endif /* MENU_SKILL_NOT_IN_UPPER */
+
+    PROTECT 0x0059D1F0 0x0059D214 // gUnitActionMenuDef
 POP
 
 #endif // UNIT_MENU

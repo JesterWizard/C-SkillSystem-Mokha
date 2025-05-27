@@ -3,6 +3,7 @@
 #include "skill-system.h"
 #include "efx-skill.h"
 #include "battle-system.h"
+#include "gaiden-magic.h"
 #include "combat-art.h"
 #include "combo-attack.h"
 #include "constants/skills.h"
@@ -10,6 +11,36 @@
 #include "bmitem.h"
 
 #define LOCAL_TRACE 1
+
+// STATIC_DECLAR bool CheckCanContinueAttack(struct BattleUnit *bu)
+// {
+// 	if (!bu->weapon)
+// 		return false;
+
+// 	if (CheckGaidenMagicAttack(bu))
+// 		if (bu->unit.curHP <= GetGaidenWeaponHpCost(&bu->unit, bu->weapon))
+// 			return false;
+
+// #ifdef CONFIG_STOP_COUNTER_ENABLED
+// 	switch (bu->statusOut) {
+// 	case UNIT_STATUS_SLEEP:
+// 	case UNIT_STATUS_PETRIFY:
+// 	case UNIT_STATUS_13:
+// 		return false;
+
+// 	case UNIT_STATUS_SILENCED:
+// 		if (IsMagicAttack(bu))
+// 			return false;
+
+// 		break;
+
+// 	default:
+// 		break;
+// 	}
+// #endif // STOP_COUNTER_ENABLED
+
+// 	return true;
+// }
 
 int GetEffLvl(struct BattleUnit * actor)
 {

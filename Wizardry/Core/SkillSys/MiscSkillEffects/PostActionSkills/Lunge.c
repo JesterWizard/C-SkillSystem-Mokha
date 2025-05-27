@@ -107,13 +107,20 @@ bool PostActionLunge(ProcPtr proc)
 
 #if defined(SID_Lunge) && (COMMON_SKILL_VALID(SID_Lunge))
     if (!SkillTester(unit, SID_Lunge))
+        return false;
 #else
     if (1)
 #endif
-        return false;
+        // return false;
 
-    if (gActionData.unitActionType != UNIT_ACTION_COMBAT)
-        return false;
+	switch (gActionData.unitActionType) {
+	case UNIT_ACTION_COMBAT:
+	case CONFIG_UNIT_ACTION_EXPA_GaidenMagicCombat:
+		break;
+
+	default:
+		return false;
+	}
 
 #if 0
     if (gBattleActorGlobalFlag.hitted == false)

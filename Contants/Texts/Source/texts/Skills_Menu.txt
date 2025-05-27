@@ -1,3 +1,9 @@
+## MSG_MenuSkill_UM_NAME
+ Skills[X]
+
+## MSG_MenuSkill_UM_DESC
+ Unit skill effects.[.][X]
+
 ## MSG_SKILL_CommonFail
 This skill cannot be used for now![X]
 

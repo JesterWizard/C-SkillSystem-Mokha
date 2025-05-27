@@ -70,8 +70,14 @@ LABEL(99)
 
 bool PostActionPositionReturn(ProcPtr proc)
 {
-    if (gActionData.unitActionType != UNIT_ACTION_COMBAT)
-        return false;
+	switch (gActionData.unitActionType) {
+	case UNIT_ACTION_COMBAT:
+	case CONFIG_UNIT_ACTION_EXPA_GaidenMagicCombat:
+		break;
+
+	default:
+		return false;
+	}
 
     if (!UNIT_ALIVE(gActiveUnit) || UNIT_STONED(gActiveUnit))
         return false;

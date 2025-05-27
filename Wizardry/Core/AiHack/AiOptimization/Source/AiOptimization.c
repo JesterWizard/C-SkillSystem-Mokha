@@ -5,8 +5,110 @@
 #include "weapon-range.h"
 #include "status-getter.h"
 #include "debuff.h"
+#include "gaiden-magic.h"
+
+#define LOCAL_TRACE 0
+
+struct AiSimuSlotEnt {
+	u8 slot, action_type;
+	u16 item;
+};
+
+extern u8 sAiSimuSlotBuf[0x100]; // I think it cannot overflow?
+struct AiSimuSlotEnt *const gpAiSimuSlotBuf = (void *)sAiSimuSlotBuf;
 
 extern void CpDecide_Main(ProcPtr proc);
+
+void CollectAiSimuSlots(struct Unit *unit, struct AiSimuSlotEnt *buf)
+{
+	int i;
+	struct AiSimuSlotEnt *it = buf;
+
+	CpuFastFill(0, gpAiSimuSlotBuf, sizeof(sAiSimuSlotBuf));
+
+	for (i = 0; i < UNIT_ITEM_COUNT; i++) {
+		u16 item = unit->items[i];
+
+		if (item == 0)
+			break;
+
+		if (ITEM_INDEX(item) == ITEM_NIGHTMARE)
+			continue;
+
+		if (CanUnitUseWeapon(unit, item)) {
+			it->slot = i;
+			it->item = item;
+			it->action_type = AI_ACTION_COMBAT;
+
+			it++;
+		}
+	}
+
+	/* Gaiden B.Mag */
+	if (gpKernelDesigerConfig->gaiden_magic_en && gpKernelDesigerConfig->gaiden_magic_ai_en) {
+		struct GaidenMagicList *gmaglist = GetGaidenMagicList(unit);
+
+		for (i = 0; i < GAIDEN_MAGIC_LIST_LEN; i++) {
+			u16 item = gmaglist->bmags[i];
+
+			if (item == 0)
+				break;
+
+			if (CanUnitUseGaidenMagic(unit, item)) {
+				it->slot = CHAX_BUISLOT_GAIDEN_BMAG1 + i;
+				it->item = item;
+				it->action_type = AI_ACTION_COMBAT;
+
+				it++;
+			}
+		}
+	}
+
+	/* terminator */
+	it->item = 0;
+}
+
+void CollectAiSimuStaffSlots(struct Unit *unit, struct AiSimuSlotEnt *buf)
+{
+	int i;
+	struct AiSimuSlotEnt *it = buf;
+
+	CpuFastFill(0, gpAiSimuSlotBuf, sizeof(sAiSimuSlotBuf));
+
+	for (i = 0; i < UNIT_ITEM_COUNT; i++) {
+		u16 item = unit->items[i];
+
+		if (item == 0)
+			break;
+
+		if (GetItemAttributes(item) & IA_STAFF) {
+			it->slot = i;
+			it->item = item;
+			it++;
+		}
+	}
+
+	/* Gaiden w.Mag */
+	if (gpKernelDesigerConfig->gaiden_magic_en && gpKernelDesigerConfig->gaiden_magic_ai_en) {
+		struct GaidenMagicList *gmaglist = GetGaidenMagicList(unit);
+
+		for (i = 0; i < GAIDEN_MAGIC_LIST_LEN; i++) {
+			u16 item = gmaglist->wmags[i];
+
+			if (item == 0)
+				break;
+
+			if (!(GetItemAttributes(item) & IA_STAFF))
+				continue;
+
+			if (CanUnitUseGaidenMagic(unit, item)) {
+				it->slot = CHAX_BUISLOT_GAIDEN_WMAG1 + i;
+				it->item = item;
+				it++;
+			}
+		}
+	}
+}
 
 // Function to find an adjacent ally with higher HP and swap positions with the defender
 void SwapDefenderWithAllyIfNecessary(struct Unit* defender) {

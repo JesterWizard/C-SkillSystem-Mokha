@@ -92,6 +92,7 @@ bool PostActionSynchronize(ProcPtr parent)
 
     switch (gActionData.unitActionType) {
     case UNIT_ACTION_COMBAT:
+    case CONFIG_UNIT_ACTION_EXPA_GaidenMagicCombat:
         /**
          * If battle is not hitted, return
          */
@@ -101,6 +102,7 @@ bool PostActionSynchronize(ProcPtr parent)
         break;
 
     case UNIT_ACTION_STAFF:
+    case CONFIG_UNIT_ACTION_EXPA_GaidenMagicStaff:
         if (GetSpellAssocCharCount(gBattleActor.weaponBefore) != 2)
             return false;
 

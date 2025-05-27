@@ -125,6 +125,7 @@ bool PostActionTsuzuku(ProcPtr parent)
     switch (gActionData.unitActionType)
     {
     case UNIT_ACTION_COMBAT:
+    case CONFIG_UNIT_ACTION_EXPA_GaidenMagicCombat:
 #if defined(SID_Galeforce) && (COMMON_SKILL_VALID(SID_Galeforce))
         if (SkillTester(unit, SID_Galeforce) && gBattleActorGlobalFlag.skill_activated_galeforce)
             refresh_turn_once(unit, parent);
@@ -148,6 +149,7 @@ bool PostActionTsuzuku(ProcPtr parent)
         /* fall through */
 
     case UNIT_ACTION_STAFF:
+    case CONFIG_UNIT_ACTION_EXPA_GaidenMagicStaff:
 #if defined(SID_PowerStaff) && (COMMON_SKILL_VALID(SID_PowerStaff))
         if (SkillTester(unit, SID_PowerStaff) && Roll1RN(LckGetter(unit)))
             refresh_turn_once(unit, parent);
