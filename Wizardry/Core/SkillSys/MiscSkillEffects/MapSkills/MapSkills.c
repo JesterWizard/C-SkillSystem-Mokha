@@ -5,6 +5,7 @@
 #include "debuff.h"
 #include "bwl.h"
 #include "jester_headers/class-pairs.h"
+#include "playst-expa.h"
 
 #if (defined(SID_Doppleganger) && (COMMON_SKILL_VALID(SID_Doppleganger)))
 

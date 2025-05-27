@@ -60,7 +60,7 @@
 #include "MenuSkills/ShadowFlash.lyn.event"
 #include "MenuSkills/Refuge.lyn.event"
 #include "MenuSkills/DeathBlight.lyn.event"
-#include "MenuSkills/DivineReprieve.event"
+#include "MenuSkills/DivineReprieve.event" // This is a special case as it includes the lyn file inside the event file
 #include "MenuSkills/LoadstarRush.lyn.event"
 #include "MenuSkills/WyvernCrash.lyn.event"
 #include "MenuSkills/Sellsword.lyn.event"
