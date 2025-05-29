@@ -134,9 +134,10 @@ static const EventListScr EventListScr_Character[] = {
     END_MAIN
 };
 
+// Use 0 for the flag if you want the event to be always available
 static const EventListScr EventListScr_Location[] = {
-    HOUSE(EVFLAG_TMP(11), EventListScr_HOUSE_TALK_1, 10, 4)
-    HOUSE(EVFLAG_TMP(12), EventListScr_HOUSE_TALK_2, 13, 6)
+    HOUSE(0, EventListScr_HOUSE_TALK_1, 10, 4)
+    HOUSE(0, EventListScr_HOUSE_TALK_2, 13, 6)
     SEIZE(2, 2)
     END_MAIN
 };

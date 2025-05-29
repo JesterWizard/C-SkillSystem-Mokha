@@ -29,6 +29,7 @@
 #include "rn.h"
 #include "icon-rework.h"
 #include "status-getter.h"
+#include "mapanim.h"
 
 #if defined(SID_CatchEmAll) && (COMMON_SKILL_VALID(SID_CatchEmAll))
     const unsigned int gCatchEmAllId = SID_CatchEmAll;
@@ -5239,3 +5240,28 @@ void SupportSubScreen_Loop_KeyHandler(struct SubScreenProc* proc) {
 
     return;
 }
+
+//! FE8U = 0x08032270
+LYN_REPLACE_CHECK(ActionVisitAndSeize);
+s8 ActionVisitAndSeize(ProcPtr proc) {
+    int x = GetUnit(gActionData.subjectIndex)->xPos;
+    int y = GetUnit(gActionData.subjectIndex)->yPos;
+
+    StartAvailableTileEvent(x, y);
+
+    return 0;
+}
+
+    // struct EventInfo info;
+
+    // info.listScript = GetChapterEventDataPointer(gPlaySt.chapterIndex)->locationBasedEvents;
+    // info.xPos = x;
+    // info.yPos = y;
+
+    // if (SearchAvailableEvent(&info) == NULL) {
+    //     return;
+    // }
+
+    // switch (info.commandId) {
+    //     case TILE_COMMAND_VISIT:
+    //         gBmMapUnit[y][x] = gActiveUnit->pCharacterData->number;

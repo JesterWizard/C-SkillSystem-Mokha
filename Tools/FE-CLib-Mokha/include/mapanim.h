@@ -299,7 +299,7 @@ extern CONST_DATA struct ProcCmd ProcScr_MapAnimSummon[];
 extern CONST_DATA struct ProcCmd ProcScr_MapAnimSumDK[];
 extern CONST_DATA struct ProcCmd ProcScr_MapAnimDance[];
 extern CONST_DATA struct ProcCmd ProcScr_MapAnimBattle[];
-extern CONST_DATA struct ProcCmd gProc_MapAnimEnd[];
+extern CONST_DATA struct ProcCmd ProcScr_MapAnimEnd[];
 extern CONST_DATA u16 gUnknown_089A3648[];
 extern CONST_DATA int gUnknown_089A3668[];
 extern CONST_DATA u8* TsaSet_MapBattleBoxGfx[3][2];

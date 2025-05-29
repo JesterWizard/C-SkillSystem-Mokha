@@ -4144,7 +4144,7 @@ SET_DATA gProc_MapAnimSummon, 0x89A3398
 SET_DATA gProc_MapAnimSummonDK, 0x89A33C0
 SET_DATA gProc_MapAnimDance, 0x89A34B0
 SET_DATA gProc_MapAnimBattle, 0x89A3508
-SET_DATA gProc_MapAnimEnd, 0x89A35B0
+SET_DATA ProcScr_MapAnimEnd, 0x89A35B0
 SET_DATA gProc_MapAnimBattleInfoBox, 0x89A3688
 SET_DATA gProc_MapAnim_ExpBar, 0x89A36F8
 SET_DATA gProc_MapAnimBattleWithMapEvents, 0x89A3874
