@@ -28,16 +28,9 @@
 
 // #define CONFIG_REMOVE_MOVE_PATH
 
-// #define CONFIG_USE_GAIDEN_MAGIC
-
-#ifdef CONFIG_USE_GAIDEN_MAGIC
-	#define CONFIG_GAIDEN_MAGIC_MUST_BE_MAGIC 0 // 0: all weapons are okay
-	#define CONFIG_GAIDEN_MAGIC_REQUIRES_WRANK 0 // 0: not requires unit ability to equip that weapon
-	#define CONFIG_GAIDEN_MAGIC_AI_EN 1
-	#define CONFIG_GAIDEN_EXT_CONF_EN 1
-#endif /* USE_GAIDEN_MAGIC */
-
 #define CONFIG_UNLOCK_ALLY_MHP_LIMIT
+
+#define CONFIG_GAIDEN_MAGIC
 
 // #define CONFIG_INSTALL_KERNEL_SHIELD
 

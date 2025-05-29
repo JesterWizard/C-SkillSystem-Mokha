@@ -31,14 +31,6 @@ int GetItemFromSlot(struct Unit *unit, int slot)
 	case BU_ISLOT_BALLISTA:
 		return GetBallistaItemAt(unit->xPos, unit->yPos);
 
-	case CHAX_BUISLOT_GAIDEN_BMAG1 ... CHAX_BUISLOT_GAIDEN_BMAG7:
-	case CHAX_BUISLOT_GAIDEN_WMAG1 ... CHAX_BUISLOT_GAIDEN_WMAG7:
-		return MakeNewItem(GetGaidenMagicItem(unit, slot));
-
-	/* reserved */
-	case CHAX_BUISLOT_THREEHOUSES_BMAG1 ... CHAX_BUISLOT_THREEHOUSES_BMAG7:
-	case CHAX_BUISLOT_THREEHOUSES_WMAG1 ... CHAX_BUISLOT_THREEHOUSES_WMAG7:
-	case CHAX_BUISLOT_ENGAGE_WEAPON1    ... CHAX_BUISLOT_ENGAGE_WEAPON7:
 	case -1:
 	default:
 		return 0;
