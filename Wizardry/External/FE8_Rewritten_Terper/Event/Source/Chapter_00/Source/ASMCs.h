@@ -21,10 +21,10 @@ void SetGameOptions_Chapter0()
 
     struct Unit * unit = GetUnitFromCharId(CHARACTER_EIRIKA);
     // unit->maxHP = 26;
-    // unit->curHP = 26;
+    unit->curHP = 6;
 
     unit->ranks[ITYPE_STAFF] = WPN_EXP_C;
-    unit->items[0] = MakeNewItem(ITEM_STAFF_MEND);
+    unit->items[0] = MakeNewItem(ITEM_VULNERARY);
 
     // // Seed the random number generator
     // InitRandC();

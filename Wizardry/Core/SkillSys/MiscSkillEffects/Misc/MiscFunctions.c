@@ -5252,16 +5252,61 @@ s8 ActionVisitAndSeize(ProcPtr proc) {
     return 0;
 }
 
-    // struct EventInfo info;
+static u8 Salve_OnSelectTarget(ProcPtr proc, struct SelectTarget * target)
+{
+    gActionData.targetIndex = target->uid;
 
-    // info.listScript = GetChapterEventDataPointer(gPlaySt.chapterIndex)->locationBasedEvents;
-    // info.xPos = x;
-    // info.yPos = y;
+    gActionData.xOther = target->x;
+    gActionData.yOther = target->y;
 
-    // if (SearchAvailableEvent(&info) == NULL) {
-    //     return;
-    // }
+    HideMoveRangeGraphics();
 
-    // switch (info.commandId) {
-    //     case TILE_COMMAND_VISIT:
-    //         gBmMapUnit[y][x] = gActiveUnit->pCharacterData->number;
+    BG_Fill(gBG2TilemapBuffer, 0);
+    BG_EnableSyncByMask(BG2_SYNC_BIT);
+
+    gActionData.unk08 = SID_Salve;
+    gActionData.unitActionType = CONFIG_UNIT_ACTION_EXPA_ExecSkill;
+
+    DoItemUse(GetUnit(gActionData.targetIndex), gActiveUnit->items[gActionData.itemSlotIndex]);
+
+    return TARGETSELECTION_ACTION_ENDFAST | TARGETSELECTION_ACTION_END | TARGETSELECTION_ACTION_SE_6A | TARGETSELECTION_ACTION_CLEARBGS;
+}
+
+LYN_REPLACE_CHECK(ItemSubMenu_UseItem);
+u8 ItemSubMenu_UseItem(struct MenuProc* menu, struct MenuItemProc* menuItem) {
+
+    if (menuItem->availability == MENU_DISABLED) {
+        MenuFrozenHelpBox(menu, GetItemCantUseMsgid(gActiveUnit, gActiveUnit->items[gActionData.itemSlotIndex]));
+        return MENU_ACT_SND6B;
+    }
+
+    ClearBg0Bg1();
+
+#if defined(SID_Salve) && (COMMON_SKILL_VALID(SID_Salve))
+    if (SkillTester(gActiveUnit, SID_Salve))
+    {
+        MakeTargetListForAdjacentSameFaction(gActiveUnit);
+        BmMapFill(gBmMapMovement, -1);
+
+        StartSubtitleHelp(
+            NewTargetSelection_Specialized(&gSelectInfo_PutTrap, Salve_OnSelectTarget),
+            GetStringFromIndex(MSG_SKILL_Common_Target));
+    }
+    else
+    {
+        DoItemUse(gActiveUnit, gActiveUnit->items[gActionData.itemSlotIndex]);
+    }
+#else
+    DoItemUse(gActiveUnit, gActiveUnit->items[gActionData.itemSlotIndex]);
+#endif
+
+    PlaySoundEffect(SONG_SE_SYS_WINDOW_SELECT1);
+
+    SetTextFont(NULL);
+
+    ResetTextFont();
+
+    EndAllMenus();
+
+    return MENU_ACT_SKIPCURSOR | MENU_ACT_ENDFACE;
+}
