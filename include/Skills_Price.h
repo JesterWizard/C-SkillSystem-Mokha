@@ -744,3 +744,4 @@
 #define MSG_SKILL_Truant_PRICE 1000
 #define MSG_SKILL_Zenkai_PRICE 1000
 #define MSG_SKILL_Salve_PRICE 1000
+#define MSG_SKILL_Forcefield_PRICE 1000

@@ -744,4 +744,5 @@
 #define MSG_SKILL_Truant_CAPACITY 1
 #define MSG_SKILL_Zenkai_CAPACITY 1
 #define MSG_SKILL_Salve_CAPACITY 1
+#define MSG_SKILL_Forcefield_CAPACITY 1
 

@@ -7485,4 +7485,15 @@ const struct SkillInfo gSkillInfos[MAX_SKILL_NUM + 1] = {
         .icon = GFX_SkillIcon_WIP,
     },
 #endif
+
+#if (defined(SID_Forcefield) && COMMON_SKILL_VALID(SID_Forcefield))
+    [SID_Forcefield] = {
+        .name = MSG_SKILL_Forcefield_NAME,
+        .desc = MSG_SKILL_Forcefield_DESC,
+        .capacity = MSG_SKILL_Forcefield_CAPACITY,
+        .price = MSG_SKILL_Forcefield_PRICE,
+        .icon = GFX_SkillIcon_WIP,
+    },
+#endif
+
 };

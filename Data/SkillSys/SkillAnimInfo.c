@@ -295,6 +295,10 @@ const u8 EfxSkillAnimPriority[MAX_SKILL_NUM + 1] = {
 #if (defined(SID_RampartPlus) && COMMON_SKILL_VALID(SID_RampartPlus))
     [SID_RampartPlus] = EFX_PRIORITY_NORMAL,
 #endif
+
+#if (defined(SID_Forcefield) && COMMON_SKILL_VALID(SID_Forcefield))
+    [SID_Forcefield] = EFX_PRIORITY_NORMAL,
+#endif
 };
 
 struct EfxAnimConf const * const EfxSkillAnims[MAX_SKILL_NUM + 1] = {
@@ -584,5 +588,9 @@ struct EfxAnimConf const * const EfxSkillAnims[MAX_SKILL_NUM + 1] = {
 
 #if (defined(SID_RampartPlus) && COMMON_SKILL_VALID(SID_RampartPlus))
     [SID_RampartPlus] = &EfxSkillVanilla,
+#endif
+
+#if (defined(SID_Forcefield) && COMMON_SKILL_VALID(SID_Forcefield))
+    [SID_Forcefield] = &EfxSkillVanilla,
 #endif
 };

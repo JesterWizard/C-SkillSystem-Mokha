@@ -528,6 +528,7 @@
 // SID_HoldOut
 // SID_Rampart
 // SID_RampartPlus
+// SID_Forcefield
 
 //////// EFFECTIVENESS SKILLS
 // SID_Resourceful
