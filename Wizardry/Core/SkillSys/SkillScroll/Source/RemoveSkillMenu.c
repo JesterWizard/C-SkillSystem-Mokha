@@ -23,16 +23,24 @@ STATIC_DECLAR u8 RemoveSkillMenu_OnCancel(struct MenuProc * menu, struct MenuIte
     #define GET_SKILL_SCROLL_INDEX(sid) CONFIG_ITEM_INDEX_SKILL_SCROLL_1
 #endif
 
+#define SKILL_ICON_PAL TILEREF(0, STATSCREEN_BGPAL_ITEMICONS)
+
 // A helper to draw a skill entry – it draws the skill name and its icon.
-static void DrawSkillSwapEntry(u16 *tilemap, int xTile, int yTile,struct Unit *unit, int slot, u16 palette, struct Text *text)
+static void DrawSkillSwapEntry(u16 *tilemap, int xTile, int yTile,
+                               struct Unit *unit, int slot, u16 palette, struct Text *text)
 {
     int sid = GET_SKILL(unit, slot);
-    if (!EQUIP_SKILL_VALID(sid))
-        return;
 
+    // Do not clear here – it’s already cleared in the update routine.
     Text_SetParams(text, 0, TEXT_COLOR_SYSTEM_GOLD);
-    Text_DrawString(text, GetSkillNameStr(sid));
-    DrawIcon(TILEMAP_LOCATED(gBG0TilemapBuffer, xTile, yTile), SKILL_ICON(sid), palette);
+    if (EQUIP_SKILL_VALID(sid)) {
+        Text_DrawString(text, GetSkillNameStr(sid));
+        DrawIcon(TILEMAP_LOCATED(tilemap, xTile, yTile), SKILL_ICON(sid), palette);
+    }
+    // Otherwise, leave the text blank.
+
+    // Commit the text into the tilemap at an offset.
+    PutText(text, TILEMAP_LOCATED(tilemap, xTile + 2, yTile));
 }
 
 // This proc structure stores both units and selection data.
@@ -186,43 +194,44 @@ static void SkillSwapTradeMenu_OnLoop(struct SkillSwapTradeMenuProc *proc)
             int handX = (1 + 1) * 8;
             int handY = (2 + 1 + proc->leftSelected * 2) * 8;
             DisplayUiHand(handX, handY);
-            // Redraw left active slot icon over hand
+            // Redraw the left active slot icon and text (over the UI hand)
             {
                 int drawX = 1 + 1;
                 int drawY = 2 + 1 + proc->leftSelected * 2;
-                int sid = GET_SKILL(proc->leftUnit, proc->leftSelected);
-                if (EQUIP_SKILL_VALID(sid))
-                    DrawIcon(gBG0TilemapBuffer + TILEMAP_INDEX(drawX, drawY),
-                             SKILL_ICON(sid), 0x4000);
+                // First, redraw text by calling DrawSkillSwapEntry using the persistent left text.
+                DrawSkillSwapEntry(gBG0TilemapBuffer, drawX, drawY,
+                                proc->leftUnit, proc->leftSelected, SKILL_ICON_PAL, &proc->leftText[proc->leftSelected]);
+            }
+            // --- NEW: Redraw the corresponding right side line to remove any overlap ---
+            if (proc->leftSelected < SKILL_SLOT_COUNT) {
+                int drawX = 15 + 1;
+                int drawY = 2 + 1 + proc->leftSelected * 2;
+                DrawSkillSwapEntry(gBG0TilemapBuffer, drawX, drawY,
+                                   proc->rightUnit, proc->leftSelected, SKILL_ICON_PAL,
+                                   &proc->rightText[proc->leftSelected]);
             }
         } else {
             int handX = (15 + 1) * 8;
             int handY = (2 + 1 + proc->rightSelected * 2) * 8;
             DisplayUiHand(handX, handY);
-            // Redraw right active slot icon over hand
             {
-                int drawX = 15 + 1;
+                int drawX = (15 + 1);
                 int drawY = 2 + 1 + proc->rightSelected * 2;
-                int sid = GET_SKILL(proc->rightUnit, proc->rightSelected);
-                if (EQUIP_SKILL_VALID(sid))
-                    DrawIcon(gBG0TilemapBuffer + TILEMAP_INDEX(drawX, drawY),
-                             SKILL_ICON(sid), 0x4000);
+                DrawSkillSwapEntry(gBG0TilemapBuffer, drawX, drawY,
+                                proc->rightUnit, proc->rightSelected, SKILL_ICON_PAL, &proc->rightText[proc->rightSelected]);
             }
         }
     } else {
-        // In state 1 (after first A press), draw frozen hand on the originally selected slot.
+        // In state 1, similarly redraw the frozen slot text/icon as well as the active slot.
         if (proc->selectedColumn == 0) {
             int frozenX = (1 + 1) * 8;
             int frozenY = (2 + 1 + proc->selectedRow * 2) * 8;
             DisplayFrozenUiHand(frozenX, frozenY);
-            // Redraw icon for frozen selection.
             {
                 int drawX = (1 + 1);
                 int drawY = 2 + 1 + proc->selectedRow * 2;
-                int sid = GET_SKILL(proc->leftUnit, proc->selectedRow);
-                if (EQUIP_SKILL_VALID(sid))
-                    DrawIcon(gBG0TilemapBuffer + TILEMAP_INDEX(drawX, drawY),
-                             SKILL_ICON(sid), 0x4000);
+                DrawSkillSwapEntry(gBG0TilemapBuffer, drawX, drawY,
+                                proc->leftUnit, proc->selectedRow, SKILL_ICON_PAL, &proc->leftText[proc->selectedRow]);
             }
         } else {
             int frozenX = (15 + 1) * 8;
@@ -231,39 +240,33 @@ static void SkillSwapTradeMenu_OnLoop(struct SkillSwapTradeMenuProc *proc)
             {
                 int drawX = (15 + 1);
                 int drawY = 2 + 1 + proc->selectedRow * 2;
-                int sid = GET_SKILL(proc->rightUnit, proc->selectedRow);
-                if (EQUIP_SKILL_VALID(sid))
-                    DrawIcon(gBG0TilemapBuffer + TILEMAP_INDEX(drawX, drawY),
-                             SKILL_ICON(sid), 0x4000);
+                DrawSkillSwapEntry(gBG0TilemapBuffer, drawX, drawY,
+                                proc->rightUnit, proc->selectedRow, SKILL_ICON_PAL, &proc->rightText[proc->selectedRow]);
             }
         }
-        // Also draw the normal hand on the currently active selection.
-        if (proc->activeSide == 0) {
-            int handX = (1 + 1) * 8;
-            int handY = (2 + 1 + proc->leftSelected * 2) * 8;
-            DisplayUiHand(handX, handY);
-            {
-                int drawX = (1 + 1);
-                int drawY = 2 + 1 + proc->leftSelected * 2;
-                int sid = GET_SKILL(proc->leftUnit, proc->leftSelected);
-                if (EQUIP_SKILL_VALID(sid))
-                    DrawIcon(gBG0TilemapBuffer + TILEMAP_INDEX(drawX, drawY),
-                             SKILL_ICON(sid), 0x4000);
-            }
-        } else {
-            int handX = (15 + 1) * 8;
-            int handY = (2 + 1 + proc->rightSelected * 2) * 8;
-            DisplayUiHand(handX, handY);
-            {
-                int drawX = (15 + 1);
-                int drawY = 2 + 1 + proc->rightSelected * 2;
-                int sid = GET_SKILL(proc->rightUnit, proc->rightSelected);
-                if (EQUIP_SKILL_VALID(sid))
-                    DrawIcon(gBG0TilemapBuffer + TILEMAP_INDEX(drawX, drawY),
-                             SKILL_ICON(sid), 0x4000);
-            }
+    // And redraw the normally active selection on top as well.
+    if (proc->activeSide == 0) {
+        int handX = (1 + 1) * 8;
+        int handY = (2 + 1 + proc->leftSelected * 2) * 8;
+        DisplayUiHand(handX, handY);
+        {
+            int drawX = (1 + 1);
+            int drawY = 2 + 1 + proc->leftSelected * 2;
+            DrawSkillSwapEntry(gBG0TilemapBuffer, drawX, drawY,
+                               proc->leftUnit, proc->leftSelected, SKILL_ICON_PAL, &proc->leftText[proc->leftSelected]);
+        }
+    } else {
+        int handX = (15 + 1) * 8;
+        int handY = (2 + 1 + proc->rightSelected * 2) * 8;
+        DisplayUiHand(handX, handY);
+        {
+            int drawX = (15 + 1);
+            int drawY = 2 + 1 + proc->rightSelected * 2;
+            DrawSkillSwapEntry(gBG0TilemapBuffer, drawX, drawY,
+                               proc->rightUnit, proc->rightSelected, SKILL_ICON_PAL, &proc->rightText[proc->rightSelected]);
         }
     }
+}
 }
 
 static const struct ProcCmd ProcScr_SkillSwapTradeMenu[] = {

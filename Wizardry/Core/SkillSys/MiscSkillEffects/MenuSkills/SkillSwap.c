@@ -61,20 +61,11 @@ u8 SkillSwap_OnSelected(struct MenuProc * menu, struct MenuItemProc * item)
 
 static void callback_anim(ProcPtr proc)
 {
-	// PlaySoundEffect(0x269);
-	// Proc_StartBlocking(ProcScr_DanceringAnim, proc);
-
-	// BG_SetPosition(
-	// 	BG_0,
-	// 	-SCREEN_TILE_IX(gActiveUnit->xPos - 1),
-	// 	-SCREEN_TILE_IX(gActiveUnit->yPos - 2));
 }
 
 static void callback_exec(ProcPtr proc)
 {	
     struct Unit * unit_tar = GetUnit(gActionData.targetIndex);
-
-    // Proc_StartBlocking(ProcScr_SkillSwapSoftLock, proc);
     StartSkillSwapTradeMenu(gActiveUnit, unit_tar);
 }
 
