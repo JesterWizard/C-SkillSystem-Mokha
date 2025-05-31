@@ -10,6 +10,9 @@ STATIC_DECLAR u8 RemoveSkillMenu_HelpBox(struct MenuProc * menu, struct MenuItem
 STATIC_DECLAR u8 PredationSkillMenu_HelpBox(struct MenuProc * menu, struct MenuItemProc * item);
 STATIC_DECLAR u8 RemoveSkillMenu_OnCancel(struct MenuProc * menu, struct MenuItemProc * item);
 
+// You can change this constant to however many skill slots you support.
+#define SKILL_SLOT_COUNT UNIT_RAM_SKILLS_LEN
+
 #ifdef CONFIG_TURN_ON_ALL_SKILLS
     // Choose the proper scroll index based on the high byte of the skill id.
     #define GET_SKILL_SCROLL_INDEX(sid) (((sid) > 0x2FF) ? CONFIG_ITEM_INDEX_SKILL_SCROLL_4 : \
@@ -19,6 +22,273 @@ STATIC_DECLAR u8 RemoveSkillMenu_OnCancel(struct MenuProc * menu, struct MenuIte
 #else
     #define GET_SKILL_SCROLL_INDEX(sid) CONFIG_ITEM_INDEX_SKILL_SCROLL_1
 #endif
+
+// A helper to draw a skill entry – it draws the skill name and its icon.
+static void DrawSkillSwapEntry(u16 *tilemap, int xTile, int yTile,struct Unit *unit, int slot, u16 palette, struct Text *text)
+{
+    int sid = GET_SKILL(unit, slot);
+    if (!EQUIP_SKILL_VALID(sid))
+        return;
+
+    Text_SetParams(text, 0, TEXT_COLOR_SYSTEM_GOLD);
+    Text_DrawString(text, GetSkillNameStr(sid));
+    DrawIcon(TILEMAP_LOCATED(gBG0TilemapBuffer, xTile, yTile), SKILL_ICON(sid), palette);
+}
+
+// This proc structure stores both units and selection data.
+// Proc structure now holds additional fields for a two‐step selection.
+struct SkillSwapTradeMenuProc {
+    PROC_HEADER;
+    struct Unit *leftUnit;   // active unit
+    struct Unit *rightUnit;  // target unit
+    int leftSelected;        // current slot in left menu
+    int rightSelected;       // current slot in right menu
+    int activeSide;          // 0 = left active, 1 = right active
+    int state;               // 0 = no skill selected; 1 = waiting for target selection
+    int selectedColumn;      // the column (0 or 1) from which the skill was first selected
+    int selectedRow;         // the row index from the selected side
+    // Persistent text buffers for each skill entry:
+    struct Text leftText[SKILL_SLOT_COUNT];
+    struct Text rightText[SKILL_SLOT_COUNT];
+};
+
+// A simple implementation that draws a rectangular border using the given color.
+static void DrawUiBox(u16 *tilemap, int x, int y, int width, int height, int color)
+{
+    int i;
+    // Draw top and bottom borders.
+    for (i = 0; i < width; i++) {
+        tilemap[TILEMAP_INDEX(x + i, y)] = color;
+        tilemap[TILEMAP_INDEX(x + i, y + height - 1)] = color;
+    }
+    // Draw left and right borders.
+    for (i = 1; i < height - 1; i++) {
+        tilemap[TILEMAP_INDEX(x, y + i)] = color;
+        tilemap[TILEMAP_INDEX(x + width - 1, y + i)] = color;
+    }
+}
+
+static void SkillSwapTradeMenu_Update(struct SkillSwapTradeMenuProc * proc)
+{
+    // Clear the BG (adjust BG0 as needed).
+    BG_Fill(gBG0TilemapBuffer, 0);
+
+    // Define positions and sizes for the two menus.
+    int leftX = 1,  leftY = 2,  menuWidth = 14, menuHeight = (SKILL_SLOT_COUNT + 1) * 2;
+    int rightX = 15, rightY = 2;
+
+    // Draw outlines (using a UI frame-drawing helper; if not available, you can draw rectangles manually).
+    DrawUiFrame2(leftX, leftY, menuWidth, menuHeight, 0);
+    DrawUiFrame2(rightX, rightY, menuWidth, menuHeight, 0);
+
+    // Draw left unit's skill list.
+    for (int i = 0; i < SKILL_SLOT_COUNT; i++) {
+        int drawX = leftX + 1;
+        int drawY = leftY + 1 + (i * 2);
+        DrawSkillSwapEntry(gBG0TilemapBuffer, drawX, drawY, proc->leftUnit, i, 0x4000, &proc->leftText[i]);
+    }
+
+    // Draw right unit's skill list.
+    for (int i = 0; i < SKILL_SLOT_COUNT; i++) {
+        int drawX = rightX + 1;
+        int drawY = rightY + 1 + (i * 2);
+        DrawSkillSwapEntry(gBG0TilemapBuffer, drawX, drawY, proc->rightUnit, i, 0x4000, &proc->rightText[i]);
+    }
+
+    // Draw highlight boxes.
+    if (proc->state == 0) {
+        // Only the active menu shows a highlight.
+        if (proc->activeSide == 0)
+            DrawUiBox(gBG0TilemapBuffer, leftX, leftY + 1 + (proc->leftSelected * 2), menuWidth, 2, 0);
+        else
+            DrawUiBox(gBG0TilemapBuffer, rightX, rightY + 1 + (proc->rightSelected * 2), menuWidth, 2, 0);
+    } else {
+        // In state 1, show the frozen hand on the originally selected skill
+        // and a regular highlight on the active menu.
+        if (proc->selectedColumn == 0) {
+            // Draw frozen highlight on left menu.
+            DrawUiBox(gBG0TilemapBuffer, leftX, leftY + 1 + (proc->selectedRow * 2), menuWidth, 2, 1);
+        } else {
+            DrawUiBox(gBG0TilemapBuffer, rightX, rightY + 1 + (proc->selectedRow * 2), menuWidth, 2, 1);
+        }
+        // Then draw the active highlight on the current active menu.
+        if (proc->activeSide == 0)
+            DrawUiBox(gBG0TilemapBuffer, leftX, leftY + 1 + (proc->leftSelected * 2), menuWidth, 2, 0);
+        else
+            DrawUiBox(gBG0TilemapBuffer, rightX, rightY + 1 + (proc->rightSelected * 2), menuWidth, 2, 0);
+    }
+
+    BG_EnableSyncByMask(BG0_SYNC_BIT);
+}
+
+static void SkillSwapTradeMenu_OnLoop(struct SkillSwapTradeMenuProc *proc)
+{
+    u16 keys = gKeyStatusPtr->repeatedKeys;
+
+    // Process input: move selections, switch active side, etc.
+    if (keys & DPAD_UP) {
+        if (proc->activeSide == 0 && proc->leftSelected > 0)
+            proc->leftSelected--;
+        else if (proc->activeSide == 1 && proc->rightSelected > 0)
+            proc->rightSelected--;
+    }
+    if (keys & DPAD_DOWN) {
+        if (proc->activeSide == 0 && proc->leftSelected < SKILL_SLOT_COUNT - 1)
+            proc->leftSelected++;
+        else if (proc->activeSide == 1 && proc->rightSelected < SKILL_SLOT_COUNT - 1)
+            proc->rightSelected++;
+    }
+    if (keys & (DPAD_LEFT | DPAD_RIGHT))
+        proc->activeSide ^= 1;
+
+    // Handle A: first press selects, second press trades.
+    if (gKeyStatusPtr->newKeys & A_BUTTON) {
+        if (proc->state == 0) {
+            proc->selectedColumn = proc->activeSide;
+            proc->selectedRow = (proc->activeSide == 0) ? proc->leftSelected : proc->rightSelected;
+            proc->state = 1;
+            proc->activeSide ^= 1; // switch side for target selection
+        } else {
+            if (proc->selectedColumn == 0) {
+                int leftSkill = GET_SKILL(proc->leftUnit, proc->selectedRow);
+                int rightSkill = GET_SKILL(proc->rightUnit, proc->rightSelected);
+                SET_SKILL(proc->leftUnit, proc->selectedRow, rightSkill);
+                SET_SKILL(proc->rightUnit, proc->rightSelected, leftSkill);
+            } else {
+                int leftSkill = GET_SKILL(proc->leftUnit, proc->leftSelected);
+                int rightSkill = GET_SKILL(proc->rightUnit, proc->selectedRow);
+                SET_SKILL(proc->leftUnit, proc->leftSelected, rightSkill);
+                SET_SKILL(proc->rightUnit, proc->selectedRow, leftSkill);
+            }
+            proc->state = 0;
+            // Immediately refresh the menus so traded icons update.
+            SkillSwapTradeMenu_Update(proc);
+        }
+    }
+
+    // Handle B: cancel selection or exit menu.
+    if (gKeyStatusPtr->newKeys & B_BUTTON) {
+        if (proc->state == 1) {
+            proc->state = 0;
+            proc->activeSide ^= 1;
+        } else {
+            Proc_End(proc);
+            return;
+        }
+    }
+
+    // Redraw the complete menus.
+    SkillSwapTradeMenu_Update(proc);
+
+    // Now draw the UI hand overlays.
+    if (proc->state == 0) {
+        if (proc->activeSide == 0) {
+            int handX = (1 + 1) * 8;
+            int handY = (2 + 1 + proc->leftSelected * 2) * 8;
+            DisplayUiHand(handX, handY);
+            // Redraw left active slot icon over hand
+            {
+                int drawX = 1 + 1;
+                int drawY = 2 + 1 + proc->leftSelected * 2;
+                int sid = GET_SKILL(proc->leftUnit, proc->leftSelected);
+                if (EQUIP_SKILL_VALID(sid))
+                    DrawIcon(gBG0TilemapBuffer + TILEMAP_INDEX(drawX, drawY),
+                             SKILL_ICON(sid), 0x4000);
+            }
+        } else {
+            int handX = (15 + 1) * 8;
+            int handY = (2 + 1 + proc->rightSelected * 2) * 8;
+            DisplayUiHand(handX, handY);
+            // Redraw right active slot icon over hand
+            {
+                int drawX = 15 + 1;
+                int drawY = 2 + 1 + proc->rightSelected * 2;
+                int sid = GET_SKILL(proc->rightUnit, proc->rightSelected);
+                if (EQUIP_SKILL_VALID(sid))
+                    DrawIcon(gBG0TilemapBuffer + TILEMAP_INDEX(drawX, drawY),
+                             SKILL_ICON(sid), 0x4000);
+            }
+        }
+    } else {
+        // In state 1 (after first A press), draw frozen hand on the originally selected slot.
+        if (proc->selectedColumn == 0) {
+            int frozenX = (1 + 1) * 8;
+            int frozenY = (2 + 1 + proc->selectedRow * 2) * 8;
+            DisplayFrozenUiHand(frozenX, frozenY);
+            // Redraw icon for frozen selection.
+            {
+                int drawX = (1 + 1);
+                int drawY = 2 + 1 + proc->selectedRow * 2;
+                int sid = GET_SKILL(proc->leftUnit, proc->selectedRow);
+                if (EQUIP_SKILL_VALID(sid))
+                    DrawIcon(gBG0TilemapBuffer + TILEMAP_INDEX(drawX, drawY),
+                             SKILL_ICON(sid), 0x4000);
+            }
+        } else {
+            int frozenX = (15 + 1) * 8;
+            int frozenY = (2 + 1 + proc->selectedRow * 2) * 8;
+            DisplayFrozenUiHand(frozenX, frozenY);
+            {
+                int drawX = (15 + 1);
+                int drawY = 2 + 1 + proc->selectedRow * 2;
+                int sid = GET_SKILL(proc->rightUnit, proc->selectedRow);
+                if (EQUIP_SKILL_VALID(sid))
+                    DrawIcon(gBG0TilemapBuffer + TILEMAP_INDEX(drawX, drawY),
+                             SKILL_ICON(sid), 0x4000);
+            }
+        }
+        // Also draw the normal hand on the currently active selection.
+        if (proc->activeSide == 0) {
+            int handX = (1 + 1) * 8;
+            int handY = (2 + 1 + proc->leftSelected * 2) * 8;
+            DisplayUiHand(handX, handY);
+            {
+                int drawX = (1 + 1);
+                int drawY = 2 + 1 + proc->leftSelected * 2;
+                int sid = GET_SKILL(proc->leftUnit, proc->leftSelected);
+                if (EQUIP_SKILL_VALID(sid))
+                    DrawIcon(gBG0TilemapBuffer + TILEMAP_INDEX(drawX, drawY),
+                             SKILL_ICON(sid), 0x4000);
+            }
+        } else {
+            int handX = (15 + 1) * 8;
+            int handY = (2 + 1 + proc->rightSelected * 2) * 8;
+            DisplayUiHand(handX, handY);
+            {
+                int drawX = (15 + 1);
+                int drawY = 2 + 1 + proc->rightSelected * 2;
+                int sid = GET_SKILL(proc->rightUnit, proc->rightSelected);
+                if (EQUIP_SKILL_VALID(sid))
+                    DrawIcon(gBG0TilemapBuffer + TILEMAP_INDEX(drawX, drawY),
+                             SKILL_ICON(sid), 0x4000);
+            }
+        }
+    }
+}
+
+static const struct ProcCmd ProcScr_SkillSwapTradeMenu[] = {
+    PROC_REPEAT(SkillSwapTradeMenu_OnLoop),
+    PROC_END
+};
+
+void StartSkillSwapTradeMenu(struct Unit * leftUnit, struct Unit * rightUnit)
+{
+    struct SkillSwapTradeMenuProc *proc = Proc_StartBlocking(ProcScr_SkillSwapTradeMenu, Proc_Find(gProcScr_PlayerPhase));
+    proc->leftUnit = leftUnit;
+    proc->rightUnit = rightUnit;
+    proc->leftSelected = 0;
+    proc->rightSelected = 0;
+    proc->activeSide = 0; // start with left active
+    proc->state = 0;      // no skill selected yet
+    proc->selectedColumn = -1;
+    proc->selectedRow = -1;
+
+    for (int i = 0; i < SKILL_SLOT_COUNT; i++) {
+        // Allocate enough width for the skill name.
+        InitText(&proc->leftText[i], 16);
+        InitText(&proc->rightText[i], 16);
+    }
+}
 
 const struct MenuDef RemoveSkillMenuDef = {
     {1, 1, 14, 0},
@@ -74,6 +344,7 @@ STATIC_DECLAR u8 PredationSkillMenu_HelpBox(struct MenuProc * menu, struct MenuI
     );
     return 0;
 }
+
 
 STATIC_DECLAR u8 RemoveSkillMenu_OnCancel(struct MenuProc * menu, struct MenuItemProc * item)
 {
@@ -209,6 +480,13 @@ STATIC_DECLAR int RemoveSkillMenu_OnDraw(struct MenuProc * menu, struct MenuItem
         if (SkillTester(gActiveUnit, SID_Predation) && gBattleActorGlobalFlag.enemy_defeated)
         {
             sid = GET_SKILL(targetUnit, gActionData.unk08);
+        }
+#endif
+
+#if defined(SID_SkillSwap) && (COMMON_SKILL_VALID(SID_SkillSwap))
+        if (SkillTester(gActiveUnit, SID_SkillSwap) && gBattleActorGlobalFlag.enemy_defeated)
+        {
+            sid = GET_SKILL(targetUnit, gActionData.unk0A);
         }
 #endif
 

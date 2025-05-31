@@ -68,6 +68,7 @@
 #include "MenuSkills/LethalityPlus.lyn.event"
 #include "MenuSkills/GrimReaper.lyn.event"
 #include "MenuSkills/Hide.lyn.event"
+#include "MenuSkills/SkillSwap.lyn.event"
 
 #include "MenuSkills/ReciprocalAid.lyn.event"
 #include "MenuSkills/ReciprocalAid_ASM_Extras/Installer.event"
@@ -77,12 +78,6 @@
 #include "Misc/LynJump.event"
 #include "Misc/HealAmount.lyn.event"
 #include "Misc/MiscFunctions.lyn.event"
-
-/**
- * I don't like these as a concept
- */
-// #include "LegendarySkills/JudgeLegend.lyn.event"
-// #include "LegendarySkills/LegendEffect.lyn.event"
 
 #include "ChapterInitSkills/Initiative.lyn.event"
 

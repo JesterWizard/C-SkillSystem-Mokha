@@ -25,6 +25,8 @@
 
 #ifdef CONFIG_TURN_ON_ALL_SKILLS
 
+void StartSkillSwapTradeMenu(struct Unit * leftUnit, struct Unit * rightUnit);
+
 static inline u16 GetUnitSkillIndex(const struct Unit* unit, int index) {
     if (index < 0 || index >= UNIT_RAM_SKILLS_LEN) return 0xFFFF;
 
@@ -313,7 +315,6 @@ extern const struct MenuDef PredationSkillMenuDef;
 extern const struct ProcCmd ProcScr_SkillScrollUseSoftLock[];
 extern const struct ProcCmd ProcScr_PredationSoftLock[];
 extern const struct ProcCmd ProcScr_PredationPlusSoftLock[];
-
 /**
  * Catch Em All
  */
@@ -484,6 +485,8 @@ u8 Hide_Usability(const struct MenuItemDef * def, int number);
 u8 Hide_OnSelected(struct MenuProc * menu, struct MenuItemProc * item);
 u8 Salve_Usability(const struct MenuItemDef * def, int number);
 u8 Salve_OnSelected(struct MenuProc * menu, struct MenuItemProc * item);
+u8 SkillSwap_Usability(const struct MenuItemDef * def, int number);
+u8 SkillSwap_OnSelected(struct MenuProc * menu, struct MenuItemProc * item);
 
 u8 Transform_Laguz_Usability(const struct MenuItemDef * def, int number);
 u8 Transform_Laguz_OnSelected(struct MenuProc * menu, struct MenuItemProc * item);
@@ -528,6 +531,7 @@ bool Action_LethalityPlus(ProcPtr parent);
 bool Action_GrimReaper(ProcPtr parent);
 bool Action_Hide(ProcPtr parent);
 bool Action_Salve(ProcPtr parent);
+bool Action_SkillSwap(ProcPtr parent);
 
 bool Action_Transform_Laguz(ProcPtr parent);
 

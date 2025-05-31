@@ -52,6 +52,7 @@
 // SID_GrimReaper
 // SID_Hide
 // SID_Salve
+// SkillSwap
 
 //////// PRE-BATTLE SKILLS
 // SID_DefiantStr

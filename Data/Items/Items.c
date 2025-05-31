@@ -1236,7 +1236,7 @@ const struct ItemData gItemData_New[] = {
 	},
 	[ITEM_STAFF_HEAL] = {
 		.nameTextId = 0x3c2,
-		.descTextId = 0x471,
+		.descTextId = MSG_ITEM_STAFF_HEAL_DESC,
 		.useDescTextId = 0x4af,
 		.number = ITEM_STAFF_HEAL,
 		.weaponType = ITYPE_STAFF,
@@ -1253,7 +1253,7 @@ const struct ItemData gItemData_New[] = {
 	},
 	[ITEM_STAFF_MEND] = {
 		.nameTextId = 0x3c3,
-		.descTextId = 0x472,
+		.descTextId = MSG_ITEM_STAFF_MEND_DESC,
 		.useDescTextId = 0x4b0,
 		.number = ITEM_STAFF_MEND,
 		.weaponType = ITYPE_STAFF,
@@ -1270,7 +1270,7 @@ const struct ItemData gItemData_New[] = {
 	},
 	[ITEM_STAFF_RECOVER] = {
 		.nameTextId = 0x3c4,
-		.descTextId = 0x473,
+		.descTextId = MSG_ITEM_STAFF_RECOVER_DESC,
 		.useDescTextId = 0x4b1,
 		.number = ITEM_STAFF_RECOVER,
 		.weaponType = ITYPE_STAFF,
@@ -1287,7 +1287,7 @@ const struct ItemData gItemData_New[] = {
 	},
 	[ITEM_STAFF_PHYSIC] = {
 		.nameTextId = 0x3c5,
-		.descTextId = 0x474,
+		.descTextId = MSG_ITEM_STAFF_PHYSIC_DESC,
 		.useDescTextId = 0x4b2,
 		.number = ITEM_STAFF_PHYSIC,
 		.weaponType = ITYPE_STAFF,
@@ -1304,7 +1304,7 @@ const struct ItemData gItemData_New[] = {
 	},
 	[ITEM_STAFF_FORTIFY] = {
 		.nameTextId = 0x3c6,
-		.descTextId = 0x475,
+		.descTextId = MSG_ITEM_STAFF_FORTIFY_DESC,
 		.useDescTextId = 0x4b3,
 		.number = ITEM_STAFF_FORTIFY,
 		.weaponType = ITYPE_STAFF,
@@ -1721,7 +1721,7 @@ const struct ItemData gItemData_New[] = {
 	},
 	[ITEM_VULNERARY] = {
 		.nameTextId = 0x3e5,
-		.descTextId = 0x494,
+		.descTextId = MSG_ITEM_VULNERARY_DESC,
 		.useDescTextId = 0x4d2,
 		.number = ITEM_VULNERARY,
 		.weaponType = ITYPE_ITEM,

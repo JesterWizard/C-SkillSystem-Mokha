@@ -45,6 +45,9 @@ Select a skill to remove to make room.[X]
 ## MSG_PredationSkillChoice
 Select an enemy skill to learn.[X]
 
+## MSG_SkillSwapSkillChoice
+Select a skill to swap.[X]
+
 ## MSG_ThousandGoldSpent
 Spent 1000 Gold.[X]
 

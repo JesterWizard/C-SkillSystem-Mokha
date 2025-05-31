@@ -174,4 +174,8 @@ const SkillActionFunc_t gSkillActionFuncTable[MAX_SKILL_NUM + 1] = {
 #if (defined(SID_Hide) && COMMON_SKILL_VALID(SID_Hide))
 	[SID_Hide] = Action_Hide,
 #endif
+
+#if (defined(SID_SkillSwap) && COMMON_SKILL_VALID(SID_SkillSwap))
+    [SID_SkillSwap] = Action_SkillSwap,
+#endif
 };

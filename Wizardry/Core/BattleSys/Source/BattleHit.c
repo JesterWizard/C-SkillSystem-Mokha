@@ -565,7 +565,7 @@ bool BattleGenerateHit(struct BattleUnit * attacker, struct BattleUnit * defende
 #if (defined(SID_Forcefield) && (COMMON_SKILL_VALID(SID_Forcefield)))
         if (BattleSkillTester(defender, SID_Forcefield))
         {
-            if(defender.unit.curHP == defender->unit.maxHP && gBattleStats.damage >= defender->unit.maxHP/2)
+            if(defender->unit.curHP == defender->unit.maxHP && gBattleStats.damage >= defender->unit.maxHP/2)
             {
                 gBattleStats.damage = 0;
                 gBattleHitIterator->hpChange = 0;

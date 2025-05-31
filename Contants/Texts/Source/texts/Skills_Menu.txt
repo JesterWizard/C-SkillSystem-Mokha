@@ -433,6 +433,13 @@ Hide:[N]
 Prevent this unit from being[N]
 attacked for one turn.[X]
 
+## MSG_SKILL_SkillSwap_NAME
+Skill Swap[X]
+## MSG_SKILL_SkillSwap_DESC
+Skill Swap:[N]
+This unit can freely trade learned[N]
+skills with adjacent ally units.[X]
+
 ## MSG_MenuCommand_Refuge_NAME
 Refuge[X]
 ## MSG_MenuCommand_Refuge_DESC
