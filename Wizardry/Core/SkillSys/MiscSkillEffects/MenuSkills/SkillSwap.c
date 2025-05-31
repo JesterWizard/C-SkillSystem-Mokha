@@ -277,11 +277,17 @@ static void SkillSwapTradeMenu_OnLoop(struct SkillSwapTradeMenuProc *proc)
                     // Clear the last slot.
                     SET_SKILL(proc->leftUnit, SKILL_SLOT_COUNT - 1, 0);
                     ClearText(&proc->leftText[SKILL_SLOT_COUNT - 1]);
-                    // If no skills left, update selection.
-                    if (!HasAnySkill(proc->leftUnit))
-                        proc->leftSelected = 0;
-                    else if (proc->leftSelected > proc->selectedRow)
-                        proc->leftSelected--;
+                    // Reset left selection to the first valid slot.
+                    {
+                        int newSel = 0;
+                        for (int i = 0; i < SKILL_SLOT_COUNT; i++) {
+                            if (IsValidSkillSlot(proc->leftUnit, i)) {
+                                newSel = i;
+                                break;
+                            }
+                        }
+                        proc->leftSelected = newSel;
+                    }
                 }
             } else {
                 // Source right, target left.
@@ -309,10 +315,17 @@ static void SkillSwapTradeMenu_OnLoop(struct SkillSwapTradeMenuProc *proc)
                     }
                     SET_SKILL(proc->rightUnit, SKILL_SLOT_COUNT - 1, 0);
                     ClearText(&proc->rightText[SKILL_SLOT_COUNT - 1]);
-                    if (!HasAnySkill(proc->rightUnit))
-                        proc->rightSelected = 0;
-                    else if (proc->rightSelected > proc->selectedRow)
-                        proc->rightSelected--;
+                    // Reset right selection to the first valid slot.
+                    {
+                        int newSel = 0;
+                        for (int i = 0; i < SKILL_SLOT_COUNT; i++) {
+                            if (IsValidSkillSlot(proc->rightUnit, i)) {
+                                newSel = i;
+                                break;
+                            }
+                        }
+                        proc->rightSelected = newSel;
+                    }
                 }
             }
             proc->state = 0;
