@@ -216,7 +216,7 @@ static void SkillSwapTradeMenu_OnLoop(struct SkillSwapTradeMenuProc *proc)
         }
     }
 
-    // Process A button: first press selects, second does swap.
+    // Process A button: first press selects, second does transfer.
     if (gKeyStatusPtr->newKeys & A_BUTTON) {
         if (proc->state == 0) {
             proc->selectedColumn = proc->activeSide;
@@ -249,23 +249,71 @@ static void SkillSwapTradeMenu_OnLoop(struct SkillSwapTradeMenuProc *proc)
                 proc->rightSelected = found ? newSel : 0;
             }
         } else {
-            // State 1: perform the transfer based on which menu was the source.
+            // State 1: perform the action.
             if (proc->selectedColumn == 0) {
                 // Source left, target right.
                 int leftSkill = GET_SKILL(proc->leftUnit, proc->selectedRow);
                 int rightSkill = GET_SKILL(proc->rightUnit, proc->rightSelected);
-                SET_SKILL(proc->leftUnit, proc->selectedRow, rightSkill);
-                SET_SKILL(proc->rightUnit, proc->rightSelected, leftSkill);
-                ClearText(&proc->leftText[proc->selectedRow]);
-                ClearText(&proc->rightText[proc->rightSelected]);
+                if (IsValidSkillSlot(proc->rightUnit, proc->rightSelected)) {
+                    // Both slots have skills: perform a direct swap.
+                    SET_SKILL(proc->leftUnit, proc->selectedRow, rightSkill);
+                    SET_SKILL(proc->rightUnit, proc->rightSelected, leftSkill);
+                    {
+                        struct Text temp = proc->leftText[proc->selectedRow];
+                        proc->leftText[proc->selectedRow] = proc->rightText[proc->rightSelected];
+                        proc->rightText[proc->rightSelected] = temp;
+                    }
+                } else {
+                    // Target slot is empty: transfer leftSkill and shift up left menu.
+                    SET_SKILL(proc->rightUnit, proc->rightSelected, leftSkill);
+                    proc->rightText[proc->rightSelected] = proc->leftText[proc->selectedRow];
+                    
+                    // Shift up the left menu starting at the selected row:
+                    for (int i = proc->selectedRow; i < SKILL_SLOT_COUNT - 1; i++) {
+                        int nextSkill = GET_SKILL(proc->leftUnit, i + 1);
+                        SET_SKILL(proc->leftUnit, i, nextSkill);
+                        proc->leftText[i] = proc->leftText[i + 1];
+                    }
+                    // Clear the last slot.
+                    SET_SKILL(proc->leftUnit, SKILL_SLOT_COUNT - 1, 0);
+                    ClearText(&proc->leftText[SKILL_SLOT_COUNT - 1]);
+                    // If no skills left, update selection.
+                    if (!HasAnySkill(proc->leftUnit))
+                        proc->leftSelected = 0;
+                    else if (proc->leftSelected > proc->selectedRow)
+                        proc->leftSelected--;
+                }
             } else {
                 // Source right, target left.
                 int rightSkill = GET_SKILL(proc->rightUnit, proc->selectedRow);
                 int leftSkill = GET_SKILL(proc->leftUnit, proc->leftSelected);
-                SET_SKILL(proc->rightUnit, proc->selectedRow, leftSkill);
-                SET_SKILL(proc->leftUnit, proc->leftSelected, rightSkill);
-                ClearText(&proc->rightText[proc->selectedRow]);
-                ClearText(&proc->leftText[proc->leftSelected]);
+                if (IsValidSkillSlot(proc->leftUnit, proc->leftSelected)) {
+                    // Both slots have skills: perform a direct swap.
+                    SET_SKILL(proc->rightUnit, proc->selectedRow, leftSkill);
+                    SET_SKILL(proc->leftUnit, proc->leftSelected, rightSkill);
+                    {
+                        struct Text temp = proc->rightText[proc->selectedRow];
+                        proc->rightText[proc->selectedRow] = proc->leftText[proc->leftSelected];
+                        proc->leftText[proc->leftSelected] = temp;
+                    }
+                } else {
+                    // Target slot is empty: transfer rightSkill and shift up right menu.
+                    SET_SKILL(proc->leftUnit, proc->leftSelected, rightSkill);
+                    proc->leftText[proc->leftSelected] = proc->rightText[proc->selectedRow];
+                    
+                    // Shift up the right menu starting at the selected row:
+                    for (int i = proc->selectedRow; i < SKILL_SLOT_COUNT - 1; i++) {
+                        int nextSkill = GET_SKILL(proc->rightUnit, i + 1);
+                        SET_SKILL(proc->rightUnit, i, nextSkill);
+                        proc->rightText[i] = proc->rightText[i + 1];
+                    }
+                    SET_SKILL(proc->rightUnit, SKILL_SLOT_COUNT - 1, 0);
+                    ClearText(&proc->rightText[SKILL_SLOT_COUNT - 1]);
+                    if (!HasAnySkill(proc->rightUnit))
+                        proc->rightSelected = 0;
+                    else if (proc->rightSelected > proc->selectedRow)
+                        proc->rightSelected--;
+                }
             }
             proc->state = 0;
             SkillSwapTradeMenu_Update(proc);
