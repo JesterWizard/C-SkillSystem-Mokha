@@ -7516,4 +7516,14 @@ const struct SkillInfo gSkillInfos[MAX_SKILL_NUM + 1] = {
     },
 #endif
 
+#if (defined(SID_ShufflePlus) && COMMON_SKILL_VALID(SID_ShufflePlus))
+    [SID_ShufflePlus] = {
+        .name = MSG_SKILL_ShufflePlus_NAME,
+        .desc = MSG_SKILL_ShufflePlus_DESC,
+        .capacity = MSG_SKILL_ShufflePlus_CAPACITY,
+        .price = MSG_SKILL_ShufflePlus_PRICE,
+        .icon = GFX_SkillIcon_WIP,
+    },
+#endif
+
 };

@@ -70,6 +70,7 @@
 #include "MenuSkills/Hide.lyn.event"
 #include "MenuSkills/SkillSwap.lyn.event"
 #include "MenuSkills/Shuffle.lyn.event"
+#include "MenuSkills/ShufflePlus.lyn.event"
 
 #include "MenuSkills/ReciprocalAid.lyn.event"
 #include "MenuSkills/ReciprocalAid_ASM_Extras/Installer.event"

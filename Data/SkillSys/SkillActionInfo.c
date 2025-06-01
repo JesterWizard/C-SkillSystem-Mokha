@@ -182,4 +182,8 @@ const SkillActionFunc_t gSkillActionFuncTable[MAX_SKILL_NUM + 1] = {
 #if (defined(SID_Shuffle) && COMMON_SKILL_VALID(SID_Shuffle))
     [SID_Shuffle] = Action_Shuffle,
 #endif
+
+#if (defined(SID_ShufflePlus) && COMMON_SKILL_VALID(SID_ShufflePlus))
+    [SID_ShufflePlus] = Action_ShufflePlus,
+#endif
 };

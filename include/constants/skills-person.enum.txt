@@ -54,6 +54,7 @@
 // SID_Salve
 // SkillSwap
 // SID_Shuffle
+// SID_ShufflePlus
 
 //////// PRE-BATTLE SKILLS
 // SID_DefiantStr

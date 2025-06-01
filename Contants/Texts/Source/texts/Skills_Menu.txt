@@ -448,6 +448,14 @@ Shuffle the positions of all[N]
 player units on the field.[N]
 Usable once per chapter.[X]
 
+## MSG_SKILL_ShufflePlus_NAME
+Shuffle+[X]
+## MSG_SKILL_ShufflePlus_DESC
+Shuffle+:[N]
+Shuffle the positions of[N]
+all units on the field.[N]
+Usable once per chapter.[X]
+
 ## MSG_MenuCommand_Refuge_NAME
 Refuge[X]
 ## MSG_MenuCommand_Refuge_DESC

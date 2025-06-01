@@ -747,4 +747,5 @@
 #define MSG_SKILL_Forcefield_CAPACITY 1
 #define MSG_SKILL_SkillSwap_CAPACITY 1
 #define MSG_SKILL_Shuffle_CAPACITY 1
+#define MSG_SKILL_ShufflePlus_CAPACITY 1
 
