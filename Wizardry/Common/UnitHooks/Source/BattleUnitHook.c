@@ -258,6 +258,11 @@ void UpdateUnitFromBattle(struct Unit * unit, struct BattleUnit * bu)
         SetBitUES_BU(bu, UES_BIT_CAPTURE_SKILL_USED);
 #endif
 
+#if defined(SID_ResolvedHeart) && (COMMON_SKILL_VALID(SID_ResolvedHeart))
+    if (SkillTester(unit, SID_ResolvedHeart) && gActionData.unk08 == SID_ResolvedHeart && !CheckBitUES(unit, UES_BIT_RESOLVED_HEART_SKILL_USED))
+        SetBitUES_BU(bu, UES_BIT_RESOLVED_HEART_SKILL_USED);
+#endif
+
     UNIT_MAG(unit) += BU_CHG_MAG(bu);
 
     /* Unit expa sus */

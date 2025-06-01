@@ -59,6 +59,7 @@
 // SID_PersuadePlus
 // SID_Kamikaze
 // SID_Reinforcements
+// SID_ResolvedHeart
 
 //////// PRE-BATTLE SKILLS
 // SID_DefiantStr
@@ -272,7 +273,6 @@
 // SID_GridMaster
 // SID_GridMasterAtk
 // SID_DestinyBond
-// SID_Tsuzuku
 // SID_BoundlessVitality
 // SID_Synchronize
 // SID_PoisonStrike

@@ -784,7 +784,7 @@ const struct SkillExtraInfo gSkillExtraInfo[MAX_SKILL_NUM + 1] = {
 #endif
 
 #if (defined(SID_GuardBearing) && COMMON_SKILL_VALID(SID_GuardBearing))
-    [SID_GuardBearing] = {{50}},
+    [SID_GuardBearing] = {{30}},
 #endif
 
 #if (defined(SID_YuneWhispers) && COMMON_SKILL_VALID(SID_YuneWhispers))

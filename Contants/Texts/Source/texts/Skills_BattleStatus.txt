@@ -694,7 +694,7 @@ Guard Bearing[X]
 ## MSG_SKILL_GuardBearing_DESC
 Guard Bearing: During first combat[N]
 in enemy phase, if attacked, reduces[N]
-50% damage from foe's first attack.[X]
+30% damage from foe's first attack.[X]
 
 ## MSG_SKILL_Spurn_NAME
 Spurn[X]

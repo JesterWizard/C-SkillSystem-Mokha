@@ -503,6 +503,8 @@ int Reinforcements_Hover(struct MenuProc * menu, struct MenuItemProc * item);
 int Reinforcements_Unhover(struct MenuProc * menu, struct MenuItemProc * menuItem);
 u8 Reinforcements_Usability(const struct MenuItemDef * def, int number);
 u8 Reinforcements_OnSelected(struct MenuProc * menu, struct MenuItemProc * item);
+u8 ResolvedHeart_Usability(const struct MenuItemDef * def, int number);
+u8 ResolvedHeart_OnSelected(struct MenuProc * menu, struct MenuItemProc * item);
 
 u8 Transform_Laguz_Usability(const struct MenuItemDef * def, int number);
 u8 Transform_Laguz_OnSelected(struct MenuProc * menu, struct MenuItemProc * item);
@@ -554,6 +556,7 @@ bool Action_Persuade(ProcPtr parent);
 bool Action_PersuadePlus(ProcPtr parent);
 bool Action_Kamikaze(ProcPtr parent);
 bool Action_Reinforcements(ProcPtr parent);
+bool Action_ResolvedHeart(ProcPtr parent);
 
 bool Action_Transform_Laguz(ProcPtr parent);
 

@@ -3463,16 +3463,6 @@ const struct SkillInfo gSkillInfos[MAX_SKILL_NUM + 1] = {
     },
 #endif
 
-#if (defined(SID_Tsuzuku) && COMMON_SKILL_VALID(SID_Tsuzuku))
-    [SID_Tsuzuku] = {
-        .name = MSG_SKILL_Tsuzuku_NAME,
-        .desc = MSG_SKILL_Tsuzuku_DESC,
-        .capacity = MSG_SKILL_Tsuzuku_CAPACITY,
-        .price = MSG_SKILL_Tsuzuku_PRICE,
-        .icon = GFX_SkillIcon_Tsuzuku,
-    },
-#endif
-
 #if (defined(SID_MysticBoost) && COMMON_SKILL_VALID(SID_MysticBoost))
     [SID_MysticBoost] = {
         .name = MSG_SKILL_MysticBoost_NAME,
@@ -7572,6 +7562,16 @@ const struct SkillInfo gSkillInfos[MAX_SKILL_NUM + 1] = {
         .desc = MSG_SKILL_Reinforcements_DESC,
         .capacity = MSG_SKILL_Reinforcements_CAPACITY,
         .price = MSG_SKILL_Reinforcements_PRICE,
+        .icon = GFX_SkillIcon_WIP,
+    },
+#endif
+
+#if (defined(SID_ResolvedHeart) && COMMON_SKILL_VALID(SID_ResolvedHeart))
+    [SID_ResolvedHeart] = {
+        .name = MSG_SKILL_ResolvedHeart_NAME,
+        .desc = MSG_SKILL_ResolvedHeart_DESC,
+        .capacity = MSG_SKILL_ResolvedHeart_CAPACITY,
+        .price = MSG_SKILL_ResolvedHeart_PRICE,
         .icon = GFX_SkillIcon_WIP,
     },
 #endif

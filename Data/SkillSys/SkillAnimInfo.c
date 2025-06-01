@@ -299,6 +299,10 @@ const u8 EfxSkillAnimPriority[MAX_SKILL_NUM + 1] = {
 #if (defined(SID_Forcefield) && COMMON_SKILL_VALID(SID_Forcefield))
     [SID_Forcefield] = EFX_PRIORITY_NORMAL,
 #endif
+
+#if (defined(SID_ResolvedHeart) && COMMON_SKILL_VALID(SID_ResolvedHeart))
+    [SID_ResolvedHeart] = EFX_PRIORITY_LOW,
+#endif
 };
 
 struct EfxAnimConf const * const EfxSkillAnims[MAX_SKILL_NUM + 1] = {
@@ -592,5 +596,9 @@ struct EfxAnimConf const * const EfxSkillAnims[MAX_SKILL_NUM + 1] = {
 
 #if (defined(SID_Forcefield) && COMMON_SKILL_VALID(SID_Forcefield))
     [SID_Forcefield] = &EfxSkillVanilla,
+#endif
+
+#if (defined(SID_ResolvedHeart) && COMMON_SKILL_VALID(SID_ResolvedHeart))
+    [SID_ResolvedHeart] = &EfxSkillVanilla,
 #endif
 };

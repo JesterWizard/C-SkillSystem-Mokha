@@ -202,4 +202,8 @@ const SkillActionFunc_t gSkillActionFuncTable[MAX_SKILL_NUM + 1] = {
 #if (defined(SID_Reinforcements) && COMMON_SKILL_VALID(SID_Reinforcements))
     [SID_Reinforcements] = Action_Reinforcements,
 #endif
+
+#if (defined(SID_ResolvedHeart) && COMMON_SKILL_VALID(SID_ResolvedHeart))
+	[SID_ResolvedHeart] = Action_ResolvedHeart,
+#endif
 };

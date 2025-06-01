@@ -341,7 +341,6 @@
 #define MSG_SKILL_OathSpeed_PRICE 1000
 #define MSG_SKILL_OathStrength_PRICE 1000
 #define MSG_SKILL_DivinePulse_PRICE 1000
-#define MSG_SKILL_Tsuzuku_PRICE 1000
 #define MSG_SKILL_MysticBoost_PRICE 1000
 #define MSG_SKILL_GuardBearing_PRICE 1000
 #define MSG_SKILL_Spurn_PRICE 1000
@@ -753,3 +752,4 @@
 #define MSG_SKILL_Kamikaze_PRICE 1000
 #define MSG_SKILL_Freelancer_PRICE 1000
 #define MSG_SKILL_Reinforcements_PRICE 1000
+#define MSG_SKILL_ResolvedHeart_PRICE 1000

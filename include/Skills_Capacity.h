@@ -341,7 +341,6 @@
 #define MSG_SKILL_OathSpeed_CAPACITY 1
 #define MSG_SKILL_OathStrength_CAPACITY 1
 #define MSG_SKILL_DivinePulse_CAPACITY 1
-#define MSG_SKILL_Tsuzuku_CAPACITY 1
 #define MSG_SKILL_MysticBoost_CAPACITY 1
 #define MSG_SKILL_GuardBearing_CAPACITY 1
 #define MSG_SKILL_Spurn_CAPACITY 1
@@ -753,4 +752,5 @@
 #define MSG_SKILL_Kamikaze_CAPACITY 1
 #define MSG_SKILL_Freelancer_CAPACITY 1
 #define MSG_SKILL_Reinforcements_CAPACITY 1
+#define MSG_SKILL_ResolvedHeart_CAPACITY 1
 

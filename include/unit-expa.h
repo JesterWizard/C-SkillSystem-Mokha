@@ -9,18 +9,7 @@
  */
 
 enum unit_expa_sus_bitfile_idx {
-#if defined(SID_GuardBearing) && (COMMON_SKILL_VALID(SID_GuardBearing))
-    UES_BIT_GUARDBEAR_SKILL_USED,
-#endif
 
-/**
- * Taking this out of the ifdef guard because it looks like multiple skills
- * use it and I can't be f**ked figuring out which ones right now
- */
-// #if defined(SID_Tsuzuku) && (COMMON_SKILL_VALID(SID_Tsuzuku))
-//     UES_BIT_TSZUKU_SKILL_USED,
-// #endif
-    UES_BIT_TSZUKU_SKILL_USED,
 #if defined(SID_Teleportation) && (COMMON_SKILL_VALID(SID_Teleportation))
     UES_BIT_TELEPORTATION_SKILL_USED,
 #endif
@@ -29,9 +18,6 @@ enum unit_expa_sus_bitfile_idx {
 #endif
 #if defined(SID_Swap) && (COMMON_SKILL_VALID(SID_Swap))
     UES_BIT_SWAP_SKILL_USED,
-#endif
-#if defined(SID_Roll12) && (COMMON_SKILL_VALID(SID_Roll12))
-    UES_BIT_ROLL12_SKILL_USED,
 #endif
 #if defined(SID_Capture) && (COMMON_SKILL_VALID(SID_Capture))
     UES_BIT_CAPTURE_SKILL_USED,
@@ -68,6 +54,9 @@ enum unit_expa_sus_bitfile_idx {
 #endif
 #if defined(SID_GrimReaper) && (COMMON_SKILL_VALID(SID_GrimReaper))
     UES_BIT_GRIM_REAPER_SKILL_USED,
+#endif
+#if defined(SID_ResolvedHeart) && (COMMON_SKILL_VALID(SID_ResolvedHeart))
+    UES_BIT_RESOLVED_HEART_SKILL_USED,
 #endif
     UES_BIT_MAX
 };

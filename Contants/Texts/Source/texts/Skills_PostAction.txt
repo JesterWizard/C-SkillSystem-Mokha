@@ -83,13 +83,6 @@ Lifetaker:[N]
 Restore up to 25% current HP after[N]
 attacking and defeating an enemy.[X]
 
-## MSG_SKILL_Tsuzuku_NAME
-Tsuzuku[X]
-## MSG_SKILL_Tsuzuku_DESC
-Tsuzuku:[N]
-Gain an additional action at the end[N]
-of this unit's turn (Skill % activation).[X]
-
 ## MSG_SKILL_PowerStaff_NAME
 Power Staff[X]
 ## MSG_SKILL_PowerStaff_DESC
