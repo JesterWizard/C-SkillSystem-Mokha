@@ -752,3 +752,4 @@
 #define MSG_SKILL_PersuadePlus_PRICE 1000
 #define MSG_SKILL_Kamikaze_PRICE 1000
 #define MSG_SKILL_Freelancer_PRICE 1000
+#define MSG_SKILL_Reinforcements_PRICE 1000

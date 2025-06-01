@@ -485,6 +485,13 @@ Kamikaze:[N]
 Deal 10 HP damage to all adjacent[N]
 units and then kill this unit.[X]
 
+## MSG_SKILL_Reinforcements_NAME
+Reinforcements[X]
+## MSG_SKILL_Reinforcements_DESC
+Reinforcements:[N]
+The unit can summon 3 green units[N]
+to assist once per map.[X]
+
 ## MSG_MenuCommand_Refuge_NAME
 Refuge[X]
 ## MSG_MenuCommand_Refuge_DESC

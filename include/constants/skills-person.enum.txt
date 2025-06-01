@@ -58,6 +58,7 @@
 // SID_Persuade
 // SID_PersuadePlus
 // SID_Kamikaze
+// SID_Reinforcements
 
 //////// PRE-BATTLE SKILLS
 // SID_DefiantStr

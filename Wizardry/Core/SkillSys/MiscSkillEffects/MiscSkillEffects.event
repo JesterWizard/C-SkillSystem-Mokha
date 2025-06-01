@@ -74,6 +74,7 @@
 #include "MenuSkills/Persuade.lyn.event"
 #include "MenuSkills/PersuadePlus.lyn.event"
 #include "MenuSkills/Kamikaze.lyn.event"
+#include "MenuSkills/Reinforcements.lyn.event"
 
 #include "MenuSkills/ReciprocalAid.lyn.event"
 #include "MenuSkills/ReciprocalAid_ASM_Extras/Installer.event"

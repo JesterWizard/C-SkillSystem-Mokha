@@ -198,4 +198,8 @@ const SkillActionFunc_t gSkillActionFuncTable[MAX_SKILL_NUM + 1] = {
 #if (defined(SID_Kamikaze) && COMMON_SKILL_VALID(SID_Kamikaze))
     [SID_Kamikaze] = Action_Kamikaze,
 #endif
+
+#if (defined(SID_Reinforcements) && COMMON_SKILL_VALID(SID_Reinforcements))
+    [SID_Reinforcements] = Action_Reinforcements,
+#endif
 };
