@@ -841,8 +841,8 @@ const struct MenuItemDef gSkillMenuInfos[MAX] = {
         .onDraw = NULL,
         .onSelected = Reinforcements_OnSelected,
         .onIdle = NULL,
-        .onSwitchIn = Reinforcements_Hover,
-        .onSwitchOut = Reinforcements_Unhover,
+        .onSwitchIn = NULL,
+        .onSwitchOut = NULL,
     },
 #endif
 

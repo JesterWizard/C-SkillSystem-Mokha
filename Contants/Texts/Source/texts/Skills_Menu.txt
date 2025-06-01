@@ -15,6 +15,11 @@ This skill has already been used[N]
 this map, or the unit is already[N]
 an ally, or it's a boss.[X]
 
+## MSG_Reinforcements_NO_USE
+This skill has already been used[N]
+or there are not enough free[N]
+adjacent spaces to summon.[X]
+
 ## MSG_SKILL_HealingFocus_FRtext
 Unit already has full HP![X]
 
