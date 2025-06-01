@@ -156,7 +156,7 @@ allies can move again this turn.[X]
 Dark Bargain[X]
 ## MSG_SKILL_DarkBargain_DESC
 Dark Bargain:[N]
-At the end of this unit's turn,[N]
+At the end of this unit's action,[N]
 heal missing HP by using EXP.[X]
 
 ## MSG_SKILL_HoardersBane_NAME
@@ -283,8 +283,7 @@ Heroics[X]
 ## MSG_SKILL_Heroics_DESC
 Heroics:[N]
 This unit can rescue[N]
-as a free action.[N]
-FILLER[X]
+as a free action.[X]
 
 ## MSG_SKILL_ShadowStep_NAME
 Shadow Step[X]
@@ -292,3 +291,10 @@ Shadow Step[X]
 Shadow Step:[N]
 Attacking and defeating an enemy[N]
 hides this unit for 1 turn.[X]
+
+## MSG_SKILL_Zenkai_NAME
+Zenkai[X]
+## MSG_SKILL_Zenkai_DESC
+Zenkai:[N]
+This unit gains 30 EXP after being[N]
+healed to full HP from < 30% HP.[X]

@@ -7,6 +7,19 @@ Select a unit.[X]
 ## MSG_No_Allies
 There are no allies in range![X]
 
+## MSG_No_Adjacent_Units
+No adjacent units in range![X]
+
+## MSG_Persuade_NO_USE
+This skill has already been used[N]
+this map, or the unit is already[N]
+an ally, or it's a boss.[X]
+
+## MSG_Reinforcements_NO_USE
+This skill has already been used[N]
+or there are not enough free[N]
+adjacent spaces to summon.[X]
+
 ## MSG_SKILL_HealingFocus_FRtext
 Unit already has full HP![X]
 
@@ -111,7 +124,7 @@ Unit can use[N]
 ## MSG_SKILL_HealingFocus_NAME
 Healing Focus[X]
 ## MSG_SKILL_HealingFocus_DESC
-Heal Focus:[N]
+Healing Focus:[N]
 Unit recovers 50% HP.[X]
 
 ## MSG_SKILL_Teleportation_NAME
@@ -178,7 +191,7 @@ Rally Skill:[N]
 in a 2x2 radius of user.[X]
 
 ## MSG_SKILL_RallySpeed_NAME
-Rall Speed[X]
+Rally Speed[X]
 ## MSG_SKILL_RallySpeed_DESC
 Rally Speed:[N]
 +4 SPD to all allies[N]
@@ -294,7 +307,7 @@ Ardent Sacrifice[X]
 ## MSG_SKILL_ArdentSacrifice_DESC
 Ardent Sacrifice:[N]
 Restores 10 HP to target,[N]
-but drops user’s HP by 10.[X]
+but reduces user's HP by 10.[X]
 
 ## MSG_SKILL_ReciprocalAid_NAME
 Reciprocal Aid[X]
@@ -432,6 +445,57 @@ Hide[X]
 Hide:[N]
 Prevent this unit from being[N]
 attacked for one turn.[X]
+
+## MSG_SKILL_SkillSwap_NAME
+Skill Swap[X]
+## MSG_SKILL_SkillSwap_DESC
+Skill Swap:[N]
+This unit can freely trade learned[N]
+skills with adjacent ally units.[X]
+
+## MSG_SKILL_Shuffle_NAME
+Shuffle[X]
+## MSG_SKILL_Shuffle_DESC
+Shuffle:[N]
+Shuffle the positions of all[N]
+player units on the field.[N]
+Usable once per chapter.[X]
+
+## MSG_SKILL_ShufflePlus_NAME
+Shuffle+[X]
+## MSG_SKILL_ShufflePlus_DESC
+Shuffle+:[N]
+Shuffle the positions of[N]
+all units on the field.[N]
+Usable once per chapter.[X]
+
+## MSG_SKILL_Persuade_NAME
+Persuade[X]
+## MSG_SKILL_Persuade_DESC
+Persuade:[N]
+Turn a non-boss enemy unit[N]
+against their faction for a turn.[X]
+
+## MSG_SKILL_PersuadePlus_NAME
+Persuade+[X]
+## MSG_SKILL_PersuadePlus_DESC
+Persuade+:[N]
+Turn a non-boss enemy unit[N]
+against their faction for the map.[X]
+
+## MSG_SKILL_Kamikaze_NAME
+Kamikaze[X]
+## MSG_SKILL_Kamikaze_DESC
+Kamikaze:[N]
+Deal 10 HP damage to all adjacent[N]
+units and then kill this unit.[X]
+
+## MSG_SKILL_Reinforcements_NAME
+Reinforcements[X]
+## MSG_SKILL_Reinforcements_DESC
+Reinforcements:[N]
+The unit can summon 3 green units[N]
+to assist once per map.[X]
 
 ## MSG_MenuCommand_Refuge_NAME
 Refuge[X]

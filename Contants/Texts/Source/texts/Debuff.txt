@@ -84,3 +84,12 @@ Slow[X]
 ## MSG_DEBUFF_SLOW_DESC
 Slow:[N]
 Movement is halved.[X]
+
+## MSG_DEBUFF_DISMOUNT_NAME
+Dismount[X]
+
+## MSG_DEBUFF_DISMOUNT_DESC
+Dismount:[N]
+Unit temporarily ignore stat caps[N]
+because it's needed for a skill[N]
+with the same name.[X]

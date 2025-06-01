@@ -56,9 +56,9 @@ void RefreshUnitStealInventoryInfoWindow(struct Unit *unit)
         int item = unit->items[i];
         s8 stealable = IsItemStealable(item);
 
-        // Unit's CON must exceed the weight of the weapon and it can't be the first weapon in their inventory
-        if (_GetUnitCon(gActiveUnit) > GetItemWeight(item) && stealPlus && i != 0)
-            stealable = 1;
+        // Skill holder cannot steal a unit's equipped weapon
+        if (GetUnitEquippedWeaponSlot(GetUnit(gActionData.targetIndex)) == i && stealPlus)
+            stealable = false;
 
         ClearText(proc->lines + i);
 
@@ -143,6 +143,16 @@ u8 StealItemMenuCommand_Usability(const struct MenuItemDef *def, int number)
         return MENU_NOTSHOWN;
     }
 
+    if (!IsItemStealable(GetUnit(gActionData.targetIndex)->items[number]))
+    {
+        return MENU_DISABLED;
+    }
+
+    if (GetUnitEquippedWeaponSlot(GetUnit(gActionData.targetIndex)) == number)
+    {
+        return MENU_DISABLED;
+    }
+
 #if defined(SID_StealPlus) && (COMMON_SKILL_VALID(SID_StealPlus))
     if (SkillTester(gActiveUnit, SID_StealPlus))
     {
@@ -150,11 +160,6 @@ u8 StealItemMenuCommand_Usability(const struct MenuItemDef *def, int number)
             return MENU_ENABLED;
     }
 #endif
-
-    if (!IsItemStealable(GetUnit(gActionData.targetIndex)->items[number]))
-    {
-        return MENU_DISABLED;
-    }
 
     return MENU_ENABLED;
 }
@@ -166,9 +171,16 @@ int StealItemMenuCommand_Draw(struct MenuProc *menu, struct MenuItemProc *menuIt
     s8 isStealable = IsItemStealable(item);
 
 #if defined(SID_StealPlus) && (COMMON_SKILL_VALID(SID_StealPlus))
-    if (SkillTester(gActiveUnit, SID_StealPlus))
+    if (SkillTester(gActiveUnit, SID_StealPlus) && isStealable)
+    {
         if (_GetUnitCon(gActiveUnit) > GetItemWeight(item) && menuItem->itemNumber != 0)
-            isStealable = 1;
+        {
+            if (GetUnitEquippedWeaponSlot(GetUnit(gActionData.targetIndex)) == menuItem->itemNumber)
+                isStealable = false;
+        }
+        else
+            isStealable = false;
+    }
 #endif
 
     DrawItemMenuLine(&menuItem->text, item, isStealable, gBG0TilemapBuffer + TILEMAP_INDEX(menuItem->xTile, menuItem->yTile));
@@ -181,7 +193,7 @@ u8 StealItemMenuCommand_Effect(struct MenuProc *menu, struct MenuItemProc *menuI
 {
     if (menuItem->availability == MENU_DISABLED)
     {
-        MenuFrozenHelpBox(menu, 0x855); // TODO: msgid "Weapons, magic, and[.][NL]staves can't be stolen.[.]"
+        MenuFrozenHelpBox(menu, MSG_ITEM_CANT_STEAL_PLUS); // TODO: msgid "Weapons, magic, and[.][NL]staves can't be stolen.[.]"
         return MENU_ACT_SND6B;
     }
 

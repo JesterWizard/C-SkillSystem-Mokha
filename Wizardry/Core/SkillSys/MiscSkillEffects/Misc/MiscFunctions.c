@@ -28,6 +28,8 @@
 #include "savemenu.h"
 #include "rn.h"
 #include "icon-rework.h"
+#include "status-getter.h"
+#include "mapanim.h"
 
 #if defined(SID_CatchEmAll) && (COMMON_SKILL_VALID(SID_CatchEmAll))
     const unsigned int gCatchEmAllId = SID_CatchEmAll;
@@ -686,44 +688,39 @@ void SwitchPhases(void)
              * I change back the unit faction for a 'turncoat' unit
              * if they haven't moved after switching factions initially.
              */
-#if defined(SID_Turncoat) && (COMMON_SKILL_VALID(SID_Turncoat))
             for (int uid = gPlaySt.faction + 1; uid <= (gPlaySt.faction + GetFactionUnitAmount(gPlaySt.faction)); uid++)
             {
                 struct Unit * unit = GetUnit(uid);
 
-                if (unit->_u3A == UES_BIT_TURNCOAT)
+                if (CheckBitUES(unit, UES_BIT_CHANGED_FACTIONS))
                     UnitChangeFaction(unit, FACTION_RED);
             }
-#endif
             gPlaySt.faction = FACTION_RED;
 
             break;
 
         case FACTION_RED:
             gPlaySt.faction = FACTION_GREEN;
-#if defined(SID_Turncoat) && (COMMON_SKILL_VALID(SID_Turncoat))
+
             for (int uid = gPlaySt.faction + 1; uid <= (gPlaySt.faction + GetFactionUnitAmount(gPlaySt.faction)); uid++)
             {
                 struct Unit * unit = GetUnit(uid);
 
-                if (unit->_u3A == UES_BIT_TURNCOAT)
+                if (CheckBitUES(unit, UES_BIT_CHANGED_FACTIONS))
                     UnitChangeFaction(unit, FACTION_BLUE);
             }
-#endif
             break;
 
         case FACTION_GREEN:
             gPlaySt.faction = FACTION_BLUE;
 
-#if defined(SID_Turncoat) && (COMMON_SKILL_VALID(SID_Turncoat))
             for (int uid = gPlaySt.faction + 1; uid <= (gPlaySt.faction + GetFactionUnitAmount(gPlaySt.faction)); uid++)
             {
                 struct Unit * unit = GetUnit(uid);
 
-                if (unit->_u3A == UES_BIT_TURNCOAT)
+                if (CheckBitUES(unit, UES_BIT_CHANGED_FACTIONS))
                     UnitChangeFaction(unit, FACTION_RED);
             }
-#endif
 
             if (gPlaySt.chapterTurnNumber < 999)
                 gPlaySt.chapterTurnNumber++;
@@ -1384,20 +1381,50 @@ void GiveScroll(void)
     unit = GetUnitFromCharId(charId);
 
     for (int i = 0; i < 5; i++) {
-        if(unit->items[i] == ((skillId << 8) | CONFIG_ITEM_INDEX_SKILL_SCROLL))
+        if(unit->items[i] == ((skillId << 8) | CONFIG_ITEM_INDEX_SKILL_SCROLL_1))
         {
-            unit->items[i] = (skillId << 8) | CONFIG_ITEM_INDEX_SKILL_SCROLL;
+            unit->items[i] = (skillId << 8) | CONFIG_ITEM_INDEX_SKILL_SCROLL_1;
+            break;
+        }
+        else if(unit->items[i] == ((skillId << 8) | CONFIG_ITEM_INDEX_SKILL_SCROLL_2))
+        {
+            unit->items[i] = (skillId << 8) | CONFIG_ITEM_INDEX_SKILL_SCROLL_2;
+            break;
+        }
+        else if(unit->items[i] == ((skillId << 8) | CONFIG_ITEM_INDEX_SKILL_SCROLL_3))
+        {
+            unit->items[i] = (skillId << 8) | CONFIG_ITEM_INDEX_SKILL_SCROLL_3;
+            break;
+        }
+        else if(unit->items[i] == ((skillId << 8) | CONFIG_ITEM_INDEX_SKILL_SCROLL_4))
+        {
+            unit->items[i] = (skillId << 8) | CONFIG_ITEM_INDEX_SKILL_SCROLL_4;
             break;
         }
     }
 
-    unsigned short *items;
-    items = GetConvoyItemArray();
+    // unsigned short *items;
+    // items = GetConvoyItemArray();
 
     for (int i = 0; i < CONFIG_INSTALL_CONVOYEXPA_AMT; i++) {
-        if(items[i] == ((skillId << 8) | CONFIG_ITEM_INDEX_SKILL_SCROLL))
+        if(unit->items[i] == ((skillId << 8) | CONFIG_ITEM_INDEX_SKILL_SCROLL_1))
         {
-            items[i] = (skillId << 8) | CONFIG_ITEM_INDEX_SKILL_SCROLL;
+            unit->items[i] = (skillId << 8) | CONFIG_ITEM_INDEX_SKILL_SCROLL_1;
+            break;
+        }
+        else if(unit->items[i] == ((skillId << 8) | CONFIG_ITEM_INDEX_SKILL_SCROLL_2))
+        {
+            unit->items[i] = (skillId << 8) | CONFIG_ITEM_INDEX_SKILL_SCROLL_2;
+            break;
+        }
+        else if(unit->items[i] == ((skillId << 8) | CONFIG_ITEM_INDEX_SKILL_SCROLL_3))
+        {
+            unit->items[i] = (skillId << 8) | CONFIG_ITEM_INDEX_SKILL_SCROLL_3;
+            break;
+        }
+        else if(unit->items[i] == ((skillId << 8) | CONFIG_ITEM_INDEX_SKILL_SCROLL_4))
+        {
+            unit->items[i] = (skillId << 8) | CONFIG_ITEM_INDEX_SKILL_SCROLL_4;
             break;
         }
     }
@@ -2691,30 +2718,6 @@ void ApplyHazardHealing(ProcPtr proc, struct Unit* unit, int hp, int status) {
     return;
 }
 
-// LYN_REPLACE_CHECK(StatusDecayDisplay_Display);
-// void StatusDecayDisplay_Display(struct UnknownBMUSAilmentProc* proc) {
-//     struct SelectTarget* target = GetTarget(proc->unk_4C);
-//     int status = GetUnit(gActionData.subjectIndex)->statusIndex;
-
-//     proc->unk_58 = status;
-
-//     SetUnitStatus(GetUnit(gActionData.subjectIndex), UNIT_STATUS_NONE);
-
-//     switch (status) {
-//         case UNIT_STATUS_POISON:
-//         case UNIT_STATUS_SLEEP:
-//         case UNIT_STATUS_SILENCED:
-//         case UNIT_STATUS_BERSERK:
-//         case UNIT_STATUS_RECOVER:
-//         case UNIT_STATUS_PETRIFY:
-//         case UNIT_STATUS_13:
-//             StartStatusHealEffect(GetUnit(target->uid), proc);
-//             break;
-//     }
-
-//     return;
-// }
-
 LYN_REPLACE_CHECK(MakePoisonDamageTargetList);
 void MakePoisonDamageTargetList(int faction) {
 
@@ -2930,7 +2933,7 @@ s8 PlayerPhase_PrepareAction(ProcPtr proc)
     switch (gActionData.unitActionType)
     {
         case 0:
-        case CONFIG_UNIT_ACTION_EXPA_ExecSkill: // For backing out the attack forecast for menu skills
+        // case CONFIG_UNIT_ACTION_EXPA_ExecSkill: // For backing out the attack forecast for menu skills
             /**
              * If the unit has used action, such as trading,
              * then the unit may take another menu action
@@ -3487,6 +3490,35 @@ void AddTrapASMC(void) {
         gBmMapTerrain[y][x] = terrainType;
 }
 
+void TryAddUnitToAdjacentSameFactionTargetList(struct Unit* unit) {
+
+    if (UNIT_FACTION(gSubjectUnit) != UNIT_FACTION(unit))
+    {
+        return;
+    }
+
+    if (unit->state & US_RESCUED) {
+        return;
+    }
+
+    AddTarget(unit->xPos, unit->yPos, unit->index, 0);
+
+    return;
+}
+
+void MakeTargetListForAdjacentSameFaction(struct Unit* unit) {
+    int x = unit->xPos;
+    int y = unit->yPos;
+
+    gSubjectUnit = unit;
+
+    BmMapFill(gBmMapRange, 0);
+
+    ForEachAdjacentUnit(x, y, TryAddUnitToAdjacentSameFactionTargetList);
+
+    return;
+}
+
 void TryAddUnitToAdjacentEnemyTargetList(struct Unit* unit) {
 
     if (AreUnitsAllied(gSubjectUnit->index, unit->index)) {
@@ -3511,6 +3543,61 @@ void MakeTargetListForAdjacentEnemies(struct Unit* unit) {
     BmMapFill(gBmMapRange, 0);
 
     ForEachAdjacentUnit(x, y, TryAddUnitToAdjacentEnemyTargetList);
+
+    return;
+}
+
+void TryAddUnitToAdjacentEnemyNonBossTargetList(struct Unit* unit) {
+
+    if (AreUnitsAllied(gSubjectUnit->index, unit->index)) {
+        return;
+    }
+
+    if (UNIT_CATTRIBUTES(unit) & CA_BOSS) {
+        return;
+    }
+
+    if (unit->state & US_RESCUED) {
+        return;
+    }
+
+    AddTarget(unit->xPos, unit->yPos, unit->index, 0);
+
+    return;
+}
+
+void MakeTargetListForAdjacentNonBossEnemies(struct Unit* unit) {
+    int x = unit->xPos;
+    int y = unit->yPos;
+
+    gSubjectUnit = unit;
+
+    BmMapFill(gBmMapRange, 0);
+
+    ForEachAdjacentUnit(x, y, TryAddUnitToAdjacentEnemyNonBossTargetList);
+
+    return;
+}
+
+void TryAddUnitToAdjacentUnitsTargetList(struct Unit* unit) {
+    if (unit->state & US_RESCUED) {
+        return;
+    }
+
+    AddTarget(unit->xPos, unit->yPos, unit->index, 0);
+
+    return;
+}
+
+void MakeTargetListForAdjacentUnits(struct Unit* unit) {
+    int x = unit->xPos;
+    int y = unit->yPos;
+
+    gSubjectUnit = unit;
+
+    BmMapFill(gBmMapRange, 0);
+
+    ForEachAdjacentUnit(x, y, TryAddUnitToAdjacentUnitsTargetList);
 
     return;
 }
@@ -4867,83 +4954,409 @@ void ApplyUnitMapUiFramePal(int faction, int palId)
     return;
 }
 
+static char * fe8_characters[62] = {
+    // Main Story Characters
+    "Eirika", "Seth", "Franz", "Gilliam", "Moulder", "Vanessa", "Ross", "Garcia",
+    "Neimi", "Colm", "Lute", "Artur", "Natasha", "Joshua", "Ephraim", "Forde",
+    "Kyle", "Tana", "Amelia", "Duessel", "Cormag", "L'Arachel", "Dozla", "Ewan",
+    "Marisa", "Tethys", "Gerik", "Rennac", "Saleh", "Knoll", "Innes", "Myrrh", "Syrene",
 
-/* This fucks up the position of the unit's name in the minimug box when I hook it, even without changing anything */
+    // Bosses
+    "O'Neill", "Berguet", "Bones", "Bazba", "Saar", "Novala", "Murray", "Tirado",
+    "Binks", "Pablo", "Aias", "Carlyle", "Gheb", "Beran", "Zonta", "Vigarde",
+    
+    //Extras
+    "Mansel", "Klimt", "Dara",
 
-// //! FE8U = 0x0808C5D0
-// LYN_REPLACE_CHECK(DrawUnitMapUi);
-// void DrawUnitMapUi(struct PlayerInterfaceProc * proc, struct Unit * unit)
-// {
-//     char * str;
-//     int pos;
-//     int faceId;
+    // Post-Game Unlockable Characters
+    "Caellach", "Orson", "Riev", "Ismaire", "Selena", "Hayden", "Glen", "Valter",
+    "Fado", "Lyon"
+};
 
-//     CpuFastFill(0, gUiTmScratchA, 6 * CHR_SIZE * sizeof(u16));
+// ! FE8U = 0x0808C5D0
+LYN_REPLACE_CHECK(DrawUnitMapUi);
+void DrawUnitMapUi(struct PlayerInterfaceProc * proc, struct Unit * unit)
+{
+    char * str;
+    int pos;
+    int faceId;
 
-//     str = GetStringFromIndex(unit->pCharacterData->nameTextId);
-//     pos = GetStringTextCenteredPos(56, str);
+    CpuFastFill(0, gUiTmScratchA, 6 * CHR_SIZE * sizeof(u16));
 
-//     ClearText(proc->texts);
-//     Text_SetParams(proc->texts, pos, TEXT_COLOR_SYSTEM_BLACK);
+    str = GetStringFromIndex(unit->pCharacterData->nameTextId);
 
-//     /* Draw unit name */
-//     Text_DrawString(proc->texts, str);
-//     PutText(proc->texts, gUiTmScratchA + TILEMAP_INDEX(15, 1));
+#if (defined(SID_IdentityProblems) && (COMMON_SKILL_VALID(SID_IdentityProblems)))
+    if (SkillTester(unit, SID_IdentityProblems))
+        str = fe8_characters[NextRN_N(sizeof(fe8_characters) / sizeof((fe8_characters)[0]))];
+#endif
 
-//     faceId = GetUnitMiniPortraitId(unit);
+    pos = GetStringTextCenteredPos(56, str);
 
-//     if (unit->state & US_BIT23)
-//     {
-//         faceId = faceId + 1;
-//     }
+    ClearText(proc->texts);
+    Text_SetParams(proc->texts, pos, TEXT_COLOR_SYSTEM_BLACK);
+    Text_DrawString(proc->texts, str);
+    PutText(proc->texts, gUiTmScratchA + TILEMAP_INDEX(5, 1));
 
-//     PutFaceChibi(faceId, gUiTmScratchA + TILEMAP_INDEX(1, 1), 0xF0, 4, 0);
+    faceId = GetUnitMiniPortraitId(unit);
 
-//     proc->statusTm = gUiTmScratchA + TILEMAP_INDEX(5, 3);
-//     proc->unitClock = 0;
+    if (unit->state & US_BIT23)
+    {
+        faceId = faceId + 1;
+    }
 
-//     if (sPlayerInterfaceConfigLut[proc->cursorQuadrant].xMinimug < 0)
-//     {
-//         proc->xHp = 5;
-//     }
-//     else
-//     {
-//         proc->xHp = 23;
-//     }
+    PutFaceChibi(faceId, gUiTmScratchA + TILEMAP_INDEX(1, 1), 0xF0, 4, 0);
 
-//     if (sPlayerInterfaceConfigLut[proc->cursorQuadrant].yMinimug < 0)
-//     {
-//         proc->yHp = 3;
-//     }
-//     else
-//     {
-//         proc->yHp = 17;
-//     }
+    proc->statusTm = gUiTmScratchA + TILEMAP_INDEX(5, 3);
+    proc->unitClock = 0;
 
-//     UnitMapUiUpdate(proc, unit);
-//     DrawHpBar(gUiTmScratchA + TILEMAP_INDEX(5, 4), unit, TILEREF(0x140, 1));
+    if (sPlayerInterfaceConfigLut[proc->cursorQuadrant].xMinimug < 0)
+    {
+        proc->xHp = 5;
+    }
+    else
+    {
+        proc->xHp = 23;
+    }
 
-//     /* This function arranges the tiles in gTSA_MinimugBox and displays the box */
-//     CallARM_FillTileRect(gUiTmScratchB, gTSA_MinimugBox, TILEREF(0x0, 3));
-//     ApplyUnitMapUiFramePal(UNIT_FACTION(unit), 3);
+    if (sPlayerInterfaceConfigLut[proc->cursorQuadrant].yMinimug < 0)
+    {
+        proc->yHp = 3;
+    }
+    else
+    {
+        proc->yHp = 17;
+    }
 
+    UnitMapUiUpdate(proc, unit);
+    DrawHpBar(gUiTmScratchA + TILEMAP_INDEX(5, 4), unit, TILEREF(0x140, 1));
 
-//     // /* Custom code I've added to place skill icons where the unit name originally was */
-//     // LoadIconPalettes(STATSCREEN_BGPAL_ITEMICONS);
+    CallARM_FillTileRect(gUiTmScratchB, gTSA_MinimugBox, TILEREF(0x0, 3));
+    ApplyUnitMapUiFramePal(UNIT_FACTION(unit), 3);
 
-//     // struct SkillList *list = GetUnitSkillList(unit);
+    return;
+}
 
-//     // #define STAT_SKILL_NUM_MAX 8
+LYN_REPLACE_CHECK(IsItemStealable);
+s8 IsItemStealable(int item) {
 
-//     // for (int i = 0; i < STAT_SKILL_NUM_MAX; i++) {
+    bool stealable = false;
 
-// 	// 	if (i >= list->amt)
-// 	// 		break;
+#if defined(SID_StealPlus) && (COMMON_SKILL_VALID(SID_StealPlus))
+    if (SkillTester(gActiveUnit, SID_StealPlus))
+        stealable = (GetItemType(item) == ITYPE_ITEM  || 
+        GetItemType(item) == ITYPE_ANIMA ||
+        GetItemType(item) == ITYPE_LIGHT ||
+        GetItemType(item) == ITYPE_DARK  ||
+        GetItemType(item) == ITYPE_STAFF ||
+        GetItemType(item) == ITYPE_AXE   ||
+        GetItemType(item) == ITYPE_BOW   ||
+        GetItemType(item) == ITYPE_SWORD ||
+        GetItemType(item) == ITYPE_LANCE);
+    else
+        stealable = GetItemType(item) == ITYPE_ITEM;
+#else
+    stealable = GetItemType(item) == ITYPE_ITEM;
+#endif
 
-// 	// 	DrawIcon(gUiTmScratchA + TILEMAP_INDEX((5 + 2 * i), 1),
-// 	// 			 SKILL_ICON(list->sid[i]),
-// 	// 			 TILEREF(0x0, STATSCREEN_BGPAL_ITEMICONS));
-// 	// }
+    return stealable;
 
-//     return;
-// }
+};
+
+extern int _GetUnitCon(struct Unit * unit); 
+
+LYN_REPLACE_CHECK(AddAsTarget_IfCanStealFrom);
+void AddAsTarget_IfCanStealFrom(struct Unit* unit) {
+    int i;
+
+    if (UNIT_FACTION(unit) != FACTION_RED) {
+        return;
+    }
+
+    if (gActiveUnit->spd < unit->spd) {
+        return;
+    }
+
+    for (i = 0; i < UNIT_ITEM_COUNT; i++) {
+        u16 item = unit->items[i];
+
+        if (item == 0) {
+            return;
+        }
+
+        if (!IsItemStealable(item)) {
+            continue;
+        }
+
+#if defined(SID_StealPlus) && (COMMON_SKILL_VALID(SID_StealPlus))
+        if (SkillTester(gActiveUnit, SID_StealPlus)) 
+        {
+            if (GetUnitEquippedWeaponSlot(unit) == i) {
+                continue;
+            }
+
+            if (_GetUnitCon(gActiveUnit) <= GetItemWeight(unit->items[i])) {
+                continue;
+            }
+        }
+#endif
+
+        AddTarget(unit->xPos, unit->yPos, unit->index, 0);
+        return;
+    }
+
+    return;
+}
+
+extern struct ProcCmd CONST_DATA gProcScr_SupportScreen[];
+
+//! FE8U = 0x080A1984
+LYN_REPLACE_CHECK(StartSupportScreen);
+void StartSupportScreen(ProcPtr parent) {
+    struct SupportScreenProc* proc = Proc_StartBlocking(gProcScr_SupportScreen, parent);
+    proc->fromPrepScreen = FALSE;
+    return;
+}
+
+//! FE8U = 0x080A21D0
+LYN_REPLACE_CHECK(SupportSubScreen_Init);
+void SupportSubScreen_Init(struct SubScreenProc* proc) {
+    proc->x = 0;
+    proc->y = 0;
+    proc->unk_39 &= 0xfc;
+    proc->unk_39 &= 0xe3;
+    proc->partnerCount = GetSupportScreenPartnerCount(GetSupportScreenCharIdAt(proc->unitIdx));
+
+    InitSupportSubScreenPartners(proc);
+    InitSupportSubScreenPartnerLevels(proc);
+    InitSupportSubScreenRemainingSupports(proc);
+    SupportSubScreen_MoveCursorToNextValidUnit(proc, 0, +1);
+
+    return;
+}
+
+//! FE8U = 0x080A2274
+LYN_REPLACE_CHECK(SupportSubScreen_SetupGraphics);
+void SupportSubScreen_SetupGraphics(struct SubScreenProc* proc) {
+    gLCDControlBuffer.dispcnt.mode = 0;
+
+    SetupBackgrounds(0);
+
+    gLCDControlBuffer.bg0cnt.priority = 1;
+    gLCDControlBuffer.bg1cnt.priority = 3;
+    gLCDControlBuffer.bg2cnt.priority = 1;
+    gLCDControlBuffer.bg3cnt.priority = 3;
+
+    ResetText();
+    ResetIconGraphics_();
+
+    LoadUiFrameGraphics();
+    LoadObjUIGfx();
+
+    ApplyUnitSpritePalettes();
+    sub_80A221C();
+    LoadIconPalettes(0xd);
+
+    StartGreenText((void*)proc);
+
+    if (!proc->fromPrepScreen) {
+        gPlaySt.config.textSpeed = 1; // TODO: Text speed constants
+
+        ResetSysHandCursor(proc);
+        DisplaySysHandCursorTextShadow(0x600, 1);
+        ConfigSysHandCursorShadowEnabled(1);
+
+        proc->unk_3a = -1;
+
+        if (proc->unk_3b != 0) {
+            ShowSysHandCursor(
+                (proc->unk_39 & 3) * 8 + 0xc4,
+                ((proc->unk_39 >> 2) & 7) * 16 + 0x18,
+                1,
+                0x800
+            );
+        }
+    }
+
+    BG_SetPosition(0, 4, 0);
+    BG_SetPosition(1, 4, 0);
+    BG_SetPosition(2, 0, 0);
+
+    SetBlendConfig(1, 0xd, 3, 0);
+    SetBlendTargetA(0, 1, 0, 0, 0);
+    SetBlendTargetB(0, 0, 0, 1, 0);
+
+    SetBlendBackdropA(0);
+    SetBlendBackdropB(0);
+
+    RestartMuralBackground();
+
+    PutImg_PrepItemUseUnk(0x4000, 5);
+
+    Decompress(gTsa_SupportSubScreen, gGenericBuffer);
+    CallARM_FillTileRect(gBG1TilemapBuffer, gGenericBuffer, 0x1000);
+
+    PutFace80x72(
+        (struct Proc*)proc,
+        TILEMAP_LOCATED(gBG0TilemapBuffer, 2, 1),
+        gCharacterData[GetSupportScreenCharIdAt(proc->unitIdx) - 1].portraitId,
+        0x200,
+        2
+    );
+
+    DrawSupportSubScreenUnitPartnerDetails(proc);
+    DrawSupportSubScreenRemainingText(proc);
+
+    Decompress(gGfx_SupportMenu, (void*)0x06017800);
+    ApplyPalette(gPal_SupportMenu, 0x1A);
+    ApplyPalette(Pal_MapBattleInfoNum, 0x12);
+
+    StartParallelWorker(DrawSupportSubScreenSprites, proc);
+
+    return;
+}
+
+//! FE8U = 0x080A2448
+LYN_REPLACE_CHECK(SupportSubScreen_Loop_KeyHandler);
+void SupportSubScreen_Loop_KeyHandler(struct SubScreenProc* proc) {
+    NoCashGBAPrint("Fuck shit fuck");
+    if (gKeyStatusPtr->newKeys & B_BUTTON) {
+        PlaySoundEffect(SONG_SE_SYS_WINDOW_CANSEL1);
+        Proc_Goto(proc, 3);
+        return;
+    }
+
+    if (gKeyStatusPtr->repeatedKeys & R_BUTTON) {
+        Proc_Goto(proc, 4);
+        return;
+    }
+
+    if (gKeyStatusPtr->repeatedKeys & L_BUTTON) {
+        Proc_Goto(proc, 5);
+        return;
+    }
+
+    if (proc->fromPrepScreen) {
+        return;
+    }
+
+    if (proc->unk_3b != 0) {
+        u32 previous = proc->unk_39;
+
+        if (gKeyStatusPtr->newKeys & A_BUTTON) {
+            PlaySoundEffect(SONG_SE_SYS_WINDOW_SELECT1);
+            Proc_Goto(proc, 2);
+            return;
+        }
+
+        if (gKeyStatusPtr->repeatedKeys & DPAD_LEFT) {
+            if ((proc->unk_39 & 3) != 0) {
+                int unk = (proc->unk_39 & 0xfc) + 0xFF;
+                proc->unk_39 = unk + (proc->unk_39 & 3);
+            }
+        }
+
+        if (gKeyStatusPtr->repeatedKeys & DPAD_RIGHT) {
+            if ((proc->unk_39 & 3) < GetSupportScreenPartnerSupportLevel(proc->unitIdx, (proc->unk_39 >> 2) & 7) - 1) {
+                int unk = (proc->unk_39 & 0xfc) + 1;
+                proc->unk_39 = unk + (proc->unk_39 & 3);
+            }
+        }
+
+        if (gKeyStatusPtr->repeatedKeys & DPAD_UP) {
+            SupportSubScreen_MoveCursorToNextValidUnit(proc, ((proc->unk_39 >> 2) & 7) - 1, -1);
+        }
+
+        if (gKeyStatusPtr->repeatedKeys & DPAD_DOWN) {
+            SupportSubScreen_MoveCursorToNextValidUnit(proc, ((proc->unk_39 >> 2) & 7) + 1, +1);
+        }
+
+        if (previous != proc->unk_39) {
+            ShowSysHandCursor(
+                (proc->unk_39 & 3) * 8 + 0xc4,
+                ((proc->unk_39 >> 2) & 7) * 16  + 0x18,
+                1,
+                0x800
+            );
+            PlaySoundEffect(SONG_65);
+        }
+
+    } else {
+        if (gKeyStatusPtr->newKeys & A_BUTTON) {
+            PlaySoundEffect(SONG_6C);
+        }
+
+        return;
+    }
+
+    return;
+}
+
+//! FE8U = 0x08032270
+LYN_REPLACE_CHECK(ActionVisitAndSeize);
+s8 ActionVisitAndSeize(ProcPtr proc) {
+    int x = GetUnit(gActionData.subjectIndex)->xPos;
+    int y = GetUnit(gActionData.subjectIndex)->yPos;
+
+    StartAvailableTileEvent(x, y);
+
+    return 0;
+}
+
+static u8 Salve_OnSelectTarget(ProcPtr proc, struct SelectTarget * target)
+{
+    gActionData.targetIndex = target->uid;
+
+    gActionData.xOther = target->x;
+    gActionData.yOther = target->y;
+
+    HideMoveRangeGraphics();
+
+    BG_Fill(gBG2TilemapBuffer, 0);
+    BG_EnableSyncByMask(BG2_SYNC_BIT);
+
+    gActionData.unk08 = SID_Salve;
+    gActionData.unitActionType = CONFIG_UNIT_ACTION_EXPA_ExecSkill;
+
+    DoItemUse(GetUnit(gActionData.targetIndex), gActiveUnit->items[gActionData.itemSlotIndex]);
+
+    return TARGETSELECTION_ACTION_ENDFAST | TARGETSELECTION_ACTION_END | TARGETSELECTION_ACTION_SE_6A | TARGETSELECTION_ACTION_CLEARBGS;
+}
+
+LYN_REPLACE_CHECK(ItemSubMenu_UseItem);
+u8 ItemSubMenu_UseItem(struct MenuProc* menu, struct MenuItemProc* menuItem) {
+
+    if (menuItem->availability == MENU_DISABLED) {
+        MenuFrozenHelpBox(menu, GetItemCantUseMsgid(gActiveUnit, gActiveUnit->items[gActionData.itemSlotIndex]));
+        return MENU_ACT_SND6B;
+    }
+
+    ClearBg0Bg1();
+
+#if defined(SID_Salve) && (COMMON_SKILL_VALID(SID_Salve))
+    if (SkillTester(gActiveUnit, SID_Salve))
+    {
+        MakeTargetListForAdjacentSameFaction(gActiveUnit);
+        BmMapFill(gBmMapMovement, -1);
+
+        StartSubtitleHelp(
+            NewTargetSelection_Specialized(&gSelectInfo_PutTrap, Salve_OnSelectTarget),
+            GetStringFromIndex(MSG_SKILL_Common_Target));
+    }
+    else
+    {
+        DoItemUse(gActiveUnit, gActiveUnit->items[gActionData.itemSlotIndex]);
+    }
+#else
+    DoItemUse(gActiveUnit, gActiveUnit->items[gActionData.itemSlotIndex]);
+#endif
+
+    PlaySoundEffect(SONG_SE_SYS_WINDOW_SELECT1);
+
+    SetTextFont(NULL);
+
+    ResetTextFont();
+
+    EndAllMenus();
+
+    return MENU_ACT_SKIPCURSOR | MENU_ACT_ENDFACE;
+}

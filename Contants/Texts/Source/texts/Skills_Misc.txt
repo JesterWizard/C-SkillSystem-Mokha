@@ -375,3 +375,10 @@ Item Lore[X]
 Item Lore:[N]
 Double the effects of[N]
 healing items.[X]
+
+## MSG_SKILL_Salve_NAME
+Salve[X]
+## MSG_SKILL_Salve_DESC
+Salve:[N]
+Can use personal items on[N]
+adjacent allied units.[X]

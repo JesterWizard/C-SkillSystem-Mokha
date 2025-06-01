@@ -5,29 +5,28 @@
 
 #define LOCAL_TRACE 0
 
+// ---------------------------------------------------------------
+// Skill management
+
 static void SortRamSkillList(struct Unit * unit)
 {
     int i, cnt = 0;
-    u8 * list = UNIT_RAM_SKILLS(unit);
-    u8 * buf = gGenericBuffer;
+    u16 buf[UNIT_RAM_SKILLS_LEN] = {0};
 
-    memset(buf, 0, UNIT_RAM_SKILLS_LEN);
+    for (i = 0; i < UNIT_RAM_SKILLS_LEN; i++) {
+        u16 sid = GET_SKILL(unit, i);
+        if (EQUIP_SKILL_VALID(sid))
+            buf[cnt++] = sid;
+    }
 
     for (i = 0; i < UNIT_RAM_SKILLS_LEN; i++)
-        if (EQUIPE_SKILL_VALID(list[i]))
-            buf[cnt++] = list[i];
-
-    memcpy(list, buf, UNIT_RAM_SKILLS_LEN);
+        SET_SKILL(unit, i, i < cnt ? buf[i] : 0);
 }
 
 inline int GetSkillSlot(struct Unit * unit, int sid)
 {
-    int i;
-    const int cnt = RAM_SKILL_LEN_EXT;
-    u8 * list = UNIT_RAM_SKILLS(unit);
-
-    for (i = 0; i < cnt; i++)
-        if (list[i] == sid)
+    for (int i = 0; i < RAM_SKILL_LEN_EXT; i++)
+        if (GET_SKILL(unit, i) == sid)
             return i;
 
     return -1;
@@ -35,12 +34,8 @@ inline int GetSkillSlot(struct Unit * unit, int sid)
 
 inline int GetFreeSkillSlot(struct Unit * unit)
 {
-    int i;
-    const int cnt = RAM_SKILL_LEN_EXT;
-    u8 * list = UNIT_RAM_SKILLS(unit);
-
-    for (i = 0; i < cnt; i++)
-        if (!EQUIPE_SKILL_VALID(list[i]))
+    for (int i = 0; i < RAM_SKILL_LEN_EXT; i++)
+        if (!EQUIP_SKILL_VALID(GET_SKILL(unit, i)))
             return i;
 
     return -1;
@@ -48,14 +43,11 @@ inline int GetFreeSkillSlot(struct Unit * unit)
 
 bool CanRemoveSkill(struct Unit * unit, const u16 sid)
 {
-    int i;
-    u8 * list = UNIT_RAM_SKILLS(unit);
-
-    if (!EQUIPE_SKILL_VALID(sid))
+    if (!EQUIP_SKILL_VALID(sid))
         return false;
 
-    for (i = 0; i < UNIT_RAM_SKILLS_LEN; i++)
-        if (sid == list[i])
+    for (int i = 0; i < UNIT_RAM_SKILLS_LEN; i++)
+        if (GET_SKILL(unit, i) == sid)
             return true;
 
     return false;
@@ -63,49 +55,42 @@ bool CanRemoveSkill(struct Unit * unit, const u16 sid)
 
 int RemoveSkill(struct Unit * unit, const u16 sid)
 {
-    int i;
-    u8 * list = UNIT_RAM_SKILLS(unit);
-
-    if (!EQUIPE_SKILL_VALID(sid))
+    if (!EQUIP_SKILL_VALID(sid))
         return -1;
 
-    for (i = 0; i < UNIT_RAM_SKILLS_LEN; i++)
-        if (sid == list[i])
-        {
-            list[i] = 0;
+    for (int i = 0; i < UNIT_RAM_SKILLS_LEN; i++) {
+        if (GET_SKILL(unit, i) == sid) {
+            SET_SKILL(unit, i, 0);
             SortRamSkillList(unit);
             ResetSkillLists();
             return 0;
         }
+    }
     return -1;
 }
 
 int AddSkill(struct Unit * unit, const u16 sid)
 {
-    int slot;
-    u8 * list = UNIT_RAM_SKILLS(unit);
-
-    if (sid >= MAX_GENERIC_SKILL_NUM)
+    if (sid >= MAX_EQUIP_SKILL_NUM)
         return -1;
 
     LearnSkill(unit, sid);
 
-    slot = GetSkillSlot(unit, sid);
-    if (slot != -1)
+    if (GetSkillSlot(unit, sid) != -1)
         return 0;
 
-    slot = GetFreeSkillSlot(unit);
+    int slot = GetFreeSkillSlot(unit);
     if (slot == -1)
         return -1;
 
-    list[slot] = sid;
+    SET_SKILL(unit, slot, sid);
     ResetSkillLists();
     return 0;
 }
 
 static inline void load_skill_ext(struct Unit * unit, u16 sid)
 {
-    if (EQUIPE_SKILL_VALID(sid))
+    if (EQUIP_SKILL_VALID(sid))
     {
         if (UNIT_FACTION(unit) == FACTION_BLUE)
             LearnSkill(unit, sid);
@@ -166,7 +151,7 @@ STATIC_DECLAR void TryAddSkillLvupPConf(struct Unit * unit, int level)
     {
         sid = pConf->skills[_level + i];
 
-        if (EQUIPE_SKILL_VALID(sid))
+        if (EQUIP_SKILL_VALID(sid))
             AddSkill(unit, sid);
     }
 }
@@ -183,7 +168,7 @@ STATIC_DECLAR void TryAddSkillLvupJConf(struct Unit * unit, int level)
     {
         sid = jConf->skills[_level + i];
 
-        if (EQUIPE_SKILL_VALID(sid))
+        if (EQUIP_SKILL_VALID(sid))
             AddSkill(unit, sid);
     }
 }
@@ -218,7 +203,7 @@ void TryAddSkillPromotion(struct Unit * unit, int jid)
     {
         sid = jConf->skills[0 + i];
 
-        if (EQUIPE_SKILL_VALID(sid))
+        if (EQUIP_SKILL_VALID(sid))
             AddSkill(unit, sid);
     }
 }

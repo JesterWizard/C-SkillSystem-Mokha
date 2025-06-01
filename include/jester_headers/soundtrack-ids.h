@@ -48,6 +48,8 @@ enum {
     SFX_RIVER                   = 0x53,
     SFX_UPDATE                  = 0x5A,
     SFX_WEAPON_BROKE            = 0x5C,
+    SONG_SE_SYS_WINDOW_SELECT1  = 0x6A,
+    SONG_SE_SYS_WINDOW_CANSEL1  = 0x6B,
     SFX_VILLAGE_DESTROYED       = 0xAB,
     SFX_UNLOCKING_DOOR          = 0xB1,
     // Lots more to add here

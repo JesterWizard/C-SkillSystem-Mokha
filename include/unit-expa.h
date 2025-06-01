@@ -9,11 +9,6 @@
  */
 
 enum unit_expa_sus_bitfile_idx {
-    /**
-     * I have no idea what guards to put on these, there's like 5 different "legendary" skills
-     */
-    // UES_BIT_LEGENDARY_SKILL_USED,
-    // UES_BIT_LEGENDARY_SKILL_ACTIVE,
 #if defined(SID_GuardBearing) && (COMMON_SKILL_VALID(SID_GuardBearing))
     UES_BIT_GUARDBEAR_SKILL_USED,
 #endif
@@ -42,7 +37,7 @@ enum unit_expa_sus_bitfile_idx {
     UES_BIT_CAPTURE_SKILL_USED,
 #endif
 #if defined(SID_Turncoat) && (COMMON_SKILL_VALID(SID_Turncoat))
-    UES_BIT_TURNCOAT,
+    UES_BIT_CHANGED_FACTIONS,
 #endif
 #if defined(SID_Resurrection) && (COMMON_SKILL_VALID(SID_Resurrection))
     UES_BIT_RESURRECTION_SKILL_USED,
@@ -74,7 +69,6 @@ enum unit_expa_sus_bitfile_idx {
 #if defined(SID_GrimReaper) && (COMMON_SKILL_VALID(SID_GrimReaper))
     UES_BIT_GRIM_REAPER_SKILL_USED,
 #endif
-
     UES_BIT_MAX
 };
 

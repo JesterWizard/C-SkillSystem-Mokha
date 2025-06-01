@@ -2,6 +2,10 @@
 ## MSG_Weapon_Rank_Increased
 Weapon rank increased.[X]
 
+## MSG_ITEM_CANT_STEAL_PLUS
+Can't steal equipped weapons[N]
+or weapons heavier than unit.[X]
+
 ## MSG_ITEM_SKILLSTEALER_NAME
 Skill Stealer[X]
 
@@ -128,3 +132,30 @@ movement.[X]
 ## MSG_ITEM_SLOW_STAFF_USEDESC
 Half the target's[N]
 movement.[X]
+
+## MSG_ITEM_METIS_TOME_DESC
+Boost all of this unit's[N]
+growths by 5%.[X]
+
+## MSG_ITEM_STAFF_HEAL_DESC
+Heal an adjacent ally's HP.[N]
+Heal amount: 10 + unit's MAG.[X]
+
+## MSG_ITEM_STAFF_MEND_DESC
+Heal an adjacent ally's HP.[N]
+Heal amount: 20 + unit's MAG.[X]
+
+## MSG_ITEM_STAFF_RECOVER_DESC
+Heal an adjacent ally's HP.[N]
+Heal amount: 40 + unit's MAG.[X]
+
+## MSG_ITEM_STAFF_PHYSIC_DESC
+Heal an ally's HP in MAG/2 range.[N]
+Heal amount: 10 + unit's MAG.[X]
+
+## MSG_ITEM_STAFF_FORTIFY_DESC
+Heal all ally's HP in MAG/2 range.[N]
+Heal amount: 10 + unit's MAG.[X]
+
+## MSG_ITEM_VULNERARY_DESC
+Heal the active unit's HP by 10.[X]

@@ -25,7 +25,7 @@ bool PrePhase_TickDopplegangerSkillStatus(ProcPtr proc)
         {
             for (int i = 0; i < dopplegangerListSize; i++)
             {
-                if (gActiveUnit->pCharacterData->number == dopplegangerPairs[i][0])
+                if (unit->pCharacterData->number == dopplegangerPairs[i][0])
                 {
                     unit->pClassData = GetClassData(dopplegangerPairs[i][1]);
                     break;

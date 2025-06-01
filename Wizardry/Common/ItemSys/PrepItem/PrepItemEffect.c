@@ -109,12 +109,24 @@ void ActionStaffDoorChestUseItem(ProcPtr proc) {
         case ITEM_STAFF_RESCUE:
             ExecRescueStaff(proc);
             break;
+#ifdef CONFIG_ITEM_INDEX_FORCE_STAFF
         case CONFIG_ITEM_INDEX_FORCE_STAFF:
+#endif
+#ifdef CONFIG_ITEM_INDEX_TEMPEST_STAFF
         case CONFIG_ITEM_INDEX_TEMPEST_STAFF:
+#endif
+#ifdef CONFIG_ITEM_INDEX_ACUITY_STAFF
         case CONFIG_ITEM_INDEX_ACUITY_STAFF:
+#endif
+#ifdef CONFIG_ITEM_INDEX_SPRINT_STAFF
         case CONFIG_ITEM_INDEX_SPRINT_STAFF:
+#endif
+#ifdef CONFIG_ITEM_INDEX_FORTUNE_STAFF
         case CONFIG_ITEM_INDEX_FORTUNE_STAFF:
+#endif
+#ifdef CONFIG_ITEM_INDEX_IRON_STAFF
         case CONFIG_ITEM_INDEX_IRON_STAFF:
+#endif
         case ITEM_STAFF_BARRIER:
             ExecBarrierStaff(proc);
             break;
@@ -183,11 +195,15 @@ void ActionStaffDoorChestUseItem(ProcPtr proc) {
         case ITEM_STAFF_LATONA:
             ExecLatona(proc);
             break;
+#ifdef CONFIG_ITEM_INDEX_MINE_STAFF
         case CONFIG_ITEM_INDEX_MINE_STAFF:
+#endif
         case ITEM_MINE:
             ExecMine(proc);
             break;
+#ifdef CONFIG_ITEM_INDEX_RUNE_STAFF
         case CONFIG_ITEM_INDEX_RUNE_STAFF:
+#endif
         case ITEM_LIGHTRUNE:
             ExecLightRune(proc);
             break;
@@ -203,12 +219,29 @@ void ActionStaffDoorChestUseItem(ProcPtr proc) {
         case ITEM_JUNAFRUIT:
             ExecJunaFruitItem(proc);
             break;
+#ifdef CONFIG_ITEM_INDEX_SLOW_STAFF
         case CONFIG_ITEM_INDEX_SLOW_STAFF:
+#endif
             ExecCustomStaves(proc);
             break;
 
-#ifdef CONFIG_ITEM_INDEX_SKILL_SCROLL
-        case CONFIG_ITEM_INDEX_SKILL_SCROLL:
+#ifdef CONFIG_ITEM_INDEX_SKILL_SCROLL_1
+        case CONFIG_ITEM_INDEX_SKILL_SCROLL_1:
+            ItemUseAction_SkillScroll(proc);
+            break;
+#endif
+#ifdef CONFIG_ITEM_INDEX_SKILL_SCROLL_2
+        case CONFIG_ITEM_INDEX_SKILL_SCROLL_2:
+            ItemUseAction_SkillScroll(proc);
+            break;
+#endif
+#ifdef CONFIG_ITEM_INDEX_SKILL_SCROLL_3
+        case CONFIG_ITEM_INDEX_SKILL_SCROLL_3:
+            ItemUseAction_SkillScroll(proc);
+            break;
+#endif
+#ifdef CONFIG_ITEM_INDEX_SKILL_SCROLL_4
+        case CONFIG_ITEM_INDEX_SKILL_SCROLL_4:
             ItemUseAction_SkillScroll(proc);
             break;
 #endif

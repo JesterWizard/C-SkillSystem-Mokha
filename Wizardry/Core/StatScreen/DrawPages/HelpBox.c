@@ -131,7 +131,7 @@ void LoadHelpBoxGfx(void * vram, int palId)
     };
 
     bool procFound = false;
-
+    
     for (int i = 0; i < (int)ARRAY_COUNT(procExceptionsList); i++)
     {
         if (Proc_Find(procExceptionsList[i]))
@@ -140,6 +140,9 @@ void LoadHelpBoxGfx(void * vram, int palId)
             break;
         }
     }
+
+    if (gActionData.unk08 == SID_SummonPlus && !procFound)
+        procFound = true;
 
     if (!procFound)
     {

@@ -261,7 +261,7 @@ void PrepInitGfxHook(void)
 
     Decompress(GetPrepExtra1(), (void *)0x06000440);
     Decompress(GetUnknown_08A1B7C8(), gGenericBuffer);
-    asm("mov r11, r11");
+    //asm("mov r11, r11");
     CallARM_FillTileRect(gBG1TilemapBuffer, gGenericBuffer, 0x1000);
 }
 

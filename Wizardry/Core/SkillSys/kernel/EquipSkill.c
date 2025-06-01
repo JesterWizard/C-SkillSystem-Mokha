@@ -19,7 +19,7 @@ STATIC_DECLAR void RegisterToPrepEquipSkillListExt(const u16 sid)
 STATIC_DECLAR void SetupPrepEquipReal(void)
 {
     int i;
-    for (i = 1; i < MAX_GENERIC_SKILL_NUM; i++)
+    for (i = 1; i < MAX_EQUIP_SKILL_NUM; i++)
         if (sPrepEquipSkillListExt[i] & 1)
             sPrepEquipSkillList.sid[sPrepEquipSkillList.amt++] = i;
 }
@@ -30,7 +30,7 @@ STATIC_DECLAR void UpdatePrepEquipSkillList(struct Unit * unit)
 
     ResetPrepEquipSkillList();
 
-    for (i = 1; i < MAX_GENERIC_SKILL_NUM; i++)
+    for (i = 1; i < MAX_EQUIP_SKILL_NUM; i++)
         if (IsSkillLearned(unit, i))
             RegisterToPrepEquipSkillListExt(i);
 

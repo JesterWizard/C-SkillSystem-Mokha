@@ -12,12 +12,44 @@
 /* External hooks */
 char * GetSkillScrollItemName(int item)
 {
-    return GetSkillNameStr(ITEM_USES(item));
+#ifdef CONFIG_ITEM_INDEX_SKILL_SCROLL_1
+    if (ITEM_INDEX(item) == CONFIG_ITEM_INDEX_SKILL_SCROLL_1)
+        return GetSkillNameStr(ITEM_USES(item));
+#endif
+#ifdef CONFIG_ITEM_INDEX_SKILL_SCROLL_2
+    if (ITEM_INDEX(item) == CONFIG_ITEM_INDEX_SKILL_SCROLL_2)
+        return GetSkillNameStr(ITEM_USES(item) + 0xFF);
+#endif
+#ifdef CONFIG_ITEM_INDEX_SKILL_SCROLL_3
+    if (ITEM_INDEX(item) == CONFIG_ITEM_INDEX_SKILL_SCROLL_3)
+        return GetSkillNameStr(ITEM_USES(item) + 0x1FF);
+#endif
+#ifdef CONFIG_ITEM_INDEX_SKILL_SCROLL_4
+    if (ITEM_INDEX(item) == CONFIG_ITEM_INDEX_SKILL_SCROLL_4)
+        return GetSkillNameStr(ITEM_USES(item) + 0x2FF);
+#endif
+    return "";
 }
 
 int GetSkillScrollItemDescId(int item)
 {
-    return GetSkillDescMsg(ITEM_USES(item));
+#ifdef CONFIG_ITEM_INDEX_SKILL_SCROLL_1
+    if (ITEM_INDEX(item) == CONFIG_ITEM_INDEX_SKILL_SCROLL_1)
+        return GetSkillDescMsg(ITEM_USES(item));
+#endif
+#ifdef CONFIG_ITEM_INDEX_SKILL_SCROLL_2
+    if (ITEM_INDEX(item) == CONFIG_ITEM_INDEX_SKILL_SCROLL_2)
+        return GetSkillDescMsg(ITEM_USES(item) + 0xFF);
+#endif
+#ifdef CONFIG_ITEM_INDEX_SKILL_SCROLL_3
+    if (ITEM_INDEX(item) == CONFIG_ITEM_INDEX_SKILL_SCROLL_3)
+        return GetSkillDescMsg(ITEM_USES(item) + 0x1FF);
+#endif
+#ifdef CONFIG_ITEM_INDEX_SKILL_SCROLL_4
+    if (ITEM_INDEX(item) == CONFIG_ITEM_INDEX_SKILL_SCROLL_4)
+        return GetSkillDescMsg(ITEM_USES(item) + 0x2FF);
+#endif
+    return 0;
 }
 
 int GetSkillScrollItemUseDescId(int item)
@@ -28,7 +60,23 @@ int GetSkillScrollItemUseDescId(int item)
 
 int GetSkillScrollItemIconId(int item)
 {
-    return SKILL_ICON(ITEM_USES(item));
+#ifdef CONFIG_ITEM_INDEX_SKILL_SCROLL_1
+    if (ITEM_INDEX(item) == CONFIG_ITEM_INDEX_SKILL_SCROLL_1)
+        return SKILL_ICON(ITEM_USES(item));
+#endif
+#ifdef CONFIG_ITEM_INDEX_SKILL_SCROLL_2
+    if (ITEM_INDEX(item) == CONFIG_ITEM_INDEX_SKILL_SCROLL_2)
+        return SKILL_ICON(ITEM_USES(item) + 0xFF);
+#endif
+#ifdef CONFIG_ITEM_INDEX_SKILL_SCROLL_3
+    if (ITEM_INDEX(item) == CONFIG_ITEM_INDEX_SKILL_SCROLL_3)
+        return SKILL_ICON(ITEM_USES(item) + 0x1FF);
+#endif
+#ifdef CONFIG_ITEM_INDEX_SKILL_SCROLL_4
+    if (ITEM_INDEX(item) == CONFIG_ITEM_INDEX_SKILL_SCROLL_4)
+        return SKILL_ICON(ITEM_USES(item) + 0x2FF);
+#endif
+    return 0;
 }
 
 /* Item use */
@@ -101,8 +149,6 @@ void ItemUseEffect_SkillScroll(struct Unit * unit)
     }
 }
 
-static const int dict_size = sizeof(dict_skills) / sizeof(dict_skills[0]);
-
 void ItemUseAction_SkillScroll(ProcPtr proc)
 {
     struct Unit * unit = GetUnit(gActionData.subjectIndex);
@@ -116,23 +162,39 @@ void ItemUseAction_SkillScroll(ProcPtr proc)
     if (UNIT_CATTRIBUTES(unit) & CA_PROMOTED)
         total += CONFIG_TELLIUS_CAPACITY_PROMOTED;
 
-    char * key = GetDuraItemName(item);
-    int value = binary_search_skills(dict_skills, dict_size, key, 1); // 1 gets the capacity of the skill
+    int capacity = 0;
 
-    if (value == -1 ) 
-        value = 0;
+#ifdef CONFIG_ITEM_INDEX_SKILL_SCROLL_1
+    if (ITEM_INDEX(item) == CONFIG_ITEM_INDEX_SKILL_SCROLL_1)
+        GetSkillCapacity(GetItemUses(item));
+#endif
+#ifdef CONFIG_ITEM_INDEX_SKILL_SCROLL_2
+    if (ITEM_INDEX(item) == CONFIG_ITEM_INDEX_SKILL_SCROLL_2)
+        GetSkillCapacity(GetItemUses(item) + 0xFF);
+#endif
+#ifdef CONFIG_ITEM_INDEX_SKILL_SCROLL_3
+    if (ITEM_INDEX(item) == CONFIG_ITEM_INDEX_SKILL_SCROLL_3)
+        GetSkillCapacity(GetItemUses(item) + 0x1FF);
+#endif
+#ifdef CONFIG_ITEM_INDEX_SKILL_SCROLL_4
+    if (ITEM_INDEX(item) == CONFIG_ITEM_INDEX_SKILL_SCROLL_4)
+        GetSkillCapacity(GetItemUses(item) + 0x2FF);
+#endif
+
+    if (capacity == -1 ) 
+        capacity = 0;
     else {
 #if defined(SID_CapacityHalf) && (COMMON_SKILL_VALID(SID_CapacityHalf))
         if (SkillTester(unit, SID_CapacityHalf))
-            value = value / 2;
+            capacity = capacity / 2;
 #endif
 #if defined(SID_CapacityOne) && (COMMON_SKILL_VALID(SID_CapacityOne))
         if (SkillTester(unit, SID_CapacityOne))
-            value = 1;
+            capacity = 1;
 #endif
         }
 
-    amt += value;
+    amt += capacity;
 
     if (amt > total)
     {
@@ -141,15 +203,30 @@ void ItemUseAction_SkillScroll(ProcPtr proc)
         return;
     }
 #endif
-
-    if (gActionData.unk08 != (u16)-1)
+    if (gEventSlots[EVT_SLOT_7] == 0xFFFF)
     {
         /* Replace skill */
         int slot_rep = gActionData.unk08;
-        int sid_rep = UNIT_RAM_SKILLS(unit)[slot_rep];
+        int sid_rep = GET_SKILL(unit, slot_rep);
 
         RemoveSkill(unit, sid_rep);
+
+#ifdef CONFIG_ITEM_INDEX_SKILL_SCROLL_1
+    if (ITEM_INDEX(item) == CONFIG_ITEM_INDEX_SKILL_SCROLL_1)
         AddSkill(unit, ITEM_USES(item));
+#endif
+#ifdef CONFIG_ITEM_INDEX_SKILL_SCROLL_2
+    if (ITEM_INDEX(item) == CONFIG_ITEM_INDEX_SKILL_SCROLL_2)
+        AddSkill(unit, ITEM_USES(item) + 0xFF);
+#endif
+#ifdef CONFIG_ITEM_INDEX_SKILL_SCROLL_3
+    if (ITEM_INDEX(item) == CONFIG_ITEM_INDEX_SKILL_SCROLL_3)
+        AddSkill(unit, ITEM_USES(item) + 0x1FF);
+#endif
+#ifdef CONFIG_ITEM_INDEX_SKILL_SCROLL_4
+    if (ITEM_INDEX(item) == CONFIG_ITEM_INDEX_SKILL_SCROLL_4)
+        AddSkill(unit, ITEM_USES(item) + 0x2FF);
+#endif
 
 #if defined(SID_ScrollScribe) && (COMMON_SKILL_VALID(SID_ScrollScribe))
         if (SkillTester(unit, SID_ScrollScribe))
@@ -164,7 +241,22 @@ void ItemUseAction_SkillScroll(ProcPtr proc)
     else
     {
         /* Simply add a new skill */
+#ifdef CONFIG_ITEM_INDEX_SKILL_SCROLL_1
+    if (ITEM_INDEX(item) == CONFIG_ITEM_INDEX_SKILL_SCROLL_1)
         AddSkill(unit, ITEM_USES(item));
+#endif
+#ifdef CONFIG_ITEM_INDEX_SKILL_SCROLL_2
+    if (ITEM_INDEX(item) == CONFIG_ITEM_INDEX_SKILL_SCROLL_2)
+        AddSkill(unit, ITEM_USES(item) + 0xFF);
+#endif
+#ifdef CONFIG_ITEM_INDEX_SKILL_SCROLL_3
+    if (ITEM_INDEX(item) == CONFIG_ITEM_INDEX_SKILL_SCROLL_3)
+        AddSkill(unit, ITEM_USES(item) + 0x1FF);
+#endif
+#ifdef CONFIG_ITEM_INDEX_SKILL_SCROLL_4
+    if (ITEM_INDEX(item) ==  CONFIG_ITEM_INDEX_SKILL_SCROLL_4)
+        AddSkill(unit, ITEM_USES(item) + 0x2FF);
+#endif
         UnitUpdateUsedItem(unit, slot);
     }
 
@@ -173,7 +265,23 @@ void ItemUseAction_SkillScroll(ProcPtr proc)
 
 bool ItemUsability_SkillScroll(struct Unit * unit, int item)
 {
-    return !IsSkillLearned(unit, ITEM_USES(item));
+#ifdef CONFIG_ITEM_INDEX_SKILL_SCROLL_1
+    if (item == CONFIG_ITEM_INDEX_SKILL_SCROLL_1)
+        return !IsSkillLearned(unit, ITEM_USES(item));
+#endif
+#ifdef CONFIG_ITEM_INDEX_SKILL_SCROLL_2
+    if (item == CONFIG_ITEM_INDEX_SKILL_SCROLL_2)
+        return !IsSkillLearned(unit, ITEM_USES(item) + 0xFF);
+#endif
+#ifdef CONFIG_ITEM_INDEX_SKILL_SCROLL_3
+    if (item == CONFIG_ITEM_INDEX_SKILL_SCROLL_3)
+        return !IsSkillLearned(unit, ITEM_USES(item) + 0x1FF);
+#endif
+#ifdef CONFIG_ITEM_INDEX_SKILL_SCROLL_4
+    if (item == CONFIG_ITEM_INDEX_SKILL_SCROLL_4)
+        return !IsSkillLearned(unit, ITEM_USES(item) + 0x2FF);
+#endif
+    return 0;
 }
 
 /* Prep item use */
@@ -254,5 +362,21 @@ bool PrepItemUsability_SkillScroll(struct Unit * unit, int item)
      * If player can equip skill by themself,
      * then they just need to avoid from learned skill.
      */
-    return !IsSkillLearned(unit, ITEM_USES(item));
+#ifdef CONFIG_ITEM_INDEX_SKILL_SCROLL_1
+    if (item == CONFIG_ITEM_INDEX_SKILL_SCROLL_1)
+        return !IsSkillLearned(unit, ITEM_USES(item));
+#endif
+#ifdef CONFIG_ITEM_INDEX_SKILL_SCROLL_2
+    if (item == CONFIG_ITEM_INDEX_SKILL_SCROLL_2)
+        return !IsSkillLearned(unit, ITEM_USES(item) + 0xFF);
+#endif
+#ifdef CONFIG_ITEM_INDEX_SKILL_SCROLL_3
+    if (item == CONFIG_ITEM_INDEX_SKILL_SCROLL_3)
+        return !IsSkillLearned(unit, ITEM_USES(item) + 0x1FF);
+#endif
+#ifdef CONFIG_ITEM_INDEX_SKILL_SCROLL_4
+    if (item == CONFIG_ITEM_INDEX_SKILL_SCROLL_4)
+        return !IsSkillLearned(unit, ITEM_USES(item) + 0x2FF);
+#endif
+    return 0;
 }

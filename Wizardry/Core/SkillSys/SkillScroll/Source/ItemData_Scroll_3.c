@@ -1,11 +1,13 @@
 #include "common-chax.h"
 #include "constants/texts.h"
 
-const struct ItemData ItemData_SkillScroll = {
+const struct ItemData ItemData_SkillScroll_3 = {
     .nameTextId = MSG_ITEM_SkillScrollName,
     .descTextId = MSG_ITEM_SkillScrollName,
     .useDescTextId = MSG_ITEM_SkillScrollUseDesc,
-    .number = CONFIG_ITEM_INDEX_SKILL_SCROLL,
+#ifdef CONFIG_ITEM_INDEX_SKILL_SCROLL_3
+    .number = CONFIG_ITEM_INDEX_SKILL_SCROLL_3,
+#endif
     .weaponType = ITYPE_ITEM,
     .pStatBonuses = NULL,
     .maxUses = 1,

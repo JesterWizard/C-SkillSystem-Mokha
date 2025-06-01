@@ -300,50 +300,50 @@ try_ballist_combat:
  * Add unit to AI list
  */
 extern void DecideScriptA(void);
-// extern void CpOrderBerserkInit(ProcPtr proc);
-// LYN_REPLACE_CHECK(CpOrderBerserkInit);
-// void CpOrderBerserkInit(ProcPtr proc)
-// {
-//     int i, aiNum = 0;
+extern void DecideScriptB(void);
 
-//     u32 faction = gPlaySt.faction;
+extern void CpOrderBerserkInit(ProcPtr proc);
+LYN_REPLACE_CHECK(CpOrderBerserkInit);
+void CpOrderBerserkInit(ProcPtr proc)
+{
+    int i, aiNum = 0;
 
-//     int factionUnitCountLut[3] = {62, 20, 50}; // TODO: named constant for those
+    u32 faction = gPlaySt.faction;
 
-//     for (i = 0; i < factionUnitCountLut[faction >> 6]; ++i)
-//     {
-//         struct Unit *unit = GetUnit(faction + i + 1);
+    int factionUnitCountLut[3] = {62, 20, 50}; // TODO: named constant for those
 
-//         if (!unit->pCharacterData)
-//             continue;
+    for (i = 0; i < factionUnitCountLut[faction >> 6]; ++i)
+    {
+        struct Unit *unit = GetUnit(faction + i + 1);
 
-//         if 
-//         (
-//             unit->statusIndex != UNIT_STATUS_BERSERK &&
-// #if (defined(SID_Rampage) && (COMMON_SKILL_VALID(SID_Rampage)))
-//                 !SkillTester(unit, SID_Rampage)
-// #else
-//                 1
-// #endif
-//         )
-//             continue;
+        if (!unit->pCharacterData)
+            continue;
 
-//         if (unit->state & (US_HIDDEN | US_UNSELECTABLE | US_DEAD | US_RESCUED | US_HAS_MOVED_AI))
-//             continue;
+        if 
+        (
+            unit->statusIndex != UNIT_STATUS_BERSERK &&
+#if (defined(SID_Rampage) && (COMMON_SKILL_VALID(SID_Rampage)))
+                !SkillTester(unit, SID_Rampage)
+#endif
+        )
+            continue;
 
-//         gAiState.units[aiNum++] = faction + i + 1;
-//     }
+        if (unit->state & (US_HIDDEN | US_UNSELECTABLE | US_DEAD | US_RESCUED | US_HAS_MOVED_AI))
+            continue;
 
-//     if (aiNum != 0)
-//     {
-//         gAiState.units[aiNum] = 0;
-//         gAiState.unitIt = gAiState.units;
+        gAiState.units[aiNum++] = faction + i + 1;
+    }
 
-//         AiDecideMainFunc = AiDecideMain;
+    if (aiNum != 0)
+    {
+        gAiState.units[aiNum] = 0;
+        gAiState.unitIt = gAiState.units;
 
-//         Proc_StartBlocking(gProcScr_CpDecide, proc);
-//     }
-// }
+        AiDecideMainFunc = AiDecideMain;
+
+        Proc_StartBlocking(gProcScr_CpDecide, proc);
+    }
+}
 
 LYN_REPLACE_CHECK(DecideScriptA);
 void DecideScriptA(void)
@@ -363,6 +363,7 @@ void DecideScriptA(void)
 #if (defined(SID_Rampage) && (COMMON_SKILL_VALID(SID_Rampage)))
         if (SkillTester(gActiveUnit, SID_Rampage))
         {
+            NoCashGBAPrint("Decide script A check");
             AiDoBerserkAction();
             return;
         }
@@ -376,4 +377,38 @@ void DecideScriptA(void)
     }
 
     AiExecFallbackScriptA();
+}
+
+LYN_REPLACE_CHECK(DecideScriptB);
+void DecideScriptB(void)
+{
+    int i = 0;
+
+    if ((gActiveUnit->state & US_IN_BALLISTA) && (GetRiddenBallistaAt(gActiveUnit->xPos, gActiveUnit->yPos) != NULL))
+        return;
+
+    if (gAiState.flags & AI_FLAG_BERSERKED)
+    {
+        AiDoBerserkMove();
+        return;
+    }
+    else
+    {
+#if (defined(SID_Rampage) && (COMMON_SKILL_VALID(SID_Rampage)))
+        if (SkillTester(gActiveUnit, SID_Rampage))
+        {
+            NoCashGBAPrint("Decide script B check");
+            AiDoBerserkAction();
+            return;
+        }
+#endif
+    }
+
+    for (i = 0; i < 0x100; ++i)
+    {
+        if (AiTryExecScriptB() == TRUE)
+            return;
+    }
+
+    AiExecFallbackScriptB();
 }

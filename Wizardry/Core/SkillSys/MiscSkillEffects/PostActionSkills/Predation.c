@@ -8,6 +8,16 @@
 #include "constants/texts.h"
 #include "strmag.h"
 
+#ifdef CONFIG_TURN_ON_ALL_SKILLS
+    // Choose the proper scroll index based on the high byte of the skill id.
+    #define GET_SKILL_SCROLL_INDEX(sid) (((sid) > 0x2FF) ? CONFIG_ITEM_INDEX_SKILL_SCROLL_4 : \
+                                        (((sid) > 0x1FF) ? CONFIG_ITEM_INDEX_SKILL_SCROLL_3 : \
+                                        (((sid) > 0x0FF) ? CONFIG_ITEM_INDEX_SKILL_SCROLL_2 : \
+                                                           CONFIG_ITEM_INDEX_SKILL_SCROLL_1)))
+#else
+    #define GET_SKILL_SCROLL_INDEX(sid) CONFIG_ITEM_INDEX_SKILL_SCROLL_1
+#endif
+
 #if defined(SID_Predation) && (COMMON_SKILL_VALID(SID_Predation))
 static void callback_anim(ProcPtr proc)
 {
@@ -42,12 +52,12 @@ static void callback_exec_predation(ProcPtr proc)
     {
         /* The first learned skill in the target unit's struct */
         AddSkill(gActiveUnit, UNIT_RAM_SKILLS(targetUnit)[0]);
-        SetPopupItem((targetUnit->supports[0] << 8) | CONFIG_ITEM_INDEX_SKILL_SCROLL);
+        SetPopupItem(((targetUnit->supports[0] & 0xFF) << 8) | GET_SKILL_SCROLL_INDEX(targetUnit->supports[0]));
         NewPopup_Simple(PopupScr_LearnSkill, 0x5A, 0, proc);
     }
     else
     {
-        SetPopupItem((targetUnit->supports[0] << 8) | CONFIG_ITEM_INDEX_SKILL_SCROLL);
+        SetPopupItem(((targetUnit->supports[0] & 0xFF) << 8) | GET_SKILL_SCROLL_INDEX(targetUnit->supports[0]));
         NewPopup_Simple(PopupScr_ObtainedSkill, 0x5A, 0, proc);
         Proc_StartBlocking(ProcScr_PredationSoftLock, proc);
     }

@@ -26,8 +26,17 @@ PrepItemEffectFunc_t const gPrepItemEffectFunc[0x100] = {
     [ITEM_BOOSTER_MOV] = PrepItemEffect_StatBooster,
     [ITEM_BOOSTER_CON] = PrepItemEffect_StatBooster,
 
-#ifdef CONFIG_ITEM_INDEX_SKILL_SCROLL
-    [0xBD] = PrepItemEffect_SkillScroll,
+#ifdef CONFIG_ITEM_INDEX_SKILL_SCROLL_1
+    [CONFIG_ITEM_INDEX_SKILL_SCROLL_1] = PrepItemEffect_SkillScroll,
+#endif
+#ifdef CONFIG_ITEM_INDEX_SKILL_SCROLL_2
+    [CONFIG_ITEM_INDEX_SKILL_SCROLL_2] = PrepItemEffect_SkillScroll,
+#endif
+#ifdef CONFIG_ITEM_INDEX_SKILL_SCROLL_3
+    [CONFIG_ITEM_INDEX_SKILL_SCROLL_3] = PrepItemEffect_SkillScroll,
+#endif
+#ifdef CONFIG_ITEM_INDEX_SKILL_SCROLL_4
+    [CONFIG_ITEM_INDEX_SKILL_SCROLL_4] = PrepItemEffect_SkillScroll,
 #endif
 };
 
@@ -56,8 +65,17 @@ PrepItemUsabilityFunc_t const gPrepItemUsabilityFuncs[0x100] = {
 
     [ITEM_METISSTOME] = CanUnitUseMetiStome,
     [ITEM_JUNAFRUIT] = (void *)CanUnitUseFruitItem,
-    
-#ifdef CONFIG_ITEM_INDEX_SKILL_SCROLL
-    [0xBD] = PrepItemUsability_SkillScroll,
+
+#ifdef CONFIG_ITEM_INDEX_SKILL_SCROLL_1
+    [CONFIG_ITEM_INDEX_SKILL_SCROLL_1] = PrepItemUsability_SkillScroll,
+#endif
+#ifdef CONFIG_ITEM_INDEX_SKILL_SCROLL_2
+    [CONFIG_ITEM_INDEX_SKILL_SCROLL_2] = PrepItemUsability_SkillScroll,
+#endif
+#ifdef CONFIG_ITEM_INDEX_SKILL_SCROLL_3
+    [CONFIG_ITEM_INDEX_SKILL_SCROLL_3] = PrepItemUsability_SkillScroll,
+#endif
+#ifdef CONFIG_ITEM_INDEX_SKILL_SCROLL_4
+    [CONFIG_ITEM_INDEX_SKILL_SCROLL_4] = PrepItemUsability_SkillScroll,
 #endif
 };

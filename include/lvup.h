@@ -37,3 +37,5 @@ int GetUnitSpdGrowthJobBonus(int status, struct Unit *unit);
 int GetUnitLckGrowthJobBonus(int status, struct Unit *unit);
 int GetUnitDefGrowthJobBonus(int status, struct Unit *unit);
 int GetUnitResGrowthJobBonus(int status, struct Unit *unit);
+
+void UnitLvup_Vanilla(struct BattleUnit * bu, int bonus);

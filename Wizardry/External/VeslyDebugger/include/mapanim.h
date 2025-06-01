@@ -530,7 +530,7 @@ void ProcMapInfoBox_OnEnd(void);
 void ProcMapInfoBox_OnDraw(struct MAInfoFrameProc* proc);
 // ??? sub_807BCA8(???);
 void sub_807BD54(struct MAInfoFrameProc* proc, int actor);
-// ??? GetBattleInfoPalByFaction(???);
+u16* GetBattleInfoPalByFaction(struct Unit* unit);
 void DisplayBattleInfoBox(struct MAInfoFrameProc* proc, int, int);
 // ??? MapInfoBox_PrepareForShake(???);
 void MapInfoBoxShake(struct MAInfoFrameProc* proc);

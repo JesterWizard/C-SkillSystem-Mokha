@@ -1,43 +1,14 @@
-#include "C_Code.h" // headers 
-#include "debug-kit.h"
+// #include "C_Code.h" // headers 
+// #include "debug-kit.h"
 #include "constants/gfx.h"
 #include "mu.h"
 #include "../../../include/Configs/configs.h"
+#include "../../../include/skill-system.h"
+#include "../../../include/common-chax.h"
+#include "../../../include/debuff.h"
+#include "../../../include/bwl.h"
 
 #define PACKED __attribute__((packed))
-
-struct NewBwl {
-    /* vanilla */
-    u32 battleAmt : 12;
-    u32 winAmt    : 11;
-    u32 lossAmt   : 8;
-    u32 levelGain : 9;
-
-    /* bwl support */
-    u8 supports[UNIT_SUPPORT_MAX_COUNT];
-
-    u8 _pad_[0x10 - 0x0C];
-};
-
-static inline bool CheckHasBwl(u8 pid)
-{
-    if (pid >= BWL_ARRAY_NUM)
-        return false;
-
-    if (GetCharacterData(pid)->affinity == 0)
-        return false;
-
-    return true;
-}
-
-static inline struct NewBwl * GetNewBwl(u8 pid)
-{
-    struct NewBwl * entry = (struct NewBwl *)gPidStatsData;
-    if (!CheckHasBwl(pid))
-        return NULL;
-
-    return entry + (pid);
-}
 
 extern char * GetSkillNameStr(const u16 sid);
 
@@ -65,8 +36,6 @@ typedef struct {
     struct Unit* unit; 
     s16 tmp[tmpSize];
 } DebuggerProc;
-
-
 
 typedef struct { 
     /* 00 */ PROC_HEADER;
@@ -416,74 +385,74 @@ int ShouldAIControlRemainingUnits(void)
     return false;
 }
 
-extern void AiPhaseBerserkInit(struct Proc* proc);
+// extern void AiPhaseBerserkInit(struct Proc* proc);
 
-LYN_REPLACE_CHECK(AiPhaseBerserkInit);
-void AiPhaseBerserkInit(struct Proc * proc)
-{
-    int i;
+// LYN_REPLACE_CHECK(AiPhaseBerserkInit);
+// void AiPhaseBerserkInit(struct Proc * proc)
+// {
+//     int i;
 
-    gAiState.flags = AI_FLAG_BERSERKED;
-    if (ShouldAIControlRemainingUnits())
-    {
-        gAiState.flags = AI_FLAG_0; // do not attack allies
-    }
-    gAiState.unk7E = -1;
+//     gAiState.flags = AI_FLAG_BERSERKED;
+//     if (ShouldAIControlRemainingUnits())
+//     {
+//         gAiState.flags = AI_FLAG_0; // do not attack allies
+//     }
+//     gAiState.unk7E = -1;
 
-    for (i = 0; i < 8; ++i)
-        gAiState.unk86[i] = 0; // cmd_result
+//     for (i = 0; i < 8; ++i)
+//         gAiState.unk86[i] = 0; // cmd_result
 
-    gAiState.specialItemFlags = gAiItemConfigTable[gPlaySt.chapterIndex];
+//     gAiState.specialItemFlags = gAiItemConfigTable[gPlaySt.chapterIndex];
 
-    UpdateAllPhaseHealingAIStatus();
-    SetupUnitInventoryAIFlags();
+//     UpdateAllPhaseHealingAIStatus();
+//     SetupUnitInventoryAIFlags();
 
-    Proc_StartBlocking(gProcScr_BerserkCpOrder, proc);
-}
+//     Proc_StartBlocking(gProcScr_BerserkCpOrder, proc);
+// }
 
-extern void CpOrderBerserkInit(ProcPtr proc);
+// extern void CpOrderBerserkInit(ProcPtr proc);
 
-LYN_REPLACE_CHECK(CpOrderBerserkInit);
-void CpOrderBerserkInit(ProcPtr proc)
-{
-    int i, aiNum = 0;
+// LYN_REPLACE_CHECK(CpOrderBerserkInit);
+// void CpOrderBerserkInit(ProcPtr proc)
+// {
+//     int i, aiNum = 0;
 
-    u32 faction = gPlaySt.faction;
-    int AIControl = ShouldAIControlRemainingUnits();
+//     u32 faction = gPlaySt.faction;
+//     int AIControl = ShouldAIControlRemainingUnits();
 
-    int factionUnitCountLut[3] = { 62, 20, 50 }; // TODO: named constant for those
+//     int factionUnitCountLut[3] = { 62, 20, 50 }; // TODO: named constant for those
 
-    for (i = 0; i < factionUnitCountLut[faction >> 6]; ++i)
-    {
-        struct Unit * unit = GetUnit(faction + i + 1);
+//     for (i = 0; i < factionUnitCountLut[faction >> 6]; ++i)
+//     {
+//         struct Unit * unit = GetUnit(faction + i + 1);
 
-        if (!unit->pCharacterData)
-            continue;
+//         if (!unit->pCharacterData)
+//             continue;
 
-        if (!AIControl) // all units act this way, even if not berserked
-        {
-            if (unit->statusIndex != UNIT_STATUS_BERSERK)
-            {
-                continue;
-            }
-        }
+//         if (!AIControl) // all units act this way, even if not berserked
+//         {
+//             if (unit->statusIndex != UNIT_STATUS_BERSERK)
+//             {
+//                 continue;
+//             }
+//         }
 
-        if (unit->state & (US_HIDDEN | US_UNSELECTABLE | US_DEAD | US_RESCUED | US_HAS_MOVED_AI))
-            continue;
+//         if (unit->state & (US_HIDDEN | US_UNSELECTABLE | US_DEAD | US_RESCUED | US_HAS_MOVED_AI))
+//             continue;
 
-        gAiState.units[aiNum++] = faction + i + 1;
-    }
+//         gAiState.units[aiNum++] = faction + i + 1;
+//     }
 
-    if (aiNum != 0)
-    {
-        gAiState.units[aiNum] = 0;
-        gAiState.unitIt = gAiState.units;
+//     if (aiNum != 0)
+//     {
+//         gAiState.units[aiNum] = 0;
+//         gAiState.unitIt = gAiState.units;
 
-        AiDecideMainFunc = AiDecideMain;
+//         AiDecideMainFunc = AiDecideMain;
 
-        Proc_StartBlocking(gProcScr_CpDecide, proc);
-    }
-}
+//         Proc_StartBlocking(gProcScr_CpDecide, proc);
+//     }
+// }
 
 //const char* UnitStats
 #define NumberOfOptions 9 
@@ -803,10 +772,10 @@ void EditWExpInit(DebuggerProc* proc) {
     int h = (WExpOptions * 2) + 2; 
     
     DrawUiFrame(
-        BG_GetMapBuffer(2), // back BG
+        BG_GetMapBuffer(1), // back BG
         x, y, w, h,
         TILEREF(0, 0), 0); // style as 0 ? 
-    BG_EnableSyncByMask(BG2_SYNC_BIT); 
+    BG_EnableSyncByMask(BG1_SYNC_BIT); 
     
     struct Text* th = gStatScreen.text;
     
@@ -968,20 +937,36 @@ void EditWExpIdle(DebuggerProc* proc) {
 } 
 
 #define SkillsWidth 12
-#define SkillsOptions 7 
+
+#ifdef CONFIG_TURN_ON_ALL_SKILLS
+    #define SkillsLearnable 5
+#else
+    #define SkillsLearnable 7
+#endif
+
 void RedrawUnitSkillsMenu(DebuggerProc* proc);
 void EditSkillsInit(DebuggerProc* proc) { 
     SomeMenuInit(proc); 
     LoadIconPalettes(4);
     struct Unit* unit = proc->unit; 
-    for (int i = 0; i < SkillsOptions; ++i) { 
-        proc->tmp[i] = unit->supports[i]; 
-    } 
+
+#ifdef CONFIG_TURN_ON_ALL_SKILLS
+    u64 buffer = 0;
+    for (int i = 0; i < 7; ++i)
+        buffer |= ((u64)unit->supports[i]) << (8 * i);
+
+    for (int i = 0; i < SkillsLearnable; ++i)
+        proc->tmp[i] = (buffer >> (i * 10)) & 0x3FF;
+#else
+    for (int i = 0; i < SkillsLearnable; ++i)
+        proc->tmp[i] = unit->supports[i];
+#endif
+
     
     int x = NUMBER_X - SkillsWidth + 1; 
     int y = Y_HAND - 1; 
     int w = SkillsWidth + (START_X - NUMBER_X) + 3; 
-    int h = (SkillsOptions * 2) + 2; 
+    int h = (SkillsLearnable * 2) + 2; 
     
     DrawUiFrame(
         BG_GetMapBuffer(1), // back BG
@@ -1000,7 +985,7 @@ void EditSkillsInit(DebuggerProc* proc) {
     } 
     
     int uid; 
-    for (int i = 0; i < SkillsOptions; ++i) { 
+    for (int i = 0; i < SkillsLearnable; ++i) { 
         uid = unit->supports[i]; 
         if (uid) { 
         Text_DrawString(&th[i], GetSkillNameStr(uid));
@@ -1025,12 +1010,8 @@ enum icon_sheet_idx {
 
 #define SKILL_ICON(sid)   ((ICON_SHEET_SKILL0 << 8) + (sid))
 
-#ifdef CONFIG_FE8SRR
-extern int RandSkill(int id, struct Unit * unit);
-#endif
-
 void RedrawUnitSkillsMenu(DebuggerProc* proc) { 
-    TileMap_FillRect(gBG0TilemapBuffer + TILEMAP_INDEX(NUMBER_X-2, Y_HAND), 9, 2 * SkillsOptions, 0);
+    TileMap_FillRect(gBG0TilemapBuffer + TILEMAP_INDEX(NUMBER_X-2, Y_HAND), 9, 2 * SkillsLearnable, 0);
     BG_EnableSyncByMask(BG0_SYNC_BIT);
     ResetIconGraphics(); // Add this to reset icon state
 
@@ -1038,17 +1019,13 @@ void RedrawUnitSkillsMenu(DebuggerProc* proc) {
     int x = NUMBER_X - SkillsWidth + 2;
 
     // Clear and redraw all skill name texts
-    for (int i = 0; i < SkillsOptions; ++i) {
+    for (int i = 0; i < SkillsLearnable; ++i) {
         ClearText(&th[i]);
         // Only draw name if skill ID is non-zero
         if (proc->tmp[i]) {
             // Add extra space at start of text for icon
             Text_SetCursor(&th[i], 2);
-#ifdef CONFIG_FE8SRR
-            Text_DrawString(&th[i], GetSkillNameStr(RandSkill(proc->tmp[i], gActiveUnit)));
-#else
             Text_DrawString(&th[i], GetSkillNameStr(proc->tmp[i]));
-#endif
         }
         PutText(&th[i], gBG0TilemapBuffer + TILEMAP_INDEX(x+2, Y_HAND + (i*2)));
 
@@ -1056,13 +1033,8 @@ void RedrawUnitSkillsMenu(DebuggerProc* proc) {
         PutNumber(gBG0TilemapBuffer + TILEMAP_INDEX(START_X+2, Y_HAND + (i*2)), 
         TEXT_COLOR_SYSTEM_GOLD, proc->tmp[i]);
 
-#ifdef CONFIG_FE8SRR
-        // Draw skill icon
-        DrawIcon(TILEMAP_LOCATED(gBG0TilemapBuffer, x, Y_HAND + (i*2)), SKILL_ICON(RandSkill(proc->tmp[i], gActiveUnit)), 0x4000);
-#else
         // Draw skill icon
         DrawIcon(TILEMAP_LOCATED(gBG0TilemapBuffer, x, Y_HAND + (i*2)), SKILL_ICON(proc->tmp[i]), 0x4000);
-#endif
     }
 
     BG_EnableSyncByMask(BG0_SYNC_BIT);
@@ -1070,27 +1042,261 @@ void RedrawUnitSkillsMenu(DebuggerProc* proc) {
 
 void SaveSkills(DebuggerProc* proc) { 
     struct Unit* unit = proc->unit; 
-    for (int i = 0; i < SkillsOptions; ++i) { 
+
+#ifdef CONFIG_TURN_ON_ALL_SKILLS
+    // Compose the 5 skill IDs into a bit buffer
+    u64 bitbuf = 0;
+    for (int i = 0; i < SkillsLearnable; ++i) {
+        bitbuf |= ((u64)(proc->tmp[i] & 0x3FF)) << (i * 10); // store 10 bits per skill
+    }
+
+    // Write the packed buffer into unit->supports[7]
+    for (int i = 0; i < 7; ++i) {
+        unit->supports[i] = (bitbuf >> (i * 8)) & 0xFF;
+    }
+#else
+    for (int i = 0; i < SkillsLearnable; ++i) { 
         unit->supports[i] = proc->tmp[i]; 
     } 
+#endif
 } 
+
+#ifdef CONFIG_TURN_ON_ALL_SKILLS
+    const int max = 0x3FF;
+#else
+    const int max = 0xFF;
+#endif
+
+struct ProcHelpBoxIntroString {
+    /* 00 */ PROC_HEADER;
+
+    /* 29 */ u8 _pad[0x54-0x29];
+    /* 54 */ char* string; 
+
+    /* 58 */ int item;
+    /* 5C */ int msg;
+    /* 60 */ int unk_60;
+    /* 64 */ s16 pretext_lines; /* lines for  prefix */
+};
+
+extern void HelpBoxSetupstringLines(struct ProcHelpBoxIntro* proc); 
+extern void HelpBoxDrawstring(struct ProcHelpBoxIntro* proc); 
+void HelpBoxIntroDrawTextsString(struct ProcHelpBoxIntroString * proc); 
+
+struct ProcCmd const ProcScr_HelpBoxIntroString[] = {
+    PROC_SLEEP(6),
+
+    PROC_REPEAT(HelpBoxSetupstringLines),
+    PROC_REPEAT(HelpBoxDrawstring),
+
+    PROC_CALL(HelpBoxIntroDrawTextsString),
+
+    PROC_END,
+};
+
+// extern signed char sMsgString[0x1000];
+// extern struct MsgBuffer sMsgString;
+
+extern int sActiveMsg; 
+void LoadStringIntoBuffer(char* a) {      
+    sActiveMsg = 0; 
+    signed char messageString[0x1000];
+    for (int i = 0; i < 50; ++i) { 
+        messageString[i] = a[i];
+        if (!a[i]) { 
+        break; }  
+    } 
+    SetMsgTerminator(messageString);
+} 
+
+void StartHelpBoxTextInitWithString(int item, int msgId, char* string)
+{
+    struct ProcHelpBoxIntroString * proc = Proc_Start(ProcScr_HelpBoxIntroString, PROC_TREE_3);
+
+    proc->item = item;
+    proc->msg = msgId;
+    proc->string = string; 
+}
+
+void HelpBoxIntroDrawTextsString(struct ProcHelpBoxIntroString * proc)
+{
+    struct HelpBoxScrollProc * otherProc;
+    int textSpeed;
+
+    SetTextFont(&gHelpBoxSt.font);
+
+    SetTextFontGlyphs(1);
+
+    Text_SetColor(&gHelpBoxSt.text[0], 6);
+    Text_SetColor(&gHelpBoxSt.text[1], 6);
+    Text_SetColor(&gHelpBoxSt.text[2], 6);
+
+    SetTextFont(0);
+
+    Proc_EndEach(gProcScr_HelpBoxTextScroll);
+
+    otherProc = Proc_Start(gProcScr_HelpBoxTextScroll, PROC_TREE_3);
+    otherProc->font = &gHelpBoxSt.font;
+
+    otherProc->texts[0] = &gHelpBoxSt.text[0];
+    otherProc->texts[1] = &gHelpBoxSt.text[1];
+    otherProc->texts[2] = &gHelpBoxSt.text[2];
+
+    otherProc->pretext_lines = proc->pretext_lines;
+
+    //GetStringFromIndex(proc->msg);
+    LoadStringIntoBuffer(proc->string); 
+
+    otherProc->string = StringInsertSpecialPrefixByCtrl();
+    otherProc->chars_per_step = 1;
+    otherProc->step = 0;
+
+    textSpeed = gPlaySt.config.textSpeed;
+    switch (gPlaySt.config.textSpeed) {
+    case 0: /* default speed */
+        otherProc->speed = 2;
+        break;
+
+    case 1: /* slow */
+        otherProc->speed = textSpeed;
+        break;
+
+    case 2: /* fast */
+        otherProc->speed = 1;
+        otherProc->chars_per_step = textSpeed;
+        break;
+
+    case 3: /* draw all at once */
+        otherProc->speed = 0;
+        otherProc->chars_per_step = 0x7f;
+        break;
+    }
+}
+
+void ApplyHelpBoxContentSizeString(struct HelpBoxProc* proc, int width, int height, char* string)
+{
+    width = 0xF0 & (width + 15); // align to 16 pixel multiple
+
+    switch (GetHelpBoxItemInfoKind(proc->item))
+    {
+
+    case 1: // weapon
+        if (width < 0x90)
+            width = 0x90;
+
+        if (GetStringTextLen(string) > 8)
+            height += 0x20;
+        else
+            height += 0x10;
+
+        break;
+    
+    case 2: // staff
+        if (width < 0x60)
+            width = 0x60;
+
+        height += 0x10;
+
+        break;
+
+    case 3: // save stuff
+        width = 0x80;
+        height += 0x10;
+
+        break;
+
+    } // switch (GetHelpBoxItemInfoKind(proc->item))
+
+    proc->wBoxFinal = width;
+    proc->hBoxFinal = height;
+}
+
+
+static void StartHelpBoxString(int x, int y, char* string)
+{
+    sMutableHbi.adjUp    = NULL;
+    sMutableHbi.adjDown  = NULL;
+    sMutableHbi.adjLeft  = NULL;
+    sMutableHbi.adjRight = NULL;
+
+    sMutableHbi.xDisplay = x;
+    sMutableHbi.yDisplay = y;
+    sMutableHbi.mid      = 0x505; // default text ID 
+
+    sMutableHbi.redirect = NULL;
+    sMutableHbi.populate = NULL;
+
+    sHbOrigin.x = 0;
+    sHbOrigin.y = 0;
+    
+    const struct HelpBoxInfo* info = &sMutableHbi; 
+    struct HelpBoxProc* proc;
+    int wContent, hContent;
+    LoadStringIntoBuffer(string); 
+
+    proc = (void*) Proc_Find(gProcScr_HelpBox);
+
+    if (!proc)
+    {
+        proc = (void*) Proc_Start(gProcScr_HelpBox, PROC_TREE_3);
+
+        proc->unk52 = false;
+
+        SetHelpBoxInitPosition(proc, info->xDisplay, info->yDisplay);
+        ResetHelpBoxInitSize(proc);
+    }
+    else
+    {
+        proc->xBoxInit = proc->xBox;
+        proc->yBoxInit = proc->yBox;
+
+        proc->wBoxInit = proc->wBox;
+        proc->hBoxInit = proc->hBox;
+    }
+
+    proc->info = info;
+
+    proc->timer    = 0;
+    proc->timerMax = 12;
+
+    proc->item = 0;
+    proc->mid = info->mid;
+
+    if (proc->info->populate)
+        proc->info->populate(proc);
+
+    SetTextFontGlyphs(1);
+    GetStringTextBox(string, &wContent, &hContent);
+    SetTextFontGlyphs(0);
+
+    ApplyHelpBoxContentSizeString(proc, wContent, hContent, string);
+    ApplyHelpBoxPosition(proc, info->xDisplay, info->yDisplay);
+
+    ClearHelpBoxText();
+    StartHelpBoxTextInitWithString(proc->item, proc->mid, string);
+
+    sLastHbi = info;
+}
 
 void EditSkillsIdle(DebuggerProc* proc) { 
     
 	//DisplayVertUiHand(CursorLocationTable[proc->digit].x, CursorLocationTable[proc->digit].y); // 6 is the tile of the downwards hand 	
 	u16 keys = sKeyStatusBuffer.repeatedKeys; 
-    if (keys & B_BUTTON) { //press B to not save Supports 
+    if (keys & B_BUTTON) {
+        // Otherwise, close the Supports/Skills window
+        CloseHelpBox();
         Proc_Goto(proc, RestartLabel);
-        m4aSongNumStart(0x6B); 
-    };
-    if ((keys & START_BUTTON)||(keys & A_BUTTON)) { //press A or Start to update Supports and continue 
+        m4aSongNumStart(0x6B);
+    }
+    if ((keys & START_BUTTON)||(keys & A_BUTTON)) { // press A or Start to update Supports and continue
+        CloseHelpBox(); 
         SaveSkills(proc); 
         Proc_Goto(proc, RestartLabel);
         m4aSongNumStart(0x6B); 
     };
     if (proc->editing) { 
         DisplayVertUiHand(CursorLocationTable[proc->digit].x+16, (Y_HAND + (proc->id * 2)) * 8); 	
-        int max = 255; 
+
         int min = 0; 
         int max_digits = GetMaxDigits(max, 0); 
         
@@ -1108,10 +1314,18 @@ void EditSkillsIdle(DebuggerProc* proc) {
         if (keys & DPAD_UP) {
             if (proc->tmp[proc->id] == max) { proc->tmp[proc->id] = min; } 
             else { 
-                proc->tmp[proc->id] += DigitDecimalTable[proc->digit]; 
+                proc->tmp[proc->id] += DigitDecimalTable[proc->digit];
+                
                 if (proc->tmp[proc->id] > max) { proc->tmp[proc->id] = max; } 
             } 
             RedrawUnitSkillsMenu(proc); 
+
+            if (Proc_Find(gProcScr_HelpBox)) {
+                const u16 skillId = proc->tmp[proc->id];
+                u16 msg = GetSkillDescMsg(skillId);
+                char * skillDesc = GetStringFromIndex(msg); // Clear any leftover tile data     
+                StartHelpBoxString(11 * 8, 10 * 8, skillDesc);
+            }
         }
         if (keys & DPAD_DOWN) {
             
@@ -1122,6 +1336,21 @@ void EditSkillsIdle(DebuggerProc* proc) {
             } 
             
             RedrawUnitSkillsMenu(proc); 
+
+            if (Proc_Find(gProcScr_HelpBox)) {
+                const u16 skillId = proc->tmp[proc->id];
+                u16 msg = GetSkillDescMsg(skillId);
+                char * skillDesc = GetStringFromIndex(msg); // Clear any leftover tile data     
+                StartHelpBoxString(11 * 8, 10 * 8, skillDesc);
+            }
+        }
+
+        if (keys & R_BUTTON) {
+            const u16 skillId = proc->tmp[proc->id];
+            u16 msg = GetSkillDescMsg(skillId);
+            char * skillDesc = GetStringFromIndex(msg); // Clear any leftover tile data     
+            LoadHelpBoxGfx(NULL, -1); // TODO: default constants?
+            StartHelpBoxString(11 * 8, 10 * 8, skillDesc);
         }
     }
     else { 
@@ -1137,14 +1366,37 @@ void EditSkillsIdle(DebuggerProc* proc) {
         
         if (keys & DPAD_UP) {
             proc->id--; 
-            if (proc->id < 0) { proc->id = SkillsOptions - 1; } 
-            RedrawUnitSkillsMenu(proc); 
+            if (proc->id < 0) { proc->id = SkillsLearnable - 1; } 
+            RedrawUnitSkillsMenu(proc);
+
+            if (Proc_Find(gProcScr_HelpBox)) {
+                const u16 skillId = proc->tmp[proc->id];
+                u16 msg = GetSkillDescMsg(skillId);
+                char * skillDesc = GetStringFromIndex(msg); // Clear any leftover tile data     
+                StartHelpBoxString(11 * 8, 10 * 8, skillDesc);
+            }
+
         }
         if (keys & DPAD_DOWN) {
-            proc->id++; 
-            if (proc->id >= SkillsOptions) { proc->id = 0; } 
-            
+            proc->id++;
+            if (proc->id >= SkillsLearnable) { proc->id = 0; }    
             RedrawUnitSkillsMenu(proc); 
+
+            if (Proc_Find(gProcScr_HelpBox)) {
+                const u16 skillId = proc->tmp[proc->id];
+                u16 msg = GetSkillDescMsg(skillId);
+                char * skillDesc = GetStringFromIndex(msg); // Clear any leftover tile data     
+                StartHelpBoxString(11 * 8, 10 * 8, skillDesc);
+            }
+            
+        }
+
+        if (keys & R_BUTTON) {
+            const u16 skillId = proc->tmp[proc->id];
+            u16 msg = GetSkillDescMsg(skillId);
+            char * skillDesc = GetStringFromIndex(msg); // Clear any leftover tile data     
+            LoadHelpBoxGfx(NULL, -1); // TODO: default constants?
+            StartHelpBoxString(11 * 8, 10 * 8, skillDesc);
         }
     } 
 } 
@@ -1199,19 +1451,6 @@ void EditSupportsInit(DebuggerProc* proc) {
     }
     RedrawUnitSupportsMenu(proc);
 }
-
-// struct MuProc * StartUiMu(struct Unit * unit, int x, int y)
-// {
-//     struct MuProc * proc = StartMu(unit);
-
-//     if (!proc)
-//         return NULL;
-
-//     proc->xSubPosition = x << MU_SUBPIXEL_PRECISION;
-//     proc->ySubPosition = y << MU_SUBPIXEL_PRECISION;
-//     proc->stateId = MU_STATE_UI_DISPLAY;
-//     return proc;
-// }
 
 void RedrawUnitSupportsMenu(DebuggerProc* proc) {
     TileMap_FillRect(gBG0TilemapBuffer + TILEMAP_INDEX(NUMBER_X-2, Y_HAND), 9, 2 * SupportsOptions, 0);
@@ -1638,7 +1877,7 @@ void EditItemsIdle(DebuggerProc* proc) {
         }
         else { 
             DisplayVertUiHand(CursorLocationTable[proc->digit].x + (3 * 8), (Y_HAND + (proc->id * 2)) * 8); 	
-            int max = 255 << 8; // skill scrolls
+            int max = 255 << 10; // skill scrolls
             int min = 0 << 8; 
             int max_digits = GetMaxDigits(max >> 8, 0); 
             
@@ -2047,8 +2286,8 @@ void SaveMisc(DebuggerProc* proc) {
     unit->conBonus = proc->tmp[4]; 
     unit->movBonus = proc->tmp[5]; 
     if (UNIT_MOV(unit) > 15) { unit->movBonus = 15 - UNIT_MOV_BASE(unit); } 
-    unit->statusIndex = proc->tmp[6] & 0xF;
-    if (unit->statusIndex) { unit->statusDuration = 5; } 
+    SetUnitStatusIndex(unit, proc->tmp[6] & 0x3F);
+    if (unit->statusIndex) { SetUnitStatusDuration(unit, 3); }
 
 }  
 
@@ -2066,7 +2305,7 @@ void EditMiscInit(DebuggerProc* proc) {
     proc->tmp[3] = unit->exp; 
     proc->tmp[4] = unit->conBonus; 
     proc->tmp[5] = unit->movBonus; 
-    proc->tmp[6] = unit->statusIndex; 
+    proc->tmp[6] = (GetUnitStatusIndex(unit) & 0x3F);
     
     
     int x = NUMBER_X - MiscNameWidth - 1; 
@@ -2120,7 +2359,7 @@ void RedrawMiscMenu(DebuggerProc* proc) {
     } 
     else { 
         
-        Text_DrawString(&th[i], GetStringFromIndex(sStatusNameTextIdLookup[proc->tmp[6]])); i++; 
+        Text_DrawString(&th[i], GetStringFromIndex(gpDebuffInfos[proc->tmp[6] & 0x3F].name)); i++;
     } 
     
     int x = NUMBER_X - (MiscNameWidth); 
@@ -2198,7 +2437,7 @@ int GetMiscMax(int id) {
         case 3: { result = 100; break; } // exp  
         case 4: { result = 15; break; } // + con 
         case 5: { result = 15; break; } // + mov  
-        case 6: { result = 15; break; } // status  
+        case 6: { result = 63; break; } // status  
         default: 
     } 
     return result; 
@@ -2313,8 +2552,8 @@ static void InitUnitDef(struct UnitDefinition* uDef, struct Unit* unit, const st
 	uDef->items[3] = unit->items[3]; 
 	uDef->ai[0] = unit->ai1;
 	uDef->ai[1] = unit->ai2;
-	uDef->ai[2] = unit->ai3And4 & 0xFF;
-	uDef->ai[3] = (unit->ai3And4>>8);
+	uDef->ai[2] = unit->ai_config & 0xFF;
+	uDef->ai[3] = (unit->ai_config>>8);
 } 
 
 static void ReinitUnitDef(struct UnitDefinition* uDef, struct Unit* unit) { 
@@ -2340,8 +2579,8 @@ static void ReinitUnitDef(struct UnitDefinition* uDef, struct Unit* unit) {
 	uDef->items[3] = unit->items[3]; 
 	uDef->ai[0] = unit->ai1;
 	uDef->ai[1] = unit->ai2;
-	uDef->ai[2] = unit->ai3And4 & 0xFF;
-	uDef->ai[3] = (unit->ai3And4>>8);
+	uDef->ai[2] = unit->ai_config & 0xFF;
+	uDef->ai[3] = (unit->ai_config>>8);
 } 
 
 #define SinglePlayer 0 
@@ -2979,7 +3218,7 @@ int ArenaAction(DebuggerProc* proc) {
     Proc_Goto(proc, PostActionLabel); 
     return 0; 
 } 
-extern const struct ProcCmd sProcScr_BattleAnimSimpleLock[]; 
+// extern const struct ProcCmd sProcScr_BattleAnimSimpleLock[]; 
 int LevelupAction(DebuggerProc* proc) { 
     
     gActiveUnit->exp = 99; 
@@ -3854,238 +4093,6 @@ void StartPlayerPhaseTerrainWindow() {
     Proc_Start(gProcScr_TerrainWindowMaker, PROC_TREE_3);
     return;
 }
-
-
-
-extern signed char sMsgString[0x1000];
-
-struct ProcHelpBoxIntroString {
-    /* 00 */ PROC_HEADER;
-
-    /* 29 */ u8 _pad[0x54-0x29];
-    /* 54 */ char* string; 
-
-    /* 58 */ int item;
-    /* 5C */ int msg;
-    /* 60 */ int unk_60;
-    /* 64 */ s16 pretext_lines; /* lines for  prefix */
-};
-
-extern void HelpBoxSetupstringLines(struct ProcHelpBoxIntro* proc); 
-extern void HelpBoxDrawstring(struct ProcHelpBoxIntro* proc); 
-void HelpBoxIntroDrawTextsString(struct ProcHelpBoxIntroString * proc); 
-
-struct ProcCmd const ProcScr_HelpBoxIntroString[] = {
-    PROC_SLEEP(6),
-
-    PROC_REPEAT(HelpBoxSetupstringLines),
-    PROC_REPEAT(HelpBoxDrawstring),
-
-    PROC_CALL(HelpBoxIntroDrawTextsString),
-
-    PROC_END,
-};
-
-// LYN_REPLACE_CHECK(ClearHelpBoxText);
-// void ClearHelpBoxText(void) { // replaces original function 
-
-//     SetTextFont(&gHelpBoxSt.font);
-
-//     SpriteText_DrawBackground(&gHelpBoxSt.text[0]);
-//     SpriteText_DrawBackground(&gHelpBoxSt.text[1]);
-//     SpriteText_DrawBackground(&gHelpBoxSt.text[2]);
-
-//     Proc_EndEach(gProcScr_HelpBoxTextScroll);
-//     Proc_EndEach(ProcScr_HelpBoxIntro);
-//     Proc_EndEach(ProcScr_HelpBoxIntroString);
-
-//     SetTextFont(0);
-
-//     return;
-// }
-
-
-void StartHelpBoxTextInitWithString(int item, int msgId, char* string)
-{
-    struct ProcHelpBoxIntroString * proc = Proc_Start(ProcScr_HelpBoxIntroString, PROC_TREE_3);
-
-    proc->item = item;
-    proc->msg = msgId;
-    proc->string = string; 
-}
-
-extern int sActiveMsg; 
-void LoadStringIntoBuffer(char* a) {      
-    sActiveMsg = 0; 
-    for (int i = 0; i < 50; ++i) { 
-        sMsgString[i] = a[i];
-        if (!a[i]) { 
-        break; }  
-    } 
-    SetMsgTerminator(sMsgString);
-} 
-
-void HelpBoxIntroDrawTextsString(struct ProcHelpBoxIntroString * proc)
-{
-    struct HelpBoxScrollProc * otherProc;
-    int textSpeed;
-
-    SetTextFont(&gHelpBoxSt.font);
-
-    SetTextFontGlyphs(1);
-
-    Text_SetColor(&gHelpBoxSt.text[0], 6);
-    Text_SetColor(&gHelpBoxSt.text[1], 6);
-    Text_SetColor(&gHelpBoxSt.text[2], 6);
-
-    SetTextFont(0);
-
-    Proc_EndEach(gProcScr_HelpBoxTextScroll);
-
-    otherProc = Proc_Start(gProcScr_HelpBoxTextScroll, PROC_TREE_3);
-    otherProc->font = &gHelpBoxSt.font;
-
-    otherProc->texts[0] = &gHelpBoxSt.text[0];
-    otherProc->texts[1] = &gHelpBoxSt.text[1];
-    otherProc->texts[2] = &gHelpBoxSt.text[2];
-
-    otherProc->pretext_lines = proc->pretext_lines;
-
-    //GetStringFromIndex(proc->msg);
-    LoadStringIntoBuffer(proc->string); 
-
-    otherProc->string = StringInsertSpecialPrefixByCtrl();
-    otherProc->chars_per_step = 1;
-    otherProc->step = 0;
-
-    textSpeed = gPlaySt.config.textSpeed;
-    switch (gPlaySt.config.textSpeed) {
-    case 0: /* default speed */
-        otherProc->speed = 2;
-        break;
-
-    case 1: /* slow */
-        otherProc->speed = textSpeed;
-        break;
-
-    case 2: /* fast */
-        otherProc->speed = 1;
-        otherProc->chars_per_step = textSpeed;
-        break;
-
-    case 3: /* draw all at once */
-        otherProc->speed = 0;
-        otherProc->chars_per_step = 0x7f;
-        break;
-    }
-}
-
-void ApplyHelpBoxContentSizeString(struct HelpBoxProc* proc, int width, int height, char* string)
-{
-    width = 0xF0 & (width + 15); // align to 16 pixel multiple
-
-    switch (GetHelpBoxItemInfoKind(proc->item))
-    {
-
-    case 1: // weapon
-        if (width < 0x90)
-            width = 0x90;
-
-        if (GetStringTextLen(string) > 8)
-            height += 0x20;
-        else
-            height += 0x10;
-
-        break;
-    
-    case 2: // staff
-        if (width < 0x60)
-            width = 0x60;
-
-        height += 0x10;
-
-        break;
-
-    case 3: // save stuff
-        width = 0x80;
-        height += 0x10;
-
-        break;
-
-    } // switch (GetHelpBoxItemInfoKind(proc->item))
-
-    proc->wBoxFinal = width;
-    proc->hBoxFinal = height;
-}
-
-
-void StartHelpBoxString(int x, int y, char* string)
-{
-    sMutableHbi.adjUp    = NULL;
-    sMutableHbi.adjDown  = NULL;
-    sMutableHbi.adjLeft  = NULL;
-    sMutableHbi.adjRight = NULL;
-
-    sMutableHbi.xDisplay = x;
-    sMutableHbi.yDisplay = y;
-    sMutableHbi.mid      = 0x505; // default text ID 
-
-    sMutableHbi.redirect = NULL;
-    sMutableHbi.populate = NULL;
-
-    sHbOrigin.x = 0;
-    sHbOrigin.y = 0;
-    
-    const struct HelpBoxInfo* info = &sMutableHbi; 
-    struct HelpBoxProc* proc;
-    int wContent, hContent;
-    LoadStringIntoBuffer(string); 
-
-    proc = (void*) Proc_Find(gProcScr_HelpBox);
-
-    if (!proc)
-    {
-        proc = (void*) Proc_Start(gProcScr_HelpBox, PROC_TREE_3);
-
-        proc->unk52 = false;
-
-        SetHelpBoxInitPosition(proc, info->xDisplay, info->yDisplay);
-        ResetHelpBoxInitSize(proc);
-    }
-    else
-    {
-        proc->xBoxInit = proc->xBox;
-        proc->yBoxInit = proc->yBox;
-
-        proc->wBoxInit = proc->wBox;
-        proc->hBoxInit = proc->hBox;
-    }
-
-    proc->info = info;
-
-    proc->timer    = 0;
-    proc->timerMax = 12;
-
-    proc->item = 0;
-    proc->mid = info->mid;
-
-    if (proc->info->populate)
-        proc->info->populate(proc);
-
-    SetTextFontGlyphs(1);
-    GetStringTextBox(string, &wContent, &hContent);
-    SetTextFontGlyphs(0);
-
-    ApplyHelpBoxContentSizeString(proc, wContent, hContent, string);
-    ApplyHelpBoxPosition(proc, info->xDisplay, info->yDisplay);
-
-    ClearHelpBoxText();
-    StartHelpBoxTextInitWithString(proc->item, proc->mid, string);
-
-    sLastHbi = info;
-}
-
-
 
 u8 DebuggerHelpBox(struct MenuProc* menu, struct MenuItemProc* item)
 {

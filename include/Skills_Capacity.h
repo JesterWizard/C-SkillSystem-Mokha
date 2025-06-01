@@ -89,10 +89,10 @@
 #define MSG_SKILL_StanceSturdy_CAPACITY 1
 #define MSG_SKILL_StanceSwift_CAPACITY 1
 #define MSG_SKILL_StanceWarding_CAPACITY 1
-#define MSG_SKILL_RangeBonusBMag1_CAPACITY 1
-#define MSG_SKILL_RangeBonusBMag2_CAPACITY 1
-#define MSG_SKILL_RangeBonusBow1_CAPACITY 1
-#define MSG_SKILL_RangeBonusBow2_CAPACITY 1
+#define MSG_SKILL_MagicRangePlus1_CAPACITY 1
+#define MSG_SKILL_MagicRangePlus2_CAPACITY 1
+#define MSG_SKILL_BowRangePlus1_CAPACITY 1
+#define MSG_SKILL_BowRangePlus2_CAPACITY 1
 #define MSG_SKILL_RunningStart_CAPACITY 1
 #define MSG_SKILL_Canto_CAPACITY 1
 #define MSG_SKILL_CantoPlus_CAPACITY 1
@@ -106,6 +106,7 @@
 #define MSG_SKILL_PosReturn_CAPACITY 1
 #define MSG_SKILL_Lunge_CAPACITY 1
 #define MSG_SKILL_Renewal_CAPACITY 1
+#define MSG_SKILL_RenewalPlus_CAPACITY 1
 #define MSG_SKILL_Imbue_CAPACITY 1
 #define MSG_SKILL_Forager_CAPACITY 1
 #define MSG_SKILL_Anathema_CAPACITY 1
@@ -128,15 +129,13 @@
 #define MSG_SKILL_ResHone_CAPACITY 1
 #define MSG_SKILL_MovHone_CAPACITY 1
 #define MSG_SKILL_HoneChaos_CAPACITY 1
-#define MSG_SKILL_BattleRange1_CAPACITY 1
-#define MSG_SKILL_BattleRange2_CAPACITY 1
-#define MSG_SKILL_BattleRange3_CAPACITY 1
 #define MSG_SKILL_Steal_CAPACITY 1
 #define MSG_SKILL_HealingFocus_CAPACITY 1
 #define MSG_SKILL_Blossom_CAPACITY 1
 #define MSG_SKILL_Paragon_CAPACITY 1
 #define MSG_SKILL_VoidCurse_CAPACITY 1
 #define MSG_SKILL_Aptitude_CAPACITY 1
+#define MSG_SKILL_Peacebringer_CAPACITY 1
 #define MSG_SKILL_LEGEND_MiracleAtk_CAPACITY 1
 #define MSG_SKILL_LEGEND_MiracleAvo_CAPACITY 1
 #define MSG_SKILL_LEGEND_MiracleDef_CAPACITY 1
@@ -183,7 +182,6 @@
 #define MSG_SKILL_Pursuit_CAPACITY 1
 #define MSG_SKILL_DragonSkin_CAPACITY 1
 #define MSG_SKILL_Hawkeye_CAPACITY 1
-#define MSG_SKILL_MagicEye_CAPACITY 1
 #define MSG_SKILL_KeenFighter_CAPACITY 1
 #define MSG_SKILL_FireBoost_CAPACITY 1
 #define MSG_SKILL_WindBoost_CAPACITY 1
@@ -693,7 +691,7 @@
 #define MSG_SKILL_Extrovert_CAPACITY 1
 #define MSG_SKILL_Transpose_CAPACITY 1
 #define MSG_SKILL_Lifefont_CAPACITY 1
-#define MSG_Skill_DivineReprieve_CAPACITY 1
+#define MSG_SKILL_DivineReprieve_CAPACITY 1
 #define MSG_SKILL_EternalVanity_CAPACITY 1
 #define MSG_SKILL_KnackStrength_CAPACITY 1
 #define MSG_SKILL_KnackMagic_CAPACITY 1
@@ -739,3 +737,20 @@
 #define MSG_SKILL_DualWield_CAPACITY 1
 #define MSG_SKILL_DualWieldPlus_CAPACITY 1
 #define MSG_SKILL_Ruinator_CAPACITY 1
+#define MSG_SKILL_MarkOfTheBeast_CAPACITY 1
+#define MSG_SKILL_Rampart_CAPACITY 1
+#define MSG_SKILL_RampartPlus_CAPACITY 1
+#define MSG_SKILL_SlowStart_CAPACITY 1
+#define MSG_SKILL_Truant_CAPACITY 1
+#define MSG_SKILL_Zenkai_CAPACITY 1
+#define MSG_SKILL_Salve_CAPACITY 1
+#define MSG_SKILL_Forcefield_CAPACITY 1
+#define MSG_SKILL_SkillSwap_CAPACITY 1
+#define MSG_SKILL_Shuffle_CAPACITY 1
+#define MSG_SKILL_ShufflePlus_CAPACITY 1
+#define MSG_SKILL_Persuade_CAPACITY 1
+#define MSG_SKILL_PersuadePlus_CAPACITY 1
+#define MSG_SKILL_Kamikaze_CAPACITY 1
+#define MSG_SKILL_Freelancer_CAPACITY 1
+#define MSG_SKILL_Reinforcements_CAPACITY 1
+

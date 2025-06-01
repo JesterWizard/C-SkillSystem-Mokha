@@ -3569,7 +3569,7 @@ SET_ABS_DATA gProc_MapAnimSummon, 0x89A3398
 SET_ABS_DATA gProc_MapAnimSummonDK, 0x89A33C0
 SET_ABS_DATA gProc_MapAnimDance, 0x89A34B0
 SET_ABS_DATA gProc_MapAnimBattle, 0x89A3508
-SET_ABS_DATA gProc_MapAnimEnd, 0x89A35B0
+SET_ABS_DATA ProcScr_MapAnimEnd, 0x89A35B0
 SET_ABS_DATA gProc_MapAnimBattleInfoThing, 0x89A3688
 SET_ABS_DATA gProc_MapAnimBattleWithMapEvents, 0x89A3874
 SET_ABS_DATA gProc_WallBreakAnim, 0x89A3924

@@ -1,5 +1,4 @@
 ALIGN 4
-
 #include "Core/DebuffRework/Source/MiscHooks.event"
 #include "Core/UnitStatusGetter/source/InjectHPGetters.event"
 #include "Core/UnitStatusGetter/source/InjectMovGetters.event"
@@ -45,6 +44,7 @@ ALIGN 4
 #include "Common/UnitTarget/UnitTarget.event"
 #include "Common/UnitSelection/UnitSelection.event"
 #include "Common/Supports/Installer.event"
+#include "Common/PlayStExpa/PlayStExpa.event"
 
 #ifdef CONFIG_MULTIPLE_DEATH_QUOTES
     #include "Common/Quotes/Quotes.event"

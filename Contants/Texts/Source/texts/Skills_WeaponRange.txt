@@ -1,29 +1,29 @@
-## MSG_SKILL_RangeBonusBMag1_NAME
+## MSG_SKILL_MagicRangePlus1_NAME
 Magic Range +1[X]
-## MSG_SKILL_RangeBonusBMag1_DESC
+## MSG_SKILL_MagicRangePlus1_DESC
 Magic Range +1:[N]
 Increases black magic range by 1[X]
 
-## MSG_SKILL_RangeBonusBMag2_NAME
+## MSG_SKILL_MagicRangePlus2_NAME
 Magic Range +2[X]
-## MSG_SKILL_RangeBonusBMag2_DESC
+## MSG_SKILL_MagicRangePlus2_DESC
 Magic Range +2:[N]
 Increases black magic range by 2[X]
 
-## MSG_SKILL_RangeBonusBow1_NAME
+## MSG_SKILL_BowRangePlus1_NAME
 Bow Range +1[X]
-## MSG_SKILL_RangeBonusBow1_DESC
+## MSG_SKILL_BowRangePlus1_DESC
 Bow Range +1:[N]
 Increases bow range by 1[X]
 
-## MSG_SKILL_RangeBonusBow2_NAME
+## MSG_SKILL_BowRangePlus2_NAME
 Bow Range +2[X]
-## MSG_SKILL_RangeBonusBow2_DESC
+## MSG_SKILL_BowRangePlus2_DESC
 Bow Range +2:[N]
 Increases bow range by 2[X]
 
 ## MSG_SKILL_RunningStart_NAME
-Running Start:[X]
+Running Start[X]
 ## MSG_SKILL_RunningStart_DESC
 Running Start:[N]
 +1 attack range for[N]
@@ -95,8 +95,8 @@ damages target, but cannot kill.[X]
 Explosive Heal[X]
 ## MSG_SKILL_ExplosiveHeal_DESC
 Explosive Heal:[N]
-Single target healing staves also apply[N]
-their effects to all adjacent allies.[X]
+When this unit heals a target, adjacent[N]
+allies to this unit are also healed.[X]
 
 ## MSG_SKILL_ExplosiveBuff_NAME
 Explosive Buff[X]

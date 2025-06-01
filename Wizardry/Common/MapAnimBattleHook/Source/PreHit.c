@@ -21,7 +21,7 @@ STATIC_DECLAR void PreMapAnimBattleRound_OnStart(ProcPtr proc)
     if (gManimSt.pCurrentRound->info & BATTLE_HIT_INFO_END)
     {
         Proc_Break(proc);
-        Proc_GotoScript(proc, gProc_MapAnimEnd);
+        Proc_GotoScript(proc, ProcScr_MapAnimEnd);
         return;
     }
     MapAnim_PrepareNextBattleRound(proc);

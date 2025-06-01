@@ -445,21 +445,9 @@ void BattleHit_InjectNegativeStatus(struct BattleUnit *attacker, struct BattleUn
 #if (defined(SID_GoodAsGold) && (COMMON_SKILL_VALID(SID_GoodAsGold)))
     if (BattleSkillTester(defender, SID_GoodAsGold))
     {
-        static const u8 _debuffs[9] = {
-            UNIT_STATUS_POISON,
-            UNIT_STATUS_SLEEP,
-            UNIT_STATUS_SILENCED,
-            UNIT_STATUS_BERSERK,
-            UNIT_STATUS_PETRIFY,
-            NEW_UNIT_STATUS_HEAVY_GRAVITY,
-            NEW_UNIT_STATUS_WEAKEN,
-            NEW_UNIT_STATUS_PANIC,
-            NEW_UNIT_STATUS_BREAK,
-            };
-
         for (int i = 0; i < 9; i++)
         {
-            if (defender->statusOut == _debuffs[i])
+            if (defender->statusOut == debuffs[i])
             {
                 defender->statusOut = UNIT_STATUS_NONE;
                 break;

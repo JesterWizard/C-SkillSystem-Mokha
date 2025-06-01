@@ -11,6 +11,7 @@
 #include "constants/skills.h"
 #include "bmarena.h"
 #include "unit-expa.h"
+#include "jester_headers/custom-functions.h"
 
 typedef void (*PreBattleCalcFunc)(struct BattleUnit *buA, struct BattleUnit *buB);
 extern PreBattleCalcFunc const *const gpPreBattleCalcFuncs;
@@ -1551,21 +1552,9 @@ void PreBattleCalcSkills(struct BattleUnit *attacker, struct BattleUnit *defende
 
 #if (defined(SID_GoodAsGold) && (COMMON_SKILL_VALID(SID_GoodAsGold)))
         case SID_GoodAsGold:
-            static const u8 _debuffs[9] = {
-                UNIT_STATUS_POISON,
-                UNIT_STATUS_SLEEP,
-                UNIT_STATUS_SILENCED,
-                UNIT_STATUS_BERSERK,
-                UNIT_STATUS_PETRIFY,
-                NEW_UNIT_STATUS_HEAVY_GRAVITY,
-                NEW_UNIT_STATUS_WEAKEN,
-                NEW_UNIT_STATUS_PANIC,
-                NEW_UNIT_STATUS_BREAK,
-            };
-
             for (int i = 0; i < 9; i++)
             {
-                if (GetUnitStatusIndex(GetUnit(attacker->unit.index)) == _debuffs[i])
+                if (GetUnitStatusIndex(GetUnit(attacker->unit.index)) == debuffs[i])
                 {
                     SetUnitStatus(GetUnit(attacker->unit.index), UNIT_STATUS_NONE);
                     break;
@@ -1616,17 +1605,6 @@ void PreBattleCalcSkills(struct BattleUnit *attacker, struct BattleUnit *defende
             break;
 #endif
 
-#if (defined(SID_Capture) && (COMMON_SKILL_VALID(SID_Capture)))
-        case SID_Capture:
-            if (BattleSkillTester(attacker, SID_Capture) && CheckBitUES(GetUnit(attacker->unit.index), UES_BIT_CAPTURE_SKILL_USED))
-            {
-                attacker->battleAttack -= Div(attacker->battleAttack * SKILL_EFF0(SID_Capture), 100);
-                attacker->battleHitRate -= Div(attacker->battleHitRate * SKILL_EFF0(SID_Capture), 100);
-                attacker->battleSpeed -= Div(attacker->battleSpeed * SKILL_EFF0(SID_Capture), 100);
-            }
-            break;
-#endif
-
 #if (defined(SID_AdaptiveStance) && (COMMON_SKILL_VALID(SID_AdaptiveStance)))
         case SID_AdaptiveStance:
             int attackerRes = GetUnit(attacker->unit.index)->res;
@@ -1641,7 +1619,7 @@ void PreBattleCalcSkills(struct BattleUnit *attacker, struct BattleUnit *defende
             if (defender->unit.pCharacterData == GetCharacterData(CHARACTER_WALL) || 
                 defender->unit.pCharacterData == GetCharacterData(CHARACTER_SNAG))
                 {
-                    attacker->battleAttack = defender->hpInitial;
+                    attacker->battleAttack = defender->unit.maxHP;
                 }
             break;
 #endif
@@ -1944,6 +1922,17 @@ void PreBattleCalcSkills(struct BattleUnit *attacker, struct BattleUnit *defende
             break;
 #endif
 
+#if (defined(SID_Capture) && (COMMON_SKILL_VALID(SID_Capture)))
+        case SID_Capture:
+            if (gActionData.unk08 == SID_Capture)
+            {
+                attacker->battleAttack -= Div(attacker->battleAttack * SKILL_EFF0(SID_Capture), 100);
+                attacker->battleHitRate -= Div(attacker->battleHitRate * SKILL_EFF0(SID_Capture), 100);
+                attacker->battleSpeed -= Div(attacker->battleSpeed * SKILL_EFF0(SID_Capture), 100);
+            }
+            break;
+#endif
+
         case MAX_SKILL_NUM:
         default:
             break;
@@ -2208,6 +2197,18 @@ void PreBattleCalcAuraEffect(struct BattleUnit *attacker, struct BattleUnit *def
             }
 #endif
 
+#if (defined(SID_MarkOfTheBeast) && (COMMON_SKILL_VALID(SID_MarkOfTheBeast)))
+        if (SkillTester(unit, SID_MarkOfTheBeast) && isMonsterClass(attacker->unit.pClassData->number))
+        {
+            attacker->battleAttack += SKILL_EFF0(SID_MarkOfTheBeast);
+            attacker->battleDefense += SKILL_EFF0(SID_MarkOfTheBeast);
+            attacker->battleCritRate += SKILL_EFF0(SID_MarkOfTheBeast);
+            attacker->battleSpeed += SKILL_EFF0(SID_MarkOfTheBeast);
+            attacker->battleAvoidRate += SKILL_EFF0(SID_MarkOfTheBeast);
+            attacker->battleDodgeRate += SKILL_EFF0(SID_MarkOfTheBeast);
+        }
+#endif
+
             /* Since we just calc in 3x3, so here is always true */
             allies_gRange3_In3x3++;
 
@@ -2302,7 +2303,7 @@ void PreBattleCalcAuraEffect(struct BattleUnit *attacker, struct BattleUnit *def
 
     if (allies_gRange3_In3x3 != 0)
     {
-        /* Todo */
+        // TO DO
     }
     else
     {
@@ -2351,24 +2352,12 @@ void PreBattleCalcAuraEffect(struct BattleUnit *attacker, struct BattleUnit *def
     /* AND skills */
     if (allies_gRange3_In3x3 == 0)
     {
-#if (defined(SID_BattleRange_Todo1) && (COMMON_SKILL_VALID(SID_BattleRange_Todo1)))
-        if (BattleSkillTester(attacker, SID_BattleRange_Todo1))
-            attacker->battleAttack += SKILL_EFF0(SID_BattleRange_Todo1);
-#endif
     }
     else if (allies_gRange2_In3x3 == 0)
     {
-#if (defined(SID_BattleRange_Todo2) && (COMMON_SKILL_VALID(SID_BattleRange_Todo2)))
-        if (BattleSkillTester(attacker, SID_BattleRange_Todo2))
-            attacker->battleAttack += SKILL_EFF0(SID_BattleRange_Todo2);
-#endif
     }
     else if (allies_gRange1_In3x3 == 0)
     {
-#if (defined(SID_BattleRange_Todo3) && (COMMON_SKILL_VALID(SID_BattleRange_Todo3)))
-        if (BattleSkillTester(attacker, SID_BattleRange_Todo3))
-            attacker->battleAttack += SKILL_EFF0(SID_BattleRange_Todo3);
-#endif
     }
     else
     {

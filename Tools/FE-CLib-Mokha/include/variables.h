@@ -799,7 +799,7 @@ extern CONST_DATA u8 Unk_088ADFAB[];
 // extern ??? Events_WM_ChapterIntro
 // extern ??? gUnknown_088D2058
 extern struct CONST_DATA gfx_set gConvoBackgroundData[];
-extern u8 CONST_DATA gPromoJidLut[][2];
+extern u8* gPromoJidLut;
 extern u8 gAnimCharaPalConfig[0x100][7];
 extern u8 gAnimCharaPalIt[0x100][7];
 extern u8 gSummonConfig[4][2];

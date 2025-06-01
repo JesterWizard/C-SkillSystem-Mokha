@@ -10,16 +10,30 @@ u8 StaffEXP(int weapon)
     case ITEM_STAFF_TORCH:
         exp = 15;
         break;
+#ifdef CONFIG_ITEM_INDEX_FORCE_STAFF
     case CONFIG_ITEM_INDEX_FORCE_STAFF:
+#endif
+#ifdef CONFIG_ITEM_INDEX_TEMPEST_STAFF
     case CONFIG_ITEM_INDEX_TEMPEST_STAFF:
+#endif
+#ifdef CONFIG_ITEM_INDEX_ACUITY_STAFF
     case CONFIG_ITEM_INDEX_ACUITY_STAFF:
+#endif
+#ifdef CONFIG_ITEM_INDEX_SPRINT_STAFF
     case CONFIG_ITEM_INDEX_SPRINT_STAFF:
+#endif
+#ifdef CONFIG_ITEM_INDEX_FORTUNE_STAFF
     case CONFIG_ITEM_INDEX_FORTUNE_STAFF:
+#endif
+#ifdef CONFIG_ITEM_INDEX_IRON_STAFF
     case CONFIG_ITEM_INDEX_IRON_STAFF:
+#endif
     case ITEM_STAFF_BARRIER:
         exp = 17;
         break;
+#ifdef CONFIG_ITEM_INDEX_MINE_STAFF
     case CONFIG_ITEM_INDEX_MINE_STAFF:
+#endif
     case ITEM_STAFF_MEND:
         exp = 20;
         break;
@@ -32,8 +46,12 @@ u8 StaffEXP(int weapon)
     case ITEM_STAFF_SLEEP:
     case ITEM_STAFF_SILENCE:
     case ITEM_STAFF_PHYSIC:
+#ifdef CONFIG_ITEM_INDEX_RUNE_STAFF
     case CONFIG_ITEM_INDEX_RUNE_STAFF:
+#endif
+#ifdef CONFIG_ITEM_INDEX_SLOW_STAFF
     case CONFIG_ITEM_INDEX_SLOW_STAFF:
+#endif
         exp = 30;
         break;
     case ITEM_STAFF_RESCUE:

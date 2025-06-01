@@ -3,8 +3,6 @@
 
 #define CONFIG_FE8_REWRITE
 
-// #define CONFIG_FE8SRR
-
 /**
  * If uncomment, kernel may remove vanilla dislogue text
  * so that we can save ~470KByte ROM space in DEMO.
@@ -425,8 +423,6 @@
  * Install Bow2Decrease
  */
 // #define CONFIG_INSTALL_BOW2DECREASE
-
-// #define CONFIG_INSTALL_DECREASE_HIT_AT_RANGE
 
 // #define CONFIG_VESLY_AOE
 

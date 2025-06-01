@@ -30,8 +30,24 @@ enum UNIT_STATUS_IDENTIFIER {
     NEW_UNIT_STATUS_DOOM,
     NEW_UNIT_STATUS_HIDE,
     NEW_UNIT_STATUS_SLOW,
+    NEW_UNIT_STATUS_DISMOUNT,
 
     NEW_UNIT_STATUS_MAX = 64
+};
+
+static const u8 debuffs[12] = {
+    UNIT_STATUS_POISON,
+    UNIT_STATUS_SLEEP,
+    UNIT_STATUS_SILENCED,
+    UNIT_STATUS_BERSERK,
+    UNIT_STATUS_PETRIFY,
+    NEW_UNIT_STATUS_HEAVY_GRAVITY,
+    NEW_UNIT_STATUS_WEAKEN,
+    NEW_UNIT_STATUS_PANIC,
+    NEW_UNIT_STATUS_BREAK,
+    NEW_UNIT_STATUS_TOXIC_POISON,
+    NEW_UNIT_STATUS_DOOM,
+    NEW_UNIT_STATUS_SLOW,
 };
 
 enum DEBUFF_POSITIVE_TYPE {
@@ -284,9 +300,9 @@ int ResGetterStatDebuff(int status, struct Unit * unit);
 int LckGetterStatDebuff(int status, struct Unit * unit);
 int MovGetterStatDebuff(int status, struct Unit * unit);
 
-void StatDeuff_OnNewGameInit(void);
-void ResetStatDeuffBuf(void);
-void StatDeuff_OnLoadUnit(struct Unit * unit);
+void StatDebuff_OnNewGameInit(void);
+void ResetStatDebuffBuff(void);
+void StatDebuff_OnLoadUnit(struct Unit * unit);
 
 /* Misc API */
 bool UnitHasNegativeStatus(struct Unit * unit);

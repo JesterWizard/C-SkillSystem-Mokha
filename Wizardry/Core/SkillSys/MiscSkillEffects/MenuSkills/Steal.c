@@ -21,3 +21,19 @@ u8 StealCommandUsability(const struct MenuItemDef * def, int number)
 
     return MENU_ENABLED;
 }
+
+LYN_REPLACE_CHECK(StealCommandEffect);
+u8 StealCommandEffect(struct MenuProc* menu, struct MenuItemProc* menuItem) {
+    if (menuItem->availability == MENU_DISABLED) {
+        MenuFrozenHelpBox(menu, 0x862); // TODO msgid "Your inventory is full.[.]"
+        return MENU_ACT_SND6B;
+    }
+
+    ClearBg0Bg1();
+
+    MakeTargetListForSteal(gActiveUnit);
+
+    NewTargetSelection(&gSelectInfo_Steal);
+
+    return MENU_ACT_SKIPCURSOR | MENU_ACT_END | MENU_ACT_SND6A;
+}

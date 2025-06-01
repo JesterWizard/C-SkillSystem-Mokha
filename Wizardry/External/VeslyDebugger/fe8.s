@@ -34186,7 +34186,7 @@ dat 0x089A3398, ProcScr_MapAnimSummon
 dat 0x089A33C0, ProcScr_MapAnimSumDK
 dat 0x089A34B0, ProcScr_MapAnimDance
 dat 0x089A3508, ProcScr_MapAnimBattle
-dat 0x089A35B0, gProc_MapAnimEnd
+dat 0x089A35B0, ProcScr_MapAnimEnd
 dat 0x089A3648, gUnknown_089A3648
 dat 0x089A3668, gUnknown_089A3668
 dat 0x089A3670, TsaSet_MapBattleBoxGfx

@@ -98,45 +98,45 @@ Avoid Rate +30%,[N]
 if HP < 25%.[X]
 
 ## MSG_SKILL_DefiantStr_NAME
-Defiant Str[X]
+Defiant Strength[X]
 ## MSG_SKILL_DefiantStr_DESC
-Defiant Str:[N]
+Defiant Strength:[N]
 STR +7 if HP < 25%[X]
 
 ## MSG_SKILL_DefiantMag_NAME
-Defiant Mag[X]
+Defiant Magic[X]
 ## MSG_SKILL_DefiantMag_DESC
-Defiant Mag: [N]
+Defiant Magic: [N]
 MAG +7 if HP < 25%[X]
 
 ## MSG_SKILL_DefiantSkl_NAME
-Defiant Skl[X]
+Defiant Skill[X]
 ## MSG_SKILL_DefiantSkl_DESC
-Defiant Skl: [N]
+Defiant Skill: [N]
 SKL +7 if HP < 25%[X]
 
 ## MSG_SKILL_DefiantSpd_NAME
-Defiant Spd[X]
+Defiant Speed[X]
 ## MSG_SKILL_DefiantSpd_DESC
-Defiant Spd: [N]
+Defiant Speed: [N]
 SPD +7 if HP < 25%[X]
 
 ## MSG_SKILL_DefiantLck_NAME
-Defiant Luk[X]
+Defiant Luck[X]
 ## MSG_SKILL_DefiantLck_DESC
-Defiant Luk: [N]
+Defiant Luck: [N]
 LUCK +7 if HP < 25%[X]
 
 ## MSG_SKILL_DefiantDef_NAME
-Defiant Def[X]
+Defiant Defense[X]
 ## MSG_SKILL_DefiantDef_DESC
-Defiant Def: [N]
+Defiant Defense: [N]
 DEF +7 if HP < 25%[X]
 
 ## MSG_SKILL_DefiantRes_NAME
-Defiant Res[X]
+Defiant Resistance[X]
 ## MSG_SKILL_DefiantRes_DESC
-Defiant Res: [N]
+Defiant Resistance:[N]
 RES +7 if HP < 25%[X]
 
 ## MSG_SKILL_LuckySeven_NAME
@@ -159,7 +159,7 @@ Push Magic:[N]
 +5 MAG if HP is full.[X]
 
 ## MSG_SKILL_PushResistance_NAME
-P-Resistance[X]
+Push Resistance[X]
 ## MSG_SKILL_PushResistance_DESC
 Push Resistance:[N]
 +5 RES when HP is full.[X]
@@ -639,3 +639,10 @@ Huge Power+[X]
 ## MSG_SKILL_HugePowerPlus_DESC
 Huge Power+:[N]
 Boost this unit's ATK by 50%[X]
+
+## MSG_SKILL_SlowStart_NAME
+Slow Start[X]
+## MSG_SKILL_SlowStart_DESC
+Slow Start:[N]
+This unit's POW/SPD are halved[N]
+until the 6th turn.[X]

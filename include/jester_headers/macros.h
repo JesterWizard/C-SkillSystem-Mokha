@@ -134,8 +134,15 @@ enum {
     SVAL(EVT_SLOT_3, item) \
     GIVEITEMTO(character)
 
+// This macro converts a full skill id (0–0x3FF) into the proper item:
+#define GET_SKILL_SCROLL_INDEX(skill_id)  ( \
+     ((skill_id) > 0x2FF) ? CONFIG_ITEM_INDEX_SKILL_SCROLL_4 : \
+     ((skill_id) > 0x1FF) ? CONFIG_ITEM_INDEX_SKILL_SCROLL_3 : \
+     ((skill_id) > 0x0FF) ? CONFIG_ITEM_INDEX_SKILL_SCROLL_2 : \
+                          CONFIG_ITEM_INDEX_SKILL_SCROLL_1)
+
 #define GIVE_SKILL_SCROLL_TO(skill_id, character) \
-    SVAL(EVT_SLOT_3, (skill_id << 8) | CONFIG_ITEM_INDEX_SKILL_SCROLL) \
+    SVAL(EVT_SLOT_3, (((skill_id) & 0xFF) << 8) | GET_SKILL_SCROLL_INDEX(skill_id)) \
     GIVEITEMTO(character)
 
 /*

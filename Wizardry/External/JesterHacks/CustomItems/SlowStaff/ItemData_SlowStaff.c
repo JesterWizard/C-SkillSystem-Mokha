@@ -5,13 +5,17 @@ const struct ItemData ItemData_SlowStaff = {
     .nameTextId = MSG_ITEM_SLOW_STAFF_NAME,
     .descTextId = MSG_ITEM_SLOW_STAFF_DESC,
     .useDescTextId = MSG_ITEM_SLOW_STAFF_USEDESC,
+#ifdef CONFIG_ITEM_INDEX_SLOW_STAFF
     .number = CONFIG_ITEM_INDEX_SLOW_STAFF,
+#endif
     .weaponType = ITYPE_STAFF,
     .pStatBonuses = 0,
     .maxUses = 15,
     .encodedRange = 0x11, // Adjacent allies only 1-1
     .costPerUse = 500,
+#ifdef CONFIG_ITEM_INDEX_SLOW_STAFF
     .iconId = CONFIG_ICON_INDEX_SLOW_STAFF,
+#endif
     .useEffectId = 0xF, // Barrier
     .weaponRank = WPN_EXP_C,
     .weaponExp = 4,

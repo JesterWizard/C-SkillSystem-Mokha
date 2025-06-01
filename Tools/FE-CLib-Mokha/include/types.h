@@ -223,8 +223,6 @@ struct PlaySt { // Chapter Data Struct
     u8 save_menu_type : 3;
     u8 tutorial_exec_type : 4;
     u8 tutorial_counter;
-    // u16 forge_points;
-    // u8 bexp;
 } BITPACKED;
 
 /* PlaySt::config::animationType */

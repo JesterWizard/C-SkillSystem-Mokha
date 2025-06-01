@@ -40,6 +40,8 @@ static const EventScr EventScr_Beginning[] = {
     HIGHLIGHT_CHARACTER(CHARACTER_EIRIKA, 60)
     TEXT(Chapter_01_Scene_04_Convo_01)
 
+    ASMC(SetGameOptions_Chapter1)
+
     /* Temporary flag(11) is used for triggering event: EventScr_Ch1_Turn_EnemyReinforceArrive, this flag will be unset by event: EventScr_Ch1_Misc_Area */
     ENUT(EVFLAG_TMP(11))
     NOFADE
@@ -132,9 +134,10 @@ static const EventListScr EventListScr_Character[] = {
     END_MAIN
 };
 
+// Use 0 for the flag if you want the event to be always available
 static const EventListScr EventListScr_Location[] = {
-    HOUSE(EVFLAG_TMP(11), EventListScr_HOUSE_TALK_1, 10, 4)
-    HOUSE(EVFLAG_TMP(12), EventListScr_HOUSE_TALK_2, 13, 6)
+    HOUSE(0, EventListScr_HOUSE_TALK_1, 10, 4)
+    HOUSE(0, EventListScr_HOUSE_TALK_2, 13, 6)
     SEIZE(2, 2)
     END_MAIN
 };

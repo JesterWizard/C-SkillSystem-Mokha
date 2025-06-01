@@ -198,9 +198,9 @@ For every 4 damage taken,[N]
 +1 to damage dealt.[X]
 
 ## MSG_SKILL_WonderGuard_NAME
-WonderGuard[X]
+Wonder Guard[X]
 ## MSG_SKILL_WonderGuard_DESC
-WonderGuard:[N]
+Wonder Guard:[N]
 Cannot be damaged by weapons of[N]
 the same weapon type as the user's.[X]
 
@@ -343,13 +343,6 @@ Hawk Eye[X]
 ## MSG_SKILL_Hawkeye_DESC
 Hawk Eye:[N]
 User will always hit the enemy.[X]
-
-## MSG_SKILL_MagicEye_NAME
-Magic Eye[X]
-## MSG_SKILL_MagicEye_DESC
-Magic Eye:[N]
-Unit will not lose hit range when[N]
-attacking from distance[X]
 
 ## MSG_SKILL_KeenFighter_NAME
 Keen Fighter[X]
@@ -701,7 +694,7 @@ Guard Bearing[X]
 ## MSG_SKILL_GuardBearing_DESC
 Guard Bearing: During first combat[N]
 in enemy phase, if attacked, reduces[N]
-50 %damage from foe's first attack.[X]
+50% damage from foe's first attack.[X]
 
 ## MSG_SKILL_Spurn_NAME
 Spurn[X]
@@ -1008,8 +1001,8 @@ being struck.[X]
 Barricade+[X]
 ## MSG_SKILL_BarricadePlus_DESC
 Barricade+: Damage taken is halved[N]
-in this combat oNy, after every[N]
-strike against this unit.[X]
+in this combat only, after every[N]
+subsequent strike against this unit.[X]
 
 ## MSG_SKILL_Pursuer_NAME
 Pursuer[X]
@@ -1553,7 +1546,7 @@ Tinted Lens+[X]
 ## MSG_SKILL_TintedLensPlus_DESC
 Tinted Lens+:[N]
 This units' attacks do a[N]
-minimum of  damage.[X]
+minimum of 6 damage.[X]
 
 ## MSG_SKILL_Emulate_NAME
 Emulate[X]
@@ -1576,3 +1569,26 @@ Dual Wield+:[N]
 Equip a secondary weapon,[N]
 using half of its stats.[N]
 and its effects.[X]
+
+## MSG_SKILL_Rampart_NAME
+Rampart.[X]
+## MSG_SKILL_Rampart_DESC
+Rampart:[N]
+If attacked, reduces the damage[N]
+of the first hit by 30%.[X]
+
+## MSG_SKILL_RampartPlus_NAME
+Rampart+.[X]
+## MSG_SKILL_RampartPlus_DESC
+Rampart+:[N]
+If attacked, reduces the damage[N]
+of the first hit by 50%.[X]
+
+## MSG_SKILL_Freelancer_NAME
+Freelancer[X]
+## MSG_SKILL_Freelancer_DESC
+Freelancer:[N]
+Gain +5 to a stat for each weapon[N]
+type the unit uses.[N]
+Sword = SPD, Lance = SKL,[N]
+Axe = STR, Bow = LCK.[X]

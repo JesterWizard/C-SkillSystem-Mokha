@@ -609,9 +609,9 @@ const struct MenuItemDef gSkillMenuInfos[MAX] = {
 #if (defined(SID_DivineReprieve) && COMMON_SKILL_VALID(SID_DivineReprieve))
 	[SID_DivineReprieve] = {
 		.name = "　神裁の恩寵",
-		.nameMsgId = MSG_SKILL_DivineReprieveMenu_NAME,
+		.nameMsgId = MSG_SKILL_DivineReprieve_NAME,
 		.helpMsgId = MSG_SKILL_DivineReprieve_DESC,
-		.color = TEXT_COLOR_SYSTEM_WHITE,
+		.color = TEXT_COLOR_SYSTEM_GOLD,
 		.isAvailable = DivineReprieve_Usability,
 		.onDraw = NULL,
 		.onSelected = DivineReprieve_OnSelected,
@@ -735,6 +735,111 @@ const struct MenuItemDef gSkillMenuInfos[MAX] = {
         .isAvailable = Hide_Usability,
         .onDraw = NULL,
         .onSelected = Hide_OnSelected,
+        .onIdle = NULL,
+        .onSwitchIn = NULL,
+        .onSwitchOut = NULL,
+    },
+#endif
+
+#if (defined(SID_SkillSwap) && COMMON_SKILL_VALID(SID_SkillSwap))
+    [SID_SkillSwap] = {
+        .name = "　",
+        .nameMsgId = MSG_SKILL_SkillSwap_NAME,
+        .helpMsgId = MSG_SKILL_SkillSwap_DESC,
+        .color = TEXT_COLOR_SYSTEM_GOLD,
+        .isAvailable = SkillSwap_Usability,
+        .onDraw = NULL,
+        .onSelected = SkillSwap_OnSelected,
+        .onIdle = NULL,
+        .onSwitchIn = NULL,
+        .onSwitchOut = NULL,
+    },
+#endif
+
+#if (defined(SID_Shuffle) && COMMON_SKILL_VALID(SID_Shuffle))
+    [SID_Shuffle] = {
+        .name = "　",
+        .nameMsgId = MSG_SKILL_Shuffle_NAME,
+        .helpMsgId = MSG_SKILL_Shuffle_DESC,
+        .color = TEXT_COLOR_SYSTEM_GOLD,
+        .isAvailable = Shuffle_Usability,
+        .onDraw = NULL,
+        .onSelected = Shuffle_OnSelected,
+        .onIdle = NULL,
+        .onSwitchIn = NULL,
+        .onSwitchOut = NULL,
+    },
+#endif
+
+#if (defined(SID_ShufflePlus) && COMMON_SKILL_VALID(SID_ShufflePlus))
+    [SID_ShufflePlus] = {
+        .name = "　",
+        .nameMsgId = MSG_SKILL_ShufflePlus_NAME,
+        .helpMsgId = MSG_SKILL_ShufflePlus_DESC,
+        .color = TEXT_COLOR_SYSTEM_GOLD,
+        .isAvailable = ShufflePlus_Usability,
+        .onDraw = NULL,
+        .onSelected = ShufflePlus_OnSelected,
+        .onIdle = NULL,
+        .onSwitchIn = NULL,
+        .onSwitchOut = NULL,
+    },
+#endif
+
+#if (defined(SID_Persuade) && COMMON_SKILL_VALID(SID_Persuade))
+    [SID_Persuade] = {
+        .name = "　",
+        .nameMsgId = MSG_SKILL_Persuade_NAME,
+        .helpMsgId = MSG_SKILL_Persuade_DESC,
+        .color = TEXT_COLOR_SYSTEM_GOLD,
+        .isAvailable = Persuade_Usability,
+        .onDraw = NULL,
+        .onSelected = Persuade_OnSelected,
+        .onIdle = NULL,
+        .onSwitchIn = NULL,
+        .onSwitchOut = NULL,
+    },
+#endif
+
+#if (defined(SID_PersuadePlus) && COMMON_SKILL_VALID(SID_PersuadePlus))
+    [SID_PersuadePlus] = {
+        .name = "　",
+        .nameMsgId = MSG_SKILL_PersuadePlus_NAME,
+        .helpMsgId = MSG_SKILL_PersuadePlus_DESC,
+        .color = TEXT_COLOR_SYSTEM_GOLD,
+        .isAvailable = PersuadePlus_Usability,
+        .onDraw = NULL,
+        .onSelected = PersuadePlus_OnSelected,
+        .onIdle = NULL,
+        .onSwitchIn = NULL,
+        .onSwitchOut = NULL,
+    },
+#endif
+
+#if (defined(SID_Kamikaze) && COMMON_SKILL_VALID(SID_Kamikaze))
+    [SID_Kamikaze] = {
+        .name = "　",
+        .nameMsgId = MSG_SKILL_Kamikaze_NAME,
+        .helpMsgId = MSG_SKILL_Kamikaze_DESC,
+        .color = TEXT_COLOR_SYSTEM_GOLD,
+        .isAvailable = Kamikaze_Usability,
+        .onDraw = NULL,
+        .onSelected = Kamikaze_OnSelected,
+        .onIdle = NULL,
+        .onSwitchIn = Kamikaze_Hover,
+        .onSwitchOut = Kamikaze_Unhover,
+    },
+#endif
+
+#if (defined(SID_Reinforcements) && COMMON_SKILL_VALID(SID_Reinforcements))
+    [SID_Reinforcements] = {
+        .name = "　",
+        .nameMsgId = MSG_SKILL_Reinforcements_NAME,
+        .helpMsgId = MSG_SKILL_Reinforcements_DESC,
+        .color = TEXT_COLOR_SYSTEM_GOLD,
+        .isAvailable = Reinforcements_Usability,
+        .onDraw = NULL,
+        .onSelected = Reinforcements_OnSelected,
         .onIdle = NULL,
         .onSwitchIn = NULL,
         .onSwitchOut = NULL,

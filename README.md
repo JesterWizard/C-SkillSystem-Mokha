@@ -11,10 +11,9 @@ A modern buildfile for a C-SkillSystem based on the decompilation of FE8U.
 ## Main features
 
 1. More diverse functionality
-    - [600+ skills](https://docs.google.com/spreadsheets/d/1zd99uevX953OZQiA_oJU9R3hqFao5mrW78wMHKPco-U/edit?pli=1&gid=681794002#gid=681794002) have been introduced and the bit width of the skill index has been expanded to 16 bits. It can theoretically support up to 0xFFFF skills working at the same time.
-    - Each unit can carry up to 23 skills, 7 of which can be configured through the prepscreen freely.
+    - [700+ skills](https://docs.google.com/spreadsheets/d/1zd99uevX953OZQiA_oJU9R3hqFao5mrW78wMHKPco-U/edit?pli=1&gid=681794002#gid=681794002) have been introduced and the bit width of the skill index has been expanded to 16 bits. It can theoretically support up to 0xFFFF skills working at the same time.
+    - Each unit can carry up to 21 skills, 7 equippable, 2x5 via items, 2 class skills and 2 character skills
     - Introduced a lot of new combat mechanics:
-        - The Three Houses style hit rate which decreases the greater the range between you and your enemy
         - An Engage style combo-attack
         - The combat calculation formula has been restructured to allow for more precise manipulation of damage increases and reductions. This has allowed for a large number of FE-Heroes skills to be ported based on that.
         - Reworked the ARM movement calculation function to enable more Heroes style mobility skills such as [Flier Formation](https://feheroes.fandom.com/wiki/Flier_Formation). This also avoids serious performance losses caused by the Pass skill.

@@ -41,7 +41,6 @@
 // SID_Arise
 // SID_AssignDecoy
 // SID_ShadowFlash
-// SID_Refuge
 // SID_DeathBlight
 // SID_DivineReprieve
 // SID_LoadstarRush
@@ -52,6 +51,14 @@
 // SID_LethalityPlus
 // SID_GrimReaper
 // SID_Hide
+// SID_Salve
+// SID_SkillSwap
+// SID_Shuffle
+// SID_ShufflePlus
+// SID_Persuade
+// SID_PersuadePlus
+// SID_Kamikaze
+// SID_Reinforcements
 
 //////// PRE-BATTLE SKILLS
 // SID_DefiantStr
@@ -101,7 +108,6 @@
 // SID_QuickDraw
 // SID_KeenFighter
 // SID_Hawkeye
-// SID_MagicEye
 // SID_DragonSkin
 // SID_WaterBoost
 // SID_EarthBoost
@@ -155,14 +161,11 @@
 // SID_SandRush
 // SID_SwiftSwim
 // SID_SolarPower
-// SID_RangeBonusBMag
-// SID_RangeBonusBMag2
-// SID_RangeBonusBow1
-// SID_RangeBonusBow2
+// SID_MagicRangePlus1
+// SID_MagicRangePlus2
+// SID_BowRangePlus1
+// SID_BowRangePlus2
 // SID_RunningStart
-// SID_BattleRange_Todo1
-// SID_BattleRange_Todo2
-// SID_BattleRange_Todo3
 // SID_RuinedBladePlus
 // SID_AirRaidAttack
 // SID_AirRaidAvoid
@@ -244,6 +247,9 @@
 // SID_TintedLens
 // SID_TintedLensPlus
 // SID_Emulate
+// SID_DualWield
+// SID_DualWieldPlus
+// SID_SlowStart
 
 //////// POST-BATTLE SKILLS
 // SID_Canto
@@ -297,6 +303,8 @@
 // SID_SpiritedSteps
 // SID_Heroics
 // SID_ShadowStep
+// SID_Zenkai
+// SID_Freelancer
 
 //////// AURA SKILLS
 // SID_Anathema
@@ -358,6 +366,7 @@
 // SID_Mentorship
 // SID_HolyAura
 // SID_BlueFlame
+// SID_MarkOfTheBeast
 
 //////// STAT MODIFIER SKILLS
 // SID_HpBonus
@@ -525,6 +534,9 @@
 // SID_Offhand
 // SID_ShedSkin
 // SID_HoldOut
+// SID_Rampart
+// SID_RampartPlus
+// SID_Forcefield
 
 //////// EFFECTIVENESS SKILLS
 // SID_Resourceful
@@ -618,6 +630,7 @@
 // SID_BlacksmithPlus
 // SID_Lifefont
 // SID_EternalVanity
+// SID_Truant
 
 //////// POST-PHASE SKILLS
 // SID_HoardersBane
@@ -704,7 +717,6 @@
 // SID_ArcgiftPlus
 // SID_NiceThighs
 // SID_Casual
-// SID_CatchEmAll
 // SID_LiveToServe
 // SID_Reflex
 // SID_Nullify
@@ -713,6 +725,7 @@
 // SID_MagicSeal
 // SID_HazeHunter
 // SID_Insomnia
+// SID_Comatose
 // SID_Survivor
 // SID_Anchor
 // SID_Absolve

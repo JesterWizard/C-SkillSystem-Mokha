@@ -35,7 +35,9 @@ int HpGetterSkills(int status, struct Unit * unit)
 {
 #if defined(SID_HpBonus) && (COMMON_SKILL_VALID(SID_HpBonus))
     if (SkillTester(unit, SID_HpBonus))
+    {
         status += SKILL_EFF0(SID_HpBonus);
+    }
 #endif
 
 #if defined(SID_Lifefont) && (COMMON_SKILL_VALID(SID_Lifefont))

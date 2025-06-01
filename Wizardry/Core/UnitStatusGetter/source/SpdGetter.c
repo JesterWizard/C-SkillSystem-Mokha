@@ -147,6 +147,11 @@ int SpdGetterSkills(int status, struct Unit * unit)
     }
 #endif
 
+#if defined(SID_Freelancer) && (COMMON_SKILL_VALID(SID_Freelancer))
+    if (SkillTester(unit, SID_Freelancer) && unit->ranks[ITYPE_SWORD] >= 1)
+        status += SKILL_EFF0(SID_Freelancer);
+#endif
+
     if (cur_hp == max_hp)
     {
 #if defined(SID_PushSpeed) && (COMMON_SKILL_VALID(SID_PushSpeed))
@@ -170,13 +175,13 @@ int SpdGetterSkills(int status, struct Unit * unit)
     if (SkillTester(unit, SID_Resolve))
     {
         if ((cur_hp * 2) < max_hp)
-            status += status / 2;
+            status += unit->spd / 2;
     }
 #endif
 
 #if (defined(SID_Rampage) && (COMMON_SKILL_VALID(SID_Rampage))) 
     if (SkillTester(unit, SID_Rampage))
-            status += status / 2;
+            status += unit->spd / 2;
 #endif
 
 #if (defined(SID_PairUp) && (COMMON_SKILL_VALID(SID_PairUp)))
@@ -188,6 +193,11 @@ int SpdGetterSkills(int status, struct Unit * unit)
 #if defined(SID_Sellsword) && (COMMON_SKILL_VALID(SID_Sellsword))
     if (SkillTester(unit, SID_Sellsword) && CheckBitUES(unit, UES_BIT_SELLSWORD_SKILL_USED))
         status += SKILL_EFF0(SID_Sellsword);
+#endif
+
+#if defined(SID_SlowStart) && (COMMON_SKILL_VALID(SID_SlowStart))
+    if (SkillTester(unit, SID_SlowStart) && gPlaySt.chapterTurnNumber < 6)
+        status -= Div(status * SKILL_EFF0(SID_SlowStart), 100);
 #endif
 
     return status;

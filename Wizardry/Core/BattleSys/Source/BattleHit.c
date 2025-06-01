@@ -561,6 +561,22 @@ bool BattleGenerateHit(struct BattleUnit * attacker, struct BattleUnit * defende
         gBattleHitIterator->info |= BATTLE_HIT_INFO_FINISHES;
 
 #if CHAX
+
+#if (defined(SID_Forcefield) && (COMMON_SKILL_VALID(SID_Forcefield)))
+        if (BattleSkillTester(defender, SID_Forcefield))
+        {
+            if(defender->unit.curHP == defender->unit.maxHP && gBattleStats.damage >= defender->unit.maxHP/2)
+            {
+                gBattleStats.damage = 0;
+                gBattleHitIterator->hpChange = 0;
+                defender->unit.curHP = defender->unit.maxHP;
+
+                gBattleHitIterator->info |= BATTLE_HIT_INFO_FINISHES;
+                gBattleHitIterator++;
+                return true;
+            }
+        }
+#endif
         if (defender->unit.curHP == 0)
         {
             if (CheckBattleMiracle(attacker, defender))

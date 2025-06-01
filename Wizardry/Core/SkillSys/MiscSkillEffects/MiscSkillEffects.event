@@ -60,7 +60,7 @@
 #include "MenuSkills/ShadowFlash.lyn.event"
 #include "MenuSkills/Refuge.lyn.event"
 #include "MenuSkills/DeathBlight.lyn.event"
-#include "MenuSkills/DivineReprieve.event"
+#include "MenuSkills/DivineReprieve.event" // This is a special case as it includes the lyn file inside the event file
 #include "MenuSkills/LoadstarRush.lyn.event"
 #include "MenuSkills/WyvernCrash.lyn.event"
 #include "MenuSkills/Sellsword.lyn.event"
@@ -68,6 +68,13 @@
 #include "MenuSkills/LethalityPlus.lyn.event"
 #include "MenuSkills/GrimReaper.lyn.event"
 #include "MenuSkills/Hide.lyn.event"
+#include "MenuSkills/SkillSwap.lyn.event"
+#include "MenuSkills/Shuffle.lyn.event"
+#include "MenuSkills/ShufflePlus.lyn.event"
+#include "MenuSkills/Persuade.lyn.event"
+#include "MenuSkills/PersuadePlus.lyn.event"
+#include "MenuSkills/Kamikaze.lyn.event"
+#include "MenuSkills/Reinforcements.lyn.event"
 
 #include "MenuSkills/ReciprocalAid.lyn.event"
 #include "MenuSkills/ReciprocalAid_ASM_Extras/Installer.event"
@@ -77,12 +84,6 @@
 #include "Misc/LynJump.event"
 #include "Misc/HealAmount.lyn.event"
 #include "Misc/MiscFunctions.lyn.event"
-
-/**
- * I don't like these as a concept
- */
-// #include "LegendarySkills/JudgeLegend.lyn.event"
-// #include "LegendarySkills/LegendEffect.lyn.event"
 
 #include "ChapterInitSkills/Initiative.lyn.event"
 
@@ -103,6 +104,7 @@
 #include "PrePhaseSkills/HoneChaos.lyn.event"
 #include "PrePhaseSkills/Doppleganger.lyn.event"
 #include "PrePhaseSkills/BlacksmithPlus.lyn.event"
+#include "PrePhaseSkills/Truant.lyn.event"
 
 #include "AiSkills/Teleportation.event"
 #include "AiSkills/MiscAiSkills.event"

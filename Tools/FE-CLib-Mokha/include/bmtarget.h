@@ -38,7 +38,7 @@ void MakePoisonDamageTargetList(int faction);
 void MakeGorgonEggHatchTargetList(int faction);
 // ??? TryAddUnitToRefreshTargetList(???);
 void MakeTargetListForRefresh(struct Unit* unit);
-// ??? AddAsTarget_IfCanStealFrom(???);
+void AddAsTarget_IfCanStealFrom(struct Unit* unit);
 void MakeTargetListForSteal(struct Unit* unit);
 // ??? AddAsTarget_IfPositionCleanForSummon(???);
 void MakeTargetListForSummon(struct Unit* unit);

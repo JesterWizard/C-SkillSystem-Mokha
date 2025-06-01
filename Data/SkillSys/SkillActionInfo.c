@@ -174,4 +174,32 @@ const SkillActionFunc_t gSkillActionFuncTable[MAX_SKILL_NUM + 1] = {
 #if (defined(SID_Hide) && COMMON_SKILL_VALID(SID_Hide))
 	[SID_Hide] = Action_Hide,
 #endif
+
+#if (defined(SID_SkillSwap) && COMMON_SKILL_VALID(SID_SkillSwap))
+    [SID_SkillSwap] = Action_SkillSwap,
+#endif
+
+#if (defined(SID_Shuffle) && COMMON_SKILL_VALID(SID_Shuffle))
+    [SID_Shuffle] = Action_Shuffle,
+#endif
+
+#if (defined(SID_ShufflePlus) && COMMON_SKILL_VALID(SID_ShufflePlus))
+    [SID_ShufflePlus] = Action_ShufflePlus,
+#endif
+
+#if (defined(SID_Persuade) && COMMON_SKILL_VALID(SID_Persuade))
+    [SID_Persuade] = Action_Persuade,
+#endif
+
+#if (defined(SID_PersuadePlus) && COMMON_SKILL_VALID(SID_PersuadePlus))
+    [SID_PersuadePlus] = Action_PersuadePlus,
+#endif
+
+#if (defined(SID_Kamikaze) && COMMON_SKILL_VALID(SID_Kamikaze))
+    [SID_Kamikaze] = Action_Kamikaze,
+#endif
+
+#if (defined(SID_Reinforcements) && COMMON_SKILL_VALID(SID_Reinforcements))
+    [SID_Reinforcements] = Action_Reinforcements,
+#endif
 };

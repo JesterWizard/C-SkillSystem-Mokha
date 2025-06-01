@@ -210,8 +210,6 @@ static const LevelUpStrings character_level_up_strings[] =
     { CHARACTER_FADO,      {"Even a king falters. I must endure.", "Strength returns, little by little. It's enough.", "A king's might! I'll protect my people!"} },
     { CHARACTER_ISMAIRE,   {"Even blades grow dull. I must sharpen mine.", "A fair improvement. Elegance demands growth.", "Graceful and deadly. None can best me now!"} },
     { CHARACTER_HAYDEN,    {"Not my finest, but I'll manage.", "Progress, slow but steady, will carry us through.", "Strength enough to guard the kingdom once more!"} }
-
-
 };
 
 const int dict_size_level_up_strings = sizeof(character_level_up_strings) / sizeof(character_level_up_strings[0]);
