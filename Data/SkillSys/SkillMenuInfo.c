@@ -816,6 +816,21 @@ const struct MenuItemDef gSkillMenuInfos[MAX] = {
     },
 #endif
 
+#if (defined(SID_Kamikaze) && COMMON_SKILL_VALID(SID_Kamikaze))
+    [SID_Kamikaze] = {
+        .name = "　",
+        .nameMsgId = MSG_SKILL_Kamikaze_NAME,
+        .helpMsgId = MSG_SKILL_Kamikaze_DESC,
+        .color = TEXT_COLOR_SYSTEM_GOLD,
+        .isAvailable = Kamikaze_Usability,
+        .onDraw = NULL,
+        .onSelected = Kamikaze_OnSelected,
+        .onIdle = NULL,
+        .onSwitchIn = Kamikaze_Hover,
+        .onSwitchOut = Kamikaze_Unhover,
+    },
+#endif
+
     [0] = {
         .name = "　光の結界",
         .nameMsgId = MSG_MenuCommand_Refuge_NAME,

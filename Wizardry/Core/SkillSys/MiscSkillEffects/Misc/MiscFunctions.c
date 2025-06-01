@@ -3579,6 +3579,29 @@ void MakeTargetListForAdjacentNonBossEnemies(struct Unit* unit) {
     return;
 }
 
+void TryAddUnitToAdjacentUnitsTargetList(struct Unit* unit) {
+    if (unit->state & US_RESCUED) {
+        return;
+    }
+
+    AddTarget(unit->xPos, unit->yPos, unit->index, 0);
+
+    return;
+}
+
+void MakeTargetListForAdjacentUnits(struct Unit* unit) {
+    int x = unit->xPos;
+    int y = unit->yPos;
+
+    gSubjectUnit = unit;
+
+    BmMapFill(gBmMapRange, 0);
+
+    ForEachAdjacentUnit(x, y, TryAddUnitToAdjacentUnitsTargetList);
+
+    return;
+}
+
 LYN_REPLACE_CHECK(UnitUpdateUsedItem);
 void UnitUpdateUsedItem(struct Unit* unit, int itemSlot) {
 

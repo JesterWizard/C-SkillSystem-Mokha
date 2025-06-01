@@ -45,6 +45,9 @@ extern void MakeTargetListForAdjacentNonBossEnemies(struct Unit* unit);
 extern void TryAddUnitToAdjacentSameFactionTargetList(struct Unit* unit);
 extern void MakeTargetListForAdjacentSameFaction(struct Unit* unit);
 
+extern void TryAddUnitToAdjacentUnitsTargetList(struct Unit* unit);
+extern void MakeTargetListForAdjacentUnits(struct Unit* unit);
+
 struct BEXP {
     u16 value;
 };

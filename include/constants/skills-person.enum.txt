@@ -57,6 +57,7 @@
 // SID_ShufflePlus
 // SID_Persuade
 // SID_PersuadePlus
+// SID_Kamikaze
 
 //////// PRE-BATTLE SKILLS
 // SID_DefiantStr

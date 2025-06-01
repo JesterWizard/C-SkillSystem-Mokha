@@ -52,7 +52,7 @@ u8 PersuadePlus_OnSelected(struct MenuProc * menu, struct MenuItemProc * item)
 
     ClearBg0Bg1();
 
-    MakeTargetListForAdjacentEnemies(gActiveUnit);
+    MakeTargetListForAdjacentNonBossEnemies(gActiveUnit);
     BmMapFill(gBmMapMovement, -1);
 
     StartSubtitleHelp(

@@ -7546,4 +7546,14 @@ const struct SkillInfo gSkillInfos[MAX_SKILL_NUM + 1] = {
     },
 #endif
 
+#if (defined(SID_Kamikaze) && COMMON_SKILL_VALID(SID_Kamikaze))
+    [SID_Kamikaze] = {
+        .name = MSG_SKILL_Kamikaze_NAME,
+        .desc = MSG_SKILL_Kamikaze_DESC,
+        .capacity = MSG_SKILL_Kamikaze_CAPACITY,
+        .price = MSG_SKILL_Kamikaze_PRICE,
+        .icon = GFX_SkillIcon_WIP,
+    },
+#endif
+
 };

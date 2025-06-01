@@ -7,6 +7,9 @@ Select a unit.[X]
 ## MSG_No_Allies
 There are no allies in range![X]
 
+## MSG_No_Adjacent_Units
+No adjacent units in range![X]
+
 ## MSG_Persuade_NO_USE
 This skill has already been used[N]
 this map, or the unit is already[N]
@@ -474,6 +477,13 @@ Persuade+[X]
 Persuade+:[N]
 Turn a non-boss enemy unit[N]
 against their faction for the map.[X]
+
+## MSG_SKILL_Kamikaze_NAME
+Kamikaze[X]
+## MSG_SKILL_Kamikaze_DESC
+Kamikaze:[N]
+Deal 10 HP damage to all adjacent[N]
+units and then kill this unit.[X]
 
 ## MSG_MenuCommand_Refuge_NAME
 Refuge[X]
