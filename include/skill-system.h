@@ -491,6 +491,8 @@ u8 Shuffle_Usability(const struct MenuItemDef * def, int number);
 u8 Shuffle_OnSelected(struct MenuProc * menu, struct MenuItemProc * item);
 u8 ShufflePlus_Usability(const struct MenuItemDef * def, int number);
 u8 ShufflePlus_OnSelected(struct MenuProc * menu, struct MenuItemProc * item);
+u8 Persuade_Usability(const struct MenuItemDef * def, int number);
+u8 Persuade_OnSelected(struct MenuProc * menu, struct MenuItemProc * item);
 
 u8 Transform_Laguz_Usability(const struct MenuItemDef * def, int number);
 u8 Transform_Laguz_OnSelected(struct MenuProc * menu, struct MenuItemProc * item);
@@ -538,6 +540,7 @@ bool Action_Salve(ProcPtr parent);
 bool Action_SkillSwap(ProcPtr parent);
 bool Action_Shuffle(ProcPtr parent);
 bool Action_ShufflePlus(ProcPtr parent);
+bool Action_Persuade(ProcPtr parent);
 
 bool Action_Transform_Laguz(ProcPtr parent);
 

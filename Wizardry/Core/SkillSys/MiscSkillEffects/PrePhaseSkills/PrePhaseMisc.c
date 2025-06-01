@@ -27,7 +27,7 @@ bool PrePhase_ClearMiscUES(ProcPtr proc)
             ClearBitUES(unit, UES_BIT_SWAP_SKILL_USED);
 #endif
 #if defined(SID_Turncoat) && (COMMON_SKILL_VALID(SID_Turncoat))
-            ClearBitUES(unit, UES_BIT_TURNCOAT);
+            ClearBitUES(unit, UES_BIT_CHANGED_FACTIONS);
 #endif
 #if defined(SID_ShadowFlash) && (COMMON_SKILL_VALID(SID_ShadowFlash))
             ClearBitUES(unit, UES_BIT_SHADOWFLASH_SKILL_USED);
@@ -37,6 +37,9 @@ bool PrePhase_ClearMiscUES(ProcPtr proc)
 #endif
 #if defined(SID_DeathBlight) && (COMMON_SKILL_VALID(SID_DeathBlight))
             ClearBitUES(unit, UES_BIT_DEATHBLIGHT_SKILL_USED);
+#endif
+#if defined(SID_Persuade) && (COMMON_SKILL_VALID(SID_Persuade))
+            ClearBitUES(unit, UES_BIT_CHANGED_FACTIONS);
 #endif
 
             /* We don't clear this bit as it's meant to be once per map */

@@ -688,44 +688,39 @@ void SwitchPhases(void)
              * I change back the unit faction for a 'turncoat' unit
              * if they haven't moved after switching factions initially.
              */
-#if defined(SID_Turncoat) && (COMMON_SKILL_VALID(SID_Turncoat))
             for (int uid = gPlaySt.faction + 1; uid <= (gPlaySt.faction + GetFactionUnitAmount(gPlaySt.faction)); uid++)
             {
                 struct Unit * unit = GetUnit(uid);
 
-                if (unit->_u3A == UES_BIT_TURNCOAT)
+                if (CheckBitUES(unit, UES_BIT_CHANGED_FACTIONS))
                     UnitChangeFaction(unit, FACTION_RED);
             }
-#endif
             gPlaySt.faction = FACTION_RED;
 
             break;
 
         case FACTION_RED:
             gPlaySt.faction = FACTION_GREEN;
-#if defined(SID_Turncoat) && (COMMON_SKILL_VALID(SID_Turncoat))
+
             for (int uid = gPlaySt.faction + 1; uid <= (gPlaySt.faction + GetFactionUnitAmount(gPlaySt.faction)); uid++)
             {
                 struct Unit * unit = GetUnit(uid);
 
-                if (unit->_u3A == UES_BIT_TURNCOAT)
+                if (CheckBitUES(unit, UES_BIT_CHANGED_FACTIONS))
                     UnitChangeFaction(unit, FACTION_BLUE);
             }
-#endif
             break;
 
         case FACTION_GREEN:
             gPlaySt.faction = FACTION_BLUE;
 
-#if defined(SID_Turncoat) && (COMMON_SKILL_VALID(SID_Turncoat))
             for (int uid = gPlaySt.faction + 1; uid <= (gPlaySt.faction + GetFactionUnitAmount(gPlaySt.faction)); uid++)
             {
                 struct Unit * unit = GetUnit(uid);
 
-                if (unit->_u3A == UES_BIT_TURNCOAT)
+                if (CheckBitUES(unit, UES_BIT_CHANGED_FACTIONS))
                     UnitChangeFaction(unit, FACTION_RED);
             }
-#endif
 
             if (gPlaySt.chapterTurnNumber < 999)
                 gPlaySt.chapterTurnNumber++;
