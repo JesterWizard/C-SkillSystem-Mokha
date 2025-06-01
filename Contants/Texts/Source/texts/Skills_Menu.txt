@@ -7,6 +7,11 @@ Select a unit.[X]
 ## MSG_No_Allies
 There are no allies in range![X]
 
+## MSG_Persuade_NO_USE
+This skill has already been used[N]
+this map, or the unit is already[N]
+an ally, or it's a boss.[X]
+
 ## MSG_SKILL_HealingFocus_FRtext
 Unit already has full HP![X]
 
@@ -462,6 +467,13 @@ Persuade[X]
 Persuade:[N]
 Turn a non-boss enemy unit[N]
 against their faction for a turn.[X]
+
+## MSG_SKILL_PersuadePlus_NAME
+Persuade+[X]
+## MSG_SKILL_PersuadePlus_DESC
+Persuade+:[N]
+Turn a non-boss enemy unit[N]
+against their faction for the map.[X]
 
 ## MSG_MenuCommand_Refuge_NAME
 Refuge[X]

@@ -749,3 +749,4 @@
 #define MSG_SKILL_Shuffle_PRICE 1000
 #define MSG_SKILL_ShufflePlus_PRICE 1000
 #define MSG_SKILL_Persuade_PRICE 1000
+#define MSG_SKILL_PersuadePlus_PRICE 1000

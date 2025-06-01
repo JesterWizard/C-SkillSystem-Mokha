@@ -56,6 +56,7 @@ SID_SkillSwap
 SID_Shuffle
 SID_ShufflePlus
 SID_Persuade
+SID_PersuadePlus
 
 //////// PRE-BATTLE SKILLS
 SID_DefiantStr

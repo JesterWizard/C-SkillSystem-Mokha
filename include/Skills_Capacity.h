@@ -749,4 +749,5 @@
 #define MSG_SKILL_Shuffle_CAPACITY 1
 #define MSG_SKILL_ShufflePlus_CAPACITY 1
 #define MSG_SKILL_Persuade_CAPACITY 1
+#define MSG_SKILL_PersuadePlus_CAPACITY 1
 

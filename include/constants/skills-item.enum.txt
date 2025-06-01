@@ -52,10 +52,11 @@
 // SID_GrimReaper
 // SID_Hide
 // SID_Salve
-// SkillSwap
+// SID_SkillSwap
 // SID_Shuffle
 // SID_ShufflePlus
 // SID_Persuade
+// SID_PersuadePlus
 
 //////// PRE-BATTLE SKILLS
 // SID_DefiantStr

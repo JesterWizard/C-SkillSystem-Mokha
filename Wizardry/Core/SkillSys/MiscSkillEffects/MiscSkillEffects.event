@@ -72,6 +72,7 @@
 #include "MenuSkills/Shuffle.lyn.event"
 #include "MenuSkills/ShufflePlus.lyn.event"
 #include "MenuSkills/Persuade.lyn.event"
+#include "MenuSkills/PersuadePlus.lyn.event"
 
 #include "MenuSkills/ReciprocalAid.lyn.event"
 #include "MenuSkills/ReciprocalAid_ASM_Extras/Installer.event"

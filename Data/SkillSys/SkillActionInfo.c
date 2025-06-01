@@ -190,4 +190,8 @@ const SkillActionFunc_t gSkillActionFuncTable[MAX_SKILL_NUM + 1] = {
 #if (defined(SID_Persuade) && COMMON_SKILL_VALID(SID_Persuade))
     [SID_Persuade] = Action_Persuade,
 #endif
+
+#if (defined(SID_PersuadePlus) && COMMON_SKILL_VALID(SID_PersuadePlus))
+    [SID_PersuadePlus] = Action_PersuadePlus,
+#endif
 };

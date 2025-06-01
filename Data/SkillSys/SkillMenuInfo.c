@@ -801,6 +801,21 @@ const struct MenuItemDef gSkillMenuInfos[MAX] = {
     },
 #endif
 
+#if (defined(SID_PersuadePlus) && COMMON_SKILL_VALID(SID_PersuadePlus))
+    [SID_PersuadePlus] = {
+        .name = "　",
+        .nameMsgId = MSG_SKILL_PersuadePlus_NAME,
+        .helpMsgId = MSG_SKILL_PersuadePlus_DESC,
+        .color = TEXT_COLOR_SYSTEM_GOLD,
+        .isAvailable = PersuadePlus_Usability,
+        .onDraw = NULL,
+        .onSelected = PersuadePlus_OnSelected,
+        .onIdle = NULL,
+        .onSwitchIn = NULL,
+        .onSwitchOut = NULL,
+    },
+#endif
+
     [0] = {
         .name = "　光の結界",
         .nameMsgId = MSG_MenuCommand_Refuge_NAME,

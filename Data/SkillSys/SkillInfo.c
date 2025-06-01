@@ -7536,4 +7536,14 @@ const struct SkillInfo gSkillInfos[MAX_SKILL_NUM + 1] = {
     },
 #endif
 
+#if (defined(SID_PersuadePlus) && COMMON_SKILL_VALID(SID_PersuadePlus))
+    [SID_PersuadePlus] = {
+        .name = MSG_SKILL_PersuadePlus_NAME,
+        .desc = MSG_SKILL_PersuadePlus_DESC,
+        .capacity = MSG_SKILL_PersuadePlus_CAPACITY,
+        .price = MSG_SKILL_PersuadePlus_PRICE,
+        .icon = GFX_SkillIcon_WIP,
+    },
+#endif
+
 };

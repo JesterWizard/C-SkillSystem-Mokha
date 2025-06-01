@@ -8,14 +8,14 @@
 #include "playst-expa.h"
 #include "jester_headers/miscellaenous.h"
 
-#if defined(SID_Persuade) && (COMMON_SKILL_VALID(SID_Persuade))
+#if defined(SID_PersuadePlus) && (COMMON_SKILL_VALID(SID_PersuadePlus))
 
-u8 Persuade_Usability(const struct MenuItemDef * def, int number)
+u8 PersuadePlus_Usability(const struct MenuItemDef * def, int number)
 {
     if (gActiveUnit->state & US_CANTOING)
         return MENU_NOTSHOWN;
 
-    if (PlayStExpa_CheckBit(PLAYSTEXPA_BIT_Persuade_Used))
+    if (PlayStExpa_CheckBit(PLAYSTEXPA_BIT_PersuadePlus_Used))
 		return MENU_DISABLED;
 
     if (!HasSelectTarget(gActiveUnit, MakeTargetListForAdjacentNonBossEnemies))
@@ -24,7 +24,7 @@ u8 Persuade_Usability(const struct MenuItemDef * def, int number)
     return MENU_ENABLED;
 }
 
-static u8 Persuade_OnSelectTarget(ProcPtr proc, struct SelectTarget * target)
+static u8 PersuadePlus_OnSelectTarget(ProcPtr proc, struct SelectTarget * target)
 {
     gActionData.targetIndex = target->uid;
 
@@ -36,13 +36,13 @@ static u8 Persuade_OnSelectTarget(ProcPtr proc, struct SelectTarget * target)
     BG_Fill(gBG2TilemapBuffer, 0);
     BG_EnableSyncByMask(BG2_SYNC_BIT);
 
-    gActionData.unk08 = SID_Persuade;
+    gActionData.unk08 = SID_PersuadePlus;
     gActionData.unitActionType = CONFIG_UNIT_ACTION_EXPA_ExecSkill;
 
     return TARGETSELECTION_ACTION_ENDFAST | TARGETSELECTION_ACTION_END | TARGETSELECTION_ACTION_SE_6A | TARGETSELECTION_ACTION_CLEARBGS;
 }
 
-u8 Persuade_OnSelected(struct MenuProc * menu, struct MenuItemProc * item)
+u8 PersuadePlus_OnSelected(struct MenuProc * menu, struct MenuItemProc * item)
 {
     if (item->availability == MENU_DISABLED)
     {
@@ -56,7 +56,7 @@ u8 Persuade_OnSelected(struct MenuProc * menu, struct MenuItemProc * item)
     BmMapFill(gBmMapMovement, -1);
 
     StartSubtitleHelp(
-        NewTargetSelection_Specialized(&gSelectInfo_PutTrap, Persuade_OnSelectTarget),
+        NewTargetSelection_Specialized(&gSelectInfo_PutTrap, PersuadePlus_OnSelectTarget),
         GetStringFromIndex(MSG_SKILL_Common_Target));
 
     PlaySoundEffect(0x6A);
@@ -79,10 +79,8 @@ static void callback_exec(ProcPtr proc)
     if (!UNIT_ALIVE(unit_tar) || UNIT_STONED(unit_tar))
         return;
 
-    if (SkillTester(unit, SID_Persuade))
+    if (SkillTester(unit, SID_PersuadePlus))
     {
-        SetBitUES(unit_tar, UES_BIT_CHANGED_FACTIONS);
-
         if (UNIT_FACTION(unit_tar) == FACTION_RED)
             UnitChangeFaction(unit_tar, FACTION_BLUE);
         else
@@ -90,9 +88,9 @@ static void callback_exec(ProcPtr proc)
     }
 }
 
-bool Action_Persuade(ProcPtr parent)
+bool Action_PersuadePlus(ProcPtr parent)
 {
-    PlayStExpa_SetBit(PLAYSTEXPA_BIT_Persuade_Used);
+    PlayStExpa_SetBit(PLAYSTEXPA_BIT_PersuadePlus_Used);
 
 	NewMuSkillAnimOnActiveUnit(gActionData.unk08, callback_anim, callback_exec);
 	return true;
