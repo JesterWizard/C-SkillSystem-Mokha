@@ -751,4 +751,5 @@
 #define MSG_SKILL_Persuade_CAPACITY 1
 #define MSG_SKILL_PersuadePlus_CAPACITY 1
 #define MSG_SKILL_Kamikaze_CAPACITY 1
+#define MSG_SKILL_Freelancer_CAPACITY 1
 

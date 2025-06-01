@@ -303,6 +303,7 @@
 // SID_Heroics
 // SID_ShadowStep
 // SID_Zenkai
+// SID_Freelancer
 
 //////// AURA SKILLS
 // SID_Anathema

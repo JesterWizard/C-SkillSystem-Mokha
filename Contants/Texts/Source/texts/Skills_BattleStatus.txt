@@ -1583,3 +1583,12 @@ Rampart+.[X]
 Rampart+:[N]
 If attacked, reduces the damage[N]
 of the first hit by 50%.[X]
+
+## MSG_SKILL_Freelancer_NAME
+Freelancer[X]
+## MSG_SKILL_Freelancer_DESC
+Freelancer:[N]
+Gain +5 to a stat for each weapon[N]
+type the unit uses.[N]
+Sword = SPD, Lance = SKL,[N]
+Axe = STR, Bow = LCK.[X]
