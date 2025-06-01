@@ -112,6 +112,12 @@ const SkillUpgrade skill_upgrades[] = {
 	#if defined(SID_DualWield) && defined(SID_DualWieldPlus) && COMMON_SKILL_VALID(SID_DualWield) && COMMON_SKILL_VALID(SID_DualWieldPlus)
 		{ SID_DualWield, SID_DualWieldPlus },
 	#endif
+	#if defined(SID_Shuffle) && defined(SID_ShufflePlus) && COMMON_SKILL_VALID(SID_Shuffle) && COMMON_SKILL_VALID(SID_ShufflePlus)
+		{ SID_Shuffle, SID_ShufflePlus },
+	#endif
+	#if defined(SID_Persuade) && defined(SID_PersuadePlus) && COMMON_SKILL_VALID(SID_Persuade) && COMMON_SKILL_VALID(SID_PersuadePlus)
+		{ SID_Persuade, SID_PersuadePlus },
+	#endif
 	};
 	
 
