@@ -60,6 +60,7 @@ SID_PersuadePlus
 SID_Kamikaze
 SID_Reinforcements
 SID_ResolvedHeart
+SID_Ballistary
 
 //////// PRE-BATTLE SKILLS
 SID_DefiantStr

@@ -753,4 +753,5 @@
 #define MSG_SKILL_Freelancer_CAPACITY 1
 #define MSG_SKILL_Reinforcements_CAPACITY 1
 #define MSG_SKILL_ResolvedHeart_CAPACITY 1
+#define MSG_SKILL_Ballistary_CAPACITY 1
 

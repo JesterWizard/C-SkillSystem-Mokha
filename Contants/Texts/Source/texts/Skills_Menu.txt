@@ -20,6 +20,10 @@ This skill has already been used[N]
 or there are not enough free[N]
 adjacent spaces to summon.[X]
 
+## MSG_Ballistary_NO_USE
+This skill has already been used[N]
+for this map.[X]
+
 ## MSG_SKILL_HealingFocus_FRtext
 Unit already has full HP![X]
 
@@ -503,6 +507,12 @@ Resolved Heart[X]
 Resolved Heart:[N]
 Pierce an enemy's defenses[N]
 once per map (for this unit).[X]
+
+## MSG_SKILL_Ballistary_NAME
+Ballistary[X]
+## MSG_SKILL_Ballistary_DESC
+Ballistary:[N]
+Unit can summon a ballista to ride.[X]
 
 ## MSG_MenuCommand_Refuge_NAME
 Refuge[X]

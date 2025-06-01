@@ -76,6 +76,7 @@
 #include "MenuSkills/Kamikaze.lyn.event"
 #include "MenuSkills/Reinforcements.lyn.event"
 #include "MenuSkills/ResolvedHeart.lyn.event"
+#include "MenuSkills/Ballistary.lyn.event"
 
 #include "MenuSkills/ReciprocalAid.lyn.event"
 #include "MenuSkills/ReciprocalAid_ASM_Extras/Installer.event"

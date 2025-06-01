@@ -505,6 +505,8 @@ u8 Reinforcements_Usability(const struct MenuItemDef * def, int number);
 u8 Reinforcements_OnSelected(struct MenuProc * menu, struct MenuItemProc * item);
 u8 ResolvedHeart_Usability(const struct MenuItemDef * def, int number);
 u8 ResolvedHeart_OnSelected(struct MenuProc * menu, struct MenuItemProc * item);
+u8 Ballistary_Usability(const struct MenuItemDef * def, int number);
+u8 Ballistary_OnSelected(struct MenuProc * menu, struct MenuItemProc * item);
 
 u8 Transform_Laguz_Usability(const struct MenuItemDef * def, int number);
 u8 Transform_Laguz_OnSelected(struct MenuProc * menu, struct MenuItemProc * item);
@@ -557,6 +559,7 @@ bool Action_PersuadePlus(ProcPtr parent);
 bool Action_Kamikaze(ProcPtr parent);
 bool Action_Reinforcements(ProcPtr parent);
 bool Action_ResolvedHeart(ProcPtr parent);
+bool Action_Ballistary(ProcPtr parent);
 
 bool Action_Transform_Laguz(ProcPtr parent);
 

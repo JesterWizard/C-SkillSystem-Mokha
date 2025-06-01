@@ -11,6 +11,7 @@ s8 IsBallista(struct Trap* trap);
 int sub_8037AC0(struct Trap* trap);
 int sub_8037AEC(struct Trap* trap);
 int GetBallistaItemUses(struct Trap* trap);
+struct Trap* AddBallista(int xPos, int yPos, int ballistaType);
 // ??? ClearBallistaOccupied(???);
 // ??? SetBallistaOccupied(???);
 

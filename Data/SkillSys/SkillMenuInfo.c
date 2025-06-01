@@ -861,6 +861,21 @@ const struct MenuItemDef gSkillMenuInfos[MAX] = {
     },
 #endif
 
+#if (defined(SID_Ballistary) && COMMON_SKILL_VALID(SID_Ballistary))
+    [SID_Ballistary] = {
+        .name = "　",
+        .nameMsgId = MSG_SKILL_Ballistary_NAME,
+        .helpMsgId = MSG_SKILL_Ballistary_DESC,
+        .color = TEXT_COLOR_SYSTEM_GOLD,
+        .isAvailable = Ballistary_Usability,
+        .onDraw = NULL,
+        .onSelected = Ballistary_OnSelected,
+        .onIdle = NULL,
+        .onSwitchIn = NULL,
+        .onSwitchOut = NULL,
+    },
+#endif
+
     [0] = {
         .name = "　光の結界",
         .nameMsgId = MSG_MenuCommand_Refuge_NAME,

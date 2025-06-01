@@ -7576,4 +7576,14 @@ const struct SkillInfo gSkillInfos[MAX_SKILL_NUM + 1] = {
     },
 #endif
 
+#if (defined(SID_Ballistary) && COMMON_SKILL_VALID(SID_Ballistary))
+    [SID_Ballistary] = {
+        .name = MSG_SKILL_Ballistary_NAME,
+        .desc = MSG_SKILL_Ballistary_DESC,
+        .capacity = MSG_SKILL_Ballistary_CAPACITY,
+        .price = MSG_SKILL_Ballistary_PRICE,
+        .icon = GFX_SkillIcon_WIP,
+    },
+#endif
+
 };
