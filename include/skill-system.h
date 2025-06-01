@@ -487,6 +487,8 @@ u8 Salve_Usability(const struct MenuItemDef * def, int number);
 u8 Salve_OnSelected(struct MenuProc * menu, struct MenuItemProc * item);
 u8 SkillSwap_Usability(const struct MenuItemDef * def, int number);
 u8 SkillSwap_OnSelected(struct MenuProc * menu, struct MenuItemProc * item);
+u8 Shuffle_Usability(const struct MenuItemDef * def, int number);
+u8 Shuffle_OnSelected(struct MenuProc * menu, struct MenuItemProc * item);
 
 u8 Transform_Laguz_Usability(const struct MenuItemDef * def, int number);
 u8 Transform_Laguz_OnSelected(struct MenuProc * menu, struct MenuItemProc * item);
@@ -532,6 +534,7 @@ bool Action_GrimReaper(ProcPtr parent);
 bool Action_Hide(ProcPtr parent);
 bool Action_Salve(ProcPtr parent);
 bool Action_SkillSwap(ProcPtr parent);
+bool Action_Shuffle(ProcPtr parent);
 
 bool Action_Transform_Laguz(ProcPtr parent);
 

@@ -5,6 +5,7 @@
 enum play_st_expa_bits {
 	PLAYSTEXPA_BIT_DivineReprieve_Used,
 	PLAYSTEXPA_BIT_DivineReprieve_InForce,
+	PLAYSTEXPA_BIT_Shuffle_Used,
 
 	/* MAX */
 	PLAYSTEXPA_BIT_USED,

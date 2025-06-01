@@ -756,6 +756,21 @@ const struct MenuItemDef gSkillMenuInfos[MAX] = {
     },
 #endif
 
+#if (defined(SID_Shuffle) && COMMON_SKILL_VALID(SID_Shuffle))
+    [SID_Shuffle] = {
+        .name = "　",
+        .nameMsgId = MSG_SKILL_Shuffle_NAME,
+        .helpMsgId = MSG_SKILL_Shuffle_DESC,
+        .color = TEXT_COLOR_SYSTEM_GOLD,
+        .isAvailable = Shuffle_Usability,
+        .onDraw = NULL,
+        .onSelected = Shuffle_OnSelected,
+        .onIdle = NULL,
+        .onSwitchIn = NULL,
+        .onSwitchOut = NULL,
+    },
+#endif
+
     [0] = {
         .name = "　光の結界",
         .nameMsgId = MSG_MenuCommand_Refuge_NAME,

@@ -746,3 +746,4 @@
 #define MSG_SKILL_Salve_PRICE 1000
 #define MSG_SKILL_Forcefield_PRICE 1000
 #define MSG_SKILL_SkillSwap_PRICE 1000
+#define MSG_SKILL_Shuffle_PRICE 1000

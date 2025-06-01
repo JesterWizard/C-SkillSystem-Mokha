@@ -440,6 +440,14 @@ Skill Swap:[N]
 This unit can freely trade learned[N]
 skills with adjacent ally units.[X]
 
+## MSG_SKILL_Shuffle_NAME
+Shuffle[X]
+## MSG_SKILL_Shuffle_DESC
+Shuffle:[N]
+Shuffle the positions of all[N]
+player units on the field.[N]
+Usable once per chapter.[X]
+
 ## MSG_MenuCommand_Refuge_NAME
 Refuge[X]
 ## MSG_MenuCommand_Refuge_DESC
