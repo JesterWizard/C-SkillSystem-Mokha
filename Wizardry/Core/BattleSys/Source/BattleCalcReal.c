@@ -216,6 +216,12 @@ STATIC_DECLAR void BattleCalcReal_ComputSkills(struct BattleUnit * attacker, str
     }   
 #endif
 
+#if (defined(SID_Flicker) && (COMMON_SKILL_VALID(SID_Flicker)))
+    if (BattleSkillTester(defender, SID_Flicker) && defender->unit.curHP == defender->unit.maxHP)
+        if ((attacker->battleAttack - defender->battleDefense) > (defender->unit.maxHP / 2))
+            attacker->battleEffectiveHitRate = 0;
+#endif
+
 #if (defined(SID_FarWard) && (COMMON_SKILL_VALID(SID_FarWard)))
     if (BattleSkillTester(attacker, SID_FarWard) && gBattleStats.range >= 3)
         defender->battleEffectiveHitRate = 0;

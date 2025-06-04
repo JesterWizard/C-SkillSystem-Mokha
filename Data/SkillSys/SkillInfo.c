@@ -7616,4 +7616,15 @@ const struct SkillInfo gSkillInfos[MAX_SKILL_NUM + 1] = {
     },
 #endif
 
+
+#if (defined(SID_Flicker) && COMMON_SKILL_VALID(SID_Flicker))
+    [SID_Flicker] = {
+        .name = MSG_SKILL_Flicker_NAME,
+        .desc = MSG_SKILL_Flicker_DESC,
+        .capacity = MSG_SKILL_Flicker_CAPACITY,
+        .price = MSG_SKILL_Flicker_PRICE,
+        .icon = GFX_SkillIcon_WIP,
+    },
+#endif
+
 };

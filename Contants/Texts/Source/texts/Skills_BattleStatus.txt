@@ -1592,3 +1592,11 @@ Gain +5 to a stat for each weapon[N]
 type the unit uses.[N]
 Sword = SPD, Lance = SKL,[N]
 Axe = STR, Bow = LCK.[X]
+
+## MSG_SKILL_Flicker_NAME
+Flicker[X]
+## MSG_SKILL_Flicker_DESC
+Flicker:[N]
+If at full health and this unit[N]
+would takes >= 50% from an attack,[N]
+dodge that attack.[X]

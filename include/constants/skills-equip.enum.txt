@@ -254,6 +254,7 @@ SID_Emulate
 SID_DualWield
 SID_DualWieldPlus
 SID_SlowStart
+SID_Flicker
 
 //////// POST-BATTLE SKILLS
 SID_Canto

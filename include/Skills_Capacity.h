@@ -757,3 +757,4 @@
 #define MSG_SKILL_Bide_CAPACITY 1
 #define MSG_SKILL_CoinFlip_CAPACITY 1
 #define MSG_SKILL_LastStand_CAPACITY 1
+#define MSG_SKILL_Flicker_CAPACITY 1
