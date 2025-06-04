@@ -755,3 +755,4 @@
 #define MSG_SKILL_ResolvedHeart_PRICE 1000
 #define MSG_SKILL_Ballistary_PRICE 1000
 #define MSG_SKILL_Bide_PRICE 1000
+#define MSG_SKILL_CoinFlip_PRICE 1000

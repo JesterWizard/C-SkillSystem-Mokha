@@ -12,6 +12,7 @@ enum play_st_expa_bits {
 	PLAYSTEXPA_BIT_Reinforcements_Used,
 	PLAYSTEXPA_BIT_Ballistary_Used,
 	PLAYSTEXPA_BIT_LethalityPlus_Used,
+	PLAYSTEXPA_BIT_CoinFlip_Used, // Special case, we'll undo this once the skill has activated since its cost is fairly high as it is
 
 	/* MAX */
 	PLAYSTEXPA_BIT_USED,

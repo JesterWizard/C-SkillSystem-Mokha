@@ -755,4 +755,4 @@
 #define MSG_SKILL_ResolvedHeart_CAPACITY 1
 #define MSG_SKILL_Ballistary_CAPACITY 1
 #define MSG_SKILL_Bide_CAPACITY 1
-
+#define MSG_SKILL_CoinFlip_CAPACITY 1

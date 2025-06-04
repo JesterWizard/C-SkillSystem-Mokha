@@ -8,6 +8,7 @@
 #include "combat-art.h"
 #include "constants/skills.h"
 #include "constants/combat-arts.h"
+#include "playst-expa.h"
 
 extern u8 gPostActionGaleforceFlag;
 
@@ -136,6 +137,15 @@ bool PostActionGaleforce(ProcPtr parent)
             refresh_turn_once_aura(unit, parent);
 #endif
 
+#if defined(SID_CoinFlip) && (COMMON_SKILL_VALID(SID_CoinFlip))
+        if (SkillTester(unit, SID_CoinFlip) && PlayStExpa_CheckBit(PLAYSTEXPA_BIT_CoinFlip_Used))
+        {
+            refresh_turn_once(unit, parent);
+            PlayStExpa_ClearBit(PLAYSTEXPA_BIT_CoinFlip_Used);
+        }
+#endif
+
+
         if ((GetCombatArtInForce(unit) == CID_Galeforce) && gBattleActorGlobalFlag.enemy_defeated)
             refresh_turn_once(unit, parent);
             
@@ -148,6 +158,14 @@ bool PostActionGaleforce(ProcPtr parent)
         if (SkillTester(unit, SID_PowerStaff) && Roll1RN(LckGetter(unit)))
             refresh_turn_once(unit, parent);
 #endif
+
+#if defined(SID_CoinFlip) && (COMMON_SKILL_VALID(SID_CoinFlip))
+        if (SkillTester(unit, SID_CoinFlip) && PlayStExpa_CheckBit(PLAYSTEXPA_BIT_CoinFlip_Used))
+        {
+            refresh_turn_once(unit, parent);
+            PlayStExpa_ClearBit(PLAYSTEXPA_BIT_CoinFlip_Used);
+        }
+#endif
         [[fallthrough]];
 
     case UNIT_ACTION_USE_ITEM:
@@ -155,12 +173,28 @@ bool PostActionGaleforce(ProcPtr parent)
         if (SkillTester(unit, SID_QuickHands))
             refresh_turn_repeatedly(unit, parent);
 #endif
+
+#if defined(SID_CoinFlip) && (COMMON_SKILL_VALID(SID_CoinFlip))
+        if (SkillTester(unit, SID_CoinFlip) && PlayStExpa_CheckBit(PLAYSTEXPA_BIT_CoinFlip_Used))
+        {
+            refresh_turn_once(unit, parent);
+            PlayStExpa_ClearBit(PLAYSTEXPA_BIT_CoinFlip_Used);
+        }
+#endif
         [[fallthrough]];
 
     case UNIT_ACTION_RESCUE:
 #if defined(SID_Heroics) && (COMMON_SKILL_VALID(SID_Heroics))
-    if (SkillTester(unit, SID_Heroics))
-        refresh_turn_repeatedly(unit, parent);
+        if (SkillTester(unit, SID_Heroics))
+            refresh_turn_repeatedly(unit, parent);
+#endif
+
+#if defined(SID_CoinFlip) && (COMMON_SKILL_VALID(SID_CoinFlip))
+        if (SkillTester(unit, SID_CoinFlip) && PlayStExpa_CheckBit(PLAYSTEXPA_BIT_CoinFlip_Used))
+        {
+            refresh_turn_once(unit, parent);
+            PlayStExpa_ClearBit(PLAYSTEXPA_BIT_CoinFlip_Used);
+        }
 #endif
         [[fallthrough]];   
 
@@ -170,6 +204,13 @@ bool PostActionGaleforce(ProcPtr parent)
         break;
 
     case UNIT_ACTION_WAIT:
+#if defined(SID_CoinFlip) && (COMMON_SKILL_VALID(SID_CoinFlip))
+        if (SkillTester(unit, SID_CoinFlip) && PlayStExpa_CheckBit(PLAYSTEXPA_BIT_CoinFlip_Used))
+        {
+            refresh_turn_once(unit, parent);
+            PlayStExpa_ClearBit(PLAYSTEXPA_BIT_CoinFlip_Used);
+        }
+#endif
         break;
     }
 

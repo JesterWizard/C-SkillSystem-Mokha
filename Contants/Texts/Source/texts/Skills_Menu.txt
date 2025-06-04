@@ -523,6 +523,13 @@ Bide:[N]
 Reduce remaining HP to 1 and set[N]
 attack to double for this battle.[X]
 
+## MSG_SKILL_CoinFlip_NAME
+Coin Flip[X]
+## MSG_SKILL_CoinFlip_DESC
+Coin Flip:[N]
+Flip a coin, if heads move twice,[N]
+if tails end your turn.[X]
+
 ## MSG_MenuCommand_Refuge_NAME
 Refuge[X]
 ## MSG_MenuCommand_Refuge_DESC

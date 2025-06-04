@@ -1,5 +1,6 @@
 #include "common-chax.h"
 #include "skill-system.h"
+#include "playst-expa.h"
 
 static u32* const sUnitPriorityArray = (void*) gGenericBuffer;
 
@@ -356,6 +357,7 @@ s8 AiFindTargetInReachByClassId(int classId, struct Vec2* out) {
 LYN_REPLACE_CHECK(BmMain_StartPhase);
 void BmMain_StartPhase(ProcPtr proc)
 {
+
     int phaseControl = gPlaySt.faction;
     if (gPlaySt.faction == FACTION_RED) 
     { 

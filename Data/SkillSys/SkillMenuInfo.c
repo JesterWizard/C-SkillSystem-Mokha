@@ -891,6 +891,21 @@ const struct MenuItemDef gSkillMenuInfos[MAX] = {
     },
 #endif
 
+#if (defined(SID_CoinFlip) && COMMON_SKILL_VALID(SID_CoinFlip))
+    [SID_CoinFlip] = {
+        .name = "　",
+        .nameMsgId = MSG_SKILL_CoinFlip_NAME,
+        .helpMsgId = MSG_SKILL_CoinFlip_DESC,
+        .color = TEXT_COLOR_SYSTEM_GOLD,
+        .isAvailable = CoinFlip_Usability,
+        .onDraw = NULL,
+        .onSelected = CoinFlip_OnSelected,
+        .onIdle = NULL,
+        .onSwitchIn = NULL,
+        .onSwitchOut = NULL,
+    },
+#endif
+
     [0] = {
         .name = "　光の結界",
         .nameMsgId = MSG_MenuCommand_Refuge_NAME,

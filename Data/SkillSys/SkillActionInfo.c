@@ -214,4 +214,8 @@ const SkillActionFunc_t gSkillActionFuncTable[MAX_SKILL_NUM + 1] = {
 #if (defined(SID_Bide) && COMMON_SKILL_VALID(SID_Bide))
 	[SID_Bide] = Action_Bide,
 #endif
+
+#if (defined(SID_CoinFlip) && COMMON_SKILL_VALID(SID_CoinFlip))
+	[SID_CoinFlip] = Action_CoinFlip,
+#endif
 };

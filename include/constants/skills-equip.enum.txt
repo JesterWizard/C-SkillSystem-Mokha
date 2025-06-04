@@ -62,6 +62,7 @@ SID_Reinforcements
 SID_ResolvedHeart
 SID_Ballistary
 SID_Bide
+SID_CoinFlip
 
 //////// PRE-BATTLE SKILLS
 SID_DefiantStr
