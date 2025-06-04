@@ -61,6 +61,7 @@ SID_Kamikaze
 SID_Reinforcements
 SID_ResolvedHeart
 SID_Ballistary
+SID_Bide
 
 //////// PRE-BATTLE SKILLS
 SID_DefiantStr

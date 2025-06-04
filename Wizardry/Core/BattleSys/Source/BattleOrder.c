@@ -40,6 +40,12 @@ bool CheckCanTwiceAttackOrder(struct BattleUnit * actor, struct BattleUnit * tar
             return false;
 #endif
 
+#if defined(SID_Bide) && (COMMON_SKILL_VALID(SID_Bide))
+        if (gActionData.unk08 == SID_Bide && !CheckBitUES(gActiveUnit, UES_BIT_BIDE_SKILL_USED))
+            return false;
+#endif
+
+
     /* Check combat-art */
     cid = GetCombatArtInForce(&actor->unit);
     if (&gBattleActor == actor && COMBART_VALID(cid))

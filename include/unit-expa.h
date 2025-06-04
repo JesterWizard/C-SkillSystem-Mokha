@@ -46,17 +46,17 @@ enum unit_expa_sus_bitfile_idx {
 #if defined(SID_Sellsword) && (COMMON_SKILL_VALID(SID_Sellsword))
     UES_BIT_SELLSWORD_SKILL_USED,
 #endif
-#if defined(SID_Switcher) && (COMMON_SKILL_VALID(SID_Switcher))
+#if defined(SID_Switcher) && (COMMON_SKILL_VALID(SID_Switcher)) // This is a special case, we use the bit to determine if doubling should be allowed
     UES_BIT_SWITCHER_SKILL_USED,
-#endif
-#if defined(SID_LethalityPlus) && (COMMON_SKILL_VALID(SID_LethalityPlus))
-    UES_BIT_LETHALITY_PLUS_SKILL_USED,
 #endif
 #if defined(SID_GrimReaper) && (COMMON_SKILL_VALID(SID_GrimReaper))
     UES_BIT_GRIM_REAPER_SKILL_USED,
 #endif
 #if defined(SID_ResolvedHeart) && (COMMON_SKILL_VALID(SID_ResolvedHeart))
     UES_BIT_RESOLVED_HEART_SKILL_USED,
+#endif
+#if defined(SID_Bide) && (COMMON_SKILL_VALID(SID_Bide))
+    UES_BIT_BIDE_SKILL_USED,
 #endif
     UES_BIT_MAX
 };

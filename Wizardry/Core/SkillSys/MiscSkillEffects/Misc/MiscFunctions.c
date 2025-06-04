@@ -3467,29 +3467,6 @@ struct Trap * AddTrap(int x, int y, int trapType, int meta)
     return trap;
 }
 
-void AddTrapASMC(void) {
-        u8 trapID;
-        u8 x;
-        u8 y;
-        u8 terrainType;
-
-        // Load and extract x and y coordinates
-        u32 temp = gEventSlots[EVT_SLOT_2];
-    
-        y = (temp >> 16) & 0xFFFF; // Equivalent to lsr r1,r1,#16.  Mask to keep only lower 16 bits.
-        x = (temp >> 0) & 0xFFFF; // Equivalent to lsl r0,r0,#16 and then lsr r0,r0,#16.  No actual shift is needed if we mask the 16 bits.
-
-        // Load trap ID
-        trapID = gEventSlots[EVT_SLOT_3];
-
-        // Load trap terrain type
-        terrainType = gEventSlots[EVT_SLOT_4]; 
-    
-        // Call AddTrap
-        AddTrap(x, y, trapID, gBmMapTerrain[y][x]);
-        gBmMapTerrain[y][x] = terrainType;
-}
-
 void TryAddUnitToAdjacentSameFactionTargetList(struct Unit* unit) {
 
     if (UNIT_FACTION(gSubjectUnit) != UNIT_FACTION(unit))

@@ -136,6 +136,10 @@
     #include "JesterHacks/CustomItems/Installer.event"
 #endif
 
+#ifdef CONFIG_CUSTOM_SPRITES
+    #include "JesterHacks/CustomSprites/Installer.event"
+#endif
+
 #ifdef CONFIG_CUSTOM_STAFF_ACCURACY
     #include "JesterHacks/StaffAccuracy/Installer.event"
 #endif

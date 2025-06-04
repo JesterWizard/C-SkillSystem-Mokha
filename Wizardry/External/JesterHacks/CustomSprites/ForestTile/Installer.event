@@ -1,0 +1,8 @@
+
+#ifdef CONFIG_CLASS_INDEX_FOREST_TILE
+    PUSH
+        /* SPRITE ICONS */
+        ORG CONFIG_PR_SPRITE_ICON + CONFIG_CLASS_INDEX_FOREST_TILE * 0x8
+            #incbin "ForestTile.4bpp"
+    POP
+#endif

@@ -11,6 +11,7 @@ enum play_st_expa_bits {
 	PLAYSTEXPA_BIT_PersuadePlus_Used,
 	PLAYSTEXPA_BIT_Reinforcements_Used,
 	PLAYSTEXPA_BIT_Ballistary_Used,
+	PLAYSTEXPA_BIT_LethalityPlus_Used,
 
 	/* MAX */
 	PLAYSTEXPA_BIT_USED,

@@ -9,6 +9,7 @@
 #include "kernel-tutorial.h"
 #include "constants/skills.h"
 #include "constants/combat-arts.h"
+#include "playst-expa.h"
 
 typedef void (*BattleDamageCalcFunc)(struct BattleUnit * buA, struct BattleUnit * buB);
 extern BattleDamageCalcFunc const * const gpBattleDamageCalcFuncs;
@@ -697,6 +698,11 @@ bool rampartPlus_activated = false;
 
     result += gDmg.real_damage;
 
+#if (defined(SID_Bide) && (COMMON_SKILL_VALID(SID_Bide)))
+    if (BattleSkillTester(attacker, SID_Bide))
+        result = (attacker->unit.curHP - 1) * 2;
+#endif
+
 #if (defined(SID_TintedLens) && (COMMON_SKILL_VALID(SID_TintedLens)))
     if (BattleSkillTester(attacker, SID_TintedLens))
     {
@@ -723,9 +729,9 @@ bool rampartPlus_activated = false;
 
 #if (defined(SID_LethalityPlus) && (COMMON_SKILL_VALID(SID_LethalityPlus)))
     if (BattleSkillTester(attacker, SID_LethalityPlus))
-        if (gActionData.unk08 == SID_LethalityPlus && CheckBitUES(GetUnit(attacker->unit.index), UES_BIT_LETHALITY_PLUS_SKILL_USED))
+        if (gActionData.unk08 == SID_LethalityPlus && !PlayStExpa_CheckBit(PLAYSTEXPA_BIT_LethalityPlus_Used))
         {
-            ClearBitUES(GetUnit(attacker->unit.index), UES_BIT_LETHALITY_PLUS_SKILL_USED);
+            PlayStExpa_SetBit(PLAYSTEXPA_BIT_LethalityPlus_Used);
             gActionData.unk08 = 0;
             result = defender->unit.curHP;
         }

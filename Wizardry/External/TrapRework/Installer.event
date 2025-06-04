@@ -13,6 +13,9 @@
 #define GorgonEggTrapID 12
 #define LightRuneTrapID 13
 
+// Custom by Jester
+#define ForestTileID 14
+
 #define LightRuneTrapPaletteWord 0xFFFFB080
 #define PlayerTrapPaletteWord 0xFFFFC080
 #define EnemyTrapPaletteWord 0xFFFFD080
@@ -43,6 +46,7 @@ SetTrapEventInit(TorchStaffTrapID,$37900)
 SetTrapEventInit(MineTrapID,$378D6)
 SetTrapEventInit(GorgonEggTrapID,$378EC)
 SetTrapEventInit(LightRuneTrapID,0)
+SetTrapEventInit(ForestTileID,0)
 
 
 #define SetTrapMapSprite(trapID,mapSpriteID) "PUSH; ORG TrapMapSpriteTable+(trapID-1); BYTE mapSpriteID; POP"
@@ -61,6 +65,7 @@ SetTrapMapSprite(TorchStaffTrapID,0)
 SetTrapMapSprite(MineTrapID,0)
 SetTrapMapSprite(GorgonEggTrapID,0)
 SetTrapMapSprite(LightRuneTrapID,0x66) //light rune map sprite
+SetTrapMapSprite(ForestTileID,0x9) // Empty sprite for unused manakete class from FE6
 
 //Macro for setting unique cases on trap map sprites
 #define SetTrapMapSpriteFunc(trapID,ptr) "PUSH; ORG (TrapMapSpriteFuncTable+((trapID-1)*4)); POIN ptr; POP"

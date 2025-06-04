@@ -38,13 +38,14 @@ void SetGameOptions_Chapter0()
 
     //SetFlag(0xAB); // Gamma UI flag
 
-    NoCashGBAPrintf("Chapter 1 - Total BEXP BEFORE is: %d", sBEXP);
+    // NoCashGBAPrintf("Chapter 1 - Total BEXP BEFORE is: %d", sBEXP);
 
-    sBEXP.value += 100;
+    // sBEXP.value += 100;
 
-    NoCashGBAPrintf("Chapter 1 - Total BEXP AFTER is: %d", sBEXP);
+    // NoCashGBAPrintf("Chapter 1 - Total BEXP AFTER is: %d", sBEXP);
 
-    // struct Unit * unit_seth = GetUnitFromCharId(CHARACTER_SETH);
+    //gBmMapTerrain[5][3] = TERRAIN_TILE_00;
+ 
 
     // SetUnitStatusIndex(unit_seth, NEW_UNIT_STATUS_DOOM);
     // SetUnitStatusDuration(unit_seth, 2);

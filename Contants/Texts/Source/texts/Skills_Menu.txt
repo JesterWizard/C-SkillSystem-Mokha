@@ -433,7 +433,8 @@ Lethality+[X]
 ## MSG_SKILL_LethalityPlus_DESC
 Lethality+:[N]
 Kill enemies in 1 attack[N]
-if you deal damage.[X]
+if you deal damage.[N]
+Once per map.[X]
 
 ## MSG_SKILL_GrimReaper_NAME
 Grim Reaper[X]
@@ -512,7 +513,15 @@ once per map (for this unit).[X]
 Ballistary[X]
 ## MSG_SKILL_Ballistary_DESC
 Ballistary:[N]
-Unit can summon a ballista to ride.[X]
+Unit can summon a ballista to ride.[N]
+Once per map.[X]
+
+## MSG_SKILL_Bide_NAME
+Bide[X]
+## MSG_SKILL_Bide_DESC
+Bide:[N]
+Reduce remaining HP to 1 and set[N]
+attack to double for this battle.[X]
 
 ## MSG_MenuCommand_Refuge_NAME
 Refuge[X]

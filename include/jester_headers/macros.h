@@ -355,12 +355,4 @@ enum {
     SVAL(EVT_SLOT_2, characterID) \
     CALL(EventScr_UnitWarpOUT)
 
-void AddTrapASMC(void);
-
-#define ADD_TRAP_EVENT(x, y, trapID, terrainType) \
-    SVAL(EVT_SLOT_2, (x|(y<<16))) \
-    SVAL(EVT_SLOT_3, trapID) \
-    SVAL(EVT_SLOT_4, terrainType) \
-    ASMC(AddTrapASMC)
-
 #define PREP_ALT CALL(EventScr_08591FD8)

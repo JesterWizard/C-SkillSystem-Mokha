@@ -210,4 +210,8 @@ const SkillActionFunc_t gSkillActionFuncTable[MAX_SKILL_NUM + 1] = {
 #if (defined(SID_Ballistary) && COMMON_SKILL_VALID(SID_Ballistary))
 	[SID_Ballistary] = Action_Ballistary,
 #endif
+
+#if (defined(SID_Bide) && COMMON_SKILL_VALID(SID_Bide))
+	[SID_Bide] = Action_Bide,
+#endif
 };

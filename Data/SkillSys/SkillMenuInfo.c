@@ -876,6 +876,21 @@ const struct MenuItemDef gSkillMenuInfos[MAX] = {
     },
 #endif
 
+#if (defined(SID_Bide) && COMMON_SKILL_VALID(SID_Bide))
+    [SID_Bide] = {
+        .name = "　",
+        .nameMsgId = MSG_SKILL_Bide_NAME,
+        .helpMsgId = MSG_SKILL_Bide_DESC,
+        .color = TEXT_COLOR_SYSTEM_GOLD,
+        .isAvailable = Bide_Usability,
+        .onDraw = NULL,
+        .onSelected = Bide_OnSelected,
+        .onIdle = NULL,
+        .onSwitchIn = NULL,
+        .onSwitchOut = NULL,
+    },
+#endif
+
     [0] = {
         .name = "　光の結界",
         .nameMsgId = MSG_MenuCommand_Refuge_NAME,
