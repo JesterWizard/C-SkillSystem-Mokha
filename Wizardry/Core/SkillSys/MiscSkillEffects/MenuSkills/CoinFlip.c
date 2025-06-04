@@ -44,7 +44,7 @@ static void callback_anim(ProcPtr proc)
 
 static void callback_exec(ProcPtr proc)
 {
-    if(Roll1RN(50) >= 0 && Roll1RN(50) >= 0)
+    if(Roll1RN(100) >= 50)
     {
         gActionDataExpa.refrain_action = true;
         PlayStExpa_SetBit(PLAYSTEXPA_BIT_CoinFlip_Used);
