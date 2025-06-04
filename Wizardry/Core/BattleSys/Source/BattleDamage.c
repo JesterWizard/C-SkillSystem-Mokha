@@ -699,7 +699,7 @@ bool rampartPlus_activated = false;
     result += gDmg.real_damage;
 
 #if (defined(SID_Bide) && (COMMON_SKILL_VALID(SID_Bide)))
-    if (BattleSkillTester(attacker, SID_Bide))
+    if (BattleSkillTester(attacker, SID_Bide) && gActionData.unk08 == SID_Bide)
         result = (attacker->unit.curHP - 1) * 2;
 #endif
 

@@ -1,6 +1,5 @@
 ## MSG_SKILL_Vantage_NAME
 Vantage[X]
-
 ## MSG_SKILL_Vantage_DESC
 Vantage:[N]
 When unit is defender while[N]
@@ -8,7 +7,6 @@ their HP is < 50%, attack first.[X]
 
 ## MSG_SKILL_Desperation_NAME
 Desperation[X]
-
 ## MSG_SKILL_Desperation_DESC
 Desperation: When unit[N]
 attacks while their HP < 50%,[N]
@@ -16,7 +14,6 @@ double attack immediately.[X]
 
 ## MSG_SKILL_QuickRiposte_NAME
 Quick Riposte[X]
-
 ## MSG_SKILL_QuickRiposte_DESC
 Quick Riposte:[N]
 If unit is attacked while their[N]
@@ -24,7 +21,6 @@ HP > 50%, they attack twice.[X]
 
 ## MSG_SKILL_WaryFighter_NAME
 Wary Fighter[X]
-
 ## MSG_SKILL_WaryFighter_DESC
 Wary Fighter:[N]
 Prevents follow up attack[N]
@@ -32,7 +28,6 @@ if unit's HP > 50%.[X]
 
 ## MSG_SKILL_DoubleLion_NAME
 Double Lion[X]
-
 ## MSG_SKILL_DoubleLion_DESC
 Double Lion:[N]
 If unit attacks with full HP,[N]
@@ -40,7 +35,6 @@ bestow Brave effect and lose 1 HP.[X]
 
 ## MSG_SKILL_Astra_NAME
 Astra[X]
-
 ## MSG_SKILL_Astra_DESC
 Astra:[N]
 Unit attacks 5 times but damage[N]
@@ -48,7 +42,6 @@ is halved. (SPD % activation).[X]
 
 ## MSG_SKILL_Adept_NAME
 Adept[X]
-
 ## MSG_SKILL_Adept_DESC
 Adept:[N]
 Allow unit to perform another[N]
@@ -64,15 +57,13 @@ Always attack twice when under attack.[X]
 
 ## MSG_SKILL_RapidFighter_NAME
 Rapid Fighter[X]
-
 ## MSG_SKILL_RapidFighter_DESC
 Rapid Fighter:[N]
 Unit only doubles when they're[N]
 battling on their phase.[X]
 
 ## MSG_SKILL_RecklessFighter_NAME
-Rapid Fighter[X]
-
+Reckless Fighter[X]
 ## MSG_SKILL_RecklessFighter_DESC
 Reckless Fighter:[N]
 If HP is higher than 50%[N]
@@ -80,7 +71,6 @@ Both sides always attack twice.[X]
 
 ## MSG_SKILL_BoldFighter_NAME
 Bold Fighter[X]
-
 ## MSG_SKILL_BoldFighter_DESC
 Bold Fighter:[N]
 If HP is higher than 50%[N]
@@ -88,7 +78,6 @@ Always attack twice when attacking.[X]
 
 ## MSG_SKILL_BidingBlow_NAME
 Biding Blow[X]
-
 ## MSG_SKILL_BidingBlow_DESC
 Biding Blow:[N]
 Attack twice if the enemy[N]
@@ -96,7 +85,6 @@ cannot counterattack.[X]
 
 ## MSG_SKILL_AdvantageChaser_NAME
 Advantage Chaser[X]
-
 ## MSG_SKILL_AdvantageChaser_DESC
 Advantage Chaser:[N]
 Unit always doubles if they have[N]
@@ -104,7 +92,6 @@ Weapon Triangle Advantage.[X]
 
 ## MSG_SKILL_PridefulWarrior_NAME
 Prideful Warrior[X]
-
 ## MSG_SKILL_PridefulWarrior_DESC
 Prideful Warrior:[N]
 Unit always attacks last in[N]
@@ -112,7 +99,6 @@ the round, but always doubles.[X]
 
 ## MSG_SKILL_PassionsFlow_NAME
 Passions Flow[X]
-
 ## MSG_SKILL_PassionsFlow_DESC
 Passions Flow:[N]
 Unit doubles if currently[N]
@@ -120,7 +106,6 @@ gaining support bonuses.[X]
 
 ## MSG_SKILL_CloseCombat_NAME
 Close Combat[X]
-
 ## MSG_SKILL_CloseCombat_DESC
 Close Combat: +2 damage if at[N]
 1 range. Your double attacks[N]
@@ -128,7 +113,6 @@ occur before countering.[X]
 
 ## MSG_SKILL_QuickLearner_NAME
 Quick Learner[X]
-
 ## MSG_SKILL_QuickLearner_DESC
 Quick Learner:[N]
 When attacking a higher level[N]
@@ -136,7 +120,6 @@ enemy, this unit doubles.[X]
 
 ## MSG_SKILL_GaleWings_NAME
 Gale Wings[X]
-
 ## MSG_SKILL_GaleWings_DESC
 Gale Wings:[N]
 When unit is defender while[N]
@@ -144,15 +127,14 @@ their HP is 100%, attack first.[X]
 
 ## MSG_SKILL_Accost_NAME
 Accost[X]
-
 ## MSG_SKILL_Accost_DESC
-Accost: Engage in up to 8[N]
-rounds of combat. Conditions:[N]
-(unitSPD + unitHP/2 ) - enemySPD.[X]
+Accost:[N]
+Engage in up to 8 rounds of combat.[N]
+Conditions: (unitSPD + unitHP/2 ) -[N]
+enemySPD.[X]
 
 ## MSG_SKILL_Alacrity_NAME
 Alacrity[X]
-
 ## MSG_SKILL_Alacrity_DESC
 Alacrity:[N]
 If actor's speed is 9 or more than[N]
@@ -160,7 +142,6 @@ the target's, counterattack first.[X]
 
 ## MSG_SKILL_Echo_NAME
 Echo[X]
-
 ## MSG_SKILL_Echo_DESC
 Echo:[N]
 Attack twice for half damage[N]
@@ -168,7 +149,6 @@ each attack if initiating.[X]
 
 ## MSG_SKILL_Duel_NAME
 Duel[X]
-
 ## MSG_SKILL_Duel_DESC
 Duel:[N]
 A fight with this unit continues[N]
@@ -176,7 +156,6 @@ until a victor is decided.[X]
 
 ## MSG_SKILL_Flurry_NAME
 Flurry[X]
-
 ## MSG_SKILL_Flurry_DESC
 Flurry:[N]
 For each time the unit exceeds the[N]
@@ -184,7 +163,6 @@ doubling threshold, +1 attack round.[X]
 
 ## MSG_SKILL_AlacrityPlus_NAME
 Alacrity+[X]
-
 ## MSG_SKILL_AlacrityPlus_DESC
 Alacrity+:[N]
 If actor's speed is 5 or more than[N]
@@ -192,8 +170,14 @@ the target's, counterattack first.[X]
 
 ## MSG_SKILL_TrickRoom_NAME
 Trick Room[X]
-
 ## MSG_SKILL_TrickRoom_DESC
 Trick Room:[N]
 If this unit would be doubled, invert[N]
 the doubling mechanics and vice versa.[X]
+
+## MSG_SKILL_LastStand_NAME
+Last Stand[X]
+## MSG_SKILL_LastStand_DESC
+Last Stand:[N]
+This unit gains a brave effect[N]
+if starting a battle with 1 HP.[X]

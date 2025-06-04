@@ -571,6 +571,7 @@
 // SID_RapidFighter
 // SID_AlacrityPlus
 // SID_TrickRoom
+// SID_LastStand
 
 //////// PRE-PHASE SKILLS
 // SID_Renewal

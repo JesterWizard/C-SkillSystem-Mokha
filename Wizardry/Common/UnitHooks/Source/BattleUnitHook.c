@@ -268,6 +268,7 @@ void UpdateUnitFromBattle(struct Unit * unit, struct BattleUnit * bu)
     if (SkillTester(unit, SID_Bide) && gActionData.unk08 == SID_Bide && !CheckBitUES(unit, UES_BIT_BIDE_SKILL_USED))
     {
         SetBitUES_BU(bu, UES_BIT_BIDE_SKILL_USED);
+        gActionData.unk08 = 0; // Reset the action data to prevent the skill from being used again
         unit->curHP = 1;
     }
 #endif

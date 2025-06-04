@@ -823,6 +823,14 @@ int GetBattleUnitHitCount(struct BattleUnit * actor)
     }
 #endif
 
+#if defined(SID_LastStand) && (COMMON_SKILL_VALID(SID_LastStand))
+    if (actor == &gBattleActor && BattleSkillTester(actor, SID_LastStand) && actor->hpInitial == 1)
+    {
+        EnqueueRoundEfxSkill(SID_LastStand);
+        result = result + 1;
+    }
+#endif
+
 #if defined(SID_Echo) && (COMMON_SKILL_VALID(SID_Echo))
     if (actor == &gBattleActor && BattleSkillTester(actor, SID_Echo))
     {
