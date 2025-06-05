@@ -39,3 +39,11 @@ Rearm[X]
 Rearm:[N]
 Grab a weapon from stock, if the unit[N]
 has no equippable items this turn.[X]
+
+## MSG_SKILL_LightningRod_NAME
+Lightning Rod[X]
+## MSG_SKILL_LightningRod_DESC
+Lightning Rod:[N]
+Only units with this skill can[N]
+be targeted by enemy siege tomes[N]
+if they are in range.[X]

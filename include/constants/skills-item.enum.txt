@@ -699,6 +699,7 @@
 // SID_Provoke
 // SID_Guardian
 // SID_Rearm
+// SID_LightningRod
 
 //////// STANDALONE SKILLS
 // SID_IdentityProblems

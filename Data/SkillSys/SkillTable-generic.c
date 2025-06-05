@@ -14,7 +14,7 @@ const struct SkillPreloadPConf gSkillPreloadPData[0x100] = {
     [CHARACTER_SETH] = {
         .skills = {
             [0] = SID_Bide,
-            [1] = SID_Flicker,
+            [1] = SID_LightningRod,
         },
     },
     // // 03
@@ -396,11 +396,11 @@ const struct SkillPreloadPConf gSkillPreloadPData[0x100] = {
     //     },
     // },
     // // 68
-    [CHARACTER_ONEILL] = {
-        .skills = {
-            [0] = SID_Rearm,
-        },
-    },
+    // [CHARACTER_ONEILL] = {
+    //     .skills = {
+    //         [0] = SID_Rearm,
+    //     },
+    // },
     // // 69
     // [CHARACTER_GLEN] = {
     //     .skills = {

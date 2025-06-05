@@ -759,3 +759,4 @@
 #define MSG_SKILL_LastStand_CAPACITY 1
 #define MSG_SKILL_Flicker_CAPACITY 1
 #define MSG_SKILL_Rearm_CAPACITY 1
+#define MSG_SKILL_LightningRod_CAPACITY 1
