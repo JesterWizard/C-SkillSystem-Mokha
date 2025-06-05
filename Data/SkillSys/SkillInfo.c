@@ -7627,4 +7627,14 @@ const struct SkillInfo gSkillInfos[MAX_SKILL_NUM + 1] = {
     },
 #endif
 
+#if (defined(SID_Rearm) && COMMON_SKILL_VALID(SID_Rearm))
+    [SID_Rearm] = {
+        .name = MSG_SKILL_Rearm_NAME,
+        .desc = MSG_SKILL_Rearm_DESC,
+        .capacity = MSG_SKILL_Rearm_CAPACITY,
+        .price = MSG_SKILL_Rearm_PRICE,
+        .icon = GFX_SkillIcon_WIP,
+    },
+#endif
+
 };
