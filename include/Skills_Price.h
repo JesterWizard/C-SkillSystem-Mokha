@@ -761,3 +761,4 @@
 #define MSG_SKILL_Rearm_PRICE 1000
 #define MSG_SKILL_LightningRod_PRICE 1000
 #define MSG_SKILL_Geomancy_PRICE 1000
+#define MSG_SKILL_Pulse_PRICE 1000

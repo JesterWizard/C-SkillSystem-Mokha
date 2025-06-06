@@ -761,3 +761,4 @@
 #define MSG_SKILL_Rearm_CAPACITY 1
 #define MSG_SKILL_LightningRod_CAPACITY 1
 #define MSG_SKILL_Geomancy_CAPACITY 1
+#define MSG_SKILL_Pulse_CAPACITY 1

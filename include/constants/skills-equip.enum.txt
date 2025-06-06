@@ -668,6 +668,7 @@ SID_KnackResistance
 SID_KnackHealth
 SID_PeoplesKnight
 SID_ItemLore
+SID_Pulse
 
 //////// MOVEMENT SKILLS
 SID_Pass
