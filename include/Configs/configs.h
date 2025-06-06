@@ -256,7 +256,7 @@
 
 //#define CONFIG_DENY_STAT_SCREEN
 
-// #define CONFIG_LAGUZ_BARS
+#define CONFIG_LAGUZ_BARS
 
 #define CONFIG_ESSENTIALS_SHORTEN_AVOID_TEXT
 #define CONFIG_ESSENTIALS_AI_TRADE_FIX // Needed for the Capture skill

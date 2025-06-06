@@ -1,6 +1,8 @@
 #include "common-chax.h"
 #include "unit-expa.h"
 #include "bwl.h"
+#include "debuff.h"
+#include "jester_headers/class-pairs.h"
 
 void PrePhase_LaguzBars(ProcPtr proc)
 {
@@ -42,10 +44,32 @@ void PrePhase_LaguzBars(ProcPtr proc)
                 bwl->_pad_[1] = 10;
             else
             {
-                if (bwl->_pad_[1] + 4 > 30)
-                    bwl->_pad_[1] = 30;
-                else    
-                    bwl->_pad_[1] += 4;
+                if (CheckUnitStatDebuff(unit, UNIT_STAT_BUFF_LAGUZ))
+                {
+                    if (bwl->_pad_[1] - 4 <= 0)
+                    {
+                        bwl->_pad_[1] = 0;
+                        for (int i = 0; i < laguzListSize; i++)
+                        {
+                            if (unit->pClassData->number == laguzPairs[i][1])
+                            {
+                                unit->pClassData = GetClassData(laguzPairs[i][0]);
+                                ClearUnitStatDebuff(unit, UNIT_STAT_BUFF_LAGUZ);
+                                unit->maxHP -= 7;
+                                break;
+                            }
+                        }
+                    }
+                    else    
+                        bwl->_pad_[1] -= 4;
+                }
+                else
+                {
+                    if (bwl->_pad_[1] + 4 > 30)
+                        bwl->_pad_[1] = 30;
+                    else    
+                        bwl->_pad_[1] += 4;
+                }
             }
         }
     }
