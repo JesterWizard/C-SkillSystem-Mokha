@@ -530,6 +530,13 @@ Coin Flip:[N]
 Flip a coin, if heads move twice,[N]
 if tails end your turn.[X]
 
+## MSG_SKILL_Geomancy_NAME
+Geomancy[X]
+## MSG_SKILL_Geomancy_DESC
+Geomancy:[N]
+Produce different effects based[N]
+the skill holder's terrain tile.[X]
+
 ## MSG_MenuCommand_Refuge_NAME
 Refuge[X]
 ## MSG_MenuCommand_Refuge_DESC

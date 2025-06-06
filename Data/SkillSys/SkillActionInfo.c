@@ -218,4 +218,8 @@ const SkillActionFunc_t gSkillActionFuncTable[MAX_SKILL_NUM + 1] = {
 #if (defined(SID_CoinFlip) && COMMON_SKILL_VALID(SID_CoinFlip))
 	[SID_CoinFlip] = Action_CoinFlip,
 #endif
+
+#if (defined(SID_Geomancy) && COMMON_SKILL_VALID(SID_Geomancy))
+	[SID_Geomancy] = Action_Geomancy,
+#endif
 };

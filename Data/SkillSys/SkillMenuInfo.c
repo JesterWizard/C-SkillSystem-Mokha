@@ -906,6 +906,21 @@ const struct MenuItemDef gSkillMenuInfos[MAX] = {
     },
 #endif
 
+#if (defined(SID_Geomancy) && COMMON_SKILL_VALID(SID_Geomancy))
+    [SID_Geomancy] = {
+        .name = "　",
+        .nameMsgId = MSG_SKILL_Geomancy_NAME,
+        .helpMsgId = MSG_SKILL_Geomancy_DESC,
+        .color = TEXT_COLOR_SYSTEM_GOLD,
+        .isAvailable = Geomancy_Usability,
+        .onDraw = NULL,
+        .onSelected = Geomancy_OnSelected,
+        .onIdle = NULL,
+        .onSwitchIn = NULL,
+        .onSwitchOut = NULL,
+    },
+#endif
+
     [0] = {
         .name = "　光の結界",
         .nameMsgId = MSG_MenuCommand_Refuge_NAME,

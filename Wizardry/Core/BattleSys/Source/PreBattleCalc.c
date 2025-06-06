@@ -1933,6 +1933,35 @@ void PreBattleCalcSkills(struct BattleUnit *attacker, struct BattleUnit *defende
             break;
 #endif
 
+#if (defined(SID_Geomancy) && (COMMON_SKILL_VALID(SID_Geomancy)))
+        case SID_Geomancy:
+            if (gActionData.unk08 == SID_Geomancy)
+            {
+                switch (gBmMapTerrain[attacker->unit.yPos][attacker->unit.xPos])
+                {
+                case TERRAIN_PLAINS:
+                    attacker->battleCritRate += 15;
+                    break;
+                case TERRAIN_MOUNTAIN:
+                case TERRAIN_PEAK:
+                    attacker->battleAttack += 5;
+                    break;
+                case TERRAIN_RIVER:
+                case TERRAIN_WATER:
+                case TERRAIN_SEA:
+                case TERRAIN_LAKE:
+                    attacker->battleAvoidRate += 20;
+                    break;
+                case TERRAIN_SAND:
+                    attacker->battleDodgeRate += 10;
+                    break;
+                default:
+                    break;
+                }
+                break;
+            }
+#endif
+
         case MAX_SKILL_NUM:
         default:
             break;

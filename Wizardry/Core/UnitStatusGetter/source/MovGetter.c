@@ -115,5 +115,8 @@ int MovGetterSkills(int status, struct Unit * unit)
     if (GetUnitStatusIndex(unit) == NEW_UNIT_STATUS_SLOW)
         status /= 2;
 
+    if (GetUnitStatusIndex(unit) == NEW_UNIT_STATUS_HEAVY_GRAVITY)
+        status = 0;
+
     return status;
 }

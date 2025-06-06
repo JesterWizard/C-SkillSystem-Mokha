@@ -338,6 +338,24 @@ void BattleHit_InjectNegativeStatus(struct BattleUnit *attacker, struct BattleUn
             SetUnitStatus(GetUnit(defender->unit.index), NEW_UNIT_STATUS_BREAK);
     }
 #endif
+
+#if (defined(SID_Geomancy) && (COMMON_SKILL_VALID(SID_Geomancy)))
+    else if (BattleSkillTester(attacker, SID_Geomancy) && gActionData.unk08 == SID_Geomancy)
+    {
+        if (GetUnit(defender->unit.index)->statusIndex == UNIT_STATUS_NONE)
+        {
+            switch (gBmMapTerrain[attacker->unit.yPos][attacker->unit.xPos])
+            {
+            case TERRAIN_FOREST:
+                SetUnitStatus(GetUnit(defender->unit.index), NEW_UNIT_STATUS_HEAVY_GRAVITY);
+                break;
+
+            default:
+                break;
+            }
+        }
+    }
+#endif
     else if (gBattleTemporaryFlag.skill_activated_dead_eye)
     {
         defender->statusOut = UNIT_STATUS_SLEEP;
