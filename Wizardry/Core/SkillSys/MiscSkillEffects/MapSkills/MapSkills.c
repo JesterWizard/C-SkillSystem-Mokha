@@ -282,7 +282,6 @@ void ChapterChangeUnitCleanup(void)
                 {
                     unit->pClassData = GetClassData(transformationPairs[i][0]);
                     ClearUnitStatDebuff(unit, UNIT_STAT_BUFF_TRANSFORM);
-                    unit->maxHP -= 7;
                     break;
                 }
             }
@@ -296,7 +295,7 @@ void ChapterChangeUnitCleanup(void)
             {
                 unit->pClassData = GetClassData(transformationPairs[i][0]);
                 ClearUnitStatDebuff(unit, UNIT_STAT_BUFF_LAGUZ);
-                unit->maxHP -= 7;
+                ClearUnitStatDebuff(unit, UNIT_STAT_BUFF_LAGUZ_HALFSHIFT);
                 break;
             }
         }

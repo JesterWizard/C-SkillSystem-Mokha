@@ -91,7 +91,7 @@ struct DebuffInfo {
     } efx_config;
 
     struct {
-        s8 pow, mag, skl, spd, def, res, lck, mov;
+        s8 pow, mag, skl, spd, def, res, lck, mov, curHP, maxHP;
     } unit_status;
 
     struct {
@@ -250,6 +250,7 @@ enum UNIT_STAT_DEBUFF_IDX {
     UNIT_STAT_BUFF_TRANSFORM,
 
     UNIT_STAT_BUFF_LAGUZ,
+    UNIT_STAT_BUFF_LAGUZ_HALFSHIFT,
 
     UNIT_STAT_DEBUFF_MAX_REAL,
     UNIT_STAT_DEBUFF_MAX = 128, /* DO NOT modify this */

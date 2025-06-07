@@ -764,6 +764,8 @@ SID_ScrollSavant
 SID_ExplosiveHeal
 SID_ExplosiveBuff
 SID_ScrollScribe
+SID_FormShift
+SID_HalfShift
 
 //////// COMBAT ARTS
 // SID_COMBAT_Grounder

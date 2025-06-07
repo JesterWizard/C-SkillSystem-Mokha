@@ -44,7 +44,7 @@ void PrePhase_LaguzBars(ProcPtr proc)
                 bwl->_pad_[1] = 10;
             else
             {
-                if (CheckUnitStatDebuff(unit, UNIT_STAT_BUFF_LAGUZ))
+                if (CheckUnitStatDebuff(unit, UNIT_STAT_BUFF_LAGUZ) || CheckUnitStatDebuff(unit, UNIT_STAT_BUFF_LAGUZ_HALFSHIFT))
                 {
                     if (bwl->_pad_[1] - 4 <= 0)
                     {
@@ -55,13 +55,18 @@ void PrePhase_LaguzBars(ProcPtr proc)
                             {
                                 unit->pClassData = GetClassData(laguzPairs[i][0]);
                                 ClearUnitStatDebuff(unit, UNIT_STAT_BUFF_LAGUZ);
-                                unit->maxHP -= 7;
+                                ClearUnitStatDebuff(unit, UNIT_STAT_BUFF_LAGUZ_HALFSHIFT);
                                 break;
                             }
                         }
                     }
-                    else    
-                        bwl->_pad_[1] -= 4;
+                    else
+                        #if defined(SID_FormShift) && (COMMON_SKILL_VALID(SID_FormShift))
+                            if (!SkillTester(unit, SID_FormShift))
+                                bwl->_pad_[1] -= 4;
+                        #else
+                            bwl->_pad_[1] -= 4;
+                        #endif
                 }
                 else
                 {

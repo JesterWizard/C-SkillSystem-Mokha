@@ -382,3 +382,18 @@ Salve[X]
 Salve:[N]
 Can use personal items on[N]
 adjacent allied units.[X]
+
+## MSG_SKILL_FormShift_NAME
+Form Shift[X]
+## MSG_SKILL_FormShift_DESC
+Form Shift:[N]
+Unit can transform into a[N]
+Laguz at any time.[X]
+
+## MSG_SKILL_HalfShift_NAME
+Half Shift[X]
+## MSG_SKILL_HalfShift_DESC
+Half Shift:[N]
+Unit can transform into a[N]
+Laguz at any time, but their[N]
+transformation boosts are halved.[X]

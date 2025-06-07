@@ -285,7 +285,7 @@ struct StatDebuffMsgBuf
     u32 bitfile[4];
     u32 special_mask;
     s8 uid;
-    s16 pow, mag, skl, spd, def, res, lck, mov;
+    s16 pow, mag, skl, spd, def, res, lck, mov, curHP, maxHP;
 };
 extern struct StatDebuffMsgBuf sStatDebuffMsgBuf[STAT_DEBUFF_MSG_BUF_AMT];
 extern int sStatDebuffMsgBufNext;
@@ -341,6 +341,8 @@ STATIC_DECLAR void GenerateStatDebuffMsgBufExt(struct Unit *unit, u32 *bitfile, 
                 buf->res -= info->unit_status.res;
                 buf->lck -= info->unit_status.lck;
                 buf->mov -= info->unit_status.mov;
+                buf->curHP -= info->unit_status.curHP;
+                buf->maxHP -= info->unit_status.maxHP;
             }
             else
             {
@@ -352,6 +354,8 @@ STATIC_DECLAR void GenerateStatDebuffMsgBufExt(struct Unit *unit, u32 *bitfile, 
                 buf->res += info->unit_status.res;
                 buf->lck += info->unit_status.lck;
                 buf->mov += info->unit_status.mov;
+                buf->curHP += info->unit_status.curHP;
+                buf->maxHP += info->unit_status.maxHP;
             }
 
             if (info->cannot_move == true)
@@ -575,6 +579,23 @@ int MovGetterStatDebuff(int status, struct Unit *unit)
     }
 #endif
     return status + GetStatDebuffMsgBuf(unit)->mov;
+}
+
+int HpGetterStatDebuff(int status, struct Unit *unit)
+{
+#if (defined(SID_ClearBody) && (COMMON_SKILL_VALID(SID_ClearBody)))
+    if (SkillTester(unit, SID_ClearBody))
+        if (GetStatDebuffMsgBuf(unit)->maxHP < 0)
+            return status;
+#endif
+
+#if (defined(SID_Contrary) && (COMMON_SKILL_VALID(SID_Contrary)))
+    if (SkillTester(unit, SID_Contrary))
+        if (GetStatDebuffMsgBuf(unit)->maxHP < 0)
+            return status - GetStatDebuffMsgBuf(unit)->maxHP;
+#endif
+
+    return status + GetStatDebuffMsgBuf(unit)->maxHP;
 }
 
 void ResetStatDebuffBuff(void)

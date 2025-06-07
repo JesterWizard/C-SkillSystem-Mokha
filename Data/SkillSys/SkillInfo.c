@@ -7667,4 +7667,24 @@ const struct SkillInfo gSkillInfos[MAX_SKILL_NUM + 1] = {
     },
 #endif
 
+#if (defined(SID_FormShift) && COMMON_SKILL_VALID(SID_FormShift))
+    [SID_FormShift] = {
+        .name = MSG_SKILL_FormShift_NAME,
+        .desc = MSG_SKILL_FormShift_DESC,
+        .capacity = MSG_SKILL_FormShift_CAPACITY,
+        .price = MSG_SKILL_FormShift_PRICE,
+        .icon = GFX_SkillIcon_WIP,
+    },
+#endif
+
+#if (defined(SID_HalfShift) && COMMON_SKILL_VALID(SID_HalfShift))
+    [SID_HalfShift] = {
+        .name = MSG_SKILL_HalfShift_NAME,
+        .desc = MSG_SKILL_HalfShift_DESC,
+        .capacity = MSG_SKILL_HalfShift_CAPACITY,
+        .price = MSG_SKILL_HalfShift_PRICE,
+        .icon = GFX_SkillIcon_WIP,
+    },
+#endif
+
 };

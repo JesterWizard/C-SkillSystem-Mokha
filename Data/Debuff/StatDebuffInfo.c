@@ -527,6 +527,8 @@ const struct DebuffInfo gStatDebuffInfos[UNIT_STAT_DEBUFF_MAX] = {
             .lck = +6,
             .def = +6,
             .res = +6,
+            .curHP = +6,
+            .maxHP = +6,
         },
     },
     [UNIT_STAT_BUFF_LAGUZ] = {
@@ -540,6 +542,23 @@ const struct DebuffInfo gStatDebuffInfos[UNIT_STAT_DEBUFF_MAX] = {
             .lck = +6,
             .def = +6,
             .res = +6,
+            .curHP = +6,
+            .maxHP = +6,
+        },
+    },
+    [UNIT_STAT_BUFF_LAGUZ_HALFSHIFT] = {
+        .positive_type = STATUS_DEBUFF_POSITIVE,
+        .tick_type = STATUS_DEBUFF_NO_TICK,
+        .unit_status = {
+            .pow = +3,
+            .mag = +3,
+            .skl = +3,
+            .spd = +3,
+            .lck = +3,
+            .def = +3,
+            .res = +3,
+            .curHP = +3,
+            .maxHP = +3,
         },
     },
 };
