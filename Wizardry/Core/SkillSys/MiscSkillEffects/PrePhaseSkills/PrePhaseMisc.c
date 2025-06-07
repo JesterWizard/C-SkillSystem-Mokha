@@ -36,7 +36,7 @@ bool PrePhase_ClearMiscUES(ProcPtr proc)
             ClearBitUES(unit, UES_BIT_CHANGED_FACTIONS);
 #endif
 
-            /* We don't clear these bit sas they're meant to be once per unit */
+            /* We don't clear these bits as they're meant to be once per unit */
             // ClearBitUES(unit, UES_BIT_LOADSTAR_RUSH_SKILL_USED);
             // ClearBitUES(unit, UES_BIT_WYVERN_CRASH_SKILL_USED);
             // ClearBitUES(unit, UES_BIT_RESOLVED_HEART_SKILL_USED);

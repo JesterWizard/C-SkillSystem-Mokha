@@ -30,6 +30,7 @@
 #include "icon-rework.h"
 #include "status-getter.h"
 #include "mapanim.h"
+#include "playst-expa.h"
 
 #if defined(SID_CatchEmAll) && (COMMON_SKILL_VALID(SID_CatchEmAll))
     const unsigned int gCatchEmAllId = SID_CatchEmAll;
@@ -724,6 +725,11 @@ void SwitchPhases(void)
 
             if (gPlaySt.chapterTurnNumber < 999)
                 gPlaySt.chapterTurnNumber++;
+
+            if (gPlaySt.chapterTurnNumber % 2 == 0)
+                PlayStExpa_SetBit(PLAYSTEXPA_BIT_AbsorbAlternation_InForce);
+            else
+                PlayStExpa_ClearBit(PLAYSTEXPA_BIT_AbsorbAlternation_InForce);
 
             ProcessTurnSupportExp();
     }

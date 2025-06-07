@@ -340,4 +340,13 @@ Forcefield[X]
 Forcefield:[N]
 If this unit is at full HP and would[N]
 take >= 50% damage from an attack,[N]
-dodge the attackchance for this unit.[X]
+dodge the attack chance for this unit.[X]
+
+
+## MSG_SKILL_AbsorbAlternation_NAME
+Absorb Alternation[X]
+## MSG_SKILL_AbsorbAlternation_DESC
+Absorb Alternation:[N]
+The unit alternates between absorbing[N]
+HP from MAGIC and MELEE every turn.[N]
+Even turns = MAGIC, odd turns = MELEE.[X]

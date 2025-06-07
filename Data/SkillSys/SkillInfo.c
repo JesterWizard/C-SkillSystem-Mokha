@@ -7687,4 +7687,14 @@ const struct SkillInfo gSkillInfos[MAX_SKILL_NUM + 1] = {
     },
 #endif
 
+#if (defined(SID_AbsorbAlternation) && COMMON_SKILL_VALID(SID_AbsorbAlternation))
+    [SID_AbsorbAlternation] = {
+        .name = MSG_SKILL_AbsorbAlternation_NAME,
+        .desc = MSG_SKILL_AbsorbAlternation_DESC,
+        .capacity = MSG_SKILL_AbsorbAlternation_CAPACITY,
+        .price = MSG_SKILL_AbsorbAlternation_PRICE,
+        .icon = GFX_SkillIcon_WIP,
+    },
+#endif
+
 };

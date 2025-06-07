@@ -764,3 +764,4 @@
 #define MSG_SKILL_Pulse_CAPACITY 1
 #define MSG_SKILL_FormShift_CAPACITY 1
 #define MSG_SKILL_HalfShift_CAPACITY 1
+#define MSG_SKILL_AbsorbAlternation_CAPACITY 1

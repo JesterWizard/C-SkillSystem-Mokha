@@ -764,3 +764,4 @@
 #define MSG_SKILL_Pulse_PRICE 1000
 #define MSG_SKILL_FormShift_PRICE 1000
 #define MSG_SKILL_HalfShift_PRICE 1000
+#define MSG_SKILL_AbsorbAlternation_PRICE 1000
