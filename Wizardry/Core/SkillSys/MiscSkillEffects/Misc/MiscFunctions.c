@@ -3409,8 +3409,8 @@ void ProcMAExpBar_OnIncrement(struct MAExpBarProc* proc)
     DrawMAExpBar(6, 8, proc->expFrom);
 }
 
-LYN_REPLACE_CHECK(MapAnimProc_DisplayExpBar);
-void MapAnimProc_DisplayExpBar(struct Proc* proc)
+LYN_REPLACE_CHECK(MapAnim_DisplayExpBar);
+void MapAnim_DisplayExpBar(struct Proc* proc)
 {
     int actorNum = -1;
     switch (gManimSt.actorCount) {
@@ -3426,7 +3426,7 @@ void MapAnimProc_DisplayExpBar(struct Proc* proc)
     }
 
     if (actorNum >= 0) {
-        struct MAExpBarProc* expProc = Proc_StartBlocking(gProc_MapAnimExpBar, proc);
+        struct MAExpBarProc* expProc = Proc_StartBlocking(ProcScr_MapAnimExpBar, proc);
 
         expProc->expFrom = gManimSt.actor[actorNum].bu->expPrevious;
         expProc->expTo   = gManimSt.actor[actorNum].bu->expPrevious + gManimSt.actor[actorNum].bu->expGain;
@@ -5342,4 +5342,48 @@ u8 ItemSubMenu_UseItem(struct MenuProc* menu, struct MenuItemProc* menuItem) {
     EndAllMenus();
 
     return MENU_ACT_SKIPCURSOR | MENU_ACT_ENDFACE;
+}
+
+LYN_REPLACE_CHECK(MapAnim_DisplayDeathFade);
+void MapAnim_DisplayDeathFade(void)
+{
+    int actorNum = -1;
+
+    switch (gManimSt.actorCount)
+    {
+    case 2:
+        if (gManimSt.actor[1].hp_cur == 0)
+            actorNum = 1;
+
+        // fallthrough
+
+    case 1:
+        if (gManimSt.actor[0].hp_cur == 0)
+            actorNum = 0;
+
+        break;
+    } // switch (gManimSt.actorCount)
+
+    if (actorNum != -1)
+        MU_StartDeathFade(gManimSt.actor[actorNum].mu);
+}
+
+//! FE8U = 0x0801D300
+LYN_REPLACE_CHECK(RunPotentialWaitEvents);
+bool RunPotentialWaitEvents(void)
+{
+#if defined(SID_GoodListener) && (COMMON_SKILL_VALID(SID_GoodListener))
+    if (SkillTester(gActiveUnit, SID_GoodListener) && gActionData.unitActionType == UNIT_ACTION_VISIT)
+    {
+        AddExp_Event(10);
+    }
+#endif  
+
+    if (CheckForWaitEvents())
+    {
+        RunWaitEvents();
+        return false;
+    }
+
+    return true;
 }

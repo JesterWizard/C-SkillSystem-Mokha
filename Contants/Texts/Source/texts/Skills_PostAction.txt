@@ -291,3 +291,10 @@ Zenkai[X]
 Zenkai:[N]
 This unit gains 30 EXP after being[N]
 healed to full HP from < 30% HP.[X]
+
+## MSG_SKILL_GoodListener_NAME
+Good Listener[X]
+## MSG_SKILL_GoodListener_DESC
+Good Listener:[N]
+Units gains 10 EXP when visiting[N]
+a town/village for the first time.[X]

@@ -310,6 +310,7 @@ SID_Heroics
 SID_ShadowStep
 SID_Zenkai
 SID_Freelancer
+SID_GoodListener
 
 //////// AURA SKILLS
 SID_Anathema

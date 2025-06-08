@@ -328,7 +328,7 @@ const struct ProcCmd DebuggerProcCmd[] =
     PROC_SLEEP(0x1),
     //PROC_CALL(MapAnimProc_DisplayItemStealingPopup),
     //PROC_YIELD,
-    PROC_CALL(MapAnimProc_DisplayExpBar),
+    PROC_CALL(MapAnim_DisplayExpBar),
     PROC_YIELD,
     //PROC_CALL(DisplayWRankUpPopup),
     //PROC_YIELD,

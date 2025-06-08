@@ -29637,7 +29637,7 @@ dat 0x089A3668, gUnknown_089A3668
 dat 0x089A3670, TsaSet_MapBattleBoxGfx
 dat 0x089A3688, ProcScr_MapBattleInfoBox
 dat 0x089A36C0, gUnknown_089A36C0
-dat 0x089A36F8, gProc_MapAnimExpBar
+dat 0x089A36F8, ProcScr_MapAnimExpBar
 dat 0x089A3770, MADebugStrings1
 dat 0x089A3798, gUnknown_089A3798
 dat 0x089A37E8, MADebugStrings2

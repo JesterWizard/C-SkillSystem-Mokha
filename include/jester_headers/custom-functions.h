@@ -46,3 +46,53 @@ bool isMonsterClass(int classId) {
     }
     return false;
 }
+
+void AddExp_Event(int exp);
+
+static void TransferStatsandExperience(void)
+{
+    UpdateUnitFromBattle(gActiveUnit, &gBattleActor);
+    gActiveUnit->state &= ~US_HIDDEN;       // Remove the hidden state that seems to get randomly set?
+    gActiveUnit->state |= US_UNSELECTABLE;  // Ensure the unit cannot be selected again
+}
+
+const struct ProcCmd ProcScr_AddExp[] = {
+    PROC_CALL(LockGame),
+    PROC_WHILE(BattleEventEngineExists),
+    PROC_CALL(DeleteBattleAnimInfoThing),
+    PROC_SLEEP(1),
+    PROC_CALL(MapAnim_DisplayExpBar),
+    PROC_YIELD,
+    PROC_CALL(UnlockGame),
+    PROC_CALL(MapAnim_Cleanup),
+    PROC_CALL(TransferStatsandExperience),
+    PROC_END
+};
+
+static void BattleApplyMiscActionExpGains_Modular(int exp) {
+    if (UNIT_FACTION(&gBattleActor.unit) != FACTION_BLUE)
+        return;
+
+    if (!CanBattleUnitGainLevels(&gBattleActor))
+        return;
+
+    if (gPlaySt.chapterStateBits & PLAY_FLAG_EXTRA_MAP)
+        return;
+
+    gBattleActor.expGain = exp;
+    gBattleActor.unit.exp += exp;
+
+    CheckBattleUnitLevelUp(&gBattleActor);
+}
+
+void AddExp_Event(int exp)
+{
+    gManimSt.actorCount = 1;
+    gManimSt.hp_changing = 0;
+    gManimSt.subjectActorId = 0;
+    gManimSt.targetActorId = 0;
+    InitBattleUnit(&gBattleActor, gActiveUnit);
+    BattleApplyMiscActionExpGains_Modular(exp);
+    SetupMapBattleAnim(&gBattleActor, &gBattleTarget, gBattleHitArray);
+    Proc_StartBlocking(ProcScr_AddExp, PROC_TREE_3);
+}

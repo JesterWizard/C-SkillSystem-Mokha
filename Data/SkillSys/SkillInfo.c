@@ -7697,4 +7697,14 @@ const struct SkillInfo gSkillInfos[MAX_SKILL_NUM + 1] = {
     },
 #endif
 
+#if (defined(SID_GoodListener) && COMMON_SKILL_VALID(SID_GoodListener))
+    [SID_GoodListener] = {
+        .name = MSG_SKILL_GoodListener_NAME,
+        .desc = MSG_SKILL_GoodListener_DESC,
+        .capacity = MSG_SKILL_GoodListener_CAPACITY,
+        .price = MSG_SKILL_GoodListener_PRICE,
+        .icon = GFX_SkillIcon_WIP,
+    },
+#endif
+
 };
