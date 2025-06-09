@@ -326,8 +326,10 @@ void AtMenu_Reinitialize(struct ProcAtMenu* proc)
     InitText(&gPrepMainMenuTexts[0], 0xA);
 
     /* "Preparations" */
+    /* Turning this back to 0x14800 because otherwise it screws with the prep screen title */
 #ifdef CONFIG_EXTENDED_HELPBOXES
-    Decompress(gUnknown_08A1A4C8, (void*)0x6015800);
+    //     Decompress(gUnknown_08A1A4C8, (void*)0x6015800);
+    Decompress(gUnknown_08A1A4C8, (void*)0x6014800);
 #else
     Decompress(gUnknown_08A1A4C8, (void*)0x6014800);
 #endif
