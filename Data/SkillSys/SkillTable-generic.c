@@ -7,13 +7,13 @@ const struct SkillPreloadPConf gSkillPreloadPData[0x100] = {
     // 01
     [CHARACTER_EIRIKA] = {
         .skills = {
-            [0] = SID_GoodListener,
+            [0] = SID_Adaptable,
         },
     },
     // 02
     [CHARACTER_SETH] = {
         .skills = {
-            [0] = SID_Bide,
+            [0] = SID_Acrobat,
             [1] = SID_LightningRod,
         },
     },

@@ -3267,7 +3267,7 @@ void UnitMapUiUpdate(struct PlayerInterfaceProc* proc, struct Unit* unit) {
         int x2;
 
         x = proc->xHp * 8;
-        x2 = x + 0x11;
+        x2 = x + 17;
 
         y = proc->yHp * 8;
 
@@ -3275,13 +3275,19 @@ void UnitMapUiUpdate(struct PlayerInterfaceProc* proc, struct Unit* unit) {
 #ifdef CONFIG_UNLOCK_ALLY_MHP_LIMIT
         if (GetUnitMaxHp(unit) < 100)
         {
-            /* Tens character current HP */
-            CallARM_PushToSecondaryOAM(x2, y, gObject_8x8, proc->hpCurHi + 0x82E0);
+            if (proc->hpCurHi != (u8)(' ' - '0'))
+            {
+                /* Tens character current HP */
+                CallARM_PushToSecondaryOAM(x2, y, gObject_8x8, proc->hpCurHi + 0x82E0);
+            }
             /* Single character current HP */
             CallARM_PushToSecondaryOAM(x + 24, y, gObject_8x8, proc->hpCurLo + 0x82E0);
-            
-            /* Tens character max HP */
-            CallARM_PushToSecondaryOAM(x + 41, y, gObject_8x8, proc->hpMaxHi + 0x82E0);
+
+            if (proc->hpMaxHi != (u8)(' ' - '0'))
+            {
+                /* Tens character max HP */
+                CallARM_PushToSecondaryOAM(x + 41, y, gObject_8x8, proc->hpMaxHi + 0x82E0);
+            }
             /* Single character max HP */
             CallARM_PushToSecondaryOAM(x + 48, y, gObject_8x8, proc->hpMaxLo + 0x82E0);
         }
@@ -3293,25 +3299,34 @@ void UnitMapUiUpdate(struct PlayerInterfaceProc* proc, struct Unit* unit) {
                 CallARM_PushToSecondaryOAM(x2, y, gObject_8x8, hundreds + 0x82E0);
                 /* Tens character current HP */
                 CallARM_PushToSecondaryOAM(x + 24, y, gObject_8x8, proc->hpCurHi + 0x82E0);
-                /* Single character currenty HP */
+                /* Single character current HP */
                 CallARM_PushToSecondaryOAM(x + 32, y, gObject_8x8, proc->hpCurLo + 0x82E0);
             }
             else
             {
-                /* Tens character current HP */
-                CallARM_PushToSecondaryOAM(x2, y, gObject_8x8, proc->hpCurHi + 0x82E0);
+                if (proc->hpCurHi != (u8)(' ' - '0'))
+                {
+                    /* Tens character current HP */
+                    CallARM_PushToSecondaryOAM(x2, y, gObject_8x8, proc->hpCurHi + 0x82E0);
+                }
                 /* Single character currenty HP */
                 CallARM_PushToSecondaryOAM(x + 24, y, gObject_8x8, proc->hpCurLo + 0x82E0);
             }
         }
 #else
-        /* Tens character current HP */
-        CallARM_PushToSecondaryOAM(x2, y, gObject_8x8, proc->hpCurHi + 0x82E0);
+        if (proc->hpCurHi != (u8)(' ' - '0'))
+        {
+            /* Tens character current HP */
+            CallARM_PushToSecondaryOAM(x2, y, gObject_8x8, proc->hpCurHi + 0x82E0);
+        }
         /* Single character current HP */
         CallARM_PushToSecondaryOAM(x + 24, y, gObject_8x8, proc->hpCurLow + 0x82E0);
 
-        /* Tens character max HP */
-        CallARM_PushToSecondaryOAM(x + 41, y, gObject_8x8, proc->hpMaxHi + 0x82E0);
+        if (proc->hpMaxHi != (u8)(' ' - '0'))
+        {
+            /* Tens character max HP */
+            CallARM_PushToSecondaryOAM(x + 41, y, gObject_8x8, proc->hpMaxHi + 0x82E0);
+        }
         /* Single character max HP */
         CallARM_PushToSecondaryOAM(x + 48, y, gObject_8x8, proc->hpMaxLo + 0x82E0);
 #endif
