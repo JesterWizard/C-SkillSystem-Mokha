@@ -5,11 +5,11 @@
 #include "skill-system.h"
 #include "jester_headers/miscellaenous.h"
 #include "debuff.h"
-struct LearnedSkillList {
-    u32 data[8]; /* 8 * 32 = 0x100 */
-};
+// struct LearnedSkillList {
+//     u32 data[8]; /* 8 * 32 = 0x100 */
+// };
 
-extern struct LearnedSkillList sLearnedSkillPLists[NEW_BWL_ARRAY_NUM];
+// extern struct LearnedSkillList sLearnedSkillPLists[NEW_BWL_ARRAY_NUM];
 
 void SetGameOptions_Chapter0() 
 {
@@ -17,11 +17,11 @@ void SetGameOptions_Chapter0()
     SetGameOption(GAME_OPTION_TEXT_SPEED, 1); // Set game speed to max
     SetGameOption(GAME_OPTION_GAME_SPEED, 3); // Set text speed to max
 
-    // // SetPartyGoldAmount(10000);
+    // SetPartyGoldAmount(10000);
 
     struct Unit * unit = GetUnitFromCharId(CHARACTER_EIRIKA);
     // unit->maxHP = 26;
-    unit->curHP = 6;
+    // unit->curHP = 6;
 
     unit->ranks[ITYPE_STAFF] = WPN_EXP_C;
     unit->items[0] = MakeNewItem(ITEM_VULNERARY);
@@ -36,7 +36,7 @@ void SetGameOptions_Chapter0()
     // for (int i = 0; i < SKILL_ROM_DATA_AMT; i++)
     //     SET_SKILL(unit, i, RandNextC_N(711));
 
-    //SetFlag(0xAB); // Gamma UI flag
+    // SetFlag(0xAB); // Gamma UI flag
 
     // NoCashGBAPrintf("Chapter 1 - Total BEXP BEFORE is: %d", sBEXP);
 
@@ -44,7 +44,7 @@ void SetGameOptions_Chapter0()
 
     // NoCashGBAPrintf("Chapter 1 - Total BEXP AFTER is: %d", sBEXP);
 
-    //gBmMapTerrain[5][3] = TERRAIN_TILE_00;
+    // gBmMapTerrain[5][3] = TERRAIN_TILE_00;
  
 
     // SetUnitStatusIndex(unit_seth, NEW_UNIT_STATUS_DOOM);
