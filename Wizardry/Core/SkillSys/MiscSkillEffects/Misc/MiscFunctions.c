@@ -3283,7 +3283,7 @@ void UnitMapUiUpdate(struct PlayerInterfaceProc* proc, struct Unit* unit) {
             /* Tens character max HP */
             CallARM_PushToSecondaryOAM(x + 41, y, gObject_8x8, proc->hpMaxHi + 0x82E0);
             /* Single character max HP */
-            CallARM_PushToSecondaryOAM(x + 48, y, gObject_8x8, proc->hpCurLo + 0x82E0);
+            CallARM_PushToSecondaryOAM(x + 48, y, gObject_8x8, proc->hpMaxLo + 0x82E0);
         }
         else {
             /* Hundreds character current HP */
@@ -5201,7 +5201,6 @@ void SupportSubScreen_SetupGraphics(struct SubScreenProc* proc) {
 //! FE8U = 0x080A2448
 LYN_REPLACE_CHECK(SupportSubScreen_Loop_KeyHandler);
 void SupportSubScreen_Loop_KeyHandler(struct SubScreenProc* proc) {
-    NoCashGBAPrint("Fuck shit fuck");
     if (gKeyStatusPtr->newKeys & B_BUTTON) {
         PlaySoundEffect(SONG_SE_SYS_WINDOW_CANSEL1);
         Proc_Goto(proc, 3);
