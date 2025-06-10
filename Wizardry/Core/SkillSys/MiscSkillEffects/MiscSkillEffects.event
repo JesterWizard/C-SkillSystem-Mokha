@@ -81,6 +81,7 @@
 #include "MenuSkills/CoinFlip.lyn.event"
 #include "MenuSkills/Geomancy.lyn.event"
 #include "MenuSkills/ScrollScribePlus.lyn.event"
+#include "MenuSkills/DancePlus.lyn.event"
 
 #include "MenuSkills/ReciprocalAid.lyn.event"
 #include "MenuSkills/ReciprocalAid_ASM_Extras/Installer.event"

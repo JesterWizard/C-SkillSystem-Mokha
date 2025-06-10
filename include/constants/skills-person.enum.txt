@@ -64,6 +64,7 @@
 // SID_Bide
 // SID_CoinFlip
 // SID_Geomancy
+// SID_Dance
 
 //////// PRE-BATTLE SKILLS
 // SID_DefiantStr

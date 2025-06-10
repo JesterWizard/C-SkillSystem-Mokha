@@ -9,8 +9,8 @@ const struct MenuItemDef gSkillMenuInfos[MAX] = {
 #if (defined(SID_Dance) && COMMON_SKILL_VALID(SID_Dance))
     [SID_Dance] = {
         .name = "　踊る",
-        .nameMsgId = 0x67E,
-        .helpMsgId = 0x6C2,
+        .nameMsgId = MSG_SKILL_Dance_NAME,
+        .helpMsgId = MSG_SKILL_Dance_DESC,
         .color = TEXT_COLOR_SYSTEM_GOLD,
         .isAvailable = DanceCommandUsability,
         .onDraw = NULL,
@@ -18,6 +18,21 @@ const struct MenuItemDef gSkillMenuInfos[MAX] = {
         .onIdle = NULL,
         .onSwitchIn = NULL,
         .onSwitchOut = NULL,
+    },
+#endif
+
+#if (defined(SID_DancePlus) && COMMON_SKILL_VALID(SID_DancePlus))
+    [SID_DancePlus] = {
+        .name = "　踊る",
+        .nameMsgId = MSG_SKILL_DancePlus_NAME,
+        .helpMsgId = MSG_SKILL_DancePlus_DESC,
+        .color = TEXT_COLOR_SYSTEM_GOLD,
+        .isAvailable = DancePlus_Usability,
+        .onDraw = NULL,
+        .onSelected = DancePlus_OnSelected,
+        .onIdle = NULL,
+        .onSwitchIn = DancePlus_Hover,
+        .onSwitchOut = DancePlus_Unhover,
     },
 #endif
 

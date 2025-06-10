@@ -64,6 +64,7 @@ SID_Ballistary
 SID_Bide
 SID_CoinFlip
 SID_Geomancy
+SID_DancePlus
 
 //////// PRE-BATTLE SKILLS
 SID_DefiantStr

@@ -226,4 +226,8 @@ const SkillActionFunc_t gSkillActionFuncTable[MAX_SKILL_NUM + 1] = {
 #if (defined(SID_ScrollScribePlus) && COMMON_SKILL_VALID(SID_ScrollScribePlus))
 	[SID_ScrollScribePlus] = Action_ScrollScribePlus,
 #endif
+
+#if (defined(SID_DancePlus) && COMMON_SKILL_VALID(SID_DancePlus))
+	[SID_DancePlus] = Action_DancePlus,
+#endif
 };

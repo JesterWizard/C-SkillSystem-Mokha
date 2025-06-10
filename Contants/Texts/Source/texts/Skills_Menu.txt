@@ -97,6 +97,13 @@ Dance:[N]
 Unit can use[N]
 "Dance" command.[X]
 
+## MSG_SKILL_DancePlus_NAME
+Dance+[X]
+## MSG_SKILL_DancePlus_DESC
+Dance+:[N]
+Unit can use the "Dance"[N]
+command in MP/2 range.[X]
+
 ## MSG_SKILL_LockTouch_NAME
 Lock Touch[X]
 ## MSG_SKILL_LockTouch_DESC
