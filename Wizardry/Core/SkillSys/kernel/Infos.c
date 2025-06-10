@@ -25,7 +25,6 @@ u16 GetSkillDescMsg(const u16 sid)
 u16 GetSkillNameMsg(const u16 sid)
 {
 	/* Another Heisenbug, skill name just returns garbage unless this is here FML */
-	NoCashGBAPrintf("%d", sid);
     return gpSkillInfos[sid].name;
 }
 
@@ -79,7 +78,7 @@ char *GetSkillNameStrFormDesc(const u16 sid)
 	u16 msg = GetSkillDescMsg(sid);
 
 	if (msg == 0)
-		return "EMPTY";
+		return "-";
 
 	str = GetStringFromIndex(msg);
 	return SkillDescToName(str);

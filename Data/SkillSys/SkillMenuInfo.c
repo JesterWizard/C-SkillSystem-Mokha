@@ -921,6 +921,21 @@ const struct MenuItemDef gSkillMenuInfos[MAX] = {
     },
 #endif
 
+#if (defined(SID_ScrollScribePlus) && COMMON_SKILL_VALID(SID_ScrollScribePlus))
+    [SID_ScrollScribePlus] = {
+        .name = "　",
+        .nameMsgId = MSG_SKILL_ScrollScribePlus_NAME,
+        .helpMsgId = MSG_SKILL_ScrollScribePlus_DESC,
+        .color = TEXT_COLOR_SYSTEM_GOLD,
+        .isAvailable = ScrollScribePlus_Usability,
+        .onDraw = NULL,
+        .onSelected = ScrollScribePlus_OnSelected,
+        .onIdle = NULL,
+        .onSwitchIn = NULL,
+        .onSwitchOut = NULL,
+    },
+#endif
+
     [0] = {
         .name = "　光の結界",
         .nameMsgId = MSG_MenuCommand_Refuge_NAME,

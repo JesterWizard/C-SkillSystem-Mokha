@@ -118,6 +118,9 @@ const SkillUpgrade skill_upgrades[] = {
 	#if defined(SID_Persuade) && defined(SID_PersuadePlus) && COMMON_SKILL_VALID(SID_Persuade) && COMMON_SKILL_VALID(SID_PersuadePlus)
 		{ SID_Persuade, SID_PersuadePlus },
 	#endif
+	#if defined(SID_ScrollScribe) && defined(SID_ScrollScribePlus) && COMMON_SKILL_VALID(SID_ScrollScribe) && COMMON_SKILL_VALID(SID_ScrollScribePlus)
+		{ SID_ScrollScribe, SID_ScrollScribePlus },
+	#endif
 	};
 	
 

@@ -25,7 +25,7 @@ void SetGameOptions_Chapter0()
 
     unit->ranks[ITYPE_STAFF] = WPN_EXP_C;
     unit->items[0] = MakeNewItem(ITEM_VULNERARY);
-
+    
     // // Seed the random number generator
     // InitRandC();
 

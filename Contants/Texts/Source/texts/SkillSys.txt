@@ -33,6 +33,9 @@ Skill learned.[X]
 ## MSG_SkillRemoved
 Skill Removed.[X]
 
+## MSG_ScrollObtained
+Scroll.[X]
+
 ## MSG_Learned
 Learned [X]
 

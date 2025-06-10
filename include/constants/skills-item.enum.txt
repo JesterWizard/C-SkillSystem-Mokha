@@ -311,6 +311,7 @@
 // SID_Zenkai
 // SID_Freelancer
 // SID_GoodListener
+// SID_ScrollScribePlus
 
 //////// AURA SKILLS
 // SID_Anathema

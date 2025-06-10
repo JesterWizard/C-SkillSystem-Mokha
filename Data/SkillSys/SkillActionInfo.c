@@ -222,4 +222,8 @@ const SkillActionFunc_t gSkillActionFuncTable[MAX_SKILL_NUM + 1] = {
 #if (defined(SID_Geomancy) && COMMON_SKILL_VALID(SID_Geomancy))
 	[SID_Geomancy] = Action_Geomancy,
 #endif
+
+#if (defined(SID_ScrollScribePlus) && COMMON_SKILL_VALID(SID_ScrollScribePlus))
+	[SID_ScrollScribePlus] = Action_ScrollScribePlus,
+#endif
 };

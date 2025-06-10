@@ -195,6 +195,10 @@ STATIC_DECLAR int PredationSkillMenu_OnDraw(struct MenuProc * menu, struct MenuI
 STATIC_DECLAR int RemoveSkillMenu_OnDraw(struct MenuProc * menu, struct MenuItemProc * item)
 {
     int sid = 0xFFFF;
+
+    
+    if (MENU_SKILL_INDEX(item->def) > UNIT_RAM_SKILLS_LEN - 1 && gEventSlots[EVT_SLOT_8] == SID_ScrollScribePlus)
+        return 0;
     
     if (MENU_SKILL_INDEX(item->def) > UNIT_RAM_SKILLS_LEN - 1)
     {
@@ -311,8 +315,46 @@ STATIC_DECLAR void PredationTryAddSkill()
                  GET_SKILL_SCROLL_INDEX(GET_SKILL(gActiveUnit, gActionData.unk08)));
 }
 
+struct PopupInstruction const PopupScr_GotScroll[] = {
+    POPUP_SOUND(0x5A),
+    POPUP_COLOR(TEXT_COLOR_SYSTEM_WHITE),
+    POPUP_MSG(0x008),                   /* Got */
+    POPUP_COLOR(TEXT_COLOR_SYSTEM_BLUE),
+    POPUP_ITEM_STR,
+    POPUP_SPACE(1),
+    POPUP_ITEM_ICON,
+    POPUP_COLOR(TEXT_COLOR_SYSTEM_WHITE),
+    POPUP_SPACE(1),
+    POPUP_MSG(MSG_ScrollObtained),                   /* .[.] */
+    POPUP_END
+};
+
 STATIC_DECLAR u8 RemoveSkillMenu_OnSelected(struct MenuProc * menu, struct MenuItemProc * item)
 {
+
+    if (gEventSlots[EVT_SLOT_8] == SID_ScrollScribePlus)
+    {
+        int sid = GET_SKILL(gActiveUnit, MENU_SKILL_INDEX(item->def));
+        int item = 0;
+        RemoveSkill(gActiveUnit, sid);
+
+        if (sid < 0xFF)
+            item = ITEM_INDEX(CONFIG_ITEM_INDEX_SKILL_SCROLL_1) | (sid << 8);
+        else if (sid > 0xFF && sid < 0x1FF)
+            item = ITEM_INDEX(CONFIG_ITEM_INDEX_SKILL_SCROLL_2) | ((sid - 0xFF) << 8);
+        else if (sid > 0x1FF && sid < 0x2FF)
+            item = ITEM_INDEX(CONFIG_ITEM_INDEX_SKILL_SCROLL_3) | ((sid - 0x1FF) << 8);
+        else if (sid < 0x3FF)
+            item = ITEM_INDEX(CONFIG_ITEM_INDEX_SKILL_SCROLL_4) | ((sid - 0x2FF) << 8);
+
+        UnitAddItem(gActiveUnit, item);
+
+        SetPopupItem(item);
+        NewPopup_Simple(PopupScr_GotScroll, 0x60, 0x0, Proc_Find(gProcScr_PlayerPhase));
+        // NewPopup_VerySimple(MSG_SkillLearned, 0x5A, proc);
+
+        return MENU_ACT_SKIPCURSOR | MENU_ACT_END | MENU_ACT_SND6A | MENU_ACT_CLEAR;
+    }
 
     SetItemUseAction(gActiveUnit);
     gActionData.unk08 = MENU_SKILL_INDEX(item->def);

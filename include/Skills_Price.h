@@ -766,3 +766,4 @@
 #define MSG_SKILL_HalfShift_PRICE 1000
 #define MSG_SKILL_AbsorbAlternation_PRICE 1000
 #define MSG_SKILL_GoodListener_PRICE 1000
+#define MSG_SKILL_ScrollScribePlus_PRICE 1000

@@ -513,6 +513,8 @@ u8 CoinFlip_Usability(const struct MenuItemDef * def, int number);
 u8 CoinFlip_OnSelected(struct MenuProc * menu, struct MenuItemProc * item);
 u8 Geomancy_Usability(const struct MenuItemDef * def, int number);
 u8 Geomancy_OnSelected(struct MenuProc * menu, struct MenuItemProc * item);
+u8 ScrollScribePlus_Usability(const struct MenuItemDef * def, int number);
+u8 ScrollScribePlus_OnSelected(struct MenuProc * menu, struct MenuItemProc * item);
 
 u8 Transform_Laguz_Usability(const struct MenuItemDef * def, int number);
 u8 Transform_Laguz_OnSelected(struct MenuProc * menu, struct MenuItemProc * item);
@@ -569,6 +571,7 @@ bool Action_Ballistary(ProcPtr parent);
 bool Action_Bide(ProcPtr parent);
 bool Action_CoinFlip(ProcPtr parent);
 bool Action_Geomancy(ProcPtr parent);
+bool Action_ScrollScribePlus(ProcPtr parent);
 
 bool Action_Transform_Laguz(ProcPtr parent);
 

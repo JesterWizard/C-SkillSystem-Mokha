@@ -298,3 +298,10 @@ Good Listener[X]
 Good Listener:[N]
 Units gains 10 EXP when visiting[N]
 a town/village for the first time.[X]
+
+## MSG_SKILL_ScrollScribePlus_NAME
+Scroll Scribe+[X]
+## MSG_SKILL_ScrollScribePlus_DESC
+Scroll Scribe+:[N]
+This unit can turn any of their[N]
+learned skills back into scrolls.[X]
