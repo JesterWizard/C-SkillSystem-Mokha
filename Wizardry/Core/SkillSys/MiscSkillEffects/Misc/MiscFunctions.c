@@ -2893,6 +2893,17 @@ u8 AttackCommandUsability(const struct MenuItemDef* def, int number) {
         return MENU_ENABLED;
     }
 
+#if (defined(SID_UnarmedCombat) && (COMMON_SKILL_VALID(SID_UnarmedCombat)))
+    if (SkillTester(gActiveUnit, SID_UnarmedCombat))
+    {
+        MakeTargetListForWeapon(gActiveUnit, ITEM_SWORD_IRON);
+        if (GetSelectTargetCount() > 0) 
+        {
+            return MENU_ENABLED;
+        }
+    }
+#endif
+
     return MENU_NOTSHOWN;
 
 }
@@ -5401,3 +5412,236 @@ bool RunPotentialWaitEvents(void)
 
     return true;
 }
+
+LYN_REPLACE_CHECK(DisplayUnitStandingAttackRange);
+int DisplayUnitStandingAttackRange(struct MenuProc* menu, struct MenuItemProc* menuItem) {
+    BmMapFill(gBmMapMovement, -1);
+    BmMapFill(gBmMapRange, 0);
+
+    if (gActiveUnit->state & US_IN_BALLISTA) {
+        MapAddInBoundedRange(gActiveUnit->xPos, gActiveUnit->yPos, 1, 10);
+    } else {
+        int reach = GetUnitWeaponReachBits(gActiveUnit, -1);
+
+#if defined(SID_UnarmedCombat) && (COMMON_SKILL_VALID(SID_UnarmedCombat))
+        if (SkillTester(gActiveUnit, SID_UnarmedCombat) && reach < 3)
+            reach = 3;
+#endif  
+
+        GenerateUnitStandingReachRange(gActiveUnit, reach);
+    }
+
+    DisplayMoveRangeGraphics(3);
+
+    return 0;
+}
+
+LYN_REPLACE_CHECK(UnitActionMenu_Attack);
+u8 UnitActionMenu_Attack(struct MenuProc* menu, struct MenuItemProc* menuItem) {
+
+    if (menuItem->availability == MENU_DISABLED) {
+        MenuFrozenHelpBox(menu, 0x858); // TODO: msgid "There's no more ammo for[NL]the ballista.[.]"
+        return MENU_ACT_SND6B;
+    }
+
+    ResetIconGraphics();
+
+    LoadIconPalettes(4);
+
+    if (gActiveUnit->state & US_IN_BALLISTA) {
+        return StartUnitBallistaSelect(menu, menuItem);
+    }
+
+#if defined(SID_UnarmedCombat) && (COMMON_SKILL_VALID(SID_UnarmedCombat))
+    if (SkillTester(gActiveUnit, SID_UnarmedCombat))
+    {
+        ClearBg0Bg1();
+        MakeTargetListForWeapon(gActiveUnit, ITEM_SWORD_IRON);
+        NewTargetSelection(&gSelectInfo_Attack);
+        sub_80832C8();
+        return MENU_ACT_SKIPCURSOR | MENU_ACT_END | MENU_ACT_SND6A;
+    }
+#endif  
+
+    return StartUnitWeaponSelect(menu, menuItem);
+}
+
+LYN_REPLACE_CHECK(AttackMapSelect_SwitchIn);
+u8 AttackMapSelect_SwitchIn(ProcPtr proc, struct SelectTarget* target) {
+
+    struct Unit* unit = GetUnit(target->uid);
+
+    ChangeActiveUnitFacing(target->x, target->y);
+
+    if (target->uid == 0) {
+        gActionData.xOther = target->x;
+        gActionData.yOther = target->y;
+        gActionData.trapType = target->extra;
+
+        InitObstacleBattleUnit();
+    }
+
+    if (gActionData.itemSlotIndex == BU_ISLOT_BALLISTA) {
+        BattleGenerateBallistaSimulation(gActiveUnit, unit, gActiveUnit->xPos, gActiveUnit->yPos);
+    } else {
+        BattleGenerateSimulation(gActiveUnit, unit, -1, -1, gActionData.itemSlotIndex);
+    }
+
+    UpdateBattleForecastContents();
+
+    return 0;
+}
+
+LYN_REPLACE_CHECK(DrawBattleForecastContentsStandard);
+void DrawBattleForecastContentsStandard(struct BattleForecastProc * proc)
+{
+    int damage;
+    int critRate;
+
+    CallARM_FillTileRect(gUiTmScratchB, gTSA_BattleForecastStandard, 0x1000);
+
+    TileMap_FillRect(gUiTmScratchA, 10, 15, 0);
+
+    PutBattleForecastUnitName(gUiTmScratchA + 0x23, &proc->unitNameTextA, &gBattleActor.unit);
+
+    PutBattleForecastUnitName(gUiTmScratchA + 0x161, &proc->unitNameTextA, &gBattleTarget.unit);
+
+#if defined(SID_UnarmedCombat) && (COMMON_SKILL_VALID(SID_UnarmedCombat))
+    if (SkillTester(GetUnit(gBattleActor.unit.index), SID_UnarmedCombat))
+    {
+        if (gBattleActor.weapon == 0)
+        {
+            int actorAccuracy = gBattleActor.unit.skl * 2;
+            int targetAvoid = gBattleTarget.battleAvoidRate;
+            int calculatedHit = SKILL_EFF0(SID_UnarmedCombat) + actorAccuracy - targetAvoid;
+            gBattleActor.battleEffectiveHitRate = calculatedHit > 100 ? 100 : calculatedHit;
+        }
+    }
+    if (SkillTester(GetUnit(gBattleTarget.unit.index), SID_UnarmedCombat))
+    {
+        if (gBattleTarget.weapon == 0)
+        {
+            int targetAccuracy = gBattleTarget.unit.skl * 2;
+            int actorAvoid = gBattleActor.battleAvoidRate;
+            int calculatedHit = SKILL_EFF0(SID_UnarmedCombat) + targetAccuracy - actorAvoid;
+            gBattleTarget.battleEffectiveHitRate = calculatedHit > 100 ? 100 : calculatedHit;
+        }
+    }
+#endif
+
+    PutBattleForecastItemName(gUiTmScratchA + 0x1A1, &proc->itemNameText, gBattleTarget.weaponBefore);
+
+    if ((gBattleTarget.weapon == 0) && (gBattleTarget.weaponBroke == 0)) {
+        damage = -1;
+
+        gBattleTarget.battleEffectiveHitRate = 0xFF;
+        gBattleTarget.battleEffectiveCritRate = 0xFF;
+    } else {
+        damage = gBattleTarget.battleAttack - gBattleActor.battleDefense;
+
+        if (damage < 0) {
+            damage = 0;
+        }
+    }
+
+    if (gBattleTarget.hpInitial > 99) {
+        PutNumberTwoChr(gUiTmScratchA + 0x62, 2, 0xFF);
+    } else {
+        PutNumberTwoChr(gUiTmScratchA + 0x62, 2, gBattleTarget.hpInitial);
+    }
+
+    PutNumberTwoChr(gUiTmScratchA + 0xA2, 2, damage);
+    PutNumberTwoChr(gUiTmScratchA + 0xA2 + 0x40, 2, gBattleTarget.battleEffectiveHitRate);
+    PutNumberTwoChr(gUiTmScratchA + 0xA2 + 0x80, 2, gBattleTarget.battleEffectiveCritRate);
+
+    damage = gBattleActor.battleAttack - gBattleTarget.battleDefense;
+
+    if (GetItemIndex(gBattleActor.weapon) == ITEM_MONSTER_STONE) {
+        damage = 0xFF;
+    }
+
+    if (damage < 0) {
+        damage = 0;
+    }
+
+    critRate = gBattleActor.battleEffectiveCritRate;
+
+    if (GetItemIndex(gBattleActor.weapon) == ITEM_MONSTER_STONE) {
+        critRate = 0xFF;
+    }
+
+    if (critRate < 0) {
+        critRate = 0;
+    }
+
+    if (gBattleActor.hpInitial > 99) {
+        PutNumberTwoChr(gUiTmScratchA + 0xA8 - 0x40, 2, 0xFF);
+    } else {
+        PutNumberTwoChr(gUiTmScratchA + 0xA8 - 0x40, 2, gBattleActor.hpInitial);
+    }
+
+    PutNumberTwoChr(gUiTmScratchA + 0xA8, 2, damage);
+    PutNumberTwoChr(gUiTmScratchA + 0xA8 + 0x40, 2, gBattleActor.battleEffectiveHitRate);
+    PutNumberTwoChr(gUiTmScratchA + 0xA8 + 0x80, 2, critRate);
+
+    PutTwoSpecialChar(gUiTmScratchA + 0xA8 - 0x44, TEXT_COLOR_SYSTEM_GOLD, TEXT_SPECIAL_HP_A, TEXT_SPECIAL_HP_B);
+
+    PutText(gaBattleForecastTextStructs, gUiTmScratchA  + 0xA8 - 5);
+    PutText(gaBattleForecastTextStructs + 1, gUiTmScratchA  + 0xA8 + 0x3B);
+    PutText(gaBattleForecastTextStructs + 2, gUiTmScratchA  + 0xA8 + 0x7B);
+
+    DrawIcon(gUiTmScratchA + 0xA8 + 0xBF, GetItemIconId(gBattleTarget.weaponBefore), 0x4000);
+
+    DrawIcon(gUiTmScratchA + 0xA8 - 0x87, GetItemIconId(gBattleActor.weaponBefore), 0x3000);
+
+}
+
+extern struct ProcCmd CONST_DATA gProcScr_0859B630[];
+
+LYN_REPLACE_CHECK(AttackMapSelect_Cancel);
+u8 AttackMapSelect_Cancel(ProcPtr proc, struct SelectTarget * target) {
+    if (EventEngineExists() == 1) {
+        return 0;
+    }
+
+#if defined(SID_UnarmedCombat) && (COMMON_SKILL_VALID(SID_UnarmedCombat))
+    if (SkillTester(gActiveUnit, SID_UnarmedCombat))
+    {
+      return MENU_ACT_SKIPCURSOR | MENU_ACT_END | MENU_ACT_SND6B;      
+    }
+#endif
+
+    Proc_Start(gProcScr_0859B630, PROC_TREE_3);
+
+    return MENU_ACT_SKIPCURSOR | MENU_ACT_END | MENU_ACT_SND6B;
+}
+
+
+// struct ProcCmd CONST_DATA gProcScr_BKSEL[] = {
+//     PROC_NAME("BKSEL"),
+
+//     PROC_SET_END_CB(BattleForecast_OnEnd),
+
+//     PROC_CALL(ClearBg0Bg1),
+//     PROC_SLEEP(0),
+
+//     PROC_CALL(BattleForecast_Init),
+
+// PROC_LABEL(0),
+//     PROC_WHILE(MapEventEngineExists_),
+//     PROC_CALL(BattleForecast_OnNewBattle),
+
+//     PROC_REPEAT(BattleForecast_LoopSlideIn),
+
+//     PROC_CALL(TriggerBattleForcastToturialEvent),
+
+//     PROC_REPEAT(BattleForecast_LoopDisplay),
+//     PROC_REPEAT(BattleForecast_LoopSlideOut),
+
+//     PROC_GOTO(0),
+
+// PROC_LABEL(1),
+//     PROC_REPEAT(BattleForecast_LoopSlideOut),
+
+//     PROC_END,
+// };

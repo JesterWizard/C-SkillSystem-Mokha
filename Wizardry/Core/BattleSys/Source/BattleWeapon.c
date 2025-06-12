@@ -103,6 +103,14 @@ STATIC_DECLAR void SetBattleUnitWeaponVanilla(struct BattleUnit *bu, int itemSlo
         break;
     }
 
+#if defined(SID_UnarmedCombat) && (COMMON_SKILL_VALID(SID_UnarmedCombat))
+    if (BattleSkillTester(bu, SID_UnarmedCombat))
+    {
+        if (bu->weapon == 0)
+            bu->canCounter = true;
+    }
+#endif
+
     bu->weaponBefore = bu->weapon;
     bu->weaponAttributes = GetItemAttributes(bu->weapon);
     bu->weaponType = GetItemType(bu->weapon);
@@ -460,11 +468,23 @@ s8 CanUnitUseWeapon(struct Unit *unit, int item)
     return (unit->ranks[GetItemType(item)] >= GetItemRequiredExp(item)) ? true : false;
 }
 
+/* Used for determing whether to show stats in the stat screen */
 LYN_REPLACE_CHECK(CanUnitUseWeaponNow);
-s8 CanUnitUseWeaponNow(struct Unit* unit, int item) {
+s8 CanUnitUseWeaponNow(struct Unit* unit, int item) 
+{
+
+// #if (defined(SID_UnarmedCombat) && (COMMON_SKILL_VALID(SID_UnarmedCombat)))
+//     if (SkillTester(unit, SID_UnarmedCombat))
+//         return TRUE;
+//     if (item == 0)
+//         return FALSE;
+// #else
+//     if (item == 0)
+//         return FALSE;
+// #endif
 
     if (item == 0)
-        return FALSE;
+        return false;
 
     if (!(GetItemAttributes(item) & IA_WEAPON))
         return FALSE;

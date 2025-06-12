@@ -578,7 +578,17 @@ void BattleHit_ConsumeWeapon(struct BattleUnit *attacker, struct BattleUnit *def
 #else
         attacker->weapon = GetItemAfterUse(attacker->weapon);
 #endif
+
+#if defined(SID_UnarmedCombat) && (COMMON_SKILL_VALID(SID_UnarmedCombat))
+        if (!BattleSkillTester(attacker, SID_UnarmedCombat))
+        {
+            if (!attacker->weapon)
+                attacker->weaponBroke = TRUE;
+        }
+#else
         if (!attacker->weapon)
             attacker->weaponBroke = TRUE;
+#endif
+
     }
 }

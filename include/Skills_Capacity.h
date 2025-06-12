@@ -768,3 +768,4 @@
 #define MSG_SKILL_GoodListener_CAPACITY 1
 #define MSG_SKILL_ScrollScribePlus_CAPACITY 1
 #define MSG_SKILL_DancePlus_CAPACITY 1
+#define MSG_SKILL_UnarmedCombat_CAPACITY 1

@@ -1330,4 +1330,8 @@ const struct SkillExtraInfo gSkillExtraInfo[MAX_SKILL_NUM + 1] = {
 #if (defined(SID_LightningRod) && COMMON_SKILL_VALID(SID_LightningRod))
     [SID_LightningRod] = {{100}},
 #endif
+
+#if (defined(SID_UnarmedCombat) && COMMON_SKILL_VALID(SID_UnarmedCombat))
+    [SID_UnarmedCombat] = {{70}},
+#endif
 };

@@ -622,7 +622,7 @@ void BattleUnwind(void)
             }
 
             /* 
-            ** So we seem to have run into a bug here where damage doesn't apply
+            ** Jester - So we seem to have run into a bug here where damage doesn't apply
             ** properly to both sides and the battle eventually softlocks if it is
             ** projected to take over 8 rounds
             */
@@ -692,9 +692,22 @@ bool BattleGenerateRoundHits(struct BattleUnit * attacker, struct BattleUnit * d
 {
     int i, count;
     u32 attrs;
+    int unarmedCombat = false;
 
+#if defined(SID_UnarmedCombat) && (COMMON_SKILL_VALID(SID_UnarmedCombat))
+    if (!BattleSkillTester(attacker, SID_UnarmedCombat))
+    {
+        if (!attacker->weapon)
+            return FALSE;
+    }
+    else 
+    {
+        unarmedCombat = true;
+    }
+#else
     if (!attacker->weapon)
         return FALSE;
+#endif
 
     /* Clear the round related efx skill pool */
     ResetRoundEfxSkills();
@@ -731,7 +744,7 @@ bool BattleGenerateRoundHits(struct BattleUnit * attacker, struct BattleUnit * d
         }
 
         /* I think this is a bug-fix for vanilla */
-        if (!attacker->weapon)
+        if (!attacker->weapon && !unarmedCombat)
             return false;
     }
     return false;
@@ -847,6 +860,11 @@ int GetBattleUnitHitCount(struct BattleUnit * actor)
         int extraAttacks = (actor->battleSpeed - target->battleSpeed) / 4;
         result = result + extraAttacks;
     }
+#endif
+
+#if defined(SID_UnarmedCombat) && (COMMON_SKILL_VALID(SID_UnarmedCombat))
+    if (BattleSkillTester(actor, SID_UnarmedCombat))
+            result += 1;
 #endif
 
     return result;

@@ -34,7 +34,18 @@ void InitBattleForecastBattleStats(struct BattleForecastProc * proc)
     proc->hitCountA = 0;
     proc->isEffectiveA = false;
 
-    if ((gBattleActor.weapon != 0) || (gBattleActor.weaponBroke))
+    bool unarmedCombat_Actor = false;
+    bool unarmedCombat_Target = false;
+
+#if defined(SID_UnarmedCombat) && (COMMON_SKILL_VALID(SID_UnarmedCombat))
+        if (SkillTester(GetUnit(gBattleActor.unit.index), SID_UnarmedCombat))
+        {
+            usesA = 100;
+            unarmedCombat_Actor = true;
+        }
+#endif
+
+    if ((gBattleActor.weapon != 0) || (gBattleActor.weaponBroke) || unarmedCombat_Actor)
     {
         BattleForecastHitCountUpdate(&gBattleActor, (u8 *)&proc->hitCountA, &usesA);
 
@@ -51,7 +62,15 @@ void InitBattleForecastBattleStats(struct BattleForecastProc * proc)
     proc->hitCountB = 0;
     proc->isEffectiveB = false;
 
-    if ((gBattleTarget.weapon != 0) || (gBattleTarget.weaponBroke))
+#if defined(SID_UnarmedCombat) && (COMMON_SKILL_VALID(SID_UnarmedCombat))
+        if (SkillTester(GetUnit(gBattleTarget.unit.index), SID_UnarmedCombat))
+        {
+            usesB = 100;
+            unarmedCombat_Target = true;
+        }
+#endif
+
+    if ((gBattleTarget.weapon != 0) || (gBattleTarget.weaponBroke) || unarmedCombat_Target)
     {
         BattleForecastHitCountUpdate(&gBattleTarget, (u8 *)&proc->hitCountB, &usesB);
 

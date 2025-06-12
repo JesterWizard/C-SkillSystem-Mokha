@@ -1600,3 +1600,10 @@ Flicker:[N]
 If at full health and this unit[N]
 would takes >= 50% from an attack,[N]
 dodge that attack.[X]
+
+## MSG_SKILL_UnarmedCombat_NAME
+Unarmed Combat[X]
+## MSG_SKILL_UnarmedCombat_DESC
+Unarmed Combat:[N]
+This unit can attack[N]
+without a weapon.[X]

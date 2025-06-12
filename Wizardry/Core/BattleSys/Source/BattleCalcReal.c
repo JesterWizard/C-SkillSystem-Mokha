@@ -288,6 +288,14 @@ void ComputeBattleUnitSilencerRate(struct BattleUnit * attacker, struct BattleUn
 LYN_REPLACE_CHECK(ComputeBattleUnitEffectiveHitRate);
 void ComputeBattleUnitEffectiveHitRate(struct BattleUnit * attacker, struct BattleUnit * defender)
 {
+
+#if defined(SID_UnarmedCombat) && (COMMON_SKILL_VALID(SID_UnarmedCombat))
+    if (SkillTester(GetUnit(attacker->unit.index), SID_UnarmedCombat))
+    {
+        attacker->battleHitRate += SKILL_EFF0(SID_UnarmedCombat);
+    }
+#endif
+
     attacker->battleEffectiveHitRate = attacker->battleHitRate - defender->battleAvoidRate;
 
     if (attacker->battleEffectiveHitRate > 100)

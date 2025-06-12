@@ -569,6 +569,7 @@ bool BattleGenerateHit(struct BattleUnit * attacker, struct BattleUnit * defende
 /* 
 ** Set the ballista byte in the unit's unit struct to the chapter number they died on  to check when using arise 
 ** Since we're only concerned with player units using his skill, we can use an AI byte to check if they've already been revived
+** EDIT: May need to revisit this as I think ai bytes get refreshed even in player structs
 */
 #if (defined(SID_Arise) && (COMMON_SKILL_VALID(SID_Arise)))
     if (BattleSkillTester(attacker, SID_Arise))

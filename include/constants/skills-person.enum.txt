@@ -257,6 +257,7 @@
 // SID_DualWieldPlus
 // SID_SlowStart
 // SID_Flicker
+// SID_UnarmedCombat
 
 //////// POST-BATTLE SKILLS
 // SID_Canto
