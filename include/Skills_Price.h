@@ -769,3 +769,4 @@
 #define MSG_SKILL_ScrollScribePlus_PRICE 1000
 #define MSG_SKILL_DancePlus_PRICE 1000
 #define MSG_SKILL_UnarmedCombat_PRICE 1000
+#define MSG_SKILL_Acidic_PRICE 1000

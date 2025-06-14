@@ -82,6 +82,7 @@
 #include "MenuSkills/Geomancy.lyn.event"
 #include "MenuSkills/ScrollScribePlus.lyn.event"
 #include "MenuSkills/DancePlus.lyn.event"
+#include "MenuSkills/Acidic.lyn.event"
 
 #include "MenuSkills/ReciprocalAid.lyn.event"
 #include "MenuSkills/ReciprocalAid_ASM_Extras/Installer.event"
@@ -91,7 +92,7 @@
 #include "Misc/LynJump.event"
 #include "Misc/HealAmount.lyn.event"
 #include "Misc/MiscFunctions.lyn.event"
-#include "Misc/Salve.lyn.event"
+#include "Misc/ItemSkills.lyn.event"
 
 #include "ChapterInitSkills/Initiative.lyn.event"
 

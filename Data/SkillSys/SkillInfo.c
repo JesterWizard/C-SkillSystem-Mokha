@@ -7737,4 +7737,14 @@ const struct SkillInfo gSkillInfos[MAX_SKILL_NUM + 1] = {
     },
 #endif
 
+#if (defined(SID_Acidic) && COMMON_SKILL_VALID(SID_Acidic))
+    [SID_Acidic] = {
+        .name = MSG_SKILL_Acidic_NAME,
+        .desc = MSG_SKILL_Acidic_DESC,
+        .capacity = MSG_SKILL_Acidic_CAPACITY,
+        .price = MSG_SKILL_Acidic_PRICE,
+        .icon = GFX_SkillIcon_WIP,
+    },
+#endif
+
 };

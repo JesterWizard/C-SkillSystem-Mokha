@@ -951,6 +951,21 @@ const struct MenuItemDef gSkillMenuInfos[MAX] = {
     },
 #endif
 
+#if (defined(SID_Acidic) && COMMON_SKILL_VALID(SID_Acidic))
+    [SID_Acidic] = {
+        .name = "　",
+        .nameMsgId = MSG_SKILL_Acidic_NAME,
+        .helpMsgId = MSG_SKILL_Acidic_DESC,
+        .color = TEXT_COLOR_SYSTEM_GOLD,
+        .isAvailable = Acidic_Usability,
+        .onDraw = NULL,
+        .onSelected = Acidic_OnSelected,
+        .onIdle = NULL,
+        .onSwitchIn = NULL,
+        .onSwitchOut = NULL,
+    },
+#endif
+
     [0] = {
         .name = "　光の結界",
         .nameMsgId = MSG_MenuCommand_Refuge_NAME,
