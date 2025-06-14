@@ -5310,65 +5310,6 @@ s8 ActionVisitAndSeize(ProcPtr proc) {
     return 0;
 }
 
-static u8 Salve_OnSelectTarget(ProcPtr proc, struct SelectTarget * target)
-{
-    gActionData.targetIndex = target->uid;
-
-    gActionData.xOther = target->x;
-    gActionData.yOther = target->y;
-
-    HideMoveRangeGraphics();
-
-    BG_Fill(gBG2TilemapBuffer, 0);
-    BG_EnableSyncByMask(BG2_SYNC_BIT);
-
-    gActionData.unk08 = SID_Salve;
-    gActionData.unitActionType = CONFIG_UNIT_ACTION_EXPA_ExecSkill;
-
-    DoItemUse(GetUnit(gActionData.targetIndex), gActiveUnit->items[gActionData.itemSlotIndex]);
-
-    return TARGETSELECTION_ACTION_ENDFAST | TARGETSELECTION_ACTION_END | TARGETSELECTION_ACTION_SE_6A | TARGETSELECTION_ACTION_CLEARBGS;
-}
-
-LYN_REPLACE_CHECK(ItemSubMenu_UseItem);
-u8 ItemSubMenu_UseItem(struct MenuProc* menu, struct MenuItemProc* menuItem) {
-
-    if (menuItem->availability == MENU_DISABLED) {
-        MenuFrozenHelpBox(menu, GetItemCantUseMsgid(gActiveUnit, gActiveUnit->items[gActionData.itemSlotIndex]));
-        return MENU_ACT_SND6B;
-    }
-
-    ClearBg0Bg1();
-
-#if defined(SID_Salve) && (COMMON_SKILL_VALID(SID_Salve))
-    if (SkillTester(gActiveUnit, SID_Salve))
-    {
-        MakeTargetListForAdjacentSameFaction(gActiveUnit);
-        BmMapFill(gBmMapMovement, -1);
-
-        StartSubtitleHelp(
-            NewTargetSelection_Specialized(&gSelectInfo_PutTrap, Salve_OnSelectTarget),
-            GetStringFromIndex(MSG_SKILL_Common_Target));
-    }
-    else
-    {
-        DoItemUse(gActiveUnit, gActiveUnit->items[gActionData.itemSlotIndex]);
-    }
-#else
-    DoItemUse(gActiveUnit, gActiveUnit->items[gActionData.itemSlotIndex]);
-#endif
-
-    PlaySoundEffect(SONG_SE_SYS_WINDOW_SELECT1);
-
-    SetTextFont(NULL);
-
-    ResetTextFont();
-
-    EndAllMenus();
-
-    return MENU_ACT_SKIPCURSOR | MENU_ACT_ENDFACE;
-}
-
 LYN_REPLACE_CHECK(MapAnim_DisplayDeathFade);
 void MapAnim_DisplayDeathFade(void)
 {
@@ -5615,33 +5556,3 @@ u8 AttackMapSelect_Cancel(ProcPtr proc, struct SelectTarget * target) {
 
     return MENU_ACT_SKIPCURSOR | MENU_ACT_END | MENU_ACT_SND6B;
 }
-
-
-// struct ProcCmd CONST_DATA gProcScr_BKSEL[] = {
-//     PROC_NAME("BKSEL"),
-
-//     PROC_SET_END_CB(BattleForecast_OnEnd),
-
-//     PROC_CALL(ClearBg0Bg1),
-//     PROC_SLEEP(0),
-
-//     PROC_CALL(BattleForecast_Init),
-
-// PROC_LABEL(0),
-//     PROC_WHILE(MapEventEngineExists_),
-//     PROC_CALL(BattleForecast_OnNewBattle),
-
-//     PROC_REPEAT(BattleForecast_LoopSlideIn),
-
-//     PROC_CALL(TriggerBattleForcastToturialEvent),
-
-//     PROC_REPEAT(BattleForecast_LoopDisplay),
-//     PROC_REPEAT(BattleForecast_LoopSlideOut),
-
-//     PROC_GOTO(0),
-
-// PROC_LABEL(1),
-//     PROC_REPEAT(BattleForecast_LoopSlideOut),
-
-//     PROC_END,
-// };

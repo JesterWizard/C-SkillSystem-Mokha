@@ -19,12 +19,21 @@ void SetGameOptions_Chapter0()
 
     // SetPartyGoldAmount(10000);
 
-    struct Unit * unit = GetUnitFromCharId(CHARACTER_EIRIKA);
+    struct Unit * unit_eirika = GetUnitFromCharId(CHARACTER_EIRIKA);
+    struct Unit * unit_seth = GetUnitFromCharId(CHARACTER_SETH);
     // unit->maxHP = 26;
     // unit->curHP = 6;
 
-    unit->ranks[ITYPE_STAFF] = WPN_EXP_C;
-    unit->items[0] = MakeNewItem(ITEM_VULNERARY);
+    unit_eirika->ranks[ITYPE_STAFF] = WPN_EXP_C;
+    unit_eirika->items[0] = MakeNewItem(ITEM_VULNERARY);
+    unit_eirika->items[1] = ITEM_KNIGHTCREST;
+    unit_eirika->items[2] = ITEM_MASTERSEAL;
+
+    unit_seth->pClassData = GetClassData(CLASS_CAVALIER);
+    unit_seth->level = 10;
+
+    unit_eirika->pClassData = GetClassData(CLASS_ARMOR_KNIGHT);
+    unit_eirika->level = 10;
     
     // // Seed the random number generator
     // InitRandC();

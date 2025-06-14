@@ -380,8 +380,9 @@ healing items.[X]
 Salve[X]
 ## MSG_SKILL_Salve_DESC
 Salve:[N]
-Can use personal items on[N]
-adjacent allied units.[X]
+Can use personal healing and[N]
+stat booster items on adjacent[N]
+allied units.[X]
 
 ## MSG_SKILL_FormShift_NAME
 Form Shift[X]

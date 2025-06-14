@@ -91,6 +91,7 @@
 #include "Misc/LynJump.event"
 #include "Misc/HealAmount.lyn.event"
 #include "Misc/MiscFunctions.lyn.event"
+#include "Misc/Salve.lyn.event"
 
 #include "ChapterInitSkills/Initiative.lyn.event"
 

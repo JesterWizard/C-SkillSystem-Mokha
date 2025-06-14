@@ -127,7 +127,7 @@ struct ProcClassChgPostConfirm {
 };
 
 // extern ??? ProcScr_PromoMain
-// extern ??? ProcScr_PromoHandler
+extern CONST_DATA struct ProcCmd ProcScr_PromoHandler[];
 extern CONST_DATA struct ProcCmd ProcScr_PromoSelect[];
 extern CONST_DATA struct ProcCmd ProcScr_PromoSelectEnd[];
 extern CONST_DATA struct ProcCmd ProcScr_PromoSelectEvent[];
