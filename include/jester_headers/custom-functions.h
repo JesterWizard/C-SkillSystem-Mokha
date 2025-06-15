@@ -96,3 +96,51 @@ void AddExp_Event(int exp)
     SetupMapBattleAnim(&gBattleActor, &gBattleTarget, gBattleHitArray);
     Proc_StartBlocking(ProcScr_AddExp, PROC_TREE_3);
 }
+
+void ForEachUnit_Custom(int x, int y, void(*func)(struct Unit* unit), u8 minRange, u8 maxRange) {
+    InitTargets(x, y);
+
+    MapAddInRange(x, y, maxRange, 1);
+    MapAddInRange(x, y, minRange, -1);
+
+    ForEachUnitInRange(func);
+
+    return;
+}
+
+void TryAddUnitToCustomTargetList(struct Unit* unit) {
+
+    bool isEnemy = gEventSlots[EVT_SLOT_9];
+
+    if (AreUnitsAllied(gSubjectUnit->index, unit->index) && isEnemy) {
+        return;
+    }
+
+    if (!AreUnitsAllied(gSubjectUnit->index, unit->index) && !isEnemy) {
+        return;
+    }
+
+    if (unit->state & US_RESCUED) {
+        return;
+    }
+
+    AddTarget(unit->xPos, unit->yPos, unit->index, 0);
+
+    return;
+}
+
+void MakeTargetList(struct Unit* unit) {
+    int x = unit->xPos;
+    int y = unit->yPos;
+
+    gSubjectUnit = unit;
+
+    u8 minRange = gEventSlots[EVT_SLOT_7];
+    u8 maxRange = gEventSlots[EVT_SLOT_8];
+
+    BmMapFill(gBmMapRange, 0);
+
+    ForEachUnit_Custom(x, y, TryAddUnitToCustomTargetList, minRange, maxRange);
+
+    return;
+}

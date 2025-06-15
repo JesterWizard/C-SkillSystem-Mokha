@@ -66,6 +66,7 @@
 // SID_Geomancy
 // SID_Dance
 // SID_Acidic
+// SID_AcidicPlus
 
 //////// PRE-BATTLE SKILLS
 // SID_DefiantStr

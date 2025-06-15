@@ -552,6 +552,14 @@ Can use healing items on adjacent[N]
 enemies and invert their effects.[N]
 Halved on bosses.[X]
 
+## MSG_SKILL_AcidicPlus_NAME
+Acidic+[X]
+## MSG_SKILL_AcidicPlus_DESC
+Acidic+:[N]
+Can use healing items on ranged[N]
+enemies and invert their effects.[N]
+Halved on bosses.[X]
+
 ## MSG_MenuCommand_Refuge_NAME
 Refuge[X]
 ## MSG_MenuCommand_Refuge_DESC

@@ -5,19 +5,6 @@
 #include "jester_headers/soundtrack-ids.h"
 #include "jester_headers/custom-functions.h"
 
-void ForEachUnit(int x, int y, void(*func)(struct Unit* unit), u8 minRange, u8 maxRange);
-
-void ForEachUnit(int x, int y, void(*func)(struct Unit* unit), u8 minRange, u8 maxRange) {
-    InitTargets(x, y);
-
-    MapAddInRange(x, y, maxRange, 1);
-    MapAddInRange(x, y, minRange, -1);
-
-    ForEachUnitInRange(func);
-
-    return;
-}
-
 static void ExecHeal_Target(int healAmount)
 {
     int healingAmount = healAmount;
@@ -31,6 +18,8 @@ static void ExecHeal_Target(int healAmount)
     AddUnitHp(GetUnit(gActionData.targetIndex), healingAmount);
     gBattleHitIterator->hpChange = gBattleTarget.unit.curHP - GetUnitCurrentHp(GetUnit(gActionData.targetIndex));
     gBattleTarget.unit.curHP = GetUnitCurrentHp(GetUnit(gActionData.targetIndex));
+
+    gActiveUnit->items[gActionData.itemSlotIndex] = GetItemAfterUse(gActiveUnit->items[gActionData.itemSlotIndex]);
 
     if (gBattleTarget.unit.curHP == 0)
     {
@@ -78,6 +67,14 @@ static void TryAddUnitToTargetList(struct Unit* unit) {
     if (unit->state & US_RESCUED) {
         return;
     }
+
+#if defined(SID_AcidicPlus) && (COMMON_SKILL_VALID(SID_AcidicPlus))
+    if (SkillTester(gActiveUnit, SID_AcidicPlus) && gActionData.unk08 == SID_AcidicPlus)
+    { 
+        if (UNIT_FACTION(gSubjectUnit) != UNIT_FACTION(unit))
+            AddTarget(unit->xPos, unit->yPos, unit->index, 0);
+    }
+#endif
 
 #if defined(SID_Acidic) && (COMMON_SKILL_VALID(SID_Acidic))
     if (SkillTester(gActiveUnit, SID_Acidic) && gActionData.unk08 == SID_Acidic)
@@ -134,7 +131,7 @@ static void MakeTargetListForUnit(struct Unit* unit, u8 minRange, u8 maxRange)  
 
     BmMapFill(gBmMapRange, 0);
 
-    ForEachUnit(x, y, TryAddUnitToTargetList, minRange, maxRange);
+    ForEachUnit_Custom(x, y, TryAddUnitToTargetList, minRange, maxRange);
 
     // For the active unit
     int activeItem = GetItemIndex(gBattleActor.unit.items[gActionData.itemSlotIndex]);
@@ -215,8 +212,6 @@ static u8 Salve_OnSelectTarget(ProcPtr proc, struct SelectTarget * target)
         break;
     };
 
-    gActiveUnit->items[gActionData.itemSlotIndex] = GetItemAfterUse(gActiveUnit->items[gActionData.itemSlotIndex]);
-
     UnitRemoveInvalidItems(gActiveUnit);
 
     return TARGETSELECTION_ACTION_ENDFAST | TARGETSELECTION_ACTION_END | TARGETSELECTION_ACTION_SE_6A | TARGETSELECTION_ACTION_CLEARBGS;
@@ -265,6 +260,29 @@ u8 ItemSubMenu_UseItem(struct MenuProc* menu, struct MenuItemProc* menuItem) {
     }
 
     ClearBg0Bg1();
+
+#if defined(SID_AcidicPlus) && (COMMON_SKILL_VALID(SID_AcidicPlus))
+    if (SkillTester(gActiveUnit, SID_AcidicPlus) && gActionData.unk08 == SID_AcidicPlus)
+    { 
+        u8 minRange = 0;
+        u8 maxRange = 3;
+        u8 activeItem = GetItemIndex(gBattleActor.unit.items[gActionData.itemSlotIndex]);
+
+        switch (activeItem)
+        {
+            case ITEM_VULNERARY:
+            case ITEM_VULNERARY_2:
+            case ITEM_ELIXIR:
+                MakeTargetListForUnit(gActiveUnit, minRange, maxRange);
+                BmMapFill(gBmMapMovement, -1);
+                StartSubtitleHelp(NewTargetSelection_Specialized(&gSelectInfo_PutTrap, Acidic_OnSelectTarget), GetStringFromIndex(MSG_SKILL_Common_Target));
+                break;
+
+            default:
+                break;
+        };
+    }
+#endif
 
 #if defined(SID_Acidic) && (COMMON_SKILL_VALID(SID_Acidic))
     if (SkillTester(gActiveUnit, SID_Acidic) && gActionData.unk08 == SID_Acidic)
@@ -323,7 +341,7 @@ u8 ItemSubMenu_UseItem(struct MenuProc* menu, struct MenuItemProc* menuItem) {
     }
     else
     {
-        if (gActionData.unk08 != SID_Acidic)
+        if (gActionData.unk08 != SID_Acidic && gActionData.unk08 != SID_AcidicPlus)
             DoItemUse(gActiveUnit, gActiveUnit->items[gActionData.itemSlotIndex]);
     }
 #else
@@ -341,6 +359,32 @@ LYN_REPLACE_CHECK(CanUnitUseHealItem);
 s8 CanUnitUseHealItem(struct Unit* unit)
 {
 
+#if defined(SID_AcidicPlus) && (COMMON_SKILL_VALID(SID_AcidicPlus))
+    if (SkillTester(gActiveUnit, SID_AcidicPlus) && gActionData.unk08 == SID_AcidicPlus)
+    {
+        for (int i = 0; i < ARRAY_COUNT_RANGE3x3; i++)
+        {
+            int _x = gActiveUnit->xPos + gVecs_3x3[i].x;
+            int _y = gActiveUnit->yPos + gVecs_3x3[i].y;
+
+            struct Unit * unit_enemy = GetUnitAtPosition(_x, _y);
+
+            if (!UNIT_IS_VALID(unit_enemy))
+                continue;
+
+            if (AreUnitsAllied(gActiveUnit->index, unit_enemy->index))
+                continue;
+
+            if (unit_enemy->state & (US_HIDDEN | US_DEAD | US_RESCUED | US_BIT16))
+                continue;
+
+            return TRUE;
+        }
+            
+        return FALSE;
+    }
+#endif
+
 #if defined(SID_Acidic) && (COMMON_SKILL_VALID(SID_Acidic))
     if (SkillTester(gActiveUnit, SID_Acidic) && gActionData.unk08 == SID_Acidic)
     {
@@ -350,7 +394,11 @@ s8 CanUnitUseHealItem(struct Unit* unit)
             int _y = gActiveUnit->yPos + gVecs_1x1[i].y;
 
             struct Unit * unit_enemy = GetUnitAtPosition(_x, _y);
+
             if (!UNIT_IS_VALID(unit_enemy))
+                continue;
+
+            if (AreUnitsAllied(gActiveUnit->index, unit_enemy->index))
                 continue;
 
             if (unit_enemy->state & (US_HIDDEN | US_DEAD | US_RESCUED | US_BIT16))
