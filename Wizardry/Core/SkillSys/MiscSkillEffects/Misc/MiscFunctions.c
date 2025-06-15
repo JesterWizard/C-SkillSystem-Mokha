@@ -5556,3 +5556,15 @@ u8 AttackMapSelect_Cancel(ProcPtr proc, struct SelectTarget * target) {
 
     return MENU_ACT_SKIPCURSOR | MENU_ACT_END | MENU_ACT_SND6B;
 }
+
+//! FE8U = 0x080A0AD4
+int GetSupportScreenPartnerSupportLevel(int idx, int partner) 
+{
+
+#ifdef CONFIG_UNLOCK_ALL_SUPPORTS
+    return 3;
+#else
+    return sSupportScreenUnits[idx].supportLevel[partner];
+#endif
+
+}
