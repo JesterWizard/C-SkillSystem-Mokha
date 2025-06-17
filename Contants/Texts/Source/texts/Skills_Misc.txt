@@ -398,3 +398,10 @@ Half Shift:[N]
 Unit can transform into a[N]
 Laguz at any time, but their[N]
 transformation boosts are halved.[X]
+
+## MSG_SKILL_StickyHold_NAME
+Sticky Hold[X]
+## MSG_SKILL_StickyHold_DESC
+Sticky Hold:[N]
+This unit cannot have their[N]
+items stolen.[X]

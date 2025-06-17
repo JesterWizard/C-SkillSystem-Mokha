@@ -5109,6 +5109,11 @@ void AddAsTarget_IfCanStealFrom(struct Unit* unit) {
         }
 #endif
 
+#if defined(SID_StickyHold) && (COMMON_SKILL_VALID(SID_StickyHold))
+        if (SkillTester(unit, SID_StickyHold)) 
+            continue;
+#endif
+
         AddTarget(unit->xPos, unit->yPos, unit->index, 0);
         return;
     }
@@ -5558,6 +5563,7 @@ u8 AttackMapSelect_Cancel(ProcPtr proc, struct SelectTarget * target) {
 }
 
 //! FE8U = 0x080A0AD4
+LYN_REPLACE_CHECK(GetSupportScreenPartnerSupportLevel);
 int GetSupportScreenPartnerSupportLevel(int idx, int partner) 
 {
 

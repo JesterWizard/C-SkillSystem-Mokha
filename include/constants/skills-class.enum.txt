@@ -774,6 +774,7 @@
 // SID_ScrollScribe
 // SID_FormShift
 // SID_HalfShift
+// SID_StickyHold
 
 //////// COMBAT ARTS
 // SID_COMBAT_Grounder
