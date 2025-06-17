@@ -260,6 +260,7 @@
 // SID_SlowStart
 // SID_Flicker
 // SID_UnarmedCombat
+// SID_SereneGrace
 
 //////// POST-BATTLE SKILLS
 // SID_Canto

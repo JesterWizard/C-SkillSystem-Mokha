@@ -350,3 +350,10 @@ Absorb Alternation:[N]
 The unit alternates between absorbing[N]
 HP from MAGIC and MELEE every turn.[N]
 Even turns = MAGIC, odd turns = MELEE.[X]
+
+## MSG_SKILL_SereneGrace_NAME
+Serene Grace[X]
+## MSG_SKILL_SereneGrace_DESC
+Serene Grace:[N]
+Double the activation[N]
+rate of this unit's skills.[X]
