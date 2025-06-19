@@ -773,3 +773,4 @@
 #define MSG_SKILL_AcidicPlus_CAPACITY 1
 #define MSG_SKILL_SereneGrace_CAPACITY 1
 #define MSG_SKILL_StickyHold_CAPACITY 1
+#define MSG_SKILL_Levitate_CAPACITY 1

@@ -550,6 +550,7 @@ SID_Rampart
 SID_RampartPlus
 SID_Forcefield
 SID_AbsorbAlternation
+SID_Levitate
 
 //////// EFFECTIVENESS SKILLS
 SID_Resourceful

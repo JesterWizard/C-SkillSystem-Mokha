@@ -7777,4 +7777,14 @@ const struct SkillInfo gSkillInfos[MAX_SKILL_NUM + 1] = {
     },
 #endif
 
+#if (defined(SID_Levitate) && COMMON_SKILL_VALID(SID_Levitate))
+    [SID_Levitate] = {
+        .name = MSG_SKILL_Levitate_NAME,
+        .desc = MSG_SKILL_Levitate_DESC,
+        .capacity = MSG_SKILL_Levitate_CAPACITY,
+        .price = MSG_SKILL_Levitate_PRICE,
+        .icon = GFX_SkillIcon_WIP,
+    },
+#endif
+
 };

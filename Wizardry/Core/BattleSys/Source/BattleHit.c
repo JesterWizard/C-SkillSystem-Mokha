@@ -9,6 +9,7 @@
 #include "constants/skills.h"
 #include "unit-expa.h"
 #include "jester_headers/custom-structs.h"
+#include "jester_headers/custom-functions.h"
 #include "playst-expa.h"
 
 #ifdef CONFIG_BEXP

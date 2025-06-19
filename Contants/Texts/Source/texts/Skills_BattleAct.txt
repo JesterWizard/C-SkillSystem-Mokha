@@ -342,7 +342,6 @@ If this unit is at full HP and would[N]
 take >= 50% damage from an attack,[N]
 dodge the attack chance for this unit.[X]
 
-
 ## MSG_SKILL_AbsorbAlternation_NAME
 Absorb Alternation[X]
 ## MSG_SKILL_AbsorbAlternation_DESC
@@ -357,3 +356,10 @@ Serene Grace[X]
 Serene Grace:[N]
 Double the activation[N]
 rate of this unit's skills.[X]
+
+## MSG_SKILL_Levitate_NAME
+Levitate[x]
+## MSG_SKILL_Levitate_DESC
+Levitate:[N]
+This unit is immune to damage from[N]
+non-magic and non-flying enemies.[X]

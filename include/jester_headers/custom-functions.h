@@ -7,7 +7,8 @@ int findMax(u8 *array, int size);  // find max value in array and return index
 
 int RandSkill(int id, struct Unit * unit);
 
-static const u8 monsterClasses[25] = {
+static const u8 monsterClasses[25] = 
+{
     CLASS_MANAKETE,
     CLASS_MANAKETE_MYRRH,
     CLASS_PHANTOM,
@@ -41,6 +42,30 @@ bool isMonsterClass(int classId);
 bool isMonsterClass(int classId) {
     for (unsigned i = 0; i < MONSTER_CLASS_COUNT; i++) {
         if (monsterClasses[i] == classId) {
+            return true;
+        }
+    }
+    return false;
+}
+
+static const u8 flyingClasses[8] = 
+{
+    CLASS_WYVERN_KNIGHT,
+    CLASS_WYVERN_LORD,
+    CLASS_WYVERN_RIDER,
+    CLASS_DRACO_ZOMBIE,
+    CLASS_GARGOYLE,
+    CLASS_DEATHGOYLE,
+    CLASS_PEGASUS_KNIGHT,
+    CLASS_FALCON_KNIGHT
+};
+
+#define FLYING_CLASS_COUNT (sizeof(flyingClasses) / sizeof(flyingClasses[0]))
+
+bool isFlyingClass(int classId);
+bool isFlyingClass(int classId) {
+    for (unsigned i = 0; i < FLYING_CLASS_COUNT; i++) {
+        if (flyingClasses[i] == classId) {
             return true;
         }
     }

@@ -10,6 +10,7 @@
 #include "constants/skills.h"
 #include "constants/combat-arts.h"
 #include "playst-expa.h"
+#include "jester_headers/custom-functions.h"
 
 typedef void (*BattleDamageCalcFunc)(struct BattleUnit * buA, struct BattleUnit * buB);
 extern BattleDamageCalcFunc const * const gpBattleDamageCalcFuncs;
@@ -749,6 +750,16 @@ bool rampartPlus_activated = false;
                 GetUnit(attacker->unit.index)->maxHP -= 5;
             else
                 GetUnit(attacker->unit.index)->maxHP -= 1;
+        }
+#endif
+
+#if (defined(SID_Levitate) && (COMMON_SKILL_VALID(SID_Levitate)))
+        if (BattleSkillTester(defender, SID_Levitate))
+        {
+            if (IsMagicAttack(attacker) || isFlyingClass(UNIT_CLASS_ID(GetUnit(attacker->unit.index))))
+                result = result;
+            else
+                result = 0;
         }
 #endif
 
