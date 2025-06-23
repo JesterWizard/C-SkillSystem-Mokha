@@ -72,9 +72,6 @@ u8 Swap_Usability(const struct MenuItemDef * def, int number)
     if (!HasSelectTarget(gActiveUnit, MakeTargetListForSwap))
         return MENU_DISABLED;
 
-    if (CheckBitUES(gActiveUnit, UES_BIT_SWAP_SKILL_USED))
-        return MENU_NOTSHOWN;
-
     return MENU_ENABLED;
 }
 
@@ -179,7 +176,6 @@ LABEL(99)
 
 bool Action_Swap(ProcPtr parent)
 {
-    SetBitUES(gActiveUnit, UES_BIT_SWAP_SKILL_USED);
     KernelCallEvent(EventScr_MenuPositionSwap, EV_EXEC_CUTSCENE, parent);
     return true;
 }

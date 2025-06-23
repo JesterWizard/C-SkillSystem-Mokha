@@ -566,6 +566,18 @@ bool rampartPlus_activated = false;
     }
 #endif
 
+#if defined(SID_Protect) && (COMMON_SKILL_VALID(SID_Protect))
+    if (BattleSkillTester(defender, SID_Protect) && !CheckBitUES(GetUnit(defender->unit.index), UES_BIT_PROTECT_SKILL_USED))
+    {
+        if (!AreUnitsAllied(defender->unit.index, gPlaySt.faction) && act_flags->round_cnt_hit == 1)
+        {
+            RegisterTargetEfxSkill(GetBattleHitRound(gBattleHitIterator), SID_Protect);
+            gDmg.decrease += DAMAGE_DECREASE(99);
+            SetBitUES(GetUnit(defender->unit.index), UES_BIT_PROTECT_SKILL_USED);
+        }
+    }
+#endif
+
 #if (defined(SID_BeastAssault) && (COMMON_SKILL_VALID(SID_BeastAssault)))
     if (BattleSkillTester(defender, SID_BeastAssault))
         gDmg.decrease += DAMAGE_DECREASE(SKILL_EFF0(SID_BeastAssault));
@@ -694,8 +706,8 @@ bool rampartPlus_activated = false;
         result = quotient;
     }
 
-    if (result == 0 && gDmg.damage_base > 0)
-        result = 1; // at least 1 damage left.
+    // if (result == 0 && gDmg.damage_base > 0)
+    //     result = 1; // at least 1 damage left.
 
     result += gDmg.real_damage;
 

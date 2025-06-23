@@ -405,3 +405,11 @@ Sticky Hold[X]
 Sticky Hold:[N]
 This unit cannot have their[N]
 items stolen.[X]
+
+## MSG_SKILL_Protect_NAME
+Protect[X]
+## MSG_SKILL_Protect_DESC
+Protect:[N]
+When defending this turn,[N]
+the first strike to this[N]
+unit this turn deals no damage.[X]

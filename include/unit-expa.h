@@ -13,12 +13,6 @@ enum unit_expa_sus_bitfile_idx {
 #if defined(SID_Teleportation) && (COMMON_SKILL_VALID(SID_Teleportation))
     UES_BIT_TELEPORTATION_SKILL_USED,
 #endif
-#if defined(SID_Swarp) && (COMMON_SKILL_VALID(SID_Swarp))
-    UES_BIT_SWARP_SKILL_USED,
-#endif
-#if defined(SID_Swap) && (COMMON_SKILL_VALID(SID_Swap))
-    UES_BIT_SWAP_SKILL_USED,
-#endif
 #if defined(SID_Capture) && (COMMON_SKILL_VALID(SID_Capture))
     UES_BIT_CAPTURE_SKILL_USED,
 #endif
@@ -57,6 +51,9 @@ enum unit_expa_sus_bitfile_idx {
 #endif
 #if defined(SID_Bide) && (COMMON_SKILL_VALID(SID_Bide))
     UES_BIT_BIDE_SKILL_USED,
+#endif
+#if defined(SID_Protect) && (COMMON_SKILL_VALID(SID_Protect))
+    UES_BIT_PROTECT_SKILL_USED,
 #endif
     UES_BIT_MAX
 };

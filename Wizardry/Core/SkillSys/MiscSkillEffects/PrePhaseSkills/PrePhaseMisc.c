@@ -14,12 +14,6 @@ bool PrePhase_ClearMiscUES(ProcPtr proc)
 #if defined(SID_Teleportation) && (COMMON_SKILL_VALID(SID_Teleportation))
             ClearBitUES(unit, UES_BIT_TELEPORTATION_SKILL_USED);
 #endif
-#if defined(SID_Swarp) && (COMMON_SKILL_VALID(SID_Swarp))
-            ClearBitUES(unit, UES_BIT_SWARP_SKILL_USED);
-#endif
-#if defined(SID_Swap) && (COMMON_SKILL_VALID(SID_Swap))
-            ClearBitUES(unit, UES_BIT_SWAP_SKILL_USED);
-#endif
 #if defined(SID_Turncoat) && (COMMON_SKILL_VALID(SID_Turncoat))
             ClearBitUES(unit, UES_BIT_CHANGED_FACTIONS);
 #endif
@@ -34,6 +28,9 @@ bool PrePhase_ClearMiscUES(ProcPtr proc)
 #endif
 #if defined(SID_Persuade) && (COMMON_SKILL_VALID(SID_Persuade))
             ClearBitUES(unit, UES_BIT_CHANGED_FACTIONS);
+#endif
+#if defined(SID_Protect) && (COMMON_SKILL_VALID(SID_Protect))
+            ClearBitUES(unit, UES_BIT_PROTECT_SKILL_USED);
 #endif
 
             /* We don't clear these bits as they're meant to be once per unit */
