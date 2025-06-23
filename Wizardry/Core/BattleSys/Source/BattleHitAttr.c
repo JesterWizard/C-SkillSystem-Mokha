@@ -498,6 +498,21 @@ void BattleHit_ConsumeWeapon(struct BattleUnit *attacker, struct BattleUnit *def
     }
 #endif
 
+#if (defined(SID_Protean) && (COMMON_SKILL_VALID(SID_Protean)))
+    if (BattleSkillTester(attacker, SID_Protean))
+    {
+        int cost = 2;
+        while (cost-- > 0)
+        {
+            u16 weapon = GetItemAfterUse(attacker->weapon);
+            attacker->weapon = weapon;
+
+            if (!weapon)
+                break;
+        }
+    }
+#endif
+
     /**
      * Consumes the durability of the own weapon
      */

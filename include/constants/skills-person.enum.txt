@@ -557,6 +557,7 @@
 // SID_Slayer
 // SID_Skybreaker
 // SID_BanditBane
+// SID_Protean
 
 //////// BATTLE ORDER SKILLS
 // SID_Vantage

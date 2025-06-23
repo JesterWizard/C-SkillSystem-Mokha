@@ -170,6 +170,11 @@ bool IsUnitEffectiveAgainst(struct Unit * actor, struct Unit * target)
     }
 #endif
 
+#if (defined(SID_Protean) && (COMMON_SKILL_VALID(SID_Protean)))
+    if (SkillTester(actor, SID_Protean))
+            return true;
+#endif
+
     return false;
 
 check_null_effective:

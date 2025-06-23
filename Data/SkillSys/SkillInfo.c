@@ -7787,4 +7787,14 @@ const struct SkillInfo gSkillInfos[MAX_SKILL_NUM + 1] = {
     },
 #endif
 
+#if (defined(SID_Protean) && COMMON_SKILL_VALID(SID_Protean))
+    [SID_Protean] = {
+        .name = MSG_SKILL_Protean_NAME,
+        .desc = MSG_SKILL_Protean_DESC,
+        .capacity = MSG_SKILL_Protean_CAPACITY,
+        .price = MSG_SKILL_Protean_PRICE,
+        .icon = GFX_SkillIcon_WIP,
+    },
+#endif
+
 };

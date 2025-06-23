@@ -774,3 +774,4 @@
 #define MSG_SKILL_SereneGrace_PRICE 1000
 #define MSG_SKILL_StickyHold_PRICE 1000
 #define MSG_SKILL_Levitate_PRICE 1000
+#define MSG_SKILL_Protean_PRICE 1000
