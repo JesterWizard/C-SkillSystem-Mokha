@@ -1,4 +1,4 @@
-#include "c_code.h"
+#include "C_Code.h"
 
 #define brk asm("mov r11, r11");
 #define DangerBonesBufferSize 0x2878
@@ -6,7 +6,9 @@
 #define MaxTiles DangerBonesBufferSize / enemySize
 // x*y = 1480 or smaller eg. up to around a 38x38 map
 
-extern u8 DangerBonesBuffer[DangerBonesBufferSize];
+#define DangerBonesBuffer ((u8*)0x201c8d0)
+
+// u8 DangerBonesBuffer[DangerBonesBufferSize];
 
 #define US_BIT_SHAKE (1 << 24)
 #define US_BIT_PAL (1 << 27)

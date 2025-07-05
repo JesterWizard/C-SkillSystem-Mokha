@@ -111,3 +111,12 @@ Casual[X]
 ## MSG_MenuCommand_Transform_Laguz_DESC
 Transform into a Laguz[N]
 form, gaining stat boosts.[X]
+
+## MSG_GOT_ITEM
+ got [X]
+## MSG_STOLE_ITEM
+ stole [X]
+## MSG_PILFERED_ITEM
+ pilfered [X]
+## MSG_GOLD
+ gold [X]
