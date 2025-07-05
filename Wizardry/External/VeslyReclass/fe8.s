@@ -118,7 +118,7 @@ dat 0x0200E150, gUnknown_0200E150
 dat 0x0200E158, gUnknown_0200E158
 dat 0x0200F158, gUnknown_0200F158
 dat 0x0200F15C, gUnknown_0200F15C
-dat 0x0200F17C, gStringBufferAlt
+dat 0x0200F17C, gBufPrep
 dat 0x0200F1C8, gBanimScrLeft
 dat 0x0201117C, gPrepMainMenuTexts
 dat 0x020111CC, gPrepUnitPool

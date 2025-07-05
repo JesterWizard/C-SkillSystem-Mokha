@@ -95,7 +95,6 @@ static const EventScr EventScr_Beginning[] = {
     HIGHLIGHT_CHARACTER(CHARACTER_ONEILL, 60)
     TEXT(Chapter_00_Scene_03_Convo_04)
     // GIVE_SKILL_SCROLL_TO(SID_GoddessDance, CHARACTER_EIRIKA)
-    // UseArrowTrap(0, 1, 2)
     ASMC(SetGameOptions_Chapter0)
     NOFADE
     ENDA
@@ -107,17 +106,6 @@ static const EventScr EventScr_Ending[] = {
     FADE_FROM_BLACK(16)
     NEXT_CHAPTER_WITHOUT_MAP(CHAPTER_01)
     REMA
-    // SET_FLAG(GUIDE_SUSPEND)
-    // SET_FLAG(GUIDE_SAVE)
-    // SET_FLAG(GUIDE_MOVEMENT_RANGE)
-    // SET_FLAG(GUIDE_VIEWING_UNITS)
-    // SET_FLAG(GUIDE_GAME_FLOW)
-    // SET_FLAG(GUIDE_DEFEAT_A_BOSS)
-    // SET_FLAG(GUIDE_ATTACK_RANGE)
-    // SET_FLAG(GUIDE_STRATEGIC_BATTLE_INFO)
-    // SET_FLAG(GUIDE_DETAILED_BATTLE_INFO)
-    // SET_FLAG(GUIDE_LEVELING_UP)
-    // SET_FLAG(GUIDE_WEAPON_DURABILITY)
     ENDA
 };
 
@@ -127,7 +115,6 @@ static const EventListScr EventListScr_ONeillAttack[] = {
     BNE(0x0, EVT_SLOT_C, EVT_SLOT_7)
     MUSC(BGM_TRUTH_DESPAIR_AND_HOPE)
     TEXT(Chapter_00_ONeill_Agro)
-    /* slot1 saves the (u8)( (AI1 << 8) | AI2 ) */
     SVAL(EVT_SLOT_1, 0x0)
     CHAI(CHARACTER_ONEILL)
     GOTO(0x1)

@@ -156,7 +156,7 @@
 // #define CONFIG_AUTO_PROMOTION_ON_MAX_LEVEL
 
 /* Don't turn this on until I have defeat quotes for everyone as MC dying without a quote doesn't trigger a game over screen */
-//#define CONFIG_MULTIPLE_DEATH_QUOTES
+#define CONFIG_MULTIPLE_DEATH_QUOTES
 
 // #define CONFIG_GROWTHS_AS_LETTERS
 
@@ -254,7 +254,7 @@
 #define CONFIG_MODULAR_STAFF_EXP
 #define CONFIG_CUSTOM_ITEMS
 
-#define CONFIG_CUSTOM_STAFF_ACCURACY 100
+// #define CONFIG_CUSTOM_STAFF_ACCURACY 100
 
 //#define CONFIG_DENY_STAT_SCREEN
 
@@ -264,3 +264,5 @@
 #define CONFIG_ESSENTIALS_AI_TRADE_FIX // Needed for the Capture skill
 
 #define CONFIG_PROMOTION_ON_MAX_LEVEL
+
+#define CONFIG_VESLY_DANGER_BONES

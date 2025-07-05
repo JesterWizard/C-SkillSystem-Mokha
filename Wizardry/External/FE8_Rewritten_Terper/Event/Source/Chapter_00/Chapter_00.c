@@ -15,17 +15,17 @@ const struct ChapterEventGroup Chapter00Event = {
     .specialEventsAfterUnitMoved   = EventListScr_UnitMove,
     .tutorialEvents                = EventListScr_Tutorial,
 
-    .traps            = TrapData_ThisEvent,
-    .extraTrapsInHard = TrapData_ThisEventHard,
+    .traps                         = TrapData_ThisEvent,
+    .extraTrapsInHard              = TrapData_ThisEventHard,
 
     .playerUnitsChoice1InEncounter = NULL,
     .playerUnitsChoice2InEncounter = NULL,
     .playerUnitsChoice3InEncounter = NULL,
 
-    .enemyUnitsChoice1InEncounter = NULL,
-    .enemyUnitsChoice2InEncounter = NULL,
-    .enemyUnitsChoice3InEncounter = NULL,
+    .enemyUnitsChoice1InEncounter  = NULL,
+    .enemyUnitsChoice2InEncounter  = NULL,
+    .enemyUnitsChoice3InEncounter  = NULL,
 
-    .beginningSceneEvents = EventScr_Beginning,
-    .endingSceneEvents    = EventScr_Ending,
+    .beginningSceneEvents          = EventScr_Beginning,
+    .endingSceneEvents             = EventScr_Ending,
 };

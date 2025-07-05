@@ -12,7 +12,73 @@ the Silver Knight... to best me.[A][X]
 // Chapter 01
 ## MSG_DEFEAT_QUOTE_BREGUET
 [OpenMidLeft][LoadFace_Breguet]
-Very good.[A][N][MoveMidLeft]
-Mhm.[A] But all for naught.[A][N]
+V-very good.[A][N][MoveMidLeft]
+But all for naught.[A][N]
 This war will soon span[N]
 the continent.[A][X]
+
+// Chapter 02
+## MSG_DEFEAT_QUOTE_BONE
+[OpenMidLeft][LoadFace_Bone]
+Ugh, we wuz gonna live[N][HalfCloseEyes]
+in a castle, he said...[A][X]
+
+// Chapter 03
+## MSG_DEFEAT_QUOTE_BAZBA
+[OpenMidLeft][LoadFace_Bazba]
+N-no, no![A][N]
+I'm the mighty Bazba,[N]
+you dogs, ain't gonna...[A][X]
+
+// Chapter 04
+## MSG_DEFEAT_QUOTE_CH4
+[OpenMidLeft]
+Ssss...[A][X]
+
+// Chapter 05
+## MSG_DEFEAT_QUOTE_SAAR
+[OpenMidLeft][LoadFace_Saar][HalfCloseEyes]
+Agh.[A][N]
+You may have beaten me, but you only[N]
+tighten the noose around your own neck.[A][N]
+Do not think you are safe.[A][N]
+We are everywhere...[A][X]
+
+// Chapter 05x
+## MSG_DEFEAT_QUOTE_ZONTA
+[OpenMidLeft][LoadFace_Zonta]
+Were we... just pawns?[A][N]
+That's always the lot[N]
+for us mercs...[A][X]
+
+// Chapter 06
+## MSG_DEFEAT_QUOTE_NOVALA
+N-no...[A][N]
+I was so... close to being...
+useful.[A][N]
+Now I'll n-never[N]
+surpass you, Knoll...[A][X]
+
+// Chapter 07
+## MSG_DEFEAT_QUOTE_MURRAY
+[OpenMidLeft][LoadFace_Murray][CloseEyes]
+Dammit, what was it all for...[A][N]
+I should have just run.[A][X]
+
+// Chapter 08
+## MSG_DEFEAT_QUOTE_TIRADO
+[OpenMidLeft][LoadFace_Tirado]
+Very... Impressive...[N]
+However...[A][N]
+I expect you'll wish you'd[N]
+died here on my steel.[A][N]
+Lord Valter is...[N]
+not nearly as merciful as I...[A][X]
+
+// Chapter 09
+## MSG_DEFEAT_QUOTE_BINKS
+[OpenMidLeft][LoadFace_Binks][MoveMidLeft]
+5,000 gold was way too little.[A][N]
+Pablo, you cheap bas...[A][X]
+
+// Chapter 10

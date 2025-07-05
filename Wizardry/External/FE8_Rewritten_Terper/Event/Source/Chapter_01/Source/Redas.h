@@ -2,19 +2,19 @@
  * Players
  */
 static const struct REDA REDAs_SETH[] = { 
-    { .x = 13, .y = 8, .b = 0x0000, .delayFrames = 0, },
+    { .x = 13, .y = 8, .b = -1, .delayFrames = 0, },
 };
 
 static const struct REDA REDAs_EIRIKA[] = {
-    { .x = 12, .y = 9, .b = 0x0000, .delayFrames = 0, },
+    { .x = 12, .y = 9, .b = -1, .delayFrames = 0, },
 };
 
 static const struct REDA REDAs_FRANZ[] = { 
-    { .x = 5, .y = 1, .b = 0x0000, .delayFrames = 0, },
+    { .x = 7, .y = 1, .b = -1, .delayFrames = 0, },
 };
 
 static const struct REDA REDAs_GILLIAM[] = {
-    { .x = 6, .y = 1, .b = 0x0000, .delayFrames = 0, },
+    { .x = 6, .y = 1, .b = -1, .delayFrames = 0, },
 };
 
 /**
@@ -58,10 +58,10 @@ static const struct REDA REDAs_FIGHTER5_ENEMY[] = {
  * Green units
  */
 static const struct REDA REDAs_CAVALIER_GREEN[] = {
-    { .x = 2, .y = 3, .b = -1},
-    { .x = 0, .y = 3, .b = -1},
-    { .x = 0, .y = 0, .b = -1}
+    { .x = 2, .y = 3, .b = 0xFFFF},
+    { .x = 0, .y = 3, .b = 0xFFFF},
+    { .x = 0, .y = 0, .b = 0xFFFF}
 };
 static const struct REDA REDAs_MERCENARY_GREEN[] = {
-    { .x = 2, .y = 2, .b = 0x0000} 
+    { .x = 2, .y = 2, .a = 0xC1} 
 };

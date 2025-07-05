@@ -80,7 +80,7 @@ extern u32 gBanimOamr2[];
 // extern ??? gUnknown_0200E158
 // extern ??? gUnknown_0200F158
 // extern ??? gUnknown_0200F15C
-extern char gStringBufferAlt[];
+extern char gBufPrep[];
 
 // TODO: define this in hardware.c?
 extern u8 gGenericBuffer[0x2000];

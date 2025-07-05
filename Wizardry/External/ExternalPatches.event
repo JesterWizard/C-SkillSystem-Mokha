@@ -150,3 +150,7 @@
 
 /* Not really sure what to do with this, it doesn't seem easy to just replace the tsx */
 // #include "ModularMinimugBox/Installer.event"
+
+#ifdef CONFIG_VESLY_DANGER_BONES
+    #include "VeslyDangerBones/VeslyDangerBones_Installer.event"
+#endif

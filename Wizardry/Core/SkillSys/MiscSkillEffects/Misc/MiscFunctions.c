@@ -4662,9 +4662,11 @@ struct Unit* LoadUnit(const struct UnitDefinition* uDef) {
         unit = GetFreeUnit(FACTION_RED);
         break;
 
+#ifdef CONFIG_FOURTH_ALLEGIANCE
     case 3:
         unit = GetFreeUnit(FACTION_PURPLE);
         break;
+#endif
 
     } // switch (uDef->allegiance)
 
@@ -4742,65 +4744,6 @@ void SaveMenuPutChapterTitle(struct SaveMenuProc * proc)
         else
             PutChapterTitleGfx((((OBJ_PRIORITY(2) + OBJCHR_SAVEMENU_TITLEGFX) * TILE_SIZE_4BPP + (0x800 * (u32)i)) & 0x1FFFF) / TILE_SIZE_4BPP, -1);
     }
-}
-
-//! FE8U = 0x0800D5A4
-LYN_REPLACE_CHECK(Event01_End);
-u8 Event01_End(struct EventEngineProc * proc)
-{
-    s8 i;
-    /* Unused variable */
-    // u16 flag;
-
-    if (!(proc->evStateBits & EV_STATE_ABORT))
-    {
-        if (EVT_SUB_CMD(proc->pEventCurrent) == EVSUBCMD_ENDB)
-        {
-            for (i = 0; i < 8; i++)
-            {
-                gEventActiveQueue[i].evt1 = NULL;
-                gEventActiveQueue[i].evt2 = NULL;
-            }
-        }
-
-        if (gEventActiveQueue[0].evt1 != NULL)
-        {
-            proc->pEventIdk = gEventActiveQueue[0].evt1;
-            proc->pEventCurrent = gEventActiveQueue[0].evt2;
-
-            for (i = 0; i < 7; i++)
-            {
-                gEventActiveQueue[i].evt1 = gEventActiveQueue[i + 1].evt1;
-                gEventActiveQueue[i].evt2 = gEventActiveQueue[i + 1].evt2;
-            }
-
-            gEventActiveQueue[i].evt1 = NULL;
-            gEventActiveQueue[i].evt2 = NULL;
-            return EVC_ADVANCE_CONTINUE;
-        }
-
-        switch (proc->execType) {
-            case EV_EXEC_WORLDMAP:
-                proc->execType = EV_EXEC_UNK4;
-                return EVC_END;
-
-            case EV_EXEC_CUTSCENE:
-                proc->evStateBits &= ~EV_STATE_SKIPPING;
-                proc->evStateBits |= EV_STATE_NOSKIP;
-
-                proc->execType = EV_EXEC_UNK5;
-
-                proc->pEventIdk = (u16 *)EventScr_08592114;
-                proc->pEventCurrent = (u16 *)EventScr_08592114;
-
-                return EVC_STOP_CONTINUE;
-
-            default:
-                return EVC_END;
-        }
-    }
-
-    return EVC_END;
 }
 
 LYN_REPLACE_CHECK(TradeMenu_InitItemDisplay);
@@ -5561,6 +5504,9 @@ u8 AttackMapSelect_Cancel(ProcPtr proc, struct SelectTarget * target) {
 
     return MENU_ACT_SKIPCURSOR | MENU_ACT_END | MENU_ACT_SND6B;
 }
+
+// EWRAM_OVERLAY(0) char gBufPrep[0x2000] = {};
+// struct SupportScreenUnit * const sSupportScreenUnits = (void*)gBufPrep;
 
 //! FE8U = 0x080A0AD4
 LYN_REPLACE_CHECK(GetSupportScreenPartnerSupportLevel);

@@ -40,10 +40,8 @@ static const EventScr EventScr_Beginning[] = {
     HIGHLIGHT_CHARACTER(CHARACTER_EIRIKA, 60)
     TEXT(Chapter_01_Scene_04_Convo_01)
 
-    ASMC(SetGameOptions_Chapter1)
+   // ASMC(SetGameOptions_Chapter1)
 
-    /* Temporary flag(11) is used for triggering event: EventScr_Ch1_Turn_EnemyReinforceArrive, this flag will be unset by event: EventScr_Ch1_Misc_Area */
-    ENUT(EVFLAG_TMP(11))
     NOFADE
     ENDA
 };
@@ -71,7 +69,7 @@ static const EventListScr EventScr_Talk_FRANZ_EIRIKA[] = {
 static const EventListScr EventScr_FRANZ_RETURNS[] = {
     CHECK_TURNS //Store current turn count in slot C
     SVAL(EVT_SLOT_7, 2)
-    BNE(0x0, EVT_SLOT_C, EVT_SLOT_7)
+    BNE(0x0, EVT_SLOT_C, EVT_SLOT_7) // Don't do anything if it isn't turn 2
     MUSC(BGM_COMRADES)
     LOAD_WAIT_PERSIST(CH1_REINFORCEMENTS_ALLIES)
     HIGHLIGHT_CHARACTER(CHARACTER_FRANZ, 60)
@@ -91,7 +89,7 @@ LABEL(0x1)
 static const EventListScr EventScr_ENEMY_REINFORCEMENTS[] = {
     CHECK_TURNS //Store current turn count in slot C
     SVAL(EVT_SLOT_7, 3)
-    BNE(0x0, EVT_SLOT_C, EVT_SLOT_7)
+    BNE(0x0, EVT_SLOT_C, EVT_SLOT_7) // Don't do anything if it isn't turn 3
     REDUCE_VOLUME
     LOAD_WAIT_PERSIST(CH1_REINFORCEMENTS_ENEMIES)
     HIGHLIGHT_CHARACTER(CHARACTER_SOLDIER_83, 60)
