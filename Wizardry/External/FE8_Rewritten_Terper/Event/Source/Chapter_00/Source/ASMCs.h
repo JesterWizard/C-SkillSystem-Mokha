@@ -58,4 +58,5 @@ void SetGameOptions_Chapter0()
 
     // SetUnitStatusIndex(unit_seth, NEW_UNIT_STATUS_DOOM);
     // SetUnitStatusDuration(unit_seth, 2);
+
 }

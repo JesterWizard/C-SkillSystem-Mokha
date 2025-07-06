@@ -1,5 +1,6 @@
 #include "common-chax.h"
 #include "bwl.h"
+#include "ending_details.h"
 
 LYN_REPLACE_CHECK(PidStatsAddBattleAmt);
 void PidStatsAddBattleAmt(struct Unit * unit)

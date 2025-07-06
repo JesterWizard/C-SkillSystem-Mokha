@@ -34,6 +34,31 @@ struct CharacterEndingEnt {
     /* 04 */ int textId;
 };
 
+
+struct CharacterEndingProc {
+    /* 00 */ PROC_HEADER;
+
+    /* 29 */ u8 _pad[0x2E - 0x29];
+    /* 2E */ u16 unk_2e;
+    /* 30 */ struct CharacterEndingEnt* unk_30;
+    /* 34 */ struct CharacterEndingEnt* unk_34;
+    /* 38 */ struct Unit* unitA;
+    /* 3C */ struct Unit* unitB;
+    /* 40 */ u32 unk_40[8]; // flags for characters who have already been shown in an ending
+};
+
+struct EndingBattleDisplayProc
+{
+    /* 00 */ PROC_HEADER;
+
+    /* 2C */ struct Unit * units[2];
+    /* 34 */ int timer;
+    /* 38 */ struct CharacterEndingEnt * pCharacterEnding;
+    /* 3C */ u16 battleAmounts[2];
+    /* 40 */ u16 winAmounts[2];
+    /* 44 */ u16 lossAmounts[2];
+};
+
 // ??? PrepareUnitDefeatLocationString(???);
 // ??? GetPidTitleTextId(???);
 // ??? GetPidDefeatType(???);
@@ -54,9 +79,11 @@ struct CharacterEndingEnt {
 // ??? CharacterEnding_Unused_80B6C74(???);
 void StartCharacterEndings(ProcPtr parent);
 // ??? sub_80B6CA8(???);
-// ??? SoloEndingBattleDisp_Init(???);
-// ??? SoloEndingBattleDisp_Loop(???);
-// ??? StartSoloEndingBattleDisplay(???);
+void SoloEndingBattleDisp_Init(struct EndingBattleDisplayProc * proc);
+void SoloEndingBattleDisp_Loop(struct EndingBattleDisplayProc * proc);
+void PairedEndingBattleDisp_InitBlend(struct EndingBattleDisplayProc * proc);
+void PairedEndingBattleDisp_Loop_Blend(struct EndingBattleDisplayProc * proc);
+void StartSoloEndingBattleDisplay(struct CharacterEndingEnt * endingEnt, struct Unit * unit, struct CharacterEndingProc * parent);
 // ??? sub_80B6F34(???);
 // ??? sub_80B71DC(???);
 // ??? sub_80B723C(???);
