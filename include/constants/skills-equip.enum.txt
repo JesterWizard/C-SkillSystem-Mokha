@@ -261,6 +261,7 @@ SID_SlowStart
 SID_Flicker
 SID_UnarmedCombat
 SID_SereneGrace
+SID_GoldenGlory
 
 //////// POST-BATTLE SKILLS
 SID_Canto

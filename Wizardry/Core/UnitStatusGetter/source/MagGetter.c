@@ -147,6 +147,14 @@ int MagGetterSkills(int status, struct Unit * unit)
         status += SKILL_EFF0(SID_Sellsword);
 #endif
 
+#if defined(SID_GoldenGlory) && (COMMON_SKILL_VALID(SID_GoldenGlory))
+    if (SkillTester(unit, SID_GoldenGlory))
+    {
+        const int statBoost = gPlaySt.partyGoldAmount / 20000;
+        status += statBoost > 5 ? 5 : statBoost;
+    }
+#endif
+
 #if defined(SID_SlowStart) && (COMMON_SKILL_VALID(SID_SlowStart))
     if (SkillTester(unit, SID_SlowStart) && gPlaySt.chapterTurnNumber < 6)
         status -= Div(status * SKILL_EFF0(SID_SlowStart), 100);

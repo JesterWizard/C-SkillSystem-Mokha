@@ -1607,3 +1607,10 @@ Unarmed Combat[X]
 Unarmed Combat:[N]
 This unit can attack[N]
 without a weapon.[X]
+
+## MSG_SKILL_GoldenGlory_NAME
+Golden Glory[X]
+## MSG_SKILL_GoldenGlory_DESC
+Golden Glory:[N]
+Boost all stats by +1 for every[N]
+20000g in total, max +5.[X]

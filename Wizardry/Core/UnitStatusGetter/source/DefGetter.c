@@ -48,6 +48,14 @@ int DefGetterSkills(int status, struct Unit * unit)
         status += SKILL_EFF0(SID_Sellsword);
 #endif
 
+#if defined(SID_GoldenGlory) && (COMMON_SKILL_VALID(SID_GoldenGlory))
+    if (SkillTester(unit, SID_GoldenGlory))
+    {
+        const int statBoost = gPlaySt.partyGoldAmount / 20000;
+        status += statBoost > 5 ? 5 : statBoost;
+    }
+#endif
+
 #if defined(SID_LifeAndDeath) && (COMMON_SKILL_VALID(SID_LifeAndDeath))
     if (SkillTester(unit, SID_LifeAndDeath))
         status += SKILL_EFF1(SID_LifeAndDeath);

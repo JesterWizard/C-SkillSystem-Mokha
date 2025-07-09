@@ -134,6 +134,14 @@ int LckGetterSkills(int status, struct Unit * unit)
             status += Div(_GetUnitLuck(GetUnit(unit->rescue)) * SKILL_EFF0(SID_PairUp), 100);
 #endif
 
+#if defined(SID_GoldenGlory) && (COMMON_SKILL_VALID(SID_GoldenGlory))
+    if (SkillTester(unit, SID_GoldenGlory))
+    {
+        const int statBoost = gPlaySt.partyGoldAmount / 20000;
+        status += statBoost > 5 ? 5 : statBoost;
+    }
+#endif
+
 #if defined(SID_Sellsword) && (COMMON_SKILL_VALID(SID_Sellsword))
     if (SkillTester(unit, SID_Sellsword) && CheckBitUES(unit, UES_BIT_SELLSWORD_SKILL_USED))
         status += SKILL_EFF0(SID_Sellsword);

@@ -776,3 +776,4 @@
 #define MSG_SKILL_Levitate_CAPACITY 1
 #define MSG_SKILL_Protean_CAPACITY 1
 #define MSG_SKILL_Protect_CAPACITY 1
+#define MSG_SKILL_GoldenGlory_CAPACITY 1
