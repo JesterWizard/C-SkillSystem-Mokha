@@ -313,6 +313,31 @@ void ComputeBattleUnitEffectiveHitRate(struct BattleUnit * attacker, struct Batt
 #endif
 }
 
+LYN_REPLACE_CHECK(ComputeBattleUnitEffectiveCritRate);
+void ComputeBattleUnitEffectiveCritRate(struct BattleUnit* attacker, struct BattleUnit* defender) {
+    int item, i;
+
+    attacker->battleEffectiveCritRate = attacker->battleCritRate - defender->battleDodgeRate;
+
+#ifdef CONFIG_QUALITY_OF_LIFE_CAP_CRIT_100
+    if (attacker->battleEffectiveCritRate > 100)
+        attacker->battleEffectiveCritRate = 100;
+#endif
+
+    if (GetItemIndex(attacker->weapon) == ITEM_MONSTER_STONE)
+        attacker->battleEffectiveCritRate = 0;
+
+    if (attacker->battleEffectiveCritRate < 0)
+        attacker->battleEffectiveCritRate = 0;
+
+    for (i = 0; (i < UNIT_ITEM_COUNT) && (item = defender->unit.items[i]); ++i) {
+        if (GetItemAttributes(item) & IA_NEGATE_CRIT) {
+            attacker->battleEffectiveCritRate = 0;
+            break;
+        }
+    }
+}
+
 LYN_REPLACE_CHECK(ComputeBattleUnitEffectiveStats);
 void ComputeBattleUnitEffectiveStats(struct BattleUnit * attacker, struct BattleUnit * defender)
 {
