@@ -107,7 +107,7 @@ void UpdateMenuItemPanel(int slot_or_item)
         Text_InsertDrawString(&texts[2], 0x02, TEXT_COLOR_SYSTEM_WHITE, GetStringFromIndex(0x4F4));
         Text_InsertDrawString(&texts[1], 0x32, TEXT_COLOR_SYSTEM_WHITE, GetStringFromIndex(0x501));
 
-#ifdef CONFIG_ESSENTIALS_SHORTEN_AVOID_TEXT
+#ifdef CONFIG_QUALITY_OF_LIFE_SHORTEN_AVOID_TEXT
         Text_InsertDrawString(&texts[2], 0x32, TEXT_COLOR_SYSTEM_WHITE, "Avd");
 #else
         Text_InsertDrawString(&texts[2], 0x32, TEXT_COLOR_SYSTEM_WHITE, GetStringFromIndex(0x4F5));
