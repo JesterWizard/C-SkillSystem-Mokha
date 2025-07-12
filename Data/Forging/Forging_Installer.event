@@ -1,0 +1,38 @@
+#define ForgeBonus(mt, hit, crit, wt) "BYTE mt hit crit wt"
+#define ForgeLimit(item, index, max, cost) "PUSH; ORG gForgeLimits + (item * 4); BYTE index max; SHORT cost; POP"
+#define Negative(num) "0x100 - num"
+
+// use the macro ForgeBonus(mt, hit, crit, wt) to decide how an item improves each forge level
+// each forge level, the item's stats will *increase* by the amount in gForgeBonuses / 6
+// the number 6 was chosen to support halves and thirds of stats per level
+ALIGN 4
+gForgeBonuses:
+ForgeBonus(3, 30, 15, Negative(6)) // index 0, items with these bonuses will get +0.5 mt, +5 hit, +2.5 crit, -1 wt per forge level
+
+// don't touch the FILL line
+ALIGN 4
+gForgeLimits:
+FILL(256 * 4)
+
+// use the macro ForgeLimit(item, index, max, cost) to decide how an item can be forged
+// "index" is the index of gForgeBonuses that the item gets bonuses from
+// "max" is the maximum number of times an item can be forged
+// "cost" is the amount of gold to forge once, multiplied by current forge count
+// if an item has no entry in this table it is unforgeable
+
+ForgeLimit(IronSword, 0, 6, 500) // iron swords use index 0 forge bonuses, can be forged up to 3 times, cost 500 gold as a baseline
+
+// make sure you have text definitions "ItemAtMaxForgeCountRText", "ItemCannotBeForgedRText", and "NotEnoughGoldToForgeItemRText"
+// ALIGN 4
+// ItemAtMaxForgeCountRText_Link:
+// WORD ItemAtMaxForgeCountRText
+
+// ALIGN 4
+// ItemCannotBeForgedRText_Link:
+// WORD ItemCannotBeForgedRText
+
+// ALIGN 4
+// NotEnoughGoldToForgeItemRText_Link:
+// WORD NotEnoughGoldToForgeItemRText
+
+#include "Forging.lyn.event"

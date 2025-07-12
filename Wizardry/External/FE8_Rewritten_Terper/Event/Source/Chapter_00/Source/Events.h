@@ -151,12 +151,17 @@ LABEL(0x1)
     ENDA
 };
 
+static const EventListScr EventScr_Talk_EIRIKA_SETH[] = {
+    ASMC(CallForgeMenuASMC)
+};
+
 static const EventListScr EventListScr_Turn[] = {
     TURN(EVFLAG_TMP(8), EventListScr_ONeillAttack, 1, 255, FACTION_RED)
     END_MAIN
 };
 
 static const EventListScr EventListScr_Character[] = {
+    CharacterEventBothWays(EVFLAG_TMP(9), EventScr_Talk_EIRIKA_SETH, CHARACTER_EIRIKA, CHARACTER_SETH)
     END_MAIN
 };
 

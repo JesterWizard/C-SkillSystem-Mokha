@@ -2168,6 +2168,17 @@ void sub_809D300(struct Text * textBase, u16 * tm, int yLines, struct Unit * uni
 #ifndef CONFIG_INFINITE_DURABILITY
         PutNumberOrBlank(tm + TILEMAP_INDEX(12, i*2 & 0x1f), !unusable ? 2 : 1, GetItemUses(item));
 #endif
+
+#ifdef CONFIG_FORGNG
+		struct ForgeLimits limits = gForgeLimits[GetItemIndex(item)];
+		if(GetItemForgeCount(item) && limits.maxCount) {
+			PutSpecialChar(tm + TILEMAP_INDEX(11, i*2 & 0x1f), !unusable ? TEXT_COLOR_SYSTEM_GOLD : TEXT_COLOR_SYSTEM_GRAY, TEXT_SPECIAL_PLUS);
+			PutNumberOrBlank(tm + TILEMAP_INDEX(12, i*2 & 0x1f), !unusable ? TEXT_COLOR_SYSTEM_GOLD : TEXT_COLOR_SYSTEM_GRAY, GetItemForgeCount(item));
+		}
+		else if(limits.maxCount == 0) {
+		    PutNumberOrBlank(tm + TILEMAP_INDEX(12, i*2 & 0x1f), !unusable ? 2 : 1, GetItemUses(item));	
+		}
+#endif
     }
 
     return;
@@ -2194,6 +2205,17 @@ void sub_809D47C(struct Text * textBase, u16 * tm, int yLines, struct Unit * uni
 
 #ifndef CONFIG_INFINITE_DURABILITY
         PutNumberOrBlank(tm + offset + 12, !unusable ? 2 : 1,  GetItemUses(item));
+#endif
+
+#ifdef CONFIG_FORGNG
+		struct ForgeLimits limits = gForgeLimits[GetItemIndex(item)];
+		if(GetItemForgeCount(item) && limits.maxCount) {
+			PutSpecialChar(tm + offset + 11, !unusable ? TEXT_COLOR_SYSTEM_GOLD : TEXT_COLOR_SYSTEM_GRAY, TEXT_SPECIAL_PLUS);
+			PutNumberOrBlank(tm + offset + 12, !unusable ? TEXT_COLOR_SYSTEM_GOLD : TEXT_COLOR_SYSTEM_GRAY,  GetItemForgeCount(item));
+		}
+		else if(limits.maxCount == 0) {
+			PutNumberOrBlank(tm + offset + 12, !unusable ? 2 : 1,  GetItemUses(item));
+		}
 #endif
     }
 }
@@ -2233,6 +2255,17 @@ void sub_8099F7C(struct Text* th, u16 * tm, struct Unit* unit, u16 flags) {
         DrawIcon(tm + i * 0x40, GetItemIconId(item), 0x4000);
 
         PutText(th, tm + 2 + i * 0x40);
+
+#ifdef CONFIG_FORGNG
+        struct ForgeLimits limits = gForgeLimits[GetItemIndex(item)];
+		if(GetItemForgeCount(item) && limits.maxCount) {
+			PutSpecialChar(tm + 10 + i * 0x40, !isUnusable ? TEXT_COLOR_SYSTEM_GOLD : TEXT_COLOR_SYSTEM_GRAY, TEXT_SPECIAL_PLUS);
+			PutNumberOrBlank(tm + 11 + i * 0x40, !isUnusable ? TEXT_COLOR_SYSTEM_GOLD : TEXT_COLOR_SYSTEM_GRAY, GetItemForgeCount(item));
+		}
+		else if(limits.maxCount == 0) {
+			PutNumberOrBlank(tm + 11 + i * 0x40, !isUnusable ? TEXT_COLOR_SYSTEM_BLUE : TEXT_COLOR_SYSTEM_GRAY, GetItemUses(item));
+		}
+#endif
 
 #ifndef CONFIG_INFINITE_DURABILITY
         PutNumberOrBlank(tm + 11 + i * 0x40, !isUnusable ? TEXT_COLOR_SYSTEM_BLUE : TEXT_COLOR_SYSTEM_GRAY, GetItemUses(item));
@@ -2274,6 +2307,17 @@ void DrawPrepScreenItems(u16 * tm, struct Text* th, struct Unit* unit, u8 checkP
 
 #ifndef CONFIG_INFINITE_DURABILITY
         PutNumberOrBlank(tm + i * 0x40 + 0xB, isUsable ? TEXT_COLOR_SYSTEM_BLUE : TEXT_COLOR_SYSTEM_GRAY, GetItemUses(item));
+#endif
+
+#ifdef CONFIG_FORGNG
+		struct ForgeLimits limits = gForgeLimits[GetItemIndex(item)];
+		if(GetItemForgeCount(item) && limits.maxCount) {
+			PutSpecialChar(tm + i * 0x40 + 0xA, isUsable ? TEXT_COLOR_SYSTEM_GOLD : TEXT_COLOR_SYSTEM_GRAY, TEXT_SPECIAL_PLUS);
+			PutNumberOrBlank(tm + i * 0x40 + 0xB, isUsable ? TEXT_COLOR_SYSTEM_GOLD : TEXT_COLOR_SYSTEM_GRAY, GetItemForgeCount(item));
+		}
+		else if(limits.maxCount == 0) {
+			PutNumberOrBlank(tm + i * 0x40 + 0xB, isUsable ? TEXT_COLOR_SYSTEM_BLUE : TEXT_COLOR_SYSTEM_GRAY, GetItemUses(item));
+		}
 #endif
 
         DrawIcon(tm + i * 0x40, GetItemIconId(item), 0x4000);

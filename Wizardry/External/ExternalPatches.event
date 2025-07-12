@@ -154,3 +154,7 @@
 #ifdef CONFIG_VESLY_DANGER_BONES
     #include "VeslyDangerBones/VeslyDangerBones_Installer.event"
 #endif
+
+// #ifdef CONFIG_FORGING
+//     #include "Forging/Forging_Installer.event"
+// #endif

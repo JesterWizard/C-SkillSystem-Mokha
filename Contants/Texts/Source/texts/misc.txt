@@ -120,3 +120,12 @@ form, gaining stat boosts.[X]
  pilfered [X]
 ## MSG_GOLD
  gold [X]
+
+## ItemAtMaxForgeCountRText
+Item as max forge count.[X]
+
+## ItemCannotBeForgedRText
+Item cannot be forged.[X]
+
+## NotEnoughGoldToForgeItemRText
+Not enough gold to forge item.[X]

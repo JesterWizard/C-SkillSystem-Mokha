@@ -3,6 +3,7 @@
 #include "status-getter.h"
 #include "constants/skills.h"
 #include "constants/texts.h"
+#include "jester_headers/Forging.h"
 
 extern u16 gUnknown_085A0D4C[];
 
@@ -28,6 +29,7 @@ u8 StealPlus_Usability(const struct MenuItemDef *def, int number)
     return MENU_ENABLED;
 }
 extern int _GetUnitCon(struct Unit * unit); 
+
 LYN_REPLACE_CHECK(RefreshUnitStealInventoryInfoWindow);
 void RefreshUnitStealInventoryInfoWindow(struct Unit *unit)
 {
@@ -68,6 +70,19 @@ void RefreshUnitStealInventoryInfoWindow(struct Unit *unit)
         PutText(proc->lines + i, gBG0TilemapBuffer + TILEMAP_INDEX(xPos + 3, yPos));
 
         PutNumberOrBlank(gBG0TilemapBuffer + TILEMAP_INDEX(xPos + 11, yPos), stealable ? 2 : 1, GetItemUses(item));
+
+#ifdef CONFIG_FORGING
+		struct ForgeLimits limits = gForgeLimits[GetItemIndex(item)];
+        
+        if(GetItemForgeCount(item) && limits.maxCount) {
+			PutSpecialChar(gBG0TilemapBuffer + TILEMAP_INDEX(xPos + 10, yPos), stealable ? TEXT_COLOR_SYSTEM_GOLD : TEXT_COLOR_SYSTEM_GRAY, TEXT_SPECIAL_PLUS);
+			PutNumberOrBlank(gBG0TilemapBuffer + TILEMAP_INDEX(xPos + 11, yPos), stealable ? TEXT_COLOR_SYSTEM_GOLD : TEXT_COLOR_SYSTEM_GRAY, GetItemForgeCount(item));
+		}
+		else if(limits.maxCount == 0) {
+			PutNumberOrBlank(gBG0TilemapBuffer + TILEMAP_INDEX(xPos+11, yPos), stealable ? 2 : 1, GetItemUses(item));			
+		}
+#endif
+
         DrawIcon(gBG0TilemapBuffer + TILEMAP_INDEX(xPos + 1, yPos), GetItemIconId(item), 0x4000);
     }
 

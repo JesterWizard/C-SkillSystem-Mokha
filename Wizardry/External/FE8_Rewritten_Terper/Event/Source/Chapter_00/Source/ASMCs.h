@@ -5,6 +5,7 @@
 #include "skill-system.h"
 #include "jester_headers/miscellaenous.h"
 #include "debuff.h"
+#include "jester_headers/Forging.h"
 // struct LearnedSkillList {
 //     u32 data[8]; /* 8 * 32 = 0x100 */
 // };
@@ -60,3 +61,14 @@ void SetGameOptions_Chapter0()
     // SetUnitStatusDuration(unit_seth, 2);
 
 }
+
+// void CallForgeMenuASMC(struct EventEngineProc* proc) {
+//     ClearBg0Bg1();
+//     SetDispEnable(1, 1, 1, 1, 1);
+//     SetTextFont(0);
+//     InitSystemTextFont();
+//     LoadUiFrameGraphics();
+// 	ResetIconGraphics_();
+	
+// 	StartMenu(&gForgeMenuDef, proc);
+// }
