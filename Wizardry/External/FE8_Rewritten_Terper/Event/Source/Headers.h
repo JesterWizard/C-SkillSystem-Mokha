@@ -9,7 +9,6 @@
 #include "jester_headers/maps.h"
 #include "jester_headers/flags.h"
 #include "jester_headers/miscellaenous.h"
-//#include "jester_headers/Forging.h"
 #include "../../../LimitedShopStock/_src/LimitedShopStock.h"
 #include "EAstdlib.h"
 

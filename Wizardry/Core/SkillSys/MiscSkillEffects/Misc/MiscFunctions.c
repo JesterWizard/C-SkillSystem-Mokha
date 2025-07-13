@@ -32,6 +32,7 @@
 #include "mapanim.h"
 #include "playst-expa.h"
 #include "ending_details.h"
+#include "jester_headers/Forging.h"
 
 #if defined(SID_CatchEmAll) && (COMMON_SKILL_VALID(SID_CatchEmAll))
     const unsigned int gCatchEmAllId = SID_CatchEmAll;
@@ -4395,8 +4396,6 @@ void ProcessMenuDpadInput(struct MenuProc* proc)
         }
 #endif
     }
-
-    // Update hover display
 
     if (proc->itemPrevious != proc->itemCurrent)
     {

@@ -59,7 +59,6 @@
     };
 
     void ForgeMenuInit(struct MenuProc* proc) {
-        NoCashGBAPrint("Init menu");
         ResetText();
 
         StartFace(0, GetUnitPortraitId(gActiveUnit), 0x38, 0x18, 2);
@@ -97,12 +96,6 @@
         PutDrawText(&texts[3], TILEMAP_LOCATED(gBG0TilemapBuffer, 19, 16), TEXT_COLOR_SYSTEM_GOLD, 0, 0, GetStringFromIndex(0x0501));
         PutDrawText(&texts[4], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 16),  TEXT_COLOR_SYSTEM_GOLD, 0, 0, GetStringFromIndex(0x0001));
         
-        Text_InsertDrawNumberOrBlank(&texts[0], 0x16, TEXT_COLOR_SYSTEM_BLUE, GetItemMight(item));
-        Text_InsertDrawNumberOrBlank(&texts[1], 0x1E, TEXT_COLOR_SYSTEM_BLUE, GetItemHit(item));
-        Text_InsertDrawNumberOrBlank(&texts[2], 0x16, TEXT_COLOR_SYSTEM_BLUE, GetItemWeight(item));
-        Text_InsertDrawNumberOrBlank(&texts[3], 0x1E, TEXT_COLOR_SYSTEM_BLUE, GetItemCrit(item));
-        Text_InsertDrawNumberOrBlank(&texts[4], 0x28, TEXT_COLOR_SYSTEM_BLUE, GetItemForgeCost(item));
-        
         PutSpecialChar(TILEMAP_LOCATED(gBG0TilemapBuffer, 15, 14), TEXT_COLOR_SYSTEM_WHITE, TEXT_SPECIAL_ARROW);
         PutSpecialChar(TILEMAP_LOCATED(gBG0TilemapBuffer, 24, 14), TEXT_COLOR_SYSTEM_WHITE, TEXT_SPECIAL_ARROW);
         PutSpecialChar(TILEMAP_LOCATED(gBG0TilemapBuffer, 15, 16), TEXT_COLOR_SYSTEM_WHITE, TEXT_SPECIAL_ARROW);
@@ -110,11 +103,26 @@
         PutSpecialChar(TILEMAP_LOCATED(gBG0TilemapBuffer, 2, 16),  TEXT_COLOR_SYSTEM_WHITE, TEXT_SPECIAL_DASH);
         
         if(limits.maxCount && (GetItemForgeCount(item) < limits.maxCount)) {
+
+            Text_InsertDrawNumberOrBlank(&texts[0], 0x16, TEXT_COLOR_SYSTEM_BLUE, GetItemMight(item));
+            Text_InsertDrawNumberOrBlank(&texts[1], 0x1E, TEXT_COLOR_SYSTEM_BLUE, GetItemHit(item));
+            Text_InsertDrawNumberOrBlank(&texts[2], 0x16, TEXT_COLOR_SYSTEM_BLUE, GetItemWeight(item));
+            Text_InsertDrawNumberOrBlank(&texts[3], 0x1E, TEXT_COLOR_SYSTEM_BLUE, GetItemCrit(item));
+            Text_InsertDrawNumberOrBlank(&texts[4], 0x28, TEXT_COLOR_SYSTEM_BLUE, GetItemForgeCost(item));
+
             int forgedItem = item + (1 << 8);
-            Text_InsertDrawNumberOrBlank(&texts[0], 0x32, TEXT_COLOR_SYSTEM_BLUE, GetItemMight(forgedItem));
-            Text_InsertDrawNumberOrBlank(&texts[1], 0x42, TEXT_COLOR_SYSTEM_BLUE, GetItemHit(forgedItem));
-            Text_InsertDrawNumberOrBlank(&texts[2], 0x32, TEXT_COLOR_SYSTEM_BLUE, GetItemWeight(forgedItem));
-            Text_InsertDrawNumberOrBlank(&texts[3], 0x42, TEXT_COLOR_SYSTEM_BLUE, GetItemCrit(forgedItem));
+            Text_InsertDrawNumberOrBlank(&texts[0], 0x32, TEXT_COLOR_SYSTEM_GREEN, GetItemMight(forgedItem));
+            Text_InsertDrawNumberOrBlank(&texts[1], 0x42, TEXT_COLOR_SYSTEM_GREEN, GetItemHit(forgedItem));
+            Text_InsertDrawNumberOrBlank(&texts[2], 0x32, TEXT_COLOR_SYSTEM_GREEN, GetItemWeight(forgedItem));
+            Text_InsertDrawNumberOrBlank(&texts[3], 0x42, TEXT_COLOR_SYSTEM_GREEN, GetItemCrit(forgedItem));
+        }
+        // If the item is at max forge count or cannot be forged, then show their text in green
+        else {
+            Text_InsertDrawNumberOrBlank(&texts[0], 0x16, TEXT_COLOR_SYSTEM_GREEN, GetItemMight(item));
+            Text_InsertDrawNumberOrBlank(&texts[1], 0x1E, TEXT_COLOR_SYSTEM_GREEN, GetItemHit(item));
+            Text_InsertDrawNumberOrBlank(&texts[2], 0x16, TEXT_COLOR_SYSTEM_GREEN, GetItemWeight(item));
+            Text_InsertDrawNumberOrBlank(&texts[3], 0x1E, TEXT_COLOR_SYSTEM_GREEN, GetItemCrit(item));
+            Text_InsertDrawNumberOrBlank(&texts[4], 0x28, TEXT_COLOR_SYSTEM_GREEN, GetItemForgeCost(item));
         }
 
         return 0;

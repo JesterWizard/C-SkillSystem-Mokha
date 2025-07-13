@@ -21,18 +21,3 @@ FILL(256 * 4)
 // if an item has no entry in this table it is unforgeable
 
 ForgeLimit(IronSword, 0, 6, 500) // iron swords use index 0 forge bonuses, can be forged up to 3 times, cost 500 gold as a baseline
-
-// make sure you have text definitions "ItemAtMaxForgeCountRText", "ItemCannotBeForgedRText", and "NotEnoughGoldToForgeItemRText"
-// ALIGN 4
-// ItemAtMaxForgeCountRText_Link:
-// WORD ItemAtMaxForgeCountRText
-
-// ALIGN 4
-// ItemCannotBeForgedRText_Link:
-// WORD ItemCannotBeForgedRText
-
-// ALIGN 4
-// NotEnoughGoldToForgeItemRText_Link:
-// WORD NotEnoughGoldToForgeItemRText
-
-#include "Forging.lyn.event"

@@ -18,15 +18,15 @@ void SetGameOptions_Chapter0()
     SetGameOption(GAME_OPTION_TEXT_SPEED, 1); // Set game speed to max
     SetGameOption(GAME_OPTION_GAME_SPEED, 3); // Set text speed to max
 
-    // SetPartyGoldAmount(10000);
+    SetPartyGoldAmount(100000);
 
-    // struct Unit * unit_eirika = GetUnitFromCharId(CHARACTER_EIRIKA);
+    struct Unit * unit_eirika = GetUnitFromCharId(CHARACTER_EIRIKA);
     // struct Unit * unit_seth = GetUnitFromCharId(CHARACTER_SETH);
     // unit->maxHP = 26;
     // unit->curHP = 6;
 
     // unit_eirika->ranks[ITYPE_STAFF] = WPN_EXP_C;
-    // unit_eirika->items[0] = MakeNewItem(ITEM_VULNERARY);
+    unit_eirika->items[0] = MakeNewItem(ITEM_SWORD_IRON);
     // unit_eirika->items[1] = ITEM_KNIGHTCREST;
     // unit_eirika->items[2] = ITEM_MASTERSEAL;
 
@@ -61,14 +61,3 @@ void SetGameOptions_Chapter0()
     // SetUnitStatusDuration(unit_seth, 2);
 
 }
-
-// void CallForgeMenuASMC(struct EventEngineProc* proc) {
-//     ClearBg0Bg1();
-//     SetDispEnable(1, 1, 1, 1, 1);
-//     SetTextFont(0);
-//     InitSystemTextFont();
-//     LoadUiFrameGraphics();
-// 	ResetIconGraphics_();
-	
-// 	StartMenu(&gForgeMenuDef, proc);
-// }
