@@ -245,6 +245,7 @@ extern const struct ProcCmd ProcScr_MapAnimSkillfx[];
 void NewSkillMapAnimMini(int x, int y, u16 sid, ProcPtr parent);
 bool SkillMapAnimMiniExists(void);
 
+void AnimOnActiveUnit(u16 sid, void (* callback1)(ProcPtr proc), void (* callback2)(ProcPtr proc));
 void NewMuSkillAnimOnActiveUnit(u16 sid, void (* callback1)(ProcPtr proc), void (* callback2)(ProcPtr proc));
 bool MuSkillAnimExists(void);
 void NewMuSkillAnimOnActiveUnitWithDeamon(ProcPtr parent, u16 sid, void (*callback1)(ProcPtr proc), void (*callback2)(ProcPtr proc));

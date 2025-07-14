@@ -13,8 +13,6 @@ struct ForgeLimits {
 	u16 baseCost;	/* 0x02 */
 };
 
-extern const struct MenuDef gForgeMenuDef;
-
 // list in EA of potential forging bonuses
 extern const struct ForgeBonuses gForgeBonuses[];
 

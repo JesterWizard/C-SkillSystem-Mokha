@@ -20,4 +20,4 @@ FILL(256 * 4)
 // "cost" is the amount of gold to forge once, multiplied by current forge count
 // if an item has no entry in this table it is unforgeable
 
-ForgeLimit(IronSword, 0, 6, 500) // iron swords use index 0 forge bonuses, can be forged up to 3 times, cost 500 gold as a baseline
+ForgeLimit(IronSword, 0, 6, 500) // iron swords use index 0 forge bonuses, can be forged up to 6 times, cost 500 gold as a baseline
