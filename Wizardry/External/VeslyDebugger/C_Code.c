@@ -3775,7 +3775,6 @@ u8 PageIdler(struct MenuProc* menu, struct MenuItemProc* command) {
 
 } 
 
-
 u8 MenuCancelSelectResumePlayerPhase(struct MenuProc* menu, struct MenuItemProc* item)
 {
 	DebuggerProc* proc; 

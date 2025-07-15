@@ -427,6 +427,7 @@ extern const int NumOfForgables; // Same as max item durability, 0 is invalid
         InitSystemTextFont();
         LoadUiFrameGraphics();
         ResetIconGraphics_();
+        gActionData.unk08 = 10000; // Set to a high value to check for when using the left and right arrow keys in the menu
         
         StartMenu(&gForgeMenuDef, proc);
     }

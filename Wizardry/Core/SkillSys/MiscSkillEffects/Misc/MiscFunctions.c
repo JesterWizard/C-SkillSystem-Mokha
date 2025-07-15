@@ -4431,6 +4431,65 @@ void ProcessMenuDpadInput(struct MenuProc* proc)
 #endif
     }
 
+#ifdef CONFIG_FORGING
+    if (gActionData.unk08 == 10000) // Arbitrary value we set to indicate the forge menu is active
+    {
+        // Handle left/right input for forge menu
+        int item = gActiveUnit->items[proc->itemCurrent];
+        struct ForgeLimits limits = gForgeLimits[GetItemIndex(item)];
+        int count = GetItemForgeCount(item);
+
+        if (gKeyStatusPtr->repeatedKeys & DPAD_LEFT)
+        {
+            if (count > 0)
+            {
+                int forgeSlot = ITEM_USES(item);
+                if (forgeSlot >= 0)
+                {
+                    item = GetItemIndex(item) | (forgeSlot << 8);
+                    // Calculate cumulative cost reduction
+                    u32 refundAmount = 0;
+                    for (int i = count; i > count - 1; i--)
+                        refundAmount += i * limits.baseCost;
+                    
+                    gActiveUnit->items[proc->itemCurrent] = DecrementForgeCount(item);
+                    gPlaySt.partyGoldAmount += refundAmount;
+                    
+                    // Refresh the menu display
+                    if (proc->menuItems[proc->itemCurrent]->def->onSwitchIn)
+                        proc->menuItems[proc->itemCurrent]->def->onSwitchIn(proc, proc->menuItems[proc->itemCurrent]);
+                }
+            }
+        }
+
+        if (gKeyStatusPtr->repeatedKeys & DPAD_RIGHT)
+        {
+            if (count < limits.maxCount - 1 && IsItemForgeable(item))
+            {
+                int forgeSlot = ITEM_USES(item);
+                if (!forgeSlot)
+                    forgeSlot = InitFreeForgedItemSlot(item);
+                if (forgeSlot >= 0)
+                {
+                    // Calculate cumulative cost increase  
+                    u32 costAmount = (count + 1) * limits.baseCost;
+
+                    if (costAmount <= gPlaySt.partyGoldAmount)
+                    {
+                        item = GetItemIndex(item) | (forgeSlot << 8);
+                        gPlaySt.partyGoldAmount -= costAmount;
+                        gActiveUnit->items[proc->itemCurrent] = IncrementForgeCount(item);
+                        
+                        // Refresh the menu display
+                        if (proc->menuItems[proc->itemCurrent]->def->onSwitchIn)
+                            proc->menuItems[proc->itemCurrent]->def->onSwitchIn(proc, proc->menuItems[proc->itemCurrent]);
+                    }
+                }
+            }
+        }
+    }
+#endif
+
     if (proc->itemPrevious != proc->itemCurrent)
     {
         DrawMenuItemHover(proc, proc->itemPrevious, FALSE);
@@ -5778,3 +5837,22 @@ void PairedEndingBattleDisp_Loop_Blend(struct EndingBattleDisplayProc * proc)
     }
 
 #endif
+
+LYN_REPLACE_CHECK(MenuCancelSelect);
+u8 MenuCancelSelect(struct MenuProc* menu, struct MenuItemProc* item)
+{
+    
+    /*
+    ** So we reset this value here after exiting the forge menu.
+    ** This way, the left and right dPad buttons do not take effect in other menus
+    */
+    
+#ifdef CONFIG_FORGING
+    if (gActionData.unk08 == 10000)
+    {
+        gActionData.unk08 = 0;
+    }
+#endif
+
+    return MENU_ACT_SKIPCURSOR | MENU_ACT_CLEAR | MENU_ACT_END | MENU_ACT_SND6B;
+}
