@@ -1,3 +1,19 @@
+#define SHRINK_CONVOY_TO_150
+
+ALIGN 4 
+NumOfForgables:
+WORD 50 // max 63 
+gForgedItemRam: // need NumOfForgables*2=100 bytes 
+//WORD 0x203A81C // Vanilla convoy ram, for use with a custom EMS 
+//that has 200 convoy and also saves 126ish bytes here 
+WORD 0x203B32C // last 50 items of 200 convoy 
+UseForgedItemDurability:
+#ifdef SHRINK_CONVOY_TO_150
+WORD 1 
+#else 
+WORD 0 
+#endif 
+
 #define ForgeBonus(mt, hit, crit, wt) "BYTE mt hit crit wt"
 #define ForgeLimit(item, index, max, cost) "PUSH; ORG gForgeLimits + (item * 4); BYTE index max; SHORT cost; POP"
 #define Negative(num) "0x100 - num"
@@ -21,3 +37,65 @@ FILL(256 * 4)
 // if an item has no entry in this table it is unforgeable
 
 ForgeLimit(IronSword, 0, 6, 500) // iron swords use index 0 forge bonuses, can be forged up to 6 times, cost 500 gold as a baseline
+
+#ifdef SHRINK_CONVOY_TO_150
+PUSH 
+  #define ConvoySize 150
+
+  ORG $1DFB2
+  BYTE ConvoySize-1
+
+  ORG $1E05A
+  BYTE ConvoySize-1
+
+  ORG $1E0EC
+  BYTE ConvoySize-1
+
+  ORG $31528
+  BYTE ConvoySize
+
+  ORG $3154C 
+  BYTE ConvoySize-1
+
+  ORG $31576
+  BYTE ConvoySize-1
+
+  ORG $315BC
+  BYTE ConvoySize-1
+
+  ORG $9828E
+  BYTE ConvoySize-1
+
+  ORG $9A550
+  BYTE ConvoySize-1
+
+  ORG $9A56A
+  BYTE ConvoySize-1
+
+  ORG $9D676
+  BYTE ConvoySize
+
+  ORG $9D73E
+  BYTE ConvoySize
+
+  ORG $9D768
+  BYTE ConvoySize
+
+  ORG $9DD10
+  BYTE ConvoySize-1
+
+  ORG $9E902
+  BYTE ConvoySize
+
+  ORG $B4738
+  BYTE ConvoySize-1
+
+  //need this
+  ORG $A324A
+  BYTE ConvoySize-1
+
+  ORG $A32D2
+  BYTE ConvoySize-1
+POP 
+#endif 
+

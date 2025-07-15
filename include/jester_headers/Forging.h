@@ -1,5 +1,17 @@
 #include "gbafe.h"
 
+extern const int UseForgedItemDurability;
+int GetForgedItemDurability(int id); 
+int InitFreeForgedItemSlot(int item); 
+int IncrementForgeCount(int item); 
+int DecrementForgeCount(int item); 
+int CanItemBeForged(int item); 
+
+extern struct UnitInfoWindowProc* UnitInfoWindow_DrawBase(struct UnitInfoWindowProc* proc, struct Unit* unit, int x, int y, int width, int lines);
+extern int GetUnitInfoWindowX(struct Unit* unit, int width);
+
+
+
 struct ForgeBonuses {
 	s8 mtBonus; 	/* 0x00 */
 	s8 hitBonus; 	/* 0x01 */
