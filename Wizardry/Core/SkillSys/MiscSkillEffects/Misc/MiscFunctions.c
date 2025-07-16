@@ -4393,6 +4393,18 @@ void ProcessMenuDpadInput(struct MenuProc* proc)
 
         proc->itemCurrent--;
 
+// Reset the last item forge count if we move to another item
+#ifdef CONFIG_FORGING
+        if (gActionData.unk08 == 10000) // Arbitrary value we set to indicate the forge menu is active
+        {
+            int item = gActiveUnit->items[proc->itemPrevious];
+            gEventSlots[EVT_SLOT_7] = GetItemForgeCost(gActiveUnit->items[proc->itemCurrent]);
+            SetItemForgeCount(item, gEventSlots[EVT_SLOT_8]);
+            // Set the initial count of the latest item
+            gEventSlots[EVT_SLOT_8] = GetItemForgeCount(gActiveUnit->items[proc->itemCurrent]); 
+        }
+#endif
+
 /* A little something to change the monster image displayed as the user scrolls the summon select screen */
 #if defined(SID_SummonPlus) && (COMMON_SKILL_VALID(SID_SummonPlus))
         if (gActionData.unk08 == SID_SummonPlus)
@@ -4419,6 +4431,18 @@ void ProcessMenuDpadInput(struct MenuProc* proc)
 
         proc->itemCurrent++;
 
+// Reset the last item forge count if we move to another item
+#ifdef CONFIG_FORGING
+        if (gActionData.unk08 == 10000) // Arbitrary value we set to indicate the forge menu is active
+        {
+            int item = gActiveUnit->items[proc->itemPrevious];
+            gEventSlots[EVT_SLOT_7] = GetItemForgeCost(gActiveUnit->items[proc->itemCurrent]);
+            SetItemForgeCount(item, gEventSlots[EVT_SLOT_8]);
+            // Set the initial count of the latest item
+            gEventSlots[EVT_SLOT_8] = GetItemForgeCount(gActiveUnit->items[proc->itemCurrent]); 
+        }
+#endif
+
 /* A little something to change the monster image displayed as the user scrolls the summon select screen */
 #if defined(SID_SummonPlus) && (COMMON_SKILL_VALID(SID_SummonPlus))
         if (gActionData.unk08 == SID_SummonPlus)
@@ -4441,20 +4465,25 @@ void ProcessMenuDpadInput(struct MenuProc* proc)
 
         if (gKeyStatusPtr->repeatedKeys & DPAD_LEFT)
         {
-            if (count > 0)
+            // Ensure the forge count can't go below what it started at (which is stored in EVT_SLOT_8)
+            if (count > 0 && (u32)(count - 1) >= gEventSlots[EVT_SLOT_8])
             {
                 int forgeSlot = ITEM_USES(item);
                 if (forgeSlot >= 0)
                 {
+                    // Calculate cumulative cost increase  
+                    u32 costAmount = (count + 1) * limits.baseCost;
+
                     item = GetItemIndex(item) | (forgeSlot << 8);
                     // Calculate cumulative cost reduction
                     u32 refundAmount = 0;
-                    for (int i = count; i > count - 1; i--)
+                    for (int i = count; i > count - 1; i--) // This loop refunds 'count * limits.baseCost'
                         refundAmount += i * limits.baseCost;
-                    
-                    gActiveUnit->items[proc->itemCurrent] = DecrementForgeCount(item);
+
+                    gActiveUnit->items[proc->itemCurrent] = DecrementForgeCount(item, 1);
                     gPlaySt.partyGoldAmount += refundAmount;
-                    
+                    gEventSlots[EVT_SLOT_7] -= costAmount;
+
                     // Refresh the menu display
                     if (proc->menuItems[proc->itemCurrent]->def->onSwitchIn)
                         proc->menuItems[proc->itemCurrent]->def->onSwitchIn(proc, proc->menuItems[proc->itemCurrent]);
@@ -4472,13 +4501,14 @@ void ProcessMenuDpadInput(struct MenuProc* proc)
                 if (forgeSlot >= 0)
                 {
                     // Calculate cumulative cost increase  
-                    u32 costAmount = (count + 1) * limits.baseCost;
+                    u32 costAmount = (count + 2) * limits.baseCost;
 
                     if (costAmount <= gPlaySt.partyGoldAmount)
                     {
                         item = GetItemIndex(item) | (forgeSlot << 8);
                         gPlaySt.partyGoldAmount -= costAmount;
-                        gActiveUnit->items[proc->itemCurrent] = IncrementForgeCount(item);
+                        gActiveUnit->items[proc->itemCurrent] = IncrementForgeCount(item, 1);
+                        gEventSlots[EVT_SLOT_7] += costAmount;
                         
                         // Refresh the menu display
                         if (proc->menuItems[proc->itemCurrent]->def->onSwitchIn)

@@ -131,14 +131,14 @@ extern const int NumOfForgables; // Same as max item durability, 0 is invalid
         return item;
     }
 
-    int IncrementForgeCount(int item) {
+    int IncrementForgeCount(int item, int amount) {
         int val = GetItemForgeCount(item);
-        return SetItemForgeCount(item, val + 1);
+        return SetItemForgeCount(item, val + amount);
     }
 
-    int DecrementForgeCount(int item) {
+    int DecrementForgeCount(int item, int amount) {
         int val = GetItemForgeCount(item);
-        return SetItemForgeCount(item, val - 1);
+        return SetItemForgeCount(item, val - amount);
     }
 
     int GetItemForgeCost(int item) {
@@ -147,7 +147,10 @@ extern const int NumOfForgables; // Same as max item durability, 0 is invalid
         if (count >= limits.maxCount) {
             return 0;
         }
-        return (count + 1) * limits.baseCost;
+
+        return gEventSlots[EVT_SLOT_7];
+
+        // return (count + 1) * limits.baseCost; // This is the cost for the (count+1)-th level only
     }
 
     bool IsItemForgeable(int item) { // do we have the cash
@@ -245,6 +248,12 @@ extern const int NumOfForgables; // Same as max item durability, 0 is invalid
             
             ClearText(&texts[i]);
         }
+
+        /*
+        ** Hold the starting forge count for the weapon (this ASMC call) to prevent
+        ** users from reducing it after it was already set in the last ASMC call
+        */
+        gEventSlots[EVT_SLOT_8] = GetItemForgeCount(gActiveUnit->items[0]); 
     }
 
     int ForgeMenuSwitchIn(struct MenuProc* menu, struct MenuItemProc* menuItem) {
@@ -253,6 +262,10 @@ extern const int NumOfForgables; // Same as max item durability, 0 is invalid
         struct Text *texts = gPrepItemTexts;
         for(int i = 0; i < 12; i++) {
             ClearText(&texts[i]);
+        }
+
+        if (GetItemForgeCount(item) < limits.maxCount && gEventSlots[EVT_SLOT_7] == 0) {
+            gEventSlots[EVT_SLOT_7] = (GetItemForgeCount(item) + 1) * limits.baseCost; // Initial gold value for the next level of forging;
         }
 
         PutDrawText(&texts[0], TILEMAP_LOCATED(gBG0TilemapBuffer, 2, 2), TEXT_COLOR_SYSTEM_GOLD, 0, 0, "Mt");
@@ -280,19 +293,18 @@ extern const int NumOfForgables; // Same as max item durability, 0 is invalid
             Text_InsertDrawNumberOrBlank(&texts[1], 0x1E, TEXT_COLOR_SYSTEM_BLUE, GetItemHit(item));
             Text_InsertDrawNumberOrBlank(&texts[2], 0x1E, TEXT_COLOR_SYSTEM_BLUE, GetItemWeight(item));
             Text_InsertDrawNumberOrBlank(&texts[3], 0x1E, TEXT_COLOR_SYSTEM_BLUE, GetItemCrit(item));
-            Text_InsertDrawNumberOrBlank(&texts[4], 0x3A, TEXT_COLOR_SYSTEM_BLUE, GetItemForgeCost(item));
+            Text_InsertDrawNumberOrBlank(&texts[4], 0x3A, TEXT_COLOR_SYSTEM_BLUE, gEventSlots[EVT_SLOT_7]);
 
             // int forgedItem = item + (1 << 8);
             int forgedItem = item;
 
             int forgeSlot = ITEM_USES(item);
             if (!forgeSlot) {
-            forgeSlot = InitFreeForgedItemSlot(item);
+                forgeSlot = InitFreeForgedItemSlot(item);
             }
             if (forgeSlot >= 0) { // ensure we found a valid forge ID
-            forgedItem = GetItemIndex(forgedItem) |
-                        forgeSlot << 8; // ensure the forge slot is set
-            forgedItem = IncrementForgeCount(forgedItem); // to show preview
+                // forgedItem = GetItemIndex(forgedItem) | forgeSlot << 8; // ensure the forge slot is set
+                forgedItem = IncrementForgeCount(forgedItem, 1); // to show preview
             }
 
             Text_InsertDrawNumberOrBlank(&texts[0], 0x40, TEXT_COLOR_SYSTEM_GREEN, GetItemMight(forgedItem));
@@ -307,7 +319,7 @@ extern const int NumOfForgables; // Same as max item durability, 0 is invalid
             PutNumber(TILEMAP_LOCATED(gBG0TilemapBuffer, 11, 11), TEXT_COLOR_SYSTEM_GREEN, count + 1);
 
             if (forgeSlot >= 0) {
-                DecrementForgeCount(forgedItem); // revert
+                DecrementForgeCount(forgedItem, 1); // revert
             }
         }
         // If the item is at max forge count or cannot be forged, then show their text in green
@@ -399,7 +411,7 @@ extern const int NumOfForgables; // Same as max item durability, 0 is invalid
             if (forgeSlot >= 0) { // ensure we found a valid forge ID
                 item = GetItemIndex(item) | forgeSlot << 8; // ensure the forge slot is set
                 gPlaySt.partyGoldAmount -= GetItemForgeCost(item);
-                gActiveUnit->items[menuItem->itemNumber] = IncrementForgeCount(item);
+                gActiveUnit->items[menuItem->itemNumber] = IncrementForgeCount(item, 1);
                 AnimOnActiveUnit(gActionData.unk08, callback_anim, callback_exec);
                 return MENU_ACT_CLEAR | MENU_ACT_SND6A | MENU_ACT_END | MENU_ACT_SKIPCURSOR;
             }
@@ -428,7 +440,7 @@ extern const int NumOfForgables; // Same as max item durability, 0 is invalid
         LoadUiFrameGraphics();
         ResetIconGraphics_();
         gActionData.unk08 = 10000; // Set to a high value to check for when using the left and right arrow keys in the menu
-        
+        gEventSlots[EVT_SLOT_7] = 0;
         StartMenu(&gForgeMenuDef, proc);
     }
 #endif

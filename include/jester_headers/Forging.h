@@ -3,8 +3,8 @@
 extern const int UseForgedItemDurability;
 int GetForgedItemDurability(int id); 
 int InitFreeForgedItemSlot(int item); 
-int IncrementForgeCount(int item); 
-int DecrementForgeCount(int item); 
+int IncrementForgeCount(int item, int amount); 
+int DecrementForgeCount(int item, int amount); 
 int CanItemBeForged(int item); 
 
 extern struct UnitInfoWindowProc* UnitInfoWindow_DrawBase(struct UnitInfoWindowProc* proc, struct Unit* unit, int x, int y, int width, int lines);
@@ -38,6 +38,7 @@ extern u16 NotEnoughGoldToForgeItemRText_Link;
 
 // functions related to forge bonuses and limits
 int GetItemForgeCount(int item);
+int SetItemForgeCount(int item, int val);
 int GetItemForgeCost(int item);
 bool IsItemForgeable(int item);
 
