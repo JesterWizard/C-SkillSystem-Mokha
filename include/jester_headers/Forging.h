@@ -50,3 +50,25 @@ void DrawItemForgeMenuLine(struct Text* text, int item, u16* mapOut);
 void CallForgeMenuASMC(struct EventEngineProc* proc);
 int ForgeMenuSwitchIn(struct MenuProc* menu, struct MenuItemProc* menuItem);
 u8 ForgeMenuOnSelect(struct MenuProc* menu, struct MenuItemProc* menuItem);
+
+void MakeForgedItemUnbreakable(int item, bool state);
+
+extern const int NumOfForgables; // Same as max item durability, 0 is invalid
+struct ForgedItemRam {
+	u16 uses : 6;
+	u16 unbreakable : 1; // pay a lot of extra money to make it unbreakable?
+	u16 hit : 3;  // currently forge count, but could be changed to how many times
+					// hit has been forged
+	u16 mt : 3;   // unused: I recommend how many times mt has been forged
+	u16 crit : 3; // also unused: I recommend crit
+	// u8 skill; // idea guying here for Jester
+	// u8 name[7]; // naming forged items would take up a lot of ram and be a pain
+	// to do, good luck Jester
+};
+extern struct ForgedItemRam *gForgedItemRam; // NumOfForgables entries
+
+// in vanilla, GameSavePackedUnit / SuspendSavePackedUnit don't save the 0x80
+// durability bit but if it did, it could be used to determine whether it's
+// forged or not. if not forged, then it could use durability in the regular way
+// #define FORGED_ITEM 0x8000
+// #define ITEM_FORGE_ID(id) "(id >> 8)& 0x3F"

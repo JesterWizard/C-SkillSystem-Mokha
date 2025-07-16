@@ -9,26 +9,6 @@
 #ifdef CONFIG_FORGING
 #define brk asm("mov r11, r11");
 
-extern const int NumOfForgables; // Same as max item durability, 0 is invalid
-    struct ForgedItemRam {
-        u16 uses : 6;
-        u16 unbreakable : 1; // pay a lot of extra money to make it unbreakable?
-        u16 hit : 3;  // currently forge count, but could be changed to how many times
-                        // hit has been forged
-        u16 mt : 3;   // unused: I recommend how many times mt has been forged
-        u16 crit : 3; // also unused: I recommend crit
-        // u8 skill; // idea guying here for Jester
-        // u8 name[7]; // naming forged items would take up a lot of ram and be a pain
-        // to do, good luck Jester
-    };
-    extern struct ForgedItemRam *gForgedItemRam; // NumOfForgables entries
-
-    // in vanilla, GameSavePackedUnit / SuspendSavePackedUnit don't save the 0x80
-    // durability bit but if it did, it could be used to determine whether it's
-    // forged or not. if not forged, then it could use durability in the regular way
-    // #define FORGED_ITEM 0x8000
-    // #define ITEM_FORGE_ID(id) "(id >> 8)& 0x3F"
-
     int GetForgedItemDurability(int item) {
         if (GetItemAttributes(item) & IA_UNBREAKABLE || !UseForgedItemDurability)
             return 0xFF;
@@ -54,7 +34,7 @@ extern const int NumOfForgables; // Same as max item durability, 0 is invalid
         gForgedItemRam[id].uses = GetItemMaxUses(item) < value ? GetItemMaxUses(item) : value;
     }
 
-    void MakeForgedItemUnbreakable(int item) {
+    void MakeForgedItemUnbreakable(int item, bool state) {
         if (!UseForgedItemDurability) {
             return;
         }
@@ -62,7 +42,7 @@ extern const int NumOfForgables; // Same as max item durability, 0 is invalid
         if (id < 0 || id >= NumOfForgables)
             return;
 
-        gForgedItemRam[id].unbreakable = true;
+        gForgedItemRam[id].unbreakable = state;
     }
 
     int SetForgedItemAfterUse(int item) {

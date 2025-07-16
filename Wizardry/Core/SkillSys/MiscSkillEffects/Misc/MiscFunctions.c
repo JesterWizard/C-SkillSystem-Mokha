@@ -4484,6 +4484,11 @@ void ProcessMenuDpadInput(struct MenuProc* proc)
                     gPlaySt.partyGoldAmount += refundAmount;
                     gEventSlots[EVT_SLOT_7] -= costAmount;
 
+                    struct ForgeLimits limits = gForgeLimits[GetItemIndex(item)];
+
+                    if (GetItemForgeCount(gActiveUnit->items[proc->itemCurrent]) < limits.maxCount - 1)
+                        MakeForgedItemUnbreakable(item, false);
+
                     // Refresh the menu display
                     if (proc->menuItems[proc->itemCurrent]->def->onSwitchIn)
                         proc->menuItems[proc->itemCurrent]->def->onSwitchIn(proc, proc->menuItems[proc->itemCurrent]);
@@ -4509,6 +4514,11 @@ void ProcessMenuDpadInput(struct MenuProc* proc)
                         gPlaySt.partyGoldAmount -= costAmount;
                         gActiveUnit->items[proc->itemCurrent] = IncrementForgeCount(item, 1);
                         gEventSlots[EVT_SLOT_7] += costAmount;
+
+                        struct ForgeLimits limits = gForgeLimits[GetItemIndex(item)];
+
+                        if (GetItemForgeCount(gActiveUnit->items[proc->itemCurrent]) == limits.maxCount - 1)
+                            MakeForgedItemUnbreakable(item, true);
                         
                         // Refresh the menu display
                         if (proc->menuItems[proc->itemCurrent]->def->onSwitchIn)
