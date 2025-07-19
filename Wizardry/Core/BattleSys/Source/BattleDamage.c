@@ -716,8 +716,8 @@ bool rampartPlus_activated = false;
         result = (attacker->unit.curHP - 1) * 2;
 #endif
 
-#if (defined(SID_TintedLens) && (COMMON_SKILL_VALID(SID_TintedLens)))
-    if (BattleSkillTester(attacker, SID_TintedLens))
+#if (defined(SID_TintedLensPlus) && (COMMON_SKILL_VALID(SID_TintedLensPlus)))
+    if (BattleSkillTester(attacker, SID_TintedLensPlus))
     {
         if (result < 6)
         {
