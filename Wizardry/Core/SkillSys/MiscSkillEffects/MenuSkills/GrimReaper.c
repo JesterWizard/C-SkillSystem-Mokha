@@ -7,6 +7,10 @@
 #include "unit-expa.h"
 #include "battle-system.h"
 
+#ifndef CONFIG_UNIT_ACTION_EXPA_ExecSkill
+    #define CONFIG_UNIT_ACTION_EXPA_ExecSkill 20
+#endif
+
 #if defined(SID_GrimReaper) && (COMMON_SKILL_VALID(SID_GrimReaper))
 
 u8 GrimReaper_Usability(const struct MenuItemDef *def, int number)

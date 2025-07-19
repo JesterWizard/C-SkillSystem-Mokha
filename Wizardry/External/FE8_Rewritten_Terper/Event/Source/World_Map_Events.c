@@ -19,9 +19,23 @@ const EventScr EventScrWM_Tutorial_SKILL_SCROLL[] = {
     ENDA
 };
 
+extern struct ProcCmd CONST_DATA gProcScr_OpSubtitle[];
+
+//! FE8U = 0x080C541C
+LYN_REPLACE_CHECK(StartIntroMonologue);
+void StartIntroMonologue(ProcPtr proc) {
+
+#ifndef CONFIG_SKIP_INTRO
+    Proc_StartBlocking(gProcScr_OpSubtitle, proc);
+#endif
+
+    return;
+}
+
 const EventScr EventScrWM_Prologue_SET_NODE[] = {
     EVBIT_MODIFY(0x1)
     WmEvtNoFade // ENOSUPP in EAstdlib
+#ifndef CONFIG_SKIP_INTRO
     WM_SPAWNLORD(WM_MU_0, CHARACTER_EIRIKA, WM_NODE_BorderMulan)
     WM_CENTERCAMONLORD(WM_MU_0)
     MUSCFAST(0x7fff)
@@ -222,6 +236,7 @@ const EventScr EventScrWM_Prologue_SET_NODE[] = {
     WM_REMOVETEXT
     STAL(2)
     FADI(16)
+#endif
     SKIPWN
     WM_FXCLEAR1(-0x1)
     WM_FXCLEAR2(-0x1)

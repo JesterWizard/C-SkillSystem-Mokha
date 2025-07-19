@@ -105,6 +105,22 @@ void KernelStartBlockingHookProc(HookProcFunc_t const * hook_list, ProcPtr paren
 #define ARRAY_COUNT_RANGE2x2 12
 #define ARRAY_COUNT_RANGE3x3 24
 
+#ifndef CONFIG_UNIT_AMT_ALLY 
+	#define CONFIG_UNIT_AMT_ALLY 50
+#endif
+
+#ifndef CONFIG_UNIT_AMT_ENEMY
+	#define CONFIG_UNIT_AMT_ENEMY 50
+#endif
+
+#ifndef CONFIG_UNIT_AMT_NPC
+	#define CONFIG_UNIT_AMT_NPC 20
+#endif
+
+#ifndef CONFIG_UNIT_AMT_FOURTH
+	#define CONFIG_UNIT_AMT_FOURTH 10
+#endif
+
 extern const struct Vec1 gVecs_1x1[ARRAY_COUNT_RANGE1x1];
 extern const struct Vec1 gVecs_2x2[ARRAY_COUNT_RANGE2x2];
 extern const struct Vec1 gVecs_3x3[ARRAY_COUNT_RANGE3x3];

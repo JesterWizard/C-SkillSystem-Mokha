@@ -6,6 +6,10 @@
 #include "constants/skills.h"
 #include "constants/texts.h"
 
+#ifndef CONFIG_UNIT_ACTION_EXPA_ExecSkill
+    #define CONFIG_UNIT_ACTION_EXPA_ExecSkill 20
+#endif
+
 #if defined(SID_Stride) && (COMMON_SKILL_VALID(SID_Stride))
 STATIC_DECLAR void AddTargetForStride(struct Unit * unit)
 {

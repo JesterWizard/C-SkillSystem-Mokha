@@ -12,6 +12,9 @@ struct SupportScreenUnit {
     /* 10 */ s8 partnerIsAlive[UNIT_SUPPORT_MAX_COUNT];
 };
 
+EWRAM_OVERLAY(0) char gBufPrep[0x2000] = {};
+struct SupportScreenUnit * CONST_DATA sSupportScreenUnits = (void*)gBufPrep;
+
 struct SupportScreenProc {
     /* 00 */ PROC_HEADER;
 

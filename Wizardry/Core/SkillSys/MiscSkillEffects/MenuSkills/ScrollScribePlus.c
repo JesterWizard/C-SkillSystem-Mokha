@@ -9,6 +9,10 @@
 #include "item-sys.h"
 #include "jester_headers/miscellaenous.h"
 
+#ifndef CONFIG_UNIT_ACTION_EXPA_ExecSkill
+    #define CONFIG_UNIT_ACTION_EXPA_ExecSkill 20
+#endif
+
 #if defined(SID_ScrollScribePlus) && (COMMON_SKILL_VALID(SID_ScrollScribePlus))
 
 u8 ScrollScribePlus_Usability(const struct MenuItemDef * def, int number)
@@ -30,9 +34,6 @@ u8 ScrollScribePlus_OnSelected(struct MenuProc * menu, struct MenuItemProc * ite
 
     HideMoveRangeGraphics();
 
-    // ClearBg0Bg1();
-    // BmMapFill(gBmMapMovement, -1);
-
     ResetIconGraphics();
     LoadIconPalettes(4);
 
@@ -51,7 +52,6 @@ static void callback_anim(ProcPtr proc)
 static void callback_exec(ProcPtr proc)
 {	
     Proc_StartBlocking(ProcScr_SkillScrollUseSoftLock, Proc_Find(gProcScr_PlayerPhase));
-    //ItemUseAction_SkillScroll(proc);
 }
 
 bool Action_ScrollScribePlus(ProcPtr parent)

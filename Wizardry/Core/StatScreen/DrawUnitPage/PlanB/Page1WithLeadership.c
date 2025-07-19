@@ -11,6 +11,10 @@
 #include "skill-system.h"
 #include "constants/skills.h"
 
+#ifndef CONFIG_ICON_INDEX_STAR
+    #define CONFIG_ICON_INDEX_STAR 0xCB
+#endif
+
 static void DrawPage1TextCommon(void)
 {
     struct Unit *unit = gStatScreen.unit;

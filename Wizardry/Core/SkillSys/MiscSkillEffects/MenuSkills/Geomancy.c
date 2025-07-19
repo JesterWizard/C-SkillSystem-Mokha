@@ -8,6 +8,10 @@
 #include "debuff.h"
 #include "jester_headers/miscellaenous.h"
 
+#ifndef CONFIG_UNIT_ACTION_EXPA_ExecSkill
+    #define CONFIG_UNIT_ACTION_EXPA_ExecSkill 20
+#endif
+
 #if defined(SID_Geomancy) && (COMMON_SKILL_VALID(SID_Geomancy))
 
 u8 Geomancy_Usability(const struct MenuItemDef * def, int number)

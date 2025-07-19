@@ -273,6 +273,6 @@
 
 #define CONFIG_FORGING
 
-#ifndef CONFIG_FORGING // Forging requires infinite durability by default
-// #define CONFIG_INFINITE_DURABILITY
-#endif
+#define CONFIG_SKIP_INTRO
+
+#define CONFIG_FE4_CRIT_BONUS_ON_KILL

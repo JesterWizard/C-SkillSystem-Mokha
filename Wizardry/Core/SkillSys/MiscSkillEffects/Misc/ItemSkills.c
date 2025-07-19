@@ -5,6 +5,14 @@
 #include "jester_headers/soundtrack-ids.h"
 #include "jester_headers/custom-functions.h"
 
+#ifndef CONFIG_UNIT_ACTION_EXPA_ExecSkill
+    #define CONFIG_UNIT_ACTION_EXPA_ExecSkill 20
+#endif
+
+#ifndef CONFIG_ITEM_INDEX_MAG_BOOSTER
+    #define CONFIG_ITEM_INDEX_MAG_BOOSTER 0xBC
+#endif
+
 static void ExecHeal_Target(int healAmount)
 {
     int healingAmount = healAmount;

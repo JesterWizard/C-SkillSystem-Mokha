@@ -1,8 +1,6 @@
 #include <common-chax.h>
 #include <battle-system.h>
 
-#include <gaiden-magic.h>
-
 static void MapAnimHitRound_StartCost(ProcPtr proc)
 {
 	gManimSt.hp_changing = true;

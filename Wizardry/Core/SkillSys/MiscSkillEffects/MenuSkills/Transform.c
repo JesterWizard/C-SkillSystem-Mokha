@@ -6,6 +6,10 @@
 #include "debuff.h"
 #include "jester_headers/class-pairs.h"
 
+#ifndef CONFIG_UNIT_ACTION_EXPA_ExecSkill
+    #define CONFIG_UNIT_ACTION_EXPA_ExecSkill 20
+#endif
+
 #if defined(SID_Transform) && (COMMON_SKILL_VALID(SID_Transform))
 // Predefine an array of key-value pairs
 const int transformationPairs[1][2] = {

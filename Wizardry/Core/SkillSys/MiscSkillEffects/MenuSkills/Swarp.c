@@ -9,6 +9,10 @@
 #include "action-expa.h"
 #include "strmag.h"
 
+#ifndef CONFIG_UNIT_ACTION_EXPA_ExecSkill
+    #define CONFIG_UNIT_ACTION_EXPA_ExecSkill 20
+#endif
+
 #if defined(SID_Swarp) && (COMMON_SKILL_VALID(SID_Swarp))
 
 void ForEachUnitInMagBy2Range(void(*func)(struct Unit* unit));

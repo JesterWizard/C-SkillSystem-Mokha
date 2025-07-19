@@ -7,6 +7,10 @@
 #include "jester_headers/miscellaenous.h"
 #include "jester_headers/custom-functions.h"
 
+#ifndef CONFIG_UNIT_ACTION_EXPA_ExecSkill
+    #define CONFIG_UNIT_ACTION_EXPA_ExecSkill 20
+#endif
+
 #if defined(SID_Acidic) && (COMMON_SKILL_VALID(SID_Acidic))
 
 u8 Acidic_Usability(const struct MenuItemDef * def, int number)

@@ -21,6 +21,14 @@ bool ActionExecSkill(ProcPtr proc);
 //     return gpSkillActionFuncTable[sid](proc);
 // }
 
+#ifndef CONFIG_UNIT_ACTION_AMT
+    #define CONFIG_UNIT_ACTION_AMT 32
+#endif
+
+#ifndef CONFIG_UNIT_ACTION_EXPA_ExecSkill
+    #define CONFIG_UNIT_ACTION_EXPA_ExecSkill 23
+#endif
+
 const UnitActionFunc_t gUnitActionTable[CONFIG_UNIT_ACTION_AMT] = {
     [UNIT_ACTION_WAIT] = _ActionWait,
     [UNIT_ACTION_TRAPPED] = _ActionWait,

@@ -34,6 +34,10 @@
 #include "ending_details.h"
 #include "jester_headers/Forging.h"
 
+#ifndef CONFIG_INSTALL_CONVOYEXPA_AMT
+    #define CONFIG_INSTALL_CONVOYEXPA_AMT 200
+#endif
+
 #if defined(SID_CatchEmAll) && (COMMON_SKILL_VALID(SID_CatchEmAll))
     const unsigned int gCatchEmAllId = SID_CatchEmAll;
 #endif
@@ -1213,13 +1217,13 @@ void WorldMap_CallBeginningEvent(struct WorldMapMainProc * proc)
             proc->gm_icon->merge_next_node = false;
 
             /**
-             * Jester - I've resorted to hooking into the WM call function to directly load the
+             * JESTER - I've resorted to hooking into the WM call function to directly load the
              * WM events I want based on the supplied eventSCR. It's an unfortunate bit of hardcoding
              * I'm looking to remove, but it frees me from having to rely on the list in ASM in vanilla.
              */
             int eventID = GetROMChapterStruct(chIndex)->gmapEventId;
 
-            NoCashGBAPrintf("SET event id is: %d", eventID);
+            // NoCashGBAPrintf("SET event id is: %d", eventID);
             
             switch (eventID) {
             case 55:
@@ -1277,13 +1281,13 @@ void CallChapterWMIntroEvents(ProcPtr proc)
     if (Events_WM_ChapterIntro[GetROMChapterStruct(gPlaySt.chapterIndex)->gmapEventId] != NULL)
     {
          /**
-        * Jester - I've resorted to hooking into the WM call function to directly load the
+        * JESTER - I've resorted to hooking into the WM call function to directly load the
         * WM events I want based on the supplied eventSCR. It's an unfortunate bit of hardcoding
         * I'm looking to remove, but it frees me from having to rely on the list in ASM in vanilla.
         */
         int eventID = GetROMChapterStruct(gPlaySt.chapterIndex)->gmapEventId;
 
-        NoCashGBAPrintf("TRAVEL event id is: %d", eventID);
+        // NoCashGBAPrintf("TRAVEL event id is: %d", eventID);
             
         switch (eventID) {
         case 55:
@@ -1339,7 +1343,7 @@ u8 Event97_WmInitNextStoryNode(struct EventEngineProc * proc)
 
     int nodeId = WMLoc_GetNextLocId(gGMData.current_node);
 
-    NoCashGBAPrintf("Next node ID is: %d", nodeId);
+    // NoCashGBAPrintf("Next node ID is: %d", nodeId);
 
     if (nodeId < 0)
     {
@@ -1382,12 +1386,13 @@ u8 Event3E_PrepScreenCall(struct EventEngineProc * proc)
 
 void GiveScroll(void)
 {
-    u16 skillId = gEventSlots[EVT_SLOT_3];
+    FORCE_DECLARE u16 skillId = gEventSlots[EVT_SLOT_3];
     u16 charId = gEventSlots[EVT_SLOT_4];
 
-    struct Unit * unit;
+    FORCE_DECLARE struct Unit * unit;
     unit = GetUnitFromCharId(charId);
 
+#ifdef CONFIG_ITEM_INDEX_SKILL_SCROLL_1
     for (int i = 0; i < 5; i++) {
         if(unit->items[i] == ((skillId << 8) | CONFIG_ITEM_INDEX_SKILL_SCROLL_1))
         {
@@ -1436,6 +1441,7 @@ void GiveScroll(void)
             break;
         }
     }
+#endif
 }
 
 LYN_REPLACE_CHECK(ItemGot_GotLeItem);
@@ -2882,9 +2888,9 @@ void WorldMap_GenerateRandomMonsters(ProcPtr proc)
 
     s8 flag = 0;
 
-    /* Flag was originally set to 1. Turned off to prevent 
+    /* JESTER - Flag was originally set to 1. Turned off to prevent 
     ** game from crashing.
-    ** I suspect the way I'm loading the noads is fucking with
+    ** I suspect the way I'm loading the nodes is fucking with
     ** monster generation, which is causing the game to crash after chapter 8.
     */
 
@@ -3411,7 +3417,7 @@ void UnitMapUiUpdate(struct PlayerInterfaceProc* proc, struct Unit* unit) {
             CallARM_PushToSecondaryOAM(x2, y, gObject_8x8, proc->hpCurHi + 0x82E0);
         }
         /* Single character current HP */
-        CallARM_PushToSecondaryOAM(x + 24, y, gObject_8x8, proc->hpCurLow + 0x82E0);
+        CallARM_PushToSecondaryOAM(x + 24, y, gObject_8x8, proc->hpCurLo + 0x82E0);
 
         if (proc->hpMaxHi != (u8)(' ' - '0'))
         {
@@ -5681,9 +5687,6 @@ u8 AttackMapSelect_Cancel(ProcPtr proc, struct SelectTarget * target) {
 
     return MENU_ACT_SKIPCURSOR | MENU_ACT_END | MENU_ACT_SND6B;
 }
-
-// EWRAM_OVERLAY(0) char gBufPrep[0x2000] = {};
-// struct SupportScreenUnit * const sSupportScreenUnits = (void*)gBufPrep;
 
 //! FE8U = 0x080A0AD4
 LYN_REPLACE_CHECK(GetSupportScreenPartnerSupportLevel);

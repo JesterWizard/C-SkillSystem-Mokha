@@ -10,6 +10,10 @@
 #include "event-rework.h"
 #include "weapon-range.h"
 
+#ifndef CONFIG_UNIT_ACTION_EXPA_ExecSkill
+    #define CONFIG_UNIT_ACTION_EXPA_ExecSkill 20
+#endif
+
 #if defined(SID_Reinforcements) && (COMMON_SKILL_VALID(SID_Reinforcements))
 
 // Helper: Count adjacent free and passable spaces around (x,y)

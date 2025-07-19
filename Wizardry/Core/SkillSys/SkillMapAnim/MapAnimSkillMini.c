@@ -185,6 +185,9 @@ void NewMuSkillAnimOnActiveUnit(u16 sid, void (* callback1)(ProcPtr proc), void 
 
     proc->sid = sid;
     proc->callback1 = callback1;
+
+
+    
     proc->callback2 = callback2;
 }
 

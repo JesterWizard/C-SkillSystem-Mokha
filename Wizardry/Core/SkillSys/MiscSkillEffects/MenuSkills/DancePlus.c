@@ -6,6 +6,10 @@
 #include "constants/texts.h"
 #include "strmag.h"
 
+#ifndef CONFIG_UNIT_ACTION_EXPA_ExecSkill
+    #define CONFIG_UNIT_ACTION_EXPA_ExecSkill 20
+#endif
+
 static void MakeTargetListForRangedRefresh(struct Unit* unit) {
     gSubjectUnit = unit;
 

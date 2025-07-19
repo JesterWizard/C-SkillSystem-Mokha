@@ -10,6 +10,10 @@
 #include "strmag.h"
 #include "bmtarget.h"
 
+#ifndef CONFIG_UNIT_ACTION_EXPA_ExecSkill
+    #define CONFIG_UNIT_ACTION_EXPA_ExecSkill 20
+#endif
+
 #if defined(SID_Swap) && (COMMON_SKILL_VALID(SID_Swap))
 
 void ForEachUnitInMagBy2Range(void(*func)(struct Unit* unit));

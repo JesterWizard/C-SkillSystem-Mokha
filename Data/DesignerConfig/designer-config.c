@@ -32,7 +32,9 @@ const struct KernelDesigerConfig gKernelDesigerConfig = {
 	.use_chinese_character = false,
 #endif
 
+#ifdef CONFIG_KTUT_LEVEL
 	.kernel_tutorial_level = CONFIG_KTUT_LEVEL,
+#endif
 
 #ifdef CONFIG_USE_COMBO_ATTACK
 	.combo_attack_en = false, // true, // can be opened by the user
@@ -49,19 +51,21 @@ const struct KernelDesigerConfig gKernelDesigerConfig = {
 #endif
 
 	.guaranteed_lvup = false,
+
+#ifdef CONFIG_LVUP_MODE_TUTORIAL
 	.lvup_mode_tutorial = CONFIG_LVUP_MODE_TUTORIAL,
-	.lvup_mode_normal   = CONFIG_LVUP_MODE_NORMAL,
-	.lvup_mode_hard	    = CONFIG_LVUP_MODE_HARD,
-
+#endif
+#ifdef CONFIG_LVUP_MODE_NORMAL
+	.lvup_mode_normal = CONFIG_LVUP_MODE_NORMAL,
+#endif
+#ifdef CONFIG_LVUP_MODE_HARD
+	.lvup_mode_hard = CONFIG_LVUP_MODE_HARD,
+#endif
+#ifdef CONFIG_PAGE1_WITH_BWL
 	.unit_page_style = CONFIG_PAGE1_WITH_BWL,
+#endif
+#ifdef CONFIG_PAGE3_SKILL_LAYOUT
 	.skil_page_style = CONFIG_PAGE3_SKILL_LAYOUT,
-
-#ifdef CONFIG_USE_GAIDEN_MAGIC
-	.gaiden_magic_en = true,
-	.gaiden_magic_must_be_magic = CONFIG_GAIDEN_MAGIC_MUST_BE_MAGIC,
-	.gaiden_magic_requires_wrank = CONFIG_GAIDEN_MAGIC_REQUIRES_WRANK,
-	.gaiden_magic_ai_en = CONFIG_GAIDEN_MAGIC_AI_EN,
-	.gaiden_magic_ext_conf_en = CONFIG_GAIDEN_EXT_CONF_EN,
 #endif
 
 #ifdef CONFIG_NO_SUS_IN_AI_PHASE

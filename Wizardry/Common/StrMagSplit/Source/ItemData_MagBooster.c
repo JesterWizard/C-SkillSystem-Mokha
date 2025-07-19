@@ -3,6 +3,14 @@
 
 extern const struct ItemStatBonuses ItemBonus_MagBooster;
 
+#ifndef CONFIG_ITEM_INDEX_MAG_BOOSTER
+    #define CONFIG_ITEM_INDEX_MAG_BOOSTER 0xBC
+#endif
+
+#ifndef CONFIG_ICON_INDEX_MAG_BOOSTER
+    #define CONFIG_ICON_INDEX_MAG_BOOSTER 0xCA
+#endif
+
 const struct ItemData ItemData_MagBooster = {
     .nameTextId = MSG_ITEM_MAGBOOSTER_NAME,
     .descTextId = MSG_ITEM_MAGBOOSTER_DESC,

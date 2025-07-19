@@ -1,6 +1,23 @@
 #include "Source/SkillScroll.lyn.event"
 #include "Source/RemoveSkillMenu.lyn.event"
 
+#ifndef CONFIG_PR_ITEM_TABLE
+    #define CONFIG_PR_ITEM_TABLE 0x809B10
+#endif
+
+#ifndef CONFIG_ITEM_INDEX_SKILL_SCROLL_1
+	#define CONFIG_ITEM_INDEX_SKILL_SCROLL_1 0x0A
+#endif
+#ifndef CONFIG_ITEM_INDEX_SKILL_SCROLL_2
+	#define CONFIG_ITEM_INDEX_SKILL_SCROLL_2 0xBD
+#endif
+#ifndef CONFIG_ITEM_INDEX_SKILL_SCROLL_3
+	#define CONFIG_ITEM_INDEX_SKILL_SCROLL_3 0xC9
+#endif
+#ifndef CONFIG_ITEM_INDEX_SKILL_SCROLL_4
+	#define CONFIG_ITEM_INDEX_SKILL_SCROLL_4 0xCA
+#endif
+
 PUSH
     ORG CONFIG_PR_ITEM_TABLE + CONFIG_ITEM_INDEX_SKILL_SCROLL_1 * 0x24
         #include "Source/ItemData_Scroll_1.lyn.event"

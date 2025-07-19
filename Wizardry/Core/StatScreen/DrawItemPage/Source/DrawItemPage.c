@@ -1,7 +1,6 @@
 #include <common-chax.h>
 #include <list-verify.h>
 #include <battle-system.h>
-#include <gaiden-magic.h>
 #include <stat-screen.h>
 #include <shield.h>
 
@@ -13,7 +12,6 @@ void ResetItemPageLists(void)
 static void UpdateItemPageListExt(struct Unit *unit, struct ItemPageList *list)
 {
 	int i, item, cnt = 0;
-	struct GaidenMagicList *gmag_list;
 
 	/**
 	 * Unit items
@@ -38,47 +36,6 @@ static void UpdateItemPageListExt(struct Unit *unit, struct ItemPageList *list)
 			ent->color = IsItemDisplayUsable(unit, item)
 					   ? TEXT_COLOR_SYSTEM_WHITE
 					   : TEXT_COLOR_SYSTEM_GRAY;
-	}
-
-	/**
-	 * Gaiden Magic
-	 */
-	gmag_list = GetGaidenMagicList(unit);
-
-	for (i = 0; i < gmag_list->bmag_cnt; i++) {
-		struct ItemPageEnt *ent;
-
-		item = gmag_list->bmags[i];
-		if (item == ITEM_NONE)
-			break;
-
-		ent = &list->ent[cnt++];
-		if (cnt >= CHAX_ITEM_PAGE_AMT)
-			return;
-
-		ent->item = item;
-		ent->slot = CHAX_BUISLOT_GAIDEN_BMAG1 + i;
-		ent->color = CanUnitUseGaidenMagic(unit, item)
-				   ? TEXT_COLOR_SYSTEM_GOLD
-				   : TEXT_COLOR_SYSTEM_GRAY;
-	}
-
-	for (i = 0; i < gmag_list->wmag_cnt; i++) {
-		struct ItemPageEnt *ent;
-
-		item = gmag_list->wmags[i];
-		if (item == ITEM_NONE)
-			break;
-
-		ent = &list->ent[cnt++];
-		if (cnt >= CHAX_ITEM_PAGE_AMT)
-			return;
-
-		ent->item = item;
-		ent->slot = CHAX_BUISLOT_GAIDEN_WMAG1 + i;
-		ent->color = CanUnitUseGaidenMagic(unit, item)
-				   ? TEXT_COLOR_SYSTEM_GOLD
-				   : TEXT_COLOR_SYSTEM_GRAY;
 	}
 }
 
@@ -107,29 +64,6 @@ static void DrawItemLineDefault(const struct ItemPageEnt *ent, int line)
 		ent->color,
 		gUiTmScratchA + TILEMAP_INDEX(1, 1 + line * 2)
 	);
-}
-
-static void DrawItemLineGaidenMagic(const struct ItemPageEnt *ent, int line)
-{
-	int item = ent->item;
-	int color = ent->color;
-	struct Text *text = &gStatScreen.text[STATSCREEN_TEXT_ITEM0 + line];
-	u16 *tm = gUiTmScratchA + TILEMAP_INDEX(1, 1 + line * 2);
-
-	ClearText(text);
-	Text_SetColor(text, color);
-	Text_DrawString(text, GetItemName(ent->item));
-
-	color = (ent->color == TEXT_COLOR_SYSTEM_GRAY) ? TEXT_COLOR_SYSTEM_GRAY : TEXT_COLOR_SYSTEM_BLUE;
-	PutGaidenMagicCostNumber(tm + 14, color, GetGaidenWeaponHpCost(gStatScreen.unit, item));
-	PutText(text, tm + 2);
-	DrawIcon(tm, GetItemIconId(item), 0x4000);
-
-#if 0
-	CallARM_FillTileRect(
-		gUiTmScratchC + TILEMAP_INDEX(1, 2 + line * 2),
-		gpTSA_ItemEquipLine, TILEREF(0x40, STATSCREEN_BGPAL_3));
-#endif
 }
 
 static void DrawItemEquipLine(int slot)
@@ -219,11 +153,6 @@ void DisplayPage1(void)
 			DrawItemLineDefault(ent, i);
 			break;
 
-		case CHAX_BUISLOT_GAIDEN_BMAG1 ... CHAX_BUISLOT_GAIDEN_BMAG7:
-		case CHAX_BUISLOT_GAIDEN_WMAG1 ... CHAX_BUISLOT_GAIDEN_WMAG7:
-			DrawItemLineGaidenMagic(ent, i);
-			break;
-
 		default:
 			break;
 		}
@@ -256,29 +185,10 @@ void HbRedirect_SSItem(struct HelpBoxProc* proc)
             TryRelocateHbDown(proc);
     }
 }
-// void HbRedirect_SSItem(struct HelpBoxProc *proc)
-// {
-// 	struct ItemPageList *list = GetUnitItemPageList(gStatScreen.unit);
-
-// 	if (list->ent[0].item == ITEM_NONE)
-// 		TryRelocateHbLeft(proc);
-
-// 	if (list->ent[proc->info->mid].item == ITEM_NONE) {
-// 		if (proc->moveKey == 0 || proc->moveKey == DPAD_RIGHT || proc->moveKey == DPAD_UP)
-// 			TryRelocateHbUp(proc);
-// 		else if (proc->moveKey == DPAD_DOWN)
-// 			TryRelocateHbDown(proc);
-// 	}
-// }
 
 LYN_REPLACE_CHECK(HbPopulate_SSItem);
 void HbPopulate_SSItem(struct HelpBoxProc *proc)
 {
-	// struct ItemPageList *list = GetUnitItemPageList(gStatScreen.unit);
-	// int item = list->ent[proc->info->mid].item;
-
-	// proc->item = item;
-	// proc->mid  = GetItemDescId(item);
     int item = gStatScreen.unit->items[proc->info->mid];
 
     proc->item = item;

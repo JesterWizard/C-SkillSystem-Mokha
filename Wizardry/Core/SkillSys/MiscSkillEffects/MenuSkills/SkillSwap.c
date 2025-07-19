@@ -8,6 +8,10 @@
 #include "icon-rework.h"
 #include "jester_headers/miscellaenous.h"
 
+#ifndef CONFIG_UNIT_ACTION_EXPA_ExecSkill
+    #define CONFIG_UNIT_ACTION_EXPA_ExecSkill 20
+#endif
+
 #if defined(SID_SkillSwap) && (COMMON_SKILL_VALID(SID_SkillSwap))
 
 #define SKILL_SLOT_COUNT UNIT_RAM_SKILLS_LEN

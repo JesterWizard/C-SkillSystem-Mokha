@@ -5,6 +5,7 @@
 #include "constants/texts.h"
 #include "bmitem.h"
 #include "jester_headers/Forging.h"
+#include "bwl.h"
 
 #ifdef CONFIG_FORGING
 #define brk asm("mov r11, r11");
@@ -555,10 +556,16 @@ int GetItemCrit(int item) {
 #ifdef CONFIG_FORGING
 	struct ForgeLimits limits = gForgeLimits[GetItemIndex(item)];
 	struct ForgeBonuses bonuses = gForgeBonuses[limits.forgeIndex];
-		
-	int forgeCrit = (GetItemForgeCount(item) * bonuses.critBonus) / 6;
-		
-	result += forgeCrit;
+
+    int forgeCrit = (GetItemForgeCount(item) * bonuses.critBonus) / 6;
+
+    #ifdef CONFIG_FE4_CRIT_BONUS_ON_KILL
+        FORCE_DECLARE struct NewBwl * bwl = GetNewBwl(UNIT_CHAR_ID(GetUnit(gBattleActor.unit.index)));
+        int id = ITEM_USES(item);
+        result += gForgedItemRam[id].crit;
+    #endif
+
+    result += forgeCrit;
 #endif
 
     return result;

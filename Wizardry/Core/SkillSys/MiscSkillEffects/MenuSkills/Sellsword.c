@@ -5,6 +5,10 @@
 #include "constants/texts.h"
 #include "unit-expa.h"
 
+#ifndef CONFIG_UNIT_ACTION_EXPA_ExecSkill
+    #define CONFIG_UNIT_ACTION_EXPA_ExecSkill 20
+#endif
+
 #if defined(SID_Sellsword) && (COMMON_SKILL_VALID(SID_Sellsword))
 u8 Sellsword_Usability(const struct MenuItemDef * def, int number)
 {

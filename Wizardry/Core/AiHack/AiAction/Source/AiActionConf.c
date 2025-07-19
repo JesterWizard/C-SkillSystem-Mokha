@@ -1,6 +1,10 @@
 #include "common-chax.h"
 #include "AiAction.h"
 
+#ifndef CONFIG_AI_ACTION_AMT
+    #define CONFIG_AI_ACTION_AMT 20
+#endif
+
 const struct AiActionConf gAiActionTable[CONFIG_AI_ACTION_AMT] = {
     [AI_ACTION_NONE] = {
         .exec = NULL,

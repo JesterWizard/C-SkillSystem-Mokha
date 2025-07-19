@@ -4,4 +4,8 @@
 #include "Teleportation/TeleportationAiDecide.lyn.event"
 #include "Teleportation/TeleportationAction.lyn.event"
 
+#ifndef CONFIG_AI_ACTION_EXPA_Teleportation
+    #define CONFIG_AI_ACTION_EXPA_Teleportation 14
+#endif
+
 InjectAiAction(CONFIG_AI_ACTION_EXPA_Teleportation, AiAction_Teleportation, AiAction_TeleportationIdle)

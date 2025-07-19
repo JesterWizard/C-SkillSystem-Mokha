@@ -10,6 +10,10 @@
 #include "action-expa.h"
 #include "jester_headers/miscellaenous.h"
 
+#ifndef CONFIG_UNIT_ACTION_EXPA_ExecSkill
+    #define CONFIG_UNIT_ACTION_EXPA_ExecSkill 20
+#endif
+
 #if defined(SID_CoinFlip) && (COMMON_SKILL_VALID(SID_CoinFlip))
 
 u8 CoinFlip_Usability(const struct MenuItemDef * def, int number)

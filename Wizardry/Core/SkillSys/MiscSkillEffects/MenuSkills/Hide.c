@@ -6,6 +6,10 @@
 #include "unit-expa.h"
 #include "debuff.h"
 
+#ifndef CONFIG_UNIT_ACTION_EXPA_ExecSkill
+    #define CONFIG_UNIT_ACTION_EXPA_ExecSkill 20
+#endif
+
 #if defined(SID_Hide) && (COMMON_SKILL_VALID(SID_Hide))
 u8 Hide_Usability(const struct MenuItemDef * def, int number)
 {

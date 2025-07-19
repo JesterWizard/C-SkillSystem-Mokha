@@ -8,6 +8,10 @@
 #include "debuff.h"
 #include "jester_headers/miscellaenous.h"
 
+#ifndef CONFIG_UNIT_ACTION_EXPA_ExecSkill
+    #define CONFIG_UNIT_ACTION_EXPA_ExecSkill 20
+#endif
+
 #if defined(SID_DeathBlight) && (COMMON_SKILL_VALID(SID_DeathBlight))
 
 u8 DeathBlight_Usability(const struct MenuItemDef * def, int number)

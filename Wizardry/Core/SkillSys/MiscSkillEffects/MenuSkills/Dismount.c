@@ -6,6 +6,10 @@
 #include "debuff.h"
 #include "jester_headers/class-pairs.h"
 
+#ifndef CONFIG_UNIT_ACTION_EXPA_ExecSkill
+    #define CONFIG_UNIT_ACTION_EXPA_ExecSkill 20
+#endif
+
 #if defined(SID_Dismount) && (COMMON_SKILL_VALID(SID_Dismount))
 
 u8 Dismount_Usability(const struct MenuItemDef * def, int number)

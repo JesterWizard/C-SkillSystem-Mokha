@@ -4,7 +4,6 @@
 #include "debuff.h"
 #include "weapon-range.h"
 #include "weapon-lockex.h"
-#include "gaiden-magic.h"
 #include "constants/items.h"
 #include "constants/skills.h"
 #include "constants/combat-arts.h"
@@ -31,14 +30,7 @@ int GetItemFromSlot(struct Unit *unit, int slot)
 	case BU_ISLOT_BALLISTA:
 		return GetBallistaItemAt(unit->xPos, unit->yPos);
 
-	case CHAX_BUISLOT_GAIDEN_BMAG1 ... CHAX_BUISLOT_GAIDEN_BMAG7:
-	case CHAX_BUISLOT_GAIDEN_WMAG1 ... CHAX_BUISLOT_GAIDEN_WMAG7:
-		return MakeNewItem(GetGaidenMagicItem(unit, slot));
-
 	/* reserved */
-	case CHAX_BUISLOT_THREEHOUSES_BMAG1 ... CHAX_BUISLOT_THREEHOUSES_BMAG7:
-	case CHAX_BUISLOT_THREEHOUSES_WMAG1 ... CHAX_BUISLOT_THREEHOUSES_WMAG7:
-	case CHAX_BUISLOT_ENGAGE_WEAPON1    ... CHAX_BUISLOT_ENGAGE_WEAPON7:
 	case -1:
 	default:
 		return 0;
@@ -47,13 +39,6 @@ int GetItemFromSlot(struct Unit *unit, int slot)
 
 STATIC_DECLAR void SetBattleUnitWeaponVanilla(struct BattleUnit *bu, int itemSlot)
 {
-
-    // if(GetUnitStatusIndex(GetUnit(bu->unit.index)) == NEW_UNIT_STATUS_BREAK)
-    // {
-    //     bu->canCounter = false;
-    //     return;
-    // }
-
     if (itemSlot == BU_ISLOT_AUTO)
         itemSlot = GetUnitEquippedWeaponSlot(&bu->unit);
 

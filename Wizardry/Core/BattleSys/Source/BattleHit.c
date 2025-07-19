@@ -10,6 +10,7 @@
 #include "unit-expa.h"
 #include "jester_headers/custom-structs.h"
 #include "jester_headers/custom-functions.h"
+#include "jester_headers/Forging.h"
 #include "playst-expa.h"
 
 #ifdef CONFIG_BEXP
@@ -688,6 +689,15 @@ bool BattleGenerateHit(struct BattleUnit * attacker, struct BattleUnit * defende
 #endif
             gBattleHitIterator->info |= BATTLE_HIT_INFO_KILLS_TARGET;
         }
+
+#ifdef CONFIG_FE4_CRIT_BONUS_ON_KILL
+            u16 item = GetUnitEquippedWeapon(GetUnit(gBattleActor.unit.index));
+            if (CanItemBeForged(item))
+            {
+                u8 id = ITEM_USES(item);
+                gForgedItemRam[id].crit += 1;
+            }
+#endif
 
         gBattleHitIterator++;
         return true;

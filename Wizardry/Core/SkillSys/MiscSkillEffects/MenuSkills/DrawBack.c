@@ -8,6 +8,10 @@
 #include "unit-expa.h"
 #include "action-expa.h"
 
+#ifndef CONFIG_UNIT_ACTION_EXPA_ExecSkill
+    #define CONFIG_UNIT_ACTION_EXPA_ExecSkill 20
+#endif
+
 #if defined(SID_DrawBack) && (COMMON_SKILL_VALID(SID_DrawBack))
 
 struct Vec2u GetDrawBackCoord(int x1, int x2, int y1, int y2);

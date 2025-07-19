@@ -5,6 +5,10 @@
 #include "constants/skills.h"
 #include "constants/texts.h"
 
+#ifndef CONFIG_UNIT_ACTION_EXPA_ExecSkill
+    #define CONFIG_UNIT_ACTION_EXPA_ExecSkill 20
+#endif
+
 #if defined(SID_LightRune) && (COMMON_SKILL_VALID(SID_LightRune))
 u8 LightRune_Usability(const struct MenuItemDef * def, int number)
 {

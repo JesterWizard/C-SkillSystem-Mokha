@@ -6,6 +6,14 @@
 #include "skill-system.h"
 #include "constants/skills.h"
 
+#ifndef CONFIG_PAGE1_WITH_BWL
+    #define CONFIG_PAGE1_WITH_BWL 1
+#endif
+
+#ifndef CONFIG_PAGE1_WITH_LEADERSHIP
+    #define CONFIG_PAGE1_WITH_LEADERSHIP 0
+#endif
+
 static inline void _growth_disp(int x, int y, int growth)
 {
 #ifdef CONFIG_GROWTHS_AS_LETTERS

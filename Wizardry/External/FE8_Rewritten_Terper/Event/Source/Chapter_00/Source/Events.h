@@ -1,43 +1,43 @@
 static const EventScr EventScr_Beginning[] = {
-    LOAD_WAIT(Renais_Castle_Allies) // Load units and move them if possible
-    LOAD_MAP_XY(17, 12, CHAPTER_16) // Load coordinates and the map for this chapter
-    FADE_TO_BLACK(16) // Fade in from black in 1 second
-    MUSC(BGM_RAID) // Set BGM to RAID
-    BROWNBOXTEXT(BB_Renais_Castle, 2, 2) // Set location text pop up
-    LOAD_WAIT(Panicked_Soldier_Allies) // Load units and move them if possible
-    CAMERA(17, 2) // Set camera to these coordinates
-    HIGHLIGHT_CHARACTER(CHARACTER_EPHRAIM, 60) // Set flashing cursor on unit for a number of frames
-    TEXT(Chapter_00_Scene_01_Convo_01) // Play this dialogue
-    MOVE_WAIT(0, CHARACTER_EPHRAIM, 13, 11) // Move unit to chosen coordinates at given speed then wait
-    ERASE(CHARACTER_EPHRAIM) // Erase given unit
-    MOVE_1STEP_WAIT(0, CHARACTER_EIRIKA, MOVE_LEFT) // Move unit 1 step in given direction and wait
-    HIGHLIGHT_CHARACTER(CHARACTER_EIRIKA, 60) // Set flashing cursor on unit for a number of frames
+    LOAD_WAIT(Renais_Castle_Allies)
+    LOAD_MAP_XY(17, 13, CHAPTER_16)
+    FADE_TO_BLACK(16)
+    MUSC(BGM_RAID)
+    BROWNBOXTEXT(BB_Renais_Castle, 2, 2)
+    LOAD_WAIT(Panicked_Soldier_Allies)
+    CAMERA(17, 2)
+    HIGHLIGHT_CHARACTER(CHARACTER_EPHRAIM, 60)
+    TEXT(Chapter_00_Scene_01_Convo_01)
+    MOVE_WAIT(0, CHARACTER_EPHRAIM, 13, 11)
+    ERASE(CHARACTER_EPHRAIM)
+    MOVE_1STEP_WAIT(0, CHARACTER_EIRIKA, MOVE_LEFT)
+    HIGHLIGHT_CHARACTER(CHARACTER_EIRIKA, 60)
     TEXT(Chapter_00_Scene_01_Convo_02)
-    MOVEONTO_WAIT(0, CHARACTER_SETH, CHARACTER_EIRIKA) // Move unit to another unit and wait    
-    ERASE(CHARACTER_EIRIKA) // Erase given unit
-    HIGHLIGHT_CHARACTER(CHARACTER_SETH, 60) // Set flashing cursor on unit for a number of frames
+    MOVEONTO_WAIT(0, CHARACTER_SETH, CHARACTER_EIRIKA)
+    ERASE(CHARACTER_EIRIKA)
+    HIGHLIGHT_CHARACTER(CHARACTER_SETH, 60)
     TEXT(Chapter_00_Scene_01_Convo_03)
-    MOVE(0, CHARACTER_SETH, 13, 11) // Move unit to chosen coordinates at given speed then wait
-    MOVE_TWICE_WAIT(0, CHARACTER_FRANZ, 12, 4, 12, 11) // Move unit twice and wait
-    ERASE(CHARACTER_SETH) // Erase given unit
-    ERASE(CHARACTER_FRANZ) // Erase given unit
+    MOVE(0, CHARACTER_SETH, 13, 11)
+    MOVE_TWICE_WAIT(0, CHARACTER_FRANZ, 12, 4, 12, 11)
+    ERASE(CHARACTER_SETH)
+    ERASE(CHARACTER_FRANZ)
     MOVE(0, CHARACTER_MOULDER, 11, 4)
     MOVE(0, CHARACTER_VANESSA, 15, 4)
-    ENUN // Wait for units to finish moving before continuing
+    ENUN
     MOVE_1STEP(0, CHARACTER_MOULDER, MOVE_RIGHT)
     MOVE_1STEP(0, CHARACTER_VANESSA, MOVE_LEFT)
-    ENUN // Wait for units to finish moving before continuing
-    LOAD_WAIT(Renais_Castle_Enemy1) // Load units and move them if possible
-    LOAD_WAIT(Renais_Castle_Enemy2) // Load units and move them if possible
-    LOAD_WAIT(Renais_Castle_Enemy3) // Load units and move them if possible
-    HIGHLIGHT_CHARACTER(CHARACTER_FADO, 60) // Set flashing cursor on unit for a number of frames
+    ENUN
+    LOAD_WAIT(Renais_Castle_Enemy1)
+    LOAD_WAIT(Renais_Castle_Enemy2)
+    LOAD_WAIT(Renais_Castle_Enemy3)
+    HIGHLIGHT_CHARACTER(CHARACTER_FADO, 60)
     TEXT(Chapter_00_Scene_01_Convo_04)
-    FADE_FROM_BLACK(2) // Fade out to black in 8 seconds
-    REMA // Remove the current map
+    FADE_FROM_BLACK(2)
+    REMA
     SKIP_POINT
     CLEAR_ALL_UNITS
 
-    // Escape Castle Renais
+    /* Escape Castle Renais */
     LOAD_MAP_XY(0, 0, OUTSIDE_RENAIS)
     FADE_TO_BLACK(16)
     LOAD_WAIT(Renais_Runaways_Allies)
@@ -47,23 +47,22 @@ static const EventScr EventScr_Beginning[] = {
     ERASE(CHARACTER_FRANZ)
     HIGHLIGHT_CHARACTER(CHARACTER_SETH, 60)
     TEXT_BG(0x1D, Chapter_00_Scene_02_Convo_02)
+    MOVE_1STEP(0, CHARACTER_SETH, MOVE_RIGHT)
+    MOVE_1STEP(0, CHARACTER_EIRIKA, MOVE_LEFT)
     LOAD_WAIT(Renais_Outside_Castle_Enemy)
-    MOVE_1STEP_WAIT(0, CHARACTER_SETH, MOVE_RIGHT)
-    MOVE_1STEP_WAIT(0, CHARACTER_EIRIKA, MOVE_LEFT)
     HIGHLIGHT_CHARACTER(CHARACTER_VALTER_PROLOGUE, 60)
     TEXT_BG(0x1D, Chapter_00_Scene_02_Convo_03)
     MOVE_1STEP_WAIT(0, CHARACTER_VALTER_PROLOGUE, MOVE_LEFT)
 
-    // Battle scene
+    /* Battle scene */
     StartBattle
     NormalDamage(0, 0)
     NormalDamage(1, 0)
     EndAttack
     FIGHT(CHARACTER_SETH, CHARACTER_VALTER_PROLOGUE, 0, false)
-    // End battle
     
     /* Escape Valter */
-    HIGHLIGHT_CHARACTER(CHARACTER_SETH, 60)
+    HIGHLIGHT_CHARACTER(CHARACTER_VALTER_PROLOGUE, 60)
     TEXT(Chapter_00_Scene_02_Convo_04)
     MOVE_1STEP_WAIT(0, CHARACTER_SETH, MOVE_LEFT)
     ERASE(CHARACTER_EIRIKA)
@@ -152,7 +151,9 @@ LABEL(0x1)
 };
 
 static const EventListScr EventScr_Talk_EIRIKA_SETH[] = {
+#ifdef CONFIG_FORGING
     ASMC(CallForgeMenuASMC)
+#endif
 };
 
 static const EventListScr EventListScr_Turn[] = {

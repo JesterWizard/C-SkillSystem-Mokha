@@ -5,6 +5,10 @@
 #include "constants/skills.h"
 #include "constants/texts.h"
 
+#ifndef CONFIG_UNIT_ACTION_EXPA_ExecSkill
+    #define CONFIG_UNIT_ACTION_EXPA_ExecSkill 20
+#endif
+
 #if defined(SID_GoddessDance) && (COMMON_SKILL_VALID(SID_GoddessDance))
 u8 GoddessDance_Usability(const struct MenuItemDef * def, int number)
 {

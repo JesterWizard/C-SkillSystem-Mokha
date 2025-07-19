@@ -17,7 +17,11 @@ STATIC_DECLAR u8 RemoveSkillMenu_OnCancel(struct MenuProc * menu, struct MenuIte
                                         (((sid) > 0x0FF) ? CONFIG_ITEM_INDEX_SKILL_SCROLL_2 : \
                                                            CONFIG_ITEM_INDEX_SKILL_SCROLL_1)))
 #else
-    #define GET_SKILL_SCROLL_INDEX(sid) CONFIG_ITEM_INDEX_SKILL_SCROLL_1
+    #ifdef CONFIG_ITEM_INDEX_SKILL_SCROLL_1
+        #define GET_SKILL_SCROLL_INDEX(sid) CONFIG_ITEM_INDEX_SKILL_SCROLL_1
+    #else
+        #define GET_SKILL_SCROLL_INDEX(sid) 200 // Ignore this, it's just here for filler
+    #endif
 #endif
 
 const struct MenuDef RemoveSkillMenuDef = {
@@ -232,8 +236,8 @@ STATIC_DECLAR int RemoveSkillMenu_OnDraw(struct MenuProc * menu, struct MenuItem
             else
             {
                 int slot = gActionData.itemSlotIndex;
-                int item = gActiveUnit->items[slot];
-                int itemIndex = ITEM_INDEX(item);
+                FORCE_DECLARE int item = gActiveUnit->items[slot];
+                FORCE_DECLARE int itemIndex = ITEM_INDEX(item);
 #ifdef CONFIG_ITEM_INDEX_SKILL_SCROLL_1
                 if (itemIndex == CONFIG_ITEM_INDEX_SKILL_SCROLL_1)
                     sid = ITEM_USES(item);
@@ -338,6 +342,7 @@ STATIC_DECLAR u8 RemoveSkillMenu_OnSelected(struct MenuProc * menu, struct MenuI
         int item = 0;
         RemoveSkill(gActiveUnit, sid);
 
+#ifdef CONFIG_ITEM_INDEX_SKILL_SCROLL_1
         if (sid < 0xFF)
             item = ITEM_INDEX(CONFIG_ITEM_INDEX_SKILL_SCROLL_1) | (sid << 8);
         else if (sid > 0xFF && sid < 0x1FF)
@@ -346,6 +351,7 @@ STATIC_DECLAR u8 RemoveSkillMenu_OnSelected(struct MenuProc * menu, struct MenuI
             item = ITEM_INDEX(CONFIG_ITEM_INDEX_SKILL_SCROLL_3) | ((sid - 0x1FF) << 8);
         else if (sid < 0x3FF)
             item = ITEM_INDEX(CONFIG_ITEM_INDEX_SKILL_SCROLL_4) | ((sid - 0x2FF) << 8);
+#endif
 
         UnitAddItem(gActiveUnit, item);
 

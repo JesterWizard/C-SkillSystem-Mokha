@@ -153,7 +153,7 @@ void ItemUseAction_SkillScroll(ProcPtr proc)
 {
     struct Unit * unit = GetUnit(gActionData.subjectIndex);
     int slot = gActionData.itemSlotIndex;
-    int item = unit->items[slot];
+    FORCE_DECLARE int item = unit->items[slot];
 
 #ifdef CONFIG_TELLIUS_CAPACITY_SYSTEM
     int amt = GetUnitBattleAmt(gActiveUnit);
@@ -231,6 +231,7 @@ void ItemUseAction_SkillScroll(ProcPtr proc)
 #if defined(SID_ScrollScribe) && (COMMON_SKILL_VALID(SID_ScrollScribe))
         if (SkillTester(unit, SID_ScrollScribe))
         {
+#ifdef CONFIG_ITEM_INDEX_SKILL_SCROLL_1
             if (ITEM_INDEX(item) == CONFIG_ITEM_INDEX_SKILL_SCROLL_1)
                 unit->items[slot] = ITEM_INDEX(item)         | (sid_rep << 8);
             else if (ITEM_INDEX(item) == CONFIG_ITEM_INDEX_SKILL_SCROLL_2)
@@ -239,6 +240,7 @@ void ItemUseAction_SkillScroll(ProcPtr proc)
                 unit->items[slot] = ITEM_INDEX(item + 0x1FF) | (sid_rep << 8);
             else if (ITEM_INDEX(item) == CONFIG_ITEM_INDEX_SKILL_SCROLL_4)
                 unit->items[slot] = ITEM_INDEX(item + 0x2FF) | (sid_rep << 8);
+#endif
         }
         else 
             UnitUpdateUsedItem(unit, slot);

@@ -1,7 +1,7 @@
 #pragma once
 
 #include "global.h"
-#include "prepscreen.h"
+#include "../../../include/prepscreen.h"
 #include "uimenu.h"
 
 enum promohandler_proc_label {

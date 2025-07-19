@@ -271,6 +271,18 @@ struct StatDebuffStatus {
     } st;
 };
 
+#ifndef CONFIG_UNIT_AMT_ALLY
+    #define CONFIG_UNIT_AMT_ALLY 50
+#endif
+
+#ifndef CONFIG_UNIT_AMT_ENEMY
+    #define CONFIG_UNIT_AMT_ENEMY 50
+#endif
+
+#ifndef CONFIG_UNIT_AMT_NPC
+    #define CONFIG_UNIT_AMT_NPC 20
+#endif
+
 extern struct StatDebuffStatus sStatDebuffStatusAlly[CONFIG_UNIT_AMT_ALLY];
 extern struct StatDebuffStatus sStatDebuffStatusEnemy[CONFIG_UNIT_AMT_ENEMY];
 extern struct StatDebuffStatus sStatDebuffStatusNpc[CONFIG_UNIT_AMT_NPC];
