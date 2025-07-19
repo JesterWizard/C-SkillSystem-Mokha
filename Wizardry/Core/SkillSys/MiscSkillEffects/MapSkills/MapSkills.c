@@ -201,32 +201,33 @@ void UnitApplyWorkingMovementScript(struct Unit *unit, int x, int y)
 
         } // switch (*it)
 
-        if (!(UNIT_CATTRIBUTES(unit) & (CA_THIEF | CA_FLYER | CA_ASSASSIN)))
-        {
-            if (gBmMapHidden[y][x] & HIDDEN_BIT_TRAP)
-            {
-                *++it = MOVE_CMD_HALT;
+        // https://github.com/JesterWizard/C-SkillSystem-Mokha/issues/264
+//         if (!(UNIT_CATTRIBUTES(unit) & (CA_THIEF | CA_FLYER | CA_ASSASSIN)))
+//         {
+//             if (gBmMapHidden[y][x] & HIDDEN_BIT_TRAP)
+//             {
+//                 *++it = MOVE_CMD_HALT;
 
-                gActionData.unitActionType = UNIT_ACTION_TRAPPED;
-                gActionData.xMove = x;
-                gActionData.yMove = y;
+//                 gActionData.unitActionType = UNIT_ACTION_TRAPPED;
+//                 gActionData.xMove = x;
+//                 gActionData.yMove = y;
 
-                return;
-            }
-        }
-        if (gBmMapHidden[y][x] & HIDDEN_BIT_UNIT)
-        {
-            *it++ = MOVE_CMD_BUMP;
-            *it++ = MOVE_CMD_HALT;
+//                 return;
+//             }
+//         }
+//         if (gBmMapHidden[y][x] & HIDDEN_BIT_UNIT)
+//         {
+//             *it++ = MOVE_CMD_BUMP;
+//             *it++ = MOVE_CMD_HALT;
 
-#if defined(SID_Reflex) && (COMMON_SKILL_VALID(SID_Reflex))
-            if (!SkillTester(unit, SID_Reflex))
-                gActionData.unitActionType = UNIT_ACTION_TRAPPED;
-#else
-            gActionData.unitActionType = UNIT_ACTION_TRAPPED;
-#endif
-            return;
-        }
+// #if defined(SID_Reflex) && (COMMON_SKILL_VALID(SID_Reflex))
+//             if (!SkillTester(unit, SID_Reflex))
+//                 gActionData.unitActionType = UNIT_ACTION_TRAPPED;
+// #else
+//             gActionData.unitActionType = UNIT_ACTION_TRAPPED;
+// #endif
+//             return;
+//         }
 
         if (*it == MOVE_CMD_HALT)
             break;
@@ -282,7 +283,6 @@ void ChapterChangeUnitCleanup(void)
                 {
                     unit->pClassData = GetClassData(transformationPairs[i][0]);
                     ClearUnitStatDebuff(unit, UNIT_STAT_BUFF_TRANSFORM);
-                    unit->maxHP -= 7;
                     break;
                 }
             }
@@ -296,7 +296,7 @@ void ChapterChangeUnitCleanup(void)
             {
                 unit->pClassData = GetClassData(transformationPairs[i][0]);
                 ClearUnitStatDebuff(unit, UNIT_STAT_BUFF_LAGUZ);
-                unit->maxHP -= 7;
+                ClearUnitStatDebuff(unit, UNIT_STAT_BUFF_LAGUZ_HALFSHIFT);
                 break;
             }
         }

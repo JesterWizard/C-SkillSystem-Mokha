@@ -1,5 +1,7 @@
 #include "common-chax.h"
 #include "skill-system.h"
+#include "playst-expa.h"
+#include "popup.h"
 
 static u32* const sUnitPriorityArray = (void*) gGenericBuffer;
 
@@ -36,6 +38,137 @@ static u32* const sUnitPriorityArray = (void*) gGenericBuffer;
 //     sCpOrderFuncList[gAiState.orderState++](proc);
 // }
 
+static int GetRearmWeapon(int weaponType, int weaponRank)
+{
+    switch (weaponType)
+    {
+        case ITYPE_SWORD:
+            return (weaponRank == WPN_EXP_E) ? ITEM_SWORD_IRON :
+                   (weaponRank == WPN_EXP_D) ? ITEM_SWORD_STEEL :
+                   (weaponRank == WPN_EXP_C) ? ITEM_SWORD_KILLER :
+                   (weaponRank == WPN_EXP_B) ? ITEM_SWORD_BRAVE :
+                   (weaponRank == WPN_EXP_A) ? ITEM_SWORD_SILVER :
+                   (weaponRank == WPN_EXP_S) ? ITEM_SWORD_AUDHULMA : 0;
+
+        case ITYPE_LANCE:
+            return (weaponRank == WPN_EXP_E) ? ITEM_LANCE_IRON :
+                   (weaponRank == WPN_EXP_D) ? ITEM_LANCE_STEEL :
+                   (weaponRank == WPN_EXP_C) ? ITEM_LANCE_KILLER :
+                   (weaponRank == WPN_EXP_B) ? ITEM_LANCE_BRAVE :
+                   (weaponRank == WPN_EXP_A) ? ITEM_LANCE_SILVER :
+                   (weaponRank == WPN_EXP_S) ? ITEM_LANCE_VIDOFNIR : 0;
+
+        case ITYPE_AXE:
+            return (weaponRank == WPN_EXP_E) ? ITEM_AXE_IRON :
+                   (weaponRank == WPN_EXP_D) ? ITEM_AXE_STEEL :
+                   (weaponRank == WPN_EXP_C) ? ITEM_AXE_KILLER :
+                   (weaponRank == WPN_EXP_B) ? ITEM_AXE_BRAVE :
+                   (weaponRank == WPN_EXP_A) ? ITEM_AXE_SILVER :
+                   (weaponRank == WPN_EXP_S) ? ITEM_AXE_GARM : 0;
+
+        case ITYPE_BOW:
+            return (weaponRank == WPN_EXP_E) ? ITEM_BOW_IRON :
+                   (weaponRank == WPN_EXP_D) ? ITEM_BOW_STEEL :
+                   (weaponRank == WPN_EXP_C) ? ITEM_BOW_KILLER :
+                   (weaponRank == WPN_EXP_B) ? ITEM_BOW_BRAVE :
+                   (weaponRank == WPN_EXP_A) ? ITEM_BOW_SILVER :
+                   (weaponRank == WPN_EXP_S) ? ITEM_BOW_NIDHOGG : 0;
+
+        case ITYPE_ANIMA:
+            return (weaponRank == WPN_EXP_E) ? ITEM_ANIMA_FIRE :
+                   (weaponRank == WPN_EXP_D) ? ITEM_ANIMA_THUNDER :
+                   (weaponRank == WPN_EXP_C) ? ITEM_ANIMA_ELFIRE :
+                   (weaponRank == WPN_EXP_B) ? ITEM_ANIMA_BOLTING :
+                   (weaponRank == WPN_EXP_A) ? ITEM_ANIMA_FIMBULVETR :
+                   (weaponRank == WPN_EXP_S) ? ITEM_ANIMA_EXCALIBUR : 0;
+
+        case ITYPE_LIGHT:
+            return (weaponRank == WPN_EXP_E) ? ITEM_LIGHT_LIGHTNING :
+                   (weaponRank == WPN_EXP_D) ? ITEM_LIGHT_SHINE :
+                   (weaponRank == WPN_EXP_C) ? ITEM_LIGHT_DIVINE :
+                   (weaponRank == WPN_EXP_B) ? ITEM_LIGHT_PURGE :
+                   (weaponRank == WPN_EXP_A) ? ITEM_LIGHT_AURA :
+                   (weaponRank == WPN_EXP_S) ? ITEM_LIGHT_IVALDI : 0;
+
+        case ITYPE_DARK:
+            return (weaponRank == WPN_EXP_E) ? ITEM_DARK_FLUX :
+                   (weaponRank == WPN_EXP_D) ? ITEM_DARK_FLUX :
+                   (weaponRank == WPN_EXP_C) ? ITEM_DARK_LUNA :
+                   (weaponRank == WPN_EXP_B) ? ITEM_DARK_NOSFERATU :
+                   (weaponRank == WPN_EXP_A) ? ITEM_DARK_FENRIR :
+                   (weaponRank == WPN_EXP_S) ? ITEM_DARK_GLEIPNIR : 0;
+
+        case ITYPE_STAFF:
+            return (weaponRank == WPN_EXP_E) ? ITEM_STAFF_HEAL :
+                   (weaponRank == WPN_EXP_D) ? ITEM_STAFF_MEND :
+                   (weaponRank == WPN_EXP_C) ? ITEM_STAFF_BARRIER :
+                   (weaponRank == WPN_EXP_B) ? ITEM_STAFF_BERSERK :
+                   (weaponRank == WPN_EXP_A) ? ITEM_STAFF_FORTIFY :
+                   (weaponRank == WPN_EXP_S) ? ITEM_STAFF_LATONA : 0;
+
+        default:
+            return 0;
+    }
+}
+
+static int BuildAiUnitList_Proc(ProcPtr proc) {
+    int i, aiNum = 0;
+
+    u32 faction = gPlaySt.faction;
+    u32* prioIt = sUnitPriorityArray;
+
+#ifdef CONFIG_FOURTH_ALLEGIANCE
+    int factionUnitCountLut[4] = { 62, 20, 50, 20 }; // TODO: named constant for those
+#else
+    int factionUnitCountLut[3] = { 62, 20, 50 }; // TODO: named constant for those
+#endif
+
+    for (i = 0; i < factionUnitCountLut[faction >> 6]; ++i)
+    {
+        struct Unit* unit = GetUnit(faction + i + 1);
+
+        if (!unit->pCharacterData)
+            continue;
+
+#if (defined(SID_Rearm) && (COMMON_SKILL_VALID(SID_Rearm)))
+        if (SkillTester(unit, SID_Rearm))
+        {
+            if (GetUnitEquippedWeapon(unit) == 0)
+            {
+                /* I get a crash on starting a new game without these for some reason */
+                /* It happened in the skill menu too and then I was able to remove them */
+                /* Fuck if I know what's happening */
+                NoCashGBAPrint("1");
+                int weaponType = GetUnitBestWRankType(unit);
+                NoCashGBAPrint("2");
+                int weaponRank = unit->ranks[weaponType];
+                NoCashGBAPrint("3");
+                int chosen_weapon = GetRearmWeapon(weaponType, weaponRank);
+                NoCashGBAPrint("4");
+
+                if (chosen_weapon)
+                    UnitAddItem(unit, MakeNewItem(chosen_weapon));
+            }
+        }
+#endif
+
+        if (unit->statusIndex == UNIT_STATUS_SLEEP)
+            continue;
+
+        if (unit->statusIndex == UNIT_STATUS_BERSERK)
+            continue;
+
+        if (unit->state & (US_HIDDEN | US_UNSELECTABLE | US_DEAD | US_RESCUED | US_HAS_MOVED_AI))
+            continue;
+
+        gAiState.units[aiNum] = faction + i + 1;
+        *prioIt++ = GetUnitAiPriority(unit);
+
+        aiNum++;
+    }
+
+    return aiNum;
+}
 
 LYN_REPLACE_CHECK(CpOrderBerserkInit);
 void CpOrderBerserkInit(ProcPtr proc)
@@ -86,7 +219,7 @@ void CpOrderBerserkInit(ProcPtr proc)
 LYN_REPLACE_CHECK(CpOrderFunc_BeginDecide);
 void CpOrderFunc_BeginDecide(ProcPtr proc)
 {
-    int unitAmt = BuildAiUnitList();
+    int unitAmt = BuildAiUnitList_Proc(proc);
 
     if (unitAmt != 0)
     {
@@ -356,6 +489,7 @@ s8 AiFindTargetInReachByClassId(int classId, struct Vec2* out) {
 LYN_REPLACE_CHECK(BmMain_StartPhase);
 void BmMain_StartPhase(ProcPtr proc)
 {
+
     int phaseControl = gPlaySt.faction;
     if (gPlaySt.faction == FACTION_RED) 
     { 

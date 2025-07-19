@@ -694,7 +694,7 @@ Guard Bearing[X]
 ## MSG_SKILL_GuardBearing_DESC
 Guard Bearing: During first combat[N]
 in enemy phase, if attacked, reduces[N]
-50% damage from foe's first attack.[X]
+30% damage from foe's first attack.[X]
 
 ## MSG_SKILL_Spurn_NAME
 Spurn[X]
@@ -1592,3 +1592,25 @@ Gain +5 to a stat for each weapon[N]
 type the unit uses.[N]
 Sword = SPD, Lance = SKL,[N]
 Axe = STR, Bow = LCK.[X]
+
+## MSG_SKILL_Flicker_NAME
+Flicker[X]
+## MSG_SKILL_Flicker_DESC
+Flicker:[N]
+If at full health and this unit[N]
+would takes >= 50% from an attack,[N]
+dodge that attack.[X]
+
+## MSG_SKILL_UnarmedCombat_NAME
+Unarmed Combat[X]
+## MSG_SKILL_UnarmedCombat_DESC
+Unarmed Combat:[N]
+This unit can attack[N]
+without a weapon.[X]
+
+## MSG_SKILL_GoldenGlory_NAME
+Golden Glory[X]
+## MSG_SKILL_GoldenGlory_DESC
+Golden Glory:[N]
+Boost all stats by +1 for every[N]
+20000g in total, max +5.[X]

@@ -202,4 +202,40 @@ const SkillActionFunc_t gSkillActionFuncTable[MAX_SKILL_NUM + 1] = {
 #if (defined(SID_Reinforcements) && COMMON_SKILL_VALID(SID_Reinforcements))
     [SID_Reinforcements] = Action_Reinforcements,
 #endif
+
+#if (defined(SID_ResolvedHeart) && COMMON_SKILL_VALID(SID_ResolvedHeart))
+	[SID_ResolvedHeart] = Action_ResolvedHeart,
+#endif
+
+#if (defined(SID_Ballistary) && COMMON_SKILL_VALID(SID_Ballistary))
+	[SID_Ballistary] = Action_Ballistary,
+#endif
+
+#if (defined(SID_Bide) && COMMON_SKILL_VALID(SID_Bide))
+	[SID_Bide] = Action_Bide,
+#endif
+
+#if (defined(SID_CoinFlip) && COMMON_SKILL_VALID(SID_CoinFlip))
+	[SID_CoinFlip] = Action_CoinFlip,
+#endif
+
+#if (defined(SID_Geomancy) && COMMON_SKILL_VALID(SID_Geomancy))
+	[SID_Geomancy] = Action_Geomancy,
+#endif
+
+#if (defined(SID_ScrollScribePlus) && COMMON_SKILL_VALID(SID_ScrollScribePlus))
+	[SID_ScrollScribePlus] = Action_ScrollScribePlus,
+#endif
+
+#if (defined(SID_DancePlus) && COMMON_SKILL_VALID(SID_DancePlus))
+	[SID_DancePlus] = Action_DancePlus,
+#endif
+
+#if (defined(SID_Acidic) && COMMON_SKILL_VALID(SID_Acidic))
+	[SID_Acidic] = Action_Acidic,
+#endif
+
+#if (defined(SID_AcidicPlus) && COMMON_SKILL_VALID(SID_AcidicPlus))
+	[SID_AcidicPlus] = Action_Acidic,
+#endif
 };

@@ -59,6 +59,14 @@
 // SID_PersuadePlus
 // SID_Kamikaze
 // SID_Reinforcements
+// SID_ResolvedHeart
+// SID_Ballistary
+// SID_Bide
+// SID_CoinFlip
+// SID_Geomancy
+// SID_Dance
+// SID_Acidic
+// SID_AcidicPlus
 
 //////// PRE-BATTLE SKILLS
 // SID_DefiantStr
@@ -250,6 +258,10 @@
 // SID_DualWield
 // SID_DualWieldPlus
 // SID_SlowStart
+// SID_Flicker
+// SID_UnarmedCombat
+// SID_SereneGrace
+// SID_GoldenGlory
 
 //////// POST-BATTLE SKILLS
 // SID_Canto
@@ -272,7 +284,6 @@
 // SID_GridMaster
 // SID_GridMasterAtk
 // SID_DestinyBond
-// SID_Tsuzuku
 // SID_BoundlessVitality
 // SID_Synchronize
 // SID_PoisonStrike
@@ -305,6 +316,8 @@
 // SID_ShadowStep
 // SID_Zenkai
 // SID_Freelancer
+// SID_GoodListener
+// SID_ScrollScribePlus
 
 //////// AURA SKILLS
 // SID_Anathema
@@ -537,12 +550,15 @@
 // SID_Rampart
 // SID_RampartPlus
 // SID_Forcefield
+// SID_AbsorbAlternation
+// SID_Levitate
 
 //////// EFFECTIVENESS SKILLS
 // SID_Resourceful
 // SID_Slayer
 // SID_Skybreaker
 // SID_BanditBane
+// SID_Protean
 
 //////// BATTLE ORDER SKILLS
 // SID_Vantage
@@ -568,6 +584,7 @@
 // SID_RapidFighter
 // SID_AlacrityPlus
 // SID_TrickRoom
+// SID_LastStand
 
 //////// PRE-PHASE SKILLS
 // SID_Renewal
@@ -662,6 +679,7 @@
 // SID_KnackHealth
 // SID_PeoplesKnight
 // SID_ItemLore
+// SID_Pulse
 
 //////// MOVEMENT SKILLS
 // SID_Pass
@@ -693,6 +711,8 @@
 // SID_ShadePlus
 // SID_Provoke
 // SID_Guardian
+// SID_Rearm
+// SID_LightningRod
 
 //////// STANDALONE SKILLS
 // SID_IdentityProblems
@@ -755,6 +775,10 @@
 // SID_ExplosiveHeal
 // SID_ExplosiveBuff
 // SID_ScrollScribe
+// SID_FormShift
+// SID_HalfShift
+// SID_StickyHold
+// SID_Protect
 
 //////// COMBAT ARTS
 // SID_COMBAT_Grounder

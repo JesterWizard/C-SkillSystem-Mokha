@@ -8,6 +8,10 @@
 #include "unit-expa.h"
 #include "action-expa.h"
 
+#ifndef CONFIG_UNIT_ACTION_EXPA_ExecSkill
+    #define CONFIG_UNIT_ACTION_EXPA_ExecSkill 20
+#endif
+
 #if defined(SID_Pivot) && (COMMON_SKILL_VALID(SID_Pivot))
 struct Vec2u GetPivotCoord(int x1, int x2, int y1, int y2);
 void TryPivotAllyToTargetList(struct Unit * unit);

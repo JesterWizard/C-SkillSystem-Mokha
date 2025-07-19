@@ -28,3 +28,9 @@ const int dismountPairs[14][2] = {
 
 // Define the size of the array
 const int dismountListSize = sizeof(dismountPairs) / sizeof(dismountPairs[0]);
+
+const int laguzPairs[1][2] = {
+    {CLASS_EIRIKA_LORD, CLASS_DEATHGOYLE}
+};
+
+const int laguzListSize = sizeof(laguzPairs) / sizeof(laguzPairs[0]);

@@ -6,6 +6,10 @@
 #include "debuff.h"
 #include "unit-expa.h"
 
+#ifndef CONFIG_UNIT_ACTION_EXPA_ExecSkill
+    #define CONFIG_UNIT_ACTION_EXPA_ExecSkill 20
+#endif
+
 #if defined(SID_Switcher) && (COMMON_SKILL_VALID(SID_Switcher))
 
 u8 Switcher_Usability(const struct MenuItemDef *def, int number)

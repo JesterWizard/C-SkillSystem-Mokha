@@ -8,6 +8,10 @@
 #include "playst-expa.h"
 #include "jester_headers/miscellaenous.h"
 
+#ifndef CONFIG_UNIT_ACTION_EXPA_ExecSkill
+    #define CONFIG_UNIT_ACTION_EXPA_ExecSkill 20
+#endif
+
 #if defined(SID_PersuadePlus) && (COMMON_SKILL_VALID(SID_PersuadePlus))
 
 u8 PersuadePlus_Usability(const struct MenuItemDef * def, int number)

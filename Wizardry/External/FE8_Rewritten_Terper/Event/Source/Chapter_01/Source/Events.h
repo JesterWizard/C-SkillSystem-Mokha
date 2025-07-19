@@ -1,10 +1,11 @@
 static const EventScr EventScr_Beginning[] = {
     MUSC(BGM_TENSION)
     LOAD_WAIT(CH1_BREGUET_FORCES)
-    STAL(60)
+    STAL(15)
     HIGHLIGHT_COORDINATES(2, 2, 60)
     TEXT_BG(0x26, Chapter_01_Scene_01_Convo_01)
     LOAD_WAIT(CH1_FRELIAN_FORCES)
+   // MOVE_WAIT(0, 0xC0, 2, 2)
     ERASE(0xC1)
     HIGHLIGHT_CHARACTER(CHARACTER_BREGUET, 60)
     TEXT_BG(0x1C, Chapter_01_Scene_02_Convo_01)
@@ -26,13 +27,13 @@ static const EventScr EventScr_Beginning[] = {
     HIGHLIGHT_CHARACTER(CHARACTER_BREGUET, 60)
     TEXT(Chapter_01_Scene_02_Convo_02)
     MOVE_WAIT(0, CHARACTER_BREGUET, 2, 2)
-    MOVE_POSITION_WAIT(24, 1, 6, 1, 3)
-    MOVE_POSITION_WAIT(24, 3, 6, 3, 3)
-    MOVE_POSITION_WAIT(24, 1, 8, 9, 5)
-    MOVE_POSITION_WAIT(24, 2, 7, 8, 3)
-    MOVE_POSITION_WAIT(24, 3, 8, 4, 7)
+    MOVE_POSITION(24, 1, 6, 1, 3)
+    MOVE_POSITION(24, 3, 6, 3, 3)
+    MOVE_POSITION(24, 1, 8, 9, 5)
+    MOVE_POSITION(24, 2, 7, 8, 3)
+    MOVE_POSITION(24, 3, 8, 4, 7)
     MOVE_POSITION_WAIT(24, 2, 9, 2, 8)
-    STAL(60)
+    STAL(30)
     HIGHLIGHT_COORDINATES(2, 2, 60)
     TEXT_BG(0x26, Chapter_01_Scene_03_Convo_01)
     LOAD_WAIT_PERSIST(CH1_EIRIKA_SETH)
@@ -40,10 +41,14 @@ static const EventScr EventScr_Beginning[] = {
     HIGHLIGHT_CHARACTER(CHARACTER_EIRIKA, 60)
     TEXT(Chapter_01_Scene_04_Convo_01)
 
-    ASMC(SetGameOptions_Chapter1)
+   // ASMC(SetGameOptions_Chapter1)
 
-    /* Temporary flag(11) is used for triggering event: EventScr_Ch1_Turn_EnemyReinforceArrive, this flag will be unset by event: EventScr_Ch1_Misc_Area */
+    /**
+     * Temporary flag(11) is used for triggering event: EventScr_Ch1_Turn_EnemyReinforceArrive,
+     * this flag will be unset by event: EventScr_Ch1_Misc_Area
+     */
     ENUT(EVFLAG_TMP(11))
+
     NOFADE
     ENDA
 };
@@ -69,42 +74,20 @@ static const EventListScr EventScr_Talk_FRANZ_EIRIKA[] = {
 };
 
 static const EventListScr EventScr_FRANZ_RETURNS[] = {
-    CHECK_TURNS //Store current turn count in slot C
-    SVAL(EVT_SLOT_7, 2)
-    BNE(0x0, EVT_SLOT_C, EVT_SLOT_7)
     MUSC(BGM_COMRADES)
     LOAD_WAIT_PERSIST(CH1_REINFORCEMENTS_ALLIES)
     HIGHLIGHT_CHARACTER(CHARACTER_FRANZ, 60)
     TEXT(Chapter_01_Scene_05_Convo_01)
-    GOTO(0x1)
-
-LABEL(0x0)
-    CHECK_EVENTID_
-    SADD(EVT_SLOT_2, EVT_SLOT_C, EVT_SLOT_0)
-    ENUF_SLOT2
-
-LABEL(0x1)
     NOFADE
     ENDA
 };
 
 static const EventListScr EventScr_ENEMY_REINFORCEMENTS[] = {
-    CHECK_TURNS //Store current turn count in slot C
-    SVAL(EVT_SLOT_7, 3)
-    BNE(0x0, EVT_SLOT_C, EVT_SLOT_7)
     REDUCE_VOLUME
     LOAD_WAIT_PERSIST(CH1_REINFORCEMENTS_ENEMIES)
     HIGHLIGHT_CHARACTER(CHARACTER_SOLDIER_83, 60)
     TEXT(Chapter_01_Scene_12_Convo_01)
     RESTORE_VOLUME
-    GOTO(0x1)
-
-LABEL(0x0)
-    CHECK_EVENTID_
-    SADD(EVT_SLOT_2, EVT_SLOT_C, EVT_SLOT_0)
-    ENUF_SLOT2
-
-LABEL(0x1)
     NOFADE
     ENDA
 };
@@ -119,12 +102,21 @@ static const EventListScr EventListScr_HOUSE_TALK_2[] = {
     END_MAIN
 };
 
+static const EventListScr EventScr_Misc_Area[] = {
+    SVAL(EVT_SLOT_2, CHARACTER_EIRIKA)
+    CALL(EventScr_UnTriggerIfNotUnit)   /* This event may directly ENDB if the condition is not matched */
+
+    ENUF(EVFLAG_TMP(11))
+    NOFADE
+    ENDA
+};
+
 /**
  * Event list
  */
 static const EventListScr EventListScr_Turn[] = {
-    AFEV(EVFLAG_TMP(7), EventScr_FRANZ_RETURNS, 0)
-    AFEV(EVFLAG_TMP(8), EventScr_ENEMY_REINFORCEMENTS, 0)
+    TURN(0x0, EventScr_FRANZ_RETURNS, 2, 2, FACTION_BLUE)
+    TURN(EVFLAG_TMP(11), EventScr_ENEMY_REINFORCEMENTS, 1, 255, FACTION_BLUE)
     END_MAIN
 };
 
@@ -143,6 +135,7 @@ static const EventListScr EventListScr_Location[] = {
 };
 
 static const EventListScr EventListScr_Misc[] = {
+    AREA(EVFLAG_TMP(10), EventScr_Misc_Area, 0, 0, 7, 9)
     CAUSE_GAME_OVER_IF_LORD_DIES
     END_MAIN
 };

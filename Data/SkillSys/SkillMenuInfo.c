@@ -9,8 +9,8 @@ const struct MenuItemDef gSkillMenuInfos[MAX] = {
 #if (defined(SID_Dance) && COMMON_SKILL_VALID(SID_Dance))
     [SID_Dance] = {
         .name = "　踊る",
-        .nameMsgId = 0x67E,
-        .helpMsgId = 0x6C2,
+        .nameMsgId = MSG_SKILL_Dance_NAME,
+        .helpMsgId = MSG_SKILL_Dance_DESC,
         .color = TEXT_COLOR_SYSTEM_GOLD,
         .isAvailable = DanceCommandUsability,
         .onDraw = NULL,
@@ -18,6 +18,21 @@ const struct MenuItemDef gSkillMenuInfos[MAX] = {
         .onIdle = NULL,
         .onSwitchIn = NULL,
         .onSwitchOut = NULL,
+    },
+#endif
+
+#if (defined(SID_DancePlus) && COMMON_SKILL_VALID(SID_DancePlus))
+    [SID_DancePlus] = {
+        .name = "　踊る",
+        .nameMsgId = MSG_SKILL_DancePlus_NAME,
+        .helpMsgId = MSG_SKILL_DancePlus_DESC,
+        .color = TEXT_COLOR_SYSTEM_GOLD,
+        .isAvailable = DancePlus_Usability,
+        .onDraw = NULL,
+        .onSelected = DancePlus_OnSelected,
+        .onIdle = NULL,
+        .onSwitchIn = DancePlus_Hover,
+        .onSwitchOut = DancePlus_Unhover,
     },
 #endif
 
@@ -840,6 +855,126 @@ const struct MenuItemDef gSkillMenuInfos[MAX] = {
         .isAvailable = Reinforcements_Usability,
         .onDraw = NULL,
         .onSelected = Reinforcements_OnSelected,
+        .onIdle = NULL,
+        .onSwitchIn = NULL,
+        .onSwitchOut = NULL,
+    },
+#endif
+
+#if (defined(SID_ResolvedHeart) && COMMON_SKILL_VALID(SID_ResolvedHeart))
+    [SID_ResolvedHeart] = {
+        .name = "　",
+        .nameMsgId = MSG_SKILL_ResolvedHeart_NAME,
+        .helpMsgId = MSG_SKILL_ResolvedHeart_DESC,
+        .color = TEXT_COLOR_SYSTEM_GOLD,
+        .isAvailable = ResolvedHeart_Usability,
+        .onDraw = NULL,
+        .onSelected = ResolvedHeart_OnSelected,
+        .onIdle = NULL,
+        .onSwitchIn = NULL,
+        .onSwitchOut = NULL,
+    },
+#endif
+
+#if (defined(SID_Ballistary) && COMMON_SKILL_VALID(SID_Ballistary))
+    [SID_Ballistary] = {
+        .name = "　",
+        .nameMsgId = MSG_SKILL_Ballistary_NAME,
+        .helpMsgId = MSG_SKILL_Ballistary_DESC,
+        .color = TEXT_COLOR_SYSTEM_GOLD,
+        .isAvailable = Ballistary_Usability,
+        .onDraw = NULL,
+        .onSelected = Ballistary_OnSelected,
+        .onIdle = NULL,
+        .onSwitchIn = NULL,
+        .onSwitchOut = NULL,
+    },
+#endif
+
+#if (defined(SID_Bide) && COMMON_SKILL_VALID(SID_Bide))
+    [SID_Bide] = {
+        .name = "　",
+        .nameMsgId = MSG_SKILL_Bide_NAME,
+        .helpMsgId = MSG_SKILL_Bide_DESC,
+        .color = TEXT_COLOR_SYSTEM_GOLD,
+        .isAvailable = Bide_Usability,
+        .onDraw = NULL,
+        .onSelected = Bide_OnSelected,
+        .onIdle = NULL,
+        .onSwitchIn = NULL,
+        .onSwitchOut = NULL,
+    },
+#endif
+
+#if (defined(SID_CoinFlip) && COMMON_SKILL_VALID(SID_CoinFlip))
+    [SID_CoinFlip] = {
+        .name = "　",
+        .nameMsgId = MSG_SKILL_CoinFlip_NAME,
+        .helpMsgId = MSG_SKILL_CoinFlip_DESC,
+        .color = TEXT_COLOR_SYSTEM_GOLD,
+        .isAvailable = CoinFlip_Usability,
+        .onDraw = NULL,
+        .onSelected = CoinFlip_OnSelected,
+        .onIdle = NULL,
+        .onSwitchIn = NULL,
+        .onSwitchOut = NULL,
+    },
+#endif
+
+#if (defined(SID_Geomancy) && COMMON_SKILL_VALID(SID_Geomancy))
+    [SID_Geomancy] = {
+        .name = "　",
+        .nameMsgId = MSG_SKILL_Geomancy_NAME,
+        .helpMsgId = MSG_SKILL_Geomancy_DESC,
+        .color = TEXT_COLOR_SYSTEM_GOLD,
+        .isAvailable = Geomancy_Usability,
+        .onDraw = NULL,
+        .onSelected = Geomancy_OnSelected,
+        .onIdle = NULL,
+        .onSwitchIn = NULL,
+        .onSwitchOut = NULL,
+    },
+#endif
+
+#if (defined(SID_ScrollScribePlus) && COMMON_SKILL_VALID(SID_ScrollScribePlus))
+    [SID_ScrollScribePlus] = {
+        .name = "　",
+        .nameMsgId = MSG_SKILL_ScrollScribePlus_NAME,
+        .helpMsgId = MSG_SKILL_ScrollScribePlus_DESC,
+        .color = TEXT_COLOR_SYSTEM_GOLD,
+        .isAvailable = ScrollScribePlus_Usability,
+        .onDraw = NULL,
+        .onSelected = ScrollScribePlus_OnSelected,
+        .onIdle = NULL,
+        .onSwitchIn = NULL,
+        .onSwitchOut = NULL,
+    },
+#endif
+
+#if (defined(SID_Acidic) && COMMON_SKILL_VALID(SID_Acidic))
+    [SID_Acidic] = {
+        .name = "　",
+        .nameMsgId = MSG_SKILL_Acidic_NAME,
+        .helpMsgId = MSG_SKILL_Acidic_DESC,
+        .color = TEXT_COLOR_SYSTEM_GOLD,
+        .isAvailable = Acidic_Usability,
+        .onDraw = NULL,
+        .onSelected = Acidic_OnSelected,
+        .onIdle = NULL,
+        .onSwitchIn = NULL,
+        .onSwitchOut = NULL,
+    },
+#endif
+
+#if (defined(SID_AcidicPlus) && COMMON_SKILL_VALID(SID_AcidicPlus))
+    [SID_AcidicPlus] = {
+        .name = "　",
+        .nameMsgId = MSG_SKILL_AcidicPlus_NAME,
+        .helpMsgId = MSG_SKILL_AcidicPlus_DESC,
+        .color = TEXT_COLOR_SYSTEM_GOLD,
+        .isAvailable = AcidicPlus_Usability,
+        .onDraw = NULL,
+        .onSelected = AcidicPlus_OnSelected,
         .onIdle = NULL,
         .onSwitchIn = NULL,
         .onSwitchOut = NULL,

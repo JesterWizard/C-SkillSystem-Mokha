@@ -164,6 +164,7 @@ struct PlaySt_OptionBits {
 #ifdef CONFIG_FOURTH_ALLEGIANCE
     u32 debugControlPurple:2; // 2
 #endif
+
     u32 unk43_4:5; // unk
 
     u8  unk44[0x48 - 0x44];

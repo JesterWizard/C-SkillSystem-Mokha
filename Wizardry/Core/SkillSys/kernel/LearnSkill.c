@@ -5,6 +5,10 @@
 #include "constants/skills.h"
 #include "constants/texts.h"
 
+#ifndef CONFIG_INSTALL_CONVOYEXPA_AMT
+    #define CONFIG_INSTALL_CONVOYEXPA_AMT 200
+#endif
+
 extern int sExpaConvoyItemCount; // gConvoyItemCount is just a u8 that can be no more than 255, not enough
 extern u16 sExpaConvoyItemArray[CONFIG_INSTALL_CONVOYEXPA_AMT];
 

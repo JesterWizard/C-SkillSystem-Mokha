@@ -8,6 +8,7 @@
 #include "combat-art.h"
 #include "constants/skills.h"
 #include "constants/combat-arts.h"
+#include "playst-expa.h"
 
 extern u8 gPostActionGaleforceFlag;
 
@@ -16,7 +17,6 @@ FORCE_DECLARE static void refresh_turn_once(struct Unit * unit, ProcPtr parent)
     if (!UNIT_ALIVE(unit) || UNIT_STONED(unit))
         return;
 
-    SetBitUES(unit, UES_BIT_TSZUKU_SKILL_USED);
     gActionDataExpa.refrain_action = true;
     EndAllMus();
     StartStatusHealEffect(unit, parent);
@@ -52,19 +52,16 @@ FORCE_DECLARE static void refresh_turn_once_aura(struct Unit * unit, ProcPtr par
 
         if (!UNIT_IS_VALID(unit_ally) || UNIT_STONED(unit_ally) || !AreUnitsAllied(unit->index, unit_ally->index))
             continue;
-
-        SetBitUES(unit_ally, UES_BIT_TSZUKU_SKILL_USED);
         unit_ally->state &= ~(US_UNSELECTABLE | US_HAS_MOVED | US_HAS_MOVED_AI);
     }
-    SetBitUES(unit, UES_BIT_TSZUKU_SKILL_USED);
 }
 
 
-bool PostActionTsuzuku(ProcPtr parent)
+bool PostActionGaleforce(ProcPtr parent)
 {
     FORCE_DECLARE struct Unit * unit = gActiveUnit;
 
-    if (!UNIT_IS_VALID(unit) || CheckBitUES(unit, UES_BIT_TSZUKU_SKILL_USED))
+    if (!UNIT_IS_VALID(unit))
         return false;
 
 #if defined(SID_Cultured) && (COMMON_SKILL_VALID(SID_Cultured))
@@ -140,6 +137,15 @@ bool PostActionTsuzuku(ProcPtr parent)
             refresh_turn_once_aura(unit, parent);
 #endif
 
+#if defined(SID_CoinFlip) && (COMMON_SKILL_VALID(SID_CoinFlip))
+        if (SkillTester(unit, SID_CoinFlip) && PlayStExpa_CheckBit(PLAYSTEXPA_BIT_CoinFlip_Used))
+        {
+            refresh_turn_once(unit, parent);
+            PlayStExpa_ClearBit(PLAYSTEXPA_BIT_CoinFlip_Used);
+        }
+#endif
+
+
         if ((GetCombatArtInForce(unit) == CID_Galeforce) && gBattleActorGlobalFlag.enemy_defeated)
             refresh_turn_once(unit, parent);
             
@@ -152,6 +158,14 @@ bool PostActionTsuzuku(ProcPtr parent)
         if (SkillTester(unit, SID_PowerStaff) && Roll1RN(LckGetter(unit)))
             refresh_turn_once(unit, parent);
 #endif
+
+#if defined(SID_CoinFlip) && (COMMON_SKILL_VALID(SID_CoinFlip))
+        if (SkillTester(unit, SID_CoinFlip) && PlayStExpa_CheckBit(PLAYSTEXPA_BIT_CoinFlip_Used))
+        {
+            refresh_turn_once(unit, parent);
+            PlayStExpa_ClearBit(PLAYSTEXPA_BIT_CoinFlip_Used);
+        }
+#endif
         [[fallthrough]];
 
     case UNIT_ACTION_USE_ITEM:
@@ -159,25 +173,44 @@ bool PostActionTsuzuku(ProcPtr parent)
         if (SkillTester(unit, SID_QuickHands))
             refresh_turn_repeatedly(unit, parent);
 #endif
+
+#if defined(SID_CoinFlip) && (COMMON_SKILL_VALID(SID_CoinFlip))
+        if (SkillTester(unit, SID_CoinFlip) && PlayStExpa_CheckBit(PLAYSTEXPA_BIT_CoinFlip_Used))
+        {
+            refresh_turn_once(unit, parent);
+            PlayStExpa_ClearBit(PLAYSTEXPA_BIT_CoinFlip_Used);
+        }
+#endif
         [[fallthrough]];
 
     case UNIT_ACTION_RESCUE:
 #if defined(SID_Heroics) && (COMMON_SKILL_VALID(SID_Heroics))
-    if (SkillTester(unit, SID_Heroics))
-        refresh_turn_repeatedly(unit, parent);
+        if (SkillTester(unit, SID_Heroics))
+            refresh_turn_repeatedly(unit, parent);
+#endif
+
+#if defined(SID_CoinFlip) && (COMMON_SKILL_VALID(SID_CoinFlip))
+        if (SkillTester(unit, SID_CoinFlip) && PlayStExpa_CheckBit(PLAYSTEXPA_BIT_CoinFlip_Used))
+        {
+            refresh_turn_once(unit, parent);
+            PlayStExpa_ClearBit(PLAYSTEXPA_BIT_CoinFlip_Used);
+        }
 #endif
         [[fallthrough]];   
 
         /* fall through */
 
     default:
-#if defined(SID_Tsuzuku) && (COMMON_SKILL_VALID(SID_Tsuzuku))
-        if (SkillTester(unit, SID_Tsuzuku) && Roll1RN(SklGetter(unit)))
-            refresh_turn_once(unit, parent);
-#endif
         break;
 
     case UNIT_ACTION_WAIT:
+#if defined(SID_CoinFlip) && (COMMON_SKILL_VALID(SID_CoinFlip))
+        if (SkillTester(unit, SID_CoinFlip) && PlayStExpa_CheckBit(PLAYSTEXPA_BIT_CoinFlip_Used))
+        {
+            refresh_turn_once(unit, parent);
+            PlayStExpa_ClearBit(PLAYSTEXPA_BIT_CoinFlip_Used);
+        }
+#endif
         break;
     }
 

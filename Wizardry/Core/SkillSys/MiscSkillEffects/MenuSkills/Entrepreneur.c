@@ -8,6 +8,10 @@
 #include "unit-expa.h"
 #include "action-expa.h"
 
+#ifndef CONFIG_UNIT_ACTION_EXPA_ExecSkill
+    #define CONFIG_UNIT_ACTION_EXPA_ExecSkill 20
+#endif
+
 #if defined(SID_Entrepreneur) && (COMMON_SKILL_VALID(SID_Entrepreneur))
 
 u16 CONST_DATA gDefaultShopInventory[] = {

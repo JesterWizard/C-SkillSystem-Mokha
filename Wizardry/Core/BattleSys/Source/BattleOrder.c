@@ -40,6 +40,12 @@ bool CheckCanTwiceAttackOrder(struct BattleUnit * actor, struct BattleUnit * tar
             return false;
 #endif
 
+#if defined(SID_Bide) && (COMMON_SKILL_VALID(SID_Bide))
+        if (gActionData.unk08 == SID_Bide && !CheckBitUES(gActiveUnit, UES_BIT_BIDE_SKILL_USED))
+            return false;
+#endif
+
+
     /* Check combat-art */
     cid = GetCombatArtInForce(&actor->unit);
     if (&gBattleActor == actor && COMBART_VALID(cid))
@@ -616,7 +622,7 @@ void BattleUnwind(void)
             }
 
             /* 
-            ** So we seem to have run into a bug here where damage doesn't apply
+            ** Jester - So we seem to have run into a bug here where damage doesn't apply
             ** properly to both sides and the battle eventually softlocks if it is
             ** projected to take over 8 rounds
             */
@@ -686,9 +692,22 @@ bool BattleGenerateRoundHits(struct BattleUnit * attacker, struct BattleUnit * d
 {
     int i, count;
     u32 attrs;
+    int unarmedCombat = false;
 
+#if defined(SID_UnarmedCombat) && (COMMON_SKILL_VALID(SID_UnarmedCombat))
+    if (!BattleSkillTester(attacker, SID_UnarmedCombat))
+    {
+        if (!attacker->weapon)
+            return FALSE;
+    }
+    else 
+    {
+        unarmedCombat = true;
+    }
+#else
     if (!attacker->weapon)
         return FALSE;
+#endif
 
     /* Clear the round related efx skill pool */
     ResetRoundEfxSkills();
@@ -725,7 +744,7 @@ bool BattleGenerateRoundHits(struct BattleUnit * attacker, struct BattleUnit * d
         }
 
         /* I think this is a bug-fix for vanilla */
-        if (!attacker->weapon)
+        if (!attacker->weapon && !unarmedCombat)
             return false;
     }
     return false;
@@ -817,6 +836,14 @@ int GetBattleUnitHitCount(struct BattleUnit * actor)
     }
 #endif
 
+#if defined(SID_LastStand) && (COMMON_SKILL_VALID(SID_LastStand))
+    if (actor == &gBattleActor && BattleSkillTester(actor, SID_LastStand) && actor->hpInitial == 1)
+    {
+        EnqueueRoundEfxSkill(SID_LastStand);
+        result = result + 1;
+    }
+#endif
+
 #if defined(SID_Echo) && (COMMON_SKILL_VALID(SID_Echo))
     if (actor == &gBattleActor && BattleSkillTester(actor, SID_Echo))
     {
@@ -833,6 +860,11 @@ int GetBattleUnitHitCount(struct BattleUnit * actor)
         int extraAttacks = (actor->battleSpeed - target->battleSpeed) / 4;
         result = result + extraAttacks;
     }
+#endif
+
+#if defined(SID_UnarmedCombat) && (COMMON_SKILL_VALID(SID_UnarmedCombat))
+    if (BattleSkillTester(actor, SID_UnarmedCombat))
+            result += 1;
 #endif
 
     return result;

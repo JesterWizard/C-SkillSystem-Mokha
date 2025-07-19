@@ -33,6 +33,9 @@ Skill learned.[X]
 ## MSG_SkillRemoved
 Skill Removed.[X]
 
+## MSG_ScrollObtained
+Scroll.[X]
+
 ## MSG_Learned
 Learned [X]
 
@@ -56,3 +59,6 @@ Unit has revived.[X]
 
 ## MSG_SelectSummon
 Choose a class to summon[X]
+
+## MSG_WeaponForged
+Weapon forge level increased.[X]

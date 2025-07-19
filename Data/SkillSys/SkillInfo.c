@@ -2933,6 +2933,16 @@ const struct SkillInfo gSkillInfos[MAX_SKILL_NUM + 1] = {
     },
 #endif
 
+#if (defined(SID_DancePlus) && COMMON_SKILL_VALID(SID_DancePlus))
+    [SID_DancePlus] = {
+        .name = MSG_SKILL_DancePlus_NAME,
+        .desc = MSG_SKILL_DancePlus_DESC,
+        .capacity = MSG_SKILL_DancePlus_CAPACITY,
+        .price = MSG_SKILL_DancePlus_PRICE,
+        .icon = GFX_SkillIcon_WIP,
+    },
+#endif
+
 #if (defined(SID_LockTouch) && COMMON_SKILL_VALID(SID_LockTouch))
     [SID_LockTouch] = {
         .name = MSG_SKILL_LockTouch_NAME,
@@ -3460,16 +3470,6 @@ const struct SkillInfo gSkillInfos[MAX_SKILL_NUM + 1] = {
         .capacity = MSG_SKILL_DivinePulse_CAPACITY,
         .price = MSG_SKILL_DivinePulse_PRICE,
         .icon = GFX_SkillIcon_WIP,
-    },
-#endif
-
-#if (defined(SID_Tsuzuku) && COMMON_SKILL_VALID(SID_Tsuzuku))
-    [SID_Tsuzuku] = {
-        .name = MSG_SKILL_Tsuzuku_NAME,
-        .desc = MSG_SKILL_Tsuzuku_DESC,
-        .capacity = MSG_SKILL_Tsuzuku_CAPACITY,
-        .price = MSG_SKILL_Tsuzuku_PRICE,
-        .icon = GFX_SkillIcon_Tsuzuku,
     },
 #endif
 
@@ -7572,6 +7572,247 @@ const struct SkillInfo gSkillInfos[MAX_SKILL_NUM + 1] = {
         .desc = MSG_SKILL_Reinforcements_DESC,
         .capacity = MSG_SKILL_Reinforcements_CAPACITY,
         .price = MSG_SKILL_Reinforcements_PRICE,
+        .icon = GFX_SkillIcon_WIP,
+    },
+#endif
+
+#if (defined(SID_ResolvedHeart) && COMMON_SKILL_VALID(SID_ResolvedHeart))
+    [SID_ResolvedHeart] = {
+        .name = MSG_SKILL_ResolvedHeart_NAME,
+        .desc = MSG_SKILL_ResolvedHeart_DESC,
+        .capacity = MSG_SKILL_ResolvedHeart_CAPACITY,
+        .price = MSG_SKILL_ResolvedHeart_PRICE,
+        .icon = GFX_SkillIcon_WIP,
+    },
+#endif
+
+#if (defined(SID_Ballistary) && COMMON_SKILL_VALID(SID_Ballistary))
+    [SID_Ballistary] = {
+        .name = MSG_SKILL_Ballistary_NAME,
+        .desc = MSG_SKILL_Ballistary_DESC,
+        .capacity = MSG_SKILL_Ballistary_CAPACITY,
+        .price = MSG_SKILL_Ballistary_PRICE,
+        .icon = GFX_SkillIcon_WIP,
+    },
+#endif
+
+#if (defined(SID_Bide) && COMMON_SKILL_VALID(SID_Bide))
+    [SID_Bide] = {
+        .name = MSG_SKILL_Bide_NAME,
+        .desc = MSG_SKILL_Bide_DESC,
+        .capacity = MSG_SKILL_Bide_CAPACITY,
+        .price = MSG_SKILL_Bide_PRICE,
+        .icon = GFX_SkillIcon_WIP,
+    },
+#endif
+
+#if (defined(SID_CoinFlip) && COMMON_SKILL_VALID(SID_CoinFlip))
+    [SID_CoinFlip] = {
+        .name = MSG_SKILL_CoinFlip_NAME,
+        .desc = MSG_SKILL_CoinFlip_DESC,
+        .capacity = MSG_SKILL_CoinFlip_CAPACITY,
+        .price = MSG_SKILL_CoinFlip_PRICE,
+        .icon = GFX_SkillIcon_WIP,
+    },
+#endif
+
+#if (defined(SID_LastStand) && COMMON_SKILL_VALID(SID_LastStand))
+    [SID_LastStand] = {
+        .name = MSG_SKILL_LastStand_NAME,
+        .desc = MSG_SKILL_LastStand_DESC,
+        .capacity = MSG_SKILL_LastStand_CAPACITY,
+        .price = MSG_SKILL_LastStand_PRICE,
+        .icon = GFX_SkillIcon_WIP,
+    },
+#endif
+
+
+#if (defined(SID_Flicker) && COMMON_SKILL_VALID(SID_Flicker))
+    [SID_Flicker] = {
+        .name = MSG_SKILL_Flicker_NAME,
+        .desc = MSG_SKILL_Flicker_DESC,
+        .capacity = MSG_SKILL_Flicker_CAPACITY,
+        .price = MSG_SKILL_Flicker_PRICE,
+        .icon = GFX_SkillIcon_WIP,
+    },
+#endif
+
+#if (defined(SID_Rearm) && COMMON_SKILL_VALID(SID_Rearm))
+    [SID_Rearm] = {
+        .name = MSG_SKILL_Rearm_NAME,
+        .desc = MSG_SKILL_Rearm_DESC,
+        .capacity = MSG_SKILL_Rearm_CAPACITY,
+        .price = MSG_SKILL_Rearm_PRICE,
+        .icon = GFX_SkillIcon_WIP,
+    },
+#endif
+
+#if (defined(SID_LightningRod) && COMMON_SKILL_VALID(SID_LightningRod))
+    [SID_LightningRod] = {
+        .name = MSG_SKILL_LightningRod_NAME,
+        .desc = MSG_SKILL_LightningRod_DESC,
+        .capacity = MSG_SKILL_LightningRod_CAPACITY,
+        .price = MSG_SKILL_LightningRod_PRICE,
+        .icon = GFX_SkillIcon_WIP,
+    },
+#endif
+
+#if (defined(SID_Geomancy) && COMMON_SKILL_VALID(SID_Geomancy))
+    [SID_Geomancy] = {
+        .name = MSG_SKILL_Geomancy_NAME,
+        .desc = MSG_SKILL_Geomancy_DESC,
+        .capacity = MSG_SKILL_Geomancy_CAPACITY,
+        .price = MSG_SKILL_Geomancy_PRICE,
+        .icon = GFX_SkillIcon_WIP,
+    },
+#endif
+
+#if (defined(SID_Pulse) && COMMON_SKILL_VALID(SID_Pulse))
+    [SID_Pulse] = {
+        .name = MSG_SKILL_Pulse_NAME,
+        .desc = MSG_SKILL_Pulse_DESC,
+        .capacity = MSG_SKILL_Pulse_CAPACITY,
+        .price = MSG_SKILL_Pulse_PRICE,
+        .icon = GFX_SkillIcon_WIP,
+    },
+#endif
+
+#if (defined(SID_FormShift) && COMMON_SKILL_VALID(SID_FormShift))
+    [SID_FormShift] = {
+        .name = MSG_SKILL_FormShift_NAME,
+        .desc = MSG_SKILL_FormShift_DESC,
+        .capacity = MSG_SKILL_FormShift_CAPACITY,
+        .price = MSG_SKILL_FormShift_PRICE,
+        .icon = GFX_SkillIcon_WIP,
+    },
+#endif
+
+#if (defined(SID_HalfShift) && COMMON_SKILL_VALID(SID_HalfShift))
+    [SID_HalfShift] = {
+        .name = MSG_SKILL_HalfShift_NAME,
+        .desc = MSG_SKILL_HalfShift_DESC,
+        .capacity = MSG_SKILL_HalfShift_CAPACITY,
+        .price = MSG_SKILL_HalfShift_PRICE,
+        .icon = GFX_SkillIcon_WIP,
+    },
+#endif
+
+#if (defined(SID_AbsorbAlternation) && COMMON_SKILL_VALID(SID_AbsorbAlternation))
+    [SID_AbsorbAlternation] = {
+        .name = MSG_SKILL_AbsorbAlternation_NAME,
+        .desc = MSG_SKILL_AbsorbAlternation_DESC,
+        .capacity = MSG_SKILL_AbsorbAlternation_CAPACITY,
+        .price = MSG_SKILL_AbsorbAlternation_PRICE,
+        .icon = GFX_SkillIcon_WIP,
+    },
+#endif
+
+#if (defined(SID_GoodListener) && COMMON_SKILL_VALID(SID_GoodListener))
+    [SID_GoodListener] = {
+        .name = MSG_SKILL_GoodListener_NAME,
+        .desc = MSG_SKILL_GoodListener_DESC,
+        .capacity = MSG_SKILL_GoodListener_CAPACITY,
+        .price = MSG_SKILL_GoodListener_PRICE,
+        .icon = GFX_SkillIcon_WIP,
+    },
+#endif
+
+#if (defined(SID_ScrollScribePlus) && COMMON_SKILL_VALID(SID_ScrollScribePlus))
+    [SID_ScrollScribePlus] = {
+        .name = MSG_SKILL_ScrollScribePlus_NAME,
+        .desc = MSG_SKILL_ScrollScribePlus_DESC,
+        .capacity = MSG_SKILL_ScrollScribePlus_CAPACITY,
+        .price = MSG_SKILL_ScrollScribePlus_PRICE,
+        .icon = GFX_SkillIcon_WIP,
+    },
+#endif
+
+#if (defined(SID_UnarmedCombat) && COMMON_SKILL_VALID(SID_UnarmedCombat))
+    [SID_UnarmedCombat] = {
+        .name = MSG_SKILL_UnarmedCombat_NAME,
+        .desc = MSG_SKILL_UnarmedCombat_DESC,
+        .capacity = MSG_SKILL_UnarmedCombat_CAPACITY,
+        .price = MSG_SKILL_UnarmedCombat_PRICE,
+        .icon = GFX_SkillIcon_WIP,
+    },
+#endif
+
+#if (defined(SID_Acidic) && COMMON_SKILL_VALID(SID_Acidic))
+    [SID_Acidic] = {
+        .name = MSG_SKILL_Acidic_NAME,
+        .desc = MSG_SKILL_Acidic_DESC,
+        .capacity = MSG_SKILL_Acidic_CAPACITY,
+        .price = MSG_SKILL_Acidic_PRICE,
+        .icon = GFX_SkillIcon_WIP,
+    },
+#endif
+
+#if (defined(SID_AcidicPlus) && COMMON_SKILL_VALID(SID_AcidicPlus))
+    [SID_AcidicPlus] = {
+        .name = MSG_SKILL_AcidicPlus_NAME,
+        .desc = MSG_SKILL_AcidicPlus_DESC,
+        .capacity = MSG_SKILL_AcidicPlus_CAPACITY,
+        .price = MSG_SKILL_AcidicPlus_PRICE,
+        .icon = GFX_SkillIcon_WIP,
+    },
+#endif
+
+#if (defined(SID_SereneGrace) && COMMON_SKILL_VALID(SID_SereneGrace))
+    [SID_SereneGrace] = {
+        .name = MSG_SKILL_SereneGrace_NAME,
+        .desc = MSG_SKILL_SereneGrace_DESC,
+        .capacity = MSG_SKILL_SereneGrace_CAPACITY,
+        .price = MSG_SKILL_SereneGrace_PRICE,
+        .icon = GFX_SkillIcon_WIP,
+    },
+#endif
+
+#if (defined(SID_StickyHold) && COMMON_SKILL_VALID(SID_StickyHold))
+    [SID_StickyHold] = {
+        .name = MSG_SKILL_StickyHold_NAME,
+        .desc = MSG_SKILL_StickyHold_DESC,
+        .capacity = MSG_SKILL_StickyHold_CAPACITY,
+        .price = MSG_SKILL_StickyHold_PRICE,
+        .icon = GFX_SkillIcon_WIP,
+    },
+#endif
+
+#if (defined(SID_Levitate) && COMMON_SKILL_VALID(SID_Levitate))
+    [SID_Levitate] = {
+        .name = MSG_SKILL_Levitate_NAME,
+        .desc = MSG_SKILL_Levitate_DESC,
+        .capacity = MSG_SKILL_Levitate_CAPACITY,
+        .price = MSG_SKILL_Levitate_PRICE,
+        .icon = GFX_SkillIcon_WIP,
+    },
+#endif
+
+#if (defined(SID_Protean) && COMMON_SKILL_VALID(SID_Protean))
+    [SID_Protean] = {
+        .name = MSG_SKILL_Protean_NAME,
+        .desc = MSG_SKILL_Protean_DESC,
+        .capacity = MSG_SKILL_Protean_CAPACITY,
+        .price = MSG_SKILL_Protean_PRICE,
+        .icon = GFX_SkillIcon_WIP,
+    },
+#endif
+
+#if (defined(SID_Protect) && COMMON_SKILL_VALID(SID_Protect))
+    [SID_Protect] = {
+        .name = MSG_SKILL_Protect_NAME,
+        .desc = MSG_SKILL_Protect_DESC,
+        .capacity = MSG_SKILL_Protect_CAPACITY,
+        .price = MSG_SKILL_Protect_PRICE,
+        .icon = GFX_SkillIcon_WIP,
+    },
+#endif
+
+#if (defined(SID_GoldenGlory) && COMMON_SKILL_VALID(SID_GoldenGlory))
+    [SID_GoldenGlory] = {
+        .name = MSG_SKILL_GoldenGlory_NAME,
+        .desc = MSG_SKILL_GoldenGlory_DESC,
+        .capacity = MSG_SKILL_GoldenGlory_CAPACITY,
+        .price = MSG_SKILL_GoldenGlory_PRICE,
         .icon = GFX_SkillIcon_WIP,
     },
 #endif

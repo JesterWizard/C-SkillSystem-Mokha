@@ -9,6 +9,9 @@
 #include "constants/skills.h"
 #include "unit-expa.h"
 #include "jester_headers/custom-structs.h"
+#include "jester_headers/custom-functions.h"
+#include "jester_headers/Forging.h"
+#include "playst-expa.h"
 
 #ifdef CONFIG_BEXP
     extern u16 sBEXP[CONFIG_BEXP];
@@ -435,6 +438,22 @@ void BattleGenerateHitEffects(struct BattleUnit * attacker, struct BattleUnit * 
             }
 #endif
 
+#if (defined(SID_AbsorbAlternation) && COMMON_SKILL_VALID(SID_AbsorbAlternation))
+            if (BattleSkillTester(defender, SID_AbsorbAlternation))
+            {
+                if (IsMagicAttack(attacker) && !absorb && PlayStExpa_CheckBit(PLAYSTEXPA_BIT_AbsorbAlternation_InForce))
+                {
+                    absorb = true;
+                    defender->unit.curHP += gBattleStats.damage;
+                }
+                else if (!IsMagicAttack(attacker) && !absorb && !PlayStExpa_CheckBit(PLAYSTEXPA_BIT_AbsorbAlternation_InForce))
+                {
+                    absorb = true;
+                    defender->unit.curHP += gBattleStats.damage;
+                }
+            }
+#endif
+
             if (!absorb)
                 defender->unit.curHP -= gBattleStats.damage;
 
@@ -476,6 +495,24 @@ void BattleGenerateHitEffects(struct BattleUnit * attacker, struct BattleUnit * 
         gBattleHitIterator->hpChange = -gBattleStats.damage;
     }
 #endif
+
+
+#if (defined(SID_AbsorbAlternation) && COMMON_SKILL_VALID(SID_AbsorbAlternation))
+    if (BattleSkillTester(defender, SID_AbsorbAlternation))
+    {
+        if (IsMagicAttack(attacker) && !absorb && PlayStExpa_CheckBit(PLAYSTEXPA_BIT_AbsorbAlternation_InForce))
+        {
+            absorb = true;
+            gBattleHitIterator->hpChange = -gBattleStats.damage;
+        }
+        else if (!IsMagicAttack(attacker) && !absorb && !PlayStExpa_CheckBit(PLAYSTEXPA_BIT_AbsorbAlternation_InForce))
+        {
+            absorb = true;
+            gBattleHitIterator->hpChange = -gBattleStats.damage;
+        }
+    }
+#endif
+
     if (!absorb)
         gBattleHitIterator->hpChange = gBattleStats.damage;
 
@@ -534,6 +571,7 @@ bool BattleGenerateHit(struct BattleUnit * attacker, struct BattleUnit * defende
 /* 
 ** Set the ballista byte in the unit's unit struct to the chapter number they died on  to check when using arise 
 ** Since we're only concerned with player units using his skill, we can use an AI byte to check if they've already been revived
+** EDIT: May need to revisit this as I think ai bytes get refreshed even in player structs
 */
 #if (defined(SID_Arise) && (COMMON_SKILL_VALID(SID_Arise)))
     if (BattleSkillTester(attacker, SID_Arise))
@@ -651,6 +689,15 @@ bool BattleGenerateHit(struct BattleUnit * attacker, struct BattleUnit * defende
 #endif
             gBattleHitIterator->info |= BATTLE_HIT_INFO_KILLS_TARGET;
         }
+
+#ifdef CONFIG_FE4_CRIT_BONUS_ON_KILL
+            u16 item = GetUnitEquippedWeapon(GetUnit(gBattleActor.unit.index));
+            if (CanItemBeForged(item))
+            {
+                u8 id = ITEM_USES(item);
+                gForgedItemRam[id].crit += 1;
+            }
+#endif
 
         gBattleHitIterator++;
         return true;

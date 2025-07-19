@@ -79,7 +79,7 @@ extern u8 gUnknown_0200AF00[];
 extern u16 gUnk_OpSubtitle_0201CDD4[]; // used as a palette buffer in opsubtitle
 // extern ??? gUnk_Opinfo_0201DB00
 // extern ??? gUnk_OpInfo_0201DB28
-extern char gStringBufferAlt[];
+extern char gBufPrep[];
 
 // TODO: define this in hardware.c?
 extern u8 gGenericBuffer[0x2000];

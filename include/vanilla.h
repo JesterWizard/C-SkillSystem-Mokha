@@ -9,29 +9,6 @@ extern struct Font * gActiveFont;
 struct Vec1  { s8 x, y; };
 struct Vec1u { u8 x, y; };
 
-struct CharacterEndingProc {
-    /* 00 */ PROC_HEADER;
-
-    /* 29 */ u8 _pad[0x2E - 0x29];
-    /* 2E */ u16 unk_2e;
-    /* 30 */ struct CharacterEndingEnt* unk_30;
-    /* 34 */ struct CharacterEndingEnt* unk_34;
-    /* 38 */ struct Unit* unitA;
-    /* 3C */ struct Unit* unitB;
-    /* 40 */ u32 unk_40[8]; // flags for characters who have already been shown in an ending
-};
-
-struct EndingBattleDisplayProc {
-    /* 00 */ PROC_HEADER;
-
-    /* 2C */ struct Unit* units[2];
-    /* 34 */ int unk_34;
-    /* 38 */ struct CharacterEndingEnt* pCharacterEnding;
-    /* 3C */ u16 battleAmounts[2];
-    /* 40 */ u16 winAmounts[2];
-    /* 44 */ u16 lossAmounts[2];
-};
-
 struct EndingBattleTextProc {
     /* 00 */ PROC_HEADER;
 

@@ -1,6 +1,5 @@
 ## MSG_SKILL_Shade_NAME
 Shade[X]
-
 ## MSG_SKILL_Shade_DESC
 Shade:[N]
 Enemies are less likely[N]
@@ -8,7 +7,6 @@ to target this unit.[X]
 
 ## MSG_SKILL_ShadePlus_NAME
 Shade+[X]
-
 ## MSG_SKILL_ShadePlus_DESC
 Shade+:[N]
 Enemies won't[N]
@@ -16,7 +14,6 @@ target this unit.[X]
 
 ## MSG_SKILL_Provoke_NAME
 Provoke[X]
-
 ## MSG_SKILL_Provoke_DESC
 Provoke:[N]
 Enemies are more likely[N]
@@ -24,7 +21,6 @@ to target this unit.[X]
 
 ## MSG_SKILL_Rampage_NAME
 Rampage[X]
-
 ## MSG_SKILL_Rampage_DESC
 Rampage:[N]
 +50% STR/SPD/SKL but unit[N]
@@ -32,8 +28,22 @@ will move independently.[X]
 
 ## MSG_SKILL_Guardian_NAME
 Guardian[X]
-
 ## MSG_SKILL_Guardian_DESC
 Guardian:[N]
 If unit is attacked, swap places[N]
 with an adjacent ally with higher HP.[X]
+
+## MSG_SKILL_Rearm_NAME
+Rearm[X]
+## MSG_SKILL_Rearm_DESC
+Rearm:[N]
+Grab a weapon from stock, if the unit[N]
+has no equippable items this turn.[X]
+
+## MSG_SKILL_LightningRod_NAME
+Lightning Rod[X]
+## MSG_SKILL_LightningRod_DESC
+Lightning Rod:[N]
+Only units with this skill can[N]
+be targeted by enemy siege tomes[N]
+if they are in range.[X]

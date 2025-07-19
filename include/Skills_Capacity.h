@@ -341,7 +341,6 @@
 #define MSG_SKILL_OathSpeed_CAPACITY 1
 #define MSG_SKILL_OathStrength_CAPACITY 1
 #define MSG_SKILL_DivinePulse_CAPACITY 1
-#define MSG_SKILL_Tsuzuku_CAPACITY 1
 #define MSG_SKILL_MysticBoost_CAPACITY 1
 #define MSG_SKILL_GuardBearing_CAPACITY 1
 #define MSG_SKILL_Spurn_CAPACITY 1
@@ -753,4 +752,28 @@
 #define MSG_SKILL_Kamikaze_CAPACITY 1
 #define MSG_SKILL_Freelancer_CAPACITY 1
 #define MSG_SKILL_Reinforcements_CAPACITY 1
-
+#define MSG_SKILL_ResolvedHeart_CAPACITY 1
+#define MSG_SKILL_Ballistary_CAPACITY 1
+#define MSG_SKILL_Bide_CAPACITY 1
+#define MSG_SKILL_CoinFlip_CAPACITY 1
+#define MSG_SKILL_LastStand_CAPACITY 1
+#define MSG_SKILL_Flicker_CAPACITY 1
+#define MSG_SKILL_Rearm_CAPACITY 1
+#define MSG_SKILL_LightningRod_CAPACITY 1
+#define MSG_SKILL_Geomancy_CAPACITY 1
+#define MSG_SKILL_Pulse_CAPACITY 1
+#define MSG_SKILL_FormShift_CAPACITY 1
+#define MSG_SKILL_HalfShift_CAPACITY 1
+#define MSG_SKILL_AbsorbAlternation_CAPACITY 1
+#define MSG_SKILL_GoodListener_CAPACITY 1
+#define MSG_SKILL_ScrollScribePlus_CAPACITY 1
+#define MSG_SKILL_DancePlus_CAPACITY 1
+#define MSG_SKILL_UnarmedCombat_CAPACITY 1
+#define MSG_SKILL_Acidic_CAPACITY 1
+#define MSG_SKILL_AcidicPlus_CAPACITY 1
+#define MSG_SKILL_SereneGrace_CAPACITY 1
+#define MSG_SKILL_StickyHold_CAPACITY 1
+#define MSG_SKILL_Levitate_CAPACITY 1
+#define MSG_SKILL_Protean_CAPACITY 1
+#define MSG_SKILL_Protect_CAPACITY 1
+#define MSG_SKILL_GoldenGlory_CAPACITY 1

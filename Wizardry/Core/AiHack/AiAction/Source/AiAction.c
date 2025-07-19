@@ -1,6 +1,10 @@
 #include "common-chax.h"
 #include "AiAction.h"
 
+#ifndef CONFIG_AI_ACTION_AMT
+    #define CONFIG_AI_ACTION_AMT 14
+#endif
+
 LYN_REPLACE_CHECK(CpPerform_PerformAction);
 void CpPerform_PerformAction(struct CpPerformProc * proc)
 {

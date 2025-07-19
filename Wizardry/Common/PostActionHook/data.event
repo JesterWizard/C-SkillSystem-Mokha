@@ -12,7 +12,7 @@ gPostActionFuncs:
     POIN PostActionPositionReturn
     POIN PostActionNecroCopy
     POIN PostActionAlertStance
-    POIN PostActionTsuzuku
+    POIN PostActionGaleforce
     POIN PostActionGetItem
     POIN PostActionLunge
     POIN PostActionSealSkills

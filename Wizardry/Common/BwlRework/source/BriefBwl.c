@@ -1,5 +1,10 @@
 #include "common-chax.h"
 #include "bwl.h"
+#include "ending_details.h"
+
+#ifndef CONFIG_UNIT_AMT_ALLY
+    #define CONFIG_UNIT_AMT_ALLY 50
+#endif
 
 LYN_REPLACE_CHECK(PidStatsAddBattleAmt);
 void PidStatsAddBattleAmt(struct Unit * unit)

@@ -34,7 +34,7 @@
 #include "Misc/PortraitHeight/data.event"
 
 #ifdef CONFIG_INSTALL_FE6_STAT_SCREEN
-    #include "External/StatScreenfx/_data.event"
+    #include "External/StatScreenfx/data.event"
 #endif
 
 #ifdef CONFIG_INSTALL_MAPACTIONANIM

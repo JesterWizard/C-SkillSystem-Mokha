@@ -4,6 +4,10 @@
 #include "constants/skills.h"
 #include "constants/texts.h"
 
+#ifndef CONFIG_UNIT_ACTION_EXPA_ExecSkill
+    #define CONFIG_UNIT_ACTION_EXPA_ExecSkill 20
+#endif
+
 #if defined(SID_Mine) && (COMMON_SKILL_VALID(SID_Mine))
 u8 Mine_Usability(const struct MenuItemDef * def, int number)
 {

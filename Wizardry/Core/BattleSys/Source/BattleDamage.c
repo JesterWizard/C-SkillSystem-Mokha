@@ -9,6 +9,8 @@
 #include "kernel-tutorial.h"
 #include "constants/skills.h"
 #include "constants/combat-arts.h"
+#include "playst-expa.h"
+#include "jester_headers/custom-functions.h"
 
 typedef void (*BattleDamageCalcFunc)(struct BattleUnit * buA, struct BattleUnit * buB);
 extern BattleDamageCalcFunc const * const gpBattleDamageCalcFuncs;
@@ -82,12 +84,8 @@ int BattleHit_CalcDamage(struct BattleUnit * attacker, struct BattleUnit * defen
     }
 
 #if defined(SID_Roll12) && (COMMON_SKILL_VALID(SID_Roll12))
-    if (BattleSkillTester(attacker, SID_Roll12) &&
-        !CheckBitUES(GetUnit(attacker->unit.index), UES_BIT_ROLL12_SKILL_USED))
-    {
-        SetBitUES(GetUnit(attacker->unit.index), UES_BIT_ROLL12_SKILL_USED);
+    if (BattleSkillTester(attacker, SID_Roll12))
         roll12_ID = NextRN_N(9);
-    }
 #endif
 
     /**
@@ -247,6 +245,14 @@ int BattleHit_CalcDamage(struct BattleUnit * attacker, struct BattleUnit * defen
         }
 #endif
     }
+
+#if defined(SID_ResolvedHeart) && (COMMON_SKILL_VALID(SID_ResolvedHeart))
+    if (BattleSkillTester(attacker, SID_ResolvedHeart)) 
+    {
+        if (attacker == &gBattleActor && gActionData.unk08 == SID_ResolvedHeart && !CheckBitUES(GetUnit(attacker->unit.index), UES_BIT_RESOLVED_HEART_SKILL_USED))
+            gDmg.defense = 0;
+    }
+#endif
 
 #if (defined(SID_Ignis) && (COMMON_SKILL_VALID(SID_Ignis)))
     if (CheckBattleSkillActivate(attacker, defender, SID_Ignis, attacker->unit.skl) || roll12_ID == 3)
@@ -468,8 +474,7 @@ int BattleHit_CalcDamage(struct BattleUnit * attacker, struct BattleUnit * defen
     gDmg.decrease = 0x100;
 
 #if defined(SID_LoadStarRush) && (COMMON_SKILL_VALID(SID_LoadStarRush))
-    if (attacker == &gBattleActor && BattleSkillTester(attacker, SID_LoadStarRush) &&
-        gBattleActorGlobalFlag.skill_activated_loadstar_rush)
+    if (attacker == &gBattleActor && BattleSkillTester(attacker, SID_LoadStarRush))
         gDmg.decrease += DAMAGE_DECREASE(SKILL_EFF1(SID_LoadstarRush));
 #endif
 
@@ -528,11 +533,9 @@ int BattleHit_CalcDamage(struct BattleUnit * attacker, struct BattleUnit * defen
 #if defined(SID_GuardBearing) && (COMMON_SKILL_VALID(SID_GuardBearing))
     if (BattleSkillTester(defender, SID_GuardBearing))
     {
-        if (!AreUnitsAllied(defender->unit.index, gPlaySt.faction) && act_flags->round_cnt_hit == 1 &&
-            !CheckBitUES(&defender->unit, UES_BIT_GUARDBEAR_SKILL_USED))
+        if (!AreUnitsAllied(defender->unit.index, gPlaySt.faction) && act_flags->round_cnt_hit == 1)
         {
             RegisterTargetEfxSkill(GetBattleHitRound(gBattleHitIterator), SID_GuardBearing);
-            SetBitUES(&defender->unit, UES_BIT_GUARDBEAR_SKILL_USED);
             gDmg.decrease += DAMAGE_DECREASE(SKILL_EFF0(SID_GuardBearing));
         }
     }
@@ -559,6 +562,18 @@ bool rampartPlus_activated = false;
         {
             RegisterTargetEfxSkill(GetBattleHitRound(gBattleHitIterator), SID_Rampart);
             gDmg.decrease += DAMAGE_DECREASE(SKILL_EFF0(SID_Rampart));
+        }
+    }
+#endif
+
+#if defined(SID_Protect) && (COMMON_SKILL_VALID(SID_Protect))
+    if (BattleSkillTester(defender, SID_Protect) && !CheckBitUES(GetUnit(defender->unit.index), UES_BIT_PROTECT_SKILL_USED))
+    {
+        if (!AreUnitsAllied(defender->unit.index, gPlaySt.faction) && act_flags->round_cnt_hit == 1)
+        {
+            RegisterTargetEfxSkill(GetBattleHitRound(gBattleHitIterator), SID_Protect);
+            gDmg.decrease += DAMAGE_DECREASE(99);
+            SetBitUES(GetUnit(defender->unit.index), UES_BIT_PROTECT_SKILL_USED);
         }
     }
 #endif
@@ -691,10 +706,15 @@ bool rampartPlus_activated = false;
         result = quotient;
     }
 
-    if (result == 0 && gDmg.damage_base > 0)
-        result = 1; // at least 1 damage left.
+    // if (result == 0 && gDmg.damage_base > 0)
+    //     result = 1; // at least 1 damage left.
 
     result += gDmg.real_damage;
+
+#if (defined(SID_Bide) && (COMMON_SKILL_VALID(SID_Bide)))
+    if (BattleSkillTester(attacker, SID_Bide) && gActionData.unk08 == SID_Bide)
+        result = (attacker->unit.curHP - 1) * 2;
+#endif
 
 #if (defined(SID_TintedLens) && (COMMON_SKILL_VALID(SID_TintedLens)))
     if (BattleSkillTester(attacker, SID_TintedLens))
@@ -722,9 +742,9 @@ bool rampartPlus_activated = false;
 
 #if (defined(SID_LethalityPlus) && (COMMON_SKILL_VALID(SID_LethalityPlus)))
     if (BattleSkillTester(attacker, SID_LethalityPlus))
-        if (gActionData.unk08 == SID_LethalityPlus && CheckBitUES(GetUnit(attacker->unit.index), UES_BIT_LETHALITY_PLUS_SKILL_USED))
+        if (gActionData.unk08 == SID_LethalityPlus && !PlayStExpa_CheckBit(PLAYSTEXPA_BIT_LethalityPlus_Used))
         {
-            ClearBitUES(GetUnit(attacker->unit.index), UES_BIT_LETHALITY_PLUS_SKILL_USED);
+            PlayStExpa_SetBit(PLAYSTEXPA_BIT_LethalityPlus_Used);
             gActionData.unk08 = 0;
             result = defender->unit.curHP;
         }
@@ -742,6 +762,16 @@ bool rampartPlus_activated = false;
                 GetUnit(attacker->unit.index)->maxHP -= 5;
             else
                 GetUnit(attacker->unit.index)->maxHP -= 1;
+        }
+#endif
+
+#if (defined(SID_Levitate) && (COMMON_SKILL_VALID(SID_Levitate)))
+        if (BattleSkillTester(defender, SID_Levitate))
+        {
+            if (IsMagicAttack(attacker) || isFlyingClass(UNIT_CLASS_ID(GetUnit(attacker->unit.index))))
+                result = result;
+            else
+                result = 0;
         }
 #endif
 

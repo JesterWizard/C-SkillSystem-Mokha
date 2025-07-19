@@ -1,6 +1,7 @@
     // Event pointer table 
 
     // No maps for prologue and chapter 1 as they don't have tile changes
+
 {
     EventPointerTable(0x7, Chapter00Event)
     #include "Source/Chapter_00/Chapter_00.lyn.event"
@@ -44,5 +45,6 @@
 
     #include "Source/Inside_Grado_Castle/Map/Inside_Grado_Castle.event"
     #include "Source/Outside_Grado_Castle/Map/Outside_Grado_Castle.event"
+
 
     

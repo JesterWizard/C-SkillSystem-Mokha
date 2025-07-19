@@ -3,6 +3,7 @@
 ALIGN 4
 gHpGetters:
     POIN HpGetterWeaponBonus HpGetterSkills
+    POIN HpGetterStatDebuff
     POIN StatusGetterCheckCpas
     MSG_END
 

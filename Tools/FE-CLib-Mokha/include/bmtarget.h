@@ -36,7 +36,7 @@ void MakeTargetListForPick(struct Unit* unit);
 void MakeTerrainHealTargetList(int faction);
 void MakePoisonDamageTargetList(int faction);
 void MakeGorgonEggHatchTargetList(int faction);
-// ??? TryAddUnitToRefreshTargetList(???);
+void TryAddUnitToRefreshTargetList(struct Unit* unit);
 void MakeTargetListForRefresh(struct Unit* unit);
 void AddAsTarget_IfCanStealFrom(struct Unit* unit);
 void MakeTargetListForSteal(struct Unit* unit);

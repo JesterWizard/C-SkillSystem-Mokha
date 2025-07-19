@@ -63,6 +63,36 @@ STATIC_DECLAR int GetPrePhaseHealAmount(struct Unit * unit)
         ret += Div(GetUnitMaxHp(unit) * SKILL_EFF0(SID_Renewal), 100);
 #endif
 
+#if defined(SID_Geomancy) && (COMMON_SKILL_VALID(SID_Geomancy))
+    if (SkillTester(unit, SID_Geomancy))
+    {
+        switch (gBmMapTerrain[unit->yPos][unit->xPos])
+        {
+        case TERRAIN_FORT:
+        case TERRAIN_FLOOR_17:
+        case TERRAIN_FLOOR_18:
+        case TERRAIN_WALL_1A:
+        case TERRAIN_WALL_1B:
+        case TERRAIN_RUBBLE:
+        case TERRAIN_PILLAR:
+        case TERRAIN_DOOR:
+        case TERRAIN_THRONE:
+        case TERRAIN_CHEST_20:
+        case TERRAIN_CHEST_21:
+        case TERRAIN_ROOF:
+        case TERRAIN_STAIRS:
+        case TERRAIN_TILE_2E:
+        case TERRAIN_GLACIER:
+        case TERRAIN_GUNNELS:
+            ret += 10;
+            break;
+
+        default:
+            break;
+        }
+    }
+#endif
+
 #if defined(SID_RenewalPlus) && (COMMON_SKILL_VALID(SID_RenewalPlus))
     if (SkillTester(unit, SID_RenewalPlus))
         ret += Div(GetUnitMaxHp(unit) * SKILL_EFF0(SID_RenewalPlus), 100);

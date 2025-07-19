@@ -8,17 +8,21 @@
 #include "bwl.h"
 
 #ifdef CONFIG_LAGUZ_BARS
-// Predefine an array of key-value pairs
-const int LaguzPairs[1][2] = {
-    {CLASS_EIRIKA_LORD, CLASS_DEATHGOYLE}};
-
-// Define the size of the array
-const int LaguzListSize = sizeof(LaguzPairs) / sizeof(LaguzPairs[0]);
 
 u8 Transform_Laguz_Usability(const struct MenuItemDef *def, int number)
 {
     if (gActiveUnit->state & US_CANTOING)
         return MENU_NOTSHOWN;
+
+    #if defined(SID_FormShift) && (COMMON_SKILL_VALID(SID_FormShift))
+        if (SkillTester(gActiveUnit, SID_FormShift))
+            return MENU_ENABLED;
+    #endif
+
+    #if defined(SID_HalfShift) && (COMMON_SKILL_VALID(SID_HalfShift))
+        if (SkillTester(gActiveUnit, SID_HalfShift))
+            return MENU_ENABLED;
+    #endif
 
     FORCE_DECLARE struct NewBwl * bwl;
     bwl = GetNewBwl(UNIT_CHAR_ID(gActiveUnit));
@@ -45,21 +49,32 @@ u8 Transform_Laguz_OnSelected(struct MenuProc *menu, struct MenuItemProc *item)
 
 u8 Transform_Laguz_Effect(struct MenuProc * menu, struct MenuItemProc * item)
 {
-    for (int i = 0; i < LaguzListSize; i++)
+    FORCE_DECLARE struct NewBwl * bwl;
+    bwl = GetNewBwl(UNIT_CHAR_ID(gActiveUnit));
+
+    for (int i = 0; i < laguzListSize; i++)
     {
-        if (gActiveUnit->pClassData->number == LaguzPairs[i][0])
+
+        if (gActiveUnit->pClassData->number == laguzPairs[i][0])
         {
-            gActiveUnit->pClassData = GetClassData(LaguzPairs[i][1]);
+            gActiveUnit->pClassData = GetClassData(laguzPairs[i][1]);
+#if defined(SID_HalfShift) && (COMMON_SKILL_VALID(SID_HalfShift))
+            if (SkillTester(gActiveUnit, SID_HalfShift) && bwl->_pad_[1] < 30)
+            {
+                SetUnitStatDebuff(gActiveUnit, UNIT_STAT_BUFF_LAGUZ_HALFSHIFT);
+                bwl->_pad_[1] = 30;
+                break;
+            }
+#endif
             SetUnitStatDebuff(gActiveUnit, UNIT_STAT_BUFF_LAGUZ);
-            gActiveUnit->curHP += 7;
-            gActiveUnit->maxHP += 7;
+            break;
+
         }
-        else if (gActiveUnit->pClassData->number == LaguzPairs[i][1])
+        else if (gActiveUnit->pClassData->number == laguzPairs[i][1])
         {
-            gActiveUnit->pClassData = GetClassData(LaguzPairs[i][0]);
+            gActiveUnit->pClassData = GetClassData(laguzPairs[i][0]);
             ClearUnitStatDebuff(gActiveUnit, UNIT_STAT_BUFF_LAGUZ);
-            gActiveUnit->curHP -= 7;
-            gActiveUnit->maxHP -= 7;
+            ClearUnitStatDebuff(gActiveUnit, UNIT_STAT_BUFF_LAGUZ_HALFSHIFT);
         }
     }
 

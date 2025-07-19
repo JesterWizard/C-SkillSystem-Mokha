@@ -7,6 +7,7 @@
 #include "debuff.h"
 
 extern void CpDecide_Main(ProcPtr proc);
+extern void DecideHealOrEscape(void);
 
 // Function to find an adjacent ally with higher HP and swap positions with the defender
 void SwapDefenderWithAllyIfNecessary(struct Unit* defender) {
@@ -397,7 +398,6 @@ void DecideScriptB(void)
 #if (defined(SID_Rampage) && (COMMON_SKILL_VALID(SID_Rampage)))
         if (SkillTester(gActiveUnit, SID_Rampage))
         {
-            NoCashGBAPrint("Decide script B check");
             AiDoBerserkAction();
             return;
         }
@@ -411,4 +411,38 @@ void DecideScriptB(void)
     }
 
     AiExecFallbackScriptB();
+}
+
+LYN_REPLACE_CHECK(DecideHealOrEscape);
+void DecideHealOrEscape(void)
+{
+    if (gAiState.flags & AI_FLAG_BERSERKED)
+        return;
+
+    if (AiUpdateGetUnitIsHealing(gActiveUnit) == TRUE)
+    {
+        struct Vec2 vec2;
+
+        if (AiTryHealSelf() == TRUE)
+            return;
+
+        if ((gActiveUnit->aiFlags & AI_UNIT_FLAG_3) && (AiTryMoveTowardsEscape() == TRUE))
+        {
+            AiTryDanceOrStealAfterMove();
+            return;
+        }
+
+        if (AiTryGetNearestHealPoint(&vec2) != TRUE)
+            return;
+
+        AiTryMoveTowards(vec2.x, vec2.y, 0, 0, 1);
+
+        if (gAiDecision.actionPerformed == TRUE)
+            AiTryActionAfterMove();
+    }
+    else
+    {
+        if ((gActiveUnit->aiFlags & AI_UNIT_FLAG_3) && (AiTryMoveTowardsEscape() == TRUE))
+            AiTryDanceOrStealAfterMove();
+    }
 }

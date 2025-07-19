@@ -108,6 +108,14 @@ STATIC_DECLAR int KernelModifyBattleUnitExp(int base, struct BattleUnit *actor, 
         LIMIT_AREA(status, 1, 100);
 #endif
 
+#if defined(SID_Pulse) && (COMMON_SKILL_VALID(SID_Pulse))
+    if (BattleSkillTester(actor, SID_Pulse))
+    {
+        if (status < 10)
+            status = 10;
+    }
+#endif
+
     /* Check last */
 #if defined(SID_VoidCurse) && (COMMON_SKILL_VALID(SID_VoidCurse))
     if (BattleSkillTester(target, SID_VoidCurse))

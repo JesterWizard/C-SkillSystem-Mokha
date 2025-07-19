@@ -380,5 +380,36 @@ healing items.[X]
 Salve[X]
 ## MSG_SKILL_Salve_DESC
 Salve:[N]
-Can use personal items on[N]
-adjacent allied units.[X]
+Can use personal healing and[N]
+stat booster items on adjacent[N]
+allied units.[X]
+
+## MSG_SKILL_FormShift_NAME
+Form Shift[X]
+## MSG_SKILL_FormShift_DESC
+Form Shift:[N]
+Unit can transform into a[N]
+Laguz at any time.[X]
+
+## MSG_SKILL_HalfShift_NAME
+Half Shift[X]
+## MSG_SKILL_HalfShift_DESC
+Half Shift:[N]
+Unit can transform into a[N]
+Laguz at any time, but their[N]
+transformation boosts are halved.[X]
+
+## MSG_SKILL_StickyHold_NAME
+Sticky Hold[X]
+## MSG_SKILL_StickyHold_DESC
+Sticky Hold:[N]
+This unit cannot have their[N]
+items stolen.[X]
+
+## MSG_SKILL_Protect_NAME
+Protect[X]
+## MSG_SKILL_Protect_DESC
+Protect:[N]
+When defending this turn,[N]
+the first strike to this[N]
+unit this turn deals no damage.[X]

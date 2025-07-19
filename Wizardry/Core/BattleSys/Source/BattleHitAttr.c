@@ -255,39 +255,6 @@ bool CheckBattleMiracle(struct BattleUnit *attacker, struct BattleUnit *defender
     }
 #endif
 
-#if (defined(SID_LEGEND_MiracleAtk) && (COMMON_SKILL_VALID(SID_LEGEND_MiracleAtk)))
-    if (CheckBattleSkillActivate(defender, attacker, SID_LEGEND_MiracleAtk, 100))
-    {
-        if (TryActivateLegendSkill(&defender->unit, SID_LEGEND_MiracleAtk) == 0)
-        {
-            RegisterTargetEfxSkill(GetBattleHitRound(gBattleHitIterator), SID_LEGEND_MiracleAtk);
-            return true;
-        }
-    }
-#endif
-
-#if (defined(SID_LEGEND_MiracleAvo) && (COMMON_SKILL_VALID(SID_LEGEND_MiracleAvo)))
-    if (CheckBattleSkillActivate(defender, attacker, SID_LEGEND_MiracleAvo, 100))
-    {
-        if (TryActivateLegendSkill(&defender->unit, SID_LEGEND_MiracleAvo) == 0)
-        {
-            RegisterTargetEfxSkill(GetBattleHitRound(gBattleHitIterator), SID_LEGEND_MiracleAvo);
-            return true;
-        }
-    }
-#endif
-
-// #if (defined(SID_LEGEND_MiracleDef) && (COMMON_SKILL_VALID(SID_LEGEND_MiracleDef)))
-//     if (CheckBattleSkillActivate(defender, attacker, SID_LEGEND_MiracleDef, 100))
-//     {
-//         if (TryActivateLegendSkill(&defender->unit, SID_LEGEND_MiracleDef) == 0)
-//         {
-//             RegisterTargetEfxSkill(GetBattleHitRound(gBattleHitIterator), SID_LEGEND_MiracleDef);
-//             return true;
-//         }
-//     }
-// #endif
-
     return false;
 }
 
@@ -336,6 +303,24 @@ void BattleHit_InjectNegativeStatus(struct BattleUnit *attacker, struct BattleUn
     {
         if (GetUnit(defender->unit.index)->statusIndex == UNIT_STATUS_NONE)
             SetUnitStatus(GetUnit(defender->unit.index), NEW_UNIT_STATUS_BREAK);
+    }
+#endif
+
+#if (defined(SID_Geomancy) && (COMMON_SKILL_VALID(SID_Geomancy)))
+    else if (BattleSkillTester(attacker, SID_Geomancy) && gActionData.unk08 == SID_Geomancy)
+    {
+        if (GetUnit(defender->unit.index)->statusIndex == UNIT_STATUS_NONE)
+        {
+            switch (gBmMapTerrain[attacker->unit.yPos][attacker->unit.xPos])
+            {
+            case TERRAIN_FOREST:
+                SetUnitStatus(GetUnit(defender->unit.index), NEW_UNIT_STATUS_HEAVY_GRAVITY);
+                break;
+
+            default:
+                break;
+            }
+        }
     }
 #endif
     else if (gBattleTemporaryFlag.skill_activated_dead_eye)
@@ -513,6 +498,21 @@ void BattleHit_ConsumeWeapon(struct BattleUnit *attacker, struct BattleUnit *def
     }
 #endif
 
+#if (defined(SID_Protean) && (COMMON_SKILL_VALID(SID_Protean)))
+    if (BattleSkillTester(attacker, SID_Protean))
+    {
+        int cost = 2;
+        while (cost-- > 0)
+        {
+            u16 weapon = GetItemAfterUse(attacker->weapon);
+            attacker->weapon = weapon;
+
+            if (!weapon)
+                break;
+        }
+    }
+#endif
+
     /**
      * Consumes the durability of the own weapon
      */
@@ -560,7 +560,17 @@ void BattleHit_ConsumeWeapon(struct BattleUnit *attacker, struct BattleUnit *def
 #else
         attacker->weapon = GetItemAfterUse(attacker->weapon);
 #endif
+
+#if defined(SID_UnarmedCombat) && (COMMON_SKILL_VALID(SID_UnarmedCombat))
+        if (!BattleSkillTester(attacker, SID_UnarmedCombat))
+        {
+            if (!attacker->weapon)
+                attacker->weaponBroke = TRUE;
+        }
+#else
         if (!attacker->weapon)
             attacker->weaponBroke = TRUE;
+#endif
+
     }
 }

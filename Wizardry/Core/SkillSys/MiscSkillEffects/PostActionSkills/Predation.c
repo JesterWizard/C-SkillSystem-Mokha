@@ -15,7 +15,11 @@
                                         (((sid) > 0x0FF) ? CONFIG_ITEM_INDEX_SKILL_SCROLL_2 : \
                                                            CONFIG_ITEM_INDEX_SKILL_SCROLL_1)))
 #else
-    #define GET_SKILL_SCROLL_INDEX(sid) CONFIG_ITEM_INDEX_SKILL_SCROLL_1
+    #ifdef  CONFIG_ITEM_INDEX_SKILL_SCROLL_1
+        #define GET_SKILL_SCROLL_INDEX(sid) CONFIG_ITEM_INDEX_SKILL_SCROLL_1
+    #else
+        #define GET_SKILL_SCROLL_INDEX(sid) 200 // Ignore this line, it's just filler
+    #endif
 #endif
 
 #if defined(SID_Predation) && (COMMON_SKILL_VALID(SID_Predation))

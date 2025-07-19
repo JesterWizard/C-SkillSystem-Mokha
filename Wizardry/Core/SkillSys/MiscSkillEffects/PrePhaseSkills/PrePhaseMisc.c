@@ -11,20 +11,8 @@ bool PrePhase_ClearMiscUES(ProcPtr proc)
         unit = GetUnit(uid);
         if (UNIT_IS_VALID(unit))
         {
-#if defined(SID_GuardBearing) && (COMMON_SKILL_VALID(SID_GuardBearing))
-            ClearBitUES(unit, UES_BIT_GUARDBEAR_SKILL_USED);
-#endif
-#if defined(SID_Tsuzuku) && (COMMON_SKILL_VALID(SID_Tsuzuku))
-            ClearBitUES(unit, UES_BIT_TSZUKU_SKILL_USED);
-#endif
 #if defined(SID_Teleportation) && (COMMON_SKILL_VALID(SID_Teleportation))
             ClearBitUES(unit, UES_BIT_TELEPORTATION_SKILL_USED);
-#endif
-#if defined(SID_Swarp) && (COMMON_SKILL_VALID(SID_Swarp))
-            ClearBitUES(unit, UES_BIT_SWARP_SKILL_USED);
-#endif
-#if defined(SID_Swap) && (COMMON_SKILL_VALID(SID_Swap))
-            ClearBitUES(unit, UES_BIT_SWAP_SKILL_USED);
 #endif
 #if defined(SID_Turncoat) && (COMMON_SKILL_VALID(SID_Turncoat))
             ClearBitUES(unit, UES_BIT_CHANGED_FACTIONS);
@@ -41,10 +29,15 @@ bool PrePhase_ClearMiscUES(ProcPtr proc)
 #if defined(SID_Persuade) && (COMMON_SKILL_VALID(SID_Persuade))
             ClearBitUES(unit, UES_BIT_CHANGED_FACTIONS);
 #endif
+#if defined(SID_Protect) && (COMMON_SKILL_VALID(SID_Protect))
+            ClearBitUES(unit, UES_BIT_PROTECT_SKILL_USED);
+#endif
 
-            /* We don't clear this bit as it's meant to be once per map */
+            /* We don't clear these bits as they're meant to be once per unit */
             // ClearBitUES(unit, UES_BIT_LOADSTAR_RUSH_SKILL_USED);
             // ClearBitUES(unit, UES_BIT_WYVERN_CRASH_SKILL_USED);
+            // ClearBitUES(unit, UES_BIT_RESOLVED_HEART_SKILL_USED);
+            // ClearBitUES(unit, UES_BIT_BIDE_SKILL_USED);
         }
     }
     return false;

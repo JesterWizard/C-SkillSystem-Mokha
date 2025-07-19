@@ -1,7 +1,7 @@
 #include "PostActionSkills/LynJump.event"
 #include "PostActionSkills/Turncoat.lyn.event"
 #include "PostActionSkills/AlertStance.lyn.event"
-#include "PostActionSkills/Tsuzuku.lyn.event"
+#include "PostActionSkills/Galeforce.lyn.event"
 #include "PostActionSkills/SavageBlow.lyn.event"
 #include "PostActionSkills/BreathOfLife.lyn.event"
 #include "PostActionSkills/SoulSap.lyn.event"
@@ -75,6 +75,14 @@
 #include "MenuSkills/PersuadePlus.lyn.event"
 #include "MenuSkills/Kamikaze.lyn.event"
 #include "MenuSkills/Reinforcements.lyn.event"
+#include "MenuSkills/ResolvedHeart.lyn.event"
+#include "MenuSkills/Ballistary.lyn.event"
+#include "MenuSkills/Bide.lyn.event"
+#include "MenuSkills/CoinFlip.lyn.event"
+#include "MenuSkills/Geomancy.lyn.event"
+#include "MenuSkills/ScrollScribePlus.lyn.event"
+#include "MenuSkills/DancePlus.lyn.event"
+#include "MenuSkills/Acidic.lyn.event"
 
 #include "MenuSkills/ReciprocalAid.lyn.event"
 #include "MenuSkills/ReciprocalAid_ASM_Extras/Installer.event"
@@ -84,6 +92,7 @@
 #include "Misc/LynJump.event"
 #include "Misc/HealAmount.lyn.event"
 #include "Misc/MiscFunctions.lyn.event"
+#include "Misc/ItemSkills.lyn.event"
 
 #include "ChapterInitSkills/Initiative.lyn.event"
 

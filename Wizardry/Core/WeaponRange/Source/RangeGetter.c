@@ -37,6 +37,7 @@ int GetItemMaxRangeRework(u16 item, struct Unit * unit)
         for (it = gpWeaponRangeGetters; *it; it++)
             status = (*it)(status, unit, item);
     }
+    
     return status;
 }
 
@@ -111,7 +112,7 @@ int WeaponRangeGetterSkills(int range, struct Unit * unit, u16 item)
 int GetUnitMinRange(struct Unit * unit)
 {
     int i, item, _ret, ret = 1;
-     for (i = 0; i < UNIT_ITEM_COUNT; i++)
+    for (i = 0; i < UNIT_ITEM_COUNT; i++)
     {
         item = unit->items[i];
 
@@ -125,13 +126,14 @@ int GetUnitMinRange(struct Unit * unit)
                 ret = _ret;
         }
     }
+
     return ret;
 }
 
 int GetUnitMaxRange(struct Unit * unit)
 {
     int i, item, _ret, ret = 1;
-     for (i = 0; i < UNIT_ITEM_COUNT; i++)
+    for (i = 0; i < UNIT_ITEM_COUNT; i++)
     {
         item = unit->items[i];
 
@@ -145,5 +147,6 @@ int GetUnitMaxRange(struct Unit * unit)
                 ret = _ret;
         }
     }
+
     return ret;
 }

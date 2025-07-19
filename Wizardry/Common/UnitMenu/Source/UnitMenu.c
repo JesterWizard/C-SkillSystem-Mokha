@@ -10,7 +10,7 @@
 /* Placement in this struct determins priority order */
 
 const struct MenuItemDef gUnitActionMenuItemsRework[] = {
-    {"　脱出", TILE_COMMAND_TEXT_ESCAPE, R_TEXT_COMMAND_ESCAPE, TEXT_COLOR_SYSTEM_WHITE, 0x6D, EscapeCommandUsability, 0, EscapeCommandEffect, 0, 0, 0}, // Escape > 
+   // {"　脱出", TILE_COMMAND_TEXT_ESCAPE, R_TEXT_COMMAND_ESCAPE, TEXT_COLOR_SYSTEM_WHITE, 0x6D, EscapeCommandUsability, 0, EscapeCommandEffect, 0, 0, 0}, // Escape > 
     {"　制圧", 0x67A, 0x6CC, 0, 0x4E, UnitActionMenu_CanSeize, 0, UnitActionMenu_Seize, 0, 0, 0}, // Seize
     {"　攻撃", 0x67B, 0x6C0, 0, 0x4F, AttackCommandUsability, 0, UnitActionMenu_Attack, 0, DisplayUnitStandingAttackRange, HideMoveRangeGraphicsWrapper}, // Attack >
     {"　攻撃", 0x67B, 0x6C0, 0, 0x50, AttackBallistaCommandUsability, 0, UnitActionMenu_Attack, 0, DisplayUnitStandingAttackRange, HideMoveRangeGraphicsWrapper}, // Attack w/Ballista >

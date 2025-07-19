@@ -120,7 +120,7 @@ dat 0x0200E150, gUnknown_0200E150
 dat 0x0200E158, gUnknown_0200E158
 dat 0x0200F158, gUnknown_0200F158
 dat 0x0200F15C, gUnknown_0200F15C
-dat 0x0200F17C, gStringBufferAlt
+dat 0x0200F17C, gBufPrep
 dat 0x0200F1C8, gBanimScrLeft
 dat 0x0201117C, gPrepMainMenuTexts
 dat 0x020111CC, gPrepUnitPool
@@ -29637,7 +29637,7 @@ dat 0x089A3668, gUnknown_089A3668
 dat 0x089A3670, TsaSet_MapBattleBoxGfx
 dat 0x089A3688, ProcScr_MapBattleInfoBox
 dat 0x089A36C0, gUnknown_089A36C0
-dat 0x089A36F8, gProc_MapAnimExpBar
+dat 0x089A36F8, ProcScr_MapAnimExpBar
 dat 0x089A3770, MADebugStrings1
 dat 0x089A3798, gUnknown_089A3798
 dat 0x089A37E8, MADebugStrings2

@@ -7,6 +7,10 @@
 #include "constants/skills.h"
 #include "constants/texts.h"
 
+#ifndef CONFIG_UNIT_ACTION_EXPA_ExecSkill
+    #define CONFIG_UNIT_ACTION_EXPA_ExecSkill 20
+#endif
+
 STATIC_DECLAR void AddTargetForRally(struct Unit * unit)
 {
     if (UNIT_ALIVE(unit) && AreUnitsAllied(gSubjectUnit->index, unit->index))

@@ -7,6 +7,10 @@
 #include "playst-expa.h"
 #include "jester_headers/miscellaenous.h"
 
+#ifndef CONFIG_UNIT_ACTION_EXPA_ExecSkill
+    #define CONFIG_UNIT_ACTION_EXPA_ExecSkill 20
+#endif
+
 #if defined(SID_Shuffle) && (COMMON_SKILL_VALID(SID_Shuffle))
 
 u8 Shuffle_Usability(const struct MenuItemDef * def, int number)

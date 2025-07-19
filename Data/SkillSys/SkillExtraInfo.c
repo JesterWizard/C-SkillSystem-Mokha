@@ -784,7 +784,7 @@ const struct SkillExtraInfo gSkillExtraInfo[MAX_SKILL_NUM + 1] = {
 #endif
 
 #if (defined(SID_GuardBearing) && COMMON_SKILL_VALID(SID_GuardBearing))
-    [SID_GuardBearing] = {{50}},
+    [SID_GuardBearing] = {{30}},
 #endif
 
 #if (defined(SID_YuneWhispers) && COMMON_SKILL_VALID(SID_YuneWhispers))
@@ -1325,5 +1325,13 @@ const struct SkillExtraInfo gSkillExtraInfo[MAX_SKILL_NUM + 1] = {
 
 #if (defined(SID_Reinforcements) && COMMON_SKILL_VALID(SID_Reinforcements))
     [SID_Reinforcements] = {{1}},
+#endif
+
+#if (defined(SID_LightningRod) && COMMON_SKILL_VALID(SID_LightningRod))
+    [SID_LightningRod] = {{100}},
+#endif
+
+#if (defined(SID_UnarmedCombat) && COMMON_SKILL_VALID(SID_UnarmedCombat))
+    [SID_UnarmedCombat] = {{70}},
 #endif
 };

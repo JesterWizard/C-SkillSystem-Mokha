@@ -28,7 +28,7 @@
 
 #ifdef CONFIG_INSTALL_VESLY_DEBUGGER
     #include "VeslyDebugger/Installer.event"
-    #include "UI/Installer.event"
+    #include "VeslyUI/Installer.event"
 #endif
 
 #ifdef CONFIG_INSTALL_MENU_WIDTHS
@@ -136,6 +136,10 @@
     #include "JesterHacks/CustomItems/Installer.event"
 #endif
 
+#ifdef CONFIG_CUSTOM_SPRITES
+    #include "JesterHacks/CustomSprites/Installer.event"
+#endif
+
 #ifdef CONFIG_CUSTOM_STAFF_ACCURACY
     #include "JesterHacks/StaffAccuracy/Installer.event"
 #endif
@@ -146,3 +150,7 @@
 
 /* Not really sure what to do with this, it doesn't seem easy to just replace the tsx */
 // #include "ModularMinimugBox/Installer.event"
+
+#ifdef CONFIG_VESLY_DANGER_BONES
+    #include "VeslyDangerBones/VeslyDangerBones_Installer.event"
+#endif

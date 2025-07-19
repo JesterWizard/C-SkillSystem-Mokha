@@ -1,6 +1,10 @@
 #include "common-chax.h"
 #include "strmag.h"
 
+#ifndef CONFIG_AI_ACTION_EXPA_Teleportation
+    #define CONFIG_AI_ACTION_EXPA_Teleportation 20
+#endif
+
 LYN_REPLACE_CHECK(CpPerform_MoveCameraOntoTarget);
 void CpPerform_MoveCameraOntoTarget(struct CpPerformProc * proc)
 {

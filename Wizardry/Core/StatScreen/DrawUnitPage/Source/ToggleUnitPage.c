@@ -6,6 +6,14 @@
 #include "skill-system.h"
 #include "constants/skills.h"
 
+#ifndef CONFIG_PAGE1_WITH_BWL
+    #define CONFIG_PAGE1_WITH_BWL 1
+#endif
+
+#ifndef CONFIG_PAGE1_WITH_LEADERSHIP
+    #define CONFIG_PAGE1_WITH_LEADERSHIP 0
+#endif
+
 static inline void _growth_disp(int x, int y, int growth)
 {
 #ifdef CONFIG_GROWTHS_AS_LETTERS
@@ -78,6 +86,8 @@ static inline void _growth_disp(int x, int y, int growth)
         character2);
     }
 #else
+
+#ifndef CONFIG_GREEN_BONUS_GROWTHS
     int bank, color = GetTextColorFromGrowth(growth);
 
     ModifyTextPal(bank, color);
@@ -87,6 +97,14 @@ static inline void _growth_disp(int x, int y, int growth)
         gBG0TilemapBuffer + TILEMAP_INDEX(x, y),
         color,
         growth);
+
+#else
+    PutNumberOrBlank(
+        gBG0TilemapBuffer + TILEMAP_INDEX(x, y),
+        TEXT_COLOR_SYSTEM_BLUE,
+        growth);
+#endif
+
 #endif
 }
 
@@ -94,13 +112,32 @@ STATIC_DECLAR void ToggleUnitPageGrowth(void)
 {
     struct Unit *unit = gStatScreen.unit;
 
-    _growth_disp(18, 3, GetUnitPowGrowth(unit));
-    _growth_disp(18, 5, GetUnitMagGrowth(unit));
-    _growth_disp(18, 7, GetUnitSklGrowth(unit));
-    _growth_disp(18, 9, GetUnitSpdGrowth(unit));
-    _growth_disp(18, 11, GetUnitLckGrowth(unit));
-    _growth_disp(18, 13, GetUnitDefGrowth(unit));
-    _growth_disp(18, 15, GetUnitResGrowth(unit));
+#ifdef CONFIG_GREEN_BONUS_GROWTHS
+    _growth_disp(17, 3, unit->pCharacterData->growthPow);
+    _growth_disp(17, 5, GetUnitBasicMagGrowth(unit));
+    _growth_disp(17, 7, unit->pCharacterData->growthSkl);
+    _growth_disp(17, 9, unit->pCharacterData->growthSpd);
+    _growth_disp(17, 11, unit->pCharacterData->growthLck);
+    _growth_disp(17, 13, unit->pCharacterData->growthDef);
+    _growth_disp(17, 15, unit->pCharacterData->growthRes);
+
+    PutNumberBonus((GetUnitPowGrowth(unit) - unit->pCharacterData->growthPow), (gBG0TilemapBuffer + TILEMAP_INDEX(17 + 1, 3)));
+    PutNumberBonus((GetUnitMagGrowth(unit) - GetUnitBasicMagGrowth(unit)),     (gBG0TilemapBuffer + TILEMAP_INDEX(17 + 1, 5)));
+    PutNumberBonus((GetUnitSklGrowth(unit) - unit->pCharacterData->growthSkl), (gBG0TilemapBuffer + TILEMAP_INDEX(17 + 1, 7)));
+    PutNumberBonus((GetUnitSpdGrowth(unit) - unit->pCharacterData->growthSpd), (gBG0TilemapBuffer + TILEMAP_INDEX(17 + 1, 9)));
+    PutNumberBonus((GetUnitLckGrowth(unit) - unit->pCharacterData->growthLck), (gBG0TilemapBuffer + TILEMAP_INDEX(17 + 1, 11)));
+    PutNumberBonus((GetUnitDefGrowth(unit) - unit->pCharacterData->growthDef), (gBG0TilemapBuffer + TILEMAP_INDEX(17 + 1, 13)));
+    PutNumberBonus((GetUnitResGrowth(unit) - unit->pCharacterData->growthRes), (gBG0TilemapBuffer + TILEMAP_INDEX(17 + 1, 15)));
+
+#else 
+    _growth_disp(17, 3, GetUnitPowGrowth(unit));
+    _growth_disp(17, 5, GetUnitMagGrowth(unit));
+    _growth_disp(17, 7, GetUnitSklGrowth(unit));
+    _growth_disp(17, 9, GetUnitSpdGrowth(unit));
+    _growth_disp(17, 11, GetUnitLckGrowth(unit));
+    _growth_disp(17, 13, GetUnitDefGrowth(unit));
+    _growth_disp(17, 15, GetUnitResGrowth(unit));
+#endif
 
     ResetActiveFontPal();
 }

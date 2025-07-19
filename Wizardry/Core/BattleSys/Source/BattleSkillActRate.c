@@ -37,6 +37,11 @@ bool CheckBattleSkillActivate(struct BattleUnit * actor, struct BattleUnit * tar
             rate += SKILL_EFF0(SID_Hero);
 #endif
 
+#if (defined(SID_SereneGrace) && (COMMON_SKILL_VALID(SID_SereneGrace)))
+    if (BattleSkillTester(actor, SID_SereneGrace))
+        rate *= 2;
+#endif
+
     LIMIT_AREA(rate, 0, 100);
 
     if (Roll2RN(rate))

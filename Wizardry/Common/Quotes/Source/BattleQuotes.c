@@ -2,33 +2,84 @@
 #include "types.h"
 #include "eventinfo.h"
 #include "constants/texts.h"
+#include "jester_headers/maps.h"
 
 const struct BattleTalkExtEnt gNewBattleTalkList[] = {
     {
         .pidA    = CHARACTER_VALTER_PROLOGUE,
         .pidB    = CHARACTER_SETH,
-        .chapter = 0x40,
+        .chapter = OUTSIDE_RENAIS,
         .msg     = MSG_BATTLE_QUOTE_VALTER_PROLOGUE,
     },
     {
         .pidA    = CHARACTER_EIRIKA,
         .pidB    = CHARACTER_ONEILL,
-        .chapter = 0x00,
+        .chapter = PROLOGUE,
         .flag    = EVFLAG_BATTLE_QUOTES,
         .msg     = MSG_BATTLE_QUOTE_EIRIKA_ONEILL,
     },
     {
         .pidA    = CHARACTER_SETH,
         .pidB    = CHARACTER_ONEILL,
-        .chapter = 0x00,
+        .chapter = PROLOGUE,
         .flag    = EVFLAG_BATTLE_QUOTES,
         .msg     = MSG_BATTLE_QUOTE_SETH_ONEILL,
     },
     {
         .pidA    = CHARACTER_BREGUET,
-        .chapter = 0x01,
+        .pidB    = CHARACTER_GILLIAM,
+        .chapter = CHAPTER_01,
         .flag    = EVFLAG_BATTLE_QUOTES,
-        .msg     = MSG_BATTLE_QUOTE_BREGUET,
+        .msg     = MSG_BATTLE_QUOTE_GILLIAM_BREGUET,
+    },
+    {
+        .pidA    = CHARACTER_BONE,
+        .pidB    = CHARACTER_ROSS,
+        .chapter = CHAPTER_02,
+        .flag    = EVFLAG_BATTLE_QUOTES,
+        .msg     = MSG_BATTLE_QUOTE_ROSS_BONE,
+    },
+    {
+        .pidA    = CHARACTER_BAZBA,
+        .pidB    = CHARACTER_ROSS,
+        .chapter = CHAPTER_03,
+        .flag    = EVFLAG_BATTLE_QUOTES,
+        .msg     = MSG_BATTLE_QUOTE_ROSS_BAZBA,
+    },
+    {
+        .pidA    = CHARACTER_SAAR,
+        .pidB    = CHARACTER_NATASHA,
+        .chapter = CHAPTER_05,
+        .flag    = EVFLAG_BATTLE_QUOTES,
+        .msg     = MSG_BATTLE_QUOTE_NATASHA_SAAR,
+    },
+    {
+        .pidA    = CHARACTER_SAAR,
+        .pidB    = CHARACTER_EIRIKA,
+        .chapter = CHAPTER_05,
+        .flag    = EVFLAG_BATTLE_QUOTES,
+        .msg     = MSG_BATTLE_QUOTE_EIRIKA_SAAR,
+    },
+    {
+        .pidA    = CHARACTER_NOVALA,
+        .pidB    = CHARACTER_ARTUR,
+        .chapter = CHAPTER_06,
+        .flag    = EVFLAG_BATTLE_QUOTES,
+        .msg     = MSG_BATTLE_QUOTE_ARTUR_NOVALA,
+    },
+    {
+        .pidA    = CHARACTER_NOVALA,
+        .pidB    = CHARACTER_EIRIKA,
+        .chapter = CHAPTER_06,
+        .flag    = EVFLAG_BATTLE_QUOTES,
+        .msg     = MSG_BATTLE_QUOTE_EIRIKA_NOVALA,
+    },
+    {
+        .pidA    = CHARACTER_TIRADO,
+        .pidB    = CHARACTER_SETH,
+        .chapter = CHAPTER_08,
+        .flag    = EVFLAG_BATTLE_QUOTES,
+        .msg     = MSG_BATTLE_QUOTE_SETH_TIRADO,
     },
     {
         .pidA    = 0xffff,

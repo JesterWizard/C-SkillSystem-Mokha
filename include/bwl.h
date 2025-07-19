@@ -2,6 +2,10 @@
 
 #include "common-chax.h"
 
+#ifndef CONFIG_UNIT_AMT_ALLY
+    #define CONFIG_UNIT_AMT_ALLY 50
+#endif
+
 #define NEW_BWL_ARRAY_NUM CONFIG_UNIT_AMT_ALLY
 
 struct NewBwl {

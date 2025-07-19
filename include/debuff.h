@@ -91,7 +91,7 @@ struct DebuffInfo {
     } efx_config;
 
     struct {
-        s8 pow, mag, skl, spd, def, res, lck, mov;
+        s8 pow, mag, skl, spd, def, res, lck, mov, curHP, maxHP;
     } unit_status;
 
     struct {
@@ -250,6 +250,7 @@ enum UNIT_STAT_DEBUFF_IDX {
     UNIT_STAT_BUFF_TRANSFORM,
 
     UNIT_STAT_BUFF_LAGUZ,
+    UNIT_STAT_BUFF_LAGUZ_HALFSHIFT,
 
     UNIT_STAT_DEBUFF_MAX_REAL,
     UNIT_STAT_DEBUFF_MAX = 128, /* DO NOT modify this */
@@ -269,6 +270,18 @@ struct StatDebuffStatus {
         u32 bitmask[4];
     } st;
 };
+
+#ifndef CONFIG_UNIT_AMT_ALLY
+    #define CONFIG_UNIT_AMT_ALLY 50
+#endif
+
+#ifndef CONFIG_UNIT_AMT_ENEMY
+    #define CONFIG_UNIT_AMT_ENEMY 50
+#endif
+
+#ifndef CONFIG_UNIT_AMT_NPC
+    #define CONFIG_UNIT_AMT_NPC 20
+#endif
 
 extern struct StatDebuffStatus sStatDebuffStatusAlly[CONFIG_UNIT_AMT_ALLY];
 extern struct StatDebuffStatus sStatDebuffStatusEnemy[CONFIG_UNIT_AMT_ENEMY];

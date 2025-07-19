@@ -43,5 +43,25 @@ int AiGetDamageDealtCombatScoreComponent(void)
         score += SKILL_EFF0(SID_AssignDecoy);
 #endif
 
+#if defined(SID_LightningRod) && (COMMON_SKILL_VALID(SID_LightningRod))
+    if (BattleSkillTester(&gBattleTarget, SID_LightningRod))
+    {
+        int weapon = GetItemIndex(GetUnitEquippedWeapon(&gBattleActor.unit)); 
+
+        switch (weapon)
+        {
+            case ITEM_LIGHT_PURGE:
+            case ITEM_ANIMA_BOLTING:
+            case ITEM_BALLISTA_REGULAR:
+            case ITEM_BALLISTA_KILLER:
+            case ITEM_BALLISTA_LONG:
+                score += SKILL_EFF0(SID_LightningRod);
+                break;
+            default:
+                break;
+        }
+    }
+#endif
+
     return score;
 }

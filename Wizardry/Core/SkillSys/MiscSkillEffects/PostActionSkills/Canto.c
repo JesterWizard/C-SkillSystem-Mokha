@@ -6,6 +6,8 @@
 #include "constants/skills.h"
 #include "unit-expa.h"
 #include "mapanim.h"
+#include "mu.h"
+#include "jester_headers/custom-functions.h"
 
 STATIC_DECLAR bool CheckCanto(void)
 {
@@ -138,11 +140,6 @@ bool TryMakeCantoUnit(ProcPtr proc)
     return true;
 }
 
-// const struct ProcCmd ProcScr_AddExp[] = {
-//     PROC_CALL(MapAnimProc_DisplayExpBar),
-//     PROC_END
-// };
-
 LYN_REPLACE_CHECK(PlayerPhase_FinishAction);
 void PlayerPhase_FinishAction(ProcPtr proc)
 {
@@ -204,12 +201,6 @@ void PlayerPhase_FinishAction(ProcPtr proc)
         Proc_Goto(proc, 8);
         return;
     }
-
-    /* Start of my work for SID_GoodListener*/
-    // struct Unit* unit = GetUnit(gActionData.subjectIndex);
-    // InitBattleUnit(&gBattleActor, unit);
-    // BattleApplyMiscAction(proc);
-    // Proc_Start(ProcScr_AddExp, PROC_TREE_3);
 
     EndAllMus();
 }

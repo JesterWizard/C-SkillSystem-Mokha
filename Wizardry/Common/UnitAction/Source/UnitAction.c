@@ -1,6 +1,10 @@
 #include "common-chax.h"
 #include "action-expa.h"
 
+#ifndef CONFIG_UNIT_ACTION_AMT
+    #define CONFIG_UNIT_ACTION_AMT 20
+#endif
+
 LYN_REPLACE_CHECK(ApplyUnitAction);
 unsigned int ApplyUnitAction(ProcPtr proc)
 {

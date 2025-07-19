@@ -4,6 +4,19 @@
 #include "./jester_headers/miscellaenous.h"
 #include "EAstdlib.h"
 
+#ifndef CONFIG_ITEM_INDEX_SKILL_SCROLL_1
+	#define CONFIG_ITEM_INDEX_SKILL_SCROLL_1 0x0A
+#endif
+#ifndef CONFIG_ITEM_INDEX_SKILL_SCROLL_2
+	#define CONFIG_ITEM_INDEX_SKILL_SCROLL_2 0xBD
+#endif
+#ifndef CONFIG_ITEM_INDEX_SKILL_SCROLL_3
+	#define CONFIG_ITEM_INDEX_SKILL_SCROLL_3 0xC9
+#endif
+#ifndef CONFIG_ITEM_INDEX_SKILL_SCROLL_4
+	#define CONFIG_ITEM_INDEX_SKILL_SCROLL_4 0xCA
+#endif
+
 // #define TutText(text) "SVAL 0xB 0xFFFFFFFF; TUTORIALTEXTBOXSTART; TEXTSHOW text; TEXTEND; REMA" // Centered 
 // #define TutText_B(text) "SVAL 0xB 0x00B0FFFF; TUTORIALTEXTBOXSTART; TEXTSHOW text; TEXTEND; REMA" // Bottom-Centered 
 // #define TutText_M(text) "SVAL 0xB 0x280028; TUTORIALTEXTBOXSTART; TEXTSHOW text; TEXTEND; REMA" // Bottom-Centered 
@@ -200,6 +213,10 @@ enum {
     MOVE(speed, 0xFFFE, destX, destY) \
     ENUN
 
+#define MOVE_POSITION(speed, sourceX, sourceY, destX, destY) \
+    SVAL(0xB, COORDS(sourceX, sourceY)) \
+    MOVE(speed, 0xFFFE, destX, destY) \
+
 #define HOUSE_EVENT(background, message) \
     MUSI \
     TEXT_BG(background, message) \
@@ -354,13 +371,5 @@ enum {
 #define WARP_CHARACTER_OUT(characterID) \
     SVAL(EVT_SLOT_2, characterID) \
     CALL(EventScr_UnitWarpOUT)
-
-void AddTrapASMC(void);
-
-#define ADD_TRAP_EVENT(x, y, trapID, terrainType) \
-    SVAL(EVT_SLOT_2, (x|(y<<16))) \
-    SVAL(EVT_SLOT_3, trapID) \
-    SVAL(EVT_SLOT_4, terrainType) \
-    ASMC(AddTrapASMC)
 
 #define PREP_ALT CALL(EventScr_08591FD8)

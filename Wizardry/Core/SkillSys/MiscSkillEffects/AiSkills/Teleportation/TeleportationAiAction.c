@@ -2,6 +2,10 @@
 #include "skill-system.h"
 #include "constants/skills.h"
 
+#ifndef CONFIG_UNIT_ACTION_EXPA_ExecSkill
+    #define CONFIG_UNIT_ACTION_EXPA_ExecSkill 20
+#endif
+
 /* AiActionConf::exec */
 void AiAction_Teleportation(ProcPtr parent)
 {

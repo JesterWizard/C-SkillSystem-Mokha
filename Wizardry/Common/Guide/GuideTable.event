@@ -64,20 +64,20 @@ AddGuideEntry(SkillsTalkIndex, Guide_Title_Skill_Talk_3, Guide_Description_Skill
 AddGuideEntry(SkillsTalkIndex, Guide_Title_Skill_Talk_4, Guide_Description_Skill_Talk_4)
 
 // Skill combos
-AddGuideEntry(SkillsComboIndex, Guide_Title_Skill_Combo_1, Guide_Description_Skill_Combo_1) // WRATH + VANTAGE
-AddGuideEntry(SkillsComboIndex, Guide_Title_Skill_Combo_2, Guide_Description_Skill_Combo_2) // STURDY + DEFIANT skills
-AddGuideEntry(SkillsComboIndex, Guide_Title_Skill_Combo_3, Guide_Description_Skill_Combo_3) // OFFHAND + STEAL+
-AddGuideEntry(SkillsComboIndex, Guide_Title_Skill_Combo_4, Guide_Description_Skill_Combo_4) // PARAGON + PRODIGY
-AddGuideEntry(SkillsComboIndex, Guide_Title_Skill_Combo_5, Guide_Description_Skill_Combo_5) // RIGHTFULARCH + PROC skills
-AddGuideEntry(SkillsComboIndex, Guide_Title_Skill_Combo_6, Guide_Description_Skill_Combo_6) // VANTAGE + LIFETAKER
-AddGuideEntry(SkillsComboIndex, Guide_Title_Skill_Combo_7, Guide_Description_Skill_Combo_7) // LIMITBREAKER + APTITUDE
-AddGuideEntry(SkillsComboIndex, Guide_Title_Skill_Combo_8, Guide_Description_Skill_Combo_8) // POWERSTAFF + LIVETOSERVE
-AddGuideEntry(SkillsComboIndex, Guide_Title_Skill_Combo_9, Guide_Description_Skill_Combo_9) // CHIPPER + MERCY+
-AddGuideEntry(SkillsComboIndex, Guide_Title_Skill_Combo_10, Guide_Description_Skill_Combo_10) // RISK IT ALL + SILENCER
-AddGuideEntry(SkillsComboIndex, Guide_Title_Skill_Combo_11, Guide_Description_Skill_Combo_11) // NO GUARD + GAMBLE
-AddGuideEntry(SkillsComboIndex, Guide_Title_Skill_Combo_12, Guide_Description_Skill_Combo_12) // DESTINY BOND + RESURRECTION
-AddGuideEntry(SkillsComboIndex, Guide_Title_Skill_Combo_13, Guide_Description_Skill_Combo_13) // MOMENTUM + RUINED BLADE+
-AddGuideEntry(SkillsComboIndex, Guide_Title_Skill_Combo_14, Guide_Description_Skill_Combo_14) // CONCEALED WEAPON + LUDOPATHY
+AddGuideEntry(SkillsComboIndex, Guide_Title_Skill_Combo_1, Guide_Description_Skill_Combo_1) // Wrath + Vantage
+AddGuideEntry(SkillsComboIndex, Guide_Title_Skill_Combo_2, Guide_Description_Skill_Combo_2) // Sturdy + Defiant Skills
+AddGuideEntry(SkillsComboIndex, Guide_Title_Skill_Combo_3, Guide_Description_Skill_Combo_3) // Offhand + Steal+
+AddGuideEntry(SkillsComboIndex, Guide_Title_Skill_Combo_4, Guide_Description_Skill_Combo_4) // Paragon + Prodigy
+AddGuideEntry(SkillsComboIndex, Guide_Title_Skill_Combo_5, Guide_Description_Skill_Combo_5) // Rightful Arch + Proc Skills
+AddGuideEntry(SkillsComboIndex, Guide_Title_Skill_Combo_6, Guide_Description_Skill_Combo_6) // Vantage + Lifetaker
+AddGuideEntry(SkillsComboIndex, Guide_Title_Skill_Combo_7, Guide_Description_Skill_Combo_7) // Limitbreaker + Aptitude
+AddGuideEntry(SkillsComboIndex, Guide_Title_Skill_Combo_8, Guide_Description_Skill_Combo_8) // Powerstaff + Livetoserve
+AddGuideEntry(SkillsComboIndex, Guide_Title_Skill_Combo_9, Guide_Description_Skill_Combo_9) // Chipper + Mercy+
+AddGuideEntry(SkillsComboIndex, Guide_Title_Skill_Combo_10, Guide_Description_Skill_Combo_10) // Risk It All + Silencer
+AddGuideEntry(SkillsComboIndex, Guide_Title_Skill_Combo_11, Guide_Description_Skill_Combo_11) // No Guard + Gamble
+AddGuideEntry(SkillsComboIndex, Guide_Title_Skill_Combo_12, Guide_Description_Skill_Combo_12) // Destiny Bond + Resurrection
+AddGuideEntry(SkillsComboIndex, Guide_Title_Skill_Combo_13, Guide_Description_Skill_Combo_13) // Momentum + Ruined Blade+
+AddGuideEntry(SkillsComboIndex, Guide_Title_Skill_Combo_14, Guide_Description_Skill_Combo_14) // Concealed Weapon + Ludopathy
 
 // Mechanics
 AddGuideEntry(MechanicsIndex, Guide_Title_Supports, Guide_Mechanic_Supports)

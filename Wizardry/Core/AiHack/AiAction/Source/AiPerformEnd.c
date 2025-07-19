@@ -1,5 +1,9 @@
 #include "common-chax.h"
 
+#ifndef CONFIG_AI_ACTION_EXPA_Teleportation
+    #define CONFIG_AI_ACTION_EXPA_Teleportation 20
+#endif
+
 LYN_REPLACE_CHECK(CpPerform_Cleanup);
 void CpPerform_Cleanup(struct CpPerformProc * proc)
 {

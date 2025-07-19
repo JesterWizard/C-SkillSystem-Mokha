@@ -131,6 +131,23 @@ static void _callback2(struct ProcMuSkillAnim * proc)
         proc->callback2(proc);
 }
 
+STATIC_DECLAR const struct ProcCmd ProcScr_NoSkillAnim[] = {
+    PROC_CALL(LockGame),
+    PROC_CALL(MapAnim_CommonInit),
+    PROC_CALL(EnsureCameraOntoActiveUnitPosition),
+    PROC_CALL(anim_init),
+    PROC_YIELD,
+    PROC_CALL(anim_act),
+    PROC_YIELD,
+    PROC_CALL(_callback1),
+    PROC_YIELD,
+    PROC_CALL(_callback2),
+    PROC_YIELD,
+    PROC_CALL(UnlockGame),
+    PROC_CALL(MapAnim_CommonEnd),
+    PROC_END
+};
+
 STATIC_DECLAR const struct ProcCmd ProcScr_MuSkillAnim[] = {
     PROC_CALL(LockGame),
     PROC_CALL(MapAnim_CommonInit),
@@ -150,6 +167,17 @@ STATIC_DECLAR const struct ProcCmd ProcScr_MuSkillAnim[] = {
     PROC_END
 };
 
+void AnimOnActiveUnit(u16 sid, void (* callback1)(ProcPtr proc), void (* callback2)(ProcPtr proc))
+{
+    struct ProcMuSkillAnim * proc;
+    
+    proc = Proc_Start(ProcScr_NoSkillAnim, PROC_TREE_3);
+
+    proc->sid = sid;
+    proc->callback1 = callback1;
+    proc->callback2 = callback2;
+}
+
 void NewMuSkillAnimOnActiveUnit(u16 sid, void (* callback1)(ProcPtr proc), void (* callback2)(ProcPtr proc))
 {
     struct ProcMuSkillAnim * proc;
@@ -157,6 +185,9 @@ void NewMuSkillAnimOnActiveUnit(u16 sid, void (* callback1)(ProcPtr proc), void 
 
     proc->sid = sid;
     proc->callback1 = callback1;
+
+
+    
     proc->callback2 = callback2;
 }
 

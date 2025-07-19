@@ -10,6 +10,10 @@
 #include "bmtarget.h"
 #include "weapon-range.h"
 
+#ifndef CONFIG_UNIT_ACTION_EXPA_ExecSkill
+    #define CONFIG_UNIT_ACTION_EXPA_ExecSkill 20
+#endif
+
 #if defined(SID_ShadowFlash) && (COMMON_SKILL_VALID(SID_ShadowFlash))
 
 static void TryAddToShadowFlashTargetList(int x, int y) {

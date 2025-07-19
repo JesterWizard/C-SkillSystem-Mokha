@@ -128,11 +128,15 @@ void PutDrawTextRework(struct Text * text, u16 * tm, int color, int x, int tile_
 #ifdef CONFIG_GROWTHS_AS_LETTERS
     PutDrawText(text, tm, TEXT_COLOR_SYSTEM_GOLD, x, tile_width, str);
 #else
-    int bank;
-    ModifyTextPal(bank, color);
-    gActiveFont->tileref = TILEREF(gActiveFont->tileref & 0xFFF, bank);
+    #ifdef CONFIG_GREEN_BONUS_GROWTHS 
+        PutDrawText(text, tm, TEXT_COLOR_SYSTEM_GOLD, x, tile_width, str);
+    #else
+        int bank;
+        ModifyTextPal(bank, color);
+        gActiveFont->tileref = TILEREF(gActiveFont->tileref & 0xFFF, bank);
 
-    PutDrawText(text, tm, color, x, tile_width, str);
+        PutDrawText(text, tm, color, x, tile_width, str);
+    #endif
 #endif
 }
 

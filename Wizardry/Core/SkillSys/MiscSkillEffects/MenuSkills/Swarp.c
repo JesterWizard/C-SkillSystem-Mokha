@@ -9,6 +9,10 @@
 #include "action-expa.h"
 #include "strmag.h"
 
+#ifndef CONFIG_UNIT_ACTION_EXPA_ExecSkill
+    #define CONFIG_UNIT_ACTION_EXPA_ExecSkill 20
+#endif
+
 #if defined(SID_Swarp) && (COMMON_SKILL_VALID(SID_Swarp))
 
 void ForEachUnitInMagBy2Range(void(*func)(struct Unit* unit));
@@ -67,9 +71,6 @@ u8 Swarp_Usability(const struct MenuItemDef * def, int number)
 
     if (!HasSelectTarget(gActiveUnit, MakeTargetListForSwarp))
         return MENU_DISABLED;
-
-    if (CheckBitUES(gActiveUnit, UES_BIT_SWARP_SKILL_USED))
-        return MENU_NOTSHOWN;
 
     return MENU_ENABLED;
 }
@@ -175,8 +176,6 @@ LABEL(99)
 
 bool Action_Swarp(ProcPtr parent)
 {
-    NoCashGBAPrint("gag");
-    SetBitUES(gActiveUnit, UES_BIT_SWARP_SKILL_USED);
     KernelCallEvent(EventScr_MenuPositionSwarp, EV_EXEC_CUTSCENE, parent);
     return true;
 }

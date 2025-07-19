@@ -9,6 +9,10 @@
 
 #define LOCAL_TRACE 0
 
+#ifndef CONFIG_AI_ACTION_EXPA_Teleportation
+    #define CONFIG_AI_ACTION_EXPA_Teleportation 14
+#endif
+
 FORCE_DECLARE static bool AiTryTeleportationExt(void)
 {
     struct Vec2 vec;

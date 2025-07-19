@@ -6,6 +6,10 @@
 #include "constants/texts.h"
 #include "constants/skills.h"
 
+#ifndef CONFIG_UNIT_ACTION_EXPA_ExecSkill
+    #define CONFIG_UNIT_ACTION_EXPA_ExecSkill 20
+#endif
+
 #if (defined(SID_Teleportation) && (COMMON_SKILL_VALID(SID_Teleportation)))
 STATIC_DECLAR bool AreAnyEnemyExists(void)
 {

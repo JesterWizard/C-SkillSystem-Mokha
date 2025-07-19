@@ -8,6 +8,10 @@
 #include "debuff.h"
 #include "jester_headers/miscellaenous.h"
 
+#ifndef CONFIG_UNIT_ACTION_EXPA_ExecSkill
+    #define CONFIG_UNIT_ACTION_EXPA_ExecSkill 20
+#endif
+
 #if defined(SID_WyvernCrash) && (COMMON_SKILL_VALID(SID_WyvernCrash))
 
 u8 WyvernCrash_Usability(const struct MenuItemDef * def, int number)

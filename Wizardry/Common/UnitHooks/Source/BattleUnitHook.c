@@ -242,6 +242,7 @@ void UpdateUnitFromBattle(struct Unit * unit, struct BattleUnit * bu)
      * accomodate the fact that menu skills that use the attack functionality
      * need to have their bits set after the battle is over to prevent situations
      * where the user exits out of the forecast menu without attacking, and the bit is accidentally set
+     * We only want the bit set if the unit successfully executed an attack
      */
 #if defined(SID_LoadstarRush) && (COMMON_SKILL_VALID(SID_LoadstarRush))
     if (SkillTester(unit, SID_LoadstarRush) && gActionData.unk08 == SID_LoadstarRush && !CheckBitUES(unit, UES_BIT_LOADSTAR_RUSH_SKILL_USED))
@@ -256,6 +257,20 @@ void UpdateUnitFromBattle(struct Unit * unit, struct BattleUnit * bu)
 #if defined(SID_Capture) && (COMMON_SKILL_VALID(SID_Capture))
     if (SkillTester(unit, SID_Capture) && gActionData.unk08 == SID_Capture && !CheckBitUES(unit, UES_BIT_CAPTURE_SKILL_USED))
         SetBitUES_BU(bu, UES_BIT_CAPTURE_SKILL_USED);
+#endif
+
+#if defined(SID_ResolvedHeart) && (COMMON_SKILL_VALID(SID_ResolvedHeart))
+    if (SkillTester(unit, SID_ResolvedHeart) && gActionData.unk08 == SID_ResolvedHeart && !CheckBitUES(unit, UES_BIT_RESOLVED_HEART_SKILL_USED))
+        SetBitUES_BU(bu, UES_BIT_RESOLVED_HEART_SKILL_USED);
+#endif
+
+#if defined(SID_Bide) && (COMMON_SKILL_VALID(SID_Bide))
+    if (SkillTester(unit, SID_Bide) && gActionData.unk08 == SID_Bide && !CheckBitUES(unit, UES_BIT_BIDE_SKILL_USED))
+    {
+        SetBitUES_BU(bu, UES_BIT_BIDE_SKILL_USED);
+        gActionData.unk08 = 0; // Reset the action data to prevent the skill from being used again
+        unit->curHP = 1;
+    }
 #endif
 
     UNIT_MAG(unit) += BU_CHG_MAG(bu);

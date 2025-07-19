@@ -109,3 +109,10 @@ People's Knight[X]
 People's Knight:[N]
 Gain +3% to all growths for[N]
 each support level this unit has.[X]
+
+## MSG_SKILL_Pulse_NAME
+Pulse[X]
+## MSG_SKILL_Pulse_DESC
+Pulse:[N]
+Gain a minmum of 10 EXP per[N]
+battle, regardless of outcome.[X]

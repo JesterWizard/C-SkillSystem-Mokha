@@ -2,18 +2,20 @@
 #include "skill-system.h"
 #include "constants/skills.h"
 
-/* Maximum of 7 skills here */
+/* Maximum of 7 skills here, 5 if using 10 bit skill indexes in config.h */
 const struct SkillPreloadPConf gSkillPreloadPData[0x100] = {
     // 01
     [CHARACTER_EIRIKA] = {
         .skills = {
-            [0] = SID_Reinforcements,
+            [0] = SID_DarkHorse,
+            [1] = SID_Supply
         },
     },
     // 02
     [CHARACTER_SETH] = {
         .skills = {
-            [0] = SID_Kamikaze,
+            [0] = SID_Acrobat,
+            [1] = SID_LightningRod,
         },
     },
     // // 03
@@ -397,7 +399,7 @@ const struct SkillPreloadPConf gSkillPreloadPData[0x100] = {
     // // 68
     // [CHARACTER_ONEILL] = {
     //     .skills = {
-    //         [0] = SID_Pickup,
+    //         [0] = SID_Rearm,
     //     },
     // },
     // // 69

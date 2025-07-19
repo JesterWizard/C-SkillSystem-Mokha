@@ -59,7 +59,7 @@ static const GameOverQuotes game_over_quotes[] =
     {{
         "----------Tip----------",
         "Reaver weapons not only reverse the weapon",
-        "triangle, but double it's effects."
+        "triangle, but double its effects."
     }},
     {{
         "----------Tip----------",

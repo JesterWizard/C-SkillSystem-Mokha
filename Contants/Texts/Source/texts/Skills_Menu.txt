@@ -20,6 +20,10 @@ This skill has already been used[N]
 or there are not enough free[N]
 adjacent spaces to summon.[X]
 
+## MSG_Ballistary_NO_USE
+This skill has already been used[N]
+for this map.[X]
+
 ## MSG_SKILL_HealingFocus_FRtext
 Unit already has full HP![X]
 
@@ -92,6 +96,13 @@ Dance[X]
 Dance:[N]
 Unit can use[N]
 "Dance" command.[X]
+
+## MSG_SKILL_DancePlus_NAME
+Dance+[X]
+## MSG_SKILL_DancePlus_DESC
+Dance+:[N]
+Unit can use the "Dance"[N]
+command in MP/2 range.[X]
 
 ## MSG_SKILL_LockTouch_NAME
 Lock Touch[X]
@@ -429,7 +440,8 @@ Lethality+[X]
 ## MSG_SKILL_LethalityPlus_DESC
 Lethality+:[N]
 Kill enemies in 1 attack[N]
-if you deal damage.[X]
+if you deal damage.[N]
+Once per map.[X]
 
 ## MSG_SKILL_GrimReaper_NAME
 Grim Reaper[X]
@@ -496,6 +508,57 @@ Reinforcements[X]
 Reinforcements:[N]
 The unit can summon 3 green units[N]
 to assist once per map.[X]
+
+## MSG_SKILL_ResolvedHeart_NAME
+Resolved Heart[X]
+## MSG_SKILL_ResolvedHeart_DESC
+Resolved Heart:[N]
+Pierce an enemy's defenses[N]
+once per map (for this unit).[X]
+
+## MSG_SKILL_Ballistary_NAME
+Ballistary[X]
+## MSG_SKILL_Ballistary_DESC
+Ballistary:[N]
+Unit can summon a ballista to ride.[N]
+Once per map.[X]
+
+## MSG_SKILL_Bide_NAME
+Bide[X]
+## MSG_SKILL_Bide_DESC
+Bide:[N]
+Reduce remaining HP to 1 and set[N]
+attack to double for this battle.[X]
+
+## MSG_SKILL_CoinFlip_NAME
+Coin Flip[X]
+## MSG_SKILL_CoinFlip_DESC
+Coin Flip:[N]
+Flip a coin, if heads move twice,[N]
+if tails end your turn.[X]
+
+## MSG_SKILL_Geomancy_NAME
+Geomancy[X]
+## MSG_SKILL_Geomancy_DESC
+Geomancy:[N]
+Produce different effects based[N]
+the skill holder's terrain tile.[X]
+
+## MSG_SKILL_Acidic_NAME
+Acidic[X]
+## MSG_SKILL_Acidic_DESC
+Acidic:[N]
+Can use healing items on adjacent[N]
+enemies and invert their effects.[N]
+Halved on bosses.[X]
+
+## MSG_SKILL_AcidicPlus_NAME
+Acidic+[X]
+## MSG_SKILL_AcidicPlus_DESC
+Acidic+:[N]
+Can use healing items on ranged[N]
+enemies and invert their effects.[N]
+Halved on bosses.[X]
 
 ## MSG_MenuCommand_Refuge_NAME
 Refuge[X]
