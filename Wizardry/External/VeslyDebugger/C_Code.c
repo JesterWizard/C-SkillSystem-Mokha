@@ -1059,6 +1059,8 @@ void SaveSkills(DebuggerProc* proc) {
         unit->supports[i] = proc->tmp[i]; 
     } 
 #endif
+
+    ResetSkillLists();
 } 
 
 #ifdef CONFIG_TURN_ON_ALL_SKILLS
