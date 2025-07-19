@@ -22,11 +22,14 @@ void SetGameOptions_Chapter0()
 
     struct Unit * unit_eirika = GetUnitFromCharId(CHARACTER_EIRIKA);
     // struct Unit * unit_seth = GetUnitFromCharId(CHARACTER_SETH);
-    // unit->maxHP = 26;
-    // unit->curHP = 6;
+    unit_eirika->maxHP = 26;
+    unit_eirika->curHP = 6;
 
     // unit_eirika->ranks[ITYPE_STAFF] = WPN_EXP_C;
     unit_eirika->items[0] = MakeNewItem(ITEM_SWORD_IRON);
+    unit_eirika->items[1] = MakeNewItem(ITEM_STAFF_MEND);
+
+    unit_eirika->ranks[ITYPE_STAFF] = WPN_EXP_A;
     // unit_eirika->items[1] = ITEM_KNIGHTCREST;
     // unit_eirika->items[2] = ITEM_MASTERSEAL;
 

@@ -169,3 +169,5 @@ void MakeTargetList(struct Unit* unit) {
 
     return;
 }
+
+void BeginMapAnimForSimultaneousDamage(struct BattleUnit* actor, struct BattleUnit* target, int actorDamage, int targetDamage);
