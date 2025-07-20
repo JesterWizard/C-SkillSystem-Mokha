@@ -89,7 +89,8 @@ STATIC_DECLAR u8 RemoveSkillMenu_OnCancel(struct MenuProc * menu, struct MenuIte
     BG_EnableSyncByMask(BG2_SYNC_BIT);
     HideMoveRangeGraphics();
 
-    return ItemCommandEffect(menu, item);
+    return MENU_ACT_SKIPCURSOR | MENU_ACT_END | MENU_ACT_SND6A;
+    //return ItemCommandEffect(menu, item);
 }
 
 STATIC_DECLAR u8 RemoveSkillMenu_Usability(const struct MenuItemDef * self, int number);

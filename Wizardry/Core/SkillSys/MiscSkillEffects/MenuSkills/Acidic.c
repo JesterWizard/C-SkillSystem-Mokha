@@ -40,41 +40,35 @@ bool Action_Acidic(ProcPtr parent)
 }
 #endif
 
-//////////////////////////////////////////////////////////////////////////
-//////////////////////////////////////////////////////////////////////////
-//////////////////////////////////////////////////////////////////////////
-//////////////////////////////////////////////////////////////////////////
-//////////////////////////////////////////////////////////////////////////
-
 #if defined(SID_AcidicPlus) && (COMMON_SKILL_VALID(SID_AcidicPlus))
 
-u8 AcidicPlus_Usability(const struct MenuItemDef * def, int number)
-{
-    if (gActiveUnit->state & US_CANTOING)
-        return MENU_NOTSHOWN;
+    u8 AcidicPlus_Usability(const struct MenuItemDef * def, int number)
+    {
+        if (gActiveUnit->state & US_CANTOING)
+            return MENU_NOTSHOWN;
 
-    gEventSlots[EVT_SLOT_7] = 0; // Min range
-    gEventSlots[EVT_SLOT_8] = 3; // Max range
-    gEventSlots[EVT_SLOT_9] = TRUE; // isEnemy
+        gEventSlots[EVT_SLOT_7] = 0; // Min range
+        gEventSlots[EVT_SLOT_8] = 3; // Max range
+        gEventSlots[EVT_SLOT_9] = TRUE; // isEnemy
 
-    if (!HasSelectTarget(gActiveUnit, MakeTargetList))
-		return MENU_NOTSHOWN;
+        if (!HasSelectTarget(gActiveUnit, MakeTargetList))
+            return MENU_NOTSHOWN;
 
-    return MENU_ENABLED;
-}
+        return MENU_ENABLED;
+    }
 
-u8 AcidicPlus_OnSelected(struct MenuProc * menu, struct MenuItemProc * item)
-{
+    u8 AcidicPlus_OnSelected(struct MenuProc * menu, struct MenuItemProc * item)
+    {
 
-    gActionData.unk08 = SID_AcidicPlus;
-    gActionData.unitActionType = CONFIG_UNIT_ACTION_EXPA_ExecSkill;
+        gActionData.unk08 = SID_AcidicPlus;
+        gActionData.unitActionType = CONFIG_UNIT_ACTION_EXPA_ExecSkill;
 
-    // return MENU_ACT_SKIPCURSOR | MENU_ACT_END | MENU_ACT_SND6A;
-    return ItemCommandEffect(menu, item);
-}
+        // return MENU_ACT_SKIPCURSOR | MENU_ACT_END | MENU_ACT_SND6A;
+        return ItemCommandEffect(menu, item);
+    }
 
-bool Action_AcidicPlus(ProcPtr parent)
-{
-	return true;
-}
+    bool Action_AcidicPlus(ProcPtr parent)
+    {
+        return true;
+    }
 #endif
