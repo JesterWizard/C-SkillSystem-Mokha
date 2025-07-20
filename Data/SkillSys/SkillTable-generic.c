@@ -18,7 +18,7 @@ const struct SkillPreloadPConf gSkillPreloadPData[0x100] = {
     [CHARACTER_SETH] = {
         .skills = {
             [0] = SID_Acrobat,
-            [1] = SID_LightningRod,
+            [1] = SID_Dismount,
         },
     },
     // // 03

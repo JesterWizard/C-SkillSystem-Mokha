@@ -11,12 +11,6 @@
 #endif
 
 #if defined(SID_Transform) && (COMMON_SKILL_VALID(SID_Transform))
-// Predefine an array of key-value pairs
-const int transformationPairs[1][2] = {
-    {CLASS_EIRIKA_LORD, CLASS_DEATHGOYLE}};
-
-// Define the size of the array
-const int transformationListSize = sizeof(transformationPairs) / sizeof(transformationPairs[0]);
 
 u8 Transform_Usability(const struct MenuItemDef *def, int number)
 {
