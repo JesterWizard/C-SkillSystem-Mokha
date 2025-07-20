@@ -201,34 +201,64 @@ void UnitApplyWorkingMovementScript(struct Unit *unit, int x, int y)
 
         } // switch (*it)
 
-        // https://github.com/JesterWizard/C-SkillSystem-Mokha/issues/264
-//         if (!(UNIT_CATTRIBUTES(unit) & (CA_THIEF | CA_FLYER | CA_ASSASSIN)))
-//         {
-//             if (gBmMapHidden[y][x] & HIDDEN_BIT_TRAP)
-//             {
-//                 *++it = MOVE_CMD_HALT;
+        // BUG -  https://github.com/JesterWizard/C-SkillSystem-Mokha/issues/264
+        if (!(UNIT_CATTRIBUTES(unit) & (CA_THIEF | CA_FLYER | CA_ASSASSIN)))
+        {
+            if (gBmMapHidden[y][x] & HIDDEN_BIT_TRAP)
+            {
+                #ifdef CONFIG_DIRTY_FIXES
+                    if (gPlaySt.chapterIndex > 1) // Everything inside this if statement is vanilla code
+                    {
+                        *++it = MOVE_CMD_HALT;
 
-//                 gActionData.unitActionType = UNIT_ACTION_TRAPPED;
-//                 gActionData.xMove = x;
-//                 gActionData.yMove = y;
+                        gActionData.unitActionType = UNIT_ACTION_TRAPPED;
+                        gActionData.xMove = x;
+                        gActionData.yMove = y;
 
-//                 return;
-//             }
-//         }
-//         if (gBmMapHidden[y][x] & HIDDEN_BIT_UNIT)
-//         {
-//             *it++ = MOVE_CMD_BUMP;
-//             *it++ = MOVE_CMD_HALT;
+                        return;
+                    }
+                #else
+                    *++it = MOVE_CMD_HALT;
 
-// #if defined(SID_Reflex) && (COMMON_SKILL_VALID(SID_Reflex))
-//             if (!SkillTester(unit, SID_Reflex))
-//                 gActionData.unitActionType = UNIT_ACTION_TRAPPED;
-// #else
-//             gActionData.unitActionType = UNIT_ACTION_TRAPPED;
-// #endif
-//             return;
-//         }
+                    gActionData.unitActionType = UNIT_ACTION_TRAPPED;
+                    gActionData.xMove = x;
+                    gActionData.yMove = y;
 
+                    return;
+                #endif
+            }
+        }
+        if (gBmMapHidden[y][x] & HIDDEN_BIT_UNIT)
+        {
+            #ifdef CONFIG_DIRTY_FIXES
+                if (gPlaySt.chapterIndex > 1) // Everything inside this if statement is vanilla code
+                {
+                    *it++ = MOVE_CMD_BUMP;
+                    *it++ = MOVE_CMD_HALT;
+
+                #if defined(SID_Reflex) && (COMMON_SKILL_VALID(SID_Reflex))
+                    if (!SkillTester(unit, SID_Reflex))
+                        gActionData.unitActionType = UNIT_ACTION_TRAPPED;
+                #else
+                    gActionData.unitActionType = UNIT_ACTION_TRAPPED;
+                #endif
+
+                    return;
+                }
+            #else
+                *it++ = MOVE_CMD_BUMP;
+                *it++ = MOVE_CMD_HALT;
+
+                #if defined(SID_Reflex) && (COMMON_SKILL_VALID(SID_Reflex))
+                    if (!SkillTester(unit, SID_Reflex))
+                        gActionData.unitActionType = UNIT_ACTION_TRAPPED;
+                #else
+                    gActionData.unitActionType = UNIT_ACTION_TRAPPED;
+                #endif
+
+                return;
+            #endif
+        }
         if (*it == MOVE_CMD_HALT)
             break;
 

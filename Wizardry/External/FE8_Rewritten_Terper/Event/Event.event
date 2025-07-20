@@ -5,8 +5,10 @@
 {
     EventPointerTable(0x7, Chapter00Event)
     #include "Source/Chapter_00/Chapter_00.lyn.event"
+    #include "Source/Chapter_00/Map/Chapter_00_Map.event"
     EventPointerTable(0xA, Chapter01Event)
     #include "Source/Chapter_01/Chapter_01.lyn.event"
+    #include "Source/Chapter_01/Map/Chapter_01_Map.event"
     EventPointerTable(0xC5, IntermissionEvent)
     #include "Source/Intermission/Intermission.lyn.event"
     EventPointerTable(0xD, Chapter02Event)
