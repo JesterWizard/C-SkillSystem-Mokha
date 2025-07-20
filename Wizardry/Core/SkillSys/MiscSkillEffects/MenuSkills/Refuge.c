@@ -23,7 +23,7 @@ s8 CanUnitRefuge(struct Unit* actor, struct Unit* target) {
 
 void TryAddUnitToRefugeTargetList(struct Unit* unit) {
 
-    if (!AreUnitsAllied(gSubjectUnit->index, unit->index)) {
+    if (!IsSameAllegiance(gSubjectUnit->index, unit->index)) {
         return;
     }
 
@@ -116,10 +116,7 @@ void MakeRefugeTargetListForAdjacentAlly(struct Unit * unit)
 u8 Refuge_OnSelected(struct MenuProc * menu, struct MenuItemProc * item)
 {
     if (item->availability == MENU_DISABLED)
-    {
-        //MenuFrozenHelpBox(menu, MSG_SKILL_Refuge_FRtext);
         return MENU_ACT_SND6B;
-    }
 
     ClearBg0Bg1();
 
@@ -145,19 +142,15 @@ bool Action_Refuge(ProcPtr parent)
     targetUnit->rescue = gActiveUnit->index;
     gActiveUnit->rescue = targetUnit->index;
 
-    // gActiveUnit->xPos = targetUnit->xPos;
-    // gActiveUnit->yPos = targetUnit->yPos;
-
-    gActiveUnit = targetUnit;
-    
-
-    /* Make the target unit the active unit */
-    gActionData.subjectIndex = targetUnit->index;
-    gActionData.targetIndex = gActiveUnit->index;
-
     /* Give the new active unit their old target unit map coordinates */
     gActionData.xMove = gActionData.xOther;
     gActionData.yMove = gActionData.yOther;
+
+    gActionData.subjectIndex = targetUnit->index;
+    gActionData.targetIndex = gActiveUnit->index;
+
+    /* Make the target unit the active unit */
+    gActiveUnit = targetUnit;
 
     if (!(targetUnit->state & US_HAS_MOVED))
         gActionDataExpa.refrain_action = true;
