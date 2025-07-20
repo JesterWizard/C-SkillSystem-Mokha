@@ -4170,7 +4170,14 @@ void PutNumberHex(u16 *tm, int color, int number)
         tmp = number % 16; 
         if (tmp > 9) { 
             tmp -= 10; 
-            CustomPutSpecialChar(tm, color, 65 + tmp );
+
+            // This is a temp fix for the capital "C" displaying as a lower case "a". We'll forcibly use lowercase "c" instead
+            if (tmp == 2)
+            {
+                CustomPutSpecialChar(tm, color, 99 );    
+            }
+            else
+                CustomPutSpecialChar(tm, color, 65 + tmp );
             //if (tmp >= 5) { CustomPutSpecialChar(tm, color, TEXT_SPECIAL_S ); } 
             //else { 
             //    PutSpecialChar(tm, color, tmp + TEXT_SPECIAL_A); 
