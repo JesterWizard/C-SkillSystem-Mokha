@@ -1080,31 +1080,31 @@ Good As Gold:[N]
 This unit is immune to all[N]
 harmful status conditions.[X]
 
-## MSG_SKILL_Shadowgift_NAME
-Shadowgift[X]
-## MSG_SKILL_Shadowgift_DESC
-Shadowgift:[N]
+## MSG_SKILL_ShadowGift_NAME
+ShadowGift[X]
+## MSG_SKILL_ShadowGift_DESC
+ShadowGift:[N]
 Grants this unit access to[N]
 Dark magic up to rank C.[X]
 
-## MSG_SKILL_ShadowgiftPlus_NAME
-Shadowgift+[X]
-## MSG_SKILL_ShadowgiftPlus_DESC
-Shadowgift+:[N]
+## MSG_SKILL_ShadowGiftPlus_NAME
+ShadowGift+[X]
+## MSG_SKILL_ShadowGiftPlus_DESC
+ShadowGift+:[N]
 Grants this unit access to[N]
 Dark magic up to rank A.[X]
 
-## MSG_SKILL_Lumina_NAME
-Lumina[X]
-## MSG_SKILL_Lumina_DESC
-Lumina:[N]
+## MSG_SKILL_LightGift_NAME
+LightGift[X]
+## MSG_SKILL_LightGift_DESC
+LightGift:[N]
 Grants this unit access to[N]
 Light magic up to rank C.[X]
 
-## MSG_SKILL_LuminaPlus_NAME
-Lumina+[X]
-## MSG_SKILL_LuminaPlus_DESC
-Lumina+:[N]
+## MSG_SKILL_LightGiftPlus_NAME
+LightGift+[X]
+## MSG_SKILL_LightGiftPlus_DESC
+LightGift+:[N]
 Grants this unit access to[N]
 Light magic up to rank A.[X]
 

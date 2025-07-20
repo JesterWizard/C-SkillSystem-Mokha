@@ -191,3 +191,12 @@ const int laguzPairs[77][2] = {
 };
 
 const int laguzListSize = sizeof(laguzPairs) / sizeof(laguzPairs[0]);
+
+const u8 gNewSummonConfig[6][2] = {
+    { CHARACTER_EWAN, CHARACTER_MONSTER_BD, },
+    { CHARACTER_KNOLL, CHARACTER_MONSTER_BD },
+    { CHARACTER_LYON_CC, CHARACTER_MONSTER_BD },
+    { CHARACTER_EIRIKA, CHARACTER_MONSTER_BD },
+    { CHARACTER_SETH, CHARACTER_MONSTER_BD},
+    {0}
+};

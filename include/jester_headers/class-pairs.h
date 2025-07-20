@@ -10,3 +10,5 @@ extern const int dismountListSize;
 
 extern const int laguzPairs[77][2];
 extern const int laguzListSize;
+
+extern const u8 gNewSummonConfig[6][2];

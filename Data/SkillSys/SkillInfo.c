@@ -5315,42 +5315,42 @@ const struct SkillInfo gSkillInfos[MAX_SKILL_NUM + 1] = {
     },
 #endif
 
-#if (defined(SID_Shadowgift) && COMMON_SKILL_VALID(SID_Shadowgift))
-    [SID_Shadowgift] = {
-        .name = MSG_SKILL_Shadowgift_NAME,
-        .desc = MSG_SKILL_Shadowgift_DESC,
-        .capacity = MSG_SKILL_Shadowgift_CAPACITY,
-        .price = MSG_SKILL_Shadowgift_PRICE,
-        .icon = GFX_SkillIcon_Shadowgift,
+#if (defined(SID_ShadowGift) && COMMON_SKILL_VALID(SID_ShadowGift))
+    [SID_ShadowGift] = {
+        .name = MSG_SKILL_ShadowGift_NAME,
+        .desc = MSG_SKILL_ShadowGift_DESC,
+        .capacity = MSG_SKILL_ShadowGift_CAPACITY,
+        .price = MSG_SKILL_ShadowGift_PRICE,
+        .icon = GFX_SkillIcon_ShadowGift,
     },
 #endif
 
-#if (defined(SID_ShadowgiftPlus) && COMMON_SKILL_VALID(SID_ShadowgiftPlus))
-    [SID_ShadowgiftPlus] = {
-        .name = MSG_SKILL_ShadowgiftPlus_NAME,
-        .desc = MSG_SKILL_ShadowgiftPlus_DESC,
-        .capacity = MSG_SKILL_ShadowgiftPlus_CAPACITY,
-        .price = MSG_SKILL_ShadowgiftPlus_PRICE,
-        .icon = GFX_SkillIcon_ShadowgiftPlus,
+#if (defined(SID_ShadowGiftPlus) && COMMON_SKILL_VALID(SID_ShadowGiftPlus))
+    [SID_ShadowGiftPlus] = {
+        .name = MSG_SKILL_ShadowGiftPlus_NAME,
+        .desc = MSG_SKILL_ShadowGiftPlus_DESC,
+        .capacity = MSG_SKILL_ShadowGiftPlus_CAPACITY,
+        .price = MSG_SKILL_ShadowGiftPlus_PRICE,
+        .icon = GFX_SkillIcon_ShadowGiftPlus,
     },
 #endif
 
-#if (defined(SID_Lumina) && COMMON_SKILL_VALID(SID_Lumina))
-    [SID_Lumina] = {
-        .name = MSG_SKILL_Lumina_NAME,
-        .desc = MSG_SKILL_Lumina_DESC,
-        .capacity = MSG_SKILL_Lumina_CAPACITY,
-        .price = MSG_SKILL_Lumina_PRICE,
+#if (defined(SID_LightGift) && COMMON_SKILL_VALID(SID_LightGift))
+    [SID_LightGift] = {
+        .name = MSG_SKILL_LightGift_NAME,
+        .desc = MSG_SKILL_LightGift_DESC,
+        .capacity = MSG_SKILL_LightGift_CAPACITY,
+        .price = MSG_SKILL_LightGift_PRICE,
         .icon = GFX_SkillIcon_WIP,
     },
 #endif
 
-#if (defined(SID_LuminaPlus) && COMMON_SKILL_VALID(SID_LuminaPlus))
-    [SID_LuminaPlus] = {
-        .name = MSG_SKILL_LuminaPlus_NAME,
-        .desc = MSG_SKILL_LuminaPlus_DESC,
-        .capacity = MSG_SKILL_LuminaPlus_CAPACITY,
-        .price = MSG_SKILL_LuminaPlus_PRICE,
+#if (defined(SID_LightGiftPlus) && COMMON_SKILL_VALID(SID_LightGiftPlus))
+    [SID_LightGiftPlus] = {
+        .name = MSG_SKILL_LightGiftPlus_NAME,
+        .desc = MSG_SKILL_LightGiftPlus_DESC,
+        .capacity = MSG_SKILL_LightGiftPlus_CAPACITY,
+        .price = MSG_SKILL_LightGiftPlus_PRICE,
         .icon = GFX_SkillIcon_WIP,
     },
 #endif

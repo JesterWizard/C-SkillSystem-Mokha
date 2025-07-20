@@ -338,32 +338,32 @@ s8 CanUnitUseWeapon(struct Unit *unit, int item)
     }
 #endif
 
-#if (defined(SID_ShadowgiftPlus) && (COMMON_SKILL_VALID(SID_ShadowgiftPlus)))
-    if (SkillTester(unit, SID_ShadowgiftPlus))
+#if (defined(SID_ShadowGiftPlus) && (COMMON_SKILL_VALID(SID_ShadowGiftPlus)))
+    if (SkillTester(unit, SID_ShadowGiftPlus))
         if (GetItemType(item) == ITYPE_DARK)
             if (unit->ranks[ITYPE_DARK] == 0)
                 if (GetItemRequiredExp(item) <= WPN_EXP_A) // A rank max
                     return true;
 #endif
 
-#if (defined(SID_Shadowgift) && (COMMON_SKILL_VALID(SID_Shadowgift)))
-    if (SkillTester(unit, SID_Shadowgift))
+#if (defined(SID_ShadowGift) && (COMMON_SKILL_VALID(SID_ShadowGift)))
+    if (SkillTester(unit, SID_ShadowGift))
         if (GetItemType(item) == ITYPE_DARK)
             if (unit->ranks[ITYPE_DARK] == 0)
                 if (GetItemRequiredExp(item) <= WPN_EXP_C) // C rank max
                     return true;
 #endif
 
-#if (defined(SID_LuminaPlus) && (COMMON_SKILL_VALID(SID_LuminaPlus)))
-    if (SkillTester(unit, SID_LuminaPlus))
+#if (defined(SID_LightGiftPlus) && (COMMON_SKILL_VALID(SID_LightGiftPlus)))
+    if (SkillTester(unit, SID_LightGiftPlus))
         if (GetItemType(item) == ITYPE_LIGHT)
             if (unit->ranks[ITYPE_LIGHT] == 0)
                 if (GetItemRequiredExp(item) <= WPN_EXP_A) // A rank max
                     return true;
 #endif
 
-#if (defined(SID_Lumina) && (COMMON_SKILL_VALID(SID_Lumina)))
-    if (SkillTester(unit, SID_Lumina))
+#if (defined(SID_LightGift) && (COMMON_SKILL_VALID(SID_LightGift)))
+    if (SkillTester(unit, SID_LightGift))
         if (GetItemType(item) == ITYPE_LIGHT)
             if (unit->ranks[ITYPE_LIGHT] == 0)
                 if (GetItemRequiredExp(item) <= WPN_EXP_C) // C rank max

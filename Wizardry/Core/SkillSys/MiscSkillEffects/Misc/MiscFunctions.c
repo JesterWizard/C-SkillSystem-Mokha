@@ -827,22 +827,22 @@ LYN_REPLACE_CHECK(HasBattleUnitGainedWeaponLevel);
 s8 HasBattleUnitGainedWeaponLevel(struct BattleUnit * bu)
 {
 
-#if (defined(SID_ShadowgiftPlus) && (COMMON_SKILL_VALID(SID_ShadowgiftPlus)))
-    if (BattleSkillTester(bu, SID_ShadowgiftPlus))
+#if (defined(SID_ShadowGiftPlus) && (COMMON_SKILL_VALID(SID_ShadowGiftPlus)))
+    if (BattleSkillTester(bu, SID_ShadowGiftPlus))
         if (GetItemType(GetUnit(bu->unit.index)->items[0]) == ITYPE_DARK)
             if (GetUnit(bu->unit.index)->ranks[ITYPE_DARK] == 0)
                 return false;
 #endif
 
-#if (defined(SID_Shadowgift) && (COMMON_SKILL_VALID(SID_Shadowgift)))
-    if (BattleSkillTester(bu, SID_Shadowgift))
+#if (defined(SID_ShadowGift) && (COMMON_SKILL_VALID(SID_ShadowGift)))
+    if (BattleSkillTester(bu, SID_ShadowGift))
         if (GetItemType(GetUnit(bu->unit.index)->items[0]) == ITYPE_DARK)
             if (GetUnit(bu->unit.index)->ranks[ITYPE_DARK] == 0)
                 return false;
 #endif
 
-#if (defined(SID_LuminaPlus) && (COMMON_SKILL_VALID(SID_LuminaPlus)))
-    if (BattleSkillTester(bu, SID_LuminaPlus))
+#if (defined(SID_LightGiftPlus) && (COMMON_SKILL_VALID(SID_LightGiftPlus)))
+    if (BattleSkillTester(bu, SID_LightGiftPlus))
         if (GetItemType(GetUnit(bu->unit.index)->items[0]) == ITYPE_LIGHT)
             if (GetUnit(bu->unit.index)->ranks[ITYPE_LIGHT] == 0)
                 return false;

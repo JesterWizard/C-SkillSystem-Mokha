@@ -753,12 +753,16 @@ u16 GetItemAfterUse(int item)
 #endif
 
 #ifdef CONFIG_FORGING
-    struct ForgeLimits limits = gForgeLimits[GetItemIndex(item)];
-    if (limits.maxCount) {
-        if (!SetForgedItemAfterUse(item)) { // out of uses, so delete the item
-            return 0;
+    if (CanItemBeForged(item))
+    {
+        NoCashGBAPrint("PRINT: Heizenbug at GetItemAfterUse");
+        struct ForgeLimits limits = gForgeLimits[GetItemIndex(item)];
+        if (limits.maxCount) {
+            if (!SetForgedItemAfterUse(item)) { // out of uses, so delete the item
+                return 0;
+            }
+            return item; // items that have a nonzero forge count don't lose uses
         }
-        return item; // items that have a nonzero forge count don't lose uses
     }
 #endif
 

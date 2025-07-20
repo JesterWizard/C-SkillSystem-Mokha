@@ -719,10 +719,10 @@
 // SID_DemolitionExpert
 // SID_TriangleAttack
 // SID_SocialButterfly
-// SID_Shadowgift
-// SID_ShadowgiftPlus
-// SID_Lumina
-// SID_LuminaPlus
+// SID_ShadowGift
+// SID_ShadowGiftPlus
+// SID_LightGift
+// SID_LightGiftPlus
 // SID_Stormgift
 // SID_StormgiftPlus
 // SID_Gracegift

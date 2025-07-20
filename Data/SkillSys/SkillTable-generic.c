@@ -276,7 +276,7 @@ const struct SkillPreloadPConf gSkillPreloadPData[0x100] = {
     // // 41
     // [CHARACTER_MORVA] = {
     //     .skills = {
-    //         [0] = SID_LuminaPlus,
+    //         [0] = SID_LightGiftPlus,
     //     },
     // },
     // // 42

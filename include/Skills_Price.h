@@ -525,10 +525,10 @@
 #define MSG_SKILL_Reposition_PRICE 1000
 #define MSG_SKILL_Shove_PRICE 1000
 #define MSG_SKILL_Smite_PRICE 1000
-#define MSG_SKILL_Shadowgift_PRICE 1000
-#define MSG_SKILL_ShadowgiftPlus_PRICE 1000
-#define MSG_SKILL_Lumina_PRICE 1000
-#define MSG_SKILL_LuminaPlus_PRICE 1000
+#define MSG_SKILL_ShadowGift_PRICE 1000
+#define MSG_SKILL_ShadowGiftPlus_PRICE 1000
+#define MSG_SKILL_LightGift_PRICE 1000
+#define MSG_SKILL_LightGiftPlus_PRICE 1000
 #define MSG_SKILL_Stormgift_PRICE 1000
 #define MSG_SKILL_StormgiftPlus_PRICE 1000
 #define MSG_SKILL_Gracegift_PRICE 1000

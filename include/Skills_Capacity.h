@@ -525,10 +525,10 @@
 #define MSG_SKILL_Reposition_CAPACITY 1
 #define MSG_SKILL_Shove_CAPACITY 1
 #define MSG_SKILL_Smite_CAPACITY 1
-#define MSG_SKILL_Shadowgift_CAPACITY 1
-#define MSG_SKILL_ShadowgiftPlus_CAPACITY 1
-#define MSG_SKILL_Lumina_CAPACITY 1
-#define MSG_SKILL_LuminaPlus_CAPACITY 1
+#define MSG_SKILL_ShadowGift_CAPACITY 1
+#define MSG_SKILL_ShadowGiftPlus_CAPACITY 1
+#define MSG_SKILL_LightGift_CAPACITY 1
+#define MSG_SKILL_LightGiftPlus_CAPACITY 1
 #define MSG_SKILL_Stormgift_CAPACITY 1
 #define MSG_SKILL_StormgiftPlus_CAPACITY 1
 #define MSG_SKILL_Gracegift_CAPACITY 1

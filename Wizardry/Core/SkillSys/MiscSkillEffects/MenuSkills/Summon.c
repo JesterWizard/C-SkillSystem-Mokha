@@ -4,17 +4,9 @@
 #include "constants/texts.h"
 #include "mu.h"
 #include "jester_headers/class-arrays.h"
+#include "jester_headers/class-pairs.h"
 
 extern u16 gUnknown_085A0D4C[];
-
-FORCE_DECLARE static const u8 gNewSummonConfig[6][2] = {
-    { CHARACTER_EWAN, CHARACTER_MONSTER_BD, },
-    { CHARACTER_KNOLL, CHARACTER_MONSTER_BD },
-    { CHARACTER_LYON_CC, CHARACTER_MONSTER_BD },
-    { CHARACTER_EIRIKA, CHARACTER_MONSTER_BD },
-    { CHARACTER_SETH, CHARACTER_MONSTER_BD},
-    {0}
-};
 
 LYN_REPLACE_CHECK(SummonCommandUsability);
 u8 SummonCommandUsability(const struct MenuItemDef * def, int number)
@@ -23,6 +15,7 @@ u8 SummonCommandUsability(const struct MenuItemDef * def, int number)
         return MENU_NOTSHOWN;
 
     MakeTargetListForSummon(gActiveUnit);
+
     if (GetSelectTargetCount() == 0)
         return MENU_NOTSHOWN;
 

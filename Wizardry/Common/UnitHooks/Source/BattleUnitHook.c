@@ -88,29 +88,29 @@ STATIC_DECLAR void UpdateUnitFromBattleVanilla(struct Unit * unit, struct Battle
 
     tmp = GetBattleUnitUpdatedWeaponExp(bu);
 
-#if (defined(SID_ShadowgiftPlus) && (COMMON_SKILL_VALID(SID_ShadowgiftPlus)))
-    if (SkillTester(unit, SID_ShadowgiftPlus))
+#if (defined(SID_ShadowGiftPlus) && (COMMON_SKILL_VALID(SID_ShadowGiftPlus)))
+    if (SkillTester(unit, SID_ShadowGiftPlus))
         if (GetItemType(unit->items[0]) == ITYPE_DARK)
             if (unit->ranks[ITYPE_DARK] == 0)
                 tmp = 0;
 #endif
 
-#if (defined(SID_Shadowgift) && (COMMON_SKILL_VALID(SID_Shadowgift)))
-    if (SkillTester(unit, SID_Shadowgift))
+#if (defined(SID_ShadowGift) && (COMMON_SKILL_VALID(SID_ShadowGift)))
+    if (SkillTester(unit, SID_ShadowGift))
         if (GetItemType(unit->items[0]) == ITYPE_DARK)
             if (unit->ranks[ITYPE_DARK] == 0)
                 tmp = 0;
 #endif
 
-#if (defined(SID_LuminaPlus) && (COMMON_SKILL_VALID(SID_LuminaPlus)))
-    if (SkillTester(unit, SID_LuminaPlus))
+#if (defined(SID_LightGiftPlus) && (COMMON_SKILL_VALID(SID_LightGiftPlus)))
+    if (SkillTester(unit, SID_LightGiftPlus))
         if (GetItemType(unit->items[0]) == ITYPE_LIGHT)
             if (unit->ranks[ITYPE_LIGHT] == 0)
                 tmp = 0;
 #endif
 
-#if (defined(SID_Lumina) && (COMMON_SKILL_VALID(SID_Lumina)))
-    if (SkillTester(unit, SID_Lumina))
+#if (defined(SID_LightGift) && (COMMON_SKILL_VALID(SID_LightGift)))
+    if (SkillTester(unit, SID_LightGift))
         if (GetItemType(unit->items[0]) == ITYPE_LIGHT)
             if (unit->ranks[ITYPE_LIGHT] == 0)
                 tmp = 0;
@@ -323,7 +323,7 @@ void BattleApplyUnitUpdates(void)
         if (GetItemIndex(target->items[1]) != 0)
         {
             u16 currentItem = GetUnitEquippedWeapon(target);
-            u8 currentIndex = 0;
+            FORCE_DECLARE u8 currentIndex = 0;
 
             for (int i = 0; i < 5; i++)
             {
@@ -345,9 +345,6 @@ void BattleApplyUnitUpdates(void)
                     }
                 }
             }
-
-            /* Something random to satisfy the -Werror-unused-but-set-variable */
-            currentIndex += 1;
         }
     }
     if (SkillTester(target, SID_Offhand))
