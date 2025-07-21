@@ -279,7 +279,7 @@ void UpdateUnitFromBattle(struct Unit * unit, struct BattleUnit * bu)
     unit->_u3A = bu->unit._u3A;
     unit->_u3B = bu->unit._u3B;
 
-    ResetSkillLists();
+    // ResetSkillLists(); // Not sure why this is here but when it's on alongside forging, the level up screen and promote screens freeze
 
     for (it = gpExternalBattleToUnitHook; *it; it++)
         (*it)(bu, unit);

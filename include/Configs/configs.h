@@ -150,9 +150,6 @@
 
 // #define CONFIG_ESCAPE_EVENT
 
-/* BROKEN - DO NOT USE */
-// #define CONFIG_AUTO_PROMOTION_ON_MAX_LEVEL
-
 /* Don't turn this on until I have defeat quotes for everyone as MC dying without a quote doesn't trigger a game over screen */
 #define CONFIG_MULTIPLE_DEATH_QUOTES
 
@@ -275,7 +272,7 @@
 
 #define CONFIG_SKIP_INTRO
 
-#define CONFIG_FE4_CRIT_BONUS_ON_KILL
+// #define CONFIG_FE4_CRIT_BONUS_ON_KILL // Enable this and forging won't work as usual
 
 // A dirty fix for certain spaces on the prologue chapter causing
 // the unit to end their turn as if in fog of war or a trap

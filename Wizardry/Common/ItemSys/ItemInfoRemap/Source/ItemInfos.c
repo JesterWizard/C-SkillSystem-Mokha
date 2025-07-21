@@ -8,7 +8,7 @@
 #include "bwl.h"
 
 #ifdef CONFIG_FORGING
-#define brk asm("mov r11, r11");
+// #define brk asm("mov r11, r11");
 
     int GetForgedItemDurability(int item) {
         if (GetItemAttributes(item) & IA_UNBREAKABLE || !UseForgedItemDurability)
@@ -755,7 +755,7 @@ u16 GetItemAfterUse(int item)
 #ifdef CONFIG_FORGING
     if (CanItemBeForged(item))
     {
-        NoCashGBAPrint("PRINT: Heizenbug at GetItemAfterUse");
+        NoCashGBAPrint("PRINT:Heizenbug at GetItemAfterUse");
         struct ForgeLimits limits = gForgeLimits[GetItemIndex(item)];
         if (limits.maxCount) {
             if (!SetForgedItemAfterUse(item)) { // out of uses, so delete the item
@@ -972,15 +972,15 @@ void PrepUnit_DrawUnitItems(struct Unit *unit)
         );
 
 #ifdef CONFIG_FORGING
-        struct ForgeLimits limits = gForgeLimits[GetItemIndex(item)];
-        if (CanItemBeForged(item)) {
-            PutSpecialChar(TILEMAP_LOCATED(gBG0TilemapBuffer, 8, 5 + 2 * i), IsItemDisplayUsable(unit, item) ? TEXT_COLOR_SYSTEM_GOLD : TEXT_COLOR_SYSTEM_GRAY, TEXT_SPECIAL_PLUS);
-            PutNumberOrBlank(TILEMAP_LOCATED(gBG0TilemapBuffer, 9, 5 + 2 * i), IsItemDisplayUsable(unit, item) ? TEXT_COLOR_SYSTEM_GOLD : TEXT_COLOR_SYSTEM_GRAY, GetItemForgeCount(item));
-            PutNumberOrBlank(TILEMAP_LOCATED(gBG0TilemapBuffer, 11, 5 + 2 * i), IsItemDisplayUsable(unit, item) ? TEXT_COLOR_SYSTEM_BLUE : TEXT_COLOR_SYSTEM_GRAY, GetForgedItemDurability(item));
-        } else if (limits.maxCount == 0) {
-            PutNumberOrBlank(TILEMAP_LOCATED(gBG0TilemapBuffer, 11, 5 + 2 * i), IsItemDisplayUsable(unit, item) ? TEXT_COLOR_SYSTEM_BLUE : TEXT_COLOR_SYSTEM_GRAY, GetItemUses(item));
-        }
-#else
+        // struct ForgeLimits limits = gForgeLimits[GetItemIndex(item)];
+        // if (CanItemBeForged(item)) {
+        //     PutSpecialChar(TILEMAP_LOCATED(gBG0TilemapBuffer, 8, 5 + 2 * i), IsItemDisplayUsable(unit, item) ? TEXT_COLOR_SYSTEM_GOLD : TEXT_COLOR_SYSTEM_GRAY, TEXT_SPECIAL_PLUS);
+        //     PutNumberOrBlank(TILEMAP_LOCATED(gBG0TilemapBuffer, 9, 5 + 2 * i), IsItemDisplayUsable(unit, item) ? TEXT_COLOR_SYSTEM_GOLD : TEXT_COLOR_SYSTEM_GRAY, GetItemForgeCount(item));
+        //     PutNumberOrBlank(TILEMAP_LOCATED(gBG0TilemapBuffer, 11, 5 + 2 * i), IsItemDisplayUsable(unit, item) ? TEXT_COLOR_SYSTEM_BLUE : TEXT_COLOR_SYSTEM_GRAY, GetForgedItemDurability(item));
+        // } else if (limits.maxCount == 0) {
+        //     PutNumberOrBlank(TILEMAP_LOCATED(gBG0TilemapBuffer, 11, 5 + 2 * i), IsItemDisplayUsable(unit, item) ? TEXT_COLOR_SYSTEM_BLUE : TEXT_COLOR_SYSTEM_GRAY, GetItemUses(item));
+        // }
+//#else
         PutNumberOrBlank(TILEMAP_LOCATED(gBG0TilemapBuffer, 11, 5 + 2 * i), IsItemDisplayUsable(unit, item) ? TEXT_COLOR_SYSTEM_BLUE : TEXT_COLOR_SYSTEM_GRAY, GetItemUses(item));
 #endif
     }

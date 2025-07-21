@@ -4,9 +4,11 @@ ALIGN 4
 NumOfForgables:
 WORD 50 // max 63 
 gForgedItemRam: // need NumOfForgables*2=100 bytes 
-//WORD 0x203A81C // Vanilla convoy ram, for use with a custom EMS 
+// WORD 0x203A81C // Vanilla convoy ram, for use with a custom EMS 
+// WORD 0x20275B0 // C Skill System start point
 //that has 200 convoy and also saves 126ish bytes here 
-WORD 0x203B32C // last 50 items of 200 convoy 
+// WORD 0x203B32C // last 50 items of 200 convoy 
+WORD 0x2027646 // C Skill System
 UseForgedItemDurability:
 #ifdef SHRINK_CONVOY_TO_150
 WORD 1 
