@@ -41,6 +41,10 @@
     // EventPointerTable(0x33, Chapter10Event)
     // #include "Source/Chapter_10/Chapter_10.lyn.event"
     // #include "Source/Chapter_10/Map/Chapter_10_map.event"
+
+    // EventPointerTable(0x4B, Chapter09Event)
+    // #include "Source//Chapter_16.lyn.event"
+    #include "Source/Ruled_By_Madness/Map/Chapter_16_Map.event"
 }
 
     #include "Source/World_Map_Events.lyn.event"

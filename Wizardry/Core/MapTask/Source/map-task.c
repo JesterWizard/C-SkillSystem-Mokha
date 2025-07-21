@@ -4,6 +4,12 @@
 #include "kernel-lib.h"
 #include "stat-screen.h"
 
+extern UnitIconWait unit_icon_wait_table[];
+
+#define GetInfo(id) (unit_icon_wait_table[(id) & ((1<<7)-1)])
+
+struct SMSHandle EWRAM_DATA gSMSHandleArray[100] = {};
+
 LYN_REPLACE_CHECK(PutUnitSpriteIconsOam);
 void PutUnitSpriteIconsOam(void)
 {
@@ -126,4 +132,120 @@ void PutUnitSpriteIconsOam(void)
             }
         }
     }
+}
+
+LYN_REPLACE_CHECK(PutUnitSpritesOam);
+void PutUnitSpritesOam(void)
+{
+    struct SMSHandle * it = gSMSHandleArray->pNext;
+
+    PutUnitSpriteIconsOam();
+
+    if (it == NULL)
+        return;
+
+    for (; it != NULL; it = it->pNext)
+    {
+        int r3 = 0;
+
+        int x = it->xDisplay - gBmSt.camera.x;
+        int y = it->yDisplay - gBmSt.camera.y;
+
+        if (x < -16 || x > DISPLAY_WIDTH)
+            continue;
+
+        if (y < -32 || y > DISPLAY_HEIGHT)
+            continue;
+
+        if (it->config & 0x80)
+            continue;
+
+        if (it->config & 0x40)
+            r3 = GetGameClock() & 2;
+
+        switch ((it->config & 0xf)) {
+        case 0:
+            CallARM_PushToSecondaryOAM(OAM1_X(x+r3+0x200), OAM0_Y(0x100+y), gObject_16x16, it->oam2Base + OAM2_LAYER(2));
+            break;
+
+        case 1:
+            CallARM_PushToSecondaryOAM(OAM1_X(x+r3+0x200), OAM0_Y(0x100+y - 16), gObject_16x32, it->oam2Base + OAM2_LAYER(2));
+            break;
+
+        case 2:
+            CallARM_PushToSecondaryOAM(OAM1_X((x-8)+r3+0x200), OAM0_Y(0x100+y - 16), gObject_32x32, it->oam2Base + OAM2_LAYER(2));
+            break;
+
+        case 3:
+            CallARM_PushToSecondaryOAM(OAM1_X(x+r3+0x200), OAM0_Y(0x100+y), gObject_16x16, it->oam2Base + OAM2_LAYER(3));
+            break;
+
+        case 4:
+            CallARM_PushToSecondaryOAM(OAM1_X(x+r3+0x200), OAM0_Y(0x100+y - 16), gObject_16x32, it->oam2Base + OAM2_LAYER(3));
+            break;
+
+        case 5:
+            CallARM_PushToSecondaryOAM(OAM1_X((x-8)+r3+0x200), OAM0_Y(0x100+y - 16), gObject_32x32, it->oam2Base + OAM2_LAYER(3));
+            break;
+        }
+    }
+}
+
+LYN_REPLACE_CHECK(PutUnitSprite);
+void PutUnitSprite(int layer, int x, int y, struct Unit * unit)
+{
+    u32 id = GetUnitSMSId(unit);
+    int chr = UseUnitSprite(id);
+
+    if (x < -16 || x > DISPLAY_WIDTH)
+        return;
+
+    if (y < -32 || y > DISPLAY_HEIGHT)
+        return;
+
+    switch (GetInfo(id).size) {
+    case UNIT_ICON_SIZE_16x16:
+        PutSprite(layer, x, y, gObject_16x16, (GetUnitDisplayedSpritePalette(unit) & 0xf) * 0x1000 + 0x880 + chr);
+        break;
+
+    case UNIT_ICON_SIZE_16x32:
+        PutSprite(layer, x, y - 16, gObject_16x32, (GetUnitDisplayedSpritePalette(unit) & 0xf) * 0x1000 + 0x880 + chr);
+        break;
+
+    case UNIT_ICON_SIZE_32x32:
+        PutSprite(layer, x - 8, y - 16, gObject_32x32, (GetUnitDisplayedSpritePalette(unit) & 0xf) * 0x1000 + 0x880 + chr);
+        break;
+    }
+}
+
+LYN_REPLACE_CHECK(GetUnitSpritePalette);
+int GetUnitSpritePalette(const struct Unit * unit)
+{
+    switch (UNIT_FACTION(unit)) {
+    case FACTION_BLUE:
+        return 0xC;
+
+    case FACTION_RED:
+        return 0xD;
+
+    case FACTION_GREEN:
+        return 0xE;
+
+    case FACTION_PURPLE:
+        return 0xB;
+    }
+
+    return 0; // BUGFIX for vanilla
+}
+
+LYN_REPLACE_CHECK(GetUnitDisplayedSpritePalette);
+int GetUnitDisplayedSpritePalette(const struct Unit * unit)
+{
+    if (unit->state & US_BIT27)
+        return 0xB;
+
+    if (unit->state & US_UNSELECTABLE)
+        return 0xF;
+
+    return GetUnitSpritePalette(unit);
 }
