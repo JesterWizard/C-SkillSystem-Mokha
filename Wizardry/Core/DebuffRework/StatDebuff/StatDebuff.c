@@ -277,10 +277,10 @@ void PreBattleCalcStatDebuffs(struct BattleUnit *bu, struct BattleUnit *defender
 /**
  * Modular status-getter
  */
-#define STAT_DEBUFF_MSG_BUF_AMT 7
+#define STAT_DEBUFF_MSG_BUF_AMT 9
 #define STAT_DEBUFF_MSG_BUF_NEXT(idx) (((idx) - 1) & 3)
 
-struct StatDebuffMsgBuf
+struct StatDebuffMsgBuf // To expand go to _kernel_malloc sStatDebuffMsgBuf in config-memmap.s
 {
     u32 bitfile[4];
     u32 special_mask;
