@@ -8,7 +8,7 @@
 
 #define DangerBonesBuffer ((u8*)0x201c8d0)
 
-// u8 DangerBonesBuffer[DangerBonesBufferSize];
+// extern u8 DangerBonesBuffer[DangerBonesBufferSize];
 
 #define US_BIT_SHAKE (1 << 24)
 #define US_BIT_PAL (1 << 27)
