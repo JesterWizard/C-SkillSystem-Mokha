@@ -271,7 +271,7 @@ LABEL(0x0) \
     SVAL(0x3, gold) \
     GIVEITEMTOMAIN(0)
 
-#define ActiveUnit (-1)
+#define ActiveUnit 0xFFFF
 // #define CoordsSlotB (-2)
 // #define UnitInSlot2 (-3)
 
