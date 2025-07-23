@@ -1958,8 +1958,14 @@ void PreBattleCalcSkills(struct BattleUnit *attacker, struct BattleUnit *defende
                 default:
                     break;
                 }
-                break;
             }
+            break;
+#endif
+
+#if (defined(SID_Calibration) && (COMMON_SKILL_VALID(SID_Calibration)))
+        case SID_Calibration:
+            attacker->battleHitRate += GetItemMaxUses(GetUnitEquippedWeapon(GetUnit(attacker->unit.index))) - ITEM_USES(GetUnitEquippedWeapon(GetUnit(attacker->unit.index)));
+            break;
 #endif
 
         case MAX_SKILL_NUM:

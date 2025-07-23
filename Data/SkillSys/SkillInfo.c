@@ -7817,4 +7817,14 @@ const struct SkillInfo gSkillInfos[MAX_SKILL_NUM + 1] = {
     },
 #endif
 
+#if (defined(SID_Calibration) && COMMON_SKILL_VALID(SID_Calibration))
+    [SID_Calibration] = {
+        .name = MSG_SKILL_Calibration_NAME,
+        .desc = MSG_SKILL_Calibration_DESC,
+        .capacity = MSG_SKILL_Calibration_CAPACITY,
+        .price = MSG_SKILL_Calibration_PRICE,
+        .icon = GFX_SkillIcon_WIP,
+    },
+#endif
+
 };

@@ -262,6 +262,7 @@
 // SID_UnarmedCombat
 // SID_SereneGrace
 // SID_GoldenGlory
+// SID_Calibration
 
 //////// POST-BATTLE SKILLS
 // SID_Canto

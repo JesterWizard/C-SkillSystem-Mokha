@@ -1614,3 +1614,10 @@ Golden Glory[X]
 Golden Glory:[N]
 Boost all stats by +1 for every[N]
 20000g in total, max +5.[X]
+
+## MSG_SKILL_Calibration_NAME
+Calibration[X]
+## MSG_SKILL_Calibration_DESC
+Calibration:[N]
+Gain +1 hit per expended uses[N]
+on the equipped weapon.[X]
