@@ -394,7 +394,7 @@ enemies. Usable once per map.[X]
 Divine Reprieve[X]
 ## MSG_SKILL_DivineReprieve_DESC
 Divine Reprieve:[N]
-Once per chapter, immediately[N]
+Once per map, immediately[N]
 start next player phase.[X]
 ## MSG_SKILL_DivineReprieve_Confirm
 This skill may directly end your phase[A][N]
@@ -471,7 +471,7 @@ Shuffle[X]
 Shuffle:[N]
 Shuffle the positions of all[N]
 player units on the field.[N]
-Usable once per chapter.[X]
+Usable once per map.[X]
 
 ## MSG_SKILL_ShufflePlus_NAME
 Shuffle+[X]
@@ -479,7 +479,7 @@ Shuffle+[X]
 Shuffle+:[N]
 Shuffle the positions of[N]
 all units on the field.[N]
-Usable once per chapter.[X]
+Usable once per map.[X]
 
 ## MSG_SKILL_Persuade_NAME
 Persuade[X]
@@ -572,7 +572,14 @@ Sealed Zone[X]
 ## MSG_SKILL_SealedZone_DESC
 Sealed Zone:[N]
 Create a 5x5 space of Light Runes[N]
-around the user. Once per chapter.[X]
+around the user. Once per map.[X]
+
+## MSG_SKILL_Thrust_NAME
+Thrust[X]
+## MSG_SKILL_Thrust_DESC
+Thrust:[N]
+Attack an enemy up to 10 tiles[N]
+away once per map.[X]
 
 ## MSG_MenuCommand_Refuge_NAME
 Refuge[X]

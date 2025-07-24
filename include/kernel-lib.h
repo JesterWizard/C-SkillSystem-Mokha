@@ -105,6 +105,9 @@ void KernelStartBlockingHookProc(HookProcFunc_t const * hook_list, ProcPtr paren
 #define ARRAY_COUNT_RANGE2x2 12
 #define ARRAY_COUNT_RANGE3x3 24
 
+/* JESTER */
+#define ARRAY_COUNT_RANGE10x10 220
+
 #ifndef CONFIG_UNIT_AMT_ALLY 
 	#define CONFIG_UNIT_AMT_ALLY 50
 #endif

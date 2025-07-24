@@ -19,7 +19,7 @@ u8 SealedZone_Usability(const struct MenuItemDef * def, int number)
         return MENU_NOTSHOWN;
 
     if (PlayStExpa_CheckBit(PLAYSTEXPA_BIT_SealedZone_Used))
-		return MENU_DISABLED;
+		return MENU_NOTSHOWN;
 
     return MENU_ENABLED;
 }

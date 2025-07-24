@@ -85,6 +85,7 @@
 #include "MenuSkills/Acidic.lyn.event"
 #include "MenuSkills/Reinforce.lyn.event"
 #include "MenuSkills/SealedZone.lyn.event"
+#include "MenuSkills/Thrust.lyn.event"
 
 #include "MenuSkills/ReciprocalAid.lyn.event"
 #include "MenuSkills/ReciprocalAid_ASM_Extras/Installer.event"

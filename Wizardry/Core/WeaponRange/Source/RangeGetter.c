@@ -3,6 +3,7 @@
 #include "status-getter.h"
 #include "weapon-range.h"
 #include "constants/skills.h"
+#include "playst-expa.h"
 
 #define LOCAL_TRACE 0
 
@@ -47,6 +48,11 @@ int WeaponRangeGetterSkills(int range, struct Unit * unit, u16 item)
 #if defined(SID_Counterattack) && (COMMON_SKILL_VALID(SID_Counterattack))
     if (SkillTester(unit, SID_Counterattack))
         range = (gBmMapSize.x > gBmMapSize.y) ? gBmMapSize.x : gBmMapSize.y;
+#endif
+
+#if defined(SID_Thrust) && (COMMON_SKILL_VALID(SID_Thrust))
+    if (SkillTester(unit, SID_Thrust) && !PlayStExpa_CheckBit(PLAYSTEXPA_BIT_Thrust_Used))
+        range = range < 10 ? 10 : range;
 #endif
 
     switch (GetItemType(item)) {

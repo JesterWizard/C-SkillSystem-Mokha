@@ -246,4 +246,8 @@ const SkillActionFunc_t gSkillActionFuncTable[MAX_SKILL_NUM + 1] = {
 #if (defined(SID_SealedZone) && COMMON_SKILL_VALID(SID_SealedZone))
 	[SID_SealedZone] = Action_SealedZone,
 #endif
+
+#if (defined(SID_Thrust) && COMMON_SKILL_VALID(SID_Thrust))
+	[SID_Thrust] = Action_Thrust,
+#endif
 };

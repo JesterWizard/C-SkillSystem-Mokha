@@ -6,6 +6,7 @@
 #include "combat-art.h"
 #include "constants/skills.h"
 #include "unit-expa.h"
+#include "playst-expa.h"
 
 typedef int (*BattleToUnitFunc_t)(struct BattleUnit * bu, struct Unit * unit);
 // extern const BattleToUnitFunc_t gExternalBattleToUnitHook[];
@@ -271,6 +272,11 @@ void UpdateUnitFromBattle(struct Unit * unit, struct BattleUnit * bu)
         gActionData.unk08 = 0; // Reset the action data to prevent the skill from being used again
         unit->curHP = 1;
     }
+#endif
+
+#if defined(SID_Thrust) && (COMMON_SKILL_VALID(SID_Thrust))
+    if (SkillTester(unit, SID_Thrust) && gActionData.unk08 == SID_Thrust && !PlayStExpa_CheckBit(PLAYSTEXPA_BIT_Thrust_Used))
+        PlayStExpa_SetBit(PLAYSTEXPA_BIT_Thrust_Used);
 #endif
 
     UNIT_MAG(unit) += BU_CHG_MAG(bu);
