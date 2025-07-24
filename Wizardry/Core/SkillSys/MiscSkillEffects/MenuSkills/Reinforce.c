@@ -79,6 +79,10 @@ static void callback_exec(ProcPtr proc)
                 unit->items[j] = 0;
             }
         }
+
+        // Cap to prevent overflow
+        if (totalUses > 254)
+            totalUses = 254;
     
         // Save the aggregated uses back to the original item
         // Extract itemID and recombine with new uses
