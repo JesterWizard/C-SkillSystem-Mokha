@@ -68,6 +68,7 @@ SID_DancePlus
 SID_Acidic
 SID_AcidicPlus
 SID_Reinforce
+SID_SealedZone
 
 //////// PRE-BATTLE SKILLS
 SID_DefiantStr

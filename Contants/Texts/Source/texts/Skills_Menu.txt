@@ -567,6 +567,13 @@ Reinforce:[N]
 Combine weapon uses for the same[N]
 weapons in the unit's inventory.[X]
 
+## MSG_SKILL_SealedZone_NAME
+Sealed Zone[X]
+## MSG_SKILL_SealedZone_DESC
+Sealed Zone:[N]
+Create a 5x5 space of Light Runes[N]
+around the user. Once per chapter.[X]
+
 ## MSG_MenuCommand_Refuge_NAME
 Refuge[X]
 ## MSG_MenuCommand_Refuge_DESC

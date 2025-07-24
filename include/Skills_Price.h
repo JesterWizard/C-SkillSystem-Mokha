@@ -780,3 +780,4 @@
 #define MSG_SKILL_Calibration_PRICE 1000
 #define MSG_SKILL_Reinforce_PRICE 1000
 #define MSG_SKILL_SupremeOverlord_PRICE 1000
+#define MSG_SKILL_SealedZone_PRICE 1000
