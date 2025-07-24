@@ -18,6 +18,7 @@ struct NewBwl {
     /* bwl support */
     u8 supports[UNIT_SUPPORT_MAX_COUNT];
 
+    /* JESTER - Laguz bars transformation gauge is stored in the first byte here */
     u8 _pad_[0x10 - 0x0C];
 
 } BITPACKED;

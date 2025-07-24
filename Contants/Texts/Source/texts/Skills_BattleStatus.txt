@@ -1621,3 +1621,11 @@ Calibration[X]
 Calibration:[N]
 Gain +1 hit per expended uses[N]
 on the equipped weapon.[X]
+
+## MSG_SKILL_SupremeOverlord_NAME
+Supreme Overlord[X]
+## MSG_SKILL_SupremeOverlord_DESC
+Supreme Overlord:[N]
+Player units gain +3 to all stats per[N]
+allied unit who died this chapter.[N]
+Other factions gain +1 per 3 allies dead.[X]

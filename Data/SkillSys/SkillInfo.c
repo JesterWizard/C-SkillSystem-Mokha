@@ -7837,4 +7837,14 @@ const struct SkillInfo gSkillInfos[MAX_SKILL_NUM + 1] = {
     },
 #endif
 
+#if (defined(SID_SupremeOverlord) && COMMON_SKILL_VALID(SID_SupremeOverlord))
+    [SID_SupremeOverlord] = {
+        .name = MSG_SKILL_SupremeOverlord_NAME,
+        .desc = MSG_SKILL_SupremeOverlord_DESC,
+        .capacity = MSG_SKILL_SupremeOverlord_CAPACITY,
+        .price = MSG_SKILL_SupremeOverlord_PRICE,
+        .icon = GFX_SkillIcon_WIP,
+    },
+#endif
+
 };
