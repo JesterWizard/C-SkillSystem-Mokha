@@ -560,6 +560,13 @@ Can use healing items on ranged[N]
 enemies and invert their effects.[N]
 Halved on bosses.[X]
 
+## MSG_SKILL_Reinforce_NAME
+Reinforce[X]
+## MSG_SKILL_Reinforce_DESC
+Reinforce:[N]
+Combine weapon uses for the same[N]
+weapons in the unit's inventory.[X]
+
 ## MSG_MenuCommand_Refuge_NAME
 Refuge[X]
 ## MSG_MenuCommand_Refuge_DESC

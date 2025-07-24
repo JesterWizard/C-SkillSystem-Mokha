@@ -778,3 +778,4 @@
 #define MSG_SKILL_Protect_CAPACITY 1
 #define MSG_SKILL_GoldenGlory_CAPACITY 1
 #define MSG_SKILL_Calibration_CAPACITY 1
+#define MSG_SKILL_Reinforce_CAPACITY 1

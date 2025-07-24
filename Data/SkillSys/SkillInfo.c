@@ -7827,4 +7827,14 @@ const struct SkillInfo gSkillInfos[MAX_SKILL_NUM + 1] = {
     },
 #endif
 
+#if (defined(SID_Reinforce) && COMMON_SKILL_VALID(SID_Reinforce))
+    [SID_Reinforce] = {
+        .name = MSG_SKILL_Reinforce_NAME,
+        .desc = MSG_SKILL_Reinforce_DESC,
+        .capacity = MSG_SKILL_Reinforce_CAPACITY,
+        .price = MSG_SKILL_Reinforce_PRICE,
+        .icon = GFX_SkillIcon_WIP,
+    },
+#endif
+
 };

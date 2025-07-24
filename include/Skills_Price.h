@@ -778,3 +778,4 @@
 #define MSG_SKILL_Protect_PRICE 1000
 #define MSG_SKILL_GoldenGlory_PRICE 1000
 #define MSG_SKILL_Calibration_PRICE 1000
+#define MSG_SKILL_Reinforce_PRICE 1000

@@ -981,6 +981,21 @@ const struct MenuItemDef gSkillMenuInfos[MAX] = {
     },
 #endif
 
+#if (defined(SID_Reinforce) && COMMON_SKILL_VALID(SID_Reinforce))
+    [SID_Reinforce] = {
+        .name = "　",
+        .nameMsgId = MSG_SKILL_Reinforce_NAME,
+        .helpMsgId = MSG_SKILL_Reinforce_DESC,
+        .color = TEXT_COLOR_SYSTEM_GOLD,
+        .isAvailable = Reinforce_Usability,
+        .onDraw = NULL,
+        .onSelected = Reinforce_OnSelected,
+        .onIdle = NULL,
+        .onSwitchIn = NULL,
+        .onSwitchOut = NULL,
+    },
+#endif
+
     [0] = {
         .name = "　光の結界",
         .nameMsgId = MSG_MenuCommand_Refuge_NAME,

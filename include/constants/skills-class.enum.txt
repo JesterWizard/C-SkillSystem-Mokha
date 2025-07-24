@@ -67,6 +67,7 @@
 // SID_DancePlus
 // SID_Acidic
 // SID_AcidicPlus
+// SID_Reinforce
 
 //////// PRE-BATTLE SKILLS
 // SID_DefiantStr
