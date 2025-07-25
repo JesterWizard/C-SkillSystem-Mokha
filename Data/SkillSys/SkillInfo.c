@@ -7867,4 +7867,14 @@ const struct SkillInfo gSkillInfos[MAX_SKILL_NUM + 1] = {
     },
 #endif
 
+#if (defined(SID_ChainAttack) && COMMON_SKILL_VALID(SID_ChainAttack))
+    [SID_ChainAttack] = {
+        .name = MSG_SKILL_ChainAttack_NAME,
+        .desc = MSG_SKILL_ChainAttack_DESC,
+        .capacity = MSG_SKILL_ChainAttack_CAPACITY,
+        .price = MSG_SKILL_ChainAttack_PRICE,
+        .icon = GFX_SkillIcon_WIP,
+    },
+#endif
+
 };

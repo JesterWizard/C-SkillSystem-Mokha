@@ -181,3 +181,10 @@ Last Stand[X]
 Last Stand:[N]
 This unit gains a brave effect[N]
 if starting a battle with 1 HP.[X]
+
+## MSG_SKILL_ChainAttack_NAME
+Chain Attack[X]
+## MSG_SKILL_ChainAttack_DESC
+Chain Attack:[N]
+Allow allied units adjacent to[N]
+enemies to attack in a chain.[X]

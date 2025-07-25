@@ -51,7 +51,7 @@ int WeaponRangeGetterSkills(int range, struct Unit * unit, u16 item)
 #endif
 
 #if defined(SID_Thrust) && (COMMON_SKILL_VALID(SID_Thrust))
-    if (SkillTester(unit, SID_Thrust) && !PlayStExpa_CheckBit(PLAYSTEXPA_BIT_Thrust_Used))
+    if (SkillTester(unit, SID_Thrust) && PlayStExpa_CheckBit(PLAYSTEXPA_BIT_Thrust_InForce) && !PlayStExpa_CheckBit(PLAYSTEXPA_BIT_Thrust_Used))
         range = range < 10 ? 10 : range;
 #endif
 

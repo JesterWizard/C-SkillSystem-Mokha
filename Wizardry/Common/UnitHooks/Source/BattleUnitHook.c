@@ -275,7 +275,7 @@ void UpdateUnitFromBattle(struct Unit * unit, struct BattleUnit * bu)
 #endif
 
 #if defined(SID_Thrust) && (COMMON_SKILL_VALID(SID_Thrust))
-    if (SkillTester(unit, SID_Thrust) && gActionData.unk08 == SID_Thrust && !PlayStExpa_CheckBit(PLAYSTEXPA_BIT_Thrust_Used))
+    if (SkillTester(unit, SID_Thrust) && gActionData.unk08 == SID_Thrust && PlayStExpa_CheckBit(PLAYSTEXPA_BIT_Thrust_InForce) && !PlayStExpa_CheckBit(PLAYSTEXPA_BIT_Thrust_Used))
         PlayStExpa_SetBit(PLAYSTEXPA_BIT_Thrust_Used);
 #endif
 

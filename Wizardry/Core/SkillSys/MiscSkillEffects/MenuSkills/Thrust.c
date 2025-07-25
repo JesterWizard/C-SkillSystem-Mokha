@@ -78,6 +78,8 @@ u8 Thrust_OnSelected(struct MenuProc * menu, struct MenuItemProc * item)
     gActionData.unk08 = SID_Thrust;
     gActionData.unitActionType = CONFIG_UNIT_ACTION_EXPA_ExecSkill;
 
+    PlayStExpa_SetBit(PLAYSTEXPA_BIT_Thrust_InForce);
+
     return StartUnitWeaponSelect(menu, item);
 }
 

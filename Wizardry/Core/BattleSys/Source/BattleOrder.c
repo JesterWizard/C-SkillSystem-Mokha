@@ -550,6 +550,9 @@ void BattleUnwind(void)
             if (ACT_ATTACK == config[i])
             {
 #ifdef CONFIG_USE_COMBO_ATTACK
+        #if (defined(SID_ChainAttack) && COMMON_SKILL_VALID(SID_ChainAttack))
+            if (BattleSkillTester(&gBattleActor, SID_ChainAttack) || BattleSkillTester(&gBattleTarget, SID_ChainAttack))
+            {
                 /* Combo-attack first */
                 if (!combo_atk_done)
                 {
@@ -562,6 +565,8 @@ void BattleUnwind(void)
                     old = gBattleHitIterator;
                     LTRACEF("Combo end at round round %d", GetBattleHitRound(old));
                 }
+    }
+        #endif
 #endif
                 ret = BattleGenerateRoundHits(&gBattleActor, &gBattleTarget);
                 actor_count++;

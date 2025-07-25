@@ -14,7 +14,7 @@
 /* If uncomment, use utf-8 characters */
 #define CONFIG_USE_UTF8_GLYPH
 
-// #define CONFIG_USE_COMBO_ATTACK
+#define CONFIG_USE_COMBO_ATTACK
 
 // #define CONFIG_BATTLE_SURROUND
 

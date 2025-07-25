@@ -37,7 +37,7 @@ const struct KernelDesigerConfig gKernelDesigerConfig = {
 #endif
 
 #ifdef CONFIG_USE_COMBO_ATTACK
-	.combo_attack_en = false, // true, // can be opened by the user
+	.combo_attack_en = true, // true, // can be opened by the user
 #endif
 
 #ifdef CONFIG_BATTLE_SURROUND
