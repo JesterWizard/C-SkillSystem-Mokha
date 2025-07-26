@@ -7877,4 +7877,14 @@ const struct SkillInfo gSkillInfos[MAX_SKILL_NUM + 1] = {
     },
 #endif
 
+#if (defined(SID_NinthCircle) && COMMON_SKILL_VALID(SID_NinthCircle))
+    [SID_NinthCircle] = {
+        .name = MSG_SKILL_NinthCircle_NAME,
+        .desc = MSG_SKILL_NinthCircle_DESC,
+        .capacity = MSG_SKILL_NinthCircle_CAPACITY,
+        .price = MSG_SKILL_NinthCircle_PRICE,
+        .icon = GFX_SkillIcon_WIP,
+    },
+#endif
+
 };

@@ -25,9 +25,11 @@ void SetGameOptions_Chapter0()
     // unit_eirika->maxHP = 26;
     // unit_eirika->curHP = 6;
 
-    // unit_eirika->ranks[ITYPE_STAFF] = WPN_EXP_C;
+    unit_eirika->ranks[ITYPE_STAFF] = WPN_EXP_A;
     unit_eirika->items[0] = MakeNewItem(ITEM_SWORD_IRON);
-    // unit_eirika->items[1] = MakeNewItem(ITEM_STAFF_MEND);
+    unit_eirika->items[1] = MakeNewItem(ITEM_STAFF_BERSERK);
+    unit_eirika->items[2] = MakeNewItem(ITEM_STAFF_SLEEP);
+    unit_eirika->items[3] = MakeNewItem(ITEM_STAFF_SILENCE);
 
     // unit_eirika->ranks[ITYPE_STAFF] = WPN_EXP_A;
     // unit_eirika->items[1] = ITEM_KNIGHTCREST;

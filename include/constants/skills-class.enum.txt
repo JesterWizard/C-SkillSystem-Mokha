@@ -785,6 +785,7 @@
 // SID_HalfShift
 // SID_StickyHold
 // SID_Protect
+// SID_NinthCircle
 
 //////// COMBAT ARTS
 // SID_COMBAT_Grounder

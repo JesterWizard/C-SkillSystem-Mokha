@@ -48,6 +48,9 @@ extern void MakeTargetListForAdjacentSameFaction(struct Unit* unit);
 extern void TryAddUnitToAdjacentUnitsTargetList(struct Unit* unit);
 extern void MakeTargetListForAdjacentUnits(struct Unit* unit);
 
+extern void TryAddUnitToRangedStatusStavesTargetList(struct Unit* unit);
+extern void MakeTargetListForRangedStatusStaves(struct Unit* unit);
+
 struct BEXP {
     u16 value;
 };

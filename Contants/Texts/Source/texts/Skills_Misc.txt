@@ -413,3 +413,10 @@ Protect:[N]
 When defending this turn,[N]
 the first strike to this[N]
 unit this turn deals no damage.[X]
+
+## MSG_SKILL_NinthCircle_NAME
+Ninth Circle[X]
+## MSG_SKILL_NinthCircle_DESC
+Ninth Circle:[N]
+Allows this unit's status staves[N]
+to target all enemy units in range.[X]

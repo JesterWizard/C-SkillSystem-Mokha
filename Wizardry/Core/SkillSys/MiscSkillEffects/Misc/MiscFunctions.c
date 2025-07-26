@@ -3697,6 +3697,38 @@ void MakeTargetListForAdjacentUnits(struct Unit* unit) {
     return;
 }
 
+void TryAddUnitToRangedStatusStavesTargetList(struct Unit* unit) {
+
+    if (AreUnitsAllied(gSubjectUnit->index, unit->index)) {
+        return;
+    }
+
+    if (unit->state & US_RESCUED) {
+        return;
+    }
+
+    AddTarget(unit->xPos, unit->yPos, unit->index, 0);
+
+    return;
+}
+
+void MakeTargetListForRangedStatusStaves(struct Unit* unit) {
+    int x = unit->xPos;
+    int y = unit->yPos;
+
+    gSubjectUnit = unit;
+
+    InitTargets(x, y);
+
+    BmMapFill(gBmMapRange, 0);
+
+    MapAddInRange(x, y, GetUnitMagBy2Range(gSubjectUnit), 1);
+
+    ForEachUnitInRange(TryAddUnitToRangedStatusStavesTargetList);
+
+    return;
+}
+
 LYN_REPLACE_CHECK(UnitUpdateUsedItem);
 void UnitUpdateUsedItem(struct Unit* unit, int itemSlot) {
 
