@@ -4,6 +4,7 @@
 #include "constants/texts.h"
 #include "jester_headers/menu_commands.h"
 #include "bmmenu.h"
+#include "../../../External/AOE/EngineHacks/Gambit/GambitCore.h"
 
 #define MenuItemsEnd {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}
 
@@ -111,6 +112,20 @@ const struct MenuItemDef gUnitActionMenuItemsRework[] = {
 #endif
 #ifdef CONFIG_LAGUZ_BARS
     {"　", MSG_MenuCommand_Transform_Laguz_NAME, MSG_MenuCommand_Transform_Laguz_DESC, TEXT_COLOR_SYSTEM_GOLD, 0x6C, Transform_Laguz_Usability, 0, Transform_Laguz_Effect, 0, 0, 0}, // Laguz Transform > 
+#endif
+#ifdef CONFIG_AOE
+    {" ", 
+        MSG_MenuCommand_Gambit_NAME, 
+        MSG_MenuCommand_Gambit_DESC, 
+        TEXT_COLOR_SYSTEM_GOLD, 
+        0, 
+        Gambit_UpperMenu_Usability, 
+        0,
+        Gambit_UpperMenu_Effect, 
+        0,
+        Gambit_UpperMenu_Hover, 
+        Gambit_UpperMenu_Unhover
+    }, // AOE
 #endif
     {"　降ろす", 0x68A, 0x6C6, TEXT_COLOR_SYSTEM_WHITE, 0x64, DropUsability, 0, DropEffect, 0, 0, 0}, // Drop > 
     {"　引受け", 0x68B, 0x6C8, TEXT_COLOR_SYSTEM_GREEN, 0x65, TakeUsability, 0, TakeEffect, 0, 0, 0}, // Take > 

@@ -150,3 +150,7 @@
 #ifdef CONFIG_VESLY_DANGER_BONES
     #include "VeslyDangerBones/VeslyDangerBones_Installer.event"
 #endif
+
+#ifdef CONFIF_AOE
+    #include "AOE/Installer_AOE.event"
+#endif

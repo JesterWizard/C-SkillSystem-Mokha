@@ -275,3 +275,5 @@
 // A dirty fix for certain spaces on the prologue chapter causing
 // the unit to end their turn as if in fog of war or a trap
 #define CONFIG_DIRTY_FIXES
+
+#define CONFIG_AOE

@@ -587,3 +587,10 @@ Refuge[X]
 Refuge:[N]
 Retreat into an ally who's[N]
 AID >= the unit's CON.[X]
+
+## MSG_MenuCommand_Gambit_NAME
+Gambit[X]
+## MSG_MenuCommand_Gambit_DESC
+Gambit:[N]
+Create an AOE attack that[N]
+targets multiple enemies.[X]

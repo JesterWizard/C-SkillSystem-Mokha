@@ -1,0 +1,67 @@
+#ifndef GAMBIT_MAP
+#define GAMBIT_MAP
+
+ALIGN 4
+#include "src/MapCore.lyn.event"
+
+/* MESSAGE FillRangeMapForHover_ FillRangeMapForHover
+MESSAGE FillAOEEffectMay_OnChangeTarget_ FillAOEEffectMay_OnChangeTarget */
+
+
+ALIGN 4
+GambitEffectMap_DrawMapRoutineTable:
+	POIN Func1_Basze|1
+	POIN Func0_Default|1	Func1_Basze|1		Func2_Absorption|1 
+	POIN Func3_Fusillade|1	Func4_FireArrows|1	Func5_GroupLanceAttack|1
+	WORD $0 $0 $0 $0
+	WORD $0 $0 $0 $0
+	WORD $0 $0 $0 $0
+
+
+
+//  1
+//  1
+ALIGN 4
+Func0_Default:
+	#include "FillAOEMapFucs/Func0_Default.lyn.event"
+
+//   O
+//  OOO
+// OOOOO
+ALIGN 4
+Func1_Basze:
+	#include "FillAOEMapFucs/Func1_Basze.lyn.event"
+
+//   O
+//  OOO
+// OOOOO
+//  OOO
+//   O
+ALIGN 4
+Func2_Absorption:
+	#include "FillAOEMapFucs/Func2_Absorption.lyn.event"
+
+//  0
+// 000
+//  0
+ALIGN 4
+Func3_Fusillade:
+	#include "FillAOEMapFucs/Func3_Fusillade.lyn.event"
+
+//  O
+//  O
+//  O
+//  O
+ALIGN 4
+Func4_FireArrows:
+	#include "FillAOEMapFucs/Func4_FireArrows.lyn.event"
+
+// OOO
+ALIGN 4
+Func5_GroupLanceAttack:
+	#include "FillAOEMapFucs/Func5_GroupLanceAttack.lyn.event"
+
+
+
+
+#endif // GAMBIT_MAP
