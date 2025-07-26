@@ -140,10 +140,6 @@
     #include "JesterHacks/CustomSprites/Installer.event"
 #endif
 
-#ifdef CONFIG_CUSTOM_STAFF_ACCURACY
-    #include "JesterHacks/StaffAccuracy/Installer.event"
-#endif
-
 #ifdef CONFIG_DENY_STAT_SCREEN
     #include "DenyStatScreen/Installer.event"
 #endif
