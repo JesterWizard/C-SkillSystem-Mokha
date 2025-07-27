@@ -7887,4 +7887,14 @@ const struct SkillInfo gSkillInfos[MAX_SKILL_NUM + 1] = {
     },
 #endif
 
+#if (defined(SID_InevitableEnd) && COMMON_SKILL_VALID(SID_InevitableEnd))
+    [SID_InevitableEnd] = {
+        .name = MSG_SKILL_InevitableEnd_NAME,
+        .desc = MSG_SKILL_InevitableEnd_DESC,
+        .capacity = MSG_SKILL_InevitableEnd_CAPACITY,
+        .price = MSG_SKILL_InevitableEnd_PRICE,
+        .icon = GFX_SkillIcon_WIP,
+    },
+#endif
+
 };

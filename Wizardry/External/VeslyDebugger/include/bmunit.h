@@ -143,7 +143,8 @@ struct Unit
     /* 18 */ s8 res;
     /* 19 */ s8 lck;
 
-    /* 1A */ s8 conBonus;
+    /* 1A */ s8 conBonus : 4;
+    /* 1A */ u8 hitCounter : 4; /* Used mainly for the Inevitable End skill */
     /* 1B */ u8 rescue;
     /* 1C */ u8 ballistaIndex;
     /* 1D */ s8 movBonus;
@@ -170,7 +171,7 @@ struct Unit
     /* 43 */ u8 ai1data;
     /* 44 */ u8 ai2;
     /* 45 */ u8 ai2data;
-    /* 46 */ u8 _u46;
+    /* 46 */ u8 ai_counter;
     /* 47 */ s8 _u47;
 };
 

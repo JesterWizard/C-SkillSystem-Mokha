@@ -784,3 +784,4 @@
 #define MSG_SKILL_Thrust_CAPACITY 1
 #define MSG_SKILL_ChainAttack_CAPACITY 1
 #define MSG_SKILL_NinthCircle_CAPACITY 1
+#define MSG_SKILL_InevitableEnd_CAPACITY 1

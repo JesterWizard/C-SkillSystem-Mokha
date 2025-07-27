@@ -784,3 +784,4 @@
 #define MSG_SKILL_Thrust_PRICE 1000
 #define MSG_SKILL_ChainAttack_PRICE 1000
 #define MSG_SKILL_NinthCircle_PRICE 1000
+#define MSG_SKILL_InevitableEnd_PRICE 1000

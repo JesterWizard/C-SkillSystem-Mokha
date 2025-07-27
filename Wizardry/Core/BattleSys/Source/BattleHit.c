@@ -249,6 +249,20 @@ void BattleGenerateHitAttributes(struct BattleUnit * attacker, struct BattleUnit
         gBattleActorGlobalFlag.skill_activated_debilitator = true;
 #endif
 
+#if (defined(SID_InevitableEnd) && (COMMON_SKILL_VALID(SID_InevitableEnd)))
+    if (BattleSkillTester(attacker, SID_InevitableEnd))
+    {
+        /* Ensure it only applies for one hit, essentially making it only stack 'per battle' */
+        if (GetBattleGlobalFlags(attacker)->round_cnt_hit < 2)
+        {
+            struct Unit * target = GetUnit(defender->unit.index);
+
+            /* If we're at the max for the hit counter, don't increment it further */
+            target->hitCounter += (target->hitCounter == 15 ? 0 : 1);
+        }
+    }
+#endif
+
     BattleCheckPetrify(attacker, defender);
 
     if (gBattleStats.damage != 0)
@@ -527,22 +541,6 @@ bool BattleGenerateHit(struct BattleUnit * attacker, struct BattleUnit * defende
         gBattleHitIterator->info |= BATTLE_HIT_INFO_RETALIATION;
 
     BattleUpdateBattleStats(attacker, defender);
-
-// #if CHAX
-// 	/**
-// 	 * Gaiden magic needs hp-cost
-// 	 */
-// 	if (CheckGaidenMagicAttack(attacker)) {
-// 		int hp_cost = GetGaidenWeaponHpCost(&attacker->unit, attacker->weapon);
-
-// 		if (!TryBattleHpCost(attacker, hp_cost)) {
-// 			gBattleHitIterator->info |= BATTLE_HIT_INFO_FINISHES;
-// 			gBattleHitIterator++;
-// 			return true;
-// 		}
-// 	}
-// #endif
-
     BattleGenerateHitTriangleAttack(attacker, defender);
     BattleGenerateHitAttributes(attacker, defender);
     BattleGenerateHitEffects(attacker, defender);
@@ -594,7 +592,6 @@ bool BattleGenerateHit(struct BattleUnit * attacker, struct BattleUnit * defende
             }
     }
 #endif
-
 
         gBattleHitIterator->info |= BATTLE_HIT_INFO_FINISHES;
 

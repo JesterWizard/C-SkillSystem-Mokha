@@ -420,3 +420,11 @@ Ninth Circle[X]
 Ninth Circle:[N]
 Allows this unit's status staves[N]
 to target all enemy units in range.[X]
+
+## MSG_SKILL_InevitableEnd_NAME
+Inevitable End[X]
+## MSG_SKILL_InevitableEnd_DESC
+Inevitable End:[N]
+Enemy units suffer stacking stat[N]
+debuffs from weapons and skills that[N]
+inflict them when used by this unit.[X]
