@@ -4,7 +4,7 @@
 #include "constants/texts.h"
 #include "jester_headers/menu_commands.h"
 #include "bmmenu.h"
-#include "../../../External/AOE/EngineHacks/Gambit/GambitCore.h"
+#include "jester_headers/GambitCore.h"
 
 #define MenuItemsEnd {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}
 

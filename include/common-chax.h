@@ -1,6 +1,6 @@
 #pragma once
 
-#include "gbafe.h"
+#include "../Tools/FE-CLib-Mokha/include/gbafe.h"
 #include <stdint.h>
 
 #include "Configs/configs.h"

@@ -1,0 +1,15 @@
+/////////////////////////////////////////////////////////
+//                                                     //
+//               Master Hack Installer                 //
+//                                                     //
+/////////////////////////////////////////////////////////
+
+#include "_FE8EssentialFixes.event"
+
+#include "CoreSupport/UnitMenu/UnitMenu.event"
+#include "CoreSupport/MapDisplay/MapDisplay.event"
+#include "CoreSupport/SaveData/ExpandedModularSave/ExModularSave.event"
+#include "CoreSupport/UnitActionRework/UnitActionRework.event"
+#include "CoreSupport/HpBars/HpBars.event"
+
+#include "Gambit/Gambit.event"

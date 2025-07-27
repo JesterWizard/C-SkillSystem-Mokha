@@ -38,7 +38,9 @@
 #include "JobGrowth/JobGrowth.lyn.event"
 #include "Shield/ShieldConfig.lyn.event"
 #include "Forging/Forging_Installer.event"
-
+#ifdef CONFIG_AOE
+    #include "AOE/Installer_AOE.event"
+#endif
 #include "Items/Items.lyn.event"
 
 #include "../Wizardry/data.event"
