@@ -71,7 +71,6 @@ _kernel_malloc sStatDebuffStatusBattleUnit, 2 * 16
 _kernel_malloc sStatDebuffMsgBuf, 0x2C * 9
 _kernel_malloc sExpaConvoyItemCount, 4
 _kernel_malloc sExpaConvoyItemArray, 2 * 300 //current start point as of 21/07/2025 is 0x20275B0
-_kernel_malloc sGaidenMagicListObj, 0x24
 _kernel_malloc gExtBattleHitArray, 4 * 0x21
 _kernel_malloc gpActorShileInfo, 4
 _kernel_malloc gpTargetShileInfo, 4

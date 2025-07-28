@@ -24,9 +24,6 @@ struct KernelDesigerConfig {
 
 	u8 unit_page_style, skil_page_style;
 
-	u8 gaiden_magic_en, gaiden_magic_must_be_magic, gaiden_magic_requires_wrank, \
-		gaiden_magic_ai_en, gaiden_magic_ext_conf_en;
-
 	u8 no_suspend_in_aiphase;
 
 	u8 shield_en, shield_ext_equip_config_en;

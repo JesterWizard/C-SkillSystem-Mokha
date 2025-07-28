@@ -25,5 +25,5 @@ bool AddBattleHpCost(struct BattleUnit *bu, int round, int hp_cost)
 
 void BattleGenerateHitHpCost(struct BattleUnit *attacker, struct BattleUnit *defender)
 {
-	// BattleGenerateHitHpCostForGaidenMagic(attacker, defender);
+	
 }

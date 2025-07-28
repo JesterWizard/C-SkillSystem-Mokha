@@ -1,3 +1,6 @@
+## MSG_PREPSKILL_LeftTopBar
+Equipped  Skills[X]
+
 ## MSG_PREPSKILL_RightTopBar
 Equipped[X]
 

@@ -73,24 +73,6 @@
 // // #define CONFIG_REMOVE_MOVE_PATH
 
 // /**
-//  * If uncommented, enable Gaiden style magic system
-//  *
-//  * Sub:
-//  * MUST_BE_MAGIC: if set as 0, then all weapons will be okay (rather than magic wepaon only)
-//  * REQUIRES_WRANK: if set as 0, then unit can directly use the weapon regardless vanilla judgement
-//  * AI_EN: if set as 1, AI can also use gaiden B.Mag
-//  * EXT_CONF_EN: enbale gGaidenChaxConfigs
-//  */
-// // #define CONFIG_USE_GAIDEN_MAGIC
-
-// #ifdef CONFIG_USE_GAIDEN_MAGIC
-// 	#define CONFIG_GAIDEN_MAGIC_MUST_BE_MAGIC 0 // 0: all weapons are okay
-// 	#define CONFIG_GAIDEN_MAGIC_REQUIRES_WRANK 0 // 0: not requires unit ability to equip that weapon
-// 	#define CONFIG_GAIDEN_MAGIC_AI_EN 1
-// 	#define CONFIG_GAIDEN_EXT_CONF_EN 1
-// #endif /* USE_GAIDEN_MAGIC */
-
-// /**
 //  * Install FEB patch: SetHPClassLimit
 //  */
 // #define CONFIG_UNLOCK_ALLY_MHP_LIMIT
@@ -486,8 +468,6 @@
 //  */
 // #define CONFIG_UNIT_ACTION_AMT 0x30
 // #define CONFIG_UNIT_ACTION_EXPA_ExecSkill 0x23
-// #define CONFIG_UNIT_ACTION_EXPA_GaidenMagicCombat 0x24
-// #define CONFIG_UNIT_ACTION_EXPA_GaidenMagicStaff 0x25
 
 // /**
 //  * Icon config

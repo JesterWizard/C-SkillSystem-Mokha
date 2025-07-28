@@ -28,13 +28,6 @@
 
 // #define CONFIG_REMOVE_MOVE_PATH
 
-#ifdef CONFIG_USE_GAIDEN_MAGIC
-	#define CONFIG_GAIDEN_MAGIC_MUST_BE_MAGIC 0 // 0: all weapons are okay
-	#define CONFIG_GAIDEN_MAGIC_REQUIRES_WRANK 0 // 0: not requires unit ability to equip that weapon
-	#define CONFIG_GAIDEN_MAGIC_AI_EN 1
-	#define CONFIG_GAIDEN_EXT_CONF_EN 1
-#endif /* USE_GAIDEN_MAGIC */
-
 #define CONFIG_UNLOCK_ALLY_MHP_LIMIT
 
 // #define CONFIG_INSTALL_KERNEL_SHIELD
@@ -168,8 +161,6 @@
 
 #define CONFIG_UNIT_ACTION_AMT 0x30
 #define CONFIG_UNIT_ACTION_EXPA_ExecSkill 0x23
-#define CONFIG_UNIT_ACTION_EXPA_GaidenMagicCombat 0x24
-#define CONFIG_UNIT_ACTION_EXPA_GaidenMagicStaff 0x25
 
 #define CONFIG_PR_ITEM_ICON  0x5926F4
 #define CONFIG_ICON_INDEX_MAG_BOOSTER 0xCA
@@ -275,3 +266,5 @@
 // A dirty fix for certain spaces on the prologue chapter causing
 // the unit to end their turn as if in fog of war or a trap
 #define CONFIG_DIRTY_FIXES
+
+#define CONFIG_INSTALL_CHAPTER_CONVOS

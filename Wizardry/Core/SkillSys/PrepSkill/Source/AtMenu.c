@@ -49,7 +49,7 @@ void AtMenu_StartSubmenu(struct ProcAtMenu * proc)
     sub_8095C2C(proc);
 
     switch (proc->state) {
-    case 5: /* Chapter Status */
+    case 5: /* Chapter Status or Augury */
 #ifdef CONFIG_INSTALL_PREPS_AUGURY
         Proc_StartBlocking(PREEXT_Procs_Augury, proc);
 #else
@@ -76,6 +76,10 @@ void AtMenu_StartSubmenu(struct ProcAtMenu * proc)
     case 6: /* Equip */
         StartPrepEquipScreen(proc);
         break;
+
+    // case 7: /* Chapter Status */
+    //     sub_808E79C(proc);
+    //     break;
 
     default:
         break;
