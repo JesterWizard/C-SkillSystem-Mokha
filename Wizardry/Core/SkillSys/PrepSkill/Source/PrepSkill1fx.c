@@ -10,25 +10,20 @@ void PrepSkill1_DrawLeftSkillIcon(struct ProcPrepSkill1 * proc)
     struct Unit * unit = GetUnitFromPrepList(proc->list_num_cur);
     struct SkillList * list = GetUnitSkillList(unit);
     ResetIconGraphics_();
-    TileMap_FillRect(TILEMAP_LOCATED(gBG0TilemapBuffer, 1, 6), 0xA, 0x6, 0);
+    TileMap_FillRect(TILEMAP_LOCATED(gBG0TilemapBuffer, 1, 6), 10, 6, 0);
 
     if (list->amt == 0)
     {
         struct Text * text = &gPrepUnitTexts[0x16];
         ClearText(text);
-        PutDrawText(
-            text,
-            TILEMAP_LOCATED(gBG0TilemapBuffer, 2, 6),
-            TEXT_COLOR_SYSTEM_GRAY, 0, 0,
-            GetStringFromIndex(MSG_MSS_NOSKILLS)
-        );
+        PutDrawText(text, TILEMAP_LOCATED(gBG0TilemapBuffer, 2, 6), TEXT_COLOR_SYSTEM_GRAY, 0, 0, GetStringFromIndex(MSG_MSS_NOSKILLS));
     }
 
     for (y = 0; y < PREP_SLLIST_HEIGHT; y++)
     {
-        for (x = 0; x < PREP_SLLIST_LENGTH; x++)
+        for (x = 0; x < PREP_SLLIST_LENGTH-1; x++)
         {
-            int count = x + y * PREP_SLLIST_LENGTH;
+            int count = x + y * (PREP_SLLIST_LENGTH - 1);
             if (count >= list->amt)
                 break;
 
@@ -56,6 +51,7 @@ void PrepSkill1_InitTexts(void)
     InitText(&gPrepUnitTexts[0x14], 10);
 
     /* Right top bar */
+    InitText(&gPrepUnitTexts[0x12], 3);
     InitText(&gPrepUnitTexts[0x15], 10);
 
     /* Left no-skills */
@@ -64,16 +60,16 @@ void PrepSkill1_InitTexts(void)
 
 void PrepSkill1_DrawRightTopBar(struct ProcPrepSkill1 * proc)
 {
-    struct Text * text = &gPrepUnitTexts[0x15];
     struct Unit * unit = GetUnitFromPrepList(proc->list_num_cur);
     int color = AddSkill(unit, 0) == 0
               ? TEXT_COLOR_SYSTEM_WHITE
               : TEXT_COLOR_SYSTEM_GREEN;
     struct SkillList * llist = GetUnitSkillList(unit);
 
-    ClearText(text);
     TileMap_FillRect(TILEMAP_LOCATED(gBG0TilemapBuffer, 16, 1), 16, 0x1, 0);
 
-    PutDrawText(&text[0], TILEMAP_LOCATED(gBG0TilemapBuffer, 14, 1), TEXT_COLOR_SYSTEM_WHITE, 0, 0, GetStringFromIndex(MSG_PREPSKILL_LeftTopBar));
+    PutDrawText(&gPrepUnitTexts[0x15], TILEMAP_LOCATED(gBG0TilemapBuffer, 14, 1), TEXT_COLOR_SYSTEM_WHITE, 0, 0, GetStringFromIndex(MSG_PREPSKILL_LeftTopBar));
     PutNumber(TILEMAP_LOCATED(gBG0TilemapBuffer, 24, 1), color, llist->amt);
+    PutDrawText(&gPrepUnitTexts[0x12], TILEMAP_LOCATED(gBG0TilemapBuffer, 25, 1), TEXT_COLOR_SYSTEM_WHITE, 0, 0, "/");
+    PutNumber(TILEMAP_LOCATED(gBG0TilemapBuffer, 26, 1), color, UNIT_RAM_SKILLS_LEN);
 }
