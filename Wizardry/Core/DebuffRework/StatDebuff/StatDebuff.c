@@ -437,8 +437,6 @@ int PowGetterStatDebuff(int status, struct Unit *unit)
             return status - GetStatDebuffMsgBuf(unit)->pow;
 #endif
 
-    NoCashGBAPrintf("%s's Hit Counter is: %d", GetStringFromIndex(unit->pCharacterData->nameTextId), unit->hitCounter);
-
     return status + GetStatDebuffMsgBuf(unit)->pow * unit->hitCounter;
 }
 

@@ -1,6 +1,53 @@
 #ifndef GUARD_UI_CONFIG_H
 #define GUARD_UI_CONFIG_H
 
+struct Selector
+{
+    /* 00 */ u16 helpTextId;
+    /* 02 */ u16 optionTextId;
+    /* 04 */ u8 xPos;
+    /* 05 */ u8 unk_05;
+    STRUCT_PAD(0x06, 0x08);
+};
+
+struct GameOption
+{
+    /* 00 */ u16 msgId;
+    /* 04 */ struct Selector selectors[4];
+    /* 24 */ u8 icon;
+    /* 28 */ bool (*func)(ProcPtr);
+};
+
+struct ConfigScreen
+{
+    /* 00 */ STRUCT_PAD(0x00, 0x2A);
+    /* 2A */ s16 selectedOptionIdx;
+    /* 2C */ s16 headOptionIdx; // option index at the top of the menu
+    /* 2E */ u16 bg1YOffset;
+    /* 30 */ STRUCT_PAD(0x30, 0x32);
+    /* 32 */ s16 unk_32; // unused in FE8; appears to be leftover from FE7
+    /* 34 */ s16 maxOption;
+    /* 36 */ STRUCT_PAD(0x36, 0x37);
+    /* 37 */ s8 source;
+    /* 38 */ struct Text optionTexts[6];
+
+    /* 68 */ struct Text text_68; // initialized but unused
+    /* 70 */ struct Text valueTexts[6];
+
+    /* A0 */ struct Text text_a0; // initialized but unused
+    /* A8 */ struct Text optionHelpText;
+};
+
+struct ConfigProc
+{
+    /* 00 */ PROC_HEADER;
+    /* 29 */ STRUCT_PAD(0x29, 0x30);
+
+    /* 30 */ s16 moving;
+    /* 32 */ STRUCT_PAD(0x32, 0x36);
+    /* 36 */ u8 loadSoloAnimScreen;
+};
+
 enum {
     GAME_OPTION_ANIMATION      =  0,
     GAME_OPTION_TERRAIN        =  1,

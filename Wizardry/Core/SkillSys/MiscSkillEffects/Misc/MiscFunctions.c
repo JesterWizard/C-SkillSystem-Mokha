@@ -32,6 +32,7 @@
 #include "mapanim.h"
 #include "playst-expa.h"
 #include "ending_details.h"
+#include "uichapterstatus.h"
 #include "jester_headers/Forging.h"
 
 #ifndef CONFIG_INSTALL_CONVOYEXPA_AMT
@@ -5930,4 +5931,39 @@ u8 MenuCancelSelect(struct MenuProc* menu, struct MenuItemProc* item)
 #endif
 
     return MENU_ACT_SKIPCURSOR | MENU_ACT_CLEAR | MENU_ACT_END | MENU_ACT_SND6B;
+}
+
+struct ProcCmd const ProcScr_ChapterStatusScreen_FromPrep_NEW[] =
+{
+    PROC_YIELD,
+
+    PROC_CALL(ChapterStatus_Init),
+    PROC_CALL(ChapterStatus_DrawText),
+    PROC_YIELD,
+
+    PROC_CALL(ChapterStatus_ShowAllLayers),
+    PROC_CALL(FadeInBlackSpeed40),
+    PROC_YIELD,
+
+PROC_LABEL(0),
+    PROC_REPEAT(ChapterStatus_LoopKeyHandler),
+
+PROC_LABEL(1),
+    PROC_CALL(sub_8013F58),
+    PROC_YIELD,
+
+    PROC_CALL(EndMuralBackground),
+    PROC_CALL(ChapterStatus_OnEnd),
+
+    PROC_END,
+};
+
+//! FE8U = 0x0808E79C
+LYN_REPLACE_CHECK(StartChapterStatusScreen_FromPrep);
+void StartChapterStatusScreen_FromPrep(ProcPtr parent)
+{
+    struct ChapterStatusProc * proc = Proc_StartBlocking(ProcScr_ChapterStatusScreen_FromPrep_NEW, parent);
+    proc->unk_3f = 1;
+
+    return;
 }

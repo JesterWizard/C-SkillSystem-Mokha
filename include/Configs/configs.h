@@ -5,6 +5,8 @@
 
 // #define CONFIG_CROP_VANILLA_MSG
 
+#define CONFIG_SKILL_SYSTEM_RELATED_FUNCTIONALITY
+
 /* CommonProtection.event */
 #define CONFIG_COMMON_PROTECTION_ENABLED
 
@@ -267,4 +269,5 @@
 // the unit to end their turn as if in fog of war or a trap
 #define CONFIG_DIRTY_FIXES
 
-#define CONFIG_INSTALL_CHAPTER_CONVOS
+#define CONFIG_EXPAND_PREP_MENU_OPTIONS
+

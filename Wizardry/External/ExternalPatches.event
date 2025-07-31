@@ -150,3 +150,5 @@
 #ifdef CONFIG_VESLY_DANGER_BONES
     #include "VeslyDangerBones/VeslyDangerBones_Installer.event"
 #endif
+
+#include "VeslyAnimsFastForward/VeslyAnimsFastForward_Installer.event"
