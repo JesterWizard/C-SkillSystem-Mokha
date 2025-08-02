@@ -1286,9 +1286,14 @@ void EditSkillsIdle(DebuggerProc* proc) {
 	u16 keys = sKeyStatusBuffer.repeatedKeys; 
     if (keys & B_BUTTON) {
         // Otherwise, close the Supports/Skills window
-        CloseHelpBox();
-        Proc_Goto(proc, RestartLabel);
-        m4aSongNumStart(0x6B);
+        struct HelpBoxProc* proc_helpbox = (void*) Proc_Find(gProcScr_HelpBox);
+        if (proc_helpbox)
+            CloseHelpBox();
+        else
+        {
+            Proc_Goto(proc, RestartLabel);
+            m4aSongNumStart(0x6B);
+        }
     }
     if ((keys & START_BUTTON)||(keys & A_BUTTON)) { // press A or Start to update Supports and continue
         CloseHelpBox(); 
