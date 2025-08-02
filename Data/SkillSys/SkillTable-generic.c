@@ -7,7 +7,7 @@ const struct SkillPreloadPConf gSkillPreloadPData[0x100] = {
     // 01
     [CHARACTER_EIRIKA] = {
         .skills = {
-            [0] = SID_SealStrength,
+            [0] = SID_Salve,
             [1] = SID_Supply,
             [2] = SID_InevitableEnd,
             [3] = SID_Acrobat,
@@ -400,11 +400,11 @@ const struct SkillPreloadPConf gSkillPreloadPData[0x100] = {
     //     },
     // },
     // // 68
-    [CHARACTER_ONEILL] = {
-        .skills = {
-            [0] = SID_Rearm,
-        },
-    },
+    // [CHARACTER_ONEILL] = {
+    //     .skills = {
+    //         [0] = SID_Rearm,
+    //     },
+    // },
     // // 69
     // [CHARACTER_GLEN] = {
     //     .skills = {

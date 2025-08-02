@@ -214,6 +214,7 @@ static u8 Salve_OnSelectTarget(ProcPtr proc, struct SelectTarget * target)
     case ITEM_BOOSTER_CON:
     case CONFIG_ITEM_INDEX_MAG_BOOSTER:
         ExecStatBoostItem_Target();
+        DoItemUse(GetUnit(gActionData.targetIndex), gActiveUnit->items[gActionData.itemSlotIndex]);
         break;
 
     default:
@@ -319,7 +320,7 @@ u8 ItemSubMenu_UseItem(struct MenuProc* menu, struct MenuItemProc* menuItem) {
     if (SkillTester(gActiveUnit, SID_Salve))
     {   
         u8 minRange = 0;
-        u8 maxRamge = 1;
+        u8 maxRange = 1;
         u8 activeItem = GetItemIndex(gBattleActor.unit.items[gActionData.itemSlotIndex]);
 
         switch (activeItem)
@@ -336,7 +337,7 @@ u8 ItemSubMenu_UseItem(struct MenuProc* menu, struct MenuItemProc* menuItem) {
             case ITEM_BOOSTER_MOV:
             case ITEM_BOOSTER_CON:
             case CONFIG_ITEM_INDEX_MAG_BOOSTER:
-                MakeTargetListForUnit(gActiveUnit, minRange, maxRamge);
+                MakeTargetListForUnit(gActiveUnit, minRange, maxRange);
                 BmMapFill(gBmMapMovement, -1);
                 StartSubtitleHelp(NewTargetSelection_Specialized(&gSelectInfo_PutTrap, Salve_OnSelectTarget), GetStringFromIndex(MSG_SKILL_Common_Target));
                 break;
