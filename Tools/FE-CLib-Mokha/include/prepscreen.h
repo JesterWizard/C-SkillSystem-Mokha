@@ -44,13 +44,16 @@ enum prep_atmenu_item_index {
     PREP_MAINMENU_UNIT = 0,
     PREP_MAINMENU_ITEM = 1,
     PREP_MAINMENU_SAVE = 2,
-    PREP_MAINMENU_UNK3 = 3,
-    PREP_MAINMENU_SUPPORT = 4,
-    PREP_MAINMENU_AUGURY = 5,
-    PREP_MAINMENU_BONUX_EXP = 6,
-    PREP_MAINMENU_CHECKMAP = 7,
-    PREP_MAINMENU_SKILLS = 8,
-    PREP_MAINMENU_BASE_CONVERSATIONS = 9,
+    PREP_MAINMENU_SUPPORT = 3,
+    PREP_MAINMENU_AUGURY = 4,
+    PREP_MAINMENU_BONUX_EXP = 5,
+    PREP_MAINMENU_CHECKMAP = 6,
+    PREP_MAINMENU_SKILLS = 7,
+    PREP_MAINMENU_BASE_CONVERSATIONS = 8,
+    PREP_MAINMENU_UNK3 = 9,
+    PREP_MAINMENU_VIEWMAP = 10,
+    PREP_MAINMENU_FORMATION = 11,
+    PREP_MAINMENU_OPTIONS = 12,
 };
 
 struct ProcPrepMenuItem {
@@ -498,6 +501,9 @@ struct ProcPrepMenu {
     /* 60 */ u8 (*on_End)(ProcPtr);
 };
 
+#define PREP_MENU_VISIBLE_COUNT 5
+#define PREP_MENU_MAX_COUNT 9
+
 struct ProcPrepMenu_Scroll {
     PROC_HEADER;
     /* 29 */ s8 do_help;
@@ -507,7 +513,7 @@ struct ProcPrepMenu_Scroll {
     /* 30 */ int msg_rtext;
     /* 34 */ s16 xPos;
     /* 36 */ s16 yPos;
-    /* 38 */ struct ProcPrepMenuItem* cmds[0x8];
+    /* 38 */ struct ProcPrepMenuItem* cmds[PREP_MENU_MAX_COUNT];
     /* 58 */ u8 (*on_PressB)(ProcPtr);
     /* 5C */ u8 (*on_PressStart)(ProcPtr);
     /* 60 */ u8 (*on_End)(ProcPtr);

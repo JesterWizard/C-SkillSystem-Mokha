@@ -127,6 +127,13 @@ Items[X]
 ## MSG_PREP_SCREEN_DESC_ITEMS
 Manage your unit's items.[X]
 
+## MSG_PREP_SCREEN_TITLE_CANCEL
+Cancel[X]
+## MSG_PREP_SCREEN_DESC_CANCEL
+Cancel link formation[.][LF]
+and return to the[.][LF]
+previous screen.[X]
+
 ## MSG_PREP_SCREEN_TITLE_SUPPORT
 Support[X]
 ## MSG_PREP_SCREEN_DESC_SUPPORT

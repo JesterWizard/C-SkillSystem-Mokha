@@ -508,6 +508,9 @@ struct ProcPrepMenu {
     /* 60 */ u8 (*on_End)(ProcPtr);
 };
 
+#define PREP_MENU_VISIBLE_COUNT 5
+#define PREP_MENU_MAX_COUNT 9
+
 struct ProcPrepMenu_Scroll {
     PROC_HEADER;
     /* 29 */ s8 do_help;
@@ -517,7 +520,7 @@ struct ProcPrepMenu_Scroll {
     /* 30 */ int msg_rtext;
     /* 34 */ s16 xPos;
     /* 36 */ s16 yPos;
-    /* 38 */ struct ProcPrepMenuItem* cmds[0x8];
+    /* 38 */ struct ProcPrepMenuItem* cmds[PREP_MENU_MAX_COUNT];
     /* 58 */ u8 (*on_PressB)(ProcPtr);
     /* 5C */ u8 (*on_PressStart)(ProcPtr);
     /* 60 */ u8 (*on_End)(ProcPtr);
