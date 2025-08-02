@@ -1589,9 +1589,8 @@ Freelancer[X]
 ## MSG_SKILL_Freelancer_DESC
 Freelancer:[N]
 Gain +5 to a stat for each weapon[N]
-type the unit uses.[N]
-Sword = SPD, Lance = SKL,[N]
-Axe = STR, Bow = LCK.[X]
+type the unit uses. Sword = SPD,
+Lance = SKL, Axe = STR, Bow = LCK.[X]
 
 ## MSG_SKILL_Flicker_NAME
 Flicker[X]
