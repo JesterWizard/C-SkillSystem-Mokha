@@ -135,16 +135,9 @@ static int BuildAiUnitList_Proc(ProcPtr proc) {
         {
             if (GetUnitEquippedWeapon(unit) == 0)
             {
-                /* I get a crash on starting a new game without these for some reason */
-                /* It happened in the skill menu too and then I was able to remove them */
-                /* Fuck if I know what's happening */
-                NoCashGBAPrint("1");
                 int weaponType = GetUnitBestWRankType(unit);
-                NoCashGBAPrint("2");
                 int weaponRank = unit->ranks[weaponType];
-                NoCashGBAPrint("3");
                 int chosen_weapon = GetRearmWeapon(weaponType, weaponRank);
-                NoCashGBAPrint("4");
 
                 if (chosen_weapon)
                     UnitAddItem(unit, MakeNewItem(chosen_weapon));
