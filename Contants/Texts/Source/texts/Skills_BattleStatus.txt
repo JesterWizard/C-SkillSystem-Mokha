@@ -994,7 +994,7 @@ this unit lose as much instead.[X]
 Barricade[X]
 ## MSG_SKILL_Barricade_DESC
 Barricade: Damage taken is halved[N]
-in this combat oNy, after first[N]
+in this combat only, after first[N]
 being struck.[X]
 
 ## MSG_SKILL_BarricadePlus_NAME
