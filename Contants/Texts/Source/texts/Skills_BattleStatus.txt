@@ -679,71 +679,79 @@ if within 3 spaces of an armored ally.[X]
 Analytic[X]
 ## MSG_SKILL_Analytic_DESC
 Analytic:[N]
-+10 ATK if SPD is less than enemy's by[N]
-4 or more. If between 1-3, then +5 ATK.[X]
++10 ATK if SPD is < enemy's by 4 or[N]
+more. If between 1-3, then +5 ATK.[X]
 
 ## MSG_SKILL_MysticBoost_NAME
 Mystic Boost[X]
 ## MSG_SKILL_MysticBoost_DESC
-Mystic Boost: Disables foe's skills[N]
-as "calculate on lower def/res for[N]
-damage". Restores 6 HP after combat.[X]
+Mystic Boost:[N]
+Disables enemy's skills that calculate[N]
+damage based on the lower defensive[N]
+stat. Restores 6 HP after combat.[X]
 
 ## MSG_SKILL_GuardBearing_NAME
 Guard Bearing[X]
 ## MSG_SKILL_GuardBearing_DESC
-Guard Bearing: During first combat[N]
-in enemy phase, if attacked, reduces[N]
-30% damage from foe's first attack.[X]
+Guard Bearing:[N]
+During the enemy phase's first[N]
+combat, reduce the damage for[N]
+the first attack by 30%.[X]
 
 ## MSG_SKILL_Spurn_NAME
 Spurn[X]
 ## MSG_SKILL_Spurn_DESC
-Spurn: Reduce damage as 4% AS diff[N]
-(max 40%). Damage +5 for critical atk[N]
-if unit HP is less than 75%[X]
+Spurn:[N]
+Reduce damage taken by 4% for[N]
+each point of SPD this unit[N]
+exceeds the enemy's by (max 40%).[X]
 
 ## MSG_SKILL_Bushido_NAME
 Bushido[X]
 ## MSG_SKILL_Bushido_DESC
-Bushido:[N]
-Reduce damage as 4% AS diff[N]
-(max 40%). Damage +7[X]
+Bushido: Reduce damage taken by[N]
+4% for each point of SPD this[N]
+unit exceeds the enemy's by (max 40%).[N]
+Damage +7[X]
 
 ## MSG_SKILL_DragonWall_NAME
 Dragon Wall[X]
 ## MSG_SKILL_DragonWall_DESC
 Dragon Wall:[N]
-Reduce damage as 4% RES diff[N]
-(max 40%).[X]
+Reduce damage taken by 4% for[N]
+each point of RES this unit[N]
+exceeds the enemy's by (max 40%).[X]
 
 ## MSG_SKILL_BlueLionRule_NAME
-Blue Lion[X]
+Blue Lion Rule[X]
 ## MSG_SKILL_BlueLionRule_DESC
 Blue Lion Rule:[N]
-Reduce damage as 4% DEF diff[N]
-(max 40%).[X]
+Reduce damage taken by 4% for[N]
+each point of DEF this unit[N]
+exceeds the enemy's by (max 40%).[X]
 
 ## MSG_SKILL_FaerghusAncestry_NAME
 Faerghus Ancestry[X]
 ## MSG_SKILL_FaerghusAncestry_DESC
 Faerghus Ancestry:[N]
-Weapon damage doubled,[N]
-weapon consumption doubled[X]
+x2 weapon damage, but x2 weapon[N]
+uses consumed per hit.[X]
 
-## MSG_SKILL_DragonWarth_NAME
-Dragon's Warth[X]
-## MSG_SKILL_DragonWarth_DESC
-Dragon's Warth: Damage -20% of the[N]
-first attack from the foe and[N]
-attack+20% on first own attack[X]
+## MSG_SKILL_DragonsWrath_NAME
+Dragon's Wrath[X]
+## MSG_SKILL_DragonsWrath_DESC
+Dragon's Wrath: Reduce damage from[N]
+enemy's first attack this battle by[N]
+20%. Boost damage from your own[N]
+first attack this battle by 20%.[X]
 
 ## MSG_SKILL_CrusaderWard_NAME
 Crusader's Ward[X]
 ## MSG_SKILL_CrusaderWard_DESC
 Crusader's Ward:[N]
 Reduces damage from foe's second[N]
-ranged attack onward by 80%[X]
+ranged attack onward this battle[N]
+by 80%[X]
 
 ## MSG_SKILL_Chlorophyll_NAME
 Chlorophyll[X]

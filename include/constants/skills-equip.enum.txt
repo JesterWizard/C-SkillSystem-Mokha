@@ -527,7 +527,7 @@ SID_CounterRoar
 SID_MagicGambit
 SID_BeastAssault
 SID_LightAndDark
-SID_DragonWarth
+SID_DragonsWrath
 SID_FaerghusAncestry
 SID_CrusaderWard
 SID_ArmsthriftPlus

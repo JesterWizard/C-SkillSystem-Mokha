@@ -346,7 +346,7 @@
 #define MSG_SKILL_Spurn_CAPACITY 1
 #define MSG_SKILL_Bushido_CAPACITY 1
 #define MSG_SKILL_DragonWall_CAPACITY 1
-#define MSG_SKILL_DragonWarth_CAPACITY 1
+#define MSG_SKILL_DragonsWrath_CAPACITY 1
 #define MSG_SKILL_BlueLionRule_CAPACITY 1
 #define MSG_SKILL_FaerghusAncestry_CAPACITY 1
 #define MSG_SKILL_CrusaderWard_CAPACITY 1

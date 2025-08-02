@@ -3927,8 +3927,8 @@
 #define MSG_SKILL_BlueLionRule_DESC 0x0F51
 #define MSG_SKILL_FaerghusAncestry_NAME 0x0F52
 #define MSG_SKILL_FaerghusAncestry_DESC 0x0F53
-#define MSG_SKILL_DragonWarth_NAME 0x0F54
-#define MSG_SKILL_DragonWarth_DESC 0x0F55
+#define MSG_SKILL_DragonsWrath_NAME 0x0F54
+#define MSG_SKILL_DragonsWrath_DESC 0x0F55
 #define MSG_SKILL_CrusaderWard_NAME 0x0F56
 #define MSG_SKILL_CrusaderWard_DESC 0x0F57
 #define MSG_SKILL_Chlorophyll_NAME 0x0F58

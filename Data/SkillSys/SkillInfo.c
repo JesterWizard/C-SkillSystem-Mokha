@@ -3523,12 +3523,12 @@ const struct SkillInfo gSkillInfos[MAX_SKILL_NUM + 1] = {
     },
 #endif
 
-#if (defined(SID_DragonWarth) && COMMON_SKILL_VALID(SID_DragonWarth))
-    [SID_DragonWarth] = {
-        .name = MSG_SKILL_DragonWarth_NAME,
-        .desc = MSG_SKILL_DragonWarth_DESC,
-        .capacity = MSG_SKILL_DragonWarth_CAPACITY,
-        .price = MSG_SKILL_DragonWarth_PRICE,
+#if (defined(SID_DragonsWrath) && COMMON_SKILL_VALID(SID_DragonsWrath))
+    [SID_DragonsWrath] = {
+        .name = MSG_SKILL_DragonsWrath_NAME,
+        .desc = MSG_SKILL_DragonsWrath_DESC,
+        .capacity = MSG_SKILL_DragonsWrath_CAPACITY,
+        .price = MSG_SKILL_DragonsWrath_PRICE,
         .icon = GFX_SkillIcon_WIP,
     },
 #endif

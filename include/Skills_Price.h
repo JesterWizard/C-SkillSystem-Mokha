@@ -346,7 +346,7 @@
 #define MSG_SKILL_Spurn_PRICE 1000
 #define MSG_SKILL_Bushido_PRICE 1000
 #define MSG_SKILL_DragonWall_PRICE 1000
-#define MSG_SKILL_DragonWarth_PRICE 1000
+#define MSG_SKILL_DragonsWrath_PRICE 1000
 #define MSG_SKILL_BlueLionRule_PRICE 1000
 #define MSG_SKILL_FaerghusAncestry_PRICE 1000
 #define MSG_SKILL_CrusaderWard_PRICE 1000
