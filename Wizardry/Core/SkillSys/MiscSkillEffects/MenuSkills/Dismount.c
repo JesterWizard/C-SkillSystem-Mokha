@@ -58,7 +58,7 @@ static void callback_exec(ProcPtr proc)
         else if (gActiveUnit->pClassData->number == dismountPairs[i][1])
         {
             gActiveUnit->pClassData = GetClassData(dismountPairs[i][0]);
-            SetUnitStatusIndex(gActiveUnit, NEW_UNIT_STATUS_DISMOUNT);
+            SetUnitStatusIndex(gActiveUnit, UNIT_STATUS_NONE);
             break;
         }
     }

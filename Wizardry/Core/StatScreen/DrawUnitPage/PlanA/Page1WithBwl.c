@@ -215,7 +215,7 @@ static void DrawPage1ValueCommon(void)
             GetUnitStatusName(unit));
     }
 
-    if (GetUnitStatusIndex(gStatScreen.unit) != UNIT_STATUS_NONE)
+   if (GetUnitStatusIndex(gStatScreen.unit) != UNIT_STATUS_NONE && GetUnitStatusIndex(gStatScreen.unit) != NEW_UNIT_STATUS_DISMOUNT)
     {
         PutNumberSmall(
             gUiTmScratchA + TILEMAP_INDEX(0x10, 0xB),
