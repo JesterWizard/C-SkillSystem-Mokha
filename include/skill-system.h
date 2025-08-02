@@ -313,9 +313,11 @@ int GetSkillScrollItemIconId(int item);
 
 extern const struct MenuDef RemoveSkillMenuDef;
 extern const struct MenuDef PredationSkillMenuDef;
+extern const struct MenuDef ScrollScribeMenuDef;
 extern const struct ProcCmd ProcScr_SkillScrollUseSoftLock[];
 extern const struct ProcCmd ProcScr_PredationSoftLock[];
 extern const struct ProcCmd ProcScr_PredationPlusSoftLock[];
+
 /**
  * Catch Em All
  */

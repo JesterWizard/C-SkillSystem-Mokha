@@ -156,13 +156,16 @@ STATIC_DECLAR const struct MenuItemDef PredationSkillMenuItems[] =
 /* I'm making it return the menu definition by default for the sake of displaying prospective enemy skills */
 STATIC_DECLAR u8 RemoveSkillMenu_Usability(const struct MenuItemDef * self, int number)
 {
-    // int sid = UNIT_RAM_SKILLS(gActiveUnit)[MENU_SKILL_INDEX(self)];
-    // if (EQUIP_SKILL_VALID(sid))
-    //     return MENU_ENABLED;
+    /* We can assume we're dealing with enemy skills at this point */
+    if (number > UNIT_RAM_SKILLS_LEN - 1 && gEventSlots[EVT_SLOT_8] != SID_ScrollScribePlus)
+        return MENU_ENABLED; 
 
-    // return MENU_NOTSHOWN;
+    /* Otherwise check if the active unit's current skill slot is in use */
+    if (number < UNIT_RAM_SKILLS_LEN && GET_SKILL(gActiveUnit, number) != 0)
+        return MENU_ENABLED;
 
-    return MENU_ENABLED;
+    /* If both checks fail, don't display a slot for this index in the menu */
+    return MENU_NOTSHOWN;
 }
 
 STATIC_DECLAR u8 PredationSkillMenu_Usability(const struct MenuItemDef * self, int number)
@@ -354,11 +357,14 @@ STATIC_DECLAR u8 RemoveSkillMenu_OnSelected(struct MenuProc * menu, struct MenuI
             item = ITEM_INDEX(CONFIG_ITEM_INDEX_SKILL_SCROLL_4) | ((sid - 0x2FF) << 8);
 #endif
 
-        UnitAddItem(gActiveUnit, item);
-
-        SetPopupItem(item);
-        NewPopup_Simple(PopupScr_GotScroll, 0x60, 0x0, Proc_Find(gProcScr_PlayerPhase));
-        // NewPopup_VerySimple(MSG_SkillLearned, 0x5A, proc);
+        if (gActiveUnit->items[4] == ITEM_NONE)
+        {
+            SetPopupItem(item);
+            NewPopup_Simple(PopupScr_GotScroll, 0x60, 0x0, Proc_Find(gProcScr_PlayerPhase));
+            UnitAddItem(gActiveUnit, item);
+        }
+        else
+            HandleNewItemGetFromDrop(gActiveUnit, item, Proc_Find(gProcScr_PlayerPhase));
 
         return MENU_ACT_SKIPCURSOR | MENU_ACT_END | MENU_ACT_SND6A | MENU_ACT_CLEAR;
     }

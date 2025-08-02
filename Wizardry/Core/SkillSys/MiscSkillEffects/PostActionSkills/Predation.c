@@ -52,7 +52,7 @@ static void callback_exec_predation(ProcPtr proc)
         return;
 
      /* The active unit has space for an additional skill */
-    if (UNIT_RAM_SKILLS(gActiveUnit)[6] == 0)
+    if (UNIT_RAM_SKILLS(gActiveUnit)[UNIT_RAM_SKILLS_LEN-1] == 0)
     {
         /* The first learned skill in the target unit's struct */
         AddSkill(gActiveUnit, UNIT_RAM_SKILLS(targetUnit)[0]);

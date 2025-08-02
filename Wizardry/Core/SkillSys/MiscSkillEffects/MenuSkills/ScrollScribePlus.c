@@ -39,7 +39,7 @@ u8 ScrollScribePlus_OnSelected(struct MenuProc * menu, struct MenuItemProc * ite
 
     gActionData.unk08 = SID_ScrollScribePlus;
     gActionData.unitActionType = CONFIG_UNIT_ACTION_EXPA_ExecSkill;
-    gEventSlots[EVT_SLOT_8] = SID_ScrollScribePlus; // The remove skill meu will overwrite gActionData.unk08 so we need to use an event slot instead 
+    gEventSlots[EVT_SLOT_8] = SID_ScrollScribePlus; // The remove skill menu will overwrite gActionData.unk08 so we need to use an event slot instead 
     
     return MENU_ACT_SKIPCURSOR | MENU_ACT_END | MENU_ACT_SND6A | MENU_ACT_CLEAR;
 }
@@ -51,7 +51,10 @@ static void callback_anim(ProcPtr proc)
 
 static void callback_exec(ProcPtr proc)
 {	
-    Proc_StartBlocking(ProcScr_SkillScrollUseSoftLock, Proc_Find(gProcScr_PlayerPhase));
+    StartSubtitleHelp(
+        StartOrphanMenu(&RemoveSkillMenuDef),
+        GetStringFromIndex(MSG_RemoveSkillSubtitle)
+    );
 }
 
 bool Action_ScrollScribePlus(ProcPtr parent)

@@ -370,8 +370,8 @@ bool PrepItemUsability_SkillScroll(struct Unit * unit, int item)
     }
 
     /**
-     * If player can equip skill by themself,
-     * then they just need to avoid from learned skill.
+     * If the player can equip the skill,
+     * then they just need to avoid writing to learned skill slots.
      */
 #ifdef CONFIG_ITEM_INDEX_SKILL_SCROLL_1
     if (item == CONFIG_ITEM_INDEX_SKILL_SCROLL_1)
