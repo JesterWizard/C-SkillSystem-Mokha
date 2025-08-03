@@ -189,6 +189,11 @@ s8 CanUnitUseItem(struct Unit* unit, int item)
         return TRUE;
 #endif
 
+#ifdef CONFIG_ITEM_INDEX_FORGE_STAFF
+    case CONFIG_ITEM_INDEX_FORGE_STAFF:
+        return HasSelectTarget(unit, MakeTargetListForSteal);
+#endif
+
     default:
         return FALSE;
 
@@ -351,6 +356,12 @@ void DoItemUse(struct Unit* unit, int item)
     case ITEM_SETS_LITANY:
         DoUseSpecialDance(unit, MakeTargetListForDanceRing, 0x87F); // TODO: msgid "Select a character to bless."
         break;
+
+#ifdef CONFIG_ITEM_INDEX_FORGE_STAFF
+    case CONFIG_ITEM_INDEX_FORGE_STAFF:
+        DoUseAttackStaff(unit, MakeTargetListForSteal);
+        break;
+#endif
 
     default:
         SetItemUseAction(unit);

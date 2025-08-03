@@ -52,6 +52,9 @@ u8 StaffEXP(int weapon)
 #ifdef CONFIG_ITEM_INDEX_SLOW_STAFF
     case CONFIG_ITEM_INDEX_SLOW_STAFF:
 #endif
+// #ifdef CONFIG_ITEM_INDEX_FORGE_STAFF
+//     case CONFIG_ITEM_INDEX_FORGE_STAFF: // This is causing a crash on startup for some reason?
+// #endif
         exp = 30;
         break;
     case ITEM_STAFF_RESCUE:

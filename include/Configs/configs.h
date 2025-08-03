@@ -178,6 +178,7 @@
 // #define CONFIG_ICON_INDEX_RUNE_STAFF 0xAF
 // #define CONFIG_ICON_INDEX_MINE_STAFF 0x6F // Literally no clue what this was originally, a necklace?
 // #define CONFIG_ICON_INDEX_SLOW_STAFF 0x78 // Originally Echesacks
+#define CONFIG_ICON_INDEX_FORGE_STAFF 0xCA
 
 #define CONFIG_PR_ITEM_TABLE 0x809B10
 #define CONFIG_ITEM_INDEX_MAG_BOOSTER 0xBC
@@ -201,6 +202,7 @@
 // #define CONFIG_ITEM_INDEX_RUNE_STAFF 0xC6
 // #define CONFIG_ITEM_INDEX_MINE_STAFF 0xC7
 // #define CONFIG_ITEM_INDEX_SLOW_STAFF 0xC8
+#define CONFIG_ITEM_INDEX_FORGE_STAFF 0xCB
 
 #define CONFIG_PR_SPRITE_ICON 0x8AF880
 #define CONFIG_SPRITE_INDEX_FOREST_TILE 0x9 // Empty but used for Manakete

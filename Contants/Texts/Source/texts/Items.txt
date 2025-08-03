@@ -133,6 +133,17 @@ movement.[X]
 Half the target's[N]
 movement.[X]
 
+## MSG_ITEM_FORGE_STAFF_NAME
+Forge[X]
+
+## MSG_ITEM_FORGE_STAFF_DESC
+Copy an enemy's[N]
+weapon.[X]
+
+## MSG_ITEM_FORGE_STAFF_USEDESC
+Copy an enemy's[N]
+weapon.[X]
+
 ## MSG_ITEM_METIS_TOME_DESC
 Boost all of this unit's[N]
 growths by 5%.[X]

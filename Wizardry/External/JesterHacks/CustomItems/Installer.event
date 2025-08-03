@@ -13,3 +13,4 @@
 #include "RuneStaff/Installer.event"
 #include "MineStaff/Installer.event"
 #include "SlowStaff/Installer.event"
+#include "ForgeStaff/Installer.event"

@@ -171,3 +171,6 @@ void MakeTargetList(struct Unit* unit) {
 }
 
 void BeginMapAnimForSimultaneousDamage(struct BattleUnit* actor, struct BattleUnit* target, int actorDamage, int targetDamage);
+
+void ExecForgeStaff(ProcPtr proc);
+void MakeTargetListForForgeStaff(struct Unit* unit);

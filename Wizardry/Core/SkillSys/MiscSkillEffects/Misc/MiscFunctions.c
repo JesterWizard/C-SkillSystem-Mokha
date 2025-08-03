@@ -5287,6 +5287,7 @@ LYN_REPLACE_CHECK(StartSupportScreen);
 void StartSupportScreen(ProcPtr parent) {
     struct SupportScreenProc* proc = Proc_StartBlocking(gProcScr_SupportScreen, parent);
     proc->fromPrepScreen = FALSE;
+    NoCashGBAPrint("CLEARED - Support Screen Start");
     return;
 }
 
@@ -5303,6 +5304,7 @@ void SupportSubScreen_Init(struct SubScreenProc* proc) {
     InitSupportSubScreenPartnerLevels(proc);
     InitSupportSubScreenRemainingSupports(proc);
     SupportSubScreen_MoveCursorToNextValidUnit(proc, 0, +1);
+    NoCashGBAPrint("CLEARED - Support Screen Init");
 
     return;
 }
@@ -5385,6 +5387,8 @@ void SupportSubScreen_SetupGraphics(struct SubScreenProc* proc) {
 
     StartParallelWorker(DrawSupportSubScreenSprites, proc);
 
+    NoCashGBAPrint("CLEARED - Support Screen Setup Graphics");
+
     return;
 }
 
@@ -5415,8 +5419,10 @@ void SupportSubScreen_Loop_KeyHandler(struct SubScreenProc* proc) {
         u32 previous = proc->unk_39;
 
         if (gKeyStatusPtr->newKeys & A_BUTTON) {
+            NoCashGBAPrint("CLEARED - Support Screen Selected a Unii - Part 1");
             PlaySoundEffect(SONG_SE_SYS_WINDOW_SELECT1);
             Proc_Goto(proc, 2);
+            NoCashGBAPrint("CLEARED - Support Screen Selected a Unii - Part 2");
             return;
         }
 
