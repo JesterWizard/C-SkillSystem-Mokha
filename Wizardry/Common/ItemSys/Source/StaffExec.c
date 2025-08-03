@@ -123,7 +123,7 @@ void ExecForgeStaff(ProcPtr proc)
 
     ClearBg0Bg1();
 
-    MakeTargetListForSteal(gActiveUnit);
+    MakeTargetListForForgeStaff(gActiveUnit);
 
     NewTargetSelection(&gSelectInfo_Steal);
 
@@ -131,28 +131,29 @@ void ExecForgeStaff(ProcPtr proc)
 }
 
 void ExecCustomStaves(ProcPtr proc) {
-    // struct Unit * unit_act = GetUnit(gActionData.subjectIndex);
-    // struct Unit * unit_tar = GetUnit(gActionData.targetIndex);
+    struct Unit * unit_act = GetUnit(gActionData.subjectIndex);
+    struct Unit * unit_tar = GetUnit(gActionData.targetIndex);
 
-    // BattleInitItemEffect(unit_act, gActionData.itemSlotIndex);
+    BattleInitItemEffect(unit_act, gActionData.itemSlotIndex);
 
-    // BattleInitItemEffectTarget(unit_tar);
+    BattleInitItemEffectTarget(unit_tar);
 
-    // BattleApplyItemEffect(proc);
+    BattleApplyItemEffect(proc);
 
-    // int itemId = GetItemIndex(unit_act->items[0]);
+    int itemId = GetItemIndex(unit_act->items[0]);
 
-    // switch (itemId)
-    // {   
-    // case CONFIG_ITEM_INDEX_SLOW_STAFF:
-    //     SetUnitStatus(unit_tar, NEW_UNIT_STATUS_SLOW);
-    //     break;
+    switch (itemId)
+    {   
+#ifdef CONFIG_ITEM_INDEX_SLOW_STAFF
+    case CONFIG_ITEM_INDEX_SLOW_STAFF:
+        SetUnitStatus(unit_tar, NEW_UNIT_STATUS_SLOW);
+        break;
+#endif
+    default:
+        break;
+    }
 
-    // default:
-    //     break;
-    // }
-
-    // BeginBattleAnimations();
+    BeginBattleAnimations();
     
     return;
 }

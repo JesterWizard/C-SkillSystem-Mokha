@@ -1,6 +1,7 @@
 #include "common-chax.h"
 #include "item-sys.h"
 #include "skill-system.h"
+#include "jester_headers/custom-functions.h"
 
 LYN_REPLACE_CHECK(CanUnitUseItemPrepScreen);
 bool CanUnitUseItemPrepScreen(struct Unit * unit, int item)
@@ -191,7 +192,12 @@ s8 CanUnitUseItem(struct Unit* unit, int item)
 
 #ifdef CONFIG_ITEM_INDEX_FORGE_STAFF
     case CONFIG_ITEM_INDEX_FORGE_STAFF:
-        return HasSelectTarget(unit, MakeTargetListForSteal);
+        return HasSelectTarget(unit, MakeTargetListForForgeStaff);
+#endif
+
+#ifdef CONFIG_ITEM_INDEX_ARMS_SCROLL
+    case CONFIG_ITEM_INDEX_ARMS_SCROLL:
+        return ItemUsability_ArmsScroll(unit);
 #endif
 
     default:
@@ -360,6 +366,12 @@ void DoItemUse(struct Unit* unit, int item)
 #ifdef CONFIG_ITEM_INDEX_FORGE_STAFF
     case CONFIG_ITEM_INDEX_FORGE_STAFF:
         DoUseAttackStaff(unit, MakeTargetListForSteal);
+        break;
+#endif
+
+#ifdef CONFIG_ITEM_INDEX_ARMS_SCROLL
+    case CONFIG_ITEM_INDEX_ARMS_SCROLL:
+        ItemUseEffect_ArmsScroll(unit);
         break;
 #endif
 

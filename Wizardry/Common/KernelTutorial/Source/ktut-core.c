@@ -27,6 +27,9 @@ void EMS_SaveKTutorialFlags(u8 * dst, const u32 size)
         dst,
         sizeof(sKTutorialBits));
 
+    /* This caused a game crash for my custom item CONFIG_ITEM_INDEX_TEMPEST_STAFF just before the player phase
+    ** I'm turning it off for now but may re-enble if required. It doesn't seem too useful since I won't be doing tutorials.
+    */
     WriteAndVerifySramFast(
         sKTutorialBitsHistory,
         dst + sizeof(sKTutorialBits),

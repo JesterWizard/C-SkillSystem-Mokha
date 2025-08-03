@@ -39,7 +39,7 @@
 #include "Shield/ShieldConfig.lyn.event"
 #include "Forging/Forging_Installer.event"
 
-#include "Items/Items.lyn.event"
+#include "Items/Installer.event"
 
 #include "../Wizardry/data.event"
 

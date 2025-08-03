@@ -174,3 +174,7 @@ void BeginMapAnimForSimultaneousDamage(struct BattleUnit* actor, struct BattleUn
 
 void ExecForgeStaff(ProcPtr proc);
 void MakeTargetListForForgeStaff(struct Unit* unit);
+
+
+void ItemUseEffect_ArmsScroll(struct Unit * unit);
+bool ItemUsability_ArmsScroll(struct Unit * unit);

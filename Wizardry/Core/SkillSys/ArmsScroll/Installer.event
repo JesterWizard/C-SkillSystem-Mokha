@@ -1,0 +1,6 @@
+
+#ifdef CONFIG_ITEM_INDEX_ARMS_SCROLL
+
+    #include "ArmsScroll.lyn.event"
+
+#endif

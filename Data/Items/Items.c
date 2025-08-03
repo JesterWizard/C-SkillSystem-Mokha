@@ -1,6 +1,7 @@
 #include "common-chax.h"
 #include "bmitem.h"
 #include "constants/texts.h"
+#include "jester_headers/custom-structs.h"
 
 const struct ItemData gItemData_New[] = {
 	[ITEM_NONE] = {
@@ -2750,6 +2751,21 @@ const struct ItemData gItemData_New[] = {
 		.costPerUse = 40000,
 		.iconId = 0xc9,
 	},
+#ifdef CONFIG_ITEM_INDEX_MAG_BOOSTER
+	[CONFIG_ITEM_INDEX_MAG_BOOSTER] = {
+		.nameTextId = MSG_ITEM_MAGBOOSTER_NAME,
+		.descTextId = MSG_ITEM_MAGBOOSTER_DESC,
+		.useDescTextId = MSG_ITEM_MAGBOOSTER_USEDESC,
+		.number = CONFIG_ITEM_INDEX_MAG_BOOSTER,
+		.weaponType = ITYPE_ITEM,
+		.pStatBonuses = 0,
+		.maxUses = 1,
+		.encodedRange = 0x11,
+		.costPerUse = 8000,
+		.iconId = CONFIG_ICON_INDEX_MAG_BOOSTER,
+		.useEffectId = 17,
+	},
+#else
 	[ITEM_UNK_BC] = {
 		.nameTextId = 0x403,
 		.descTextId = 0x4ab,
@@ -2760,6 +2776,7 @@ const struct ItemData gItemData_New[] = {
 		.iconId = 0x0,
 		.weaponExp = 1,
 	},
+#endif
 	[ITEM_UNK_BD] = {
 		.nameTextId = 0x403,
 		.descTextId = 0x4ab,
@@ -2770,6 +2787,21 @@ const struct ItemData gItemData_New[] = {
 		.iconId = 0x0,
 		.weaponExp = 1,
 	},
+#ifdef CONFIG_ITEM_INDEX_SKILL_STEALER
+	[CONFIG_ITEM_INDEX_SKILL_STEALER] = {
+    .nameTextId = MSG_ITEM_SKILLSTEALER_NAME,
+    .descTextId = MSG_ITEM_SKILLSTEALER_DESC,
+    .useDescTextId = MSG_ITEM_SKILLSTEALER_USEDESC,
+    .number = CONFIG_ITEM_INDEX_SKILL_STEALER,
+    .weaponType = ITYPE_ITEM,
+    .pStatBonuses = 0,
+    .maxUses = 0xFF,
+    .encodedRange = 0x11,
+    .costPerUse = 8000,
+    .iconId = CONFIG_ICON_INDEX_SKILL_STEALER,
+    .useEffectId = 17,
+},
+#else
 	[ITEM_UNK_BE] = {
 		.nameTextId = 0x403,
 		.descTextId = 0x4ab,
@@ -2783,6 +2815,22 @@ const struct ItemData gItemData_New[] = {
 		.iconId = 0x0,
 		.weaponExp = 1,
 	},
+#endif
+#ifdef CONFIG_ITEM_INDEX_ARMS_SCROLL
+	[CONFIG_ITEM_INDEX_ARMS_SCROLL] = {
+		.nameTextId = MSG_ITEM_ArmsScroll_NAME,
+		.descTextId = MSG_ITEM_ArmsScroll_DESC,
+		.useDescTextId = MSG_ITEM_ArmsScroll_USEDESC,
+		.number = CONFIG_ITEM_INDEX_ARMS_SCROLL,
+		.weaponType = ITYPE_ITEM,
+		.pStatBonuses = 0,
+		.maxUses = 1,
+		.encodedRange = 0x11,
+		.costPerUse = 8000,
+		.iconId = CONFIG_ICON_INDEX_SKILL_STEALER,
+		.useEffectId = 18,
+	},
+#else
 	[ITEM_UNK_BF] = {
 		.nameTextId = 0x403,
 		.descTextId = 0x4ab,
@@ -2796,6 +2844,26 @@ const struct ItemData gItemData_New[] = {
 		.iconId = 0x0,
 		.weaponExp = 1,
 	},
+#endif
+#ifdef CONFIG_ITEM_INDEX_FORCE_STAFF
+	[CONFIG_ITEM_INDEX_FORCE_STAFF] = {
+		.nameTextId = MSG_ITEM_FORCE_STAFF_NAME,
+		.descTextId = MSG_ITEM_FORCE_STAFF_DESC,
+		.useDescTextId = MSG_ITEM_FORCE_STAFF_USEDESC,
+		.number = CONFIG_ITEM_INDEX_FORCE_STAFF,
+		.weaponType = ITYPE_STAFF,
+		.pStatBonuses = 0,
+		.maxUses = 15,
+		.encodedRange = 0x11, // Adjacent allies only 1-1
+		.costPerUse = 500,
+		.iconId = CONFIG_ICON_INDEX_FORCE_STAFF,
+		.useEffectId = 0xF, // Barrier
+		.weaponRank = WPN_EXP_C,
+		.weaponExp = 4,
+		.hit = 100,
+		.attributes = IA_STAFF,
+	},
+#else
 	[ITEM_UNK_C0] = {
 		.nameTextId = 0x403,
 		.descTextId = 0x4ab,
@@ -2806,6 +2874,26 @@ const struct ItemData gItemData_New[] = {
 		.iconId = 0x0,
 		.weaponExp = 1,
 	},
+#endif
+#ifdef CONFIG_ITEM_INDEX_ACUITY_STAFF
+	[CONFIG_ITEM_INDEX_ACUITY_STAFF] = {
+		.nameTextId = MSG_ITEM_ACUITY_STAFF_NAME,
+		.descTextId = MSG_ITEM_ACUITY_STAFF_DESC,
+		.useDescTextId = MSG_ITEM_ACUITY_STAFF_USEDESC,
+		.number = CONFIG_ITEM_INDEX_ACUITY_STAFF,
+		.weaponType = ITYPE_STAFF,
+		.pStatBonuses = 0,
+		.maxUses = 15,
+		.encodedRange = 0x11, // Adjacent allies only 1-1
+		.costPerUse = 500,
+		.iconId = CONFIG_ICON_INDEX_ACUITY_STAFF,
+		.useEffectId = 0xF, // Barrier
+		.weaponRank = WPN_EXP_C,
+		.weaponExp = 4,
+		.hit = 100,
+		.attributes = IA_STAFF,
+	},
+#else
 	[ITEM_UNK_C1] = {
 		.nameTextId = 0x403,
 		.descTextId = 0x4ab,
@@ -2815,6 +2903,26 @@ const struct ItemData gItemData_New[] = {
 		.iconId = 0x0,
 		.weaponExp = 1,
 	},
+#endif
+#ifdef CONFIG_ITEM_INDEX_FORTUNE_STAFF
+	[CONFIG_ITEM_INDEX_FORTUNE_STAFF] {
+		.nameTextId = MSG_ITEM_FORTUNE_STAFF_NAME,
+		.descTextId = MSG_ITEM_FORTUNE_STAFF_DESC,
+		.useDescTextId = MSG_ITEM_FORTUNE_STAFF_USEDESC,
+		.number = CONFIG_ITEM_INDEX_FORTUNE_STAFF,
+		.weaponType = ITYPE_STAFF,
+		.pStatBonuses = 0,
+		.maxUses = 15,
+		.encodedRange = 0x11, // Adjacent allies only 1-1
+		.costPerUse = 500,
+		.iconId = CONFIG_ICON_INDEX_FORTUNE_STAFF,
+		.useEffectId = 0xF, // Barrier
+		.weaponRank = WPN_EXP_C,
+		.weaponExp = 4,
+		.hit = 100,
+		.attributes = IA_STAFF,
+},
+#else
 	[ITEM_UNK_C2] = {
 		.nameTextId = 0x403,
 		.descTextId = 0x4ab,
@@ -2825,6 +2933,26 @@ const struct ItemData gItemData_New[] = {
 		.iconId = 0x0,
 		.weaponExp = 1,
 	},
+#endif
+#ifdef CONFIG_ITEM_INDEX_IRON_STAFF
+	[CONFIG_ITEM_INDEX_IRON_STAFF] = {
+		.nameTextId = MSG_ITEM_IRON_STAFF_NAME,
+		.descTextId = MSG_ITEM_IRON_STAFF_DESC,
+		.useDescTextId = MSG_ITEM_IRON_STAFF_USEDESC,
+		.number = CONFIG_ITEM_INDEX_IRON_STAFF,
+		.weaponType = ITYPE_STAFF,
+		.pStatBonuses = 0,
+		.maxUses = 15,
+		.encodedRange = 0x11, // Adjacent allies only 1-1
+		.costPerUse = 500,
+		.iconId = CONFIG_ICON_INDEX_IRON_STAFF,
+		.useEffectId = 0xF, // Barrier
+		.weaponRank = WPN_EXP_C,
+		.weaponExp = 4,
+		.hit = 100,
+		.attributes = IA_STAFF,
+	},
+#else
 	[ITEM_UNK_C3] = {
 		.nameTextId = 0x403,
 		.descTextId = 0x4ab,
@@ -2835,6 +2963,26 @@ const struct ItemData gItemData_New[] = {
 		.iconId = 0x0,
 		.weaponExp = 1,
 	},
+#endif
+#ifdef CONFIG_ITEM_INDEX_SPRINT_STAFF
+	[CONFIG_ITEM_INDEX_SPRINT_STAFF] {
+		.nameTextId = MSG_ITEM_SPRINT_STAFF_NAME,
+		.descTextId = MSG_ITEM_SPRINT_STAFF_DESC,
+		.useDescTextId = MSG_ITEM_SPRINT_STAFF_USEDESC,
+		.number = CONFIG_ITEM_INDEX_SPRINT_STAFF,
+		.weaponType = ITYPE_STAFF,
+		.pStatBonuses = 0,
+		.maxUses = 15,
+		.encodedRange = 0x11, // Adjacent allies only 1-1
+		.costPerUse = 500,
+		.iconId = CONFIG_ICON_INDEX_SPRINT_STAFF,
+		.useEffectId = 0xF, // Barrier
+		.weaponRank = WPN_EXP_C,
+		.weaponExp = 4,
+		.hit = 100,
+		.attributes = IA_STAFF,
+	},
+#else
 	[ITEM_UNK_C4] = {
 		.nameTextId = 0x403,
 		.descTextId = 0x4ab,
@@ -2848,6 +2996,26 @@ const struct ItemData gItemData_New[] = {
 		.iconId = 0x0,
 		.weaponExp = 1,
 	},
+#endif
+#ifdef CONFIG_ITEM_INDEX_TEMPEST_STAFF
+	[CONFIG_ITEM_INDEX_TEMPEST_STAFF] = {
+		.nameTextId = MSG_ITEM_TEMPEST_STAFF_NAME,
+		.descTextId = MSG_ITEM_TEMPEST_STAFF_DESC,
+		.useDescTextId = MSG_ITEM_TEMPEST_STAFF_USEDESC,
+		.number = CONFIG_ITEM_INDEX_TEMPEST_STAFF,
+		.weaponType = ITYPE_STAFF,
+		.pStatBonuses = 0,
+		.maxUses = 15,
+		.encodedRange = 0x11, // Adjacent allies only 1-1
+		.costPerUse = 500,
+		.iconId = CONFIG_ICON_INDEX_TEMPEST_STAFF,
+		.useEffectId = 0xF, // Barrier
+		.weaponRank = WPN_EXP_C,
+		.weaponExp = 4,
+		.hit = 100,
+		.attributes = IA_STAFF,
+	},
+#else
 	[ITEM_UNK_C5] = {
 		.nameTextId = 0x403,
 		.descTextId = 0x4ab,
@@ -2861,6 +3029,26 @@ const struct ItemData gItemData_New[] = {
 		.iconId = 0x0,
 		.weaponExp = 1,
 	},
+#endif
+#ifdef CONFIG_ITEM_INDEX_RUNE_STAFF
+	[CONFIG_ITEM_INDEX_RUNE_STAFF] = {
+		.nameTextId = MSG_ITEM_RUNE_STAFF_NAME,
+		.descTextId = MSG_ITEM_RUNE_STAFF_DESC,
+		.useDescTextId = MSG_ITEM_RUNE_STAFF_USEDESC,
+		.number = CONFIG_ITEM_INDEX_RUNE_STAFF,
+		.weaponType = ITYPE_STAFF,
+		.pStatBonuses = 0,
+		.maxUses = 15,
+		.encodedRange = 0x11, // Adjacent allies only 1-1
+		.costPerUse = 500,
+		.iconId = CONFIG_ICON_INDEX_RUNE_STAFF,
+		.useEffectId = 0x1C, // Light Rune
+		.weaponRank = WPN_EXP_C,
+		.weaponExp = 4,
+		.hit = 100,
+		.attributes = IA_STAFF,
+	},
+#else
 	[ITEM_UNK_C6] = {
 		.nameTextId = 0x403,
 		.descTextId = 0x4ab,
@@ -2871,6 +3059,7 @@ const struct ItemData gItemData_New[] = {
 		.iconId = 0x0,
 		.weaponExp = 1,
 	},
+#endif
 #ifdef CONFIG_ITEM_INDEX_MINE_STAFF
 	[CONFIG_ITEM_INDEX_MINE_STAFF] = {
 		.nameTextId = MSG_ITEM_MINE_STAFF_NAME,
@@ -2904,6 +3093,25 @@ const struct ItemData gItemData_New[] = {
 		.weaponExp = 1,
 	},
 #endif
+#ifdef CONFIG_ITEM_INDEX_SLOW_STAFF
+	[CONFIG_ITEM_INDEX_SLOW_STAFF] = {
+		.nameTextId = MSG_ITEM_SLOW_STAFF_NAME,
+		.descTextId = MSG_ITEM_SLOW_STAFF_DESC,
+		.useDescTextId = MSG_ITEM_SLOW_STAFF_USEDESC,
+		.number = CONFIG_ITEM_INDEX_SLOW_STAFF,
+		.weaponType = ITYPE_STAFF,
+		.pStatBonuses = 0,
+		.maxUses = 15,
+		.encodedRange = 0x11, // Adjacent allies only 1-1
+		.costPerUse = 500,
+		.iconId = CONFIG_ICON_INDEX_SLOW_STAFF,
+		.useEffectId = 0xF, // Barrier
+		.weaponRank = WPN_EXP_C,
+		.weaponExp = 4,
+		.hit = 100,
+		.attributes = IA_STAFF,
+	},
+#else
 	[ITEM_UNK_C8] = {
 		.nameTextId = 0x403,
 		.descTextId = 0x4ab,
@@ -2914,6 +3122,7 @@ const struct ItemData gItemData_New[] = {
 		.iconId = 0x0,
 		.weaponExp = 1,
 	},
+#endif
 	[ITEM_UNK_C9] = {
 		.nameTextId = 0x403,
 		.descTextId = 0x4ab,
@@ -2937,6 +3146,25 @@ const struct ItemData gItemData_New[] = {
 		.iconId = 0x0,
 		.weaponExp = 1,
 	},
+#ifdef CONFIG_ITEM_INDEX_FORGE_STAFF
+	[CONFIG_ITEM_INDEX_FORGE_STAFF] =  {
+    .nameTextId = MSG_ITEM_FORGE_STAFF_NAME,
+    .descTextId = MSG_ITEM_FORGE_STAFF_DESC,
+    .useDescTextId = MSG_ITEM_FORGE_STAFF_USEDESC,
+    .number = CONFIG_ITEM_INDEX_FORGE_STAFF,
+    .weaponType = ITYPE_STAFF,
+    .pStatBonuses = 0,
+    .maxUses = 15,
+    .encodedRange = 0x11, // Adjacent allies only 1-1
+    .costPerUse = 500,
+    .iconId = CONFIG_ICON_INDEX_FORGE_STAFF,
+    .useEffectId = 0xF, // Barrier
+    .weaponRank = WPN_EXP_C,
+    .weaponExp = 4,
+    .hit = 100,
+    .attributes = IA_STAFF,
+},
+#else
 	[ITEM_UNK_CB] = {
 		.nameTextId = 0x403,
 		.descTextId = 0x4ab,
@@ -2947,6 +3175,7 @@ const struct ItemData gItemData_New[] = {
 		.iconId = 0x0,
 		.weaponExp = 1,
 	},
+#endif
 	[ITEM_UNK_CC] = {
 		.nameTextId = 0x403,
 		.descTextId = 0x4ab,

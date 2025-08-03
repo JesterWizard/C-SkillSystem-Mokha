@@ -24,3 +24,5 @@ Img_EfxSkillBoxBG:
     #incbin "EfxSkill/data/EfxSkillBoxBG.lz77"
 
 #endif /* SKILLSYS_DATA_INSTALLED */
+
+#include "ArmsScroll/Installer.event"

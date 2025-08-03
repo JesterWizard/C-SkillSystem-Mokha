@@ -128,10 +128,6 @@
 
 #include "ExtrasMenu/Installer.event"
 
-#ifdef CONFIG_MODULAR_STAFF_EXP
-    #include "JesterHacks/StaffEXP/StaffEXP.lyn.event"
-#endif
-
 #ifdef CONFIG_CUSTOM_ITEMS
     #include "JesterHacks/CustomItems/Installer.event"
 #endif

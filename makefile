@@ -388,8 +388,8 @@ pre_build: $(PRE_BUILD)
 # 	@rm -rf $(CLEAN_DIRS)
 
 clean_basic:
-	@find . -type f -name '*.o' -exec rm -f {} +
-	@find . -type d -name 'temp*' -exec rm -rf {} +
+	@find . -type f -name '*.o' -print0 | xargs -0 rm -f
+	@find . -type d -name 'temp*' -print0 | xargs -0 rm -rf
 
 clean:
 	@for i in $(CLEAN_BUILD); do if test -e $$i/makefile ; then $(MAKE) -f $$i/makefile clean || { exit 1;} fi; done;

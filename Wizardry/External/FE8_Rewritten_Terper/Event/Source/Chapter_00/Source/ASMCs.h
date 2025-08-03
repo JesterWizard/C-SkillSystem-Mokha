@@ -27,10 +27,7 @@ void SetGameOptions_Chapter0()
 
     unit_eirika->ranks[ITYPE_STAFF] = WPN_EXP_A;
     unit_eirika->items[0] = MakeNewItem(ITEM_SWORD_IRON);
-    unit_eirika->items[1] = MakeNewItem(ITEM_STAFF_BERSERK);
-    unit_eirika->items[2] = MakeNewItem(ITEM_STAFF_SLEEP);
-    unit_eirika->items[3] = MakeNewItem(ITEM_STAFF_SILENCE);
-    unit_eirika->items[4] = MakeNewItem(CONFIG_ITEM_INDEX_MINE_STAFF);
+    unit_eirika->items[1] = MakeNewItem(CONFIG_ITEM_INDEX_FORGE_STAFF);
 
     // unit_eirika->ranks[ITYPE_STAFF] = WPN_EXP_A;
     // unit_eirika->items[1] = ITEM_KNIGHTCREST;

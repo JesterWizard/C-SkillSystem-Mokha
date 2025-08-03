@@ -482,14 +482,11 @@ s8 CanUnitUseWeaponNow(struct Unit* unit, int item)
 
 LYN_REPLACE_CHECK(CanUnitUseStaff);
 s8 CanUnitUseStaff(struct Unit* unit, int item) {
-    NoCashGBAPrintf("Weapon attributes for ID %d is %d", ITEM_INDEX(item), GetItemAttributes(item));
     if (item == 0)
         return FALSE;
 
     if (!(GetItemAttributes(item) & IA_STAFF))
         return FALSE;
-
-    NoCashGBAPrintf("Hey staff %d passed the use staff check!", ITEM_INDEX(item));
 
     if (unit->statusIndex == UNIT_STATUS_SLEEP)
         return FALSE;

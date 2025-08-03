@@ -1,5 +1,4 @@
 
-#include "ArmsScroll/Installer.event"
 #include "SkillStealer/Installer.event"
 #include "SpiritDust/Installer.event"
 
