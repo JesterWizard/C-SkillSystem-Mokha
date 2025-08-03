@@ -18,6 +18,31 @@ void InitText(struct Text *text, int tileWidth)
     ClearText(text);
 }
 
+LYN_REPLACE_CHECK(IsItemDisplayUsable);
+s8 IsItemDisplayUsable(struct Unit* unit, int item) {
+    if (GetItemAttributes(item) & IA_WEAPON)
+        return CanUnitUseWeapon(unit, item);
+
+    if (GetItemAttributes(item) & IA_STAFF)
+        return CanUnitUseStaff(unit, item);
+
+    if (GetItemUseEffect(item)) {
+        if (unit->statusIndex == UNIT_STATUS_SLEEP)
+            return FALSE;
+
+        if (unit->statusIndex == UNIT_STATUS_BERSERK)
+            return FALSE;
+
+        if (!(UNIT_CATTRIBUTES(unit) & CA_THIEF) && GetItemIndex(item) == ITEM_LOCKPICK)
+            return FALSE;
+
+        if (!(UNIT_CATTRIBUTES(unit) & CA_REFRESHER) && IsItemDanceRing(item))
+            return FALSE;
+    }
+
+    return TRUE;
+}
+
 /* This is page 2 in C Skill System*/
 
 void DisplayPage1(void);

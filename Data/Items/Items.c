@@ -2871,6 +2871,25 @@ const struct ItemData gItemData_New[] = {
 		.iconId = 0x0,
 		.weaponExp = 1,
 	},
+#ifdef CONFIG_ITEM_INDEX_MINE_STAFF
+	[CONFIG_ITEM_INDEX_MINE_STAFF] = {
+		.nameTextId = MSG_ITEM_MINE_STAFF_NAME,
+		.descTextId = MSG_ITEM_MINE_STAFF_DESC,
+		.useDescTextId = MSG_ITEM_MINE_STAFF_USEDESC,
+		.number = CONFIG_ITEM_INDEX_MINE_STAFF,
+		.weaponType = ITYPE_STAFF,
+		.pStatBonuses = 0,
+		.maxUses = 15,
+		.encodedRange = 0x11, // Adjacent allies only 1-1
+		.costPerUse = 500,
+		.iconId = CONFIG_ICON_INDEX_MINE_STAFF,
+		.useEffectId = 0x1B, // Mine
+		.weaponRank = WPN_EXP_C,
+		.weaponExp = 4,
+		.hit = 100,
+		.attributes = IA_STAFF,
+	},
+#else
 	[ITEM_UNK_C7] = {
 		.nameTextId = 0x403,
 		.descTextId = 0x4ab,
@@ -2884,6 +2903,7 @@ const struct ItemData gItemData_New[] = {
 		.iconId = 0x0,
 		.weaponExp = 1,
 	},
+#endif
 	[ITEM_UNK_C8] = {
 		.nameTextId = 0x403,
 		.descTextId = 0x4ab,

@@ -4,7 +4,7 @@
         ORG CONFIG_PR_ITEM_ICON + CONFIG_ICON_INDEX_MINE_STAFF * 0x80
             #incbin "MineStaff.4bpp"
 
-        ORG CONFIG_PR_ITEM_TABLE + CONFIG_ITEM_INDEX_MINE_STAFF * 0x24
-            #include "ItemData_MineStaff.lyn.event"
+        // ORG CONFIG_PR_ITEM_TABLE + CONFIG_ITEM_INDEX_MINE_STAFF * 0x24
+        //     #include "ItemData_MineStaff.lyn.event"
     POP
 #endif

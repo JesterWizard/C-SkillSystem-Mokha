@@ -432,6 +432,24 @@ const struct ItemData * GetItemData(int itemIndex)
     return gItemData_New + itemIndex;
 }
 
+LYN_REPLACE_CHECK(GetItemAttributes);
+int GetItemAttributes(int item) {
+    return GetItemData(ITEM_INDEX(item))->attributes;
+}
+
+LYN_REPLACE_CHECK(GetItemType);
+int GetItemType(int item) {
+    if (!item)
+        return 0xFF;
+
+    return GetItemData(ITEM_INDEX(item))->weaponType;
+}
+
+LYN_REPLACE_CHECK(GetItemRequiredExp);
+int GetItemRequiredExp(int item) {
+    return GetItemData(ITEM_INDEX(item))->weaponRank;
+}
+
 LYN_REPLACE_CHECK(GetItemNameWithArticle);
 char * GetItemNameWithArticle(int item, s8 capitalize)
 {
@@ -943,6 +961,48 @@ void RefreshHammerneUnitInfoWindow(struct Unit* unit) {
 
     BG_EnableSyncByMask(BG0_SYNC_BIT | BG1_SYNC_BIT);
 }
+
+LYN_REPLACE_CHECK(GetWeaponLevelFromExp);
+int GetWeaponLevelFromExp(int wexp) {
+    if (wexp < WPN_EXP_E)
+        return WPN_LEVEL_0;
+
+    if (wexp < WPN_EXP_D)
+        return WPN_LEVEL_E;
+
+    if (wexp < WPN_EXP_C)
+        return WPN_LEVEL_D;
+
+    if (wexp < WPN_EXP_B)
+        return WPN_LEVEL_C;
+
+    if (wexp < WPN_EXP_A)
+        return WPN_LEVEL_B;
+
+    if (wexp < WPN_EXP_S)
+        return WPN_LEVEL_A;
+
+    return WPN_LEVEL_S;
+}
+
+LYN_REPLACE_CHECK(GetItemDisplayRankString);
+char* GetItemDisplayRankString(int item) {
+    int rankTextIdLookup[] = {
+        // TODO: TEXT ID CONSTANTS
+        0x52C, 0x52D, 0x52E, 0x52F, // --, E, D, C
+        0x530, 0x531, 0x532, 0x533, // B, A, S, Prf
+    };
+
+    // reuse of the same variable for different purposes :/
+    int var = GetItemRequiredExp(item);
+
+    if ((GetItemAttributes(item) & IA_LOCK_ANY) && GetWeaponLevelFromExp(var) == WPN_LEVEL_0)
+        var = 7;
+    else
+        var = GetWeaponLevelFromExp(var);
+
+    return GetStringFromIndex(rankTextIdLookup[var]);
+};
 
 
 LYN_REPLACE_CHECK(PrepUnit_DrawUnitItems);

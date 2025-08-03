@@ -176,7 +176,7 @@
 // #define CONFIG_ICON_INDEX_SPRINT_STAFF 0xAD
 // #define CONFIG_ICON_INDEX_TEMPEST_STAFF 0xAE
 // #define CONFIG_ICON_INDEX_RUNE_STAFF 0xAF
-// #define CONFIG_ICON_INDEX_MINE_STAFF 0x6F // Literally no clue what this was originally, a necklace?
+#define CONFIG_ICON_INDEX_MINE_STAFF 0x6F // Literally no clue what this was originally, a necklace?
 // #define CONFIG_ICON_INDEX_SLOW_STAFF 0x78 // Originally Echesacks
 #define CONFIG_ICON_INDEX_FORGE_STAFF 0xCA
 
@@ -200,7 +200,7 @@
 // #define CONFIG_ITEM_INDEX_SPRINT_STAFF 0xC4
 // #define CONFIG_ITEM_INDEX_TEMPEST_STAFF 0xC5
 // #define CONFIG_ITEM_INDEX_RUNE_STAFF 0xC6
-// #define CONFIG_ITEM_INDEX_MINE_STAFF 0xC7
+#define CONFIG_ITEM_INDEX_MINE_STAFF 0xC7
 // #define CONFIG_ITEM_INDEX_SLOW_STAFF 0xC8
 #define CONFIG_ITEM_INDEX_FORGE_STAFF 0xCB
 

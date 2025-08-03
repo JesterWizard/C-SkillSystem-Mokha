@@ -31,9 +31,9 @@ u8 StaffEXP(int weapon)
     case ITEM_STAFF_BARRIER:
         exp = 17;
         break;
-#ifdef CONFIG_ITEM_INDEX_MINE_STAFF
-    case CONFIG_ITEM_INDEX_MINE_STAFF:
-#endif
+// #ifdef CONFIG_ITEM_INDEX_MINE_STAFF
+//     case CONFIG_ITEM_INDEX_MINE_STAFF:
+// #endif
     case ITEM_STAFF_MEND:
         exp = 20;
         break;
@@ -53,7 +53,7 @@ u8 StaffEXP(int weapon)
     case CONFIG_ITEM_INDEX_SLOW_STAFF:
 #endif
 // #ifdef CONFIG_ITEM_INDEX_FORGE_STAFF
-//     case CONFIG_ITEM_INDEX_FORGE_STAFF: // This is causing a crash on startup for some reason?
+//     case CONFIG_ITEM_INDEX_FORGE_STAFF:
 // #endif
         exp = 30;
         break;
