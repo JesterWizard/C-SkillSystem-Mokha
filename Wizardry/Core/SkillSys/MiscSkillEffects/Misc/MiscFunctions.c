@@ -5092,10 +5092,20 @@ void ClearUnitMapUiStatus(struct PlayerInterfaceProc * proc, u16 * buffer, struc
     return;
 }
 
+static const u16 * sUiFramePaletteLookup_NEW[] = {
+    gUiFramePaletteA,
+    gUiFramePaletteB,
+    gUiFramePaletteC,
+    gUiFramePaletteD,
+};
+
 //! FE8U = 0x0808C2CC
 LYN_REPLACE_CHECK(ApplyUnitMapUiFramePal);
 void ApplyUnitMapUiFramePal(int faction, int palId)
 {
+#ifdef CONFIG_MMB_WINDOW_PALETTE
+    ApplyPalette(sUiFramePaletteLookup_NEW[gPlaySt.config.windowColor], palId);
+#else
     u16 * pal = NULL;
 
     switch (faction)
@@ -5118,7 +5128,7 @@ void ApplyUnitMapUiFramePal(int faction, int palId)
     }
 
     ApplyPalette(pal, palId);
-
+#endif
     return;
 }
 

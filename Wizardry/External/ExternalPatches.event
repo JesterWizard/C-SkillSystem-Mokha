@@ -148,3 +148,5 @@
 #endif
 
 #include "VeslyAnimsFastForward/VeslyAnimsFastForward_Installer.event"
+
+//#include "MMBWindowPalette/MMBWindowPalette_Installer.event"
