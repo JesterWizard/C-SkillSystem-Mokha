@@ -704,15 +704,25 @@ void SwitchPhases(void)
                 if (CheckBitUES(unit, UES_BIT_CHANGED_FACTIONS))
                     UnitChangeFaction(unit, FACTION_RED);
                 
-                struct NewBwl* bwl = GetNewBwl(uid); 
+                #ifdef CONFIG_MP_SYSTEM
+                    struct NewBwl* bwl = GetNewBwl(uid-1); 
 
-                if (bwl) { 
-                    // Increment the currentMP
-                    bwl->currentMP += MP_RESTORE_AMOUNT; 
-                    
-                    // Clamp the value to maxMP using a ternary operator
-                    bwl->currentMP = (bwl->currentMP > bwl->maxMP) ? bwl->maxMP : bwl->currentMP; 
-                }
+                    if (bwl) { 
+                        // Increment the currentMP
+                        bwl->currentMP += CONFIG_MP_RESTORE_AMOUNT; 
+
+                        #if defined(SID_MPChanneling) && (COMMON_SKILL_VALID(SID_MPChanneling))
+                            if (SkillTester(unit, SID_MPChanneling))
+                            {
+                                NoCashGBAPrintf("Unit getting the MP boost is: %s", GetStringFromIndex(unit->pCharacterData->nameTextId));
+                                bwl->currentMP += CONFIG_MP_RESTORE_AMOUNT;
+                            }
+                        #endif
+                        
+                        // Clamp the value to maxMP using a ternary operator
+                        bwl->currentMP = (bwl->currentMP > bwl->maxMP) ? bwl->maxMP : bwl->currentMP; 
+                    }
+                #endif
             }
             gPlaySt.faction = FACTION_RED;
 

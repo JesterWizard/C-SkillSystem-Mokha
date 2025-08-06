@@ -428,3 +428,10 @@ Inevitable End:[N]
 Enemy units suffer stacking stat[N]
 debuffs from weapons and skills that[N]
 inflict them when used by this unit.[X]
+
+## MSG_SKILL_MPChanneling_NAME
+MP Channeling[X]
+## MSG_SKILL_MPChanneling_DESC
+MP Channelig:[N]
+Double this unit's[N]
+MP generation.[X]

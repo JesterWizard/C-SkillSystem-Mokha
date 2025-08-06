@@ -10,6 +10,7 @@ gStatScreenDrawPages:
     POIN 0x08087485
     POIN 0x0808784D
     POIN DrawPage4Rework
+    POIN DrawPage5Rework
     WORD 0
 
 /* Text colors */

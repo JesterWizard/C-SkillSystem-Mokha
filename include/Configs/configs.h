@@ -276,8 +276,8 @@
 
 #define CONFIG_MMB_WINDOW_PALETTE
 
-#define MP_SYSTEM
+#define CONFIG_MP_SYSTEM
 
-#ifdef MP_SYSTEM
-	#define MP_RESTORE_AMOUNT 5
+#ifdef CONFIG_MP_SYSTEM
+	#define CONFIG_MP_RESTORE_AMOUNT 5
 #endif
