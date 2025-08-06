@@ -309,6 +309,10 @@ s8 CanUnitUseWeapon(struct Unit *unit, int item)
         // Monster lock is special
         if (GetItemAttributes(item) & IA_LOCK_3)
         {
+#if defined(SID_Eldritch) && (COMMON_SKILL_VALID(SID_Eldritch))
+            if (SkillTester(unit, SID_Eldritch))
+                return true;
+#endif
             if (!(UNIT_CATTRIBUTES(unit) & CA_LOCK_3))
                 return false;
 

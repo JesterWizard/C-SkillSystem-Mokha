@@ -787,6 +787,7 @@
 // SID_NinthCircle
 // SID_InevitableEnd
 // SID_MPChanneling
+// SID_Eldritch
 
 //////// COMBAT ARTS
 // SID_COMBAT_Grounder
