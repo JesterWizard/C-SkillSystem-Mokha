@@ -280,7 +280,7 @@ static u8 GetUnitLaguzBarValue(struct Unit * unit)
     if (pid > 0x40)
         return 0;
     else
-        return bwl->_pad_[1];
+        return bwl->laguzBar;
 }
 
 FORCE_DECLARE static void DrawPage1LaguzBar(void)

@@ -1,6 +1,7 @@
 // Ensure only one of these is turned on
 
-#include "Installers/MMBInstallerCatball_1.event"
+#include "Installers/MMBInstallerJester.event"
+// #include "Installers/MMBInstallerCatball_1.event"
 // #include "Installers/MMBInstallerCatball_2.event"
 // #include "Installers/MMBInstallerDefault.event"
 // #include "Installers/MMBInstallerGFE1R.event"

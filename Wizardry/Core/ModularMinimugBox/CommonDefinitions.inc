@@ -66,6 +66,12 @@
 	.set GetEquippedWeaponSlot,		0x08016B58
 	.set SetupBattleStructUnitWeapon, 0x0802A400
 	.set GetROMItemStructPtr,		0x080177B0
+	.set BWL_GetEntry, 				0x080A4CFC
+
+@ BWL values (JESTER)
+
+	.set UnitCurrentMP,				0xD @14
+	.set UnitMaxMP,					0xE	@15
 
 @ Proc State
 

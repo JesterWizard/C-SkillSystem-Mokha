@@ -34,6 +34,7 @@
 #include "ending_details.h"
 #include "uichapterstatus.h"
 #include "jester_headers/Forging.h"
+#include "bwl.h"
 
 #ifndef CONFIG_INSTALL_CONVOYEXPA_AMT
     #define CONFIG_INSTALL_CONVOYEXPA_AMT 200
@@ -702,6 +703,16 @@ void SwitchPhases(void)
 
                 if (CheckBitUES(unit, UES_BIT_CHANGED_FACTIONS))
                     UnitChangeFaction(unit, FACTION_RED);
+                
+                struct NewBwl* bwl = GetNewBwl(uid); 
+
+                if (bwl) { 
+                    // Increment the currentMP
+                    bwl->currentMP += MP_RESTORE_AMOUNT; 
+                    
+                    // Clamp the value to maxMP using a ternary operator
+                    bwl->currentMP = (bwl->currentMP > bwl->maxMP) ? bwl->maxMP : bwl->currentMP; 
+                }
             }
             gPlaySt.faction = FACTION_RED;
 
@@ -5092,19 +5103,12 @@ void ClearUnitMapUiStatus(struct PlayerInterfaceProc * proc, u16 * buffer, struc
     return;
 }
 
-static const u16 * sUiFramePaletteLookup_NEW[] = {
-    gUiFramePaletteA,
-    gUiFramePaletteB,
-    gUiFramePaletteC,
-    gUiFramePaletteD,
-};
-
 //! FE8U = 0x0808C2CC
 LYN_REPLACE_CHECK(ApplyUnitMapUiFramePal);
 void ApplyUnitMapUiFramePal(int faction, int palId)
 {
 #ifdef CONFIG_MMB_WINDOW_PALETTE
-    ApplyPalette(sUiFramePaletteLookup_NEW[gPlaySt.config.windowColor], palId);
+    ApplyPalette(sUiFramePaletteLookup[gPlaySt.config.windowColor], palId);
 #else
     u16 * pal = NULL;
 
@@ -5297,7 +5301,6 @@ LYN_REPLACE_CHECK(StartSupportScreen);
 void StartSupportScreen(ProcPtr parent) {
     struct SupportScreenProc* proc = Proc_StartBlocking(gProcScr_SupportScreen, parent);
     proc->fromPrepScreen = FALSE;
-    NoCashGBAPrint("CLEARED - Support Screen Start");
     return;
 }
 
@@ -5314,7 +5317,6 @@ void SupportSubScreen_Init(struct SubScreenProc* proc) {
     InitSupportSubScreenPartnerLevels(proc);
     InitSupportSubScreenRemainingSupports(proc);
     SupportSubScreen_MoveCursorToNextValidUnit(proc, 0, +1);
-    NoCashGBAPrint("CLEARED - Support Screen Init");
 
     return;
 }
@@ -5397,8 +5399,6 @@ void SupportSubScreen_SetupGraphics(struct SubScreenProc* proc) {
 
     StartParallelWorker(DrawSupportSubScreenSprites, proc);
 
-    NoCashGBAPrint("CLEARED - Support Screen Setup Graphics");
-
     return;
 }
 
@@ -5429,10 +5429,8 @@ void SupportSubScreen_Loop_KeyHandler(struct SubScreenProc* proc) {
         u32 previous = proc->unk_39;
 
         if (gKeyStatusPtr->newKeys & A_BUTTON) {
-            NoCashGBAPrint("CLEARED - Support Screen Selected a Unii - Part 1");
             PlaySoundEffect(SONG_SE_SYS_WINDOW_SELECT1);
             Proc_Goto(proc, 2);
-            NoCashGBAPrint("CLEARED - Support Screen Selected a Unii - Part 2");
             return;
         }
 

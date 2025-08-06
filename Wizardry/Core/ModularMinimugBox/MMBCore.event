@@ -543,6 +543,16 @@ ALIGN 4
 		#endif // MMBNumberDrawing
 	#endif // MMBHPStatus
 
+	// #ifdef MMBMPStatus
+	// 	#include "Modules/MMBDrawMPStatus.lyn.event"
+	// 	WORD MMBMPStatusX
+	// 	WORD MMBMPStatusY
+	// 	WORD MMBHeight
+	// 	#ifndef MMBNumberDrawing
+	// 		#define MMBNumberDrawing
+	// 	#endif // MMBNumberDrawing
+	// #endif // MMBMPStatus
+
 	#ifdef MMBHP
 		#include "Modules/MMBDrawHP.lyn.event"
 		WORD MMBHPX
@@ -793,6 +803,15 @@ ALIGN 4
 			#define MMBLabelDrawing
 		#endif // MMBLabelDrawing
 	#endif // MMBATKLabel
+
+	#ifdef MMBMPLabel
+		ALIGN 4
+		MMBMPLabelGraphic:
+		#incbin "Modules/MPLabel.4bpp"
+		#ifndef MMBLabelDrawing
+			#define MMBLabelDrawing
+		#endif // MMBLabelDrawing
+	#endif // MMBMPLabel
 
 	#ifdef MMBAVOLabel
 		ALIGN 4
@@ -1073,6 +1092,32 @@ ALIGN 4
 		#endif // MMBNumberDrawing
 	#endif // MMBMaxHPNumber
 
+	#ifdef MMBCurrentMPNumber
+		#include "Modules/MMBCurrentMPGetter.lyn.event"
+		#ifndef MMBNumberListDrawing
+			#define MMBNumberListDrawing
+		#endif // MMBNumberListDrawing
+		#ifndef MMBBattleStruct
+			#define MMBBattleStruct
+		#endif // MMBBattleStruct
+		#ifndef MMBNumberDrawing
+			#define MMBNumberDrawing
+		#endif // MMBNumberDrawing
+	#endif // MMBCurrentMPNumber
+
+	#ifdef MMBMaxMPNumber
+		#include "Modules/MMBMaxMPGetter.lyn.event"
+		#ifndef MMBNumberListDrawing
+			#define MMBNumberListDrawing
+		#endif // MMBNumberListDrawing
+		#ifndef MMBBattleStruct
+			#define MMBBattleStruct
+		#endif // MMBBattleStruct
+		#ifndef MMBNumberDrawing
+			#define MMBNumberDrawing
+		#endif // MMBNumberDrawing
+	#endif // MMBMaxMPNumber
+
 // Module helpers
 
 	#ifdef MMBEquippedItemPrep
@@ -1326,6 +1371,16 @@ ALIGN 4
 			SHORT MMBMaxHPX
 			SHORT MMBMaxHPY
 		#endif // MMBMaxHPNumber
+		#ifdef MMBCurrentMPNumber
+			POIN MMBCurrentMPGetter
+			SHORT MMBCurrentMPX
+			SHORT MMBCurrentMPY
+		#endif // MMBCurrentMPNumber
+		#ifdef MMBMaxMPNumber
+			POIN MMBMaxMPGetter
+			SHORT MMBMaxMPX
+			SHORT MMBMaxMPY
+		#endif // MMBMaxHPNumber
 		WORD 0
 	#endif // MMBNumberListDrawing
 
@@ -1399,6 +1454,11 @@ ALIGN 4
 			POIN MMBHPLabelGraphic
 			SHORT ((MMBHPLabelPaletteIndex << 12) | MMBHPLabelVRAMTile)
 			SHORT (2 * ((32 * MMBHPLabelY) + MMBHPLabelX)) | ((MMBHPLabelTileCount << 12))
+		#endif // MMBHPLabel
+		#ifdef MMBMPLabel
+			POIN MMBMPLabelGraphic
+			SHORT ((MMBMPLabelPaletteIndex << 12) | MMBMPLabelVRAMTile)
+			SHORT (2 * ((32 * MMBMPLabelY) + MMBMPLabelX)) | ((MMBMPLabelTileCount << 12))
 		#endif // MMBHPLabel
 		WORD 0
 	#endif // MMBLabelDrawing
