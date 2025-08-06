@@ -7917,4 +7917,15 @@ const struct SkillInfo gSkillInfos[MAX_SKILL_NUM + 1] = {
     },
 #endif
 
+#if (defined(SID_Osmose) && COMMON_SKILL_VALID(SID_Osmose))
+    [SID_Osmose] = {
+        .name = MSG_SKILL_Osmose_NAME,
+        .desc = MSG_SKILL_Osmose_DESC,
+        .capacity = MSG_SKILL_Osmose_CAPACITY,
+        .price = MSG_SKILL_Osmose_PRICE,
+        .icon = GFX_SkillIcon_WIP,
+    },
+#endif
+
+
 };

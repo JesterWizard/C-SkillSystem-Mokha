@@ -11,6 +11,7 @@
 #include "constants/combat-arts.h"
 #include "playst-expa.h"
 #include "jester_headers/custom-functions.h"
+#include "bwl.h"
 
 typedef void (*BattleDamageCalcFunc)(struct BattleUnit * buA, struct BattleUnit * buB);
 extern BattleDamageCalcFunc const * const gpBattleDamageCalcFuncs;
@@ -777,6 +778,15 @@ bool rampartPlus_activated = false;
 #if (defined(SID_Equalizer) && (COMMON_SKILL_VALID(SID_Equalizer)))
     if (BattleSkillTester(attacker, SID_Equalizer) || BattleSkillTester(defender, SID_Equalizer))
         result = ((defender->battleAttack - attacker->battleDefense) + (attacker->battleAttack - defender->battleDefense)) / 2;
+#endif
+
+#if (defined(SID_Osmose) && (COMMON_SKILL_VALID(SID_Osmose)))
+    if (BattleSkillTester(attacker, SID_Osmose))
+    {
+        struct NewBwl * bwl = GetNewBwl(UNIT_CHAR_ID(GetUnit(attacker->unit.index)));
+        bwl->currentMP += result/4;
+        bwl->currentMP = (bwl->currentMP > bwl->maxMP) ? bwl->maxMP : bwl->currentMP; 
+    }
 #endif
 
     if (result > BATTLE_MAX_DAMAGE)

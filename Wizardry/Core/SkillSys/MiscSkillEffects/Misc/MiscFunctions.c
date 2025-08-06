@@ -713,10 +713,7 @@ void SwitchPhases(void)
 
                         #if defined(SID_MPChanneling) && (COMMON_SKILL_VALID(SID_MPChanneling))
                             if (SkillTester(unit, SID_MPChanneling))
-                            {
-                                NoCashGBAPrintf("Unit getting the MP boost is: %s", GetStringFromIndex(unit->pCharacterData->nameTextId));
                                 bwl->currentMP += CONFIG_MP_RESTORE_AMOUNT;
-                            }
                         #endif
                         
                         // Clamp the value to maxMP using a ternary operator

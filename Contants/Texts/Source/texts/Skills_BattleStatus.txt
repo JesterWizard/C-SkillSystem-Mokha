@@ -1636,3 +1636,10 @@ Supreme Overlord:[N]
 Player units gain +3 to all stats per[N]
 allied unit who died this chapter.[N]
 Other factions gain +1 per 3 allies dead.[X]
+
+## MSG_SKILL_Osmose_NAME
+Osmose[X]
+## MSG_SKILL_Osmose_DESC
+Osmose:[N]
+Passively drain 1/4 of the damage[N]
+inflicted on the enemy to restore your MP.[X]

@@ -558,6 +558,7 @@ SID_Forcefield
 SID_AbsorbAlternation
 SID_Levitate
 SID_ChainAttack
+SID_Osmose
 
 //////// EFFECTIVENESS SKILLS
 SID_Resourceful
