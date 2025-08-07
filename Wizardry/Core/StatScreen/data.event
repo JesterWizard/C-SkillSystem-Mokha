@@ -1,5 +1,9 @@
 #include "DrawPages/HelpBoxPage4.event"
 
+#ifdef CONFIG_MP_SYSTEM
+    #include "DrawPages/HelpBoxPage5.event"
+#endif
+
 #include "DrawMorePage/data.event"
 #include "DrawSkillPage/data.event"
 #include "DrawUnitPage/data.event"

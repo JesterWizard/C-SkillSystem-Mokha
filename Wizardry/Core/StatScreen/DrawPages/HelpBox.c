@@ -30,6 +30,12 @@ void StartStatScreenHelp(int pageid, struct Proc * proc)
         case 3:
             gStatScreen.help = RTextPageSupport;
             break;
+
+#ifdef CONFIG_MP_SYSTEM
+        case 4:
+            gStatScreen.help = RTextPageMagic;
+            break;
+#endif
         } // switch (pageid)
     }
     StartMovingHelpBox(gStatScreen.help, proc);

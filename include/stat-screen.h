@@ -7,6 +7,7 @@
 
 typedef const struct HelpBoxInfo _DECL_INFO;
 extern _DECL_INFO *const RTextPageSupport;
+extern _DECL_INFO *const RTextPageMagic;
 
 extern struct {
 	u8 talkee;

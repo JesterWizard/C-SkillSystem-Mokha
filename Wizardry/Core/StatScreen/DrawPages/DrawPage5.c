@@ -13,7 +13,7 @@ static void WhiteMagicList(void)
     PutDrawText(
         &gStatScreen.text[15],
         gUiTmScratchA + TILEMAP_INDEX(0x1, 0x1),
-        TEXT_COLOR_SYSTEM_GOLD,
+        TEXT_COLOR_SYSTEM_WHITE,
         0, 0,
         "White Magic");
 
@@ -50,7 +50,7 @@ static void BlackMagicList(void)
     PutDrawText(
         &gStatScreen.text[29],
         gUiTmScratchA + TILEMAP_INDEX(0x9, 0x1),
-        TEXT_COLOR_SYSTEM_GOLD,
+        TEXT_COLOR_SYSTEM_WHITE,
         0, 0,
         "Black Magic");
 

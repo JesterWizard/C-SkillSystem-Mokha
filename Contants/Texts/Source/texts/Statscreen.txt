@@ -73,3 +73,11 @@ Arts[X]
 
 ## MSG_MSS_NOARTS
 No arts...[X]
+
+## MSG_STAT_SCREEN_WHITE_MAGIC_DESC
+A list of the unit's[N]
+white magic spells.[X]
+
+## MSG_STAT_SCREEN_BLACK_MAGIC_DESC
+A list of the unit's[N]
+black magic spells.[X]
