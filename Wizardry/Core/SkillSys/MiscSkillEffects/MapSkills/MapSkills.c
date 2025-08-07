@@ -292,6 +292,8 @@ void ChapterChangeUnitCleanup(void)
     for (j = 1; j < 0x40; ++j)
     {
         struct Unit *unit = GetUnit(j);
+        u32 pid = UNIT_CHAR_ID(unit);
+        struct NewBwl * bwl = GetNewBwl(pid);
 
         /* Reset the transformed state of any units with the skill */
 #if defined(SID_Transform) && (COMMON_SKILL_VALID(SID_Transform))
@@ -320,6 +322,11 @@ void ChapterChangeUnitCleanup(void)
                 break;
             }
         }
+#endif
+
+/* Reset each player unit's current MP to 0 */
+#ifdef CONFIG_MP_SYSTEM
+        bwl->currentMP = 0;
 #endif
 
         /* Reset the doppleganger state of any units with the skill */
@@ -377,9 +384,6 @@ void ChapterChangeUnitCleanup(void)
 #endif
 
 #if defined(CONFIG_RESET_BWL_STATS_EACH_CHAPTER)
-        u32 pid = UNIT_CHAR_ID(unit);
-        struct NewBwl * bwl = GetNewBwl(pid);
-        
         if (bwl != NULL)
         {
             bwl->battleAmt = 0;
