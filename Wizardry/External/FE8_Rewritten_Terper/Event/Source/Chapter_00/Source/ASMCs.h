@@ -6,6 +6,8 @@
 #include "jester_headers/miscellaenous.h"
 #include "debuff.h"
 #include "jester_headers/Forging.h"
+#include "jester_headers/gaiden-magic.h"
+
 // struct LearnedSkillList {
 //     u32 data[8]; /* 8 * 32 = 0x100 */
 // };
@@ -20,10 +22,21 @@ void SetGameOptions_Chapter0()
 
     SetPartyGoldAmount(100000);
 
+    // Call the reset function to ensure the magic lists are properly initialized
+    // This is the most likely cause of your crash, as the 'amt' counter is
+    // uninitialized without this call.
+    // Gaiden_ResetMagicLists();
+
     struct Unit * unit_eirika = GetUnitFromCharId(CHARACTER_EIRIKA);
     // struct Unit * unit_seth = GetUnitFromCharId(CHARACTER_SETH);
     // unit_eirika->maxHP = 26;
     // unit_eirika->curHP = 6;
+
+    // struct GaidenMagicSpellList *eirika_magic_list = &sBlackMagicPList[UNIT_CHAR_ID(unit_eirika)];
+    // CpuFill16(0, eirika_magic_list, sizeof(struct GaidenMagicSpellList));
+
+    Gaiden_AddBlackMagic(unit_eirika, ITEM_ANIMA_FIRE);
+    //Gaiden_GetUnitBlackMagicList(unit_eirika);
 
     unit_eirika->ranks[ITYPE_STAFF] = WPN_EXP_A;
     unit_eirika->items[0] = MakeNewItem(ITEM_SWORD_IRON);
@@ -50,24 +63,11 @@ void SetGameOptions_Chapter0()
     // InitRandC();
 
     // // Randomly generate items for the unit
-    // for (int i = 0; i < 5; i++)
-    //     unit->items[i] = MakeNewItem(RandNextC_N(200));
-
-    // for (int i = 0; i < SKILL_ROM_DATA_AMT; i++)
-    //     SET_SKILL(unit, i, RandNextC_N(711));
-
-    // SetFlag(0xAB); // Gamma UI flag
-
-    // NoCashGBAPrintf("Chapter 1 - Total BEXP BEFORE is: %d", sBEXP);
-
-    // sBEXP.value += 100;
-
-    // NoCashGBAPrintf("Chapter 1 - Total BEXP AFTER is: %d", sBEXP);
-
-    // gBmMapTerrain[5][3] = TERRAIN_TILE_00;
- 
-
-    // SetUnitStatusIndex(unit_seth, NEW_UNIT_STATUS_DOOM);
-    // SetUnitStatusDuration(unit_seth, 2);
-
+    // // u32 random_value = RandC();
+    // // int i;
+    // // for (i = 0; i < 4; i++) {
+    // //     unit_eirika->items[i] = random_value & 0xF;
+    // //     random_value >>= 4;
+    // // }
 }
+

@@ -33,7 +33,7 @@ void StartStatScreenHelp(int pageid, struct Proc * proc)
 
 #ifdef CONFIG_MP_SYSTEM
         case 4:
-            gStatScreen.help = RTextPageMagic;
+            StartGaidenMagicScreenHelp(pageid, proc);
             break;
 #endif
         } // switch (pageid)

@@ -70,7 +70,7 @@ _kernel_malloc sStatDebuffStatusFourth, 8 * 16
 _kernel_malloc sStatDebuffStatusBattleUnit, 2 * 16
 _kernel_malloc sStatDebuffMsgBuf, 0x2C * 9
 _kernel_malloc sExpaConvoyItemCount, 4
-_kernel_malloc sExpaConvoyItemArray, 2 * 300 //current start point as of 21/07/2025 is 0x20275B0
+_kernel_malloc sExpaConvoyItemArray, 2 * 300
 _kernel_malloc gExtBattleHitArray, 4 * 0x21
 _kernel_malloc gpActorShileInfo, 4
 _kernel_malloc gpTargetShileInfo, 4
@@ -78,6 +78,8 @@ _kernel_malloc sShileldInfoCache, 0x14
 _kernel_malloc sPopupSkillStack, 0x10
 _kernel_malloc gPlayStExpa, 0x10
 _kernel_malloc sBEXP, 0x02
+_kernel_malloc sWhiteMagicPList, 51 * 6
+_kernel_malloc sBlackMagicPList, 51 * 6
 
 /* u8 x4 to share one u32 */
 _kernel_malloc sKernelHookSkippingFlag, 1
@@ -114,7 +116,7 @@ _kernel_malloc_overlay0 gDmg, 40
 _kernel_malloc_overlay0 BattleSysBattleStatusBackup, 32
 _kernel_malloc_overlay0 sBattleSkillActivateBuf, 4
 _kernel_malloc_overlay0 sAiSimuSlotBuf, 0x100
-_kernel_malloc_overlay0 gItemPageList 0x28
+_kernel_malloc_overlay0 gItemPageList, 0x28
 
 /**
  * Usage of memory on IWRAM for arm-functions

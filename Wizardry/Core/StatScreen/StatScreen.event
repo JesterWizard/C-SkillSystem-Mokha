@@ -6,10 +6,6 @@
 #include "DrawPages/DrawPage2.lyn.event"
 #include "DrawPages/DrawPage4.lyn.event"
 
-#ifdef CONFIG_MP_SYSTEM
-    #include "DrawPages/DrawPage5.lyn.event"
-#endif
-
 #include "DrawPages/HelpBox.lyn.event"
 
 #include "DrawUnitPage/DrawUnitPage.event"
@@ -17,9 +13,11 @@
 #include "DrawSkillPage/DrawSkillPage.event"
 #include "DrawMorePage/DrawMorePage.event"
 
+#ifdef CONFIG_MP_SYSTEM
+    #include "DrawGaidenMagicPage/DrawGaidenMagicPage.event"
+#endif
+
 #include "MiscFix/LynJump.event"
 #include "MiscFix/HelpBoxFix.lyn.event"
-
-// #include "data.event"
 
 #endif /* STATSCREEN_INSTALLED */

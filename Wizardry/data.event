@@ -31,7 +31,7 @@
 #include "Core/Movement/MovementData.event"
 #include "External/Individual_animation_ea_2/data.event"
 #include "Core/ModularMinimugBox/ModuleInstallers.event"
-
+#include "Core/GaidenMagic/GaidenMagic.event"
 #include "Misc/PortraitHeight/data.event"
 
 #ifdef CONFIG_INSTALL_FE6_STAT_SCREEN

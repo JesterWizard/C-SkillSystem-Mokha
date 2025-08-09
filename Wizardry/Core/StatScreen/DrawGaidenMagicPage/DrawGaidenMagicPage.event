@@ -1,0 +1,3 @@
+#include "Source/DrawGaidenMagicPage.lyn.event"
+
+#include "Source/disp.lyn.event"

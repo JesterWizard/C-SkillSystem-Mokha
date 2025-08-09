@@ -7,7 +7,6 @@
 
 typedef const struct HelpBoxInfo _DECL_INFO;
 extern _DECL_INFO *const RTextPageSupport;
-extern _DECL_INFO *const RTextPageMagic;
 
 extern struct {
 	u8 talkee;
@@ -69,11 +68,23 @@ void HbPopuplate_ArtPageCommon(struct HelpBoxProc *proc);
 void HbRedirect_ArtPageCommon(struct HelpBoxProc *proc);
 void HbRedirect_ArtPageOnlyAlly(struct HelpBoxProc *proc);
 
+
 void DrawSkillPage_MokhaPlanA(void);
 void DrawSkillPage_MokhaPlanB(void);
 
 extern _DECL_INFO *const RTextSkillPage_MokhaPlanA;
 extern _DECL_INFO *const RTextSkillPage_MokhaPlanB;
+
+
+/* Gaiden magic page */
+void StartGaidenMagicScreenHelp(int pageid, struct Proc *proc);
+void HbPopuplate_GaidenWhiteMagicPageCommon(struct HelpBoxProc *proc);
+void HbRedirect_GaidenWhiteMagicPageCommon(struct HelpBoxProc *proc);
+void HbPopulate_GaidenBlackMagicPageCommon(struct HelpBoxProc *proc);
+void HbRedirect_GaidenBlackMagicPageCommon(struct HelpBoxProc *proc);
+
+void DrawGaidenMagicPage(void);
+extern _DECL_INFO *const RTextGaidenMagic;
 
 /**
  * Item page
