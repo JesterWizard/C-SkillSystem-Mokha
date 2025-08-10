@@ -8,6 +8,8 @@
 
 #include <gaiden-magic.h>
 
+#include "bm.h"
+
 STATIC_DECLAR const struct MenuDef sGaidenBMagItemMenuDef;
 STATIC_DECLAR const struct MenuItemDef sGaidenBMagItemMenuItems[];
 STATIC_DECLAR u8 GaidenBMagHelpbox(struct MenuProc *menu, struct MenuItemProc *menuItem);

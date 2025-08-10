@@ -1,7 +1,7 @@
 #ifndef CONFIG_INSTALLED
 #define CONFIG_INSTALLED
 
-#include "config-debug.h"
+//#include "config-debug.h"
 #include "config-memmap.h"
 
 /**
@@ -263,5 +263,7 @@
 #define CONFIG_UNIT_AMT_ALLY  51
 #define CONFIG_UNIT_AMT_ENEMY 50
 #define CONFIG_UNIT_AMT_NPC   8
+
+#define CONFIG_VESLY_DEBUGGER
 
 #endif /* CONFIG_INSTALLED */

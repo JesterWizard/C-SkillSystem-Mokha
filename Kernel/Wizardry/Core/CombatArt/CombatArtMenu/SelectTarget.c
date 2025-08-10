@@ -1,5 +1,6 @@
 #include "common-chax.h"
 #include "combat-art.h"
+#include "bm.h"
 
 STATIC_DECLAR u8 CombatSelectTargetOnCancel(ProcPtr proc, struct SelectTarget *target);
 STATIC_DECLAR const struct ProcCmd ProcScr_PostCombatArtSelectTarget[];
