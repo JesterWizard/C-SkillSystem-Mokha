@@ -153,9 +153,10 @@ PUSH
     BYTE 0x3F
     PROTECT $265B4 $265E4
 
-    ORG $27200 // RefreshUnitSprites
-    BYTE 0x3F
-    PROTECT $271A0 $2736C
+    /* Rquired by VeslyDangerBones */
+    // ORG $27200 // RefreshUnitSprites
+    // BYTE 0x3F
+    // PROTECT $271A0 $2736C
 
     // PutUnitSpriteIconsOam
 
