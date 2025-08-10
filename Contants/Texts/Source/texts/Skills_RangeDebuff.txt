@@ -123,7 +123,8 @@ Allies within 2 tiles receive +4 RES.[X]
 Charisma[X]
 ## MSG_SKILL_Charisma_DESC
 Charisma:[N]
-Grants +10 Hit/Avoid to all allies within three tiles.[X]
+Grants +10 Hit/Avoid to all[N]
+allies within three tiles.[X]
 
 ## MSG_SKILL_Daunt_NAME
 Daunt[X]

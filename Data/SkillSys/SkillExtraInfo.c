@@ -408,7 +408,7 @@ const struct SkillExtraInfo gSkillExtraInfo[MAX_SKILL_NUM + 1] = {
 #endif
 
 #if (defined(SID_Spurn) && COMMON_SKILL_VALID(SID_Spurn))
-    [SID_Spurn] = {{5, 4}},
+    [SID_Spurn] = {{4}},
 #endif
 
 #if (defined(SID_Astra) && COMMON_SKILL_VALID(SID_Astra))
@@ -819,8 +819,8 @@ const struct SkillExtraInfo gSkillExtraInfo[MAX_SKILL_NUM + 1] = {
     [SID_DragonWall] = {{4}},
 #endif
 
-#if (defined(SID_DragonWarth) && COMMON_SKILL_VALID(SID_DragonWarth))
-    [SID_DragonWarth] = {{
+#if (defined(SID_DragonsWrath) && COMMON_SKILL_VALID(SID_DragonsWrath))
+    [SID_DragonsWrath] = {{
         20,
         20,
     }},

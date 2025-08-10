@@ -30,6 +30,7 @@
 #include "Core/ComboAttack/data.event"
 #include "Core/Movement/MovementData.event"
 #include "External/Individual_animation_ea_2/data.event"
+#include "Core/ModularMinimugBox/ModuleInstallers.event"
 
 #include "Misc/PortraitHeight/data.event"
 

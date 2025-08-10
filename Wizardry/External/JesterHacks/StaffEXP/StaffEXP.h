@@ -1,1 +1,0 @@
-u8 StaffEXP(int weapon);

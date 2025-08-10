@@ -238,4 +238,16 @@ const SkillActionFunc_t gSkillActionFuncTable[MAX_SKILL_NUM + 1] = {
 #if (defined(SID_AcidicPlus) && COMMON_SKILL_VALID(SID_AcidicPlus))
 	[SID_AcidicPlus] = Action_Acidic,
 #endif
+
+#if (defined(SID_Reinforce) && COMMON_SKILL_VALID(SID_Reinforce))
+	[SID_Reinforce] = Action_Reinforce,
+#endif
+
+#if (defined(SID_SealedZone) && COMMON_SKILL_VALID(SID_SealedZone))
+	[SID_SealedZone] = Action_SealedZone,
+#endif
+
+#if (defined(SID_Thrust) && COMMON_SKILL_VALID(SID_Thrust))
+	[SID_Thrust] = Action_Thrust,
+#endif
 };

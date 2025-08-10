@@ -5,6 +5,8 @@
 
 // #define CONFIG_CROP_VANILLA_MSG
 
+#define CONFIG_SKILL_SYSTEM_RELATED_FUNCTIONALITY
+
 /* CommonProtection.event */
 #define CONFIG_COMMON_PROTECTION_ENABLED
 
@@ -14,7 +16,7 @@
 /* If uncomment, use utf-8 characters */
 #define CONFIG_USE_UTF8_GLYPH
 
-// #define CONFIG_USE_COMBO_ATTACK
+#define CONFIG_USE_COMBO_ATTACK
 
 // #define CONFIG_BATTLE_SURROUND
 
@@ -27,15 +29,6 @@
 // #define CONFIG_LEADER_SHIP_EN
 
 // #define CONFIG_REMOVE_MOVE_PATH
-
-// #define CONFIG_USE_GAIDEN_MAGIC
-
-#ifdef CONFIG_USE_GAIDEN_MAGIC
-	#define CONFIG_GAIDEN_MAGIC_MUST_BE_MAGIC 0 // 0: all weapons are okay
-	#define CONFIG_GAIDEN_MAGIC_REQUIRES_WRANK 0 // 0: not requires unit ability to equip that weapon
-	#define CONFIG_GAIDEN_MAGIC_AI_EN 1
-	#define CONFIG_GAIDEN_EXT_CONF_EN 1
-#endif /* USE_GAIDEN_MAGIC */
 
 #define CONFIG_UNLOCK_ALLY_MHP_LIMIT
 
@@ -150,9 +143,6 @@
 
 // #define CONFIG_ESCAPE_EVENT
 
-/* BROKEN - DO NOT USE */
-// #define CONFIG_AUTO_PROMOTION_ON_MAX_LEVEL
-
 /* Don't turn this on until I have defeat quotes for everyone as MC dying without a quote doesn't trigger a game over screen */
 #define CONFIG_MULTIPLE_DEATH_QUOTES
 
@@ -173,23 +163,22 @@
 
 #define CONFIG_UNIT_ACTION_AMT 0x30
 #define CONFIG_UNIT_ACTION_EXPA_ExecSkill 0x23
-#define CONFIG_UNIT_ACTION_EXPA_GaidenMagicCombat 0x24
-#define CONFIG_UNIT_ACTION_EXPA_GaidenMagicStaff 0x25
 
 #define CONFIG_PR_ITEM_ICON  0x5926F4
 #define CONFIG_ICON_INDEX_MAG_BOOSTER 0xCA
 #define CONFIG_ICON_INDEX_STAR 0xCB
-// #define CONFIG_ICON_INDEX_SKILL_STEALER 0xCC
-// #define CONFIG_ICON_INDEX_ARMS_SCROLL 0xCD
-// #define CONFIG_ICON_INDEX_FORCE_STAFF 0xCE
-// #define CONFIG_ICON_INDEX_ACUITY_STAFF 0xCF
-// #define CONFIG_ICON_INDEX_FORTUNE_STAFF 0xDE
-// #define CONFIG_ICON_INDEX_IRON_STAFF 0xDF
-// #define CONFIG_ICON_INDEX_SPRINT_STAFF 0xAD
-// #define CONFIG_ICON_INDEX_TEMPEST_STAFF 0xAE
-// #define CONFIG_ICON_INDEX_RUNE_STAFF 0xAF
-// #define CONFIG_ICON_INDEX_MINE_STAFF 0x6F // Literally no clue what this was originally, a necklace?
-// #define CONFIG_ICON_INDEX_SLOW_STAFF 0x78 // Originally Echesacks
+#define CONFIG_ICON_INDEX_SKILL_STEALER 0xCC
+#define CONFIG_ICON_INDEX_ARMS_SCROLL 0xCD
+#define CONFIG_ICON_INDEX_FORCE_STAFF 0xCE
+#define CONFIG_ICON_INDEX_ACUITY_STAFF 0xCF
+#define CONFIG_ICON_INDEX_FORTUNE_STAFF 0xDE
+#define CONFIG_ICON_INDEX_IRON_STAFF 0xDF
+#define CONFIG_ICON_INDEX_SPRINT_STAFF 0xAD
+#define CONFIG_ICON_INDEX_TEMPEST_STAFF 0xAE
+#define CONFIG_ICON_INDEX_RUNE_STAFF 0xAF
+#define CONFIG_ICON_INDEX_MINE_STAFF 0x6F // Literally no clue what this was originally, a necklace?
+#define CONFIG_ICON_INDEX_SLOW_STAFF 0x78 // Originally Echesacks
+#define CONFIG_ICON_INDEX_FORGE_STAFF 0xCA
 
 #define CONFIG_PR_ITEM_TABLE 0x809B10
 #define CONFIG_ITEM_INDEX_MAG_BOOSTER 0xBC
@@ -202,6 +191,7 @@
 #else
 	#define CONFIG_ITEM_INDEX_SKILL_SCROLL_1 0xBD
 #endif
+
 // #define CONFIG_ITEM_INDEX_SKILL_STEALER 0xBE
 // #define CONFIG_ITEM_INDEX_ARMS_SCROLL 0xBF
 // #define CONFIG_ITEM_INDEX_FORCE_STAFF 0xC0
@@ -213,6 +203,7 @@
 // #define CONFIG_ITEM_INDEX_RUNE_STAFF 0xC6
 // #define CONFIG_ITEM_INDEX_MINE_STAFF 0xC7
 // #define CONFIG_ITEM_INDEX_SLOW_STAFF 0xC8
+// #define CONFIG_ITEM_INDEX_FORGE_STAFF 0xCB
 
 #define CONFIG_PR_SPRITE_ICON 0x8AF880
 #define CONFIG_SPRITE_INDEX_FOREST_TILE 0x9 // Empty but used for Manakete
@@ -252,7 +243,7 @@
 #define CONFIG_MODULAR_STAFF_EXP
 #define CONFIG_CUSTOM_ITEMS
 
-// #define CONFIG_CUSTOM_STAFF_ACCURACY 100
+#define CONFIG_CUSTOM_STAFF_ACCURACY 100
 
 //#define CONFIG_DENY_STAT_SCREEN
 
@@ -271,8 +262,22 @@
 #define CONFIG_QUALITY_OF_LIFE_EPILOGUE_FADE
 #define CONFIG_QUALITY_OF_LIFE_CAP_CRIT_100
 
-#define CONFIG_FORGING
+// #define CONFIG_FORGING
 
 #define CONFIG_SKIP_INTRO
 
-#define CONFIG_FE4_CRIT_BONUS_ON_KILL
+// #define CONFIG_FE4_CRIT_BONUS_ON_KILL // Enable this and forging won't work as usual
+
+// A dirty fix for certain spaces on the prologue chapter causing
+// the unit to end their turn as if in fog of war or a trap
+#define CONFIG_DIRTY_FIXES
+
+#define CONFIG_EXPAND_PREP_MENU_OPTIONS
+
+#define CONFIG_MMB_WINDOW_PALETTE
+
+#define CONFIG_MP_SYSTEM
+
+#ifdef CONFIG_MP_SYSTEM
+	#define CONFIG_MP_RESTORE_AMOUNT 5
+#endif

@@ -9,15 +9,6 @@
 #include "action-expa.h"
 #include "jester_headers/class-pairs.h"
 
-#if (defined(SID_Doppleganger) && (COMMON_SKILL_VALID(SID_Doppleganger)))
-
-// Predefine an array of key-value pairs
-const int dopplegangerPairs[1][2] = { { CHARACTER_EIRIKA, CLASS_EIRIKA_LORD } };
-// Define the size of the array
-const int dopplegangerListSize = sizeof(dopplegangerPairs) / sizeof(dopplegangerPairs[0]);
-
-#endif
-
 u8 Doppleganger_Usability(const struct MenuItemDef * def, int number)
 {
     if (gActiveUnit->state & US_CANTOING)

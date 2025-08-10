@@ -32,7 +32,9 @@
 #include "mapanim.h"
 #include "playst-expa.h"
 #include "ending_details.h"
+#include "uichapterstatus.h"
 #include "jester_headers/Forging.h"
+#include "bwl.h"
 
 #ifndef CONFIG_INSTALL_CONVOYEXPA_AMT
     #define CONFIG_INSTALL_CONVOYEXPA_AMT 200
@@ -701,6 +703,23 @@ void SwitchPhases(void)
 
                 if (CheckBitUES(unit, UES_BIT_CHANGED_FACTIONS))
                     UnitChangeFaction(unit, FACTION_RED);
+                
+                #ifdef CONFIG_MP_SYSTEM
+                    struct NewBwl* bwl = GetNewBwl(uid-1); 
+
+                    if (bwl) { 
+                        // Increment the currentMP
+                        bwl->currentMP += CONFIG_MP_RESTORE_AMOUNT; 
+
+                        #if defined(SID_MPChanneling) && (COMMON_SKILL_VALID(SID_MPChanneling))
+                            if (SkillTester(unit, SID_MPChanneling))
+                                bwl->currentMP += CONFIG_MP_RESTORE_AMOUNT;
+                        #endif
+                        
+                        // Clamp the value to maxMP using a ternary operator
+                        bwl->currentMP = (bwl->currentMP > bwl->maxMP) ? bwl->maxMP : bwl->currentMP; 
+                    }
+                #endif
             }
             gPlaySt.faction = FACTION_RED;
 
@@ -827,22 +846,22 @@ LYN_REPLACE_CHECK(HasBattleUnitGainedWeaponLevel);
 s8 HasBattleUnitGainedWeaponLevel(struct BattleUnit * bu)
 {
 
-#if (defined(SID_ShadowgiftPlus) && (COMMON_SKILL_VALID(SID_ShadowgiftPlus)))
-    if (BattleSkillTester(bu, SID_ShadowgiftPlus))
+#if (defined(SID_ShadowGiftPlus) && (COMMON_SKILL_VALID(SID_ShadowGiftPlus)))
+    if (BattleSkillTester(bu, SID_ShadowGiftPlus))
         if (GetItemType(GetUnit(bu->unit.index)->items[0]) == ITYPE_DARK)
             if (GetUnit(bu->unit.index)->ranks[ITYPE_DARK] == 0)
                 return false;
 #endif
 
-#if (defined(SID_Shadowgift) && (COMMON_SKILL_VALID(SID_Shadowgift)))
-    if (BattleSkillTester(bu, SID_Shadowgift))
+#if (defined(SID_ShadowGift) && (COMMON_SKILL_VALID(SID_ShadowGift)))
+    if (BattleSkillTester(bu, SID_ShadowGift))
         if (GetItemType(GetUnit(bu->unit.index)->items[0]) == ITYPE_DARK)
             if (GetUnit(bu->unit.index)->ranks[ITYPE_DARK] == 0)
                 return false;
 #endif
 
-#if (defined(SID_LuminaPlus) && (COMMON_SKILL_VALID(SID_LuminaPlus)))
-    if (BattleSkillTester(bu, SID_LuminaPlus))
+#if (defined(SID_LightGiftPlus) && (COMMON_SKILL_VALID(SID_LightGiftPlus)))
+    if (BattleSkillTester(bu, SID_LightGiftPlus))
         if (GetItemType(GetUnit(bu->unit.index)->items[0]) == ITYPE_LIGHT)
             if (GetUnit(bu->unit.index)->ranks[ITYPE_LIGHT] == 0)
                 return false;
@@ -3697,6 +3716,38 @@ void MakeTargetListForAdjacentUnits(struct Unit* unit) {
     return;
 }
 
+void TryAddUnitToRangedStatusStavesTargetList(struct Unit* unit) {
+
+    if (AreUnitsAllied(gSubjectUnit->index, unit->index)) {
+        return;
+    }
+
+    if (unit->state & US_RESCUED) {
+        return;
+    }
+
+    AddTarget(unit->xPos, unit->yPos, unit->index, 0);
+
+    return;
+}
+
+void MakeTargetListForRangedStatusStaves(struct Unit* unit) {
+    int x = unit->xPos;
+    int y = unit->yPos;
+
+    gSubjectUnit = unit;
+
+    InitTargets(x, y);
+
+    BmMapFill(gBmMapRange, 0);
+
+    MapAddInRange(x, y, GetUnitMagBy2Range(gSubjectUnit), 1);
+
+    ForEachUnitInRange(TryAddUnitToRangedStatusStavesTargetList);
+
+    return;
+}
+
 LYN_REPLACE_CHECK(UnitUpdateUsedItem);
 void UnitUpdateUsedItem(struct Unit* unit, int itemSlot) {
 
@@ -5063,6 +5114,9 @@ void ClearUnitMapUiStatus(struct PlayerInterfaceProc * proc, u16 * buffer, struc
 LYN_REPLACE_CHECK(ApplyUnitMapUiFramePal);
 void ApplyUnitMapUiFramePal(int faction, int palId)
 {
+#ifdef CONFIG_MMB_WINDOW_PALETTE
+    ApplyPalette(sUiFramePaletteLookup[gPlaySt.config.windowColor], palId);
+#else
     u16 * pal = NULL;
 
     switch (faction)
@@ -5085,7 +5139,7 @@ void ApplyUnitMapUiFramePal(int faction, int palId)
     }
 
     ApplyPalette(pal, palId);
-
+#endif
     return;
 }
 
@@ -5898,4 +5952,39 @@ u8 MenuCancelSelect(struct MenuProc* menu, struct MenuItemProc* item)
 #endif
 
     return MENU_ACT_SKIPCURSOR | MENU_ACT_CLEAR | MENU_ACT_END | MENU_ACT_SND6B;
+}
+
+struct ProcCmd const ProcScr_ChapterStatusScreen_FromPrep_NEW[] =
+{
+    PROC_YIELD,
+
+    PROC_CALL(ChapterStatus_Init),
+    PROC_CALL(ChapterStatus_DrawText),
+    PROC_YIELD,
+
+    PROC_CALL(ChapterStatus_ShowAllLayers),
+    PROC_CALL(FadeInBlackSpeed40),
+    PROC_YIELD,
+
+PROC_LABEL(0),
+    PROC_REPEAT(ChapterStatus_LoopKeyHandler),
+
+PROC_LABEL(1),
+    PROC_CALL(sub_8013F58),
+    PROC_YIELD,
+
+    PROC_CALL(EndMuralBackground),
+    PROC_CALL(ChapterStatus_OnEnd),
+
+    PROC_END,
+};
+
+//! FE8U = 0x0808E79C
+LYN_REPLACE_CHECK(StartChapterStatusScreen_FromPrep);
+void StartChapterStatusScreen_FromPrep(ProcPtr parent)
+{
+    struct ChapterStatusProc * proc = Proc_StartBlocking(ProcScr_ChapterStatusScreen_FromPrep_NEW, parent);
+    proc->unk_3f = 1;
+
+    return;
 }

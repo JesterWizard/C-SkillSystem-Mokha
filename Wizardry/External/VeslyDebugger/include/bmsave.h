@@ -262,7 +262,7 @@ struct SuspendSavePackedUnit {     /* Suspend Data */
     
     /* 30 */ u8 ballistaIndex;
     
-    /* 31 */ u8 _u46;
+    /* 31 */ u8 ai_counter;
     /* 32 */ u16 ai3And4;
     /* 34 */
 } BITPACKED;

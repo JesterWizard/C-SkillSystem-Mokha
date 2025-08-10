@@ -12,6 +12,10 @@ int GetOffensiveStaffAccuracy(struct Unit * actor, struct Unit * target)
     int distance = RECT_DISTANCE(actor->xPos, actor->yPos, target->xPos, target->yPos);
     int result = (baseAccuracy + 30 + unitSkill) - distance * 2;
 
+#ifdef CONFIG_CUSTOM_STAFF_ACCURACY
+    result = CONFIG_CUSTOM_STAFF_ACCURACY;
+#endif
+
     LIMIT_AREA(result, 0, 100);
     return result;
 }

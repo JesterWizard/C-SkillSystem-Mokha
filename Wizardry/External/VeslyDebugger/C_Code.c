@@ -1286,9 +1286,14 @@ void EditSkillsIdle(DebuggerProc* proc) {
 	u16 keys = sKeyStatusBuffer.repeatedKeys; 
     if (keys & B_BUTTON) {
         // Otherwise, close the Supports/Skills window
-        CloseHelpBox();
-        Proc_Goto(proc, RestartLabel);
-        m4aSongNumStart(0x6B);
+        struct HelpBoxProc* proc_helpbox = (void*) Proc_Find(gProcScr_HelpBox);
+        if (proc_helpbox)
+            CloseHelpBox();
+        else
+        {
+            Proc_Goto(proc, RestartLabel);
+            m4aSongNumStart(0x6B);
+        }
     }
     if ((keys & START_BUTTON)||(keys & A_BUTTON)) { // press A or Start to update Supports and continue
         CloseHelpBox(); 
@@ -4170,7 +4175,14 @@ void PutNumberHex(u16 *tm, int color, int number)
         tmp = number % 16; 
         if (tmp > 9) { 
             tmp -= 10; 
-            CustomPutSpecialChar(tm, color, 65 + tmp );
+
+            // This is a temp fix for the capital "C" displaying as a lower case "a". We'll forcibly use lowercase "c" instead
+            if (tmp == 2)
+            {
+                CustomPutSpecialChar(tm, color, 99 );    
+            }
+            else
+                CustomPutSpecialChar(tm, color, 65 + tmp );
             //if (tmp >= 5) { CustomPutSpecialChar(tm, color, TEXT_SPECIAL_S ); } 
             //else { 
             //    PutSpecialChar(tm, color, tmp + TEXT_SPECIAL_A); 

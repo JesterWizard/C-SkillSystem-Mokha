@@ -289,7 +289,7 @@ perform a triangle attack.[X]
 Anger Point[X]
 ## MSG_SKILL_AngerPoint_DESC
 Anger Point:[N]
-Gai +10 attack for the phase[N]
+Gain +10 attack for this phase[N]
 if you've taken a critical hit.[X]
 
 ## MSG_SKILL_Debilitator_NAME

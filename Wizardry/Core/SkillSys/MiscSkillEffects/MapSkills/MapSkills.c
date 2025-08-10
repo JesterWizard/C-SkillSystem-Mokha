@@ -7,16 +7,6 @@
 #include "jester_headers/class-pairs.h"
 #include "playst-expa.h"
 
-#if (defined(SID_Doppleganger) && (COMMON_SKILL_VALID(SID_Doppleganger)))
-
-// Predefine an array of key-value pairs
-const int dopplegangerPairs[1][2] = { { CHARACTER_EIRIKA, CLASS_EIRIKA_LORD } };
-// Define the size of the array
-const int dopplegangerListSize = sizeof(dopplegangerPairs) / sizeof(dopplegangerPairs[0]);
-
-#endif
-
-
 /*
 ** This array is static in the decomp, but it wouldn't compile for me otherwise
 ** I also had to define it in the vanilla.h file
@@ -201,34 +191,64 @@ void UnitApplyWorkingMovementScript(struct Unit *unit, int x, int y)
 
         } // switch (*it)
 
-        // https://github.com/JesterWizard/C-SkillSystem-Mokha/issues/264
-//         if (!(UNIT_CATTRIBUTES(unit) & (CA_THIEF | CA_FLYER | CA_ASSASSIN)))
-//         {
-//             if (gBmMapHidden[y][x] & HIDDEN_BIT_TRAP)
-//             {
-//                 *++it = MOVE_CMD_HALT;
+        // BUG -  https://github.com/JesterWizard/C-SkillSystem-Mokha/issues/264
+        if (!(UNIT_CATTRIBUTES(unit) & (CA_THIEF | CA_FLYER | CA_ASSASSIN)))
+        {
+            if (gBmMapHidden[y][x] & HIDDEN_BIT_TRAP)
+            {
+                #ifdef CONFIG_DIRTY_FIXES
+                    if (gPlaySt.chapterIndex > 1) // Everything inside this if statement is vanilla code
+                    {
+                        *++it = MOVE_CMD_HALT;
 
-//                 gActionData.unitActionType = UNIT_ACTION_TRAPPED;
-//                 gActionData.xMove = x;
-//                 gActionData.yMove = y;
+                        gActionData.unitActionType = UNIT_ACTION_TRAPPED;
+                        gActionData.xMove = x;
+                        gActionData.yMove = y;
 
-//                 return;
-//             }
-//         }
-//         if (gBmMapHidden[y][x] & HIDDEN_BIT_UNIT)
-//         {
-//             *it++ = MOVE_CMD_BUMP;
-//             *it++ = MOVE_CMD_HALT;
+                        return;
+                    }
+                #else
+                    *++it = MOVE_CMD_HALT;
 
-// #if defined(SID_Reflex) && (COMMON_SKILL_VALID(SID_Reflex))
-//             if (!SkillTester(unit, SID_Reflex))
-//                 gActionData.unitActionType = UNIT_ACTION_TRAPPED;
-// #else
-//             gActionData.unitActionType = UNIT_ACTION_TRAPPED;
-// #endif
-//             return;
-//         }
+                    gActionData.unitActionType = UNIT_ACTION_TRAPPED;
+                    gActionData.xMove = x;
+                    gActionData.yMove = y;
 
+                    return;
+                #endif
+            }
+        }
+        if (gBmMapHidden[y][x] & HIDDEN_BIT_UNIT)
+        {
+            #ifdef CONFIG_DIRTY_FIXES
+                if (gPlaySt.chapterIndex > 1) // Everything inside this if statement is vanilla code
+                {
+                    *it++ = MOVE_CMD_BUMP;
+                    *it++ = MOVE_CMD_HALT;
+
+                #if defined(SID_Reflex) && (COMMON_SKILL_VALID(SID_Reflex))
+                    if (!SkillTester(unit, SID_Reflex))
+                        gActionData.unitActionType = UNIT_ACTION_TRAPPED;
+                #else
+                    gActionData.unitActionType = UNIT_ACTION_TRAPPED;
+                #endif
+
+                    return;
+                }
+            #else
+                *it++ = MOVE_CMD_BUMP;
+                *it++ = MOVE_CMD_HALT;
+
+                #if defined(SID_Reflex) && (COMMON_SKILL_VALID(SID_Reflex))
+                    if (!SkillTester(unit, SID_Reflex))
+                        gActionData.unitActionType = UNIT_ACTION_TRAPPED;
+                #else
+                    gActionData.unitActionType = UNIT_ACTION_TRAPPED;
+                #endif
+
+                return;
+            #endif
+        }
         if (*it == MOVE_CMD_HALT)
             break;
 
@@ -272,6 +292,8 @@ void ChapterChangeUnitCleanup(void)
     for (j = 1; j < 0x40; ++j)
     {
         struct Unit *unit = GetUnit(j);
+        u32 pid = UNIT_CHAR_ID(unit);
+        struct NewBwl * bwl = GetNewBwl(pid);
 
         /* Reset the transformed state of any units with the skill */
 #if defined(SID_Transform) && (COMMON_SKILL_VALID(SID_Transform))
@@ -300,6 +322,11 @@ void ChapterChangeUnitCleanup(void)
                 break;
             }
         }
+#endif
+
+/* Reset each player unit's current MP to 0 */
+#ifdef CONFIG_MP_SYSTEM
+        bwl->currentMP = 0;
 #endif
 
         /* Reset the doppleganger state of any units with the skill */
@@ -357,9 +384,6 @@ void ChapterChangeUnitCleanup(void)
 #endif
 
 #if defined(CONFIG_RESET_BWL_STATS_EACH_CHAPTER)
-        u32 pid = UNIT_CHAR_ID(unit);
-        struct NewBwl * bwl = GetNewBwl(pid);
-        
         if (bwl != NULL)
         {
             bwl->battleAmt = 0;

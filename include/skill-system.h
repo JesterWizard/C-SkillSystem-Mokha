@@ -313,9 +313,11 @@ int GetSkillScrollItemIconId(int item);
 
 extern const struct MenuDef RemoveSkillMenuDef;
 extern const struct MenuDef PredationSkillMenuDef;
+extern const struct MenuDef ScrollScribeMenuDef;
 extern const struct ProcCmd ProcScr_SkillScrollUseSoftLock[];
 extern const struct ProcCmd ProcScr_PredationSoftLock[];
 extern const struct ProcCmd ProcScr_PredationPlusSoftLock[];
+
 /**
  * Catch Em All
  */
@@ -524,6 +526,12 @@ u8 Acidic_Usability(const struct MenuItemDef * def, int number);
 u8 Acidic_OnSelected(struct MenuProc * menu, struct MenuItemProc * item);
 u8 AcidicPlus_Usability(const struct MenuItemDef * def, int number);
 u8 AcidicPlus_OnSelected(struct MenuProc * menu, struct MenuItemProc * item);
+u8 Reinforce_Usability(const struct MenuItemDef * def, int number);
+u8 Reinforce_OnSelected(struct MenuProc * menu, struct MenuItemProc * item);
+u8 SealedZone_Usability(const struct MenuItemDef * def, int number);
+u8 SealedZone_OnSelected(struct MenuProc * menu, struct MenuItemProc * item);
+u8 Thrust_Usability(const struct MenuItemDef * def, int number);
+u8 Thrust_OnSelected(struct MenuProc * menu, struct MenuItemProc * item);
 
 u8 Transform_Laguz_Usability(const struct MenuItemDef * def, int number);
 u8 Transform_Laguz_OnSelected(struct MenuProc * menu, struct MenuItemProc * item);
@@ -584,6 +592,9 @@ bool Action_ScrollScribePlus(ProcPtr parent);
 bool Action_DancePlus(ProcPtr parent);
 bool Action_Acidic(ProcPtr parent);
 bool Action_AcidicPlus(ProcPtr parent);
+bool Action_Reinforce(ProcPtr parent);
+bool Action_SealedZone(ProcPtr parent);
+bool Action_Thrust(ProcPtr parent);
 
 bool Action_Transform_Laguz(ProcPtr parent);
 

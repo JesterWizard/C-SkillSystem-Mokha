@@ -679,71 +679,79 @@ if within 3 spaces of an armored ally.[X]
 Analytic[X]
 ## MSG_SKILL_Analytic_DESC
 Analytic:[N]
-+10 ATK if SPD is less than enemy's by[N]
-4 or more. If between 1-3, then +5 ATK.[X]
++10 ATK if SPD is < enemy's by 4 or[N]
+more. If between 1-3, then +5 ATK.[X]
 
 ## MSG_SKILL_MysticBoost_NAME
 Mystic Boost[X]
 ## MSG_SKILL_MysticBoost_DESC
-Mystic Boost: Disables foe's skills[N]
-as "calculate on lower def/res for[N]
-damage". Restores 6 HP after combat.[X]
+Mystic Boost:[N]
+Disables enemy's skills that calculate[N]
+damage based on the lower defensive[N]
+stat. Restores 6 HP after combat.[X]
 
 ## MSG_SKILL_GuardBearing_NAME
 Guard Bearing[X]
 ## MSG_SKILL_GuardBearing_DESC
-Guard Bearing: During first combat[N]
-in enemy phase, if attacked, reduces[N]
-30% damage from foe's first attack.[X]
+Guard Bearing:[N]
+During the enemy phase's first[N]
+combat, reduce the damage for[N]
+the first attack by 30%.[X]
 
 ## MSG_SKILL_Spurn_NAME
 Spurn[X]
 ## MSG_SKILL_Spurn_DESC
-Spurn: Reduce damage as 4% AS diff[N]
-(max 40%). Damage +5 for critical atk[N]
-if unit HP is less than 75%[X]
+Spurn:[N]
+Reduce damage taken by 4% for[N]
+each point of SPD this unit[N]
+exceeds the enemy's by (max 40%).[X]
 
 ## MSG_SKILL_Bushido_NAME
 Bushido[X]
 ## MSG_SKILL_Bushido_DESC
-Bushido:[N]
-Reduce damage as 4% AS diff[N]
-(max 40%). Damage +7[X]
+Bushido: Reduce damage taken by[N]
+4% for each point of SPD this[N]
+unit exceeds the enemy's by (max 40%).[N]
+Damage +7[X]
 
 ## MSG_SKILL_DragonWall_NAME
 Dragon Wall[X]
 ## MSG_SKILL_DragonWall_DESC
 Dragon Wall:[N]
-Reduce damage as 4% RES diff[N]
-(max 40%).[X]
+Reduce damage taken by 4% for[N]
+each point of RES this unit[N]
+exceeds the enemy's by (max 40%).[X]
 
 ## MSG_SKILL_BlueLionRule_NAME
-Blue Lion[X]
+Blue Lion Rule[X]
 ## MSG_SKILL_BlueLionRule_DESC
 Blue Lion Rule:[N]
-Reduce damage as 4% DEF diff[N]
-(max 40%).[X]
+Reduce damage taken by 4% for[N]
+each point of DEF this unit[N]
+exceeds the enemy's by (max 40%).[X]
 
 ## MSG_SKILL_FaerghusAncestry_NAME
 Faerghus Ancestry[X]
 ## MSG_SKILL_FaerghusAncestry_DESC
 Faerghus Ancestry:[N]
-Weapon damage doubled,[N]
-weapon consumption doubled[X]
+x2 weapon damage, but x2 weapon[N]
+uses consumed per hit.[X]
 
-## MSG_SKILL_DragonWarth_NAME
-Dragon's Warth[X]
-## MSG_SKILL_DragonWarth_DESC
-Dragon's Warth: Damage -20% of the[N]
-first attack from the foe and[N]
-attack+20% on first own attack[X]
+## MSG_SKILL_DragonsWrath_NAME
+Dragon's Wrath[X]
+## MSG_SKILL_DragonsWrath_DESC
+Dragon's Wrath: Reduce damage from[N]
+enemy's first attack this battle by[N]
+20%. Boost damage from your own[N]
+first attack this battle by 20%.[X]
 
 ## MSG_SKILL_CrusaderWard_NAME
 Crusader's Ward[X]
 ## MSG_SKILL_CrusaderWard_DESC
 Crusader's Ward:[N]
 Reduces damage from foe's second[N]
-ranged attack onward by 80%[X]
+ranged attack onward this battle[N]
+by 80%[X]
 
 ## MSG_SKILL_Chlorophyll_NAME
 Chlorophyll[X]
@@ -994,7 +1002,7 @@ this unit lose as much instead.[X]
 Barricade[X]
 ## MSG_SKILL_Barricade_DESC
 Barricade: Damage taken is halved[N]
-in this combat oNy, after first[N]
+in this combat only, after first[N]
 being struck.[X]
 
 ## MSG_SKILL_BarricadePlus_NAME
@@ -1080,31 +1088,31 @@ Good As Gold:[N]
 This unit is immune to all[N]
 harmful status conditions.[X]
 
-## MSG_SKILL_Shadowgift_NAME
-Shadowgift[X]
-## MSG_SKILL_Shadowgift_DESC
-Shadowgift:[N]
+## MSG_SKILL_ShadowGift_NAME
+ShadowGift[X]
+## MSG_SKILL_ShadowGift_DESC
+ShadowGift:[N]
 Grants this unit access to[N]
 Dark magic up to rank C.[X]
 
-## MSG_SKILL_ShadowgiftPlus_NAME
-Shadowgift+[X]
-## MSG_SKILL_ShadowgiftPlus_DESC
-Shadowgift+:[N]
+## MSG_SKILL_ShadowGiftPlus_NAME
+ShadowGift+[X]
+## MSG_SKILL_ShadowGiftPlus_DESC
+ShadowGift+:[N]
 Grants this unit access to[N]
 Dark magic up to rank A.[X]
 
-## MSG_SKILL_Lumina_NAME
-Lumina[X]
-## MSG_SKILL_Lumina_DESC
-Lumina:[N]
+## MSG_SKILL_LightGift_NAME
+LightGift[X]
+## MSG_SKILL_LightGift_DESC
+LightGift:[N]
 Grants this unit access to[N]
 Light magic up to rank C.[X]
 
-## MSG_SKILL_LuminaPlus_NAME
-Lumina+[X]
-## MSG_SKILL_LuminaPlus_DESC
-Lumina+:[N]
+## MSG_SKILL_LightGiftPlus_NAME
+LightGift+[X]
+## MSG_SKILL_LightGiftPlus_DESC
+LightGift+:[N]
 Grants this unit access to[N]
 Light magic up to rank A.[X]
 
@@ -1589,9 +1597,8 @@ Freelancer[X]
 ## MSG_SKILL_Freelancer_DESC
 Freelancer:[N]
 Gain +5 to a stat for each weapon[N]
-type the unit uses.[N]
-Sword = SPD, Lance = SKL,[N]
-Axe = STR, Bow = LCK.[X]
+type the unit uses. Sword = SPD,
+Lance = SKL, Axe = STR, Bow = LCK.[X]
 
 ## MSG_SKILL_Flicker_NAME
 Flicker[X]
@@ -1614,3 +1621,25 @@ Golden Glory[X]
 Golden Glory:[N]
 Boost all stats by +1 for every[N]
 20000g in total, max +5.[X]
+
+## MSG_SKILL_Calibration_NAME
+Calibration[X]
+## MSG_SKILL_Calibration_DESC
+Calibration:[N]
+Gain +1 hit per expended uses[N]
+on the equipped weapon.[X]
+
+## MSG_SKILL_SupremeOverlord_NAME
+Supreme Overlord[X]
+## MSG_SKILL_SupremeOverlord_DESC
+Supreme Overlord:[N]
+Player units gain +3 to all stats per[N]
+allied unit who died this chapter.[N]
+Other factions gain +1 per 3 allies dead.[X]
+
+## MSG_SKILL_Osmose_NAME
+Osmose[X]
+## MSG_SKILL_Osmose_DESC
+Osmose:[N]
+Passively drain 1/4 of the damage[N]
+inflicted on the enemy to restore your MP.[X]

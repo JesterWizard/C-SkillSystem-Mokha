@@ -413,3 +413,32 @@ Protect:[N]
 When defending this turn,[N]
 the first strike to this[N]
 unit this turn deals no damage.[X]
+
+## MSG_SKILL_NinthCircle_NAME
+Ninth Circle[X]
+## MSG_SKILL_NinthCircle_DESC
+Ninth Circle:[N]
+Allows this unit's status staves[N]
+to target all enemy units in range.[X]
+
+## MSG_SKILL_InevitableEnd_NAME
+Inevitable End[X]
+## MSG_SKILL_InevitableEnd_DESC
+Inevitable End:[N]
+Enemy units suffer stacking stat[N]
+debuffs from weapons and skills that[N]
+inflict them when used by this unit.[X]
+
+## MSG_SKILL_MPChanneling_NAME
+MP Channeling[X]
+## MSG_SKILL_MPChanneling_DESC
+MP Channelimg:[N]
+Double this unit's[N]
+MP generation.[X]
+
+## MSG_SKILL_Eldritch_NAME
+Eldritch[X]
+## MSG_SKILL_Eldritch_DESC
+Eldritch:[N]
+This unit can use[N]
+monster weapons.[X]

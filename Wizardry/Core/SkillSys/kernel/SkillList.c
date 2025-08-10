@@ -52,11 +52,11 @@ const SkillUpgrade skill_upgrades[] = {
 	#if defined(SID_Stormgift) && defined(SID_StormgiftPlus) && COMMON_SKILL_VALID(SID_Stormgift) && COMMON_SKILL_VALID(SID_StormgiftPlus)
 		{ SID_Stormgift, SID_StormgiftPlus },
 	#endif
-	#if defined(SID_Shadowgift) && defined(SID_ShadowgiftPlus) && COMMON_SKILL_VALID(SID_Shadowgift) && COMMON_SKILL_VALID(SID_ShadowgiftPlus)
-		{ SID_Shadowgift, SID_ShadowgiftPlus },
+	#if defined(SID_ShadowGift) && defined(SID_ShadowGiftPlus) && COMMON_SKILL_VALID(SID_ShadowGift) && COMMON_SKILL_VALID(SID_ShadowGiftPlus)
+		{ SID_ShadowGift, SID_ShadowGiftPlus },
 	#endif
-	#if defined(SID_Lumina) && defined(SID_LuminaPlus) && COMMON_SKILL_VALID(SID_Lumina) && COMMON_SKILL_VALID(SID_LuminaPlus)
-		{ SID_Lumina, SID_LuminaPlus },
+	#if defined(SID_LightGift) && defined(SID_LightGiftPlus) && COMMON_SKILL_VALID(SID_LightGift) && COMMON_SKILL_VALID(SID_LightGiftPlus)
+		{ SID_LightGift, SID_LightGiftPlus },
 	#endif
 	#if defined(SID_Fury) && defined(SID_FuryPlus) && COMMON_SKILL_VALID(SID_Fury) && COMMON_SKILL_VALID(SID_FuryPlus)
 		{ SID_Fury, SID_FuryPlus },

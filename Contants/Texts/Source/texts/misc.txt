@@ -12,21 +12,6 @@ The unit doesn't have enough[NL]
 remaining capacity to[NL]
 learn this skill.[A][X]
 
-## MSG_GaidenBMagic_UM_NAME
- B.Mag[X]
-
-## MSG_GaidenBMagic_UM_DESC
- Gaiden style black magic.[.][X]
-
-## MSG_GaidenWMagic_UM_NAME
- W.Mag[X]
-
-## MSG_GaidenWMagic_UM_DESC
- Gaiden style white magic.[.][X]
-
-## MSG_GaidenMagic_ItemMenuDisabled
-Can not use now![NL][X]
-
 ## MSG_ItemSubOption_Reorganize_NAME
 Reorg[.][X]
 
@@ -129,3 +114,87 @@ Item cannot be forged.[X]
 
 ## NotEnoughGoldToForgeItemRText
 Not enough gold to forge item.[X]
+
+## MSG_PREP_SCREEN_TITLE_UNITS
+Pick Units[X]
+## MSG_PREP_SCREEN_DESC_UNITS
+Select which units to[N]
+field this battle. The[N]
+number is restricted.[X]
+
+## MSG_PREP_SCREEN_TITLE_ITEMS
+Items[X]
+## MSG_PREP_SCREEN_DESC_ITEMS
+Manage your unit's items.[X]
+
+## MSG_PREP_SCREEN_TITLE_CANCEL
+Cancel[X]
+## MSG_PREP_SCREEN_DESC_CANCEL
+Cancel link formation[.][LF]
+and return to the[.][LF]
+previous screen.[X]
+
+## MSG_PREP_SCREEN_TITLE_SUPPORT
+Support[X]
+## MSG_PREP_SCREEN_DESC_SUPPORT
+Check the compatibility[N]
+of your units.[X]
+
+## MSG_PREP_SCREEN_TITLE_START_MAP
+Start Map[X]
+## MSG_PREP_SCREEN_DESC_START_MAP
+The battle will begin.[N]
+You can also press[N]
+START to begin.[X]
+
+## MSG_PREP_SCREEN_TITLE_SAVE
+Save[X]
+## MSG_PREP_SCREEN_DESC_SAVE
+Save any changes.[N]
+Choose Restart Chapter[N]
+to restart this chapter.[N]
+You can't return to the[N]
+world map after saving.[X]
+
+## MSG_PREP_SCREEN_TITLE_AUGURY
+Augury[X]
+## MSG_PREP_SCREEN_DESC_AUGURY
+View hints related to[N]
+this chapter. Including[N]
+what units to bring, or[N]
+what items to use, etc.[X]
+
+## MSG_PREP_SCREEN_TITLE_CHECK_MAP
+Check Map[X]
+## MSG_PREP_SCREEN_DESC_CHECK_MAP
+View the map. Check[N]
+the number of type of[N]
+enemies. Also, check for[N]
+shops and change your[N]
+allies' starting positions.[X]
+
+## MSG_PREP_SCREEN_TITLE_SKILLS
+Skills[X]
+## MSG_PREP_SCREEN_DESC_SKILLS
+Manage your units' skills.[N]
+Choose which skills each[N]
+unit will equip/remove.[N]
+Removed skills are saved[N]
+into a seperate list.[X]
+
+## MSG_PREP_SCREEN_TITLE_BEXP
+Bonus EXP[X]
+## MSG_PREP_SCREEN_DESC_BEXP
+Distribute bonus EXP[N]
+gained in past chapters[N]
+amongst your units.[N]
+Weaker units take less[N]
+bonus EXP to level.[X]
+
+## MSG_PREP_SCREEN_TITLE_BASE_CONVERSATIONS
+Base[X]
+## MSG_PREP_SCREEN_DESC_BASE_CONVERSATIONS
+Display additional[N]
+conversations between[N]
+allied units for this[N]
+chapter.[X]

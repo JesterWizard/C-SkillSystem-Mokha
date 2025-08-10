@@ -4,6 +4,7 @@
 #include "constants/skills.h"
 #include "mapanim.h"
 #include "debuff.h"
+#include "jester_headers/custom-functions.h"
 
 // LYN_REPLACE_CHECK(BeginBattleAnimations);
 // void BeginBattleAnimations(void) {
@@ -68,29 +69,91 @@ void ExecMine(ProcPtr proc) {
     return;
 }
 
-void ExecCustomStaves(ProcPtr proc) {
-    // struct Unit * unit_act = GetUnit(gActionData.subjectIndex);
-    // struct Unit * unit_tar = GetUnit(gActionData.targetIndex);
+void AddAsTarget_IfCanStealFromWithForge(struct Unit* unit);
+void AddAsTarget_IfCanStealFromWithForge(struct Unit* unit) {
+    int i;
 
-    // BattleInitItemEffect(unit_act, gActionData.itemSlotIndex);
+    if (UNIT_FACTION(unit) != FACTION_RED) {
+        return;
+    }
 
-    // BattleInitItemEffectTarget(unit_tar);
+    if (gActiveUnit->spd < unit->spd) {
+        return;
+    }
 
-    // BattleApplyItemEffect(proc);
+    for (i = 0; i < UNIT_ITEM_COUNT; i++) {
+        u16 item = unit->items[i];
 
-    // int itemId = GetItemIndex(unit_act->items[0]);
+        if (item == 0) {
+            return;
+        }
+        
+        /* If item isn't a weapon, move on to the next one to check */
+        if (!(GetItemAttributes(item) & (IA_STAFF | IA_WEAPON))) {
+            continue;
+        }
 
-    // switch (itemId)
-    // {   
-    // case CONFIG_ITEM_INDEX_SLOW_STAFF:
-    //     SetUnitStatus(unit_tar, NEW_UNIT_STATUS_SLOW);
-    //     break;
+        AddTarget(unit->xPos, unit->yPos, unit->index, 0);
+        return;
+    }
 
-    // default:
-    //     break;
+    return;
+}
+
+void MakeTargetListForForgeStaff(struct Unit* unit) {
+    int x = unit->xPos;
+    int y = unit->yPos;
+
+    gSubjectUnit = unit;
+
+    BmMapFill(gBmMapRange, 0);
+
+    ForEachAdjacentUnit(x, y, AddAsTarget_IfCanStealFromWithForge);
+
+    return;
+}
+
+void ExecForgeStaff(ProcPtr proc)
+{
+    // if (menuItem->availability == MENU_DISABLED)
+    // {
+    //     MenuFrozenHelpBox(menu, 0x862); // TODO msgid "Your inventory is full.[.]"
+    //     return MENU_ACT_SND6B;
     // }
 
-    // BeginBattleAnimations();
+    ClearBg0Bg1();
+
+    MakeTargetListForForgeStaff(gActiveUnit);
+
+    NewTargetSelection(&gSelectInfo_Steal);
+
+    return;
+}
+
+void ExecCustomStaves(ProcPtr proc) {
+    struct Unit * unit_act = GetUnit(gActionData.subjectIndex);
+    struct Unit * unit_tar = GetUnit(gActionData.targetIndex);
+
+    BattleInitItemEffect(unit_act, gActionData.itemSlotIndex);
+
+    BattleInitItemEffectTarget(unit_tar);
+
+    BattleApplyItemEffect(proc);
+
+    int itemId = GetItemIndex(unit_act->items[0]);
+
+    switch (itemId)
+    {   
+#ifdef CONFIG_ITEM_INDEX_SLOW_STAFF
+    case CONFIG_ITEM_INDEX_SLOW_STAFF:
+        SetUnitStatus(unit_tar, NEW_UNIT_STATUS_SLOW);
+        break;
+#endif
+    default:
+        break;
+    }
+
+    BeginBattleAnimations();
     
     return;
 }

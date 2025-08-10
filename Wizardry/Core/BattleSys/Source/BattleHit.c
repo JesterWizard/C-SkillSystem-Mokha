@@ -249,6 +249,20 @@ void BattleGenerateHitAttributes(struct BattleUnit * attacker, struct BattleUnit
         gBattleActorGlobalFlag.skill_activated_debilitator = true;
 #endif
 
+#if (defined(SID_InevitableEnd) && (COMMON_SKILL_VALID(SID_InevitableEnd)))
+    if (BattleSkillTester(attacker, SID_InevitableEnd))
+    {
+        /* Ensure it only applies for one hit, essentially making it only stack 'per battle' */
+        if (GetBattleGlobalFlags(attacker)->round_cnt_hit < 2)
+        {
+            struct Unit * target = GetUnit(defender->unit.index);
+
+            /* If we're at the max for the hit counter, don't increment it further */
+            target->hitCounter += (target->hitCounter == 15 ? 0 : 1);
+        }
+    }
+#endif
+
     BattleCheckPetrify(attacker, defender);
 
     if (gBattleStats.damage != 0)
@@ -260,29 +274,29 @@ void BattleGenerateHitEffects(struct BattleUnit * attacker, struct BattleUnit * 
 {
     FORCE_DECLARE bool gainWEXP = true;
 
-#if (defined(SID_ShadowgiftPlus) && (COMMON_SKILL_VALID(SID_ShadowgiftPlus)))
-    if (BattleSkillTester(attacker, SID_ShadowgiftPlus))
+#if (defined(SID_ShadowGiftPlus) && (COMMON_SKILL_VALID(SID_ShadowGiftPlus)))
+    if (BattleSkillTester(attacker, SID_ShadowGiftPlus))
         if (GetItemType(GetUnitEquippedWeapon(GetUnit(attacker->unit.index))) == ITYPE_DARK)
             if (GetUnit(attacker->unit.index)->ranks[ITYPE_DARK] == 0)
                 gainWEXP = false;
 #endif
 
-#if (defined(SID_Shadowgift) && (COMMON_SKILL_VALID(SID_Shadowgift)))
-    if (BattleSkillTester(attacker, SID_Shadowgift))
+#if (defined(SID_ShadowGift) && (COMMON_SKILL_VALID(SID_ShadowGift)))
+    if (BattleSkillTester(attacker, SID_ShadowGift))
         if (GetItemType(GetUnitEquippedWeapon(GetUnit(attacker->unit.index))) == ITYPE_DARK)
             if (GetUnit(attacker->unit.index)->ranks[ITYPE_DARK] == 0)
                 gainWEXP = false;
 #endif
 
-#if (defined(SID_LuminaPlus) && (COMMON_SKILL_VALID(SID_LuminaPlus)))
-    if (BattleSkillTester(attacker, SID_LuminaPlus))
+#if (defined(SID_LightGiftPlus) && (COMMON_SKILL_VALID(SID_LightGiftPlus)))
+    if (BattleSkillTester(attacker, SID_LightGiftPlus))
         if (GetItemType(GetUnitEquippedWeapon(GetUnit(attacker->unit.index))) == ITYPE_LIGHT)
             if (GetUnit(attacker->unit.index)->ranks[ITYPE_LIGHT] == 0)
                 gainWEXP = false;
 #endif
 
-#if (defined(SID_Lumina) && (COMMON_SKILL_VALID(SID_Lumina)))
-    if (BattleSkillTester(attacker, SID_Lumina))
+#if (defined(SID_LightGift) && (COMMON_SKILL_VALID(SID_LightGift)))
+    if (BattleSkillTester(attacker, SID_LightGift))
         if (GetItemType(GetUnitEquippedWeapon(GetUnit(attacker->unit.index))) == ITYPE_LIGHT)
             if (GetUnit(attacker->unit.index)->ranks[ITYPE_LIGHT] == 0)
                 gainWEXP = false;
@@ -527,22 +541,6 @@ bool BattleGenerateHit(struct BattleUnit * attacker, struct BattleUnit * defende
         gBattleHitIterator->info |= BATTLE_HIT_INFO_RETALIATION;
 
     BattleUpdateBattleStats(attacker, defender);
-
-// #if CHAX
-// 	/**
-// 	 * Gaiden magic needs hp-cost
-// 	 */
-// 	if (CheckGaidenMagicAttack(attacker)) {
-// 		int hp_cost = GetGaidenWeaponHpCost(&attacker->unit, attacker->weapon);
-
-// 		if (!TryBattleHpCost(attacker, hp_cost)) {
-// 			gBattleHitIterator->info |= BATTLE_HIT_INFO_FINISHES;
-// 			gBattleHitIterator++;
-// 			return true;
-// 		}
-// 	}
-// #endif
-
     BattleGenerateHitTriangleAttack(attacker, defender);
     BattleGenerateHitAttributes(attacker, defender);
     BattleGenerateHitEffects(attacker, defender);
@@ -594,7 +592,6 @@ bool BattleGenerateHit(struct BattleUnit * attacker, struct BattleUnit * defende
             }
     }
 #endif
-
 
         gBattleHitIterator->info |= BATTLE_HIT_INFO_FINISHES;
 
@@ -690,13 +687,15 @@ bool BattleGenerateHit(struct BattleUnit * attacker, struct BattleUnit * defende
             gBattleHitIterator->info |= BATTLE_HIT_INFO_KILLS_TARGET;
         }
 
-#ifdef CONFIG_FE4_CRIT_BONUS_ON_KILL
+#ifdef CONFIG_FORGING
+    #ifdef CONFIG_FE4_CRIT_BONUS_ON_KILL
             u16 item = GetUnitEquippedWeapon(GetUnit(gBattleActor.unit.index));
             if (CanItemBeForged(item))
             {
                 u8 id = ITEM_USES(item);
                 gForgedItemRam[id].crit += 1;
             }
+    #endif
 #endif
 
         gBattleHitIterator++;

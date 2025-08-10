@@ -218,12 +218,7 @@ void PrepSkill2_DrawLeftSkillIcon(struct ProcPrepSkill2 * proc)
     {
         struct Text * text = &gPrepUnitTexts[0x16];
         ClearText(text);
-        PutDrawText(
-            text,
-            TILEMAP_LOCATED(gBG0TilemapBuffer, 2, 6),
-            TEXT_COLOR_SYSTEM_GRAY, 0, 0,
-            GetStringFromIndex(MSG_MSS_NOSKILLS)
-        );
+        PutDrawText(text, TILEMAP_LOCATED(gBG0TilemapBuffer, 2, 6), TEXT_COLOR_SYSTEM_GRAY, 0, 0, GetStringFromIndex(MSG_MSS_NOSKILLS));
     }
 
     for (y = 0; y < PREP_SLLIST_HEIGHT; y++)
@@ -260,7 +255,7 @@ void PrepSkill2_InitTexts(void)
     /* Don't touch: Left unit name & Right top bar, misc*/
     InitText(&gPrepUnitTexts[0x13], 7);
     InitText(&gPrepUnitTexts[0x14], 10);
-    InitText(&gPrepUnitTexts[0x15], 5);
+    InitText(&gPrepUnitTexts[0x15], 10);
 
     /* Left no-skills */
     InitText(&gPrepUnitTexts[0x16], 7);
@@ -323,18 +318,10 @@ void PrepSkill2_DrawRightTopBar(struct ProcPrepSkill2 * proc)
     struct SkillList * llist = GetUnitSkillList(unit);
 
     ClearText(text);
-    TileMap_FillRect(TILEMAP_LOCATED(gBG0TilemapBuffer, 0x10, 0x1), 0xA, 0x1, 0);
+    TileMap_FillRect(TILEMAP_LOCATED(gBG0TilemapBuffer, 16, 1), 16, 0x1, 0);
 
-    PutNumber(
-        TILEMAP_LOCATED(gBG0TilemapBuffer, 0x12, 0x1),
-        color,
-        llist->amt
-    );
-
-    PutDrawText(
-        text,
-        TILEMAP_LOCATED(gBG0TilemapBuffer, 0x16, 0x1),
-        TEXT_COLOR_SYSTEM_WHITE, 0, 0,
-        GetStringFromIndex(MSG_PREPSKILL_RightTopBar)
-    );
+    PutDrawText(&gPrepUnitTexts[0x15], TILEMAP_LOCATED(gBG0TilemapBuffer, 14, 1), TEXT_COLOR_SYSTEM_WHITE, 0, 0, GetStringFromIndex(MSG_PREPSKILL_LeftTopBar));
+    PutNumber(TILEMAP_LOCATED(gBG0TilemapBuffer, 24, 1), color, llist->amt);
+    PutDrawText(&gPrepUnitTexts[0x12], TILEMAP_LOCATED(gBG0TilemapBuffer, 25, 1), TEXT_COLOR_SYSTEM_WHITE, 0, 0, "/");
+    PutNumber(TILEMAP_LOCATED(gBG0TilemapBuffer, 26, 1), color, UNIT_RAM_SKILLS_LEN);
 }

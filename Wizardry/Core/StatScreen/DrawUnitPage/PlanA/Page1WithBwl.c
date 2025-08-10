@@ -215,7 +215,7 @@ static void DrawPage1ValueCommon(void)
             GetUnitStatusName(unit));
     }
 
-    if (GetUnitStatusIndex(gStatScreen.unit) != UNIT_STATUS_NONE)
+   if (GetUnitStatusIndex(gStatScreen.unit) != UNIT_STATUS_NONE && GetUnitStatusIndex(gStatScreen.unit) != NEW_UNIT_STATUS_DISMOUNT)
     {
         PutNumberSmall(
             gUiTmScratchA + TILEMAP_INDEX(0x10, 0xB),
@@ -280,7 +280,7 @@ static u8 GetUnitLaguzBarValue(struct Unit * unit)
     if (pid > 0x40)
         return 0;
     else
-        return bwl->_pad_[1];
+        return bwl->laguzBar;
 }
 
 FORCE_DECLARE static void DrawPage1LaguzBar(void)

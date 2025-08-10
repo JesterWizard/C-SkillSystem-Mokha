@@ -5,8 +5,10 @@
 {
     EventPointerTable(0x7, Chapter00Event)
     #include "Source/Chapter_00/Chapter_00.lyn.event"
+    #include "Source/Chapter_00/Map/Chapter_00_Map.event"
     EventPointerTable(0xA, Chapter01Event)
     #include "Source/Chapter_01/Chapter_01.lyn.event"
+    #include "Source/Chapter_01/Map/Chapter_01_Map.event"
     EventPointerTable(0xC5, IntermissionEvent)
     #include "Source/Intermission/Intermission.lyn.event"
     EventPointerTable(0xD, Chapter02Event)
@@ -39,6 +41,10 @@
     // EventPointerTable(0x33, Chapter10Event)
     // #include "Source/Chapter_10/Chapter_10.lyn.event"
     // #include "Source/Chapter_10/Map/Chapter_10_map.event"
+
+    // EventPointerTable(0x4B, Chapter09Event)
+    // #include "Source//Chapter_16.lyn.event"
+    #include "Source/Ruled_By_Madness/Map/Chapter_16_Map.event"
 }
 
     #include "Source/World_Map_Events.lyn.event"

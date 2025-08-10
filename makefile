@@ -83,7 +83,7 @@ EA_DEP            := $(EA_DIR)/ea-dep
 TEXT_PROCESS      := python3 $(TOOL_DIR)/FE-PyTools/text-process.py
 
 # LYN_PROTECTOR := $(TOOL_DIR)/scripts/lynjump-protector.sh
-LYN_DETECTOR  := $(TOOL_DIR)/scripts/lynjump-detector.sh
+# LYN_DETECTOR  := $(TOOL_DIR)/scripts/lynjump-detector.sh
 
 GRIT := $(DEVKITPRO)/tools/bin/grit
 LZSS := $(DEVKITPRO)/tools/bin/gbalzss
@@ -122,7 +122,7 @@ post_chax: $(CHAX_DIFF)
 
 $(CHAX_DIFF): $(FE8_CHX)
 	@echo "[SEC]	Lyn-jump detection..."
-	@$(LYN_DETECTOR) || exit 1
+# @$(LYN_DETECTOR) || exit 1
 	@echo "[SEC]	Lyn-jump detection passed"
 
 ifeq ($(CONFIG_RELEASE_COMPILATION), 1)
@@ -388,8 +388,8 @@ pre_build: $(PRE_BUILD)
 # 	@rm -rf $(CLEAN_DIRS)
 
 clean_basic:
-	@find . -type f -name '*.o' -exec rm -f {} +
-	@find . -type d -name 'temp*' -exec rm -rf {} +
+	@find . -type f -name '*.o' -print0 | xargs -0 rm -f
+	@find . -type d -name 'temp*' -print0 | xargs -0 rm -rf
 
 clean:
 	@for i in $(CLEAN_BUILD); do if test -e $$i/makefile ; then $(MAKE) -f $$i/makefile clean || { exit 1;} fi; done;

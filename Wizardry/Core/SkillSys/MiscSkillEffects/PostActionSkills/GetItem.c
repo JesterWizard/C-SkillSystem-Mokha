@@ -24,7 +24,27 @@ bool PostActionGetItem(ProcPtr parent)
                 {
                     struct SkillList *list;
                     list = GetUnitSkillList(&gBattleTarget.unit);
-                    NewPopup_ItemGot(parent, unit, (list->sid[0] << 8) | CONFIG_ITEM_INDEX_SKILL_SCROLL);
+
+                    if (list->sid[0] <= 0xFF)
+                    {
+                        NewPopup_ItemGot(parent, unit, (list->sid[0] << 8) | CONFIG_ITEM_INDEX_SKILL_SCROLL_1);
+                        break;
+                    }
+                    else if(list->sid[0] <= 0x1FF)
+                    {
+                        NewPopup_ItemGot(parent, unit, (list->sid[0] << 8) | CONFIG_ITEM_INDEX_SKILL_SCROLL_2);
+                        break;
+                    }
+                    else if (list->sid[0] <= 0x2FF)
+                    {
+                        NewPopup_ItemGot(parent, unit, (list->sid[0] << 8) | CONFIG_ITEM_INDEX_SKILL_SCROLL_3);
+                        break;
+                    }
+                    else if (list->sid[0] <= 0x3FF)
+                    {
+                        NewPopup_ItemGot(parent, unit, (list->sid[0] << 8) | CONFIG_ITEM_INDEX_SKILL_SCROLL_4);
+                        break;
+                    }
                 }
 #endif
 

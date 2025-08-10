@@ -2,6 +2,7 @@
 #include "item-sys.h"
 #include "skill-system.h"
 #include "constants/skills.h"
+#include "jester_headers/custom-functions.h"
 
 extern struct ProcCmd CONST_DATA ProcScr_SetTargetStatus[];
 extern struct ProcCmd CONST_DATA ProcScr_ExecNightmareStaff[];
@@ -243,6 +244,11 @@ void ActionStaffDoorChestUseItem(ProcPtr proc) {
 #ifdef CONFIG_ITEM_INDEX_SKILL_SCROLL_4
         case CONFIG_ITEM_INDEX_SKILL_SCROLL_4:
             ItemUseAction_SkillScroll(proc);
+            break;
+#endif
+#ifdef CONFIG_ITEM_INDEX_FORGE_STAFF
+        case CONFIG_ITEM_INDEX_FORGE_STAFF:
+            ExecForgeStaff(proc);
             break;
 #endif
     }

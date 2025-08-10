@@ -8,7 +8,7 @@
 #include "bwl.h"
 
 #ifdef CONFIG_FORGING
-#define brk asm("mov r11, r11");
+// #define brk asm("mov r11, r11");
 
     int GetForgedItemDurability(int item) {
         if (GetItemAttributes(item) & IA_UNBREAKABLE || !UseForgedItemDurability)
@@ -432,6 +432,24 @@ const struct ItemData * GetItemData(int itemIndex)
     return gItemData_New + itemIndex;
 }
 
+LYN_REPLACE_CHECK(GetItemAttributes);
+int GetItemAttributes(int item) {
+    return GetItemData(ITEM_INDEX(item))->attributes;
+}
+
+LYN_REPLACE_CHECK(GetItemType);
+int GetItemType(int item) {
+    if (!item)
+        return 0xFF;
+
+    return GetItemData(ITEM_INDEX(item))->weaponType;
+}
+
+LYN_REPLACE_CHECK(GetItemRequiredExp);
+int GetItemRequiredExp(int item) {
+    return GetItemData(ITEM_INDEX(item))->weaponRank;
+}
+
 LYN_REPLACE_CHECK(GetItemNameWithArticle);
 char * GetItemNameWithArticle(int item, s8 capitalize)
 {
@@ -753,12 +771,16 @@ u16 GetItemAfterUse(int item)
 #endif
 
 #ifdef CONFIG_FORGING
-    struct ForgeLimits limits = gForgeLimits[GetItemIndex(item)];
-    if (limits.maxCount) {
-        if (!SetForgedItemAfterUse(item)) { // out of uses, so delete the item
-            return 0;
+    if (CanItemBeForged(item))
+    {
+        NoCashGBAPrint("PRINT:Heizenbug at GetItemAfterUse");
+        struct ForgeLimits limits = gForgeLimits[GetItemIndex(item)];
+        if (limits.maxCount) {
+            if (!SetForgedItemAfterUse(item)) { // out of uses, so delete the item
+                return 0;
+            }
+            return item; // items that have a nonzero forge count don't lose uses
         }
-        return item; // items that have a nonzero forge count don't lose uses
     }
 #endif
 
@@ -940,6 +962,48 @@ void RefreshHammerneUnitInfoWindow(struct Unit* unit) {
     BG_EnableSyncByMask(BG0_SYNC_BIT | BG1_SYNC_BIT);
 }
 
+LYN_REPLACE_CHECK(GetWeaponLevelFromExp);
+int GetWeaponLevelFromExp(int wexp) {
+    if (wexp < WPN_EXP_E)
+        return WPN_LEVEL_0;
+
+    if (wexp < WPN_EXP_D)
+        return WPN_LEVEL_E;
+
+    if (wexp < WPN_EXP_C)
+        return WPN_LEVEL_D;
+
+    if (wexp < WPN_EXP_B)
+        return WPN_LEVEL_C;
+
+    if (wexp < WPN_EXP_A)
+        return WPN_LEVEL_B;
+
+    if (wexp < WPN_EXP_S)
+        return WPN_LEVEL_A;
+
+    return WPN_LEVEL_S;
+}
+
+LYN_REPLACE_CHECK(GetItemDisplayRankString);
+char* GetItemDisplayRankString(int item) {
+    int rankTextIdLookup[] = {
+        // TODO: TEXT ID CONSTANTS
+        0x52C, 0x52D, 0x52E, 0x52F, // --, E, D, C
+        0x530, 0x531, 0x532, 0x533, // B, A, S, Prf
+    };
+
+    // reuse of the same variable for different purposes :/
+    int var = GetItemRequiredExp(item);
+
+    if ((GetItemAttributes(item) & IA_LOCK_ANY) && GetWeaponLevelFromExp(var) == WPN_LEVEL_0)
+        var = 7;
+    else
+        var = GetWeaponLevelFromExp(var);
+
+    return GetStringFromIndex(rankTextIdLookup[var]);
+};
+
 
 LYN_REPLACE_CHECK(PrepUnit_DrawUnitItems);
 void PrepUnit_DrawUnitItems(struct Unit *unit)
@@ -968,15 +1032,15 @@ void PrepUnit_DrawUnitItems(struct Unit *unit)
         );
 
 #ifdef CONFIG_FORGING
-        struct ForgeLimits limits = gForgeLimits[GetItemIndex(item)];
-        if (CanItemBeForged(item)) {
-            PutSpecialChar(TILEMAP_LOCATED(gBG0TilemapBuffer, 8, 5 + 2 * i), IsItemDisplayUsable(unit, item) ? TEXT_COLOR_SYSTEM_GOLD : TEXT_COLOR_SYSTEM_GRAY, TEXT_SPECIAL_PLUS);
-            PutNumberOrBlank(TILEMAP_LOCATED(gBG0TilemapBuffer, 9, 5 + 2 * i), IsItemDisplayUsable(unit, item) ? TEXT_COLOR_SYSTEM_GOLD : TEXT_COLOR_SYSTEM_GRAY, GetItemForgeCount(item));
-            PutNumberOrBlank(TILEMAP_LOCATED(gBG0TilemapBuffer, 11, 5 + 2 * i), IsItemDisplayUsable(unit, item) ? TEXT_COLOR_SYSTEM_BLUE : TEXT_COLOR_SYSTEM_GRAY, GetForgedItemDurability(item));
-        } else if (limits.maxCount == 0) {
-            PutNumberOrBlank(TILEMAP_LOCATED(gBG0TilemapBuffer, 11, 5 + 2 * i), IsItemDisplayUsable(unit, item) ? TEXT_COLOR_SYSTEM_BLUE : TEXT_COLOR_SYSTEM_GRAY, GetItemUses(item));
-        }
-#else
+        // struct ForgeLimits limits = gForgeLimits[GetItemIndex(item)];
+        // if (CanItemBeForged(item)) {
+        //     PutSpecialChar(TILEMAP_LOCATED(gBG0TilemapBuffer, 8, 5 + 2 * i), IsItemDisplayUsable(unit, item) ? TEXT_COLOR_SYSTEM_GOLD : TEXT_COLOR_SYSTEM_GRAY, TEXT_SPECIAL_PLUS);
+        //     PutNumberOrBlank(TILEMAP_LOCATED(gBG0TilemapBuffer, 9, 5 + 2 * i), IsItemDisplayUsable(unit, item) ? TEXT_COLOR_SYSTEM_GOLD : TEXT_COLOR_SYSTEM_GRAY, GetItemForgeCount(item));
+        //     PutNumberOrBlank(TILEMAP_LOCATED(gBG0TilemapBuffer, 11, 5 + 2 * i), IsItemDisplayUsable(unit, item) ? TEXT_COLOR_SYSTEM_BLUE : TEXT_COLOR_SYSTEM_GRAY, GetForgedItemDurability(item));
+        // } else if (limits.maxCount == 0) {
+        //     PutNumberOrBlank(TILEMAP_LOCATED(gBG0TilemapBuffer, 11, 5 + 2 * i), IsItemDisplayUsable(unit, item) ? TEXT_COLOR_SYSTEM_BLUE : TEXT_COLOR_SYSTEM_GRAY, GetItemUses(item));
+        // }
+//#else
         PutNumberOrBlank(TILEMAP_LOCATED(gBG0TilemapBuffer, 11, 5 + 2 * i), IsItemDisplayUsable(unit, item) ? TEXT_COLOR_SYSTEM_BLUE : TEXT_COLOR_SYSTEM_GRAY, GetItemUses(item));
 #endif
     }

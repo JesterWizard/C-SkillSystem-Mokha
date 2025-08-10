@@ -27,7 +27,7 @@ u8 Transform_Laguz_Usability(const struct MenuItemDef *def, int number)
     FORCE_DECLARE struct NewBwl * bwl;
     bwl = GetNewBwl(UNIT_CHAR_ID(gActiveUnit));
 
-    if (bwl->_pad_[1] != 30)
+    if (bwl->laguzBar != 30)
         return MENU_NOTSHOWN;
 
     return MENU_ENABLED;
@@ -59,10 +59,10 @@ u8 Transform_Laguz_Effect(struct MenuProc * menu, struct MenuItemProc * item)
         {
             gActiveUnit->pClassData = GetClassData(laguzPairs[i][1]);
 #if defined(SID_HalfShift) && (COMMON_SKILL_VALID(SID_HalfShift))
-            if (SkillTester(gActiveUnit, SID_HalfShift) && bwl->_pad_[1] < 30)
+            if (SkillTester(gActiveUnit, SID_HalfShift) && bwl->laguzBar < 30)
             {
                 SetUnitStatDebuff(gActiveUnit, UNIT_STAT_BUFF_LAGUZ_HALFSHIFT);
-                bwl->_pad_[1] = 30;
+                bwl->laguzBar = 30;
                 break;
             }
 #endif

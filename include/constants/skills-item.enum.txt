@@ -67,6 +67,9 @@
 // SID_Dance
 // SID_Acidic
 // SID_AcidicPlus
+// SID_Reinforce
+// SID_SealedZone
+// SID_Thrust
 
 //////// PRE-BATTLE SKILLS
 // SID_DefiantStr
@@ -262,6 +265,8 @@
 // SID_UnarmedCombat
 // SID_SereneGrace
 // SID_GoldenGlory
+// SID_Calibration
+// SID_SupremeOverlord
 
 //////// POST-BATTLE SKILLS
 // SID_Canto
@@ -522,7 +527,7 @@
 // SID_MagicGambit
 // SID_BeastAssault
 // SID_LightAndDark
-// SID_DragonWarth
+// SID_DragonsWrath
 // SID_FaerghusAncestry
 // SID_CrusaderWard
 // SID_ArmsthriftPlus
@@ -552,6 +557,8 @@
 // SID_Forcefield
 // SID_AbsorbAlternation
 // SID_Levitate
+// SID_ChainAttack
+// SID_Osmose
 
 //////// EFFECTIVENESS SKILLS
 // SID_Resourceful
@@ -719,10 +726,10 @@
 // SID_DemolitionExpert
 // SID_TriangleAttack
 // SID_SocialButterfly
-// SID_Shadowgift
-// SID_ShadowgiftPlus
-// SID_Lumina
-// SID_LuminaPlus
+// SID_ShadowGift
+// SID_ShadowGiftPlus
+// SID_LightGift
+// SID_LightGiftPlus
 // SID_Stormgift
 // SID_StormgiftPlus
 // SID_Gracegift
@@ -779,6 +786,10 @@
 // SID_HalfShift
 // SID_StickyHold
 // SID_Protect
+// SID_NinthCircle
+// SID_InevitableEnd
+// SID_MPChanneling
+// SID_Eldritch
 
 //////// COMBAT ARTS
 // SID_COMBAT_Grounder

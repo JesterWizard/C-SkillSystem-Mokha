@@ -981,6 +981,51 @@ const struct MenuItemDef gSkillMenuInfos[MAX] = {
     },
 #endif
 
+#if (defined(SID_Reinforce) && COMMON_SKILL_VALID(SID_Reinforce))
+    [SID_Reinforce] = {
+        .name = "　",
+        .nameMsgId = MSG_SKILL_Reinforce_NAME,
+        .helpMsgId = MSG_SKILL_Reinforce_DESC,
+        .color = TEXT_COLOR_SYSTEM_GOLD,
+        .isAvailable = Reinforce_Usability,
+        .onDraw = NULL,
+        .onSelected = Reinforce_OnSelected,
+        .onIdle = NULL,
+        .onSwitchIn = NULL,
+        .onSwitchOut = NULL,
+    },
+#endif
+
+#if (defined(SID_SealedZone) && COMMON_SKILL_VALID(SID_SealedZone))
+    [SID_SealedZone] = {
+        .name = "　",
+        .nameMsgId = MSG_SKILL_SealedZone_NAME,
+        .helpMsgId = MSG_SKILL_SealedZone_DESC,
+        .color = TEXT_COLOR_SYSTEM_GOLD,
+        .isAvailable = SealedZone_Usability,
+        .onDraw = NULL,
+        .onSelected = SealedZone_OnSelected,
+        .onIdle = NULL,
+        .onSwitchIn = NULL,
+        .onSwitchOut = NULL,
+    },
+#endif
+
+#if (defined(SID_Thrust) && COMMON_SKILL_VALID(SID_Thrust))
+    [SID_Thrust] = {
+        .name = "　",
+        .nameMsgId = MSG_SKILL_Thrust_NAME,
+        .helpMsgId = MSG_SKILL_Thrust_DESC,
+        .color = TEXT_COLOR_SYSTEM_GOLD,
+        .isAvailable = Thrust_Usability,
+        .onDraw = NULL,
+        .onSelected = Thrust_OnSelected,
+        .onIdle = NULL,
+        .onSwitchIn = NULL,
+        .onSwitchOut = NULL,
+    },
+#endif
+
     [0] = {
         .name = "　光の結界",
         .nameMsgId = MSG_MenuCommand_Refuge_NAME,

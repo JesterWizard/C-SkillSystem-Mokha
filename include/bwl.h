@@ -18,7 +18,12 @@ struct NewBwl {
     /* bwl support */
     u8 supports[UNIT_SUPPORT_MAX_COUNT];
 
-    u8 _pad_[0x10 - 0x0C];
+    /* JESTER - Laguz bars and MP are stored here */
+    u8 laguzBar : 5;
+    u8 leftover : 3;
+    u8 currentMP;
+    u8 maxMP;
+    u8 _pad_;
 
 } BITPACKED;
 

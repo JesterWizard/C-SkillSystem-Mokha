@@ -11,6 +11,7 @@
 #include "constants/combat-arts.h"
 #include "playst-expa.h"
 #include "jester_headers/custom-functions.h"
+#include "bwl.h"
 
 typedef void (*BattleDamageCalcFunc)(struct BattleUnit * buA, struct BattleUnit * buB);
 extern BattleDamageCalcFunc const * const gpBattleDamageCalcFuncs;
@@ -316,15 +317,9 @@ int BattleHit_CalcDamage(struct BattleUnit * attacker, struct BattleUnit * defen
     }
 #endif
 
-#if (defined(SID_Spurn) && (COMMON_SKILL_VALID(SID_Spurn)))
-    if (BattleSkillTester(attacker, SID_Spurn) && gDmg.crit_atk &&
-        (attacker->hpInitial * 4) < (attacker->unit.maxHP * 3))
-        gDmg.correction += SKILL_EFF0(SID_Spurn);
-#endif
-
-#if (defined(SID_DragonWarth) && (COMMON_SKILL_VALID(SID_DragonWarth)))
-    if (BattleSkillTester(attacker, SID_DragonWarth) && act_flags->round_cnt_hit == 1)
-        gDmg.correction += gDmg.attack * SKILL_EFF0(SID_DragonWarth) / 100;
+#if (defined(SID_DragonsWrath) && (COMMON_SKILL_VALID(SID_DragonsWrath)))
+    if (BattleSkillTester(attacker, SID_DragonsWrath) && act_flags->round_cnt_hit == 1)
+        gDmg.correction += gDmg.attack * SKILL_EFF0(SID_DragonsWrath) / 100;
 #endif
 
     /**
@@ -589,7 +584,7 @@ bool rampartPlus_activated = false;
         int _diff = defender->battleSpeed - attacker->battleSpeed;
         LIMIT_AREA(_diff, 0, 10);
 
-        gDmg.decrease += DAMAGE_DECREASE(_diff * SKILL_EFF1(SID_Spurn));
+        gDmg.decrease += DAMAGE_DECREASE(_diff * SKILL_EFF0(SID_Spurn));
     }
 #endif
 
@@ -633,9 +628,9 @@ bool rampartPlus_activated = false;
     }
 #endif
 
-#if (defined(SID_DragonWarth) && (COMMON_SKILL_VALID(SID_DragonWarth)))
-    if (BattleSkillTester(defender, SID_DragonWarth) && tar_flags->round_cnt_hit == 1)
-        gDmg.decrease += DAMAGE_DECREASE(SKILL_EFF0(SID_DragonWarth));
+#if (defined(SID_DragonsWrath) && (COMMON_SKILL_VALID(SID_DragonsWrath)))
+    if (BattleSkillTester(defender, SID_DragonsWrath) && tar_flags->round_cnt_hit == 1)
+        gDmg.decrease += DAMAGE_DECREASE(SKILL_EFF0(SID_DragonsWrath));
 #endif
 
 #if (defined(SID_CrusaderWard) && (COMMON_SKILL_VALID(SID_CrusaderWard)))
@@ -716,8 +711,8 @@ bool rampartPlus_activated = false;
         result = (attacker->unit.curHP - 1) * 2;
 #endif
 
-#if (defined(SID_TintedLens) && (COMMON_SKILL_VALID(SID_TintedLens)))
-    if (BattleSkillTester(attacker, SID_TintedLens))
+#if (defined(SID_TintedLensPlus) && (COMMON_SKILL_VALID(SID_TintedLensPlus)))
+    if (BattleSkillTester(attacker, SID_TintedLensPlus))
     {
         if (result < 6)
         {
@@ -783,6 +778,15 @@ bool rampartPlus_activated = false;
 #if (defined(SID_Equalizer) && (COMMON_SKILL_VALID(SID_Equalizer)))
     if (BattleSkillTester(attacker, SID_Equalizer) || BattleSkillTester(defender, SID_Equalizer))
         result = ((defender->battleAttack - attacker->battleDefense) + (attacker->battleAttack - defender->battleDefense)) / 2;
+#endif
+
+#if (defined(SID_Osmose) && (COMMON_SKILL_VALID(SID_Osmose)))
+    if (BattleSkillTester(attacker, SID_Osmose))
+    {
+        struct NewBwl * bwl = GetNewBwl(UNIT_CHAR_ID(GetUnit(attacker->unit.index)));
+        bwl->currentMP += result/4;
+        bwl->currentMP = (bwl->currentMP > bwl->maxMP) ? bwl->maxMP : bwl->currentMP; 
+    }
 #endif
 
     if (result > BATTLE_MAX_DAMAGE)

@@ -63,9 +63,9 @@ PUSH
     BYTE 0x3F
     // PROTECT $167A4 $16800
 
-    ORG $16F32 // IsItemDisplayUsable
-    BYTE 0x3F
-    PROTECT $16EE4 $16F7C
+    // ORG $16F32 // IsItemDisplayUsable
+    // BYTE 0x3F
+    // PROTECT $16EE4 $16F7C
 
     ORG $290EA // CanUnitUseAntitoxinItem
     BYTE 0x3F

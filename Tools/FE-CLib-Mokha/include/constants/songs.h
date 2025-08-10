@@ -120,6 +120,7 @@ enum song_idx {
     SONG_10F = 0x10F,
     SONG_269 = 0x269,
     SONG_26A = 0x26A,
+    SONG_2CE = 0x2CE,
     SONG_2E0 = 0x2E0,
     SONG_302 = 0x302,
     SONG_303 = 0x303,

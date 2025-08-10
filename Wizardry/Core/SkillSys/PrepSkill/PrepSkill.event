@@ -5,9 +5,10 @@
 #include "Source/PrepSkill2.lyn.event"
 #include "Source/PrepSkill2fx.lyn.event"
 
-PUSH
-    ORG $952C0
-    jumpToHack(PrepScreenMenu_OnEquip)
-POP
+// This is now managed in AtMenu.c in AtMenu_StartSubMenu
+// PUSH
+//     ORG $952C0
+//     jumpToHack(PrepScreenMenu_OnEquip)
+// POP
 
 #include "data.event"

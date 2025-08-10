@@ -185,6 +185,26 @@ int ResGetterSkills(int status, struct Unit * unit)
         status += SKILL_EFF0(SID_Sellsword);
 #endif
 
+#if defined(SID_SupremeOverlord) && (COMMON_SKILL_VALID(SID_SupremeOverlord))
+        if (SkillTester(unit, SID_SupremeOverlord))
+        {
+            int deadAllies = 0;
+
+            for (int i = UNIT_FACTION(unit) + 1; i < (UNIT_FACTION(unit) + GetFactionUnitAmount(UNIT_FACTION(unit))); i++)
+            {
+                if (!(GetUnit(i)->pCharacterData))
+                    break;
+                if (!UNIT_ALIVE(GetUnit(i)))
+                    deadAllies += 1;
+            }
+
+            if (UNIT_FACTION(unit) != FACTION_RED)
+                status += deadAllies * 3;
+            else
+                status += deadAllies / 3;
+        }
+#endif
+
     return status;
 }
 
