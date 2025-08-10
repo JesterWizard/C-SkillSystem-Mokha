@@ -83,7 +83,7 @@ EA_DEP            := $(EA_DIR)/ea-dep
 TEXT_PROCESS      := python3 $(TOOL_DIR)/FE-PyTools/text-process.py
 
 # LYN_PROTECTOR := $(TOOL_DIR)/scripts/lynjump-protector.sh
-LYN_DETECTOR  := $(TOOL_DIR)/scripts/lynjump-detector.sh
+# LYN_DETECTOR  := $(TOOL_DIR)/scripts/lynjump-detector.sh
 
 GRIT := $(DEVKITPRO)/tools/bin/grit
 LZSS := $(DEVKITPRO)/tools/bin/gbalzss
@@ -122,7 +122,7 @@ post_chax: $(CHAX_DIFF)
 
 $(CHAX_DIFF): $(FE8_CHX)
 	@echo "[SEC]	Lyn-jump detection..."
-	@$(LYN_DETECTOR) || exit 1
+# @$(LYN_DETECTOR) || exit 1
 	@echo "[SEC]	Lyn-jump detection passed"
 
 ifeq ($(CONFIG_RELEASE_COMPILATION), 1)

@@ -168,7 +168,7 @@ gUnknown_08802428_Gamma:
 POP 
 ALIGN 4 
 gUnknown_08A1B698_Gamma: 
-#incbin "png/Gamma_prepscreenmain.bgtsa.lz77" 
+//#incbin "png/Gamma_prepscreenmain.bgtsa.lz77" 
 ALIGN 4 
 gUnknown_08A1B7C8_Gamma:
 #incbin "png/Gamma_PrepScreenUnit2TSA.dmp" 
