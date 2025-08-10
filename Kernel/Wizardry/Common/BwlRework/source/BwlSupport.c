@@ -2,6 +2,7 @@
 #include "bwl.h"
 #include "skill-system.h"
 #include "constants/skills.h"
+#include "battle-system.h"
 
 #define LOCAL_TRACE 0
 
@@ -90,28 +91,43 @@ int GetUnitSupportLevel(struct Unit *unit, int num)
 }
 
 LYN_REPLACE_CHECK(UnitGainSupportExp);
-void UnitGainSupportExp(struct Unit *unit, int num)
+void UnitGainSupportExp(struct Unit * unit, int num)
 {
-	u8 *supp = GetUnitBwlSupports(UNIT_CHAR_ID(unit));
+    u8 * supp = GetUnitBwlSupports(UNIT_CHAR_ID(unit));
 
-	if (UNIT_SUPPORT_DATA(unit) && supp) {
-		int gain = UNIT_SUPPORT_DATA(unit)->supportExpGrowth[num];
-		int currentExp = supp[num];
-		int maxExp = sSupportMaxExpLookup[GetUnitSupportLevel(unit, num)];
+    if (UNIT_SUPPORT_DATA(unit) && supp)
+    {
+        int gain = 0;
 
-		FORCE_DECLARE struct Unit *other = GetUnitSupporterUnit(unit, num);
-
-#if defined(SID_SocialButterfly) && (COMMON_SKILL_VALID(SID_SocialButterfly))
-		if (SkillTester(unit, SID_SocialButterfly) || SkillTester(other, SID_SocialButterfly))
-			gain *= 2;
+#ifdef CONFIG_VESLY_SUPPORT_POST_BATTLE
+    if (gBattleActorGlobalFlag.enemy_defeated)
+        gain = SUPPORT_RATE_KILL;
+    else if (gActionData.unitActionType == UNIT_ACTION_COMBAT)
+        gain = SUPPORT_RATE_COMBAT;
+    else if (gActionData.unitActionType == UNIT_ACTION_DANCE)
+        gain = SUPPORT_RATE_DANCE;
+    else if (gActionData.unitActionType == UNIT_ACTION_STAFF)
+        gain = SUPPORT_RATE_STAFF;
+#else
+		gain = UNIT_SUPPORT_DATA(unit)->supportExpGrowth[num];
 #endif
 
-		if (currentExp + gain > maxExp)
-			gain = maxExp - currentExp;
+        int currentExp = supp[num];
+        int maxExp = sSupportMaxExpLookup[GetUnitSupportLevel(unit, num)];
 
-		supp[num] = currentExp + gain;
-		gPlaySt.chapterTotalSupportGain += gain;
-	}
+        FORCE_DECLARE struct Unit * other = GetUnitSupporterUnit(unit, num);
+
+#if defined(SID_SocialButterfly) && (COMMON_SKILL_VALID(SID_SocialButterfly))
+        if (SkillTester(unit, SID_SocialButterfly) || SkillTester(other, SID_SocialButterfly))
+            gain *= 2;
+#endif
+
+        if (currentExp + gain > maxExp)
+            gain = maxExp - currentExp;
+
+        supp[num] = currentExp + gain;
+        gPlaySt.chapterTotalSupportGain += gain;
+    }
 }
 
 LYN_REPLACE_CHECK(UnitGainSupportLevel);

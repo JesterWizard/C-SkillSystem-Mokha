@@ -94,7 +94,7 @@ STATIC_DECLAR const EventScr EventScr_CallThunderfxAtPosition[] = {
 	STAL(1)
 	ASMC(MapAnim_CommonEnd)
 	STAL(10)
-	NoFade
+	NOFADE
 	ENDA
 };
 

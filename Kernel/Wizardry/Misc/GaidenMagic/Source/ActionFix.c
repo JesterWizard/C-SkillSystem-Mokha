@@ -1,41 +1,41 @@
 #include "common-chax.h"
 
-LYN_REPLACE_CHECK(HandlePostActionTraps);
-bool HandlePostActionTraps(ProcPtr proc)
-{
-	if (GetUnitCurrentHp(gActiveUnit) <= 0)
-		return true;
+// LYN_REPLACE_CHECK(HandlePostActionTraps);
+// bool HandlePostActionTraps(ProcPtr proc)
+// {
+// 	if (GetUnitCurrentHp(gActiveUnit) <= 0)
+// 		return true;
 
-	if ((UNIT_CATTRIBUTES(gActiveUnit) & CA_CANTO) && !(gActiveUnit->state & US_CANTOING)) {
-		switch (gActionData.unitActionType) {
-		case UNIT_ACTION_WAIT:
-		case UNIT_ACTION_COMBAT:
-		case UNIT_ACTION_STAFF:
-			break;
+// 	if ((UNIT_CATTRIBUTES(gActiveUnit) & CA_CANTO) && !(gActiveUnit->state & US_CANTOING)) {
+// 		switch (gActionData.unitActionType) {
+// 		case UNIT_ACTION_WAIT:
+// 		case UNIT_ACTION_COMBAT:
+// 		case UNIT_ACTION_STAFF:
+// 			break;
 
-#if CHAX
-		case CONFIG_UNIT_ACTION_EXPA_GaidenMagicCombat:
-		case CONFIG_UNIT_ACTION_EXPA_GaidenMagicStaff:
-			break;
-#endif
+// #if CHAX
+// 		case CONFIG_UNIT_ACTION_EXPA_GaidenMagicCombat:
+// 		case CONFIG_UNIT_ACTION_EXPA_GaidenMagicStaff:
+// 			break;
+// #endif
 
-		default:
-			return true;
-		}
-	}
+// 		default:
+// 			return true;
+// 		}
+// 	}
 
-	if (!GetPickTrapType(gActiveUnit))
-		return true;
+// 	if (!GetPickTrapType(gActiveUnit))
+// 		return true;
 
-	gActionData.suspendPointType = SUSPEND_POINT_DURINGACTION;
-	gActionData.unitActionType = UNIT_ACTION_WAIT;
-	WriteSuspendSave(SAVE_ID_SUSPEND);
+// 	gActionData.suspendPointType = SUSPEND_POINT_DURINGACTION;
+// 	gActionData.unitActionType = UNIT_ACTION_WAIT;
+// 	WriteSuspendSave(SAVE_ID_SUSPEND);
 
-	if (GetBattleAnimPreconfType() == PLAY_ANIMCONF_OFF)
-		RefreshUnitSprites();
+// 	if (GetBattleAnimPreconfType() == PLAY_ANIMCONF_OFF)
+// 		RefreshUnitSprites();
 
-	return ExecTrap(proc, gActiveUnit, 0);
-}
+// 	return ExecTrap(proc, gActiveUnit, 0);
+// }
 
 LYN_REPLACE_CHECK(ShouldCallBattleQuote);
 bool ShouldCallBattleQuote(u8 pidA, u8 pidB)

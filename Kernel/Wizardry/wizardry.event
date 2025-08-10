@@ -72,6 +72,14 @@ ALIGN 4
 #include "Misc/EasterEgg/EasterEgg.event"
 #include "Misc/JobGrowth/JobGrowth.lyn.event"
 
+#ifdef CONFIG_INSTALL_CONVOYEXPA
+    #include "Misc/ConvoyExpa/ConvoyExpa.event"
+#endif
+
+#ifdef CONFIG_NO_SUS_IN_AI_PHASE
+    #include "Misc/PhaseSuspend/PhaseSuspend.event"
+#endif
+
 #ifdef CONFIG_VESLY_DEBUGGER
     #include "Misc/VeslyDebugger/VeslyDebugger_Installer.event"
 #endif
@@ -80,10 +88,6 @@ ALIGN 4
     #include "Misc/VeslyDangerBones/VeslyDangerBones_Installer.event"
 #endif
 
-#ifdef CONFIG_INSTALL_CONVOYEXPA
-    #include "Misc/ConvoyExpa/ConvoyExpa.event"
-#endif
-
-#ifdef CONFIG_NO_SUS_IN_AI_PHASE
-    #include "Misc/PhaseSuspend/PhaseSuspend.event"
+#ifdef CONFIG_VESLY_SUPPORT_POST_BATTLE
+    #include "Misc/VeslySupportPostBattle/VeslySupportPostBattle_Installer.event"
 #endif

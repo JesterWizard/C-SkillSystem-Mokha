@@ -87,7 +87,9 @@ PORTRAITFORMATTER := $(EA_DIR)/Tools/PortraitFormatter
 LYN               := $(EA_DIR)/Tools/lyn
 EA_DEP            := $(EA_DIR)/ea-dep
 
-LYN_PROTECTOR := $(TOOL_DIR)/scripts/lynjump-protector.sh
+# While this is a good idea in practice, protecting functions like this make it difficult to accomodate
+# external functionality that might need to hook into it. So while it's a risk I'm disabling it for now.
+# LYN_PROTECTOR := $(TOOL_DIR)/scripts/lynjump-protector.sh
 LYN_DETECTOR  := $(TOOL_DIR)/scripts/lynjump-detector.sh
 
 GRIT := $(DEVKITPRO)/tools/bin/grit
@@ -151,13 +153,13 @@ Kernel/%.asm: Kernel/%.c
 Kernel/%.lyn.event: Kernel/%.o $(LYN_REF) $(FE8_SYM)
 	@echo "[LYN]	$@"
 	@$(LYN) $(LYN_LONG_CALL) $< $(LYN_REF) > $@
-	@$(LYN_PROTECTOR) $@ $(FE8_SYM) >> $@
+#@$(LYN_PROTECTOR) $@ $(FE8_SYM) >> $@
 
 # Others: long call
 %.lyn.event: %.o $(LYN_REF) $(FE8_SYM)
 	@echo "[LYN]	$@"
 	@$(LYN) -longcalls $< $(LYN_REF) > $@
-	@$(LYN_PROTECTOR) $@ $(FE8_SYM) >> $@
+#@$(LYN_PROTECTOR) $@ $(FE8_SYM) >> $@
 
 %.o: %.c
 	@echo "[CC ]	$@"

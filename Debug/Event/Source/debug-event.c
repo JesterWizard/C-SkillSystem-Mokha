@@ -617,7 +617,7 @@ static const EventScr EventScr_Beginning[] = {
 	CALL(TestEvent_SetDebuff)
 	CALL(TestEvent_ClearDebuff)
 
-	NoFade
+	NOFADE
 	ENDA
 };
 

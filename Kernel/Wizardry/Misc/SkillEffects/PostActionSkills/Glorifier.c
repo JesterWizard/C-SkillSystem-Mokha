@@ -22,7 +22,7 @@ bool PostAction_Glorifier(ProcPtr parent)
 
 #if defined(SID_Glorifier) && (COMMON_SKILL_VALID(SID_Glorifier))
 	if (UnitAvaliable(gActiveUnit) && SkillListTester(gActiveUnit, SID_Glorifier)) {
-		if (gBattleActorGlobalFlag.enimy_defeated == true) {
+		if (gBattleActorGlobalFlag.enemy_defeated == true) {
 			if (!CheckKernelHookSkippingFlag())
 				NewMuSkillAnimOnActiveUnitWithDeamon(parent, SID_Glorifier, NULL, NULL);
 

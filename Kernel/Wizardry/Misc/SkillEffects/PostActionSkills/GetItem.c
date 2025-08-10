@@ -20,7 +20,7 @@ bool PostActionGetItem(ProcPtr parent)
 	switch (gActionData.unitActionType) {
 	case UNIT_ACTION_COMBAT:
 	case CONFIG_UNIT_ACTION_EXPA_GaidenMagicCombat:
-		if (gBattleActorGlobalFlag.enimy_defeated) {
+		if (gBattleActorGlobalFlag.enemy_defeated) {
 #if defined(SID_Despoil) && (COMMON_SKILL_VALID(SID_Despoil))
 			if (SkillListTester(unit, SID_Despoil)) {
 				NewPopup_ItemGot(parent, unit, ITEM_REDGEM);
@@ -29,7 +29,7 @@ bool PostActionGetItem(ProcPtr parent)
 #endif
 
 #if defined(SID_GoldDigger) && (COMMON_SKILL_VALID(SID_GoldDigger))
-			if (SkillListTester(unit, SID_GoldDigger) && gBattleActorGlobalFlag.enimy_defeated) {
+			if (SkillListTester(unit, SID_GoldDigger) && gBattleActorGlobalFlag.enemy_defeated) {
 				NewPopup_GoldGot(parent, unit, SKILL_EFF0(SID_GoldDigger));
 				return true;
 			}

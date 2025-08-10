@@ -80,7 +80,7 @@ LABEL(0)
 
 LABEL(99)
 	ASMC(MapAnim_CommonEnd)
-	NoFade
+	NOFADE
 	ENDA
 };
 
@@ -108,7 +108,7 @@ bool PostActionPositionReturn(ProcPtr proc)
 	if (!UnitAvaliable(gActiveUnit) || UNIT_STONED(gActiveUnit))
 		return false;
 
-	if (gBattleActorGlobalFlag.enimy_defeated == false)
+	if (gBattleActorGlobalFlag.enemy_defeated == false)
 		return false;
 
 	if (gActiveUnitMoveOrigin.x == gActiveUnit->xPos && gActiveUnitMoveOrigin.y == gActiveUnit->yPos)

@@ -5,6 +5,7 @@
 
 #include "mgba.h"
 #include "no-cash-gba.h"
+#include "configs/config-debug.h"
 
 #define LogInit() {mgba_open(); }
 #define LogPrint(string)        { REG_IME = 0; mgba_printf(MGBA_LOG_INFO, string);               NoCashGBAPrint(string); REG_IME = 1; }

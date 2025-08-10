@@ -233,6 +233,6 @@ const EventScr EventScr_MuSkillAnim[] = {
 	STAL(1)
 	ASMC(event_callskill)
 	STAL(10)
-	NoFade
+	NOFADE
 	ENDA
 };

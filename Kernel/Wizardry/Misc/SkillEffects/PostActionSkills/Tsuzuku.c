@@ -31,7 +31,7 @@ bool PostActionTsuzuku(ProcPtr parent)
 		if (SkillListTester(unit, SID_FailGale) && !gBattleActor.nonZeroDamage)
 			goto L_exec_rafrain_action_anim;
 #endif
-		if ((GetCombatArtInForce(unit) == CID_Galeforce) && gBattleActorGlobalFlag.enimy_defeated)
+		if ((GetCombatArtInForce(unit) == CID_Galeforce) && gBattleActorGlobalFlag.enemy_defeated)
 			goto L_exec_rafrain_action_anim;
 
 	/* fall through */

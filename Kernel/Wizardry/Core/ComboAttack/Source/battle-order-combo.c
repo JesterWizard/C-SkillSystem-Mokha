@@ -85,7 +85,7 @@ STATIC_DECLAR bool BattleComboGenerateHit(void)
 		gBattleActor.wexpMultiplier++;
 		gBattleHitIterator->info |= BATTLE_HIT_INFO_FINISHES;
 		gBattleHitIterator->info |= BATTLE_HIT_INFO_KILLS_TARGET;
-		gBattleActorGlobalFlag.enimy_defeated = true;
+		gBattleActorGlobalFlag.enemy_defeated = true;
 		gBattleHitIterator++;
 		return true;
 	}
