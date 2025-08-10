@@ -1,5 +1,6 @@
 #include "common-chax.h"
 
+/* This seems to conflict with the callToHack hook at 0x37750 for VeslySupportAfterBattle */
 // LYN_REPLACE_CHECK(HandlePostActionTraps);
 // bool HandlePostActionTraps(ProcPtr proc)
 // {

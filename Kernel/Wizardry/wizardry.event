@@ -91,3 +91,7 @@ ALIGN 4
 #ifdef CONFIG_VESLY_SUPPORT_POST_BATTLE
     #include "Misc/VeslySupportPostBattle/VeslySupportPostBattle_Installer.event"
 #endif
+
+#ifdef CONFIG_VESLY_ANIMS_FAST_FORWARD
+    #include "Misc/VeslyAnimsFastForward/VeslyAnimsFastForward_Installer.event"
+#endif
