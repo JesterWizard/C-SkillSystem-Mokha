@@ -100,3 +100,7 @@ ALIGN 4
     #include "Misc/VeslyDrawAnimations/VeslyDrawAnimations_Installer.event"
 #endif
 
+#ifdef CONFIG_VESLY_RECLASS
+    #include "Misc/VeslyReclass/VeslyReclass_Installer.event"
+#endif
+
