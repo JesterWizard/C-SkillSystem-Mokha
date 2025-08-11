@@ -104,3 +104,7 @@ ALIGN 4
     #include "Misc/VeslyReclass/VeslyReclass_Installer.event"
 #endif
 
+#ifdef CONFIG_VESLY_UI
+    #include "Misc/VeslyUI/VeslyUI_Installer.event"
+#endif
+
