@@ -95,3 +95,8 @@ ALIGN 4
 #ifdef CONFIG_VESLY_ANIMS_FAST_FORWARD
     #include "Misc/VeslyAnimsFastForward/VeslyAnimsFastForward_Installer.event"
 #endif
+
+#ifdef CONFIG_VESLY_DRAW_ANIMATIONS
+    #include "Misc/VeslyDrawAnimations/VeslyDrawAnimations_Installer.event"
+#endif
+
