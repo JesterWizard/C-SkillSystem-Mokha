@@ -71,6 +71,7 @@ ALIGN 4
 #include "Misc/PortraitHeight/PortraitHeight.event"
 #include "Misc/EasterEgg/EasterEgg.event"
 #include "Misc/JobGrowth/JobGrowth.lyn.event"
+#include "Misc/MiscFunctions/MiscFunctions.event"
 
 #ifdef CONFIG_INSTALL_CONVOYEXPA
     #include "Misc/ConvoyExpa/ConvoyExpa.event"
@@ -106,5 +107,9 @@ ALIGN 4
 
 #ifdef CONFIG_VESLY_UI
     #include "Misc/VeslyUI/VeslyUI_Installer.event"
+#endif
+
+#ifdef CONFIG_VESLY_EXTENDED_ITEM_DESCRIPTIONS
+    #include "Misc/VeslyExtendedItemDescriptions/VeslyExtendedItemDescriptions_Installer.event"
 #endif
 

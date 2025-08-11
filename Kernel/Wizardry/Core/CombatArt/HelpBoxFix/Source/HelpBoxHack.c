@@ -329,3 +329,280 @@ void StartHelpBoxExt(const struct HelpBoxInfo *info, int unk)
 
 	sLastHbi = info;
 }
+
+LYN_REPLACE_CHECK(DisplayHelpBoxObj);
+//! FE8U = 0x08089980
+void DisplayHelpBoxObj(int x, int y, int w, int h, int unk) {
+    s8 flag;
+    s8 flag_;
+    s8 anotherFlag;
+
+    int xCount;
+    int yCount;
+
+    int xPx;
+    int yPx;
+    int iy;
+    int ix;
+
+    flag = (w + 7) & 0x10;
+    anotherFlag = w & 0xf;
+
+    if (w < 0x20) {
+        w = 0x20;
+    }
+
+    if (w > 0xC0) {
+        w = 0xc0;
+    }
+
+    if (h < 0x10) {
+        h = 0x10;
+    }
+
+#ifdef CONFIG_EXTENDED_HELPBOXES
+    /* Now we limit it to 5 lines (0x10 * 5) */
+    if (h > 0x50) {
+        h = 0x50;
+    }
+#else
+    /* Vanilla behaviour to limit the help text box to three lines (0x10 * 3) */
+    if (h > 0x30) {
+        h = 0x30;
+    }
+#endif
+
+    xCount = (w + 0x1f) / 0x20;
+    yCount = (h + 0x0f) / 0x10;
+
+    flag_ = flag;
+
+    for (ix = xCount - 1; ix >= 0; ix--) {
+        for (iy = yCount; iy >= 0; iy--) {
+
+            yPx = (iy + 1) * 0x10;
+            if (yPx > h) {
+                yPx = h;
+            }
+            yPx -= 0x10;
+
+            xPx = (ix + 1) * 0x20;
+
+            if (flag_ != 0) {
+                xPx -= 0x20;
+                PutSprite(0,
+                x + xPx,
+                y + yPx,
+                gObject_16x16,
+                gHelpBoxSt.oam2_base + ix * 4 + iy * 0x40);
+            } else {
+
+                if (xPx > w)
+                    xPx = w;
+
+                xPx -= 0x20;
+                PutSprite(
+                    0,
+                    x + xPx,
+                    y + yPx,
+                    gObject_32x16,
+                    gHelpBoxSt.oam2_base + ix * 4 + iy * 0x40);
+            }
+        }
+
+        flag_ = 0;
+    }
+
+    flag_ = flag;
+
+    for (ix = xCount - 1; ix >= 0; ix--) {
+        xPx = (ix + 1) * 0x20;
+
+        if (flag_ != 0) {
+            xPx -= 0x20;
+
+            PutSprite(0, x + xPx, y - 8, gObject_16x8, gHelpBoxSt.oam2_base + 0x1b);
+            PutSprite(0, x + xPx, y + h, gObject_16x8, gHelpBoxSt.oam2_base + 0x3b);
+
+            flag_ = 0;
+        } else {
+            if (xPx > w) {
+                xPx = w;
+            }
+            xPx -= 0x20;
+
+            PutSprite(0, x + xPx, y - 8, gObject_32x8, gHelpBoxSt.oam2_base + 0x1b);
+            PutSprite(0, x + xPx, y + h, gObject_32x8, gHelpBoxSt.oam2_base + 0x3b);
+
+        }
+
+    }
+
+    for (iy = yCount; iy >= 0; iy--) {
+        yPx = (iy + 1) * 0x10;
+        if (yPx > h) {
+            yPx = h;
+        }
+        yPx -= 0x10;
+
+        PutSprite(0, x - 8, y + yPx, gObject_8x16, gHelpBoxSt.oam2_base + 0x5f);
+        PutSprite(0, x + w, y + yPx, gObject_8x16, gHelpBoxSt.oam2_base + 0x1f);
+
+        if (anotherFlag != 0) {
+            PutSprite(0, x + w - 8, y + yPx, gObject_8x16, gHelpBoxSt.oam2_base + 0x1a);
+        }
+    }
+
+    PutSprite(0, x - 8, y - 8, gObject_8x8, gHelpBoxSt.oam2_base + 0x5b); // top left
+    PutSprite(0, x + w, y - 8, gObject_8x8, gHelpBoxSt.oam2_base + 0x5c); // top right
+    PutSprite(0, x - 8, y + h, gObject_8x8, gHelpBoxSt.oam2_base + 0x5d); // bottom left
+    PutSprite(0, x + w, y + h, gObject_8x8, gHelpBoxSt.oam2_base + 0x5e); // bottom right
+
+    if (anotherFlag != 0) {
+        PutSprite(0, x + w - 8, y - 8, gObject_8x8, gHelpBoxSt.oam2_base + 0x1b);
+        PutSprite(0, x + w - 8, y + h, gObject_8x8, gHelpBoxSt.oam2_base + 0x3b);
+    }
+
+    if (unk == 0) {
+        PutSprite(0, x, y - 0xb, gObject_32x16, (0x3FF & gHelpBoxSt.oam2_base) + 0x7b);
+    }
+
+    return;
+}
+
+//! FE8U = 0x0808A118
+LYN_REPLACE_CHECK(ClearHelpBoxText);
+void ClearHelpBoxText(void) {
+
+    SetTextFont(&gHelpBoxSt.font);
+
+    SpriteText_DrawBackground(&gHelpBoxSt.text[0]);
+    SpriteText_DrawBackground(&gHelpBoxSt.text[1]);
+    SpriteText_DrawBackground(&gHelpBoxSt.text[2]);
+
+#ifdef CONFIG_EXTENDED_HELPBOXES
+    SpriteText_DrawBackground(&gHelpBoxSt.text[3]);
+    SpriteText_DrawBackground(&gHelpBoxSt.text[4]);
+#endif
+
+    Proc_EndEach(gProcScr_HelpBoxTextScroll);
+    Proc_EndEach(ProcScr_HelpBoxIntro);
+
+    SetTextFont(0);
+
+    return;
+}
+
+//! FE8U = 0x08089CD4
+LYN_REPLACE_CHECK(DrawHelpBoxWeaponStats);
+void DrawHelpBoxWeaponStats(int item)
+{
+    Text_InsertDrawString(&gHelpBoxSt.text[0], 32, 7, GetItemDisplayRankString(item));
+    Text_InsertDrawString(&gHelpBoxSt.text[0], 67, 7, GetItemDisplayRangeString(item));
+    Text_InsertDrawNumberOrBlank(&gHelpBoxSt.text[0], 129, 7, GetItemWeight(item));
+
+    Text_InsertDrawNumberOrBlank(&gHelpBoxSt.text[1], 32, 7, GetItemMight(item));
+    Text_InsertDrawNumberOrBlank(&gHelpBoxSt.text[1], 81, 7, GetItemHit(item));
+    Text_InsertDrawNumberOrBlank(&gHelpBoxSt.text[1], 129, 7, GetItemCrit(item));
+}
+
+LYN_REPLACE_CHECK(GetHelpBoxItemInfoKind);
+int GetHelpBoxItemInfoKind(int item)
+{
+    if (item == 0xFFFE)
+        return HB_EXTINFO_SAVEINFO;
+
+    if (GetItemAttributes(item) & IA_LOCK_3)
+        return HB_EXTINFO_NONE;
+
+    if (GetItemAttributes(item) & IA_WEAPON)
+        return HB_EXTINFO_WEAPON;
+
+    if (GetItemAttributes(item) & IA_STAFF)
+        return HB_EXTINFO_STAFF;
+
+    return HB_EXTINFO_NONE;
+}
+
+//! FE8U = 0x0808A5D0
+LYN_REPLACE_CHECK(InitBoxDialogue);
+void InitBoxDialogue(void * vram_dst, int pad_idx) {
+    FORCE_DECLARE int uVar1;
+    FORCE_DECLARE int iVar3;
+    FORCE_DECLARE int iVar4;
+    FORCE_DECLARE int iVar5;
+
+#ifdef CONFIG_EXTENDED_HELPBOXES
+    if (vram_dst == 0) {
+        vram_dst = (void *)0x06012000;
+    }
+#else
+    if (vram_dst == 0) {
+        vram_dst = (void *)0x06013000;
+    }
+#endif
+
+    if (pad_idx < 0) {
+        pad_idx = 5;
+    }
+
+    pad_idx = (pad_idx & 0xf) + 0x10;
+
+    if (GetDialogueBoxConfig() & 0x10) {
+        Decompress(gGfx_YellowTextBox, vram_dst + 0x360);
+        Decompress(gGfx_YellowTextBox2, vram_dst + 0x760);
+        Decompress(gGfx_YellowTextBox3, vram_dst + 0xb60);
+        Decompress(gGfx_YellowTextBox4, vram_dst + 0xf80);
+        Decompress(gGfx_YellowTextBox5, vram_dst + 0x1380);
+    } else {
+        Decompress(gGfx_HelpTextBox, vram_dst + 0x360);
+        Decompress(gGfx_HelpTextBox2, vram_dst + 0x760);
+        Decompress(gGfx_HelpTextBox3, vram_dst + 0xb60);
+        Decompress(gGfx_HelpTextBox4, vram_dst + 0xf60);
+        Decompress(gGfx_HelpTextBox5, vram_dst + 0x1360);
+    }
+
+    ClearAllTalkFlags();
+
+    if (!(GetDialogueBoxConfig() & 1)) {
+        InitSpriteTextFont(&gBoxDialogueConf.font, vram_dst, pad_idx);
+
+        InitSpriteText(&gBoxDialogueConf.texts[0]);
+        InitSpriteText(&gBoxDialogueConf.texts[1]);
+        InitSpriteText(&gBoxDialogueConf.texts[2]);
+
+        if ((GetDialogueBoxConfig() & 0x10) && !(GetDialogueBoxConfig() & 0x20)) {
+            InitSpriteText(&gBoxDialogueConf.texts[3]);
+            InitSpriteText(&gBoxDialogueConf.texts[4]);
+        }
+
+        SetTextFont(0);
+
+        if (GetDialogueBoxConfig() & 0x10) {
+            ApplyPalette(gPal_YellowTextBox, pad_idx);
+        } else {
+            ApplyPalette(gPal_HelpTextBox, pad_idx);
+        }
+
+    } else {
+        InitSpriteTextFont(&gBoxDialogueConf.font, vram_dst, pad_idx);
+
+        for (iVar4 = 0; iVar4 < ((u16)GetDialogueBoxConfig() >> 8); iVar4++) {
+            InitSpriteText(&gBoxDialogueConf.texts[iVar4]);
+        }
+
+        SetTextFont(0);
+
+        ApplyPalette(Pal_Text, pad_idx);
+    }
+
+    // ORIGINAL  -> if (&vram_dst)
+    if (vram_dst)
+        gBoxDialogueConf.unk_40 = ((((u32)vram_dst << 0x11) >> 0x16) + (pad_idx & 0xF) * 0x1000);
+
+    if (GetDialogueBoxConfig() & 0x10) {
+        PlaySoundEffect(SONG_2E6);
+    }
+
+    return;
+}
