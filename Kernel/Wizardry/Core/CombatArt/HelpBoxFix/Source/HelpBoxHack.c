@@ -330,8 +330,8 @@ void StartHelpBoxExt(const struct HelpBoxInfo *info, int unk)
 	sLastHbi = info;
 }
 
-LYN_REPLACE_CHECK(DisplayHelpBoxObj);
 //! FE8U = 0x08089980
+LYN_REPLACE_CHECK(DisplayHelpBoxObj);
 void DisplayHelpBoxObj(int x, int y, int w, int h, int unk) {
     s8 flag;
     s8 flag_;
