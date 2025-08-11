@@ -88,7 +88,7 @@ SHORT 0x12 // full hp bar and flipped horizontally
 
 ALIGN 4 
 ShowHealsplatProc:
-PROC_SLEEP(0)
+PROC_SLEEP(0) 
 PROC_SET_NAME(ShowHealsplatProcName)
 PROC_CALL_ROUTINE(0x8015681) //LoadObjUiGfx just in case it isn't loaded already 
 PROC_CALL_ROUTINE(LoadBlueNumbers) 
@@ -111,7 +111,7 @@ ALIGN 4
 
 ALIGN 4
 DrawSpriteProc:							//HINT=PROCS
-PROC_SLEEP(0) 
+PROC_SLEEP(0)
 PROC_SET_NAME(ASMC_DrawProcName)
 PROC_CALL_ROUTINE(Draw_Camera)
 PROC_CALL_ROUTINE(Draw_StoreToBuffer)
