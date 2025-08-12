@@ -148,3 +148,7 @@ ALIGN 4
 #ifdef CONFIG_UNLOCK_ALL_SUPPORTS
     #include "Misc/UnlockAllSupports/UnlockAllSupports_Installer.event"
 #endif
+
+#ifdef CONFIG_SHOW_CGS_LIKE_FE7
+    #include "Misc/ShowCGsLikeFE7/ShowCGsLikeFE7_Installer.event"
+#endif
