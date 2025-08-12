@@ -37,3 +37,12 @@ Dog[X]
 
 ## MSG_SILENCER
 Silence[X]
+
+## MENU_Casual_Mode
+Casual Mode[X]
+## MENU_Casual_Mode_On
+Dead units will not be revived[X]
+## MENU_Casual_Mode_Off
+If unit dies, revive them next chapter[X]
+## MENU_Casual_Text
+Casual[X]

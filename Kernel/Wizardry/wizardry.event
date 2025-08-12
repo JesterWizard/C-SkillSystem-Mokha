@@ -117,3 +117,6 @@ ALIGN 4
     #include "Misc/StatScreenAllegianceColors/StatScreenAllegianceColors_Installer.event"
 #endif
 
+#ifdef CONFIG_CASUAL_MODE
+    #include "Misc/CasualMode/CasualMode_Installer.event"
+#endif
