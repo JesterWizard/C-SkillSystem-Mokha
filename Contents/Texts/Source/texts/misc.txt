@@ -46,3 +46,6 @@ Dead units will not be revived[X]
 If unit dies, revive them next chapter[X]
 ## MENU_Casual_Text
 Casual[X]
+
+## Arrow_ID
+->[X]

@@ -140,3 +140,7 @@ ALIGN 4
 #ifdef CONFIG_TEXT_ENGINE_REWORK
     #include "Misc/TextEngineRework/TextEngineRework_Installer.event"
 #endif
+
+#ifdef CONFIG_SHOW_HEAL_AMOUNT
+    #include "Misc/ShowHealAmount/ShowHealAmount_Installer.event"
+#endif
