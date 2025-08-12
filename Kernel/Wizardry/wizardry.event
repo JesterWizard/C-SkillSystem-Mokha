@@ -120,3 +120,7 @@ ALIGN 4
 #ifdef CONFIG_CASUAL_MODE
     #include "Misc/CasualMode/CasualMode_Installer.event"
 #endif
+
+#ifdef CONFIG_RES_TERRAIN_WINDOW
+    #include "Misc/ResTerrainWindow/ResTerrainWindow_Installer.event"
+#endif
