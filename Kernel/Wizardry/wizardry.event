@@ -131,3 +131,8 @@ ALIGN 4
 
 #ifdef CONFIG_INSTANT_LEVEL_UP
     #include "Misc/InstantLevelUp/InstantLevelUp_Installer.event"
+#endif
+
+#ifdef CONFIG_MIRROR_MAP_SPRITES
+    #include "Misc/MirrorMapSprites/MirrorMapSprites_Installer.event"
+#endif

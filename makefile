@@ -380,7 +380,7 @@ $(SKILL_INFO_DOC): $(SKILLS_ENUM_SRC) $(GFX_SOURCES) $(TEXT_SOURCE) Data/SkillSy
 
 $(CHAX_NUPS): $(FE8_CHX)
 	@echo "[SEC]	Lyn-jump detection..."
-#@$(LYN_DETECTOR) || exit 1
+	@$(LYN_DETECTOR) || exit 1
 	@echo "[SEC]	Lyn-jump detection passed"
 
 ifeq ($(CONFIG_RELEASE_COMPILATION), 1)
