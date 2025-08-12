@@ -124,3 +124,8 @@ ALIGN 4
 #ifdef CONFIG_RES_TERRAIN_WINDOW
     #include "Misc/ResTerrainWindow/ResTerrainWindow_Installer.event"
 #endif
+
+#ifdef CONFIG_MODULAR_MINIMUG_BOX
+    #include "Misc/ModularMinimugBox/ModuleInstallers.event"
+#endif
+
