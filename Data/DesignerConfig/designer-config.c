@@ -28,7 +28,7 @@ const struct KernelDesigerConfig gKernelDesigerConfig = {
 #endif
 
 #ifdef CONFIG_USE_UTF8_GLYPH
-	.use_chinese_character = true,
+	.use_chinese_character = false,
 #endif
 
 	.kernel_tutorial_level = CONFIG_KTUT_LEVEL,
