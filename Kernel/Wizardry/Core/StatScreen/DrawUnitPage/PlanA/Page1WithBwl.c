@@ -324,7 +324,7 @@ STATIC_DECLAR void DrawPage1Affin(void)
 			GetUnitAffinityIcon(unit),
 			TILEREF(0, STATSCREEN_BGPAL_EXTICONS));
 
-		if (gpKernelDesigerConfig->== true) {
+		if (gpKernelDesigerConfig->use_chinese_character == true) {
 			PutDrawText(
 				&gStatScreen.text[STATSCREEN_TEXT_ITEM1],
 				gUiTmScratchA + TILEMAP_INDEX(0xE, 0x7),

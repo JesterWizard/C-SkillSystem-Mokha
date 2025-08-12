@@ -113,3 +113,7 @@ ALIGN 4
     #include "Misc/VeslyExtendedItemDescriptions/VeslyExtendedItemDescriptions_Installer.event"
 #endif
 
+#ifdef CONFIG_STAT_SCREEN_ALLEGIANCE_COLORS
+    #include "Misc/StatScreenAllegianceColors/StatScreenAllegianceColors_Installer.event"
+#endif
+

@@ -5,7 +5,8 @@ PUSH
 
     ORG $88650
     // POIN NewPageNameGraphic
-    PROTECT 0x000884B0 0x00088670 // StatScreen_InitDisplay
+    /* Turned off to allow for CONFIG_STAT_SCREEN_ALLEGIANCE_COLORS */
+    // PROTECT 0x000884B0 0x00088670 // StatScreen_InitDisplay
 
     ORG $87f38
     gpSprites_PageNameRework:
