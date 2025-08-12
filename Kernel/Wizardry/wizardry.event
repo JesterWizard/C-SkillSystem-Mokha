@@ -136,3 +136,7 @@ ALIGN 4
 #ifdef CONFIG_MIRROR_MAP_SPRITES
     #include "Misc/MirrorMapSprites/MirrorMapSprites_Installer.event"
 #endif
+
+#ifdef CONFIG_TEXT_ENGINE_REWORK
+    #include "Misc/TextEngineRework/TextEngineRework_Installer.event"
+#endif
