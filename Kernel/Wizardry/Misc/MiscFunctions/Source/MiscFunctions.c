@@ -15,6 +15,7 @@ typedef struct {
     /* 00 */ struct Font font;
     /* 18 */ struct Text th[18];
 } PrepItemSuppyText;
+extern const int sExpaConvoyItemAmount;
 
 //! FE8U = 0x08098620
 LYN_REPLACE_CHECK(PrepItemScreen_SetupGfx);
@@ -480,4 +481,60 @@ void TradeMenu_InitUnitNameDisplay(struct TradeMenuProc * proc)
     PutDrawText(NULL, gBG0TilemapBuffer + TILEMAP_INDEX(24, 0), 0, xStart, UNIT_PANEL_WIDTH, str);
 
     BG_EnableSyncByMask(BG0_SYNC_BIT);
+}
+
+//! FE8U = 0x08032728
+LYN_REPLACE_CHECK(KillUnitOnCombatDeath);
+void KillUnitOnCombatDeath(struct Unit* unitA, struct Unit* unitB) {
+    if (GetUnitCurrentHp(unitA) != 0) {
+        return;
+    }
+
+#ifdef CONFIG_SEND_INVENTORY_ON_DEATH
+    if (UNIT_FACTION(unitA) == FACTION_BLUE)
+    {
+        for (int i = 0; i < 5; i++)
+        {
+            if (unitA->items[i] == 0)
+                break;
+            
+            if (GetConvoyItemCount() < sExpaConvoyItemAmount)
+                AddItemToConvoy(unitA->items[i]);
+        }
+    }
+#endif
+
+    PidStatsRecordDefeatInfo(unitA->pCharacterData->number, unitB->pCharacterData->number, DEFEAT_CAUSE_COMBAT);
+
+    UnitKill(unitA);
+
+    return;
+}
+
+//! FE8U = 0x08032750
+LYN_REPLACE_CHECK(KillUnitOnArenaDeathMaybe);
+void KillUnitOnArenaDeathMaybe(struct Unit* unit) {
+    if (GetUnitCurrentHp(unit) != 0) {
+        return;
+    }
+
+#ifdef CONFIG_SEND_INVENTORY_ON_DEATH
+    if (UNIT_FACTION(unit) == FACTION_BLUE)
+    {
+        for (int i = 0; i < 5; i++)
+        {
+            if (unit->items[i] == 0)
+                break;
+            
+            if (GetConvoyItemCount() < sExpaConvoyItemAmount)
+                AddItemToConvoy(unit->items[i]);
+        }
+    }
+#endif
+
+    UnitKill(unit);
+
+    PidStatsRecordDefeatInfo(unit->pCharacterData->number, 0, DEFEAT_CAUSE_ARENA);
+
+    return;
 }

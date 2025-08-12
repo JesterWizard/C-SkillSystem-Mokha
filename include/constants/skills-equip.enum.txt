@@ -284,3 +284,4 @@ SID_FlierGuidance
 SID_HealingFocus
 SID_Teleportation
 SID_Swarp
+SID_Supply

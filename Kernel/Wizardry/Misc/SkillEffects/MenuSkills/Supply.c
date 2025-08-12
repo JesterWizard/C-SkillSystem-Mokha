@@ -18,10 +18,8 @@ u8 SupplyUsability(const struct MenuItemDef *def, int number)
 
 #if defined(SID_Supply) && (COMMON_SKILL_VALID(SID_Supply))
 	if (SkillTester(gActiveUnit, SID_Supply))
-#else
-	if (0)
-#endif
 		return MENU_ENABLED;
+#endif
 
 	for (i = 0; i < ARRAY_COUNT_RANGE1x1; i++) {
 		struct Unit *unit = GetUnitAtPosition(
