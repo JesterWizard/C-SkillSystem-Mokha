@@ -10,6 +10,8 @@
 #include "EAstdlib.h"
 #include "worldmap.h"
 #include "constants/texts.h"
+#include "action-expa.h"
+
 
 typedef struct {
     /* 00 */ struct Font font;
@@ -537,4 +539,98 @@ void KillUnitOnArenaDeathMaybe(struct Unit* unit) {
     PidStatsRecordDefeatInfo(unit->pCharacterData->number, 0, DEFEAT_CAUSE_ARENA);
 
     return;
+}
+
+//! FE8U = 0x0801D084
+LYN_REPLACE_CHECK(PlayerPhase_PrepareAction);
+s8 PlayerPhase_PrepareAction(ProcPtr proc)
+{
+    s8 cameraReturn;
+    int item;
+
+    cameraReturn = EnsureCameraOntoPosition(
+        proc, GetUnit(gActionData.subjectIndex)->xPos, GetUnit(gActionData.subjectIndex)->yPos);
+    cameraReturn ^= 1;
+
+#ifdef CONFIG_NO_WAIT_AFTER_TRADING
+        gBmSt.taken_action = 0;
+#endif
+
+    switch (gActionData.unitActionType)
+    {
+        case 0:
+            /**
+             * If character has use some action: such as trade with somebody,
+             * then he may get chance to take another action but cannot change to another.
+             * If player want to control other character, the current unit may caught wait action.
+             */
+            if (gBmSt.taken_action != 0)
+            {
+                gActionData.unitActionType = UNIT_ACTION_FORCE_WAIT;
+                break;
+            }
+
+            PlayerPhase_BackToMove(proc);
+
+            return 1;
+
+        case UNIT_ACTION_TRADED:
+            gBmSt.taken_action |= BM_TAKEN_ACTION_TRADE;
+            PlayerPhase_CancelAction(proc);
+
+            return 1;
+
+        case UNIT_ACTION_TRADED_SUPPLY:
+            gBmSt.taken_action |= BM_TAKEN_ACTION_SUPPLY;
+            PlayerPhase_CancelAction(proc);
+
+            return 1;
+
+        case UNIT_ACTION_TAKE:
+        case UNIT_ACTION_GIVE:
+            gBmSt.taken_action |= BM_TAKEN_ACTION_TAKE;
+            PlayerPhase_CancelAction(proc);
+
+            return 1;
+
+        case UNIT_ACTION_RIDE_BALLISTA:
+        case UNIT_ACTION_EXIT_BALLISTA:
+            gBmSt.taken_action |= BM_TAKEN_ACTION_BALLISTA;
+            PlayerPhase_CancelAction(proc);
+
+            return 1;
+
+        case UNIT_ACTION_TRADED_1D:
+            PlayerPhase_CancelAction(proc);
+
+            return 1;
+    }
+
+    item = GetItemIndex(GetUnit(gActionData.subjectIndex)->items[gActionData.itemSlotIndex]);
+
+    gBattleActor.hasItemEffectTarget = 0;
+
+    switch (item)
+    {
+        case ITEM_HEAVENSEAL:
+        case ITEM_HEROCREST:
+        case ITEM_KNIGHTCREST:
+        case ITEM_ORIONSBOLT:
+        case ITEM_ELYSIANWHIP:
+        case ITEM_GUIDINGRING:
+        case ITEM_MASTERSEAL:
+        case ITEM_OCEANSEAL:
+        case ITEM_LUNARBRACE:
+        case ITEM_SOLARBRACE:
+        case ITEM_UNK_C1:
+            return cameraReturn;
+    }
+
+    if ((gActionData.unitActionType != UNIT_ACTION_WAIT) && !gBmSt.just_resumed)
+    {
+        gActionData.suspendPointType = SUSPEND_POINT_DURINGACTION;
+        WriteSuspendSave(SAVE_ID_SUSPEND);
+    }
+
+    return cameraReturn;
 }
