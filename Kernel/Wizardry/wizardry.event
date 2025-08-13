@@ -156,3 +156,7 @@ ALIGN 4
 #ifdef CONFIG_LIMITED_SHOP_STOCK
     #include "Misc/LimitedShopStock/LimitedShopStock_Installer.event"
 #endif
+
+#ifdef CONFIG_DENY_STAT_SCREEN
+    #include "Misc/DenyStatScreen/DenyStatScreen_Installer.event"
+#endif
