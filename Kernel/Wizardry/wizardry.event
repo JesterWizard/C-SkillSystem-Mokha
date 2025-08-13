@@ -152,3 +152,7 @@ ALIGN 4
 #ifdef CONFIG_SHOW_CGs_LIKE_FE7
     #include "Misc/ShowCGsLikeFE7/ShowCGsLikeFE7_Installer.event"
 #endif
+
+#ifdef CONFIG_LIMITED_SHOP_STOCK
+    #include "Misc/LimitedShopStock/LimitedShopStock_Installer.event"
+#endif
