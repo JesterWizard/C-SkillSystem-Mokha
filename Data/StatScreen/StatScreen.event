@@ -31,3 +31,6 @@ PUSH
     ORG $87f40
     POIN NewPageNamePalette
 POP
+
+#include "Source/LynJump.event"
+#include "Source/AccessStatScreen.lyn.event"

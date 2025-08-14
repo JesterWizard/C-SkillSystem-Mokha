@@ -142,26 +142,26 @@ void Shop_Loop_BuyKeyHandler(struct ProcShop* proc) {
 
     BG_SetPosition(2, 0, ShopSt_GetBg2Offset());
 
-    unkA = proc->curIndex;
+    unkA = proc->head_loc;
     unkC = ShopSt_GetHeadLoc() != unkA;
 
-    proc->curIndex = ShopSt_GetHeadLoc();
-    proc->unk_5d = ShopSt_GetHandLoc();
+    proc->head_loc = ShopSt_GetHeadLoc();
+    proc->hand_loc = ShopSt_GetHandLoc();
 
-    proc->unk_5e = proc->curIndex;
-    proc->unk_5f = proc->unk_5d;
+    proc->head_idx = proc->head_loc;
+    proc->hand_idx = proc->hand_loc;
 
-    a = proc->curIndex;
+    a = proc->head_loc;
     a *= 16;
 
-    b = ((proc->unk_5d * 16)) - 72;
+    b = ((proc->hand_loc * 16)) - 72;
 
     DisplayUiHand(40, a - b);
 
     if ((proc->helpTextActive != 0) && (unkC != 0)) {
-        a = (proc->curIndex * 16);
-        b = ((proc->unk_5d * 16) - 72);
-        StartItemHelpBox(56, a - b, proc->shopItems[proc->curIndex]);
+        a = (proc->head_loc * 16);
+        b = ((proc->hand_loc * 16) - 72);
+        StartItemHelpBox(56, a - b, proc->shopItems[proc->head_loc]);
     }
 
     DisplayShopUiArrows();
@@ -181,17 +181,17 @@ void Shop_Loop_BuyKeyHandler(struct ProcShop* proc) {
 
     if (sKeyStatusBuffer.heldKeys & R_BUTTON) {
         proc->helpTextActive = 1;
-        a = (proc->curIndex * 16);
-        b = ((proc->unk_5d * 16) - 72);
-        StartItemHelpBox(56, a - b, proc->shopItems[proc->curIndex]);
+        a = (proc->head_loc * 16);
+        b = ((proc->hand_loc * 16) - 72);
+        StartItemHelpBox(56, a - b, proc->shopItems[proc->head_loc]);
 
         return;
     }
 
-    price = GetItemPurchasePrice(proc->unit, proc->shopItems[proc->curIndex]);
+    price = GetItemPurchasePrice(proc->unit, proc->shopItems[proc->head_loc]);
 
     if (sKeyStatusBuffer.heldKeys & A_BUTTON) {
-        if (!IsItemInStock(proc->shopItems[proc->curIndex])) {
+        if (!IsItemInStock(proc->shopItems[proc->head_loc])) {
             StartShopDialogue(OutOfStockTextBase, proc);
 
             Proc_Goto(proc, 1);
@@ -232,8 +232,8 @@ void HandleShopBuyAction(struct ProcShop* proc) {
 
     gActionData.unitActionType = UNIT_ACTION_SHOPPED;
 
-    SetPartyGoldAmount(GetPartyGoldAmount() - GetItemPurchasePrice(proc->unit, proc->shopItems[proc->curIndex]));
-    ReduceItemStock(proc->shopItems[proc->curIndex]);
+    SetPartyGoldAmount(GetPartyGoldAmount() - GetItemPurchasePrice(proc->unit, proc->shopItems[proc->head_loc]));
+    ReduceItemStock(proc->shopItems[proc->head_loc]);
 
     UpdateShopItemCounts(proc);
     DrawShopSoldItems(proc);

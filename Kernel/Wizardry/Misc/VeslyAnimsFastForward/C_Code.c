@@ -113,7 +113,7 @@ extern void IncrementGameClock(void);
 extern void VBlankIntrWait(void);
 void FastForwardBattles(void)
 {
-    gBmSt.sync_hardware = true; // main_loop_ended
+    gBmSt.main_loop_ended = true; // main_loop_ended
     gBmSt.prevVCount = REG_VCOUNT;
     if (!ShouldSpeedupAnims())
     {
@@ -124,11 +124,11 @@ void FastForwardBattles(void)
     IncrementGameClock();
     Proc_Run(*gProcTreeRootArray);
     SyncLoOam();
-    if (!gBmSt.sync_hardware)
+    if (!gBmSt.main_loop_ended)
     {
         return;
     }
-    gBmSt.sync_hardware = false;
+    gBmSt.main_loop_ended = false;
     FlushLCDControl();
     FlushBackgrounds();
     FlushTiles();
