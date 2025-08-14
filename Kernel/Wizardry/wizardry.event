@@ -157,3 +157,7 @@ ALIGN 4
 #ifdef CONFIG_CHAPTER_NAMES
     #include "Misc/ChapterNames/ChapterNames_Installer.event"
 #endif
+
+#ifdef CONFIG_PREPS_AUGURY
+    #include "Misc/Augury/Augury_Installer.event"
+#endif

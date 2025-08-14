@@ -1,6 +1,7 @@
 #include "common-chax.h"
 #include "prep-skill.h"
 #include "kernel-lib.h"
+#include "jester_headers/procs.h"
 
 void PrepScreenMenu_OnEquip(struct ProcAtMenu *proc)
 {
@@ -20,9 +21,16 @@ void AtMenu_StartSubmenu(struct ProcAtMenu *proc)
 	sub_8095C2C(proc);
 
 	switch (proc->state) {
+
+#ifdef CONFIG_INSTALL_PREPS_AUGURY
+    case 5: /* Augury */
+        Proc_StartBlocking(PREEXT_Procs_Augury, proc);
+        break;
+#else
 	case 5:
 		StartChapterStatusScreen_FromPrep(proc);
 		break;
+#endif
 
 	case 2: /* Items */
 		StartPrepItemScreen(proc);
