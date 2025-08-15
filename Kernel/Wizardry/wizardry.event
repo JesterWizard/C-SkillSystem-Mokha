@@ -165,3 +165,7 @@ ALIGN 4
 #ifdef CONFIG_ARENA_LIMITS
     #include "Misc/ArenaLimits/ArenaLimits_Installer.event"
 #endif
+
+#ifdef CONFIG_QUINTESSANCE_EFFECT
+    #include "Misc/QuintessanceEffect/QuintessanceEffect_Installer.event"
+#endif
