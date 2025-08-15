@@ -56,3 +56,10 @@ Sorry, we don't have that.[A][X]
 You took the last one![A][X]
 ## SecretShopOutOfStockText
 Hmm... We're out.[A][X]
+
+## MSG_ArenaLevelLimitString
+Arena Level Limit: 10.[X]
+## MSG_UnpromotedOnlyString
+Unpromoted units only.[X]
+## MSG_ArenaClosedString
+The arena is closed for the day.[X]
