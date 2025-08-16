@@ -116,8 +116,10 @@ STATIC_DECLAR void ProcPrepSkill2_Idle(struct ProcPrepSkill2 *proc)
 		if (proc->hand_pos == POS_R) {
 			u8 sid =  rlist->sid[PREP_SRLIST_OFFSET(proc->hand_x, proc->right_line + proc->hand_y)];
 
+#ifndef CONFIG_TURN_ON_ALL_SKILLS
 			if (!EQUIP_SKILL_VALID(sid))
 				return;
+#endif
 
 			if (!SkillListTester(proc->unit, sid)) {
 				ret = AddSkill(proc->unit, sid);

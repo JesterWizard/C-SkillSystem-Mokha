@@ -28,7 +28,8 @@ HACK_DIRS := $(LINK_DIR) $(WIZARDRY_DIR) $(CONTENTS_DIR) $(GAMEDATA_DIR)
 
 SKILLS_ENUM_DIR  := include/constants
 SKILLS_ENUM_SRC := $(SKILLS_ENUM_DIR)/skills-equip.enum.txt
-SKILLS_ENUM_SRC += $(SKILLS_ENUM_DIR)/skills-others.enum.txt
+SKILLS_ENUM_SRC += $(SKILLS_ENUM_DIR)/skills-class.enum.txt
+SKILLS_ENUM_SRC += $(SKILLS_ENUM_DIR)/skills-person.enum.txt
 SKILLS_ENUM_SRC += $(SKILLS_ENUM_DIR)/skills-item.enum.txt
 
 all:

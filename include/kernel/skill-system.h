@@ -70,9 +70,6 @@ enum SkillInfoListss {
 	Skill_INFO_MAX
 };
 
-#define EQUIP_SKILL_VALID(sid) (sid > 0x000 && sid < 0x0FF)
-#define COMMON_SKILL_VALID(sid) (sid > 0x000 && sid < 0x400)
-
 #ifdef CONFIG_TURN_ON_ALL_SKILLS
     #define MAX_EQUIP_SKILL_NUM 0x3FF
     // For extended equippable skills, always use generic tester.
@@ -235,13 +232,6 @@ struct PrepEquipSkillList *GetPrepEquipSkillList(struct Unit *unit);
 #else
     #define SKILL_ROM_DATA_AMT 7 /* Unit can learn 7 skills on lv0/5/10/15/20 */
 #endif
-struct SkillPreloadJConf {
-	u8 skills[SKILL_ROM_DATA_AMT * (UNIT_LEVEL_MAX_RE / 5 + 1)];
-};
-
-struct SkillPreloadPConf {
-	u8 skills[SKILL_ROM_DATA_AMT * (UNIT_RECORDED_LEVEL_MAX / 5 + 1)];
-};
 
 struct SkillPreloadJConf { u16 skills[SKILL_ROM_DATA_AMT * (UNIT_LEVEL_MAX_RE / 5 + 1)];};
 struct SkillPreloadPConf { u16 skills[SKILL_ROM_DATA_AMT * (UNIT_RECORDED_LEVEL_MAX / 5 + 1)];};
