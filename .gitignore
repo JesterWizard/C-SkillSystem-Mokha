@@ -11,12 +11,12 @@ install-devkitpro-pacman
 *.ref.event
 *.ups
 
-# Tools
-Tools/EventAssembler/
-Tools/FE-PyTools/
-Tools/FE-CLib-Mokha/
-Tools/check_patch/
-Tools/dotnet-install.sh
+# # Tools
+# Tools/EventAssembler/
+# Tools/FE-PyTools/
+# Tools/FE-CLib-Mokha/
+# Tools/check_patch/
+# Tools/dotnet-install.sh
 
 # Wizardry
 *.o
