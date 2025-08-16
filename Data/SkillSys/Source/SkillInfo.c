@@ -3894,10 +3894,10 @@ const struct SkillInfo gSkillInfos[MAX_SKILL_NUM + 1] = {
 	},
 #endif
 
-#if (defined(SID_EndlessVitality) && COMMON_SKILL_VALID(SID_EndlessVitality))
-	[SID_EndlessVitality] = {
-		.name = MSG_SKILL_EndlessVitality_NAME,
-		.desc = MSG_SKILL_EndlessVitality_DESC,
+#if (defined(SID_BoundlessVitality) && COMMON_SKILL_VALID(SID_BoundlessVitality))
+	[SID_BoundlessVitality] = {
+		.name = MSG_SKILL_BoundlessVitality_NAME,
+		.desc = MSG_SKILL_BoundlessVitality_DESC,
 		.icon = GFX_SkillIcon_WIP,
 	},
 #endif

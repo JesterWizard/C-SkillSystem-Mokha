@@ -494,7 +494,7 @@
 ![image](gfx/SkillIcon_GoldDigger.png) | GoldDigger |  Gain 100 gold after killing an enemy. |
 ![image](gfx/SkillIcon_Glorifier.png) | Glorifier |  If enemy defeated, grants stat+3 until next combat |
 ![image](gfx/SkillIcon_Thunderstorm.png) | Thunderstorm |  Call thunder-storm with AOE damage on emey when attacking from distance. |
-![image](gfx/SkillIcon_EndlessVitality.png) | EndlessVitality |  Unit restores 20% HP after every battle it participates in. |
+![image](gfx/SkillIcon_BoundlessVitality.png) | BoundlessVitality |  Unit restores 20% HP after every battle it participates in. |
 ![image](gfx/SkillIcon_Dance.png) | Dance |  Art: Unit can use "Dance" command. |
 ![image](gfx/SkillIcon_LockTouch.png) | LockTouch |  Art: Unit can use "Pick" command. |
 ![image](gfx/SkillIcon_Summon.png) | Summon |  Art: Unit summon a monter on assistance |

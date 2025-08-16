@@ -26,9 +26,9 @@ bool PostAction_BattleActorHeal(ProcPtr parent)
 		heal += SKILL_EFF0(SID_MysticBoost);
 #endif
 
-#if defined(SID_EndlessVitality) && (COMMON_SKILL_VALID(SID_EndlessVitality))
-	if (SkillListTester(gActiveUnit, SID_EndlessVitality))
-		heal += perc_of(hp_max, SKILL_EFF0(SID_EndlessVitality));
+#if defined(SID_BoundlessVitality) && (COMMON_SKILL_VALID(SID_BoundlessVitality))
+	if (SkillListTester(gActiveUnit, SID_BoundlessVitality))
+		heal += perc_of(hp_max, SKILL_EFF0(SID_BoundlessVitality));
 #endif
 
 	if ((heal >= (hp_max - hp_cur)))
@@ -76,9 +76,9 @@ bool PostAction_BattleTargetHeal(ProcPtr parent)
 		heal += SKILL_EFF0(SID_MysticBoost);
 #endif
 
-#if defined(SID_EndlessVitality) && (COMMON_SKILL_VALID(SID_EndlessVitality))
-	if (SkillTester(target, SID_EndlessVitality))
-		heal += perc_of(hp_max, SKILL_EFF0(SID_EndlessVitality));
+#if defined(SID_BoundlessVitality) && (COMMON_SKILL_VALID(SID_BoundlessVitality))
+	if (SkillTester(target, SID_BoundlessVitality))
+		heal += perc_of(hp_max, SKILL_EFF0(SID_BoundlessVitality));
 #endif
 
 	if (heal == 0)

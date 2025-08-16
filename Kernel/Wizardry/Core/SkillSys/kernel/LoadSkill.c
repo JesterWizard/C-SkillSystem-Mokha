@@ -19,7 +19,7 @@ STATIC_DECLAR void SortRamSkillList(struct Unit *unit)
 	memset(buf, 0, UNIT_RAM_SKILLS_LEN);
 
 	for (i = 0; i < UNIT_RAM_SKILLS_LEN; i++)
-		if (EQUIPE_SKILL_VALID(list[i]))
+		if (EQUIP_SKILL_VALID(list[i]))
 			buf[cnt++] = list[i];
 
 	memcpy(list, buf, UNIT_RAM_SKILLS_LEN);
@@ -47,7 +47,7 @@ inline int GetFreeSkillSlot(struct Unit *unit)
 	u8 *list = UNIT_RAM_SKILLS(unit);
 
 	for (i = 0; i < cnt; i++)
-		if (!EQUIPE_SKILL_VALID(list[i]))
+		if (!EQUIP_SKILL_VALID(list[i]))
 			return i;
 
 	return -1;
@@ -58,7 +58,7 @@ bool CanRemoveSkill(struct Unit *unit, const u16 sid)
 	int i;
 	u8 *list = UNIT_RAM_SKILLS(unit);
 
-	if (!EQUIPE_SKILL_VALID(sid))
+	if (!EQUIP_SKILL_VALID(sid))
 		return false;
 
 	for (i = 0; i < UNIT_RAM_SKILLS_LEN; i++)
@@ -73,7 +73,7 @@ int RemoveSkill(struct Unit *unit, const u16 sid)
 	int i;
 	u8 *list = UNIT_RAM_SKILLS(unit);
 
-	if (!EQUIPE_SKILL_VALID(sid))
+	if (!EQUIP_SKILL_VALID(sid))
 		return -1;
 
 	for (i = 0; i < UNIT_RAM_SKILLS_LEN; i++) {
@@ -92,7 +92,7 @@ int AddSkill(struct Unit *unit, const u16 sid)
 	int slot;
 	u8 *list = UNIT_RAM_SKILLS(unit);
 
-	if (sid >= MAX_GENERIC_SKILL_NUM)
+	if (sid >= MAX_EQUIP_SKILL_NUM)
 		return -1;
 
 	LearnSkill(unit, sid);
@@ -165,7 +165,7 @@ STATIC_DECLAR void TryAddSkillLvupPConf(struct Unit *unit, int level)
 	for (i = 0; i < 5; i++) {
 		sid = pConf->skills[_level + i];
 
-		if (EQUIPE_SKILL_VALID(sid)) {
+		if (EQUIP_SKILL_VALID(sid)) {
 			AddSkill(unit, sid);
 			PushSkillListStack(sid);
 		}
@@ -183,7 +183,7 @@ STATIC_DECLAR void TryAddSkillLvupJConf(struct Unit *unit, int level)
 	for (i = 0; i < 5; i++) {
 		sid = jConf->skills[_level + i];
 
-		if (EQUIPE_SKILL_VALID(sid)) {
+		if (EQUIP_SKILL_VALID(sid)) {
 			AddSkill(unit, sid);
 			PushSkillListStack(sid);
 		}
@@ -232,7 +232,7 @@ void TryAddSkillPromotion(struct Unit *unit, int jid)
 	for (i = 0; i < 5; i++) {
 		sid = jConf->skills[0 + i];
 
-		if (EQUIPE_SKILL_VALID(sid)) {
+		if (EQUIP_SKILL_VALID(sid)) {
 			AddSkill(unit, sid);
 			PushSkillListStack(sid);
 		}

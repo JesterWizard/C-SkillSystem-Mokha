@@ -21,5 +21,11 @@ with open(sys.argv[2], "r") as fi:
         print(f"#define {line.split()[0]} 0x{(i + start):03X}")
 
         i = i + 1
-        if i >= 0xFF:
+
+        # If CONFIG_TURN_ALL_SKILLS_ON is enabled use this
+        if i >= 0x3FF:
             break
+
+        # If CONFIG_TURN_ALL_SKILLS_ON is disabled use this
+        # if i >= 0xFF:
+        #    break

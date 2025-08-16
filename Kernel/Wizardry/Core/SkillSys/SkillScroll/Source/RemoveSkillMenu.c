@@ -66,7 +66,7 @@ STATIC_DECLAR u8 RemoveSkillMenu_Usability(const struct MenuItemDef *self, int n
 {
 	int sid = UNIT_RAM_SKILLS(gActiveUnit)[MENU_SKILL_INDEX(self)];
 
-	if (EQUIPE_SKILL_VALID(sid))
+	if (EQUIP_SKILL_VALID(sid))
 		return MENU_ENABLED;
 
 	return MENU_NOTSHOWN;

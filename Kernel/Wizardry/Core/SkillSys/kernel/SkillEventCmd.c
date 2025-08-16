@@ -19,7 +19,7 @@ STATIC_DECLAR u8 EventAddSkill(struct EventEngineProc *proc)
 		hang();
 	}
 
-	if (EQUIPE_SKILL_VALID(sid)) {
+	if (EQUIP_SKILL_VALID(sid)) {
 		FOR_UNITS_ONMAP_ALL(unit, {
 			if (UNIT_CHAR_ID(unit) != pid)
 				continue;
@@ -44,7 +44,7 @@ STATIC_DECLAR u8 EventAddSkillOnActive(struct EventEngineProc *proc)
 		hang();
 	}
 
-	if (UNIT_IS_VALID(unit) && EQUIPE_SKILL_VALID(sid))
+	if (UNIT_IS_VALID(unit) && EQUIP_SKILL_VALID(sid))
 		AddSkill(unit, sid);
 
 	return EVC_ADVANCE_CONTINUE;
@@ -65,7 +65,7 @@ STATIC_DECLAR u8 EventAddSkillAt(struct EventEngineProc *proc)
 		hang();
 	}
 
-	if (UNIT_IS_VALID(unit) && EQUIPE_SKILL_VALID(sid))
+	if (UNIT_IS_VALID(unit) && EQUIP_SKILL_VALID(sid))
 		AddSkill(unit, sid);
 
 	return EVC_ADVANCE_CONTINUE;
@@ -84,7 +84,7 @@ STATIC_DECLAR u8 EventAddSkillBySlotC(struct EventEngineProc *proc)
 		hang();
 	}
 
-	if (EQUIPE_SKILL_VALID(sid)) {
+	if (EQUIP_SKILL_VALID(sid)) {
 		FOR_UNITS_ONMAP_ALL(unit, {
 			if (UNIT_CHAR_ID(unit) != pid)
 				continue;
@@ -109,7 +109,7 @@ STATIC_DECLAR u8 EventRemoveSkill(struct EventEngineProc *proc)
 		hang();
 	}
 
-	if (EQUIPE_SKILL_VALID(sid)) {
+	if (EQUIP_SKILL_VALID(sid)) {
 		FOR_UNITS_ONMAP_ALL(unit, {
 			if (UNIT_CHAR_ID(unit) != pid)
 				continue;
@@ -134,7 +134,7 @@ STATIC_DECLAR u8 EventRemoveSkillOnActive(struct EventEngineProc *proc)
 		hang();
 	}
 
-	if (UNIT_IS_VALID(unit) && EQUIPE_SKILL_VALID(sid)) {
+	if (UNIT_IS_VALID(unit) && EQUIP_SKILL_VALID(sid)) {
 		ForgetSkill(unit, sid);
 		RemoveSkill(unit, sid);
 	}
@@ -157,7 +157,7 @@ STATIC_DECLAR u8 EventRemoveSkillAt(struct EventEngineProc *proc)
 		hang();
 	}
 
-	if (UNIT_IS_VALID(unit) && EQUIPE_SKILL_VALID(sid)) {
+	if (UNIT_IS_VALID(unit) && EQUIP_SKILL_VALID(sid)) {
 		ForgetSkill(unit, sid);
 		RemoveSkill(unit, sid);
 	}
@@ -177,7 +177,7 @@ STATIC_DECLAR u8 EventRemoveSkillBySlotC(struct EventEngineProc *proc)
 		hang();
 	}
 
-	if (EQUIPE_SKILL_VALID(sid)) {
+	if (EQUIP_SKILL_VALID(sid)) {
 		FOR_UNITS_ONMAP_ALL(unit, {
 			if (UNIT_CHAR_ID(unit) != pid)
 				continue;
