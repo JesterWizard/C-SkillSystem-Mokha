@@ -60,6 +60,7 @@ _ARM_SkillTester_CopyStart:
     pop {r4, r5, lr}
     bx lr
 
+@ Used for 254 skills in RAM
 _SkillTester_Generic:
     add r1, r0, #0x32
     ldrb r3, [r1], #1

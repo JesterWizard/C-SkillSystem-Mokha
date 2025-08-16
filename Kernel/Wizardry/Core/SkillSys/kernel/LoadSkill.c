@@ -8,106 +8,95 @@
 /**
  * Slot ops
  */
-STATIC_DECLAR void SortRamSkillList(struct Unit *unit)
+static void SortRamSkillList(struct Unit * unit)
 {
-	int i, cnt = 0;
-	u8 *list = UNIT_RAM_SKILLS(unit);
-	u8 *buf = gGenericBuffer;
+    int i, cnt = 0;
+    u16 buf[UNIT_RAM_SKILLS_LEN] = {0};
 
-	WARN_GENERIC_BUF_USED;
+    for (i = 0; i < UNIT_RAM_SKILLS_LEN; i++) {
+        u16 sid = GET_SKILL(unit, i);
+        if (EQUIP_SKILL_VALID(sid))
+            buf[cnt++] = sid;
+    }
 
-	memset(buf, 0, UNIT_RAM_SKILLS_LEN);
-
-	for (i = 0; i < UNIT_RAM_SKILLS_LEN; i++)
-		if (EQUIP_SKILL_VALID(list[i]))
-			buf[cnt++] = list[i];
-
-	memcpy(list, buf, UNIT_RAM_SKILLS_LEN);
-
-	WARN_GENERIC_BUF_RELEASED;
+    for (i = 0; i < UNIT_RAM_SKILLS_LEN; i++)
+        SET_SKILL(unit, i, i < cnt ? buf[i] : 0);
 }
 
-inline int GetSkillSlot(struct Unit *unit, int sid)
+inline int GetSkillSlot(struct Unit * unit, int sid)
 {
-	int i;
-	const int cnt = RAM_SKILL_LEN_EXT;
-	u8 *list = UNIT_RAM_SKILLS(unit);
+    for (int i = 0; i < RAM_SKILL_LEN_EXT; i++)
+        if (GET_SKILL(unit, i) == sid)
+            return i;
 
-	for (i = 0; i < cnt; i++)
-		if (list[i] == sid)
-			return i;
-
-	return -1;
+    return -1;
 }
 
-inline int GetFreeSkillSlot(struct Unit *unit)
+inline int GetFreeSkillSlot(struct Unit * unit)
 {
-	int i;
-	const int cnt = RAM_SKILL_LEN_EXT;
-	u8 *list = UNIT_RAM_SKILLS(unit);
+    for (int i = 0; i < RAM_SKILL_LEN_EXT; i++)
+        if (!EQUIP_SKILL_VALID(GET_SKILL(unit, i)))
+            return i;
 
-	for (i = 0; i < cnt; i++)
-		if (!EQUIP_SKILL_VALID(list[i]))
-			return i;
-
-	return -1;
+    return -1;
 }
 
-bool CanRemoveSkill(struct Unit *unit, const u16 sid)
+bool CanRemoveSkill(struct Unit * unit, const u16 sid)
 {
-	int i;
-	u8 *list = UNIT_RAM_SKILLS(unit);
+    if (!EQUIP_SKILL_VALID(sid))
+        return false;
 
-	if (!EQUIP_SKILL_VALID(sid))
-		return false;
+    for (int i = 0; i < UNIT_RAM_SKILLS_LEN; i++)
+        if (GET_SKILL(unit, i) == sid)
+            return true;
 
-	for (i = 0; i < UNIT_RAM_SKILLS_LEN; i++)
-		if (sid == list[i])
-			return true;
-
-	return false;
+    return false;
 }
 
-int RemoveSkill(struct Unit *unit, const u16 sid)
+int RemoveSkill(struct Unit * unit, const u16 sid)
 {
-	int i;
-	u8 *list = UNIT_RAM_SKILLS(unit);
+    if (!EQUIP_SKILL_VALID(sid))
+        return -1;
 
-	if (!EQUIP_SKILL_VALID(sid))
-		return -1;
-
-	for (i = 0; i < UNIT_RAM_SKILLS_LEN; i++) {
-		if (sid == list[i]) {
-			list[i] = 0;
-			SortRamSkillList(unit);
-			ResetSkillLists();
-			return 0;
-		}
-	}
-	return -1;
+    for (int i = 0; i < UNIT_RAM_SKILLS_LEN; i++) {
+        if (GET_SKILL(unit, i) == sid) {
+            SET_SKILL(unit, i, 0);
+            SortRamSkillList(unit);
+            ResetSkillLists();
+            return 0;
+        }
+    }
+    return -1;
 }
 
-int AddSkill(struct Unit *unit, const u16 sid)
+int AddSkill(struct Unit * unit, const u16 sid)
 {
-	int slot;
-	u8 *list = UNIT_RAM_SKILLS(unit);
+    if (sid >= MAX_EQUIP_SKILL_NUM)
+        return -1;
 
-	if (sid >= MAX_EQUIP_SKILL_NUM)
-		return -1;
+    LearnSkill(unit, sid);
 
-	LearnSkill(unit, sid);
+    if (GetSkillSlot(unit, sid) != -1)
+        return 0;
 
-	slot = GetSkillSlot(unit, sid);
-	if (slot != -1)
-		return 0;
+    int slot = GetFreeSkillSlot(unit);
+    if (slot == -1)
+        return -1;
 
-	slot = GetFreeSkillSlot(unit);
-	if (slot == -1)
-		return -1;
+    SET_SKILL(unit, slot, sid);
+    ResetSkillLists();
+    return 0;
+}
 
-	list[slot] = sid;
-	ResetSkillLists();
-	return 0;
+static inline void load_skill_ext(struct Unit * unit, u16 sid)
+{
+    if (EQUIP_SKILL_VALID(sid))
+    {
+        if (UNIT_FACTION(unit) == FACTION_BLUE)
+            LearnSkill(unit, sid);
+
+        AddSkill(unit, sid);
+    }
 }
 
 void UnitAutoLoadSkills(struct Unit *unit)
@@ -146,7 +135,12 @@ void UnitAutoLoadSkills(struct Unit *unit)
 
 	/* For debug, we enable unit learn all of skills */
 	if (gpKernelDesigerConfig->debug_autoload_skills) {
-		for (i = 1; i < 254; i++)
+#ifdef CONFIG_TURN_ON_ALL_SKILLS
+		int allSkills = 1023;
+#else
+		int allSkills = 254;
+#endif
+		for (i = 1; i < allSkills; i++)
 			LearnSkill(unit, i);
 	}
 }

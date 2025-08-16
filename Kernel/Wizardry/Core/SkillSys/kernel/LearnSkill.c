@@ -2,10 +2,18 @@
 #include "bwl.h"
 #include "kernel-lib.h"
 #include "skill-system.h"
+#include "constants/skills.h"
+#include "constants/texts.h"
 
+#ifdef CONFIG_TURN_ON_ALL_SKILLS
 struct LearnedSkillList {
-	u32 data[8]; /* 8 * 32 = 0x100 */
+    u32 data[8]; // 32 * 32 = 1024 bits needed for 10-bit skill IDs
 };
+#else
+struct LearnedSkillList {
+    u32 data[8]; // 8 * 32 = 0x100
+};
+#endif
 
 extern struct LearnedSkillList sLearnedSkillPLists[NEW_BWL_ARRAY_NUM];
 
@@ -60,3 +68,16 @@ void ForgetSkill(struct Unit *unit, const u16 sid)
 	if (EQUIP_SKILL_VALID(sid) && pid < NEW_BWL_ARRAY_NUM)
 		_BIT_CLR(sLearnedSkillPLists[pid].data, sid);
 }
+
+const struct PopupInstruction PopupScr_ObtainedSkill[] = {
+    POPUP_SOUND(0x5A),
+    POPUP_COLOR(TEXT_COLOR_SYSTEM_WHITE),
+    POPUP_MSG(MSG_Obtained),
+    POPUP_COLOR(TEXT_COLOR_SYSTEM_GOLD),
+    POPUP_ITEM_STR,
+    POPUP_SPACE(1),
+    POPUP_ITEM_ICON,
+    POPUP_COLOR(TEXT_COLOR_SYSTEM_WHITE),
+    POPUP_SPACE(1),
+    POPUP_END
+};

@@ -62,10 +62,10 @@ static inline void SetUnitSkillIndex(struct Unit* unit, int index, u16 sid) {
 #endif
 
 enum SkillInfoListss {
-	Skill_INFO_GENERIC,
-	Skill_INFO_PERSON,
-	Skill_INFO_JOB,
-	Skill_INFO_ITEM,
+    SKILL_INFO_EQUIP,
+    SKILL_INFO_CHARACTER,
+    SKILL_INFO_CLASS,
+    SKILL_INFO_ITEM,
 
 	Skill_INFO_MAX
 };
@@ -102,7 +102,7 @@ enum SkillInfoListss {
     (((u64)(unit)->supports[5]) << 40) |           \
     (((u64)(unit)->supports[6]) << 48)) >> ((i) * 10)) & 0x3FF)
 
-#define UNIT_RAM_SKILLS(unit) ((u8 *)((unit)->supports))
+#define UNIT_RAM_SKILLS(unit) ((u16 *)((unit)->supports))
 
 #define RAM_SKILL_LEN_EXT ( \
 	gpKernelDesigerConfig->max_equipable_skill < UNIT_RAM_SKILLS_LEN \

@@ -1,7 +1,12 @@
 #ifndef SKILL_SYSTEM_INSTALLED
 #define SKILL_SYSTEM_INSTALLED
 
-#include "kernel/JudgeSkill.lyn.event"
+// #ifndef CONFIG_TURN_ON_ALL_SKILLS
+//     #include "kernel/JudgeSkill_ALL_EQUIPPABLE.lyn.event"
+// #else
+    #include "kernel/JudgeSkill_NORMAL.lyn.event"
+//#endif
+
 #include "kernel/SkillList_.lyn.event"
 #include "kernel/Infos.lyn.event"
 #include "kernel/LearnSkill.lyn.event"

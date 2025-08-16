@@ -56,8 +56,16 @@ STATIC_DECLAR const struct MenuItemDef RemoveSkillMenuItems[] = {
 	RemoveSkillMenuItem(2),
 	RemoveSkillMenuItem(3),
 	RemoveSkillMenuItem(4),
-	RemoveSkillMenuItem(5),
-	RemoveSkillMenuItem(6),
+#ifndef CONFIG_TURN_ON_ALL_SKILLS
+    RemoveSkillMenuItem(5),
+    RemoveSkillMenuItem(6),
+
+    /* Enemy skills */
+    RemoveSkillMenuItem(7),
+#else
+    /* Enemy skills */
+    RemoveSkillMenuItem(5),
+#endif
 
 	{ 0 }
 };

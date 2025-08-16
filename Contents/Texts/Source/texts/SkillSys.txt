@@ -9,7 +9,7 @@ Equiped[X]
 
 ## MSG_PREPSKILL_FailAddSkill
 No enough space to equip,[NL]
-please remve skill first.[X]
+please remove a skill first.[X]
 
 ## MSG_PREPSKILL_FailRemoveSkill
 This skill is[NL]
@@ -41,3 +41,24 @@ Spent 1000 Gold.[X]
 
 ## MSG_PopupSkillLearned
 Acquired![.][X]
+
+## MSG_Learned
+Learned [X]
+
+## MSG_Obtained
+Holding [X]
+
+## MSG_PredationSkillChoice
+Select an enemy skill to learn.[X]
+
+## MSG_SkillSwapSkillChoice
+Select a skill to swap.[X]
+
+## MSG_UnitRevived
+Unit has revived.[X]
+
+## MSG_SelectSummon
+Choose a class to summon[X]
+
+## MSG_WeaponForged
+Weapon forge level increased.[X]

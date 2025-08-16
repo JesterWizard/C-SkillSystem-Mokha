@@ -17,10 +17,10 @@ const u8 *_GetSkillIconExt(const u8 lo, int hi)
 	return icon;
 }
 
-const u8 *GetSkillIcon1(const u8 sid) { return _GetSkillIconExt(sid, Skill_INFO_GENERIC); }
-const u8 *GetSkillIcon2(const u8 sid) { return _GetSkillIconExt(sid, Skill_INFO_PERSON); }
-const u8 *GetSkillIcon3(const u8 sid) { return _GetSkillIconExt(sid, Skill_INFO_JOB); }
-const u8 *GetSkillIcon4(const u8 sid) { return _GetSkillIconExt(sid, Skill_INFO_ITEM); }
+const u8 *GetSkillIcon1(const u8 sid) { return _GetSkillIconExt(sid, SKILL_INFO_EQUIP); }
+const u8 *GetSkillIcon2(const u8 sid) { return _GetSkillIconExt(sid, SKILL_INFO_CHARACTER); }
+const u8 *GetSkillIcon3(const u8 sid) { return _GetSkillIconExt(sid, SKILL_INFO_CLASS); }
+const u8 *GetSkillIcon4(const u8 sid) { return _GetSkillIconExt(sid, SKILL_INFO_ITEM); }
 
 u16 GetSkillDescMsg(const u16 sid)
 {
@@ -31,6 +31,17 @@ u16 GetSkillNameMsg(const u16 sid)
 {
 	return gpSkillInfos[sid].name;
 }
+
+u16 GetSkillPrice(const u16 sid)
+{
+    return gpSkillInfos[sid].price;
+}
+
+u16 GetSkillCapacity(const u16 sid)
+{
+    return gpSkillInfos[sid].capacity;
+}
+
 
 char *GetSkillDescStr(const u16 sid)
 {
@@ -72,7 +83,7 @@ char *GetSkillNameStrFormDesc(const u16 sid)
 	u16 msg = GetSkillDescMsg(sid);
 
 	if (msg == 0)
-		return "W.I.P";
+		return "-";
 
 	str = GetStringFromIndex(msg);
 	return SkillDescToName(str);
@@ -92,6 +103,19 @@ char *GetSkillNameStr(const u16 sid)
 		return Utf8ToNarrowFonts(str);
 	else
 		return str;
+}
+
+char *GetSkillNameStr_NormalFont(const u16 sid)
+{
+	char *str;
+	u16 msg = GetSkillNameMsg(sid);
+
+	if (msg == 0)
+		str = GetSkillNameStrFormDesc(sid);
+	else
+		str = GetStringFromIndex(msg);
+		
+	return str;
 }
 
 #if 0
