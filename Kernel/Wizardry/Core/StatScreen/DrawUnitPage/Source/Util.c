@@ -95,12 +95,19 @@ int GetTextColorFromGrowth(int growth)
 
 void PutDrawTextRework(struct Text *text, u16 *tm, int color, int x, int tile_width, char const *str)
 {
-	int bank;
+#ifdef CONFIG_GROWTHS_AS_LETTERS
+    PutDrawText(text, tm, TEXT_COLOR_SYSTEM_GOLD, x, tile_width, str);
+#else
+    #ifdef CONFIG_GREEN_BONUS_GROWTHS 
+        PutDrawText(text, tm, TEXT_COLOR_SYSTEM_GOLD, x, tile_width, str);
+    #else
+        int bank;
+        ModifyTextPal(bank, color);
+        gActiveFont->tileref = TILEREF(gActiveFont->tileref & 0xFFF, bank);
 
-	ModifyTextPal(bank, color);
-
-	gActiveFont->tileref = TILEREF(gActiveFont->tileref & 0xFFF, bank);
-	PutDrawText(text, tm, color, x, tile_width, str);
+        PutDrawText(text, tm, color, x, tile_width, str);
+    #endif
+#endif
 }
 
 void DrawStatWithBarReworkExt(int num, int x, int y, u16 *tm, int base, int total, int max, int max_ref)
