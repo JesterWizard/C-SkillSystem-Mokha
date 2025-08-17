@@ -135,3 +135,28 @@ void PutManimLevelUpStat(int actor_id, int x, int y, int stat_num, bool after_ga
 		TEXT_COLOR_SYSTEM_BLUE,
 		GetManimLevelUpBaseStat(actor_id, stat_num) + (after_gain ? GetManimLevelUpStatGain(actor_id, stat_num) : 0));
 }
+
+LYN_REPLACE_CHECK(ManimLevelUp_ScrollOut);
+void ManimLevelUp_ScrollOut(struct ManimLevelUpProc *proc)
+{
+    proc->y_scroll_offset -= 8;
+
+    BG_SetPosition(BG_0, 0, proc->y_scroll_offset);
+    BG_SetPosition(BG_1, 0, proc->y_scroll_offset);
+
+    // NOTE: this is inconsistent with math in ManimLevelUp_InitMainScreen
+    gFaces[0]->yPos = 32 - proc->y_scroll_offset;
+
+    if (proc->y_scroll_offset <= -144)
+    {
+#ifdef CONFIG_PROMOTION_ON_MAX_LEVEL
+        if (gManimSt.actor[proc->actor_id].unit->level == UNIT_LEVEL_MAX_RE && !(UNIT_CATTRIBUTES(gManimSt.actor[proc->actor_id].unit) & CA_PROMOTED))
+        {
+            gActionData.subjectIndex = gManimSt.actor[proc->actor_id].unit->index;
+            StartBmPromotion(proc);
+            gActionData.subjectIndex = 0;
+        }
+#endif
+        Proc_Break(proc);
+    }
+}
