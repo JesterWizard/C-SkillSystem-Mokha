@@ -33,7 +33,7 @@ _ARM_SkillTester_CopyStart:
      * 2. SKILL_INDEX_LIST(sid) valid
      */
     mov r2, r1
-    // lsr r3, r1, #8          // r3 = sid_list
+    //lsr r3, r1, #8          // r3 = sid_list
     mov r3, #0                 // Force return a 0 so that the jump table always uses the generic skill tester
     add pc, pc, r3, lsl #2
 
@@ -61,68 +61,58 @@ _ARM_SkillTester_CopyStart:
     pop {r4, r5, lr}
     bx lr
 
-@ Adjusted skill tester generic function for a maximum of 1023 equippable skills in RAM
+@ Used for 1023 skills in RAM
 _SkillTester_Generic:
-    push    {r4-r11, lr}         @ Save callee-saved + extra scratch registers
-
+    push    {r4, r11, r12, lr}   @ Save scratch registers
     add     r1, r0, #0x32        @ r1 = &unit->supports[0]
-
-    ldrb    r4, [r1, #0]         @ Load all 7 bytes
-    ldrb    r5, [r1, #1]
-    ldrb    r6, [r1, #2]
-    ldrb    r7, [r1, #3]
-    ldrb    r8, [r1, #4]
-    ldrb    r9, [r1, #5]
-    ldrb    r10, [r1, #6]
-
-    @ Build buffer: r11 = lower 32 bits, r12 = upper bits
-    orr     r11, r4, r5, lsl #8
-    orr     r11, r11, r6, lsl #16
-    orr     r11, r11, r7, lsl #24
-
-    orr     r12, r8, r9, lsl #8
-    orr     r12, r12, r10, lsl #16
-
-    mov     r3, #0              @ r3 = index (0 to 4)
-
+    mov     r3, #0               @ r3 = skill slot index (0-4 for 5 slots)
+    
 .Lskill_loop:
-    mov     r1, r3              @ move the skill index into another scratch register
-    mov     r0, #10             @ add into a new register the number of bits we're using to store each skill
-    mul     r2, r1, r0          @ r1 = r1 * 10
+    @ Calculate bit offset: r4 = r3 * 10
+    mov     r4, r3
+    mov     r12, #10             @ Use r12 as temp for multiply
+    mul     r4, r12, r4          @ r4 = bit offset (0, 10, 20, 30, 40)
+    
+    @ Calculate which byte to start reading from: r12 = r4 / 8
+    lsr     r12, r4, #3          @ r12 = byte offset (0, 1, 2, 3, 5)
+    
+    @ Calculate bit offset within the starting byte: r4 = r4 % 8
+    and     r4, r4, #7           @ r4 = bit offset within byte (0, 2, 4, 6, 0)
+    
+    @ Load the skill value (need up to 2 bytes to get 10 bits)
+    ldrb    r11, [r1, r12]       @ Load first byte
+    cmp     r12, #6              @ Check if we can safely load next byte
+    bge     .Lsingle_byte        @ If offset >= 6, only use single byte
+    
+    add     r12, r12, #1         @ r12 = next byte offset
+    ldrb    r0, [r1, r12]        @ Load next byte (using r0 as temp)
+    orr     r11, r11, r0, lsl #8 @ Combine into 16-bit value
+    b       .Lextract_skill
 
-    cmp     r2, #32
-    blt     .Lread_low
-
-    @ Offset in r1 >= 32 → read from r12
-    sub     r1, r1, #32
-    mov     r0, r12
-    lsr     r0, r0, r1
-    b       .Lmask_compare
-
-.Lread_low:
-    mov     r0, r11
-    lsr     r0, r0, r1
-
-.Lmask_compare:
-    mov     r1, #0xFF
-    orr     r1, r1, #0x300     @ r1 = 0x3FF
-    and     r0, r0, r1
-    cmp     r0, r2
-    beq     .Lfound
-
+.Lsingle_byte:
+    @ For the last skill, we might only have partial data
+    @ This handles edge cases where skill spans beyond available data
+    
+.Lextract_skill:
+    @ Extract 10-bit skill from the combined value
+    lsr     r11, r11, r4         @ Shift right by bit offset
+    mov     r12, #0xFF           @ Lower 8 bits of mask
+    orr     r12, r12, #0x300     @ r12 = 0x3FF (10-bit mask)
+    and     r11, r11, r12        @ Extract 10-bit skill ID
+    
+    @ Compare with target skill
+    cmp     r11, r2
+    popeq   {r4, r11, r12, lr}   @ Restore registers if found
+    beq     .Lend_true
+    
+    @ Move to next skill slot
     add     r3, r3, #1
-    cmp     r3, #5             @ check if we've reached the current skill list limit for this unit
-    blt     .Lskill_loop       @ if we have look for another skill
-
-    b       .Lnot_found        @ otherwise branch to the end
-
-.Lfound:
-    pop     {r4-r11, lr}
-    b       .Lend_true
-
-.Lnot_found:
-    pop     {r4-r11, lr}
-    b       .Lend_false
+    cmp     r3, #5               @ Check if we've processed all 5 slots
+    blt     .Lskill_loop
+    
+    @ Not found, continue to other skill sources
+    pop     {r4, r11, r12, lr}   @ Restore registers
+    b       _SkillTester_COMMON
 @ end of code used for 1023 skills in RAM
 
 _SkillTester_COMMON:

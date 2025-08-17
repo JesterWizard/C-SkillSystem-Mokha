@@ -62,9 +62,9 @@ _ARM_SkillTester_CopyStart:
 
 @ Used for 254 skills in RAM
 _SkillTester_Generic:
-    add r1, r0, #0x32
-    ldrb r3, [r1], #1
-    cmp r2, r3
+    add r1, r0, #0x32           @ r0 should hold the current faction address, 0x32 (50) is the max number of units for that faction
+    ldrb r3, [r1], #1           @ r1 holds the current support byte, load that byte into r3 and increment the byte by 1
+    cmp r2, r3                  @ compare against r2 and branch if a skill exists in that byte
     beq .Lend_true
     ldrb r3, [r1], #1
     cmp r2, r3

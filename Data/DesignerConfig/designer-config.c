@@ -1,5 +1,6 @@
 #include "common-chax.h"
 #include "kernel-lib.h"
+#include "skill-system.h"
 
 const struct KernelDesigerConfig gKernelDesigerConfig = {
 
@@ -21,7 +22,7 @@ const struct KernelDesigerConfig gKernelDesigerConfig = {
 	/**
 	 * Max amount of equip able skill for each unit (0-7)
 	 */
-	.max_equipable_skill = 7,
+	.max_equipable_skill = UNIT_RAM_SKILLS_LEN,
 
 #ifdef CONFIG_REMOVE_MOVE_PATH
 	.remove_move_path = true,

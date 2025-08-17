@@ -16,7 +16,10 @@ STATIC_DECLAR int GetUnitCommonGrowthBonus(int status, struct Unit *unit)
 
 #if defined(SID_Aptitude) && (COMMON_SKILL_VALID(SID_Aptitude))
 	if (SkillTester(unit, SID_Aptitude))
+	{
+		NoCashGBAPrint("TRUE");
 		new = new + SKILL_EFF0(SID_Aptitude);
+	}
 #endif
 
 	return new;
