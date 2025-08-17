@@ -77,8 +77,8 @@ enum SkillInfoListss {
 	#define SKILL_INDEX_REAL(sid) ((sid) & 0x3FF)
 #else
     #define MAX_EQUIP_SKILL_NUM 0xFF
-	#define SKILL_INDEX_REAL(sid) ((sid) & 0xFF)
 	#define SKILL_INDEX_LIST(sid) (((sid) >> 8) & 0xFF)
+	#define SKILL_INDEX_REAL(sid) ((sid) & 0xFF)
 #endif
 
 #ifdef CONFIG_TURN_ON_ALL_SKILLS
@@ -349,7 +349,7 @@ void FlushUnitSkillDbgList(struct Unit *unit);
 
 void EMS_SaveSkillDbgList(u8 *dst, const u32 size);
 void EMS_LoadSkillDbgList(u8 *src, const u32 size);
-void AppendSkillListViaDebugList(struct Unit *unit, struct SkillList *list, u8 *ref);
+void AppendSkillListViaDebugList(struct Unit *unit, struct SkillList *list, u16 *ref);
 
 /**
  * Miscs

@@ -111,7 +111,7 @@ void EMS_LoadSkillDbgList(u8 *src, const u32 size)
 	ReadSramFast(src, gSkillDbgList, sizeof(gSkillDbgList));
 }
 
-void AppendSkillListViaDebugList(struct Unit *unit, struct SkillList *list, u8 *ref)
+void AppendSkillListViaDebugList(struct Unit *unit, struct SkillList *list, u16 *ref)
 {
 	int i;
 	int pid = UNIT_CHAR_ID(unit);

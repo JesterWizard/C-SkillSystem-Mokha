@@ -5,6 +5,7 @@
 #include "constants/skills.h"
 #include "constants/texts.h"
 
+// Not so sure [32] was ever needed now
 #ifdef CONFIG_TURN_ON_ALL_SKILLS
 struct LearnedSkillList {
     u32 data[8]; // 32 * 32 = 1024 bits needed for 10-bit skill IDs
