@@ -840,3 +840,183 @@ u8 Event3E_PrepScreenCall(struct EventEngineProc * proc)
     return EVC_ADVANCE_YIELD;
 }
 #endif
+
+#ifdef CONFIG_QUALITY_OF_LIFE_EPILOGUE_FADE
+
+    //! FE8U = 0x080B723C
+    LYN_REPLACE_CHECK(PairedEndingBattleDisp_InitBlend);
+    void PairedEndingBattleDisp_InitBlend(struct EndingBattleDisplayProc * proc)
+    {
+        proc->timer = 0;
+
+        SetBlendAlpha(0x10, 0);
+        SetBlendTargetA(0, 0, 0, 0, 0);
+        SetBlendTargetB(0, 0, 1, 0, 0);
+
+        return;
+    }
+
+    //! FE8U = 0x080B7274
+    LYN_REPLACE_CHECK(PairedEndingBattleDisp_Loop_Blend);
+    void PairedEndingBattleDisp_Loop_Blend(struct EndingBattleDisplayProc * proc)
+    {
+        int bldAmt = proc->timer >> 2;
+
+        proc->timer++;
+
+        SetBlendAlpha(0x10 - bldAmt, bldAmt);
+
+        if (bldAmt == 8)
+        {
+            Proc_Break(proc);
+        }
+
+        return;
+    }
+
+    static const struct ProcCmd gProcScr_EndingBattleDisplay_Solo_NEW[] =
+    {
+        PROC_YIELD,
+
+        PROC_CALL(SoloEndingBattleDisp_Init),
+        PROC_REPEAT(SoloEndingBattleDisp_Loop),
+        
+        PROC_SLEEP(16),
+
+        PROC_CALL(PairedEndingBattleDisp_InitBlend),
+        PROC_REPEAT(PairedEndingBattleDisp_Loop_Blend),
+
+        PROC_END,
+    };
+
+    LYN_REPLACE_CHECK(StartSoloEndingBattleDisplay);
+    void StartSoloEndingBattleDisplay(struct CharacterEndingEnt * endingEnt, struct Unit * unit, struct CharacterEndingProc * parent)
+    {
+        struct EndingBattleDisplayProc * proc = Proc_StartBlocking(gProcScr_EndingBattleDisplay_Solo_NEW, parent);
+
+        proc->units[0] = unit;
+        proc->units[1] = NULL;
+
+        proc->pCharacterEnding = endingEnt;
+
+        return;
+    }
+
+#endif
+
+#ifdef CONFIG_QUALITY_OF_LIFE_UNIT_NAME_DROP
+
+    struct PopupInstruction const NewItemDropPopup[] = {
+        POPUP_SOUND(0x5A),
+        POPUP_COLOR(TEXT_COLOR_SYSTEM_BLUE),
+        POPUP_UNIT_NAME,
+        POPUP_COLOR(TEXT_COLOR_SYSTEM_WHITE),
+        POPUP_MSG(MSG_GOT_ITEM),             /* got */
+        POPUP_COLOR(TEXT_COLOR_SYSTEM_BLUE),
+        POPUP_ITEM_STR,
+        POPUP_SPACE(1),
+        POPUP_ITEM_ICON,
+        POPUP_COLOR(TEXT_COLOR_SYSTEM_WHITE),
+        POPUP_SPACE(1),
+        POPUP_MSG(0x022),                   /* .[.] */
+        POPUP_END
+    };
+
+    struct PopupInstruction const NewItemPilferedPopup[] = {
+        POPUP_SOUND(0x5A),
+        POPUP_COLOR(TEXT_COLOR_SYSTEM_BLUE),
+        POPUP_UNIT_NAME,
+        POPUP_COLOR(TEXT_COLOR_SYSTEM_WHITE),
+        POPUP_MSG(MSG_PILFERED_ITEM),       /* pilfered */
+        POPUP_COLOR(TEXT_COLOR_SYSTEM_BLUE),
+        POPUP_ITEM_STR,
+        POPUP_SPACE(1),
+        POPUP_ITEM_ICON,
+        POPUP_COLOR(TEXT_COLOR_SYSTEM_WHITE),
+        POPUP_SPACE(1),
+        POPUP_MSG(0x022),                   /* .[.] */
+        POPUP_END
+    };
+
+    struct PopupInstruction const NewItemStolePopup[] = {
+        POPUP_SOUND(0x5C),
+        POPUP_COLOR(TEXT_COLOR_SYSTEM_BLUE),
+        POPUP_UNIT_NAME,
+        POPUP_COLOR(TEXT_COLOR_SYSTEM_WHITE),
+        POPUP_MSG(MSG_STOLE_ITEM),          /* Stole */
+        POPUP_COLOR(TEXT_COLOR_SYSTEM_BLUE),
+        POPUP_ITEM_STR,
+        POPUP_SPACE(1),
+        POPUP_ITEM_ICON,
+        POPUP_SPACE(1),
+        POPUP_COLOR(TEXT_COLOR_SYSTEM_WHITE),
+        POPUP_MSG(0x022),                   /* .[.] */
+        POPUP_END
+    };
+
+    struct PopupInstruction const NewGoldGotPopup[] = {
+        POPUP_SOUND(0x5A),
+        POPUP_COLOR(TEXT_COLOR_SYSTEM_BLUE),
+        POPUP_UNIT_NAME,
+        POPUP_COLOR(TEXT_COLOR_SYSTEM_WHITE),
+        POPUP_MSG(MSG_GOT_ITEM),               /* got */
+        POPUP_COLOR(TEXT_COLOR_SYSTEM_BLUE),
+        POPUP_NUM,
+        POPUP_SPACE(3),
+        POPUP_COLOR(TEXT_COLOR_SYSTEM_WHITE),
+        POPUP_MSG(MSG_GOLD),                   /* gold.[.] */
+        POPUP_END
+    };
+
+    struct PopupInstruction const NewGoldStolenPopup[] = {
+        POPUP_SOUND(0x5C),
+        POPUP_COLOR(TEXT_COLOR_SYSTEM_BLUE),
+        POPUP_UNIT_NAME,
+        POPUP_COLOR(TEXT_COLOR_SYSTEM_WHITE),
+        POPUP_MSG(MSG_STOLE_ITEM),              /* Stole */
+        POPUP_COLOR(TEXT_COLOR_SYSTEM_BLUE),
+        POPUP_NUM,
+        POPUP_SPACE(3),
+        POPUP_COLOR(TEXT_COLOR_SYSTEM_WHITE),
+        POPUP_MSG(MSG_GOLD),                   /* gold. */
+        POPUP_END
+    };
+
+    LYN_REPLACE_CHECK(NewPopup_ItemGot_unused);
+    void NewPopup_ItemGot_unused(struct Unit* unit, u16 item, ProcPtr parent)
+    {
+        SetPopupItem(item);
+        SetPopupUnit(unit);
+
+        if (FACTION_BLUE == UNIT_FACTION(unit))
+            NewPopup_Simple(NewItemDropPopup, 0x60, 0x0, parent);
+        else
+            NewPopup_Simple(NewItemPilferedPopup, 0x60, 0x0, parent);
+    }
+
+    LYN_REPLACE_CHECK(NewPopup_GoldGot);
+    void NewPopup_GoldGot(ProcPtr parent, struct Unit *unit, int value)
+    {
+        SetPopupNumber(value);
+        SetPopupUnit(unit);
+
+        if (FACTION_BLUE == UNIT_FACTION(unit)) 
+        {
+            value += GetPartyGoldAmount();
+            SetPartyGoldAmount(value);
+            NewPopup_Simple(NewGoldGotPopup, 0x60, 0x0, parent);
+        } 
+        else
+            NewPopup_Simple(NewGoldStolenPopup, 0x60, 0x0, parent);
+    }
+
+    LYN_REPLACE_CHECK(NewPopup_ItemStealing);
+    void NewPopup_ItemStealing(u16 item, ProcPtr parent)
+    {
+        SetPopupItem(item);
+        SetPopupUnit(gActiveUnit);
+
+        NewPopup_Simple(NewItemStolePopup, 0x60, 0x0, parent);
+    }
+
+#endif

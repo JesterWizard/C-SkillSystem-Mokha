@@ -28,13 +28,10 @@ the top of inventory.[.][X]
 
 ## MSG_AVO
 Avo[X]
-
 ## MSG_CRT
 Crt[X]
-
 ## MSG_DOG
 Dog[X]
-
 ## MSG_SILENCER
 Silence[X]
 
@@ -63,3 +60,12 @@ Arena Level Limit: 10.[X]
 Unpromoted units only.[X]
 ## MSG_ArenaClosedString
 The arena is closed for the day.[X]
+
+## MSG_GOT_ITEM
+ got [X]
+## MSG_STOLE_ITEM
+ stole [X]
+## MSG_PILFERED_ITEM
+ pilfered [X]
+## MSG_GOLD
+ gold [X]
