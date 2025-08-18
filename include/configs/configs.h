@@ -311,4 +311,6 @@
 #define SETH_INJURED
 #define INJURED_TURN_COUNT 5
 
+#define CONFIG_SKIP_INTRO
+
 #endif /* CONFIG_INSTALLED */
