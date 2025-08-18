@@ -92,6 +92,15 @@ void ChapterChangeUnitCleanup(void)
 			// if(GetItemIndex(unit->items[i]) == ITEM_SWORD_RAPIER)
 			unit->items[i] = MakeNewItem(unit->items[i]);
 #endif
+
+#if defined(CONFIG_RESET_BWL_STATS_EACH_CHAPTER)
+        if (bwl != NULL)
+        {
+            bwl->battleAmt = 0;
+            bwl->winAmt = 0;
+            bwl->lossAmt = 0;
+        }
+#endif
 	})
 
 	gPlaySt.chapterStateBits = gPlaySt.chapterStateBits &~ PLAY_FLAG_PREPSCREEN;
