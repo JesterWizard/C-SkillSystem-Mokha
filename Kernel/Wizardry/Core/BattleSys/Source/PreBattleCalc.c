@@ -27,7 +27,17 @@ void ComputeBattleUnitSpeed(struct BattleUnit *bu)
 
 	con += k_udiv(bu->battleAttack * gpKernelBattleDesignerConfig->as_calc_atk_perc, 100);
 
-	wt -= con;
+#ifdef CONFIG_S_RANK_NO_WEAPON_WEIGHT
+    int itemType = GetItemType(bu->weaponBefore);
+
+    if (GetUnit(bu->unit.index)->ranks[itemType] == WPN_EXP_S)
+        wt = 0;
+    else 
+        wt -= con;
+#else
+    wt -= con;
+#endif
+
 	if (wt < 0)
 		wt = 0;
 

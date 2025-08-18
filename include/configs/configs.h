@@ -320,5 +320,6 @@
 #endif
 
 // #define CONFIG_AUTO_REPAIR_WEAPONS
+#define CONFIG_S_RANK_NO_WEAPON_WEIGHT
 
 #endif /* CONFIG_INSTALLED */
