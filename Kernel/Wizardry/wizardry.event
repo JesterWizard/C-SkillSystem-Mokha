@@ -169,3 +169,7 @@ ALIGN 4
 #ifdef CONFIG_QUINTESSANCE_EFFECT
     #include "Misc/QuintessanceEffect/QuintessanceEffect_Installer.event"
 #endif
+
+#ifdef CONFIG_FE8_REWRITE
+    #include "Misc/FE8_Rewritten_Terper/Installer.event"
+#endif

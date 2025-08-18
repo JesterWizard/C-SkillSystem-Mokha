@@ -86,7 +86,7 @@ enum {
     CLASS_FLEET               = 0x50,
     CLASS_PHANTOM             = 0x51,
     CLASS_REVENANT            = 0x52,
-    CLASS_ENTOUMBED           = 0x53,
+    CLASS_ENTOMBED           = 0x53,
     CLASS_BONEWALKER          = 0x54,
     CLASS_BONEWALKER_BOW      = 0x55,
     CLASS_WIGHT               = 0x56,

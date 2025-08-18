@@ -1,2 +1,3 @@
 #include "Source/LynJump.event"
+#include "Source/CustomFunctions.lyn.event"
 #include "Source/MiscFunctions.lyn.event"

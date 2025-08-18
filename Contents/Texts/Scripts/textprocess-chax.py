@@ -4,7 +4,8 @@
 import os, re, sys, struct
 import huffman
 
-MSG_LENGTH = 0x1400
+# Used for CONFIG_FE8_REWRITE
+MSG_LENGTH = 0x2000
 DEBUG = False
 
 RE_MSGIDX = re.compile(r"^#([0-9a-fA-Fx]+)")

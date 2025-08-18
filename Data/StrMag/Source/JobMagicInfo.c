@@ -485,7 +485,7 @@ const struct UnitMagicInfo gMagicJInfos[0x100] = {
 		.cap = 20,
 		.bonus = 0,
 	},
-	[CLASS_ENTOUMBED] = {
+	[CLASS_ENTOMBED] = {
 		.base = 0,
 		.growth = 0,
 		.cap = 20,

@@ -4,6 +4,8 @@
 //#include "config-debug.h"
 #include "config-memmap.h"
 
+#define CONFIG_FE8_REWRITE
+
 /**
  * If uncomment, kernel may remove vanilla dislogue text
  * so that we can save ~470KByte ROM space in DEMO.
@@ -303,5 +305,6 @@
 
 #define CONFIG_PROMOTION_ON_MAX_LEVEL
 #define CONFIG_GREEN_BONUS_GROWTHS 
+#define CONFIG_SKIP_INTRO
 
 #endif /* CONFIG_INSTALLED */
