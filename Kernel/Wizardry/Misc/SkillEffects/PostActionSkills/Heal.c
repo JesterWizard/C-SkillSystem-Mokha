@@ -31,6 +31,11 @@ bool PostAction_BattleActorHeal(ProcPtr parent)
 		heal += perc_of(hp_max, SKILL_EFF0(SID_BoundlessVitality));
 #endif
 
+#ifdef CONFIG_RESTORE_HP_ON_LEVEL_UP
+    if (gEventSlots[EVT_SLOT_7] == 410) /* 'Heal' expressed as a hexidecimal and then convert back into decimal and summed */
+        heal = gActiveUnit->maxHP - gActiveUnit->curHP;
+#endif
+
 	if ((heal >= (hp_max - hp_cur)))
 		heal = hp_max - hp_cur;
 

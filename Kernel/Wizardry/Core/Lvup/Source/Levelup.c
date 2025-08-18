@@ -159,5 +159,10 @@ void CheckBattleUnitLevelUp(struct BattleUnit *bu)
 		UnitLvupCore(bu, bonus);
 
 		CheckBattleUnitStatCaps(GetUnit(bu->unit.index), bu);
+
+#ifdef CONFIG_RESTORE_HP_ON_LEVEL_UP
+    	gEventSlots[EVT_SLOT_7] = 410; /* 'Heal' expressed as a hexidecimal and then convert back into decimal and summed */
+		NoCashGBAPrintf("EVT SLOT 7 Value is: %d", gEventSlots[EVT_SLOT_7]);
+#endif
 	}
 }
