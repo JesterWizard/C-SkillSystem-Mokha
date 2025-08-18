@@ -4,7 +4,7 @@
 
 STATIC_DECLAR void DisplayHpStr(void)
 {
-	int bank, color;
+	FORCE_DECLARE int bank, color;
 	struct Unit *unit = gStatScreen.unit;
 
 	color = UNIT_FACTION(unit) == FACTION_BLUE
@@ -13,30 +13,109 @@ STATIC_DECLAR void DisplayHpStr(void)
 
 	PutSpecialChar(gBG0TilemapBuffer + TILEMAP_INDEX(5, 17), TEXT_COLOR_SYSTEM_GOLD, TEXT_SPECIAL_SLASH);
 
-	ModifyTextPal(bank, color);
-	gActiveFont->tileref = TILEREF(gActiveFont->tileref & 0xFFF, bank);
+#ifdef CONFIG_GROWTHS_AS_LETTERS
+    PutTwoSpecialChar(
+        gBG0TilemapBuffer + TILEMAP_INDEX(1, 17),
+        TEXT_COLOR_SYSTEM_GOLD,
+        0x22, 0x23);
+#else 
+    ModifyTextPal(bank, color);
+    gActiveFont->tileref = TILEREF(gActiveFont->tileref & 0xFFF, bank);
 
-	PutTwoSpecialChar(
-		gBG0TilemapBuffer + TILEMAP_INDEX(1, 17),
-		color,
-		0x22, 0x23);
+    PutTwoSpecialChar(
+        gBG0TilemapBuffer + TILEMAP_INDEX(1, 17),
+        color,
+        0x22, 0x23);
+#endif
 
 	ResetActiveFontPal();
 }
 
 STATIC_DECLAR void DisplayHpGrowthValue(void)
 {
-	int bank, color = GetTextColorFromGrowth(GetUnitHpGrowth(gStatScreen.unit));
+    int growth = GetUnitHpGrowth(gStatScreen.unit);
 
-	ModifyTextPal(bank, color);
-	gActiveFont->tileref = TILEREF(gActiveFont->tileref & 0xFFF, bank);
+#ifdef CONFIG_GROWTHS_AS_LETTERS
+    int character1 = 0;
+    FORCE_DECLARE int character2 = 0;
 
-	PutNumberOrBlank(
-		gBG0TilemapBuffer + TILEMAP_INDEX(7, 17),
-		TEXT_COLOR_SYSTEM_GOLD,
-		GetUnitHpGrowth(gStatScreen.unit));
+    if (growth >= 100)
+    {
+        character1 = TEXT_SPECIAL_S;
+    }
+    else if (growth >= 90)
+    {
+        character1 = TEXT_SPECIAL_A;
+        character2 = TEXT_SPECIAL_PLUS;
+    }
+    else if (growth >= 80)
+    {
+        character1 = TEXT_SPECIAL_A;
+    }
+    else if (growth >= 70)
+    {
+        character1 = TEXT_SPECIAL_B;
+        character2 = TEXT_SPECIAL_PLUS;
+    }
+    else if (growth >= 60)
+    {
+        character1 = TEXT_SPECIAL_B;
+    }
+    else if (growth >= 50)
+    {
+        character1 = TEXT_SPECIAL_C;
+        character2 = TEXT_SPECIAL_PLUS;
+    }
+    else if (growth >= 40)
+    {
+        character1 = TEXT_SPECIAL_C;
+    }
+    else if (growth >= 30)
+    {
+        character1 = TEXT_SPECIAL_D;
+        character2 = TEXT_SPECIAL_PLUS;
+    }
+    else if (growth >= 20)
+    {
+        character1 = TEXT_SPECIAL_D;
+    }
+    else if (growth >= 10)
+    {
+        character1 = TEXT_SPECIAL_E;
+        character2 = TEXT_SPECIAL_PLUS;
+    }
+    else if (growth > 0)
+    {
+        character1 = TEXT_SPECIAL_E;
+    }
+    else 
+    {
+        character1 = TEXT_SPECIAL_BIGNUM_0;
+    }
 
-	ResetActiveFontPal();
+    
+    PutSpecialChar(gBG0TilemapBuffer + TILEMAP_INDEX(5, 17),
+    TEXT_COLOR_SYSTEM_BLUE,
+    character1);
+
+    if (character2 > 0)
+    {
+        PutSpecialChar(gBG0TilemapBuffer + TILEMAP_INDEX(6, 17),
+        TEXT_COLOR_SYSTEM_BLUE,
+        character2);
+    }
+#else
+    int bank, color = GetTextColorFromGrowth(growth);
+    ModifyTextPal(bank, color);
+    gActiveFont->tileref = TILEREF(gActiveFont->tileref & 0xFFF, bank);
+
+    PutNumberOrBlank(
+        gBG0TilemapBuffer + TILEMAP_INDEX(7, 17),
+        TEXT_COLOR_SYSTEM_GOLD,
+        growth);
+#endif
+
+    ResetActiveFontPal();
 }
 
 STATIC_DECLAR void DisplayHpBmValue(void)

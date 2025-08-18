@@ -7,7 +7,7 @@
 static void _growth_disp(int x, int y, int growth)
 {
 #ifdef CONFIG_GROWTHS_AS_LETTERS
-    int character1 = 0;
+    FORCE_DECLARE int character1 = 0;
     FORCE_DECLARE int character2 = 0;
 
     if (growth >= 100)
