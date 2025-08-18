@@ -8,6 +8,11 @@ int _GetUnitDefense(struct Unit *unit)
 	const StatusGetterFunc_t *it;
 	int status = unit->def;
 
+#ifdef CONFIG_STAT_SCREEN_TERRAIN_BONUS
+	int terrainID = GetTrueTerrainAt(unit->xPos, unit->yPos);
+	status += unit->pClassData->pTerrainDefenseLookup[terrainID];
+#endif
+
 	for (it = gpDefGetters; *it; it++)
 		status = (*it)(status, unit);
 

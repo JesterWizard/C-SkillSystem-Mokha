@@ -8,6 +8,11 @@ int _GetUnitResistance(struct Unit *unit)
 	const StatusGetterFunc_t *it;
 	int status = unit->res;
 
+#ifdef CONFIG_STAT_SCREEN_TERRAIN_BONUS
+	int terrainID = GetTrueTerrainAt(unit->xPos, unit->yPos);
+	status += unit->pClassData->pTerrainResistanceLookup[terrainID];
+#endif
+
 	for (it = gpResGetters; *it; it++)
 		status = (*it)(status, unit);
 

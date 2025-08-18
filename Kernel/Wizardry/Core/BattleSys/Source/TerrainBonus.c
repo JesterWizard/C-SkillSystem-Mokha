@@ -31,8 +31,11 @@ void SetBattleUnitTerrainBonuses(struct BattleUnit *bu, int terrain)
 	bu->terrainId = terrain;
 
 	bu->terrainAvoid      = jinfo->pTerrainAvoidLookup[bu->terrainId];
-	bu->terrainDefense    = jinfo->pTerrainDefenseLookup[bu->terrainId];
-	bu->terrainResistance = jinfo->pTerrainResistanceLookup[bu->terrainId];
+	
+#ifndef CONFIG_STAT_SCREEN_TERRAIN_BONUS
+    bu->terrainDefense    = bu->unit.pClassData->pTerrainDefenseLookup[bu->terrainId];
+    bu->terrainResistance = bu->unit.pClassData->pTerrainResistanceLookup[bu->terrainId];
+#endif
 }
 
 LYN_REPLACE_CHECK(SetBattleUnitTerrainBonusesAuto);
