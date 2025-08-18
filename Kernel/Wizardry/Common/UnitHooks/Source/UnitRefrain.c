@@ -1,5 +1,10 @@
 #include "common-chax.h"
 #include "kernel-lib.h"
+#include "constants/skills.h"
+#include "mu.h"
+#include "debuff.h"
+#include "bwl.h"
+#include "playst-expa.h"
 
 typedef int (*UnitRefrainFunc_t)(struct Unit *unit);
 // extern const UnitRefrainFunc_t gUnitRefrainHooks[];
@@ -80,6 +85,12 @@ void ChapterChangeUnitCleanup(void)
 		const UnitRefrainFunc_t *it;
 		for (it = gpUnitRefrainHooks; *it; it++)
 			(*it)(unit);
+#endif
+
+#if defined(CONFIG_AUTO_REPAIR_WEAPONS)
+		for (int i = 0; i < 5; i++)
+			// if(GetItemIndex(unit->items[i]) == ITEM_SWORD_RAPIER)
+			unit->items[i] = MakeNewItem(unit->items[i]);
 #endif
 	})
 
