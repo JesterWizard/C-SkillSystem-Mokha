@@ -84,7 +84,7 @@ enum song_idx {
     SONG_54 = 0x54, 
     SONG_55 = 0x55, 
     SONG_BGM_ED_STAFF_2 = 0x56,
-    SONG_5A = 0x5A,
+    SONG_SE_UPDATE = 0x5A,
     SONG_5B = 0x5B,
     SONG_SE_WEAPON_BROKE = 0x5C,
     SONG_60 = 0x60, // save success
