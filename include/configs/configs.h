@@ -342,5 +342,8 @@
 	#define CONFIG_ENEMY_PROMOTION_BOOST 3
 #endif
 #define CONFIG_REFUGE_FEATURE
+/* Not installed because of conflucts with phase suspend and sound mixer */
+// #define CONFIG_CUSTOM_CHAPTER_SCREEN
+#define CONFIG_MODULAR_STAFF_EXP
 
 #endif /* CONFIG_INSTALLED */
