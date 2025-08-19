@@ -1020,3 +1020,34 @@ u8 Event3E_PrepScreenCall(struct EventEngineProc * proc)
     }
 
 #endif
+
+LYN_REPLACE_CHECK(UnitDrop);
+void UnitDrop(struct Unit * actor, int xTarget, int yTarget)
+{
+    struct Unit * target = GetUnit(actor->rescue);
+
+    actor->state = actor->state & ~(US_RESCUING | US_RESCUED);
+    target->state = target->state & ~(US_RESCUING | US_RESCUED | US_HIDDEN);
+
+/* Let rescued units move after the rescuer dies */
+#ifdef CONFIG_DEATH_DANCE
+    if (UNIT_FACTION(target) == gPlaySt.faction && actor->curHP != 0)
+        target->state |= US_UNSELECTABLE; // TODO: US_GRAYED    
+#else
+    if (UNIT_FACTION(target) == gPlaySt.faction)
+        target->state |= US_UNSELECTABLE; // TODO: US_GRAYED
+#endif
+
+    actor->rescue = 0;
+    target->rescue = 0;
+
+    target->xPos = xTarget;
+    target->yPos = yTarget;
+
+    /* If we've captured an enemy, dropping them will kill them immediately */
+    if (target->curHP == 0)
+    {
+        PidStatsRecordDefeatInfo(target->pCharacterData->number, actor->pCharacterData->number, DEFEAT_CAUSE_COMBAT);
+        UnitKill(target);
+    }
+}
