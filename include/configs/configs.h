@@ -345,5 +345,6 @@
 /* Not installed because of conflucts with phase suspend and sound mixer */
 // #define CONFIG_CUSTOM_CHAPTER_SCREEN
 #define CONFIG_MODULAR_STAFF_EXP
+#define CONFIG_EXPANDED_PREP_MENU_OPTIONS
 
 #endif /* CONFIG_INSTALLED */

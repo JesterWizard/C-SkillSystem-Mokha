@@ -4,6 +4,7 @@
 #include "proc.h"
 #include "fontgrp.h"
 #include "ekrlevelup.h"
+#include "configs/configs.h"
 
 struct ProcPrepSallyCursor
 {
@@ -40,14 +41,32 @@ struct PrepScreenItemListEnt {
     /* 02 */ u16 item;
 };
 
-enum prep_atmenu_item_index {
-    PREP_MAINMENU_UNIT = 0,
-    PREP_MAINMENU_ITEM = 1,
-    PREP_MAINMENU_SAVE = 2,
-    PREP_MAINMENU_UNK3 = 3,
-    PREP_MAINMENU_SUPPORT = 4,
-    PREP_MAINMENU_CHECKMAP = 7,
-};
+#ifdef CONFIG_EXPANDED_PREP_MENU_OPTIONS
+    enum prep_atmenu_item_index {
+        PREP_MAINMENU_UNIT = 0,
+        PREP_MAINMENU_ITEM = 1,
+        PREP_MAINMENU_SAVE = 2,
+        PREP_MAINMENU_SUPPORT = 3,
+        PREP_MAINMENU_AUGURY = 4,
+        PREP_MAINMENU_BONUX_EXP = 5,
+        PREP_MAINMENU_CHECKMAP = 6,
+        PREP_MAINMENU_SKILLS = 7,
+        PREP_MAINMENU_BASE_CONVERSATIONS = 8,
+        PREP_MAINMENU_UNK3 = 9,
+        PREP_MAINMENU_VIEWMAP = 10,
+        PREP_MAINMENU_FORMATION = 11,
+        PREP_MAINMENU_OPTIONS = 12,
+    };
+#else
+    enum prep_atmenu_item_index {
+        PREP_MAINMENU_UNIT = 0,
+        PREP_MAINMENU_ITEM = 1,
+        PREP_MAINMENU_SAVE = 2,
+        PREP_MAINMENU_UNK3 = 3,
+        PREP_MAINMENU_SUPPORT = 4,
+        PREP_MAINMENU_CHECKMAP = 7,
+    };
+#endif
 
 struct ProcPrepMenuItem {
 	PROC_HEADER;
@@ -517,13 +536,40 @@ struct ProcPrepMenu {
     /* 60 */ u8 (*on_End)(ProcPtr);
 };
 
-void PrepMenu_OnInit(struct ProcPrepMenu * proc);
-void PrepMenu_CtrlLoop(struct ProcPrepMenu * proc);
-void PrepMenu_ShowFrozenHand(struct ProcPrepMenu * proc);
-void PrepMenu_ShowActiveHand(struct ProcPrepMenu * proc);
-void PrepMenu_OnEnd(struct ProcPrepMenu * proc);
-void PrepMenu_OnInit(struct ProcPrepMenu * proc);
-void PrepMenu_OnInit(struct ProcPrepMenu * proc);
+#ifdef CONFIG_EXPANDED_PREP_MENU_OPTIONS
+
+    #define PREP_MENU_VISIBLE_COUNT 5
+    #define PREP_MENU_MAX_COUNT 9
+
+    struct ProcPrepMenu_Scroll {
+        PROC_HEADER;
+        /* 29 */ s8 do_help;
+        /* 2A */ u8 cur_index;
+        /* 2B */ u8 max_index;
+        /* 2C */ void (*unk2C)(ProcPtr);
+        /* 30 */ int msg_rtext;
+        /* 34 */ s16 xPos;
+        /* 36 */ s16 yPos;
+        /* 38 */ struct ProcPrepMenuItem* cmds[PREP_MENU_MAX_COUNT];
+        /* 58 */ u8 (*on_PressB)(ProcPtr);
+        /* 5C */ u8 (*on_PressStart)(ProcPtr);
+        /* 60 */ u8 (*on_End)(ProcPtr);
+        /* 61 */ u8 firstVisibleIndex;
+    };
+
+    void PrepMenu_OnInit(struct ProcPrepMenu_Scroll * proc);
+    void PrepMenu_CtrlLoop(struct ProcPrepMenu_Scroll * proc);
+    void PrepMenu_ShowFrozenHand(struct ProcPrepMenu_Scroll * proc);
+    void PrepMenu_ShowActiveHand(struct ProcPrepMenu_Scroll * proc);
+    void PrepMenu_OnEnd(struct ProcPrepMenu_Scroll * proc);
+#else
+    void PrepMenu_OnInit(struct ProcPrepMenu * proc);
+    void PrepMenu_CtrlLoop(struct ProcPrepMenu * proc);
+    void PrepMenu_ShowFrozenHand(struct ProcPrepMenu * proc);
+    void PrepMenu_ShowActiveHand(struct ProcPrepMenu * proc);
+    void PrepMenu_OnEnd(struct ProcPrepMenu * proc);
+#endif
+
 void StartPrepScreenMenu(ProcPtr);
 void SetPrepScreenMenuOnBPress(const void*);
 void SetPrepScreenMenuOnStartPress(const void*);
