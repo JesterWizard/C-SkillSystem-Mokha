@@ -13,10 +13,10 @@ static const EventScr EventScr_Beginning[] = {
     /* Force set battle-quotes flag to make the following script-battle not to show battle quote */
     ENUT(EVFLAG_BATTLE_QUOTES)
 
-    StartBattle
-    CriticalHit(0, 20)
-    NormalDamage(1, 0)
-    EndAttack
+    START_BATTLE
+    CRITICAL_HIT(0, 20)
+    NORMAL_DAMAGE(1, 0)
+    END_ATTACK
     FIGHT(CHARACTER_BREGUET, 0xC0, 0, 0)
 
     /* Clear battle Quotes flag */

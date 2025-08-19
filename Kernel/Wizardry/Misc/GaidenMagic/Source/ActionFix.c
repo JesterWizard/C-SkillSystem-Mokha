@@ -98,12 +98,16 @@ void CallBattleQuoteEventsIfAny(u8 pidA, u8 pidB)
 	if (ent == NULL)
 		ent = GetBattleQuoteEntry(0, pidB);
 
-	if (ent != NULL) {
-		if (ent->msg)
-			CallBattleQuoteEventInBattle(ent->msg);
-		else if (ent->event != 0)
-			EventEngine_CreateBattle((u16 *)ent->event);
+	if ((ent = GetBattleQuoteEntry(pidA, pidB), ent != NULL) || (ent = GetBattleQuoteEntry(pidA, 0), ent != NULL) || (ent = GetBattleQuoteEntry(0, pidB), ent != NULL))
+    {
+        if (ent->msg) {
+            CallBattleQuoteEventInBattle(ent->msg);
+        } else {
+            if (ent->event != 0) {
+                EventEngine_CreateBattle((u16 *)ent->event);
+            }
+        }
 
-		SetFlag(ent->flag);
-	}
+        SetFlag(ent->flag);
+    }
 }
