@@ -1,0 +1,120 @@
+#include "../../../../include/constants/texts.h"
+
+#define GuideFlag 0xB4
+#define AddGuideEntry(category, title, content) "BYTE category category; SHORT title content GuideFlag GuideFlag 0"
+#define AddGuideEntry(category, title, content, character) "BYTE category category; SHORT title content GuideFlag GuideFlag; BYTE character 0"
+#define AddGuideEntry(category, title, content, unlockFlag, readFlag) "BYTE category category; SHORT title content unlockFlag readFlag 0"
+
+#define SkillsTalkIndex 0x1
+#define SkillsComboIndex 0x2
+#define MechanicsIndex 0x3
+#define StatScreenIndex 0x4
+
+PUSH
+ORG 0xCE380
+POIN NewPlaybill
+ORG 0xCDF5C
+POIN NewPlaybill
+ORG 0xCE40C
+POIN NewPlaybill
+ORG 0xCE480
+POIN NewPlaybill
+ORG 0xCE57C
+POIN NewPlaybill
+ORG 0xCE618
+POIN NewPlaybill
+ORG 0xCE6C4
+POIN NewPlaybill
+ORG 0xCE998
+POIN NewPlaybill
+ORG 0xCEB5C
+POIN NewPlaybill
+ORG 0xCEC20
+POIN NewPlaybill
+ORG 0xCF090
+POIN NewPlaybill
+ORG 0xCF468
+POIN NewPlaybill
+ORG 0xCF488
+POIN NewPlaybill
+
+ORG 0xCEF14
+BYTE $00 $20 // Disable transparency
+
+ORG 0xCEF7C 
+SHORT 0xE001
+
+ORG 0xCEF74
+SHORT 0x2200 // Prevent Guide Sorting
+POP
+
+//bonus: disable select button sort feature in guide menu (fixes most problems that come from editing the guide)
+PUSH
+ORG 0xCEF7C 
+SHORT 0xE001
+POP
+
+ALIGN 4
+NewPlaybill:
+
+// Skill talks
+AddGuideEntry(SkillsTalkIndex, Guide_Title_Skill_Talk_1, Guide_Description_Skill_Talk_1)
+AddGuideEntry(SkillsTalkIndex, Guide_Title_Skill_Talk_2, Guide_Description_Skill_Talk_2)
+AddGuideEntry(SkillsTalkIndex, Guide_Title_Skill_Talk_3, Guide_Description_Skill_Talk_3)
+AddGuideEntry(SkillsTalkIndex, Guide_Title_Skill_Talk_4, Guide_Description_Skill_Talk_4)
+
+// Skill combos
+AddGuideEntry(SkillsComboIndex, Guide_Title_Skill_Combo_1, Guide_Description_Skill_Combo_1) // Wrath + Vantage
+AddGuideEntry(SkillsComboIndex, Guide_Title_Skill_Combo_2, Guide_Description_Skill_Combo_2) // Sturdy + Defiant Skills
+AddGuideEntry(SkillsComboIndex, Guide_Title_Skill_Combo_3, Guide_Description_Skill_Combo_3) // Offhand + Steal+
+AddGuideEntry(SkillsComboIndex, Guide_Title_Skill_Combo_4, Guide_Description_Skill_Combo_4) // Paragon + Prodigy
+AddGuideEntry(SkillsComboIndex, Guide_Title_Skill_Combo_5, Guide_Description_Skill_Combo_5) // Rightful Arch + Proc Skills
+AddGuideEntry(SkillsComboIndex, Guide_Title_Skill_Combo_6, Guide_Description_Skill_Combo_6) // Vantage + Lifetaker
+AddGuideEntry(SkillsComboIndex, Guide_Title_Skill_Combo_7, Guide_Description_Skill_Combo_7) // Limitbreaker + Aptitude
+AddGuideEntry(SkillsComboIndex, Guide_Title_Skill_Combo_8, Guide_Description_Skill_Combo_8) // Powerstaff + Livetoserve
+AddGuideEntry(SkillsComboIndex, Guide_Title_Skill_Combo_9, Guide_Description_Skill_Combo_9) // Chipper + Mercy+
+AddGuideEntry(SkillsComboIndex, Guide_Title_Skill_Combo_10, Guide_Description_Skill_Combo_10) // Risk It All + Silencer
+AddGuideEntry(SkillsComboIndex, Guide_Title_Skill_Combo_11, Guide_Description_Skill_Combo_11) // No Guard + Gamble
+AddGuideEntry(SkillsComboIndex, Guide_Title_Skill_Combo_12, Guide_Description_Skill_Combo_12) // Destiny Bond + Resurrection
+AddGuideEntry(SkillsComboIndex, Guide_Title_Skill_Combo_13, Guide_Description_Skill_Combo_13) // Momentum + Ruined Blade+
+AddGuideEntry(SkillsComboIndex, Guide_Title_Skill_Combo_14, Guide_Description_Skill_Combo_14) // Concealed Weapon + Ludopathy
+
+// Mechanics
+AddGuideEntry(MechanicsIndex, Guide_Title_Supports, Guide_Mechanic_Supports)
+AddGuideEntry(MechanicsIndex, Guide_Title_Augury, Guide_Mechanic_Augury)
+AddGuideEntry(MechanicsIndex, Guide_Title_Send_Inventory, Guide_Mechanic_Send_Inventory)
+AddGuideEntry(MechanicsIndex, Guide_Title_Show_Terrain_Bonus, Guide_Mechanic_Show_Terrain_Bonus)
+AddGuideEntry(MechanicsIndex, Guide_Title_Instant_Level_Up, Guide_Mechanic_Instant_Level_Up)
+AddGuideEntry(MechanicsIndex, Guide_Title_S_Rank_No_Weapon_Weight, Guide_Mechanic_S_Rank_No_Weapon_Weight)
+AddGuideEntry(MechanicsIndex, Guide_Title_Auto_Repair_Weapons, Guide_Mechanic_Auto_Repair_Weapons)
+AddGuideEntry(MechanicsIndex, Guide_Title_Reclass, Guide_Mechanic_Reclass)
+AddGuideEntry(MechanicsIndex, Guide_Title_Lazberian_Turn_Flow, Guide_Mechanic_Lazberian_Turn_Flow)
+AddGuideEntry(MechanicsIndex, Guide_Title_Limited_Shop_Stock, Guide_Mechanic_Limited_Shop_Stock)
+AddGuideEntry(MechanicsIndex, Guide_Title_Talk_On_Level_Up, Guide_Mechanic_Talk_On_Level_Up)
+AddGuideEntry(MechanicsIndex, Guide_Title_Restore_HP_On_Level_Up, Guide_Mechanic_Restore_HP_On_Level_Up)
+AddGuideEntry(MechanicsIndex, Guide_Title_Death_Dance, Guide_Mechanic_Death_Dance)
+AddGuideEntry(MechanicsIndex, Guide_Title_Infinite_Durability, Guide_Mechanic_Infinite_Durability)
+AddGuideEntry(MechanicsIndex, Guide_Title_Flipped_Sprites, Guide_Mechanic_Flipped_Sprites)
+AddGuideEntry(MechanicsIndex, Guide_Title_Allegiance_Colors, Guide_Mechanic_Allegiance_Colors)
+AddGuideEntry(MechanicsIndex, Guide_Title_Summon_EXP, Guide_Mechanic_Summon_EXP)
+
+// Stat screen pages
+AddGuideEntry(StatScreenIndex, Guide_Title_Skill_Stat_Screen_1, Guide_Description_Skill_Stat_Screen_1)
+AddGuideEntry(StatScreenIndex, Guide_Title_Skill_Stat_Screen_2, Guide_Description_Skill_Stat_Screen_2)
+AddGuideEntry(StatScreenIndex, Guide_Title_Skill_Stat_Screen_3, Guide_Description_Skill_Stat_Screen_3)
+AddGuideEntry(StatScreenIndex, Guide_Title_Skill_Stat_Screen_4, Guide_Description_Skill_Stat_Screen_4)
+
+// Terminator
+AddGuideEntry(0xC, 0, 0, 0, 0)
+WORD 0 0 0
+
+// Category list
+PUSH
+ORG $B12B04
+SHORT 1 // Dummy entry, this is necessary
+SHORT Guide_Category_Skill_Talks
+SHORT Guide_Category_Skill_Combos
+SHORT Guide_Category_Mechanics
+SHORT Guide_Category_Stat_Screen
+SHORT 0 // Terminator
+POP
