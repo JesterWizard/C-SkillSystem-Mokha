@@ -328,11 +328,12 @@
 /* Don't turn this on until I have defeat quotes for everyone as MC dying without a quote doesn't trigger a game over screen */
 #define CONFIG_MULTIPLE_DEATH_QUOTES
 //#define CONFIG_GAMEOVER_QUOTES
-
 #ifdef CONFIG_GAMEOVER_QUOTES
 	//#define CONFIG_GAMEOVER_GENERIC
 	#define CONFIG_GAMEOVER_SPECIFIC
 	//#define CONFIG_GAMEOVER_COMEDIC
 #endif
+
+#define CONFIG_CUSTOM_STAFF_ACCURACY 100
 
 #endif /* CONFIG_INSTALLED */
