@@ -281,7 +281,6 @@
 #define CONFIG_VESLY_RECLASS
 // #define CONFIG_VESLY_UI //Conflicts graphically with RES_TERRAIN_WINDOW
 #define CONFIG_VESLY_EXTENDED_ITEM_DESCRIPTIONS
-
 #define CONFIG_STAT_SCREEN_ALLEGIANCE_COLORS
 // #define CONFIG_CASUAL_MODE // Doesn't seem to work right now, look into remaking in C
 #define CONFIG_RES_TERRAIN_WINDOW
@@ -300,14 +299,11 @@
 #define CONFIG_PREPS_AUGURY
 // #define CONFIG_ARENA_LIMITS
 #define CONFIG_QUINTESSANCE_EFFECT
-
 #define CONFIG_TURN_ON_ALL_SKILLS
-
 #define CONFIG_PROMOTION_ON_MAX_LEVEL
 // #define CONFIG_GREEN_BONUS_GROWTHS // Must disable CONFIG_GROWTHS_AS_LETTERS
 #define CONFIG_GROWTHS_AS_LETTERS  // Must disable CONFIG_GREEN_BONUS_GROWTHS
 #define CONFIG_SKIP_INTRO
-
 #define SETH_INJURED
 #define INJURED_TURN_COUNT 5
 
@@ -340,5 +336,10 @@
 #define CONFIG_DEATH_DANCE
 // #define CONFIG_SUPPORT_REWARDS // Go to BwlSupport.c in StartSupportTalk to adjust items gained
 #define CONFIG_CUSTOM_GUIDE //Enable flag 0xB4 to view (configurable in GuideTable.event)
+
+#define CONFIG_PROMOTE_ENEMIES_IF_KILLED_UNIT
+#ifdef CONFIG_PROMOTE_ENEMIES_IF_KILLED_UNIT
+	#define CONFIG_ENEMY_PROMOTION_BOOST 3
+#endif
 
 #endif /* CONFIG_INSTALLED */
