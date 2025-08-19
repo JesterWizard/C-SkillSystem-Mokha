@@ -179,5 +179,5 @@ ALIGN 4
 #endif
 
 #ifdef CONFIG_FE8_REWRITE
-    #include "Misc/FE8_Rewritten_Terper/Installer.event"
+    #include "Misc/FE8_Rewritten_Terper/FE8Rewrite_Installer.event"
 #endif

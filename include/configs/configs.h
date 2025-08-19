@@ -335,5 +335,6 @@
 #endif
 
 #define CONFIG_CUSTOM_STAFF_ACCURACY 100
+// #define CONFIG_TALK_LEVEL_UP
 
 #endif /* CONFIG_INSTALLED */

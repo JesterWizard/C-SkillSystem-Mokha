@@ -5,6 +5,7 @@
 #include "bwl.h"
 #include "kernel-lib.h"
 #include "skill-system.h"
+#include "jester_headers/custom-functions.h"
 
 STATIC_DECLAR int GetStatIncreaseRandC(int growth)
 {
@@ -21,6 +22,23 @@ STATIC_DECLAR int GetStatIncreaseRandC(int growth)
 	return result;
 }
 
+int GetStatIncrease_NEW(int growth, int expGained) {
+    int result = 0;
+
+    if (expGained >= 200)
+        growth *= (expGained / 100);
+
+    while (growth >= 100) {
+        result++;
+        growth -= 100;
+    }
+
+    if (Roll1RN(growth))
+        result++;
+
+    return result;
+}
+
 STATIC_DECLAR int GetStatIncreaseFixed(int growth, int ref)
 {
 	return k_udiv(growth + k_umod(growth * ref, 100), 100);
@@ -28,17 +46,172 @@ STATIC_DECLAR int GetStatIncreaseFixed(int growth, int ref)
 
 STATIC_DECLAR void UnitLvup_Vanilla(struct BattleUnit *bu, int bonus)
 {
-	struct Unit *unit = GetUnit(bu->unit.index);
+  int expGained = bu->expPrevious + bu->expGain;
+    struct Unit * unit = GetUnit(bu->unit.index);
+    int statCounter = 0;
+    int limitBreaker = 0;
+    FORCE_DECLARE bool tripleUpExecuted = false;
 
-	bu->changeHP  = GetStatIncrease(GetUnitHpGrowth(unit)  + bonus);
-	bu->changePow = GetStatIncrease(GetUnitPowGrowth(unit) + bonus);
-	bu->changeSkl = GetStatIncrease(GetUnitSklGrowth(unit) + bonus);
-	bu->changeSpd = GetStatIncrease(GetUnitSpdGrowth(unit) + bonus);
-	bu->changeLck = GetStatIncrease(GetUnitLckGrowth(unit) + bonus);
-	bu->changeDef = GetStatIncrease(GetUnitDefGrowth(unit) + bonus);
-	bu->changeRes = GetStatIncrease(GetUnitResGrowth(unit) + bonus);
+#if defined(SID_LimitBreaker) && (COMMON_SKILL_VALID(SID_LimitBreaker))
+    if (SkillTester(unit, SID_LimitBreaker))
+        limitBreaker = SKILL_EFF0(SID_LimitBreaker);
+#endif
 
-	BU_CHG_MAG(bu) = GetStatIncrease(GetUnitMagGrowth(unit) + bonus);
+#if defined(SID_LimitBreakerPlus) && (COMMON_SKILL_VALID(SID_LimitBreakerPlus))
+    if (SkillTester(unit, SID_LimitBreakerPlus))
+        limitBreaker = SKILL_EFF0(SID_LimitBreakerPlus);
+#endif
+
+    /* Create an array of stat pointers */
+    s8 * statChanges[] = { &bu->changeHP,  &bu->changePow, &bu->changeSkl, &bu->changeSpd,
+                           &bu->changeLck, &bu->changeDef, &bu->changeRes, &BU_CHG_MAG(bu) };
+
+    /*
+    ** Right now, if a unit has over a 100% growth and gets more than one
+    ** stat from it when they're only 1 point away from their cap, the
+    ** level up screen will still show the bonus stats.
+    ** I could fix it, but it'd just make this function even chunkier.
+    ** If there's a smarter way to write all this, please do.
+    */
+#if defined(SID_OgreBody) && (COMMON_SKILL_VALID(SID_OgreBody))
+    if (SkillTester(unit, SID_OgreBody))
+    {
+        if (unit->maxHP < SKILL_EFF0(SID_OgreBody))
+            *statChanges[0] = GetStatIncrease_NEW((GetUnitHpGrowth(unit) + bonus), expGained);
+    }
+    else    
+        if (unit->maxHP < unit->pClassData->maxHP + limitBreaker)
+            *statChanges[0] = GetStatIncrease_NEW((GetUnitHpGrowth(unit) + bonus), expGained);
+#else
+    if (unit->maxHP < unit->pClassData->maxHP + limitBreaker)
+        *statChanges[0] = GetStatIncrease_NEW(GetUnitHpGrowth(unit) + bonus, expGained);
+#endif
+    if (unit->pow < unit->pClassData->maxPow + limitBreaker)
+        *statChanges[1] = GetStatIncrease_NEW((GetUnitPowGrowth(unit) + bonus), expGained);
+    if (unit->skl < unit->pClassData->maxSkl + limitBreaker)
+        *statChanges[2] = GetStatIncrease_NEW((GetUnitSklGrowth(unit) + bonus), expGained);
+    if (unit->spd < unit->pClassData->maxSpd + limitBreaker)
+        *statChanges[3] = GetStatIncrease_NEW((GetUnitSpdGrowth(unit) + bonus), expGained);
+    if (unit->lck < UNIT_LCK_MAX(unit) + limitBreaker) // subject to change
+        *statChanges[4] = GetStatIncrease_NEW((GetUnitLckGrowth(unit) + bonus), expGained);
+    if (unit->def < unit->pClassData->maxDef + limitBreaker)
+        *statChanges[5] = GetStatIncrease_NEW((GetUnitDefGrowth(unit) + bonus), expGained);
+    if (unit->res < unit->pClassData->maxRes + limitBreaker)
+        *statChanges[6] = GetStatIncrease_NEW((GetUnitResGrowth(unit) + bonus), expGained);
+    if (GetUnitMagic(unit) < GetUnitMaxMagic(unit) + limitBreaker)
+        *statChanges[7] = GetStatIncrease_NEW((GetUnitMagGrowth(unit) + bonus), expGained);
+
+    // For each increased stat, increment statCounter
+    statCounter += *statChanges[0] > 0 ? 1 : 0;
+    statCounter += *statChanges[1] > 0 ? 1 : 0;
+    statCounter += *statChanges[2] > 0 ? 1 : 0;
+    statCounter += *statChanges[3] > 0 ? 1 : 0;
+    statCounter += *statChanges[4] > 0 ? 1 : 0;
+    statCounter += *statChanges[5] > 0 ? 1 : 0;
+    statCounter += *statChanges[6] > 0 ? 1 : 0;
+    statCounter += *statChanges[7] > 0 ? 1 : 0;
+
+#ifdef CONFIG_TALK_LEVEL_UP
+    gEventSlots[EVT_SLOT_2] = statCounter;
+#endif
+
+#if (defined(SID_TripleUp) && (COMMON_SKILL_VALID(SID_TripleUp)))
+    if (BattleSkillTester(bu, SID_TripleUp))
+    {
+        // Check if any values are greater than 0
+        int anyStatIncrease = 0; // Flag to track if there's any stats to increase
+        for (u8 i = 0; i < ARRAY_COUNT(statChanges); i++)
+        {
+            if (*statChanges[i] == 0)
+            {
+                anyStatIncrease = 1; // Set the flag if any stat is greater than 0
+                break;               // No need to continue checking once we find a positive value
+            }
+        }
+
+        if (anyStatIncrease)
+        {
+            // Set the upper limit of stats to increase (accounting for previous increases before this skill)
+            while (statCounter < 3)
+            {
+                // Count available uncapped stats that haven't increased yet
+                int available = 0;
+                for (u8 i = 0; i < ARRAY_COUNT(statChanges); i++)
+                {
+                    if (*statChanges[i] == 0 && IsStatUncapped(unit, i, limitBreaker))
+                        available++;
+                }
+                if (available == 0)
+                    break; // Exit if none are available
+
+                int randIndex = NextRN_N(ARRAY_COUNT(statChanges));
+
+                if (*statChanges[randIndex] == 0 && IsStatUncapped(unit, randIndex, limitBreaker))
+                {
+                    *statChanges[randIndex] = 1;
+                    statCounter++;
+                }
+            }
+            tripleUpExecuted = true;
+        }
+    }
+#endif
+
+#if (defined(SID_DoubleUp) && (COMMON_SKILL_VALID(SID_DoubleUp)))
+    if (BattleSkillTester(bu, SID_DoubleUp) && !tripleUpExecuted)
+    {
+        // Check if any values are greater than 0
+        int anyStatIncrease = 0; // Flag to track if there's any stat greater than 0
+        for (u8 i = 0; i < ARRAY_COUNT(statChanges); i++)
+        {
+            if (*statChanges[i] > 0)
+            {
+                anyStatIncrease = 1; // Set the flag if any stat is greater than 0
+                break;               // No need to continue checking once we find a positive value
+            }
+        }
+
+        if (anyStatIncrease)
+        {
+            // Set the upper limit of stats to increase (accounting for previous increases before this skill)
+            while (statCounter < 2)
+            {
+               // Count available uncapped stats that haven't increased yet
+                int available = 0;
+                for (u8 i = 0; i < ARRAY_COUNT(statChanges); i++)
+                {
+                    if (*statChanges[i] == 0 && IsStatUncapped(unit, i, limitBreaker))
+                        available++;
+                }
+                if (available == 0)
+                    break; // Exit if none are available
+
+                int randIndex = NextRN_N(ARRAY_COUNT(statChanges));
+
+                if (*statChanges[randIndex] == 0 && IsStatUncapped(unit, randIndex, limitBreaker))
+                {
+                    *statChanges[randIndex] = 1;
+                    statCounter++;
+                }
+            }
+        }
+    }
+#endif
+
+#if (defined(SID_Mercurious) && (COMMON_SKILL_VALID(SID_Mercurious)))
+    if (BattleSkillTester(bu, SID_Mercurious) && Roll1RN(SKILL_EFF0(SID_Mercurious)))
+        for (u8 i = 0; i < ARRAY_COUNT(statChanges); i++)
+            *statChanges[i] *= SKILL_EFF1(SID_Mercurious);
+#endif
+
+#if (defined(SID_Velocity) && (COMMON_SKILL_VALID(SID_Velocity)))
+    if (BattleSkillTester(bu, SID_Velocity) && Roll1RN(SKILL_EFF0(SID_Velocity)))
+        GetUnit(bu->unit.index)->movBonus += 1;
+#endif
+
+#ifdef CONFIG_RESTORE_HP_ON_LEVEL_UP
+    gEventSlots[EVT_SLOT_7] = 410; /* 'Heal' expressed as a hexidecimal and then convert back into decimal and summed */
+#endif
 }
 
 STATIC_DECLAR void UnitLvup_RandC(struct BattleUnit *bu, int bonus)

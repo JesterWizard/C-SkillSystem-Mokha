@@ -1,9 +1,5 @@
 #include "common-chax.h"
 
-const int statScreenDenyClasses[] = {
-    CLASS_GORGONEGG, 
-    CLASS_GORGONEGG2, 
-    CLASS_FIGHTER
-};
-
-const int sizeOfDenyClasses = sizeof(statScreenDenyClasses) / sizeof(statScreenDenyClasses[0]);
+extern const int statScreenDenyClasses[];
+extern const int sizeOfDenyClasses;
+extern const struct ProcCmd ProcScr_ManimLevelUp_CUSTOM[];
