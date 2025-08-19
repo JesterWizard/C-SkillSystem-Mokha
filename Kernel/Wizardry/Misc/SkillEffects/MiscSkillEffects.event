@@ -32,6 +32,9 @@
 #include "MenuSkills/Swarp.lyn.event"
 #include "MenuSkills/Repair.lyn.event"
 #include "MenuSkills/DivineReprieve/DivineReprieve.event"
+#ifdef CONFIG_REFUGE_FEATURE
+    #include "MenuSkills/Refuge.lyn.event"
+#endif
 
 #include "Misc/HealAmount.lyn.event"
 #include "Misc/SkillActRate.lyn.event"

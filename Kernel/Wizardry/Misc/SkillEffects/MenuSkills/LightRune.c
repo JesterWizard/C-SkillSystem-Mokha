@@ -39,7 +39,7 @@ static u8 LightRune_OnSelectTarget(ProcPtr proc, struct SelectTarget *target)
 u8 LightRune_OnSelected(struct MenuProc *menu, struct MenuItemProc *item)
 {
 	if (item->availability == MENU_DISABLED) {
-		MenuFrozenHelpBox(menu, MSG_MenuSkill_CommonFail);
+		MenuFrozenHelpBox(menu, MSG_SKILL_CommonFail);
 		return MENU_ACT_SND6B;
 	}
 

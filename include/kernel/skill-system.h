@@ -447,7 +447,8 @@ u8 Blacksmith_Usability(const struct MenuItemDef *def, int number);
 u8 Blacksmith_OnSelected(struct MenuProc *menu, struct MenuItemProc *item);
 u8 DivineReprieve_Usability(const struct MenuItemDef *def, int number);
 u8 DivineReprieve_OnSelected(struct MenuProc *menu, struct MenuItemProc *item);
-bool Action_DivineReprieve(ProcPtr parent);
+u8 Refuge_Usability(const struct MenuItemDef * def, int number);
+u8 Refuge_OnSelected(struct MenuProc * menu, struct MenuItemProc * item);
 
 /* Skill actions */
 bool Action_HealingFocus(ProcPtr proc);
@@ -459,3 +460,5 @@ bool Action_GoddessDance(ProcPtr parent);
 bool Action_Stride(ProcPtr parent);
 bool Action_Swarp(ProcPtr parent);
 bool Action_Blacksmith(ProcPtr parent);
+bool Action_DivineReprieve(ProcPtr parent);
+bool Action_Refuge(ProcPtr parent);

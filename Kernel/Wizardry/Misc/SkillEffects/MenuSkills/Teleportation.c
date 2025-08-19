@@ -39,7 +39,7 @@ u8 Teleportation_OnSelected(struct MenuProc *menu, struct MenuItemProc *item)
 	struct Vec2 vec;
 
 	if (item->availability == MENU_DISABLED) {
-		MenuFrozenHelpBox(menu, MSG_MenuSkill_CommonFail);
+		MenuFrozenHelpBox(menu, MSG_SKILL_CommonFail);
 		return MENU_ACT_SND6B;
 	}
 

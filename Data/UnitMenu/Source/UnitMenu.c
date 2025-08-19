@@ -163,6 +163,9 @@ const struct MenuItemDef gUnitActionMenuItemsRework[] = {
 	{"　秘密店", 0x687, 0x6D1, 0, 0x61, SecretShopCommandUsability, 0, SecretShopCommandEffect, 0, 0, 0}, //SecretShop >
 	{"　闘技場", 0x688, 0x6D2, 0, 0x62, ArenaCommandUsability, 0, ArenaCommandEffect, 0, 0, 0}, // Arena
 	{"　救出", 0x689, 0x6C5, 0, 0x63, RescueUsability, 0, RescueEffect, 0, 0, 0}, // Rescue >
+#ifdef CONFIG_REFUGE_FEATURE
+    {"　", MSG_MenuCommand_Refuge_NAME, MSG_MenuCommand_Refuge_DESC, TEXT_COLOR_SYSTEM_WHITE, 0x6C, Refuge_Usability, 0, Refuge_OnSelected, 0, 0, 0}, // Refuge > 
+#endif
 	{"　降ろす", 0x68A, 0x6C6, 0, 0x64, DropUsability, 0, DropEffect, 0, 0, 0}, // Drop >
 	{"　引受け", 0x68B, 0x6C8, 4, 0x65, TakeUsability, 0, TakeEffect, 0, 0, 0}, // Take >
 	{"　引渡し", 0x68C, 0x6C7, 4, 0x66, GiveUsability, 0, GiveEffect, 0, 0, 0}, // Give >

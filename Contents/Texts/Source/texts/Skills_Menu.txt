@@ -1,11 +1,20 @@
+## MSG_SKILL_CommonFail
+This skill cannot be used for now![X]
+
+## MSG_SKILL_Common_Target
+Select a unit.[X]
+
+## MSG_No_Allies
+There are no allies in range![X]
+
+## MSG_No_Adjacent_Units
+No adjacent units in range![X]
+
 ## MSG_MenuSkill_UM_NAME
  Skills[X]
 
 ## MSG_MenuSkill_UM_DESC
  Unit skill effects.[.][X]
-
-## MSG_MenuSkill_CommonFail
-This skill cannot be used for now![X]
 
 ## MSG_SKILL_Dance
 Dance:[NL]
@@ -235,3 +244,10 @@ You have used this skill![X]
 ## MSG_MenuSkill_DivineReprieve_Confirm
 This skill may directly end your phase[A][NL]
 Are you sure?           [NL][Yes][X]
+
+## MSG_MenuCommand_Refuge_NAME
+Refuge[X]
+## MSG_MenuCommand_Refuge_DESC
+Refuge:[N]
+Retreat into an ally who's[N]
+AID >= the unit's CON.[X]
