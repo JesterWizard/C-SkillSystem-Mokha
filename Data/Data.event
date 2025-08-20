@@ -29,4 +29,9 @@
 #include "Misc/FarAttackAnimItem.lyn.event"
 #include "Misc/IconTable.lyn.event"
 
+
+#ifdef CONFIG_FE8_REWRITE
+    #include "FE8_Rewritten_Terper/FE8Rewrite_Installer.event"
+#endif
+
 #endif

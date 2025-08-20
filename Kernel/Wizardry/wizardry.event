@@ -178,10 +178,6 @@ ALIGN 4
     #include "Misc/QuintessanceEffect/QuintessanceEffect_Installer.event"
 #endif
 
-#ifdef CONFIG_FE8_REWRITE
-    #include "Misc/FE8_Rewritten_Terper/FE8Rewrite_Installer.event"
-#endif
-
 #ifdef CONFIG_CUSTOM_GUIDE
     #include "Common/Guide/GuideTable.event"
 #endif

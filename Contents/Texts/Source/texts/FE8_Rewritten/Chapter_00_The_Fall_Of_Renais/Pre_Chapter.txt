@@ -250,7 +250,7 @@ So be it.[A][N]
 I... will do as you wish.[A][N]
 [OpenMidRight][ClearFace]
 [OpenMidLeft][CloseEyes]
-[BoxType_InnerMonologue]
+[BoxType_Thoughts]
 I can't believe I'm having to[N]
 make these choices...[A][X]
 

@@ -13,7 +13,7 @@
  OpenFarRight
  OpenFarFarRight
  BoxType_Dramatic
- BoxType_InnerMonologue
+ BoxType_Thoughts
  FontType_Bold
  FontType_Italic
  BoxHeight_1
