@@ -38,6 +38,7 @@
 
 #include "Misc/HealAmount.lyn.event"
 #include "Misc/SkillActRate.lyn.event"
+#include "Misc/JesterFunctionsStructs.lyn.event"
 
 #include "LegendarySkills/JudgeLegend.lyn.event"
 #include "LegendarySkills/LegendEffect.lyn.event"

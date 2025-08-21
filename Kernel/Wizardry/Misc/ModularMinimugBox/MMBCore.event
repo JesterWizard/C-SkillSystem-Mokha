@@ -1460,7 +1460,7 @@ ALIGN 4
 			POIN MMBMPLabelGraphic
 			SHORT ((MMBMPLabelPaletteIndex << 12) | MMBMPLabelVRAMTile)
 			SHORT (2 * ((32 * MMBMPLabelY) + MMBMPLabelX)) | ((MMBMPLabelTileCount << 12))
-		#endif // MMBHPLabel
+		#endif // MMBMPLabel
 		WORD 0
 	#endif // MMBLabelDrawing
 

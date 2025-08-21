@@ -430,7 +430,7 @@ After each set of module options are definitions that you can use to adjust the 
 
 // Combination modules
 
-	#define MMBHPStatus
+	// #define MMBHPStatus
 		/*
 		 * Alternates between drawing HP. ## / ##
 		 * and the unit's current status, if they have one,
@@ -451,7 +451,7 @@ After each set of module options are definitions that you can use to adjust the 
 		 * frames.
 		 */
 
-	//#define MMBHP
+	#define MMBHP
 		/*
 		 * Draws HP ## / ## to [MMBHPX, MMBHPY].
 		 */
@@ -461,12 +461,12 @@ After each set of module options are definitions that you can use to adjust the 
 	// Coordinates are in 8x8 pixel tiles
 
 	// HP/Status options
-	#define MMBHPStatusX 5
+	#define MMBHPStatusX 2
 	#define MMBHPStatusY 3
 
 	// HP options
-	#define MMBHPX 1
-	#define MMBHPY 5
+	#define MMBHPX 5
+	#define MMBHPY 3
 
 	
 	#define MMBMPStatus
@@ -683,12 +683,12 @@ After each set of module options are definitions that you can use to adjust the 
 	#define MMBRTGY 48
 
 	// Current HP number
-	#define MMBCurrentHPX 112
-	#define MMBCurrentHPY 8
+	#define MMBCurrentHPX 64
+	#define MMBCurrentHPY 24
 
 	// Max HP number
-	#define MMBMaxHPX 112
-	#define MMBMaxHPY 8
+	#define MMBMaxHPX 89
+	#define MMBMaxHPY 24
 
 	// Current MP number
 	#define MMBCurrentMPX 64
@@ -810,7 +810,7 @@ After each set of module options are definitions that you can use to adjust the 
 	#define MMBRTGLabelTileCount 2
 
 	// HP label
-	#define MMBHPLabelX 11
+	#define MMBHPLabelX 5
 	#define MMBHPLabelY 3
 	#define MMBHPLabelVRAMTile 0x120
 	#define MMBHPLabelPaletteIndex 2

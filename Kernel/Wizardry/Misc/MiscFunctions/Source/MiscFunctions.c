@@ -12,6 +12,7 @@
 #include "constants/texts.h"
 #include "action-expa.h"
 #include "jester_headers/event-call.h"
+#include "player_interface.h"
 
 
 typedef struct {
@@ -1091,4 +1092,162 @@ void TradeMenu_InitItemDisplay(struct TradeMenuProc * proc)
     SetFaceBlinkControlById(1, 5);
 
     BG_EnableSyncByMask(BG0_SYNC_BIT | BG1_SYNC_BIT);
+}
+
+LYN_REPLACE_CHECK(StoreNumberStringOrDashesToSmallBuffer);
+void StoreNumberStringOrDashesToSmallBuffer(int n)
+{
+    ClearSmallStringBuffer();
+#ifdef CONFIG_UNLOCK_ALLY_MHP_LIMIT
+    StoreNumberStringToSmallBuffer(n);
+#else
+    if (n == 255 || n == -1)
+    {
+        gUnknown_02028E44[7] = ':';
+        gUnknown_02028E44[6] = ':';
+    }
+    else
+    {
+        StoreNumberStringToSmallBuffer(n);
+    }
+#endif
+}
+
+extern void sub_808C360(struct PlayerInterfaceProc* proc, u16* buffer, struct Unit* unit);
+
+/* Controls the drawing of the HP and / symbols in the minimum box */
+LYN_REPLACE_CHECK(sub_808C360);
+void sub_808C360(struct PlayerInterfaceProc* proc, u16* buffer, struct Unit* unit) {
+
+    buffer[0] = 0x2120;
+    buffer[1] = 0x2121;
+    buffer[2] = 0;
+    buffer[3] = 0;
+    buffer[4] = 0x2121 + 0x1D;
+    buffer[5] = 0;
+    buffer[6] = 0;
+
+    return;
+}
+
+LYN_REPLACE_CHECK(UnitMapUiUpdate);
+void UnitMapUiUpdate(struct PlayerInterfaceProc* proc, struct Unit* unit) {
+    s16 frameCount = proc->unitClock;
+
+    if (unit->statusIndex == UNIT_STATUS_RECOVER) {
+        frameCount = 0;
+    }
+
+    if ((frameCount & 63) == 0) {
+        if ((frameCount & 64) != 0) {
+            PutUnitMapUiStatus(proc->statusTm, unit);
+
+            BG_EnableSyncByMask(BG0_SYNC_BIT);
+        } else {
+#ifdef CONFIG_UNLOCK_ALLY_MHP_LIMIT
+            StoreNumberStringOrDashesToSmallBuffer(GetUnitCurrentHp(unit));
+#else
+            if (GetUnitCurrentHp(unit) >= 100) {
+                StoreNumberStringOrDashesToSmallBuffer(0xFF);
+            } else {
+                StoreNumberStringOrDashesToSmallBuffer(GetUnitCurrentHp(unit));
+            }
+#endif
+
+            proc->hpCurHi = gNumberStr[6] - 0x30;
+            proc->hpCurLo = gNumberStr[7] - 0x30;
+
+#ifdef CONFIG_UNLOCK_ALLY_MHP_LIMIT
+            StoreNumberStringOrDashesToSmallBuffer(GetUnitMaxHp(unit));
+#else
+            if (GetUnitMaxHp(unit) >= 100) {
+                StoreNumberStringOrDashesToSmallBuffer(0xFF);
+            } else {
+                StoreNumberStringOrDashesToSmallBuffer(GetUnitMaxHp(unit));
+            }
+#endif
+
+            proc->hpMaxHi = gNumberStr[6] - 0x30;
+            proc->hpMaxLo = gNumberStr[7] - 0x30;
+
+            sub_808C360(proc, proc->statusTm, unit);
+
+            BG_EnableSyncByMask(BG0_SYNC_BIT);
+        }
+    }
+
+    if ((proc->hideContents == false) && ((frameCount & 64) == 0 || (unit->statusIndex == UNIT_STATUS_NONE))) {
+        int x;
+        int y;
+
+        int x2;
+
+        x = proc->xHp * 8;
+        x2 = x + 17;
+
+        y = proc->yHp * 8;
+
+
+#ifdef CONFIG_UNLOCK_ALLY_MHP_LIMIT
+        /* Hundreds character current HP */
+        u8 curHp_hundreds = GetUnitCurrentHp(unit) / 100;
+
+        if (curHp_hundreds > 0) {
+            CallARM_PushToSecondaryOAM(x2, y, gObject_8x8, curHp_hundreds + 0x82E0);
+            /* Tens character current HP */
+            CallARM_PushToSecondaryOAM(x + 24, y, gObject_8x8, proc->hpCurHi + 0x82E0);
+            /* Single character current HP */
+            CallARM_PushToSecondaryOAM(x + 32, y, gObject_8x8, proc->hpCurLo + 0x82E0);
+        }
+        else
+        {
+            if (proc->hpCurHi != (u8)(' ' - '0'))
+            {
+                /* Tens character current HP */
+                CallARM_PushToSecondaryOAM(x2, y, gObject_8x8, proc->hpCurHi + 0x82E0);
+            }
+            /* Single character current HP */
+            CallARM_PushToSecondaryOAM(x + 24, y, gObject_8x8, proc->hpCurLo + 0x82E0);
+        }
+
+        /* Hundreds character max HP */
+        u8 maxHp_hundreds = GetUnitMaxHp(unit) / 100;
+
+        if (maxHp_hundreds > 0) {
+            CallARM_PushToSecondaryOAM(x + 41, y, gObject_8x8, maxHp_hundreds + 0x82E0);
+            /* Tens character current HP */
+            CallARM_PushToSecondaryOAM(x + 48, y, gObject_8x8, proc->hpMaxHi + 0x82E0);
+            /* Single character current HP */
+            CallARM_PushToSecondaryOAM(x + 55, y, gObject_8x8, proc->hpMaxLo + 0x82E0);
+        }
+        else
+        {
+            if (proc->hpMaxHi != (u8)(' ' - '0'))
+            {
+                /* Tens character current HP */
+                CallARM_PushToSecondaryOAM(x + 41, y, gObject_8x8, proc->hpMaxHi + 0x82E0);
+            }
+            /* Single character current HP */
+            CallARM_PushToSecondaryOAM(x + 48, y, gObject_8x8, proc->hpMaxLo + 0x82E0);
+        }
+#else
+        if (proc->hpCurHi != (u8)(' ' - '0'))
+        {
+            /* Tens character current HP */
+            CallARM_PushToSecondaryOAM(x2, y, gObject_8x8, proc->hpCurHi + 0x82E0);
+        }
+        /* Single character current HP */
+        CallARM_PushToSecondaryOAM(x + 24, y, gObject_8x8, proc->hpCurLo + 0x82E0);
+
+        if (proc->hpMaxHi != (u8)(' ' - '0'))
+        {
+            /* Tens character max HP */
+            CallARM_PushToSecondaryOAM(x + 41, y, gObject_8x8, proc->hpMaxHi + 0x82E0);
+        }
+        /* Single character max HP */
+        CallARM_PushToSecondaryOAM(x + 48, y, gObject_8x8, proc->hpMaxLo + 0x82E0);
+#endif
+    }
+
+    return;
 }

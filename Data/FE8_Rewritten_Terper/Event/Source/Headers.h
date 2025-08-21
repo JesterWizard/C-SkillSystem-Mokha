@@ -9,7 +9,7 @@
 #include "jester_headers/maps.h"
 #include "jester_headers/flags.h"
 #include "jester_headers/miscellaneous.h"
-#include "../../../LimitedShopStock/_src/LimitedShopStock.h"
+#include "jester_headers/LimitedShopStock.h"
 #include "EAstdlib.h"
 
 #define NO_REDA 0

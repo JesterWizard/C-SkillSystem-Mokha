@@ -5,8 +5,12 @@
 
 int StatusGetterCheckCpas(int status, struct Unit *unit)
 {
-	LIMIT_AREA(status, 0, 127);
-	return status;
+#ifdef CONFIG_UNLOCK_ALLY_MHP_LIMIT
+    LIMIT_AREA(status, 0, 255);
+#else
+    LIMIT_AREA(status, 0, 127);
+#endif
+    return status;
 }
 
 LYN_REPLACE_CHECK(GetUnitMagBy2Range);

@@ -2,6 +2,7 @@
 #define GUARD_BM_UNIT_H
 
 #include "global.h"
+#include "configs/configs.h"
 
 struct SupportData;
 struct BattleAnimDef;
@@ -78,7 +79,12 @@ struct ClassData
     /* 11 */ s8 baseCon;
     /* 12 */ s8 baseMov;
 
+#ifdef CONFIG_UNLOCK_ALLY_MHP_LIMIT
+    /* 13 */ u8 maxHP;
+#else
     /* 13 */ s8 maxHP;
+#endif
+
     /* 14 */ s8 maxPow;
     /* 15 */ s8 maxSkl;
     /* 16 */ s8 maxSpd;
@@ -140,8 +146,13 @@ struct Unit
     /* 10 */ s8 xPos;
     /* 11 */ s8 yPos;
 
+#ifdef CONFIG_UNLOCK_ALLY_MHP_LIMIT
+    /* 12 */ u8 maxHP;
+    /* 13 */ u8 curHP;
+#else
     /* 12 */ s8 maxHP;
     /* 13 */ s8 curHP;
+#endif
     /* 14 */ s8 pow;
     /* 15 */ s8 skl;
     /* 16 */ s8 spd;
@@ -479,7 +490,12 @@ void UnitRemoveItem(struct Unit* unit, int slot);
 
 #define UNIT_NAME_ID(aUnit) ((aUnit)->pCharacterData->nameTextId)
 
-#define UNIT_MHP_MAX(aUnit) (UNIT_FACTION(unit) == FACTION_RED ? 120 : 60)
+#ifdef CONFIG_UNLOCK_ALLY_MHP_LIMIT
+    #define UNIT_MHP_MAX(aUnit) 255
+#else
+    #define UNIT_MHP_MAX(aUnit) (UNIT_FACTION(unit) == FACTION_RED ? 120 : 60)
+#endif
+
 #define UNIT_POW_MAX(aUnit) ((aUnit)->pClassData->maxPow)
 #define UNIT_SKL_MAX(aUnit) ((aUnit)->pClassData->maxSkl)
 #define UNIT_SPD_MAX(aUnit) ((aUnit)->pClassData->maxSpd)

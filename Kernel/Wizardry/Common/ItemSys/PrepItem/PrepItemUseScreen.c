@@ -2,6 +2,9 @@
 #include "strmag.h"
 #include "lvup.h"
 #include "status-getter.h"
+#include "skill-system.h"
+#include "constants/skills.h"
+#include "kernel-lib.h"
 
 #define LOCAL_TRACE 0
 
@@ -101,38 +104,68 @@ void DrawPrepScreenItemUseStatLabels(struct Unit *unit)
 }
 
 LYN_REPLACE_CHECK(DrawPrepScreenItemUseStatBars);
-void DrawPrepScreenItemUseStatBars(struct Unit *unit, int mask)
+void DrawPrepScreenItemUseStatBars(struct Unit * unit, int mask)
 {
-	int ix, iy, stat_pack[8];
+    int ix, iy, stat_pack[8];
+    UnpackUiBarPalette(2);
 
-	UnpackUiBarPalette(2);
+    int limitBreaker = 0;
 
-	stat_pack[0] = GetUnitCurrentHp(unit) * 24 / GetUnitMaxStatusHp(unit);
-	stat_pack[1] = PowGetter(unit) * 24 / GetUnitMaxStatusPow(unit);
-	stat_pack[2] = MagGetter(unit) * 24 / GetUnitMaxStatusMag(unit);
-	stat_pack[3] = LckGetter(unit) * 24 / GetUnitMaxStatusSkl(unit);
-	stat_pack[4] = SklGetter(unit) * 24 / GetUnitMaxStatusSpd(unit);
-	stat_pack[5] = SpdGetter(unit) * 24 / GetUnitMaxStatusLck(unit);
-	stat_pack[6] = DefGetter(unit) * 24 / GetUnitMaxStatusDef(unit);
-	stat_pack[7] = ResGetter(unit) * 24 / GetUnitMaxStatusRes(unit);
+#if defined(SID_LimitBreaker) && (COMMON_SKILL_VALID(SID_LimitBreaker))
+    if (SkillTester(unit, SID_LimitBreaker))
+        limitBreaker = SKILL_EFF0(SID_LimitBreaker);
+#endif
 
-	for (iy = 0; iy < 4; iy++) {
-		for (ix = 0; ix < 2; ix++) {
-			int index = iy + 4 * ix; /* This is quite different */
+#if defined(SID_LimitBreakerPlus) && (COMMON_SKILL_VALID(SID_LimitBreakerPlus))
+    if (SkillTester(unit, SID_LimitBreakerPlus))
+        limitBreaker = SKILL_EFF0(SID_LimitBreakerPlus);
+#endif
 
-			LTRACEF("[index %d]=%d, at x=%d y=%d",
-						index, stat_pack[index], ix, iy);
+#if defined(SID_OgreBody) && (COMMON_SKILL_VALID(SID_OgreBody))
+    if (SkillTester(unit, SID_OgreBody))
+        stat_pack[0] = GetUnitCurrentHp(unit) * 24 / SKILL_EFF0(SID_OgreBody);
+    else
+    #ifdef CONFIG_UNLOCK_ALLY_MHP_LIMIT
+        stat_pack[0] = GetUnitCurrentHp(unit) * 24 / KUNIT_MHP_MAX(unit) + limitBreaker;
+    #else
+        stat_pack[0] = GetUnitCurrentHp(unit) * 24 / UNIT_MHP_MAX(unit) + limitBreaker;
+    #endif
 
-			DrawStatBarGfx(
-				0x380 + 0x8 * index, 4,
-				TILEMAP_LOCATED(gBG0TilemapBuffer, 18 + 7 * ix, 4 + 2 * iy),
-				mask & (1 << index)
-					? TILEREF(0, 3)
-					: TILEREF(0, 2),
-				24, stat_pack[index], 0);
-		}
-	}
-	BG_EnableSyncByMask(BG0_SYNC_BIT);
+#else
+    #ifdef CONFIG_UNLOCK_ALLY_MHP_LIMIT
+    stat_pack[0] = GetUnitCurrentHp(unit) * 24 / KUNIT_MHP_MAX(unit) + limitBreaker;
+    #else
+    stat_pack[0] = GetUnitCurrentHp(unit) * 24 / UNIT_MHP_MAX(unit) + limitBreaker;
+    #endif
+#endif
+
+    stat_pack[1] = PowGetter(unit) * 24 / UNIT_POW_MAX(unit) + limitBreaker;
+    stat_pack[2] = MagGetter(unit) * 24 / GetUnitMaxMagic(unit) + limitBreaker;
+    stat_pack[3] = LckGetter(unit) * 24 / UNIT_LCK_MAX(unit) + limitBreaker;
+    stat_pack[4] = SklGetter(unit) * 24 / UNIT_SKL_MAX(unit) + limitBreaker;
+    stat_pack[5] = SpdGetter(unit) * 24 / UNIT_SPD_MAX(unit) + limitBreaker;
+    stat_pack[6] = DefGetter(unit) * 24 / UNIT_DEF_MAX(unit) + limitBreaker;
+    stat_pack[7] = ResGetter(unit) * 24 / UNIT_RES_MAX(unit) + limitBreaker;
+
+    for (iy = 0; iy < 4; iy++)
+    {
+        for (ix = 0; ix < 2; ix++)
+        {
+            int index = iy + 4 * ix; /* This is quite different */
+
+            LTRACEF("[index %d]=%d, at x=%d y=%d",
+                        index, stat_pack[index], ix, iy);
+
+            DrawStatBarGfx(
+                0x380 + 0x8 * index, 4,
+                TILEMAP_LOCATED(gBG0TilemapBuffer, 18 + 7 * ix, 4 + 2 * iy),
+                mask & (1 << index)
+                    ? TILEREF(0, 3)
+                    : TILEREF(0, 2),
+                24, stat_pack[index], 0);
+        }
+    }
+    BG_EnableSyncByMask(BG0_SYNC_BIT);
 }
 
 LYN_REPLACE_CHECK(DrawPrepScreenItemUseStatValues);

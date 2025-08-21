@@ -1,5 +1,5 @@
 #include "common-chax.h"
-#include "LimitedShopStock.h"
+#include "jester_headers/LimitedShopStock.h"
 #include "action-expa.h"
 
 extern struct KeyStatusBuffer sKeyStatusBuffer;

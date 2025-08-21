@@ -123,6 +123,25 @@ STATIC_DECLAR int KernelModifyBattleUnitExp(int base, struct BattleUnit *actor, 
 	return status;
 }
 
+LYN_REPLACE_CHECK(ModifyUnitSpecialExp);
+void ModifyUnitSpecialExp(struct Unit* actor, struct Unit* target, int* exp) {
+    if (UNIT_IS_GORGON_EGG(target)) {
+        if (target->curHP == 0)
+            *exp = 50;
+        else
+            *exp = 0;
+    }
+
+    if (target->pClassData->number == CLASS_DEMON_KING)
+        if (target->curHP == 0)
+            *exp = 0;
+
+#ifndef CONFIG_SUMMONERS_GAIN_EXP_FROM_SUMMON_FIGHTS
+    if (actor->pClassData->number == CLASS_PHANTOM)
+        *exp = 0;
+#endif
+}
+
 int GetBattleUnitExpGainRework(struct BattleUnit *actor, struct BattleUnit *target)
 {
 	int result = GetBattleUnitExpGain(actor, target);
@@ -212,6 +231,12 @@ void BattleApplyItemExpGains(void)
 LYN_REPLACE_CHECK(BattleApplyExpGains);
 void BattleApplyExpGains(void)
 {
+
+#ifdef CONFIG_SUMMONERS_GAIN_EXP_FROM_SUMMON_FIGHTS
+   InitBattleUnit(&gBattleActor, GetUnit(CHARACTER_EIRIKA + 1));
+#endif
+
+
 	if ((UNIT_FACTION(&gBattleActor.unit) != FACTION_BLUE) || (UNIT_FACTION(&gBattleTarget.unit) != FACTION_BLUE)) {
 		if (!(gPlaySt.chapterStateBits & PLAY_FLAG_EXTRA_MAP)) {
 			gBattleActor.expGain  = GetBattleUnitExpGainRework(&gBattleActor, &gBattleTarget);

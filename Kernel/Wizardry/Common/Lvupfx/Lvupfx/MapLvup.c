@@ -2,6 +2,7 @@
 #include "strmag.h"
 #include "lvup.h"
 #include "jester_headers/custom-arrays.h"
+#include "jester_headers/class-pairs.h"
 
 LYN_REPLACE_CHECK(GetManimLevelUpStatGain);
 int GetManimLevelUpStatGain(int actor_id, int stat_num)
@@ -91,10 +92,10 @@ STATIC_DECLAR const struct MapLvupInfo NewMapLvupInfos[] = {
 	{0x01, 0x04, 0x4E9}, /* HP */
 	{0x01, 0x06, 0x4FE}, /* Str */
 	{0x01, 0x08, 0x4FF}, /* Mag */
-	{0x01, 0x0A, 0x4EE}, /* Lck */
+	{0x01, 0x0A, 0x4EC}, /* Skl */
 
-	{0x09, 0x04, 0x4EC}, /* Skl */
-	{0x09, 0x06, 0x4ED}, /* Spd */
+	{0x09, 0x04, 0x4ED}, /* Spd */
+	{0x09, 0x06, 0x4EE}, /* Lck */
 	{0x09, 0x08, 0x4EF}, /* Def */
 	{0x09, 0x0A, 0x4F0}, /* Res */
 
@@ -294,7 +295,7 @@ const struct ProcCmd ProcScr_ManimLevelUp_CUSTOM[] = {
     PROC_REPEAT(ManimLevelUp_PutStatGainLabels),
     PROC_SLEEP(15),
     PROC_CALL(DisplayCharacterSpeech), /* My character speech insertion */
-    PROC_SLEEP(60),
+    PROC_SLEEP(60),a
 #else
     PROC_SLEEP(30),
     PROC_REPEAT(ManimLevelUp_PutStatGainLabels),
@@ -313,6 +314,27 @@ LYN_REPLACE_CHECK(ManimLevelUp_InitMainScreen);
 void ManimLevelUp_InitMainScreen(struct ManimLevelUpProc *proc)
 {
     int i;
+
+// #ifdef CONFIG_SUMMONERS_GAIN_EXP_FROM_SUMMON_FIGHTS
+//    switch (proc->actor_id) {
+// 	case CHARACTER_SUMMON_EWAN:
+// 	   for (int i = 0; i < summonArraySize; i ++)
+// 	   {
+// 		 if (proc->actor_id == gNewSummonConfig[i][1])
+// 		 {
+// 		    proc->actor_id = gNewSummonConfig[i][0];
+// 			break;
+// 		 }
+// 	   }
+//    }
+
+//    gManimSt.actor[proc->actor_id].unit = GetUnit(CHARACTER_EIRIKA + 1);
+//    //InitBattleUnit(&gBattleActor, GetUnit(CHARACTER_EIRIKA + 1));
+//    gManimSt.actor[proc->actor_id].bu = &gBattleActor;
+//    gManimSt.actor[proc->actor_id].mu = StartMu(GetUnit(CHARACTER_EIRIKA + 1));
+// #endif
+
+   NoCashGBAPrintf("Level up actor ID is: %d", proc->actor_id);
 
     ResetTextFont();
     BG_Fill(gBG0TilemapBuffer, 0);
