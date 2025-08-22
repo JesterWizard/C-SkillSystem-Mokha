@@ -15,7 +15,8 @@ PUSH
     ORG $86ae2 //drawing the bars
         SHORT $46C0
         jumpToHack(NegativeStatBars)
-    PROTECT 0x00086A40 0x00086B2C // DrawStatBar
+   // PROTECT 0x00086A40 0x00086B2C // DrawStatBar
+   // JESTER - Needed to turn off for DrawStatBar function hook
 POP
 
 ALIGN 4

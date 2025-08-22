@@ -12,6 +12,7 @@
 #include "constants/texts.h"
 #include "action-expa.h"
 #include "jester_headers/event-call.h"
+#include "jester_headers/custom-arrays.h"
 #include "player_interface.h"
 
 
@@ -1250,4 +1251,12 @@ void UnitMapUiUpdate(struct PlayerInterfaceProc* proc, struct Unit* unit) {
     }
 
     return;
+}
+
+LYN_REPLACE_CHECK(GetClassData);
+const struct ClassData* GetClassData(int classId) {
+    if (classId < 1)
+        return NULL;
+
+    return gClassData_NEW + (classId - 1);
 }
