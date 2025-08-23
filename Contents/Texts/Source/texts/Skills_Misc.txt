@@ -1,71 +1,464 @@
 ## MSG_SKILL_GentleFlower_NAME
-G-Flower[X]
+Gentle Flower[X]
+## MSG_SKILL_GentleFlower_DESC
+Gentle Flower:[N]
+Allies within 2 spaces restore[N]
+x1.5 as much HP from items.[X]
 
-## MSG_SKILL_GentleFlower
-Gentle Flower:[NL]
-Allies within 2 spaces restore x1.5[NL]
-as much HP from healing items.[X]
-
-## MSG_SKILL_Admiration
-Admiration:[NL]
--2 damage taken if two female allies[NL]
+## MSG_SKILL_Admiration_NAME
+Admiration[X]
+## MSG_SKILL_Admiration_DESC
+Admiration:[N]
+-2 damage taken if two female allies[N]
 are adjacent within 2 spaces.[X]
 
 ## MSG_SKILL_FairyTaleFolk_NAME
-F-T Folk[X]
-
-## MSG_SKILL_FairyTaleFolk
-Fairy-Tale Folk:[NL]
-+2 damage dealt if a male ally and a[NL]
+Fairy-Tale Folk[X]
+## MSG_SKILL_FairyTaleFolk_DESC
+Fairy-Tale Folk:[N]
++2 damage dealt if a male ally and a[N]
 female ally are adjacent within 2 spaces.[X]
 
-## MSG_SKILL_Assist
-Assist:[NL]
-+5 damage dealt on assistance of[NL]
+## MSG_SKILL_Assist_NAME
+Assist[X]
+## MSG_SKILL_Assist_DESC
+Assist:[N]
++5 damage dealt on assistance of[N]
 allies' combo-attack[X]
 
-## MSG_SKILL_Synergism
-Synergism:[NL]
-Allies +3 damage dealt on[NL]
+## MSG_SKILL_Synergism_NAME
+Synergism[X]
+## MSG_SKILL_Synergism_DESC
+Synergism:[N]
+Allies +3 damage dealt on[N]
 assistance on combo-attack[X]
 
-## MSG_SKILL_LiveToServe
-LiveToServe:[NL]
-Heal unit by the same amount as[NL]
+## MSG_SKILL_LiveToServe_NAME
+Live To Serve[X]
+## MSG_SKILL_LiveToServe_DESC
+Live To Serve:[N]
+Heal unit by the same amount as[N]
 the target when using a staff.[X]
 
 ## MSG_SKILL_SocialButterfly_NAME
-S-Butterfly[X]
-
-## MSG_SKILL_SocialButterfly
-Social Butterfly:[NL]
-This unit gains support points[NL]
+Social Butterfly[X]
+## MSG_SKILL_SocialButterfly_DESC
+Social Butterfly:[N]
+This unit gains support points[N]
 at twice the usual rate.[X]
 
-## MSG_SKILL_Deal
-Deal:[NL]
-Reduce cost of items bought[NL]
+## MSG_SKILL_Deal_NAME
+Deal[X]
+## MSG_SKILL_Deal_DESC
+Deal:[N]
+Reduce cost of items bought[N]
 by this unit by 20%.[X]
 
-## MSG_SKILL_Bargain
-Bargain:[NL]
-Reduce cost of items bought[NL]
+## MSG_SKILL_ConcealedWeapon_NAME
+Concealed Weapon[X]
+## MSG_SKILL_ConcealedWeapon_DESC
+Concealed Weapon:[N]
+Smuggle the unit's equipped[N]
+weapon into an arena.[X]
+
+## MSG_SKILL_Bargain_NAME
+Bargain[X]
+## MSG_SKILL_Bargain_DESC
+Bargain:[N]
+Reduce cost of items bought[N]
 by this unit by 50%.[X]
 
-## MSG_SKILL_Leader
-Leader:[NL]
+## MSG_SKILL_Comatose_NAME
+Comatose[X]
+## MSG_SKILL_Comatose_DESC
+Comatose:[N]
+This unit can still act[N]
+while asleep.[X]
+
+## MSG_SKILL_HazeHunter_NAME
+Haze Hunter[X]
+## MSG_SKILL_HazeHunter_DESC
+Haze Hunter:[N]
+Allows unit to see 5[N]
+additional spaces in fog.[X]
+
+## MSG_SKILL_Amische_NAME
+Amische[X]
+## MSG_SKILL_Amische_DESC
+Amische:[N]
+This unit's religion prevents[N]
+them from using non-iron weaponry.[X]
+
+## MSG_SKILL_PairUp_NAME
+Pair Up[X]
+## MSG_SKILL_PairUp_DESC
+Pair Up:[N]
+Rescue a unit and gain 20%[N]
+of their stats as boosts.[X]
+
+## MSG_SKILL_Reflex_NAME
+Reflex[X]
+## MSG_SKILL_Reflex_DESC
+Reflex:[N]
+This unit's turn isn't ended[N]
+when surprised by enemies in fog.[X]
+
+## MSG_SKILL_IdentityProblems_NAME
+Identity Problems[X]
+## MSG_SKILL_IdentityProblems_DESC
+Identity Problems:[N]
+This unit can't decide[N]
+on a name or face.[X]
+
+## MSG_SKILL_Pathfinder_NAME
+Pathfinder[X]
+## MSG_SKILL_Pathfinder_DESC
+Pathfinder:[N]
+Allied units within[N]
+3 tiles can Canto.[X]
+
+## MSG_SKILL_PastelVeil_NAME
+Pastel Veil[X]
+## MSG_SKILL_PastelVeil_DESC
+Pastel Veil:[N]
+Allies in a 3 tile radius[N]
+are immune to poison.[X]
+
+## MSG_SKILL_CatchEmAll_NAME
+Catch Em All[X]
+## MSG_SKILL_CatchEmAll_DESC
+Catch Em All:[N]
+Gives this unit[N]
+every skill.[X]
+
+## MSG_SKILL_DoubleUp_NAME
+Double Up[X]
+## MSG_SKILL_DoubleUp_DESC
+Double Up:[N]
+Guarantees this unit gains at[N]
+least two stats per level up.[X]
+
+## MSG_SKILL_TripleUp_NAME
+Triple Up[X]
+## MSG_SKILL_TripleUp_DESC
+Triple Up:[N]
+Guarantees this unit gains at[N]
+least three stats per level up.[X]
+
+## MSG_SKILL_Casual_NAME
+Casual[X]
+## MSG_SKILL_Casual_DESC
+Casual:[N]
+If unit dies, they revive[N]
+at the end of the chapter.[X]
+
+## MSG_SKILL_LimitBreaker_NAME
+Limit Breaker[X]
+## MSG_SKILL_LimitBreaker_DESC
+Limit Breaker:[N]
+Add +5 to this unit's[N]
+stat caps.[X]
+
+## MSG_SKILL_LimitBreakerPlus_NAME
+Limit Breaker+[X]
+## MSG_SKILL_LimitBreakerPlus_DESC
+Limit Breaker+:[N]
+Add +10 to this unit's[N]
+stat caps.[X]
+
+## MSG_SKILL_DestinyBond_NAME
+Destiny Bond[X]
+## MSG_SKILL_DestinyBond_DESC
+Destiny Bond:[N]
+If this unit dies in combat,[N]
+the enemy dies as well.[X]
+
+## MSG_SKILL_Secret_NAME
+Secret[X]
+## MSG_SKILL_Secret_DESC
+Secret:[N]
+Grants this unit access[N]
+to the secret shop.[X]
+
+## MSG_SKILL_Ludopathy_NAME
+Ludopathy[X]
+## MSG_SKILL_Ludopathy_DESC
+Ludopathy:[N]
+Double gambling[N]
+bets and wins.[X]
+
+## MSG_SKILL_PoisonHeal_NAME
+Poison Heal[X]
+## MSG_SKILL_PoisonHeal_DESC
+Poison Heal:[N]
+Unit instead heals whatever[N]
+damage taken when poisoned.[X]
+
+## MSG_SKILL_Survivor_NAME
+Survivor[X]
+## MSG_SKILL_Survivor_DESC
+Survivor:[N]
+Boost max HP by +1 at[N]
+the end of the chapter.[X]
+
+## MSG_SKILL_Anchor_NAME
+Anchor[X]
+## MSG_SKILL_Anchor_DESC
+Anchor:[N]
+Cannot be moved by the effects[N]
+of other units movement skills.[X]
+
+## MSG_SKILL_Mercurious_NAME
+Mercurious[X]
+## MSG_SKILL_Mercurious_DESC
+Mercurious:[N]
+Gives a 25% chance to double[N]
+stat gains on level up.[X]
+
+## MSG_SKILL_Absolve_NAME
+Absolve[X]
+## MSG_SKILL_Absolve_DESC
+Absolve:[N]
+This unit is unaffected[N]
+by traps and terrain.[X]
+
+## MSG_SKILL_Velocity_NAME
+Velocity[X]
+## MSG_SKILL_Velocity_DESC
+Velocity:[N]
+Gives the unit a 5% chance[N]
+of leveling MOV on level up.[X]
+
+## MSG_SKILL_StaffParagon_NAME
+Staff Paragon[X]
+## MSG_SKILL_StaffParagon_DESC
+Staff Paragon:[N]
+Gain +1 EXP for every 5 points[N]
+of excess healing.[X]
+
+## MSG_SKILL_OgreBody_NAME
+Ogre Body[X]
+## MSG_SKILL_OgreBody_DESC
+Ogre Body:[N]
+Set this unit's HP[N]
+cap to 99.[X]
+
+## MSG_SKILL_HedgeFund_NAME
+Hedge Fund[X]
+## MSG_SKILL_HedgeFund_DESC
+Hedge Fund:[N]
+Increase total gold by 10%[N]
+at the end of the chapter.[X]
+
+## MSG_SKILL_WeaponHeal_NAME
+Weapon Heal[X]
+## MSG_SKILL_WeaponHeal_DESC
+Weapon Heal:[N]
+50% chance to restore a weapon[N]
+use for target on healing them.[X]
+
+## MSG_SKILL_Domain_NAME
+Domain[X]
+## MSG_SKILL_Domain_DESC
+Domain:[N]
+Increase the range of movement[N]
+skills by 2.[X]
+
+## MSG_SKILL_StaffGuard_NAME
+Staff Guard[X]
+## MSG_SKILL_StaffGuard_DESC
+Staff Guard:[N]
+When the unit has an equippable[N]
+staff, +5 DEF/RES.[X]
+
+## MSG_SKILL_CapacityHalf_NAME
+Capacity-Half[X]
+## MSG_SKILL_CapacityHalf_DESC
+Capacity-Half:[N]
+Reduce capacity cost of skills[N]
+by half.[X]
+
+## MSG_SKILL_CapacityOne_NAME
+Capacity-One[X]
+## MSG_SKILL_CapacityOne_DESC
+Capacity-One:[N]
+Reduce capacity cost of skills[N]
+to 1.[X]
+
+## MSG_SKILL_DangerRanger_NAME
+Danger Ranger[X]
+## MSG_SKILL_DangerRanger_DESC
+Danger Ranger:[N]
+Can rescue and drop units[N]
+in the same turn.[X]
+
+## MSG_SKILL_Savior_NAME
+Savior[X]
+## MSG_SKILL_Savior_DESC
+Savior:[N]
+This unit doesn't suffer[N]
+rescue penalties.[X]
+
+## MSG_SKILL_Wrestler_NAME
+Wrestler[X]
+## MSG_SKILL_Wrestler_DESC
+Wrestler:[N]
+This unit can use movement[N]
+skills on enemy units.[X]
+
+## MSG_SKILL_Trader_NAME
+Trader[X]
+## MSG_SKILL_Trader_DESC
+Trader:[N]
+Increase the sell price of items[N]
+this unit sells to 75%.[X]
+
+## MSG_SKILL_Trace_NAME
+Trace[X]
+## MSG_SKILL_Trace_DESC
+Trace:[N]
+Copy the enemy's first skill[N]
+temporarily while in combat.[X]
+
+## MSG_SKILL_Upgrade_NAME
+Upgrade[X]
+## MSG_SKILL_Upgrade_DESC
+Upgrade:[N]
+Unit will always gain the "+"[N]
+version of a skill if one exists.[X]
+
+## MSG_SKILL_ShotputPlus_NAME
+Shotput+[X]
+## MSG_SKILL_ShotputPlus_DESC
+Shotput+:[N]
+Unit can trade with any allied[N]
+unit in a 5 tile radius.[X]
+
+## MSG_SKILL_Shotput_NAME
+Shotput[X]
+## MSG_SKILL_Shotput_DESC
+Shotput:[N]
+Unit can trade with any allied[N]
+unit in a 3 tile radius.[X]
+
+## MSG_SKILL_Extrovert_NAME
+Extrovert[X]
+## MSG_SKILL_Extrovert_DESC
+Extrovert:[N]
+Double this unit's[N]
+support bonuses.[X]
+
+## MSG_SKILL_ScrollSavant_NAME
+Scroll Savant[X]
+## MSG_SKILL_ScrollSavant_DESC
+Scroll Savant:[N]
+Unit can learn skills from[N]
+scrolls without consuming them.[X]
+
+## MSG_SKILL_WhiteMage_NAME
+White Mage[X]
+## MSG_SKILL_WhiteMage_DESC
+White Mage:[N]
+Boost healing staves[N]
+by 50%.[X]
+
+## MSG_SKILL_ScrollScribe_NAME
+Scroll Scribe[X]
+## MSG_SKILL_ScrollScribe_DESC
+Scroll Scribe:[N]
+The unit can generate new scrolls[N]
+from their removed skills.[X]
+
+## MSG_SKILL_ItemLore_NAME
+Item Lore[X]
+## MSG_SKILL_ItemLore_DESC
+Item Lore:[N]
+Double the effects of[N]
+healing items.[X]
+
+## MSG_SKILL_Salve_NAME
+Salve[X]
+## MSG_SKILL_Salve_DESC
+Salve:[N]
+Can use personal healing and[N]
+stat booster items on adjacent[N]
+allied units.[X]
+
+## MSG_SKILL_FormShift_NAME
+Form Shift[X]
+## MSG_SKILL_FormShift_DESC
+Form Shift:[N]
+Unit can transform into a[N]
+Laguz at any time.[X]
+
+## MSG_SKILL_HalfShift_NAME
+Half Shift[X]
+## MSG_SKILL_HalfShift_DESC
+Half Shift:[N]
+Unit can transform into a[N]
+Laguz at any time, but their[N]
+transformation boosts are halved.[X]
+
+## MSG_SKILL_StickyHold_NAME
+Sticky Hold[X]
+## MSG_SKILL_StickyHold_DESC
+Sticky Hold:[N]
+This unit cannot have their[N]
+items stolen.[X]
+
+## MSG_SKILL_Protect_NAME
+Protect[X]
+## MSG_SKILL_Protect_DESC
+Protect:[N]
+When defending this turn,[N]
+the first strike to this[N]
+unit this turn deals no damage.[X]
+
+## MSG_SKILL_NinthCircle_NAME
+Ninth Circle[X]
+## MSG_SKILL_NinthCircle_DESC
+Ninth Circle:[N]
+Allows this unit's status staves[N]
+to target all enemy units in range.[X]
+
+## MSG_SKILL_InevitableEnd_NAME
+Inevitable End[X]
+## MSG_SKILL_InevitableEnd_DESC
+Inevitable End:[N]
+Enemy units suffer stacking stat[N]
+debuffs from weapons and skills that[N]
+inflict them when used by this unit.[X]
+
+## MSG_SKILL_MPChanneling_NAME
+MP Channeling[X]
+## MSG_SKILL_MPChanneling_DESC
+MP Channelimg:[N]
+Double this unit's[N]
+MP generation.[X]
+
+## MSG_SKILL_Eldritch_NAME
+Eldritch[X]
+## MSG_SKILL_Eldritch_DESC
+Eldritch:[N]
+This unit can use[N]
+monster weapons.[X]
+
+## MSG_SKILL_Leader_NAME
+Leader[X]
+## MSG_SKILL_Leader_DESC
+Leader:[N]
 Unit grants leadership +2[X]
 
-## MSG_SKILL_WeaponHeal
-WeaponHeal:[NL]
-50% chance to restore 1 durability to[NL]
-ally's equipped weapon after healing.[X]
+## MSG_SKILL_Latona_NAME
+Latona[X]
+## MSG_SKILL_Latona_DESC
+Latona:[N]
+Grants access to the Latona stave[N]
+in Gaiden White Magic form.[X]
 
-## MSG_SKILL_Latona
-Latona:[NL]
-Unit can use holly W.Mag: Latona.[X]
-
-## MSG_SKILL_Saint
-Saint:[NL]
-Unit may not cost HP[NL]
-when using B/W.Magic.[X]
+## MSG_SKILL_GrandMagician_NAME
+Grand Magician[X]
+## MSG_SKILL_GrandMagician_DESC
+Grand Magician:[N]
+Unit can use Gaiden magic[N]
+without paying HP.[X]

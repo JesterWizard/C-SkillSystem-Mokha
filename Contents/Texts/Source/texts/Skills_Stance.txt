@@ -1,57 +1,76 @@
-## MSG_SKILL_StanceBracing
-S-Bracing:[NL]
-Grants +4 DEF and RES[NL]
+## MSG_SKILL_StanceBracing_NAME
+Stance Bracing[X]
+## MSG_SKILL_StanceBracing_DESC
+Stance Bracing:[N]
+Grants +4 DEF and RES[N]
 if attacked.[X]
 
-## MSG_SKILL_StanceDarting
-S-Darting:[NL]
-Grants +6 AS[NL]
+## MSG_SKILL_StanceDarting_NAME
+Stance Darting[X]
+## MSG_SKILL_StanceDarting_DESC
+Stance Darting:[N]
+Grants +6 AS[N]
 if attacked.[X]
 
-## MSG_SKILL_StanceFierce
-S-Fierce:[NL]
-Grants +6 ATK[NL]
+## MSG_SKILL_StanceFierce_NAME
+Stance Fierce[X]
+## MSG_SKILL_StanceFierce_DESC
+Stance Fierce:[N]
+Grants +6 ATK[N]
 if attacked.[X]
 
-## MSG_SKILL_StanceKestrel
-S-Kestrel:[NL]
-Grants +4 ATK and AS[NL]
+## MSG_SKILL_StanceKestrel_NAME
+Stance Kestrel[X]
+## MSG_SKILL_StanceKestrel_DESC
+Stance Kestrel:[N]
+Grants +4 ATK and AS[N]
 if attacked.[X]
 
-## MSG_SKILL_StanceMirror
-S-Mirror:[NL]
-Grants +4 ATK and RES[NL]
+## MSG_SKILL_StanceMirror_NAME
+Stance Mirror[X]
+## MSG_SKILL_StanceMirror_DESC
+Stance Mirror:[N]
+Grants +4 ATK and RES[N]
 if attacked.[X]
 
-## MSG_SKILL_StanceReady
-S-Ready:[NL]
-Grants +4 AS and DEF[NL]
+## MSG_SKILL_StanceReady_NAME
+Stance Ready[X]
+## MSG_SKILL_StanceReady_DESC
+Stance Ready:[N]
+Grants +4 AS and DEF[N]
 if attacked.[X]
 
-## MSG_SKILL_StanceSteady
-S-Steady:[NL]
-Grants +6 DEF[NL]
+## MSG_SKILL_StanceSteady_NAME
+Stance Steady[X]
+## MSG_SKILL_StanceSteady_DESC
+Stance Steady:[N]
+Grants +6 DEF[N]
 if attacked.[X]
 
-## MSG_SKILL_StanceSturdy
-S-Sturdy:[NL]
-Grants +4 ATK and DEF[NL]
+## MSG_SKILL_StanceSturdy_NAME
+Stance Sturdy[X]
+## MSG_SKILL_StanceSturdy_DESC
+Stance Sturdy:[N]
+Grants +4 ATK and DEF[N]
 if attacked.[X]
 
-## MSG_SKILL_StanceSwift
-S-Swift:[NL]
-Grants +4 AS and RES[NL]
+## MSG_SKILL_StanceSwift_NAME
+Stance Swift[X]
+## MSG_SKILL_StanceSwift_DESC
+Stance Swift:[N]
+Grants +4 AS and RES[N]
 if attacked.[X]
 
-## MSG_SKILL_StanceWarding
-S-Warding:[NL]
-Grants +6 RES[NL]
+## MSG_SKILL_StanceWarding_NAME
+Stance Warding[X]
+## MSG_SKILL_StanceWarding_DESC
+Stance Warding:[N]
+Grants +6 RES[N]
 if attacked.[X]
 
 ## MSG_SKILL_StanceSpectrum_NAME
-S-Spectrum[X]
-
-## MSG_SKILL_StanceSpectrum
-Stance Spectrum:[NL]
-Grants +2 ATK, SPD, DEF[NL]
+Stance Spectrum[X]
+## MSG_SKILL_StanceSpectrum_DESC
+Stance Spectrum:[N]
+Grants +2 ATK, SPD, DEF[N]
 and RES if attacked.[X]

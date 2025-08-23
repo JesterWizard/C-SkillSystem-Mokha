@@ -1,194 +1,209 @@
-## MSG_SKILL_DEBUFF_Aversa_NAME
+## MSG_SKILL_Aversa_NAME
 Aversa[X]
-
-## MSG_SKILL_DEBUFF_Aversa
-Aversa's Night: If enemy's HP < unit's[NL]
-HP -3 and have allies in 2x2, inflicts[NL]
+## MSG_SKILL_Aversa_DESC
+Aversa's Night: If enemy's HP < unit's[N]
+HP -3 and have allies in 2x2, inflicts[N]
 ATK/SPD/DEF/RES -3 and inflict Panic.[X]
 
 ## MSG_SKILL_PowHone_NAME
-Pow Hone[X]
-
-## MSG_SKILL_PowHone
-Pow Hone: Grants allies in 2x2[NL]
-+4 STR for one turn during the[NL]
+Strength Hone[X]
+## MSG_SKILL_PowHone_DESC
+Strength Hone: Grants allies in 2x2[N]
++4 STR for one turn during the[N]
 start of each turn.[X]
 
 ## MSG_SKILL_MagHone_NAME
-Mag Hone[X]
-
-## MSG_SKILL_MagHone
-Mag Hone: Grants allies in 2x2[NL]
-+4 MAG for one turn during the[NL]
+Magic Hone[X]
+## MSG_SKILL_MagHone_DESC
+Magic Hone: Grants allies in 2x2[N]
++4 MAG for one turn during the[N]
 start of each turn.[X]
 
 ## MSG_SKILL_SklHone_NAME
-Skl Hone[X]
-
-## MSG_SKILL_SklHone
-Skl Hone: Grants allies in 2x2[NL]
-+4 SKL for one turn during the[NL]
+Skill Hone[X]
+## MSG_SKILL_SklHone_DESC
+Skill Hone: Grants allies in 2x2[N]
++4 SKL for one turn during the[N]
 start of each turn.[X]
 
 ## MSG_SKILL_SpdHone_NAME
-Spd Hone[X]
-
-## MSG_SKILL_SpdHone
-Spd Hone: Grants allies in 2x2[NL]
-+4 SPD for one turn during the[NL]
+Speed Hone[X]
+## MSG_SKILL_SpdHone_DESC
+Speed Hone: Grants allies in 2x2[N]
++4 SPD for one turn during the[N]
 start of each turn.[X]
 
 ## MSG_SKILL_LckHone_NAME
-Lck Hone[X]
-
-## MSG_SKILL_LckHone
-Lck Hone: Grants allies in 2x2[NL]
-+4 LUCK for one turn during the[NL]
+Luck Hone[X]
+## MSG_SKILL_LckHone_DESC
+Luck Hone: Grants allies in 2x2[N]
++4 LUCK for one turn during the[N]
 start of each turn.[X]
 
 ## MSG_SKILL_DefHone_NAME
-Def Hone[X]
-
-## MSG_SKILL_DefHone
-Def Hone: Grants allies in 2x2[NL]
-+4 DEF for one turn during the[NL]
+Defense Hone[X]
+## MSG_SKILL_DefHone_DESC
+Defense Hone: Grants allies in 2x2[N]
++4 DEF for one turn during the[N]
 start of each turn.[X]
 
 ## MSG_SKILL_ResHone_NAME
-Res Hone[X]
-
-## MSG_SKILL_ResHone
-Res Hone: Grants allies in 2x2[NL]
-Res+4 for one turn during the[NL]
+Resistance Hone[X]
+## MSG_SKILL_ResHone_DESC
+Resistance Hone: Grants allies in 2x2[N]
+Res+4 for one turn during the[N]
 start of each turn.[X]
 
 ## MSG_SKILL_MovHone_NAME
-Mov Hone[X]
-
-## MSG_SKILL_MovHone
-Mov Hone: Grants allies in 2x2[NL]
-+4 MOV for one turn during the[NL]
+Move Hone[X]
+## MSG_SKILL_MovHone_DESC
+Move Hone: Grants allies in 2x2[N]
++4 MOV for one turn during the[N]
 start of each turn.[X]
 
-## MSG_SKILL_HoneCavalry_NAME
-H-Cavalry[X]
+## MSG_SKILL_HoneChaos_NAME
+Hone Chaos[X]
+## MSG_SKILL_HoneChaos_DESC
+Hone Chaos: Randomly boost an[N]
+allied stat by +4 in a 2x2[N]
+radius at the start of the turn.[X]
 
-## MSG_SKILL_HoneCavalry
-Hone Cavalry: Grants Cavalry allies[NL]
-in 2x2 +6 ATK/SPD at the start[NL]
+## MSG_SKILL_HoneCavalry_NAME
+Hone Cavalry[X]
+## MSG_SKILL_HoneCavalry_DESC
+Hone Cavalry: Grants Cavalry allies[N]
+in 2x2 +6 ATK/SPD at the start[N]
 of each turn.[X]
 
 ## MSG_SKILL_HoneFlier_NAME
 Hone Flier[X]
-
-## MSG_SKILL_HoneFlier
-Hone Flier: Grants Flier allies[NL]
-in 2x2 +6 ATK/SPD at the start[NL]
+## MSG_SKILL_HoneFlier_DESC
+Hone Flier: Grants Flier allies[N]
+in 2x2 +6 ATK/SPD at the start[N]
 of each turn.[X]
 
 ## MSG_SKILL_HoneArmor_NAME
 Hone Armor[X]
-
-## MSG_SKILL_HoneArmor
-Hone Armor: Grants Armor allies[NL]
-in 2x2 +6 ATK/SPD at the start[NL]
+## MSG_SKILL_HoneArmor_DESC
+Hone Armor: Grants Armor allies[N]
+in 2x2 +6 ATK/SPD at the start[N]
 of each turn.[X]
 
 ## MSG_SKILL_FortifyArmor_NAME
 Fortify Armor[X]
-
-## MSG_SKILL_FortifyArmor
-Fortify Armor: Grants Armor allies[NL]
-in 2x2 +6 LCK/DEF/RES at the start[NL]
+## MSG_SKILL_FortifyArmor_DESC
+Fortify Armor: Grants Armor allies[N]
+in 2x2 +6 LCK/DEF/RES at the start[N]
 of each turn.[X]
 
 ## MSG_SKILL_SealDefense_NAME
-S-Defense[X]
-
-## MSG_SKILL_SealDefense
-Seal-Defense:[NL]
-Debuff the enemy's DEF by 6[NL]
-after combat. Recover 1/turn.[X]
+Seal Defense[X]
+## MSG_SKILL_SealDefense_DESC
+Seal Defense:[N]
+Debuff the enemy's DEF by 6[N]
+after combat. Doesn't stack.[X]
 
 ## MSG_SKILL_SealLuck_NAME
-S-Luck[X]
-
-## MSG_SKILL_SealLuck
-Seal-Luck:[NL]
-Debuff the enemy's LCK by 6[NL]
-after combat. Recover 1/turn.[X]
+Seal Luck[X]
+## MSG_SKILL_SealLuck_DESC
+Seal Luck:[N]
+Debuff the enemy's LCK by 6[N]
+after combat. Doesn't stack.[X]
 
 ## MSG_SKILL_SealMagic_NAME
-S-Magic[X]
-
-## MSG_SKILL_SealMagic
-Seal-Magic:[NL]
-Debuff the enemy's MAG by 6[NL]
-after combat. Recover 1/turn.[X]
+Seal Magic[X]
+## MSG_SKILL_SealMagic_DESC
+Seal Magic:[N]
+Debuff the enemy's MAG by 6[N]
+after combat. Doesn't stack.[X]
 
 ## MSG_SKILL_SealResistance_NAME
-S-Resist[X]
-
-## MSG_SKILL_SealResistance
-Seal-Resistance:[NL]
-Debuff the enemy's RES by 6[NL]
-after combat. Recover 1/turn.[X]
+Seal Resistance[X]
+## MSG_SKILL_SealResistance_DESC
+Seal Resistance:[N]
+Debuff the enemy's RES by 6[N]
+after combat. Doesn't stack.[X]
 
 ## MSG_SKILL_SealSkill_NAME
-S-Skill[X]
-
-## MSG_SKILL_SealSkill
-Seal-Skill:[NL]
-Debuff the enemy's SKL by 6[NL]
-after combat. Recover 1/turn.[X]
+Seal Skill[X]
+## MSG_SKILL_SealSkill_DESC
+Seal Skill:[N]
+Debuff the enemy's SKL by 6[N]
+after combat. Doesn't stack.[X]
 
 ## MSG_SKILL_SealSpeed_NAME
-S-Speed[X]
-
-## MSG_SKILL_SealSpeed
-Seal-Speed:[NL]
-Debuff the enemy's SPD by 6[NL]
-after combat. Recover 1/turn.[X]
+Seal Speed[X]
+## MSG_SKILL_SealSpeed_DESC
+Seal Speed:[N]
+Debuff the enemy's SPD by 6[N]
+after combat. Doesn't stack.[X]
 
 ## MSG_SKILL_SealStrength_NAME
-S-Strength[X]
+Seal Strength[X]
+## MSG_SKILL_SealStrength_DESC
+Seal Strength:[N]
+Debuff the enemy's STR by 6[N]
+after combat. Doesn't stack.[X]
 
-## MSG_SKILL_SealStrength
-Seal-Strength:[NL]
-Debuff the enemy's STR by 6[NL]
-after combat. Recover 1/turn.[X]
+## MSG_SKILL_MagicSeal_NAME
+Magic Seal[X]
+## MSG_SKILL_MagicSeal_DESC
+Magic Seal:[N]
+Prevent use of magic by all[N]
+units in a 10 tiles of user.[X]
 
-## MSG_SKILL_ChillPow
-ChillPow:[NL]
-Enemy with the highest STR get[NL]
+## MSG_SKILL_FullMetalBody_NAME
+Full Metal Body[X]
+## MSG_SKILL_FullMetalBody_DESC
+Full Metal Body:[N]
+This unit is immune to all[N]
+the seal skills.[X]
+
+## MSG_SKILL_ChillPow_NAME
+Chill Power[X]
+## MSG_SKILL_ChillPow_DESC
+Chill Power:[N]
+Enemy with the highest STR get[N]
 STR-7 until next action[X]
 
-## MSG_SKILL_ChillMag
-ChillMag:[NL]
-Enemy with the highest MAG get[NL]
+## MSG_SKILL_ChillMag_NAME
+Chill Magic[X]
+## MSG_SKILL_ChillMag_DESC
+Chill Magic:[N]
+Enemy with the highest MAG get[N]
 MAG-7 until next action[X]
 
-## MSG_SKILL_ChillSkl
-ChillSkl:[NL]
-Enemy with the highest SKL get[NL]
+## MSG_SKILL_ChillSkl_NAME
+Chill Skill[X]
+## MSG_SKILL_ChillSkl_DESC
+Chill Skill:[N]
+Enemy with the highest SKL get[N]
 SKL-7 until next action[X]
 
-## MSG_SKILL_ChillSpd
-ChillSpd:[NL]
-Enemy with the highest SPD get[NL]
+## MSG_SKILL_ChillSpd_NAME
+Chill Speed[X]
+## MSG_SKILL_ChillSpd_DESC
+Chill Speed:[N]
+Enemy with the highest SPD get[N]
 SPD-7 until next action[X]
 
-## MSG_SKILL_ChillLck
-ChillLck:[NL]
-Enemy with the highest LCK get[NL]
+## MSG_SKILL_ChillLck_NAME
+Chill Luck[X]
+## MSG_SKILL_ChillLck_DESC
+Chill Luck:[N]
+Enemy with the highest LCK get[N]
 LCK-7 until next action[X]
 
-## MSG_SKILL_ChillDef
-ChillDef:[NL]
-Enemy with the highest DEF get[NL]
+## MSG_SKILL_ChillDef_NAME
+Chill Defense[X]
+## MSG_SKILL_ChillDef_DESC
+Chill Defense:[N]
+Enemy with the highest DEF get[N]
 DEF-7 until next action[X]
 
-## MSG_SKILL_ChillRes
-ChillRes:[NL]
-Enemy with the highest RES get[NL]
+## MSG_SKILL_ChillRes_NAME
+Chill Resistance[X]
+## MSG_SKILL_ChillRes_DESC
+Chill Resistance:[N]
+Enemy with the highest RES get[N]
 RES-7 until next action[X]

@@ -413,10 +413,10 @@ void PreBattleCalcDefenderSkills(struct BattleUnit *attacker, struct BattleUnit 
 			break;
 #endif
 
-#if (defined(SID_DragonWarth) && (COMMON_SKILL_VALID(SID_DragonWarth)))
-		case SID_DragonWarth:
+#if (defined(SID_DragonsWrath) && (COMMON_SKILL_VALID(SID_DragonsWrath)))
+		case SID_DragonsWrath:
 			if (gBattleStats.config & BATTLE_CONFIG_SIMULATE)
-				gDmg.decrease += DAMAGE_DECREASE(SKILL_EFF0(SID_DragonWarth));
+				gDmg.decrease += DAMAGE_DECREASE(SKILL_EFF0(SID_DragonsWrath));
 
 			break;
 #endif
@@ -1503,8 +1503,8 @@ L_FairyTaleFolk_done:
 			break;
 #endif
 
-#if (defined(SID_Dishonorbreaker) && (COMMON_SKILL_VALID(SID_Dishonorbreaker)))
-		case SID_Dishonorbreaker:
+#if (defined(SID_DishonorBreaker) && (COMMON_SKILL_VALID(SID_DishonorBreaker)))
+		case SID_DishonorBreaker:
 			if (!defender->canCounter) {
 				attacker->battleHitRate -= 50;
 				attacker->battleAvoidRate += 50;
@@ -1521,10 +1521,10 @@ L_FairyTaleFolk_done:
 			break;
 #endif
 
-#if (defined(SID_DragonWarth) && (COMMON_SKILL_VALID(SID_DragonWarth)))
-		case SID_DragonWarth:
+#if (defined(SID_DragonsWrath) && (COMMON_SKILL_VALID(SID_DragonsWrath)))
+		case SID_DragonsWrath:
 			if (gBattleStats.config & BATTLE_CONFIG_SIMULATE)
-				attacker->battleAttack += perc_of(BattleUnitOriginalStatus(attacker)->atk, SKILL_EFF0(SID_DragonWarth));
+				attacker->battleAttack += perc_of(BattleUnitOriginalStatus(attacker)->atk, SKILL_EFF0(SID_DragonsWrath));
 
 			break;
 #endif

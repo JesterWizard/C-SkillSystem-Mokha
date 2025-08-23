@@ -130,3 +130,19 @@ VitalReckoning[X]
 Vital Reckoning:[NL]
 Art: Sacrifice 80% HP to deal[NL]
 more damage as the cost.[X]
+
+## MSG_SKILL_COMBAT_AstraStorm_NAME
+Astra Storm[X]
+
+## MSG_SKILL_COMBAT_AstraStorm
+Astra Storm:[N]
+Art: 5 strikes at 10 range[N]
+at 30% damage.[X]
+
+## MSG_SKILL_COMBAT_Practice_NAME
+Practice[X]
+
+## MSG_SKILL_COMBAT_Practice
+Practice:[N]
+Art: Deal 1.5x damage and[N]
+gain 1.5x EXP.[X]

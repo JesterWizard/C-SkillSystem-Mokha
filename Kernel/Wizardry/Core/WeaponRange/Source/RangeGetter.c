@@ -51,14 +51,14 @@ int WeaponRangeGetterSkills(int range, struct Unit *unit, u16 item)
 		break;
 
 	case ITYPE_BOW:
-#if defined(SID_RangeBonusBow1) && (COMMON_SKILL_VALID(SID_RangeBonusBow1))
-		if (SkillTester(unit, SID_RangeBonusBow1))
-			range = range + SKILL_EFF0(SID_RangeBonusBow1);
+#if defined(SID_BowRangePlus1) && (COMMON_SKILL_VALID(SID_BowRangePlus1))
+		if (SkillTester(unit, SID_BowRangePlus1))
+			range = range + SKILL_EFF0(SID_BowRangePlus1);
 #endif
 
-#if defined(SID_RangeBonusBow2) && (COMMON_SKILL_VALID(SID_RangeBonusBow2))
-		if (SkillTester(unit, SID_RangeBonusBow2))
-			range = range + SKILL_EFF0(SID_RangeBonusBow2);
+#if defined(SID_BowRangePlus2) && (COMMON_SKILL_VALID(SID_BowRangePlus2))
+		if (SkillTester(unit, SID_BowRangePlus2))
+			range = range + SKILL_EFF0(SID_BowRangePlus2);
 #endif
 
 #if defined(SID_RunningStart) && (COMMON_SKILL_VALID(SID_RunningStart))
@@ -75,14 +75,14 @@ int WeaponRangeGetterSkills(int range, struct Unit *unit, u16 item)
 	case ITYPE_ANIMA:
 	case ITYPE_LIGHT:
 	case ITYPE_DARK:
-#if defined(SID_RangeBonusBMag1) && (COMMON_SKILL_VALID(SID_RangeBonusBMag1))
-		if (SkillTester(unit, SID_RangeBonusBMag1))
-			range = range + SKILL_EFF0(SID_RangeBonusBMag1);
+#if defined(SID_MagicRangePlus1) && (COMMON_SKILL_VALID(SID_MagicRangePlus1))
+		if (SkillTester(unit, SID_MagicRangePlus1))
+			range = range + SKILL_EFF0(SID_MagicRangePlus1);
 #endif
 
-#if defined(SID_RangeBonusBMag2) && (COMMON_SKILL_VALID(SID_RangeBonusBMag2))
-		if (SkillTester(unit, SID_RangeBonusBMag2))
-			range = range + SKILL_EFF0(SID_RangeBonusBMag2);
+#if defined(SID_MagicRangePlus2) && (COMMON_SKILL_VALID(SID_MagicRangePlus2))
+		if (SkillTester(unit, SID_MagicRangePlus2))
+			range = range + SKILL_EFF0(SID_MagicRangePlus2);
 #endif
 
 #if defined(SID_HighGround) && (COMMON_SKILL_VALID(SID_HighGround))

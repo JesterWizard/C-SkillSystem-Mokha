@@ -138,10 +138,10 @@ void BattleDamageCalc_AttackerSkills(struct BattleUnit *attacker, struct BattleU
 			break;
 #endif
 
-#if (defined(SID_DragonWarth) && (COMMON_SKILL_VALID(SID_DragonWarth)))
-		case SID_DragonWarth:
+#if (defined(SID_DragonsWrath) && (COMMON_SKILL_VALID(SID_DragonsWrath)))
+		case SID_DragonsWrath:
 			if (GetBattleGlobalFlags(attacker)->round_cnt_hit == 1)
-				gDmg.correction += perc_of(BattleUnitOriginalStatus(attacker)->atk, SKILL_EFF0(SID_DragonWarth));
+				gDmg.correction += perc_of(BattleUnitOriginalStatus(attacker)->atk, SKILL_EFF0(SID_DragonsWrath));
 
 			break;
 #endif

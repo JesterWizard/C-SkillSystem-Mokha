@@ -523,20 +523,20 @@ const struct SkillExtraInfo gSkillExtraInfo[MAX_SKILL_NUM + 1] = {
 	[SID_StanceSpectrum] = {{ 2, 2, 2 }},
 #endif
 
-#if (defined(SID_RangeBonusBMag1) && COMMON_SKILL_VALID(SID_RangeBonusBMag1))
-	[SID_RangeBonusBMag1] = {{ 1 }},
+#if (defined(SID_MagicRangePlus1) && COMMON_SKILL_VALID(SID_MagicRangePlus1))
+	[SID_MagicRangePlus1] = {{ 1 }},
 #endif
 
-#if (defined(SID_RangeBonusBMag2) && COMMON_SKILL_VALID(SID_RangeBonusBMag2))
-	[SID_RangeBonusBMag2] = {{ 2 }},
+#if (defined(SID_MagicRangePlus2) && COMMON_SKILL_VALID(SID_MagicRangePlus2))
+	[SID_MagicRangePlus2] = {{ 2 }},
 #endif
 
-#if (defined(SID_RangeBonusBow1) && COMMON_SKILL_VALID(SID_RangeBonusBow1))
-	[SID_RangeBonusBow1] = {{ 1 }},
+#if (defined(SID_BowRangePlus1) && COMMON_SKILL_VALID(SID_BowRangePlus1))
+	[SID_BowRangePlus1] = {{ 1 }},
 #endif
 
-#if (defined(SID_RangeBonusBow2) && COMMON_SKILL_VALID(SID_RangeBonusBow2))
-	[SID_RangeBonusBow2] = {{ 2 }},
+#if (defined(SID_BowRangePlus2) && COMMON_SKILL_VALID(SID_BowRangePlus2))
+	[SID_BowRangePlus2] = {{ 2 }},
 #endif
 
 #if (defined(SID_StaffSavant) && COMMON_SKILL_VALID(SID_StaffSavant))
@@ -827,8 +827,8 @@ const struct SkillExtraInfo gSkillExtraInfo[MAX_SKILL_NUM + 1] = {
 	[SID_DragonWall] = {{ 4 }},
 #endif
 
-#if (defined(SID_DragonWarth) && COMMON_SKILL_VALID(SID_DragonWarth))
-	[SID_DragonWarth] = {{ 20, 20, }},
+#if (defined(SID_DragonsWrath) && COMMON_SKILL_VALID(SID_DragonsWrath))
+	[SID_DragonsWrath] = {{ 20, 20, }},
 #endif
 
 #if (defined(SID_BlueLionRule) && COMMON_SKILL_VALID(SID_BlueLionRule))

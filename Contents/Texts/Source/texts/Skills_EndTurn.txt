@@ -1,4 +1,6 @@
-## MSG_SKILL_FreeSpirit
-Free Spirit:[NL]
-If not act at the end of phase,[NL]
+## MSG_SKILL_FreeSpirit_NAME
+Free Spirit[X]
+## MSG_SKILL_FreeSpirit_DESC
+Free Spirit:[N]
+If not act at the end of phase,[N]
 grants all stats +5 at enemy phase.[X]

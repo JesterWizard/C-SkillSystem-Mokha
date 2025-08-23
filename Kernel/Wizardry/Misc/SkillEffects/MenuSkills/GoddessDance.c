@@ -35,7 +35,7 @@ int GoddessDance_Unhover(struct MenuProc *menu, struct MenuItemProc *menuItem)
 u8 GoddessDance_OnSelected(struct MenuProc *menu, struct MenuItemProc *item)
 {
 	if (item->availability == MENU_DISABLED) {
-		MenuFrozenHelpBox(menu, MSG_MenuSkill_GoddessDance_FRtext);
+		MenuFrozenHelpBox(menu, MSG_No_Adjacent_Units);
 		return MENU_ACT_SND6B;
 	}
 

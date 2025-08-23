@@ -126,10 +126,10 @@ void BattleDamageCalc_DefenderSkills(struct BattleUnit *attacker, struct BattleU
 			break;
 #endif
 
-#if (defined(SID_DragonWarth) && (COMMON_SKILL_VALID(SID_DragonWarth)))
-		case SID_DragonWarth:
+#if (defined(SID_DragonsWrath) && (COMMON_SKILL_VALID(SID_DragonsWrath)))
+		case SID_DragonsWrath:
 			if (GetBattleGlobalFlags(attacker)->round_cnt_hit == 1)
-				gDmg.decrease += DAMAGE_DECREASE(SKILL_EFF0(SID_DragonWarth));
+				gDmg.decrease += DAMAGE_DECREASE(SKILL_EFF0(SID_DragonsWrath));
 
 			break;
 #endif

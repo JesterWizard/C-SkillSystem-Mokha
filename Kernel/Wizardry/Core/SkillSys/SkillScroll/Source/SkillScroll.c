@@ -3,6 +3,11 @@
 #include "icon-rework.h"
 #include "kernel-lib.h"
 #include "constants/texts.h"
+#include "stat-screen.h"
+#include "item-sys.h"
+#include "constants/texts.h"
+#include "event-rework.h"
+#include "action-expa.h"
 
 /* External hooks */
 bool IsSkillScrollItem(int item)
@@ -53,6 +58,22 @@ STATIC_DECLAR const struct ProcCmd ProcScr_SkillScrollUseSoftLock[] = {
 	PROC_END
 };
 
+/**
+ * BLOCK USAGE OF SCROLL IF UNIT WOULD BE ABOVE CAPACITY LIMIT AFTER APPLYING IT
+ */
+#ifdef CONFIG_TELLIUS_CAPACITY_SYSTEM
+static const EventScr EventScr_SkillCapacityReached[] = {
+    EVBIT_MODIFY(0x4)
+    TUTORIALTEXTBOXSTART
+    SVAL(EVT_SLOT_B, 0xffffffff)
+    TEXTSHOW(MSG_Skill_Capacity_Reached)
+    TEXTEND
+    REMA
+    NOFADE
+    ENDA
+};
+#endif
+
 void ItemUseEffect_SkillScroll(struct Unit *unit)
 {
 	gActionData.unk08 = -1;
@@ -70,26 +91,127 @@ void ItemUseEffect_SkillScroll(struct Unit *unit)
 
 void ItemUseAction_SkillScroll(ProcPtr proc)
 {
-	struct Unit *unit = GetUnit(gActionData.subjectIndex);
-	int slot = gActionData.itemSlotIndex;
-	int item = unit->items[slot];
+    struct Unit * unit = GetUnit(gActionData.subjectIndex);
+    int slot = gActionData.itemSlotIndex;
+    FORCE_DECLARE int item = unit->items[slot];
 
-	if (gActionData.unk08 != (u16)-1) {
-		/* Replace skill */
-		int slot_rep = gActionData.unk08;
-		int sid_rep = UNIT_RAM_SKILLS(unit)[slot_rep];
+#ifdef CONFIG_TELLIUS_CAPACITY_SYSTEM
+    int amt = GetUnitBattleAmt(gActiveUnit);
+    int total = CONFIG_TELLIUS_CAPACITY_BASE;
 
-		unit->items[slot] = ITEM_INDEX(item) | (sid_rep << 8);
-		RemoveSkill(unit, sid_rep);
-		AddSkill(unit, ITEM_USES(item));
-	} else {
-		/* Simply add a new skill */
-		AddSkill(unit, ITEM_USES(item));
-		UnitUpdateUsedItem(unit, slot);
-	}
+    if (UNIT_CATTRIBUTES(unit) & CA_PROMOTED)
+        total += CONFIG_TELLIUS_CAPACITY_PROMOTED;
 
-	SetPopupItem(ITEM_USES(item));
-	NewPopup_Simple(PopupScr_LearnSkill, 0x60, 0, proc);
+    int capacity = 0;
+
+#ifdef CONFIG_ITEM_INDEX_SKILL_SCROLL_1
+    if (ITEM_INDEX(item) == CONFIG_ITEM_INDEX_SKILL_SCROLL_1)
+        GetSkillCapacity(GetItemUses(item));
+#endif
+#ifdef CONFIG_ITEM_INDEX_SKILL_SCROLL_2
+    if (ITEM_INDEX(item) == CONFIG_ITEM_INDEX_SKILL_SCROLL_2)
+        GetSkillCapacity(GetItemUses(item) + 0xFF);
+#endif
+#ifdef CONFIG_ITEM_INDEX_SKILL_SCROLL_3
+    if (ITEM_INDEX(item) == CONFIG_ITEM_INDEX_SKILL_SCROLL_3)
+        GetSkillCapacity(GetItemUses(item) + 0x1FF);
+#endif
+#ifdef CONFIG_ITEM_INDEX_SKILL_SCROLL_4
+    if (ITEM_INDEX(item) == CONFIG_ITEM_INDEX_SKILL_SCROLL_4)
+        GetSkillCapacity(GetItemUses(item) + 0x2FF);
+#endif
+
+    if (capacity == -1 ) 
+        capacity = 0;
+    else {
+#if defined(SID_CapacityHalf) && (COMMON_SKILL_VALID(SID_CapacityHalf))
+        if (SkillTester(unit, SID_CapacityHalf))
+            capacity = capacity / 2;
+#endif
+#if defined(SID_CapacityOne) && (COMMON_SKILL_VALID(SID_CapacityOne))
+        if (SkillTester(unit, SID_CapacityOne))
+            capacity = 1;
+#endif
+        }
+
+    amt += capacity;
+
+    if (amt > total)
+    {
+        KernelCallEvent(EventScr_SkillCapacityReached, EV_EXEC_CUTSCENE, proc);
+        gActionDataExpa.refrain_action = true;
+        return;
+    }
+#endif
+    if (gEventSlots[EVT_SLOT_7] == 0xFFFF)
+    {
+        /* Replace skill */
+        int slot_rep = gActionData.unk08;
+        int sid_rep = GET_SKILL(unit, slot_rep);
+
+        RemoveSkill(unit, sid_rep);
+
+#ifdef CONFIG_ITEM_INDEX_SKILL_SCROLL_1
+    if (ITEM_INDEX(item) == CONFIG_ITEM_INDEX_SKILL_SCROLL_1)
+        AddSkill(unit, ITEM_USES(item));
+#endif
+#ifdef CONFIG_ITEM_INDEX_SKILL_SCROLL_2
+    if (ITEM_INDEX(item) == CONFIG_ITEM_INDEX_SKILL_SCROLL_2)
+        AddSkill(unit, ITEM_USES(item) + 0xFF);
+#endif
+#ifdef CONFIG_ITEM_INDEX_SKILL_SCROLL_3
+    if (ITEM_INDEX(item) == CONFIG_ITEM_INDEX_SKILL_SCROLL_3)
+        AddSkill(unit, ITEM_USES(item) + 0x1FF);
+#endif
+#ifdef CONFIG_ITEM_INDEX_SKILL_SCROLL_4
+    if (ITEM_INDEX(item) == CONFIG_ITEM_INDEX_SKILL_SCROLL_4)
+        AddSkill(unit, ITEM_USES(item) + 0x2FF);
+#endif
+
+#if defined(SID_ScrollScribe) && (COMMON_SKILL_VALID(SID_ScrollScribe))
+        if (SkillTester(unit, SID_ScrollScribe))
+        {
+#ifdef CONFIG_ITEM_INDEX_SKILL_SCROLL_1
+            if (ITEM_INDEX(item) == CONFIG_ITEM_INDEX_SKILL_SCROLL_1)
+                unit->items[slot] = ITEM_INDEX(item)         | (sid_rep << 8);
+            else if (ITEM_INDEX(item) == CONFIG_ITEM_INDEX_SKILL_SCROLL_2)
+                unit->items[slot] = ITEM_INDEX(item + 0xFF)  | (sid_rep << 8);
+            else if (ITEM_INDEX(item) == CONFIG_ITEM_INDEX_SKILL_SCROLL_3)
+                unit->items[slot] = ITEM_INDEX(item + 0x1FF) | (sid_rep << 8);
+            else if (ITEM_INDEX(item) == CONFIG_ITEM_INDEX_SKILL_SCROLL_4)
+                unit->items[slot] = ITEM_INDEX(item + 0x2FF) | (sid_rep << 8);
+#endif
+        }
+        else 
+            UnitUpdateUsedItem(unit, slot);
+#else 
+        UnitUpdateUsedItem(unit, slot);
+#endif
+
+    }
+    else
+    {
+        /* Simply add a new skill */
+#ifdef CONFIG_ITEM_INDEX_SKILL_SCROLL_1
+    if (ITEM_INDEX(item) == CONFIG_ITEM_INDEX_SKILL_SCROLL_1)
+        AddSkill(unit, ITEM_USES(item));
+#endif
+#ifdef CONFIG_ITEM_INDEX_SKILL_SCROLL_2
+    if (ITEM_INDEX(item) == CONFIG_ITEM_INDEX_SKILL_SCROLL_2)
+        AddSkill(unit, ITEM_USES(item) + 0xFF);
+#endif
+#ifdef CONFIG_ITEM_INDEX_SKILL_SCROLL_3
+    if (ITEM_INDEX(item) == CONFIG_ITEM_INDEX_SKILL_SCROLL_3)
+        AddSkill(unit, ITEM_USES(item) + 0x1FF);
+#endif
+#ifdef CONFIG_ITEM_INDEX_SKILL_SCROLL_4
+    if (ITEM_INDEX(item) ==  CONFIG_ITEM_INDEX_SKILL_SCROLL_4)
+        AddSkill(unit, ITEM_USES(item) + 0x2FF);
+#endif
+        UnitUpdateUsedItem(unit, slot);
+    }
+
+    NewPopup_VerySimple(MSG_SkillLearned, 0x5A, proc);
 }
 
 bool ItemUsbility_SkillScroll(struct Unit *unit, int item)

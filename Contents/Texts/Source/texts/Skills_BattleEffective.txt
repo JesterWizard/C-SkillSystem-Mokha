@@ -1,36 +1,61 @@
-## MSG_SKILL_Nullify
-Nullify: Unit is protected[NL]
+## MSG_SKILL_Nullify_NAME
+Nullify[X]
+## MSG_SKILL_Nullify_DESC
+Nullify:[N]
+Unit is protected[N]
 from all effective attacks.[X]
 
-## MSG_SKILL_Slayer
-Slayer: Deal effective damage[NL]
+## MSG_SKILL_Slayer_NAME
+Slayer[X]
+## MSG_SKILL_Slayer_DESC
+Slayer:[N]
+Deal effective damage[N]
 to monster units.[X]
 
 ## MSG_SKILL_Skybreaker_NAME
-Sky-K[X]
-
-## MSG_SKILL_Skybreaker
-Sky breaker: Deal effective[NL]
+Sky Breaker[X]
+## MSG_SKILL_Skybreaker_DESC
+Sky Breaker: Deal effective[N]
 damage to flying units.[X]
 
 ## MSG_SKILL_Resourceful_NAME
-Resourc[X]
+Resourceful[X]
+## MSG_SKILL_Resourceful_DESC
+Resourceful:[N]
+Double bonus effectiveness[N]
+multipliers.[X]
 
-## MSG_SKILL_Resourceful
-Resourceful:[NL]
-effectiveness attack +100%.[X]
-
-## MSG_SKILL_SolidRock
-Solid Rock:[NL]
-Halves effective damage[NL]
+## MSG_SKILL_SolidRock_NAME
+Solid Rock[X]
+## MSG_SKILL_SolidRock_DESC
+Solid Rock:[N]
+Halves effective damage[N]
 against this unit.[X]
 
-## MSG_SKILL_WingedShield
-Winged Shield:[NL]
-Flying weakness is nullified[NL]
+## MSG_SKILL_BanditBane_NAME
+Bandit Bane[X]
+## MSG_SKILL_BanditBane_DESC
+Bandit Bane:[N]
+Deals effective damage to[N]
+bandits, pirates and berserkers.[X]
+
+## MSG_SKILL_Protean_NAME
+Protean[X]
+## MSG_SKILL_Protean_DESC
+Protean:[N]
+Always deal effective damage but[N]
+consume 3x the weapon cost.[X]
+
+## MSG_SKILL_WingedShield_NAME
+Winged Shield:[N]
+## MSG_SKILL_WingedShield_DESC
+Winged Shield:[N]
+Flying weakness is nullified[N]
 and receive terrain effects.[X]
 
-## MSG_SKILL_BeastShield
-Beast Shield:[NL]
-Nullifies any bonus damage targeting[NL]
+## MSG_SKILL_BeastShield_NAME
+Beast Shield:[N]
+## MSG_SKILL_BeastShield_DESC
+Beast Shield:[N]
+Nullifies any bonus damage targeting[N]
 beast units equipping this skill.[X]

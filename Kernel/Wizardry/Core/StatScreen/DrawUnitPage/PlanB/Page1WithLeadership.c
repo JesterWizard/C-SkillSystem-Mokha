@@ -208,27 +208,50 @@ static void DrawPage1ValueCommon(void)
 
 static void DrawPage1BattleAmt(void)
 {
-	int amt = GetUnitBattleAmt(gStatScreen.unit);
-	int max = 50 * 7;
+    int amt = GetUnitBattleAmt(gStatScreen.unit);
 
-	if (amt > max)
-		amt = max;
+#ifdef CONFIG_TELLIUS_CAPACITY_SYSTEM
+    int max = CONFIG_TELLIUS_CAPACITY_BASE;
 
-	PutDrawText(
-		&gStatScreen.text[STATSCREEN_TEXT_ITEM3],
-		gUiTmScratchA + TILEMAP_INDEX(0x1, 0xF),
-		TEXT_COLOR_SYSTEM_GOLD, 0, 0,
-		GetStringFromIndex(MSG_MSS_BattleAmt));
+    if (UNIT_CATTRIBUTES(gStatScreen.unit) & CA_PROMOTED)
+        max += CONFIG_TELLIUS_CAPACITY_PROMOTED;
+#else
+    int max = 50 * 7;
+#endif
 
-	PutNumber(gUiTmScratchA + TILEMAP_INDEX(0x4 + CountDigits(amt), 0xF),
-		TEXT_COLOR_SYSTEM_BLUE, amt);
+    if (amt > max)
+        amt = max;
 
-	DrawStatWithBarReworkExt(
-		0x9, 0x5, 0xF,
-		gUiTmScratchC,
-		amt, amt, max, max);
+#ifdef CONFIG_TELLIUS_CAPACITY_SYSTEM
+    PutDrawText(
+        &gStatScreen.text[STATSCREEN_TEXT_ITEM3],
+        gUiTmScratchA + TILEMAP_INDEX(0x9, 0xD),
+        TEXT_COLOR_SYSTEM_GOLD, 0, 0,
+        GetStringFromIndex(MSG_MSS_SkillCapacity));
+#else
+    PutDrawText(
+        &gStatScreen.text[STATSCREEN_TEXT_ITEM3],
+        gUiTmScratchA + TILEMAP_INDEX(0x9, 0xD),
+        TEXT_COLOR_SYSTEM_GOLD, 0, 0,
+        GetStringFromIndex(MSG_MSS_BattleAmt));
+#endif
+
+if (amt == max)
+{
+    PutNumber(gUiTmScratchA + TILEMAP_INDEX(0xC + CountDigits(amt), 0xD),
+        TEXT_COLOR_SYSTEM_GREEN, amt);
+}
+else
+{
+    PutNumber(gUiTmScratchA + TILEMAP_INDEX(0xC + CountDigits(amt), 0xD),
+        TEXT_COLOR_SYSTEM_BLUE, amt);
 }
 
+    DrawStatWithBarReworkExt(
+        0x9, 0xD, 0xD,
+        gUiTmScratchC,
+        amt, amt, max, max);
+}
 static void DrawPage1Affin(void)
 {
 	struct Unit *unit = gStatScreen.unit;

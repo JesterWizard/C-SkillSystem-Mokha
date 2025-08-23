@@ -19,6 +19,11 @@ Swap position?           [NL][Yes][X]
 ## MSG_GaidenMagic_ItemMenuDisabled
 Can not use now![NL][X]
 
+## MSG_Skill_Capacity_Reached
+The unit doesn't have enough[NL]
+remaining capacity to[NL]
+learn this skill.[A][X]
+
 ## MSG_ItemSubOption_Reorganize_NAME
 Reorg[.][X]
 
@@ -153,3 +158,16 @@ Display additional[N]
 conversations between[N]
 allied units for this[N]
 chapter.[X]
+
+## MSG_MenuCommand_Transform_Laguz_NAME
+ Laguz-T[X]
+## MSG_MenuCommand_Transform_Laguz_DESC
+Transform into a Laguz[N]
+form, gaining stat boosts.[X]
+
+## ItemAtMaxForgeCountRText
+Item is at the max forge count.[X]
+## ItemCannotBeForgedRText
+Item cannot be forged.[X]
+## NotEnoughGoldToForgeItemRText
+Not enough gold to forge item.[X]

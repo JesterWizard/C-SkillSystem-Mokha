@@ -1,21 +1,51 @@
 #include "common-chax.h"
 #include "stat-screen.h"
-#include "kernel-lib.h"
 #include "strmag.h"
+#include "skill-system.h"
+#include "constants/skills.h"
+#include "item-sys.h"
 
-int GetUnitBattleAmt(struct Unit *unit)
+int GetUnitBattleAmt(struct Unit * unit)
 {
-	int status = 0;
+    int total = 0;
 
-	status += GetUnitPower(unit);
-	status += GetUnitMagic(unit);
-	status += GetUnitSkill(unit);
-	status += GetUnitSpeed(unit);
-	status += GetUnitLuck(unit);
-	status += GetUnitDefense(unit);
-	status += GetUnitResistance(unit);
+#ifdef CONFIG_TELLIUS_CAPACITY_SYSTEM
+    struct SkillList *list;
+    list = GetUnitSkillList(unit);
+    int i;
+    int value = -1;
 
-	return status;
+    for (i = 0; i < list->amt; i++)
+    {
+        value = GetSkillCapacity(list->sid[i]);
+
+        if (value == -1 ) 
+            value = 0;
+
+        total += value;
+    }
+
+#if defined(SID_CapacityHalf) && (COMMON_SKILL_VALID(SID_CapacityHalf))
+    if (SkillTester(unit, SID_CapacityHalf))
+            total = total / 2;
+#endif
+
+#if defined(SID_CapacityOne) && (COMMON_SKILL_VALID(SID_CapacityOne))
+    if (SkillTester(unit, SID_CapacityOne))
+            total = list->amt;
+#endif
+
+#else
+    total += GetUnitPower(unit);
+    total += GetUnitMagic(unit);
+    total += GetUnitSkill(unit);
+    total += GetUnitSpeed(unit);
+    total += GetUnitLuck(unit);
+    total += GetUnitDefense(unit);
+    total += GetUnitResistance(unit);
+#endif
+
+    return total;
 }
 
 u8 SortMax(const u8 *buf, int size)

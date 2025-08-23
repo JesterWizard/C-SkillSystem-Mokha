@@ -1,41 +1,85 @@
 ## MSG_DEBUFF_PIERCE_ARMOR_NAME
 Def-[X]
-
 ## MSG_DEBUFF_PIERCE_ARMOR_DESC
 Armor pierced: Def-5[X]
 
 ## MSG_DEBUFF_PIERCE_MAGIC_NAME
 Res-[X]
-
 ## MSG_DEBUFF_PIERCE_MAGIC_DESC
-Pierce magic: Res-5[X]
+Pierce magic: RES -5[X]
 
 ## MSG_DEBUFF_HEAVY_GRAVITY_NAME
 Mov-[X]
-
 ## MSG_DEBUFF_HEAVY_GRAVITY_DESC
-Heavy gravity: cannot move[X]
+Heavy Gravity: Cannot move[X]
 
 ## MSG_DEBUFF_WEAKEN_NAME
 Weaken[X]
-
 ## MSG_DEBUFF_WEAKEN_DESC
-Weaken: Pow-5, Mag-5[X]
+Weaken: POW -5, MAG -5[X]
 
 ## MSG_DEBUFF_AVOID_NAME
-Avo+[X]
-
+Avoid[X]
 ## MSG_DEBUFF_AVOID_DESC
-Avoid: avoid + 15%[X]
+Avoid: AVO + 15%[X]
 
 ## MSG_DEBUFF_AVOID_PLUS_NAME
-Avo++[X]
-
+Avoid+[X]
 ## MSG_DEBUFF_AVOID_PLUS_DESC
-Avoid+: avoid + 30%[X]
+Avoid+: AVO + 30%[X]
 
 ## MSG_DEBUFF_PANIC_NAME
 Panic[X]
-
 ## MSG_DEBUFF_PANIC_DESC
-Panic: reverse stat-buff[X]
+Panic: Invert any stat buffs[N]
+this unit may have.[X]
+
+## MSG_DEBUFF_BREAK_NAME
+Break[X]
+## MSG_DEBUFF_BREAK_DESC
+Break: Disarm enemy unit[X]
+
+## MSG_DEBUFF_TOXIC_NAME
+Toxic[X]
+## MSG_DEBUFF_TOXIC_DESC
+Toxic: Infict 10% (times[N]
+elapsed turns) of remaining[N]
+HP as damage each turn.[X]
+
+## MSG_DEBUFF_DECOY_NAME
+Decoy[X]
+## MSG_DEBUFF_DECOY_DESC
+Decoy:[N]
+Enemy units will move to[NL]
+attack this unit.[X]
+
+## MSG_DEBUFF_DOOM_NAME
+Doom[X]
+## MSG_DEBUFF_DOOM_DESC
+Doom:[N]
+Unit dies when this[N]
+status wears off.[X]
+
+## MSG_DEBUFF_HIDE_NAME
+Hide[X]
+## MSG_DEBUFF_HIDE_DESC
+Hide:[N]
+This unit is hidden[N]
+from enemy view.[X]
+
+## MSG_DEBUFF_SLOW_NAME
+Slow[X]
+## MSG_DEBUFF_SLOW_DESC
+Slow:[N]
+Movement is halved.[X]
+
+## MSG_DEBUFF_DISMOUNT_NAME
+Dismount[X]
+## MSG_DEBUFF_DISMOUNT_DESC
+Dismount:[N]
+Unit temporarily ignore stat caps[N]
+because it's needed for a skill[N]
+with the same name.[X]
+
+## MSG_STATUS_SLEEP_NAME
+Sleep[X]

@@ -1,132 +1,210 @@
-## MSG_SKILL_Vantage
-Vantage:[NL]
-When unit is defender while[NL]
+## MSG_SKILL_Vantage_NAME
+Vantage[X]
+## MSG_SKILL_Vantage_DESC
+Vantage:[N]
+When unit is defender while[N]
 their HP is < 50%, attack first.[X]
 
-## MSG_SKILL_Desperation
-Desper: When unit[NL]
-attacks while their HP < 50%,[NL]
+## MSG_SKILL_Desperation_NAME
+Desperation[X]
+## MSG_SKILL_Desperation_DESC
+Desperation: When unit[N]
+attacks while their HP < 50%,[N]
 double attack immediately.[X]
 
-## MSA_SKILL_QuickRiposte_NAME
-Quick-R[X]
-
-## MSG_SKILL_QuickRiposte
-Quick Riposte:[NL]
-If unit is attacked while their[NL]
+## MSG_SKILL_QuickRiposte_NAME
+Quick Riposte[X]
+## MSG_SKILL_QuickRiposte_DESC
+Quick Riposte:[N]
+If unit is attacked while their[N]
 HP > 50%, they attack twice.[X]
 
-## MSG_SKILL_WaryFighter
-W-Fighter:[NL]
-Prevents follow up attack[NL]
+## MSG_SKILL_WaryFighter_NAME
+Wary Fighter[X]
+## MSG_SKILL_WaryFighter_DESC
+Wary Fighter:[N]
+Prevents follow up attack[N]
 if unit's HP > 50%.[X]
 
 ## MSG_SKILL_DoubleLion_NAME
-D-Lion[X]
-
-## MSG_SKILL_DoubleLion
-Double Lion:[NL]
-If unit attacks with full HP,[NL]
+Double Lion[X]
+## MSG_SKILL_DoubleLion_DESC
+Double Lion:[N]
+If unit attacks with full HP,[N]
 bestow Brave effect and lose 1 HP.[X]
 
-## MSG_SKILL_Astra
-Astra:[NL]
-Unit attacks 5 times but damage[NL]
+## MSG_SKILL_Astra_NAME
+Astra[X]
+## MSG_SKILL_Astra_DESC
+Astra:[N]
+Unit attacks 5 times but damage[N]
 is halved. (SPD % activation).[X]
 
-## MSG_SKILL_Adept
-Adept:[NL]
-Allow unit to perform another[NL]
+## MSG_SKILL_Adept_NAME
+Adept[X]
+## MSG_SKILL_Adept_DESC
+Adept:[N]
+Allow unit to perform another[N]
 attack if HP is full.[X]
 
 ## MSG_SKILL_VengefulFighter_NAME
-V-Fighter[X]
+Vengeful Fighter[X]
+## MSG_SKILL_VengefulFighter_DESC
+Vengeful Fighter:[N]
+If HP is higher than 50%[N]
+always attack twice when under attack.[X]
 
-## MSG_SKILL_VengefulFighter
-VengefulFighter:[NL]
-If HP is higher than 50%[NL]
-Always attack twice when under attack.[X]
+## MSG_SKILL_RapidFighter_NAME
+Rapid Fighter[X]
+## MSG_SKILL_RapidFighter_DESC
+Rapid Fighter:[N]
+Unit only doubles when they're[N]
+battling on their phase.[X]
 
 ## MSG_SKILL_RecklessFighter_NAME
-R-Fighter[X]
-
-## MSG_SKILL_RecklessFighter
-RecklessFighter:[NL]
-If HP is higher than 50%[NL]
+Reckless Fighter[X]
+## MSG_SKILL_RecklessFighter_DESC
+Reckless Fighter:[N]
+If HP is higher than 50%[N]
 Both sides always attack twice.[X]
 
 ## MSG_SKILL_BoldFighter_NAME
-B-Fighter[X]
-
-## MSG_SKILL_BoldFighter
-BoldFighter:[NL]
-If HP is higher than 50%[NL]
+Bold Fighter[X]
+## MSG_SKILL_BoldFighter_DESC
+Bold Fighter:[N]
+If HP is higher than 50%[N]
 Always attack twice when attacking.[X]
 
-## MSG_SKILL_BidingBlow
-BidingBlow:[NL]
-Attack twice if the enemy[NL]
+## MSG_SKILL_BidingBlow_NAME
+Biding Blow[X]
+## MSG_SKILL_BidingBlow_DESC
+Biding Blow:[N]
+Attack twice if the enemy[N]
 cannot counterattack.[X]
 
 ## MSG_SKILL_AdvantageChaser_NAME
-Adv-Chaser[X]
-
-## MSG_SKILL_AdvantageChaser
-AdvantageChaser:[NL]
-Unit always doubles if they have[NL]
+Advantage Chaser[X]
+## MSG_SKILL_AdvantageChaser_DESC
+Advantage Chaser:[N]
+Unit always doubles if they have[N]
 Weapon Triangle Advantage.[X]
 
 ## MSG_SKILL_PridefulWarrior_NAME
-P-Warrior[X]
-
-## MSG_SKILL_PridefulWarrior
-PridefulWarrior:[NL]
-Unit always attacks last in[NL]
+Prideful Warrior[X]
+## MSG_SKILL_PridefulWarrior_DESC
+Prideful Warrior:[N]
+Unit always attacks last in[N]
 the round, but always doubles.[X]
 
 ## MSG_SKILL_PassionsFlow_NAME
-P-Flow[X]
-
-## MSG_SKILL_PassionsFlow
-Passions Flow:[NL]
-Unit doubles if currently[NL]
+Passions Flow[X]
+## MSG_SKILL_PassionsFlow_DESC
+Passions Flow:[N]
+Unit doubles if currently[N]
 gaining support bonuses.[X]
 
 ## MSG_SKILL_CloseCombat_NAME
-C-Combat[X]
-
-## MSG_SKILL_CloseCombat
-Close Combat: +2 damage if at[NL]
-1 range. Your double attacks[NL]
+Close Combat[X]
+## MSG_SKILL_CloseCombat_DESC
+Close Combat: +2 damage if at[N]
+1 range. Your double attacks[N]
 occur before countering.[X]
 
 ## MSG_SKILL_QuickLearner_NAME
-Q-Learner[X]
-
-## MSG_SKILL_QuickLearner
-Quick Learner:[NL]
-When attacking a higher level[NL]
+Quick Learner[X]
+## MSG_SKILL_QuickLearner_DESC
+Quick Learner:[N]
+When attacking a higher level[N]
 enemy, this unit doubles.[X]
 
-## MSG_SKILL_GaleWings
-Gale Wings:[NL]
-When unit is defender while[NL]
+## MSG_SKILL_GaleWings_NAME
+Gale Wings[X]
+## MSG_SKILL_GaleWings_DESC
+Gale Wings:[N]
+When unit is defender while[N]
 their HP is 100%, attack first.[X]
 
 ## MSG_SKILL_YngviAscendant_NAME
-Yngvi[X]
+Yngvi Ascendant[X]
+## MSG_SKILL_YngviAscendant_DESC
+Yngvi Ascendant:[N]
+Follow-up attack cannot be nullified[N]
+and occur immediately.[X]
 
-## MSG_SKILL_YngviAscendant
-Yngvi Ascendant:[NL]
-Follow-up attack cannot be nullified[NL]
-and occurs immediately if exists[X]
+## MSG_SKILL_Accost_NAME
+Accost[X]
+## MSG_SKILL_Accost_DESC
+Accost:[N]
+Engage in up to 8 rounds of combat.[N]
+Conditions: (unitSPD + unitHP/2 ) -[N]
+enemySPD.[X]
 
-## MSG_SKILL_DragonWrath
-DragonWrath:[NL]
-Exec none-cancellable guaranteed[NL]
-double attack as defender with HP>50%[X]
+## MSG_SKILL_Alacrity_NAME
+Alacrity[X]
+## MSG_SKILL_Alacrity_DESC
+Alacrity:[N]
+If actor's speed is 9 or more than[N]
+the target's, counterattack first.[X]
 
-## MSG_SKILL_BrashAssault
-BrashAssault:[NL]
-If foe can counter,[NL]
-follow-up attack is guaranteed[X]
+## MSG_SKILL_Echo_NAME
+Echo[X]
+## MSG_SKILL_Echo_DESC
+Echo:[N]
+Attack twice for half damage[N]
+each attack if initiating.[X]
+
+## MSG_SKILL_Duel_NAME
+Duel[X]
+## MSG_SKILL_Duel_DESC
+Duel:[N]
+A fight with this unit continues[N]
+until a victor is decided.[X]
+
+## MSG_SKILL_Flurry_NAME
+Flurry[X]
+## MSG_SKILL_Flurry_DESC
+Flurry:[N]
+For each time the unit exceeds the[N]
+doubling threshold, +1 attack round.[X]
+
+## MSG_SKILL_AlacrityPlus_NAME
+Alacrity+[X]
+## MSG_SKILL_AlacrityPlus_DESC
+Alacrity+:[N]
+If actor's speed is 5 or more than[N]
+the target's, counterattack first.[X]
+
+## MSG_SKILL_TrickRoom_NAME
+Trick Room[X]
+## MSG_SKILL_TrickRoom_DESC
+Trick Room:[N]
+If this unit would be doubled, invert[N]
+the doubling mechanics and vice versa.[X]
+
+## MSG_SKILL_LastStand_NAME
+Last Stand[X]
+## MSG_SKILL_LastStand_DESC
+Last Stand:[N]
+This unit gains a brave effect[N]
+if starting a battle with 1 HP.[X]
+
+## MSG_SKILL_ChainAttack_NAME
+Chain Attack[X]
+## MSG_SKILL_ChainAttack_DESC
+Chain Attack:[N]
+Allow allied units adjacent to[N]
+enemies to attack in a chain.[X]
+
+## MSG_SKILL_DragonWrath_DESC
+Dragon Wrath:[N]
+## MSG_SKILL_DragonWrath_NAME
+Dragon Wrath:[N]
+Attack twice if defending if[N]
+you have > 50% HP remaining.[X]
+
+## MSG_SKILL_BrashAssault_NAME
+Brash Assault:[N]
+## MSG_SKILL_BrashAssault_DESC
+Brash Assault:[N]
+Attack twice if the foe[N]
+can counter.[X]

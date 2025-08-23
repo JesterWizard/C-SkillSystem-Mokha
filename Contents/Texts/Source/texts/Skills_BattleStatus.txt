@@ -1,995 +1,1766 @@
-## MSG_SKILL_Lethality
-Lethality: [NL]
-Silence rate + SKILL%.[X]
+## MSG_SKILL_Lethality_NAME
+Lethality[X]
+## MSG_SKILL_Lethality_DESC
+Lethality: [N]
+Unit may instantly kill enemy with a[N]
+critical attack. (Skill % activation).[X]
 
-## MSG_SKILL_Crit
-Crit: [NL]
+## MSG_SKILL_Crit_NAME
+Crit[X]
+## MSG_SKILL_Crit_DESC
+Crit: [N]
 Crit rate +15%.[X]
 
-## MSG_SKILL_WatchfulEye
-W-Eye: [NL]
+## MSG_SKILL_WatchfulEye_NAME
+Watchful Eye[X]
+## MSG_SKILL_WatchfulEye_DESC
+Watchful Eye: [N]
 Hit rate +20%.[X]
 
-## MSG_SKILL_CritSword
-Crit Sword: [NL]
-Crit rate +10%,[NL]
+## MSG_SKILL_CritSword_NAME
+Crit Sword[X]
+## MSG_SKILL_CritSword_DESC
+Crit Sword: [N]
+Crit rate +10%,[N]
 if a Sword is equipped.[X]
 
-## MSG_SKILL_CritAxe
-Crit Axe: [NL]
-Crit rate +10%,[NL]
+## MSG_SKILL_CritAxe_NAME
+Crit Axe[X]
+## MSG_SKILL_CritAxe_DESC
+Crit Axe: [N]
+Crit rate +10%,[N]
 if an Axe is equipped.[X]
 
-## MSG_SKILL_CritLance
-Crit Lance: [NL]
-Crit rate +10%,[NL]
+## MSG_SKILL_CritLance_NAME
+Crit Lance[X]
+## MSG_SKILL_CritLance_DESC
+Crit Lance: [N]
+Crit rate +10%,[N]
 if a Lance is equipped.[X]
 
-## MSG_SKILL_CritBow
-Crit Bow: [NL]
-Crit rate +10%,[NL]
+## MSG_SKILL_CritBow_NAME
+Crit Bow[X]
+## MSG_SKILL_CritBow_DESC
+Crit Bow: [N]
+Crit rate +10%,[N]
 if a Bow is equipped.[X]
 
-## MSG_SKILL_FaireSword
-Faire Sword: [NL]
-Atk +5 if unit[NL]
+## MSG_SKILL_FaireSword_NAME
+Faire Sword[X]
+## MSG_SKILL_FaireSword_DESC
+Faire Sword: [N]
+Atk +5 if unit[N]
 equips a Sword.[X]
 
-## MSG_SKILL_FaireLance
-Faire Lance: [NL]
-Atk +5 if unit[NL]
+## MSG_SKILL_FaireLance_NAME
+Faire Lance[X]
+## MSG_SKILL_FaireLance_DESC
+Faire Lance: [N]
+Atk +5 if unit[N]
 equips a Lance.[X]
 
-## MSG_SKILL_FaireAxe
-Faire Axe: [NL]
-Atk +5 if unit[NL]
+## MSG_SKILL_FaireAxe_NAME
+Faire Axe[X]
+## MSG_SKILL_FaireAxe_DESC
+Faire Axe: [N]
+Atk +5 if unit[N]
 equips an Axe.[X]
 
-## MSG_SKILL_FaireBow
-Faire Bow: [NL]
-Atk +5 if unit[NL]
+## MSG_SKILL_FaireBow_NAME
+Faire Bow[X]
+## MSG_SKILL_FaireBow_DESC
+Faire Bow: [N]
+Atk +5 if unit[N]
 equips a Bow.[X]
 
-## MSG_SKILL_FaireBMag
-Faire B.Mag: [NL]
-Atk +5 if unit[NL]
+## MSG_SKILL_FaireBMag_NAME
+Faire Magic[X]
+## MSG_SKILL_FaireBMag_DESC
+Faire Magic: [N]
+Atk +5 if unit[N]
 equips B.Mag.[X]
 
 ## MSG_SKILL_FaireAnima_NAME
-FaireAnima[X]
-
-## MSG_SKILL_FaireAnima
-Faire-Anima: [NL]
-ATK +5 if the unit[NL]
+Faire Anima[X]
+## MSG_SKILL_FaireAnima_DESC
+Faire Anima: [N]
+ATK +5 if the unit[N]
 has anima magic equipped.[X]
 
 ## MSG_SKILL_FaireLight_NAME
-FaireLight[X]
-
-## MSG_SKILL_FaireLight
-Faire-Light: [NL]
-ATK +5 if the unit[NL]
+Faire Light[X]
+## MSG_SKILL_FaireLight_DESC
+Faire Light: [N]
+ATK +5 if the unit[N]
 has light magic equipped.[X]
 
 ## MSG_SKILL_FaireDark_NAME
-FaireDark[X]
-
-## MSG_SKILL_FaireDark
-Faire-Dark: [NL]
-ATK +5 if the unit[NL]
+Faire Dark[X]
+## MSG_SKILL_FaireDark_DESC
+Faire Dark: [N]
+ATK +5 if the unit[N]
 has dark magic equipped.[X]
 
-## MSG_SKILL_Avoid
-Avoid+10:[NL]
+## MSG_SKILL_Avoid_NAME
+Avoid+10[X]
+## MSG_SKILL_Avoid_DESC
+Avoid+10:[N]
 Avoid rate +10%.[X]
 
-## MSG_SKILL_AvoidSword
-Avoid Sword: [NL]
-Grants avoid rate +20%[NL]
+## MSG_SKILL_AvoidSword_NAME
+Avoid Sword[X]
+## MSG_SKILL_AvoidSword_DESC
+Avoid Sword: [N]
+Grants avoid rate +20%[N]
 if unit equips a Sword.[X]
 
 ## MSG_SKILL_RuinedBlade_NAME
-RuinBlade[X]
-
-## MSG_SKILL_RuinedBlade
-Ruined Blade: [NL]
-Str/Mag-5, Spd+5, increases[NL]
+Ruined Blade[X]
+## MSG_SKILL_RuinedBlade_DESC
+Ruined Blade:[N]
+Str/Mag-5, Spd+5, increases[N]
 real damage by 5 in combat.[X]
 
 ## MSG_SKILL_RuinedBladePlus_NAME
-RuinBlade+[X]
-
-## MSG_SKILL_RuinedBladePlus
-Ruined Blade+:[NL]
-Spd +5, deal real damage +5,[NL]
+Ruined Blade+[X]
+## MSG_SKILL_RuinedBladePlus_DESC
+Ruined Blade+:[N]
+Spd +5, deal real damage +5,[N]
 battle hit +1 but cannot crit.[X]
 
-## MSG_SKILL_InfinityEdge
-Infinity Edge: [NL]
+## MSG_SKILL_InfinityEdge_NAME
+Infinity Edge[X]
+## MSG_SKILL_InfinityEdge_DESC
+Infinity Edge: [N]
 Critical attacks damage +100%.[X]
 
-## MSG_SKILL_HeavyBlade
-Heavy Blade: [NL]
-If unit's attack is higher than[NL]
+## MSG_SKILL_HeavyBlade_NAME
+Heavy Blade[X]
+## MSG_SKILL_HeavyBlade_DESC
+Heavy Blade: [N]
+If unit's attack is higher than[N]
 foe, critical rate +15%.[X]
 
-## MSG_SKILL_FlashingBlade
-Flashing Blade: [NL]
-If unit's AS is higher than[NL]
+## MSG_SKILL_FlashingBlade_NAME
+Flashing Blade[X]
+## MSG_SKILL_FlashingBlade_DESC
+Flashing Blade: [N]
+If unit's AS is higher than[N]
 foe, critical rate +15%.[X]
 
-## MSG_SKILL_HeavyBladePlus
-Heavy Blade+: [NL]
-Str+5. If unit's attack is higher[NL]
+## MSG_SKILL_HeavyBladePlus_NAME
+Heavy Blade+[X]
+## MSG_SKILL_HeavyBladePlus_DESC
+Heavy Blade+: [N]
+Str+5. If unit's attack is higher[N]
 than foe, critical rate +25%.[X]
 
-## MSG_SKILL_FlashingBladePlus
-Flash Blade+: [NL]
-Dmg+3. If unit's AS is higher[NL]
+## MSG_SKILL_FlashingBladePlus_NAME
+Flash Blade+[X]
+## MSG_SKILL_FlashingBladePlus_DESC
+Flash Blade+: [N]
+Dmg+3. If unit's AS is higher[N]
 than foe, critical rate +25%.[X]
 
-## MSG_SKILL_LunaAttack
-Luna Attack: [NL]
-Grants real dmg bonus[NL]
+## MSG_SKILL_LunaAttack_NAME
+Luna Attack[X]
+## MSG_SKILL_LunaAttack_DESC
+Luna Attack: [N]
+Grants real dmg bonus[N]
 of enemy's DEF / 4.[X]
 
-## MSG_SKILL_SorceryBlade
-Sorcery Blade: [NL]
-Target defense is calculated as[NL]
+## MSG_SKILL_SorceryBlade_NAME
+Sorcery Blade[X]
+## MSG_SKILL_SorceryBlade_DESC
+Sorcery Blade: [N]
+Target defense is calculated as[N]
 lower value of DEF or RES.[X]
 
-## MSG_SKILL_Fortune
-Fortune:[NL]
-This unit[NL]
+## MSG_SKILL_Fortune_NAME
+Fortune[X]
+## MSG_SKILL_Fortune_DESC
+Fortune:[N]
+This unit[N]
 cannot be crit.[X]
 
-## MSG_SKILL_BlueFlame
-Blue Flame: Attack +2 to this[NL]
-unit. When adjacent to an ally[NL]
+## MSG_SKILL_BlueFlame_NAME
+Blue Flame[X]
+## MSG_SKILL_BlueFlame_DESC
+Blue Flame: Attack +2 to this[N]
+unit. When adjacent to an ally[N]
 with this skill, gain Attack +2.[X]
 
-## MSG_SKILL_Frenzy
-Frenzy: [NL]
+## MSG_SKILL_Frenzy_NAME
+Frenzy[X]
+## MSG_SKILL_Frenzy_DESC
+Frenzy: [N]
 For every 4 damage taken,[N]
 +1 to damage dealt.[X]
 
 ## MSG_SKILL_WonderGuard_NAME
-W-Guard[X]
-
-## MSG_SKILL_WonderGuard
-WonderGuard:[NL]
-Cannot be damaged by weapons of[NL]
+Wonder Guard[X]
+## MSG_SKILL_WonderGuard_DESC
+Wonder Guard:[N]
+Cannot be damaged by weapons of[N]
 the same weapon type as the user's.[X]
 
 ## MSG_SKILL_PoisonPoint_NAME
-PoisonPoint[X]
-
-## MSG_SKILL_PoisonPoint
-P-Point: Inflict poison[NL]
+Poison Point[X]
+## MSG_SKILL_PoisonPoint_DESC
+Poison Point:[N]
+Inflict poison[N]
 on the opponent.[X]
 
-## MSG_SKILL_Merciless
-Merciless: [NL]
-Guaranteed critical hit[NL]
+## MSG_SKILL_Merciless_NAME
+Merciless[X]
+## MSG_SKILL_Merciless_DESC
+Merciless: [N]
+Guaranteed critical hit[N]
 against poisoned foes.[X]
 
-## MSG_SKILL_CriticalPierce
-CriticalPierce: [NL]
+## MSG_SKILL_CriticalPierce_NAME
+Critical Pierce[X]
+## MSG_SKILL_CriticalPierce_DESC
+Critical Pierce: [N]
 Ignore enemy's dodge rate.[X]
 
 ## MSG_SKILL_KillingMachine_NAME
-K-Machine[X]
-
-## MSG_SKILL_KillingMachine
-KillingMachine: [NL]
-Double this unit's[NL]
+Killing Machine[X]
+## MSG_SKILL_KillingMachine_DESC
+Killing Machine: [N]
+Double this unit's[N]
 total crit rate.[X]
 
 ## MSG_SKILL_HeavyStrikes_NAME
-H-Strikes[X]
-
-## MSG_SKILL_HeavyStrikes
-HeavyStrikes:[NL]
-Add weapon weight[NL]
+Heavy Strikes[X]
+## MSG_SKILL_HeavyStrikes_DESC
+Heavy Strikes:[N]
+Add weapon weight[N]
 to critical chance.[X]
 
-## MSG_SKILL_QuickBurn
-Quick Burn: [NL]
-+15 Hit and Avoid.[NL]
+## MSG_SKILL_QuickBurn_NAME
+Quick Burn[X]
+## MSG_SKILL_QuickBurn_DESC
+Quick Burn: [N]
++15 Hit and Avoid.[N]
 This bonus decreases each turn.[X]
 
-## MSG_SKILL_Technician
-Technician: If the user is[NL]
-holding an E-ranked weapon,[NL]
+## MSG_SKILL_Technician_NAME
+Technician[X]
+## MSG_SKILL_Technician_DESC
+Technician: If the user is[N]
+holding an E-ranked weapon,[N]
 boost weapon damage by 50%.[X]
 
-## MSG_SKILL_CatchingUp
-CatchingUp: If foe doubles unit,[NL]
-increase their attack by the amount[NL]
+## MSG_SKILL_CatchingUp_NAME
+Catching Up[X]
+## MSG_SKILL_CatchingUp_DESC
+Catching Up: If foe doubles unit,[N]
+increase their attack by the amount[N]
 they're above the doubling threshold.[X]
 
-## MSG_SKILL_SlowBurn
-Slow Burn: [NL]
-+1 Hit and Avoid for[NL]
+## MSG_SKILL_SlowBurn_NAME
+Slow Burn[X]
+## MSG_SKILL_SlowBurn_DESC
+Slow Burn: [N]
++1 Hit and Avoid for[N]
 each passing turn, up to 15.[X]
 
-##MSG_SKILL_BattleVeteran_NAME
-Battle Vet[X]
-
-## MSG_SKILL_BattleVeteran
-Battle Veteran:[NL]
-Gain +1 damage and +5% Hit[NL]
+## MSG_SKILL_BattleVeteran_NAME
+Battle Veteran[X]
+## MSG_SKILL_BattleVeteran_DESC
+Battle Veteran:[N]
+Gain +1 damage and +5% Hit[N]
 per 10 levels unit has.[X]
 
-## MSG_SKILL_StoneBody
-StoneBody:[NL]
-If the user's CON is greater than the[NL]
+## MSG_SKILL_StoneBody_NAME
+Stone Body[X]
+## MSG_SKILL_StoneBody_DESC
+Stone Body:[N]
+If the user's CON is greater than the[N]
 enemy, boost damage by the difference.[X]
 
-## MSG_SKILL_Chivalry
-Chivalry:[NL]
-When foe is at full HP,[NL]
+## MSG_SKILL_Chivalry_NAME
+Chivalry[X]
+## MSG_SKILL_Chivalry_DESC
+Chivalry:[N]
+When foe is at full HP,[N]
 attack and DEF/RES +2.[X]
 
-## MSG_SKILL_Pragmatic
-Pragmatic:[NL]
-When foe is not at full HP,[NL]
+## MSG_SKILL_Pragmatic_NAME
+Pragmatic[X]
+## MSG_SKILL_Pragmatic_DESC
+Pragmatic:[N]
+When foe is not at full HP,[N]
 attack +3 and DEF/RES+1.[X]
 
-## MSG_SKILL_WindDisciple
-WindDisciple:[NL]
-+10 Hit and Avoid[NL]
+## MSG_SKILL_WindDisciple_NAME
+Wind Disciple[X]
+## MSG_SKILL_WindDisciple_DESC
+Wind Disciple:[N]
++10 Hit and Avoid[N]
 when HP is not at max.[X]
 
-## MSG_SKILL_Perfectionist
-Perfectionist:[NL]
-+15 Hit and Avoid[NL]
+## MSG_SKILL_Perfectionist_NAME
+Perfectionist[X]
+## MSG_SKILL_Perfectionist_DESC
+Perfectionist:[N]
++15 Hit and Avoid[N]
 when user's HP is at maximum.[X]
 
 ## MSG_SKILL_CriticalForce_NAME
-Crit-Force[X]
-
-## MSG_SKILL_CriticalForce
-Critical Force:[NL]
+Critical Force[X]
+## MSG_SKILL_CriticalForce_DESC
+Critical Force:[N]
 Base critical is SKL * 1.5.[X]
 
 ## MSG_SKILL_StrongRiposte_NAME
-S-Riposte[X]
-
-## MSG_SKILL_StrongRiposte
-Strong Riposte:[NL]
+Strong Riposte[X]
+## MSG_SKILL_StrongRiposte_DESC
+Strong Riposte:[N]
 When under attack, damage +3.[X]
 
-## MSG_SKILL_Patience
-Patience:[NL]
+## MSG_SKILL_Patience_NAME
+Patience[X]
+## MSG_SKILL_Patience_DESC
+Patience:[N]
 When under attack, avoid +10.[X]
 
-## MSG_SKILL_Pursuit
-Pursuit:[NL]
+## MSG_SKILL_Pursuit_NAME
+Pursuit[X]
+## MSG_SKILL_Pursuit_DESC
+Pursuit:[N]
 When under attack, attack speed +2.[X]
 
 ## MSG_SKILL_DragonSkin_NAME
-D-Skin[X]
-
-## MSG_SKILL_DragonSkin
-Dragon Skin:[NL]
+Dragon Skin[X]
+## MSG_SKILL_DragonSkin_DESC
+Dragon Skin:[N]
 Halve damage taken.[X]
 
-## MSG_SKILL_Hawkeye
-Hawk Eye:[NL]
+## MSG_SKILL_Hawkeye_NAME
+Hawk Eye[X]
+## MSG_SKILL_Hawkeye_DESC
+Hawk Eye:[N]
 User will always hit the enemy.[X]
 
-## MSG_SKILL_MagicEye
-Magic Eye:[NL]
-Unit will not lose hit range when[NL]
-attacking from distance[X]
-
 ## MSG_SKILL_KeenFighter_NAME
-K-Fighter[X]
-
-## MSG_SKILL_KeenFighter
-Keen Fighter:[NL]
-Unit takes 50% damage[NL]
+Keen Fighter[X]
+## MSG_SKILL_KeenFighter_DESC
+Keen Fighter:[N]
+Unit takes 50% damage[N]
 if the opponent can double.[X]
 
-## MSG_SKILL_CounterRoar
-Counter Roar: Reduce 30% damage[NL]
-for fist attack from foe, and[NL]
+## MSG_SKILL_CounterRoar_NAME
+Counter Roar[X]
+## MSG_SKILL_CounterRoar_DESC
+Counter Roar: Reduce 30% damage[N]
+for fist attack from foe, and[N]
 70% damage for the next attacks.[X]
 
-## MSG_SKILL_Gambit
-Gambit:[NL]
-Reduce 50% damage on critical[NL]
+## MSG_SKILL_Gambit_NAME
+Gambit[X]
+## MSG_SKILL_Gambit_DESC
+Gambit:[N]
+Reduce 50% damage on critical[N]
 attack from the foe in melee.[X]
 
-## MSG_SKILL_MagicGambit
-Magic Gambit:[NL]
-Reduce 50% damage on critical attack[NL]
+## MSG_SKILL_MagicGambit_NAME
+Magic Gambit[X]
+## MSG_SKILL_MagicGambit_DESC
+Magic Gambit:[N]
+Reduce 50% damage on critical attack[N]
 from the foe at 2+ ranges.[X]
 
 ## MSG_SKILL_BeastAssault_NAME
-Bst Assault[X]
-
-## MSG_SKILL_BeastAssault
-Beast Assault:[NL]
-Reduce 40% damage on[NL]
+Beast Assault[X]
+## MSG_SKILL_BeastAssault_DESC
+Beast Assault:[N]
+Reduce 40% damage on[N]
 non-critical attack[X]
 
-## MSG_SKILL_LightAndDark
-Light & Dark:Inflicts Atk/Spd/[NL]
-Def/Res-5 on foe, neutralizes unit's[NL]
+## MSG_SKILL_LightAndDark_NAME
+Light & Dark[X]
+## MSG_SKILL_LightAndDark_DESC
+Light & Dark:Inflicts Atk/Spd/[N]
+Def/Res-5 on foe, neutralizes unit's[N]
 penalties and foe's bonuses in battle[X]
 
-## MSG_SKILL_FireBoost
-Fire Boost:[NL]
-Grants +6 ATK if unit's current HP[NL]
+## MSG_SKILL_FireBoost_NAME
+Fire Boost[X]
+## MSG_SKILL_FireBoost_DESC
+Fire Boost:[N]
+Grants +6 ATK if unit's current HP[N]
 is at least 3 higher than the enemy's.[X]
 
-## MSG_SKILL_WindBoost
-Wind Boost:[NL]
-Grants +6 SPD if unit's current HP[NL]
+## MSG_SKILL_WindBoost_NAME
+Wind Boost[X]
+## MSG_SKILL_WindBoost_DESC
+Wind Boost:[N]
+Grants +6 SPD if unit's current HP[N]
 is at least 3 higher than the enemy's.[X]
 
-## MSG_SKILL_EarthBoost
-Earth Boost:[NL]
-Grants +6 DEF if unit's current HP[NL]
+## MSG_SKILL_EarthBoost_NAME
+Earth Boost[X]
+## MSG_SKILL_EarthBoost_DESC
+Earth Boost:[N]
+Grants +6 DEF if unit's current HP[N]
 is at least 3 higher than the enemy's.[X]
 
-## MSG_SKILL_WaterBoost
-Water Boost:[NL]
-Grants +6 RES if unit's current HP[NL]
+## MSG_SKILL_WaterBoost_NAME
+Water Boost[X]
+## MSG_SKILL_WaterBoost_DESC
+Water Boost:[N]
+Grants +6 RES if unit's current HP[N]
 is at least 3 higher than the enemy's.[X]
 
-## MSG_SKILL_Charge
-Charge:[NL]
-+1 damage for every[NL]
+## MSG_SKILL_Charge_NAME
+Charge[X]
+## MSG_SKILL_Charge_DESC
+Charge:[N]
++1 damage for every[N]
 two tiles moved.[X]
 
-## MSG_SKILL_ChargePlus
-ChargePlus:[NL]
-Apply brave effect if all[NL]
+## MSG_SKILL_ChargePlus_NAME
+Charge+[X]
+## MSG_SKILL_ChargePlus_DESC
+Charge+:[N]
+Apply brave effect if all[N]
 movement used this turn.[X]
 
 ## MSG_SKILL_FieryBlood_NAME
-F-Blood[X]
-
-## MSG_SKILL_FieryBlood
-FieryBlood:[NL]
-+4 strength if HP[NL]
+Fiery Blood[X]
+## MSG_SKILL_FieryBlood_DESC
+Fiery Blood:[N]
++4 strength if HP[N]
 is not at max.[X]
 
-## MSG_SKILL_LightWeight
-LightWeight:[NL]
-If unit has 3 or less[NL]
+## MSG_SKILL_LightWeight_NAME
+Light Weight[X]
+## MSG_SKILL_LightWeight_DESC
+Light Weight:[N]
+If unit has 3 or less[N]
 items, +3 speed.[X]
 
-## MSG_SKILL_QuickDraw
-Quick Draw:[NL]
+## MSG_SKILL_QuickDraw_NAME
+Quick Draw[X]
+## MSG_SKILL_QuickDraw_DESC
+Quick Draw:[N]
 +4 Damage when initiating battle.[X]
 
-## MSG_SKILL_ArcaneBlade
-Arcane Blade:[NL]
-When initiating battle at 1 range:[NL]
+## MSG_SKILL_ArcaneBlade_NAME
+Arcane Blade[X]
+## MSG_SKILL_ArcaneBlade_DESC
+Arcane Blade:[N]
+When initiating battle at 1 range:[N]
 Add 3+(MAG/2) to Hit and Crit[X]
 
-## MSG_SKILL_ElbowRoom
-Elbow Room:[NL]
-+3 damage dealt when on[NL]
+## MSG_SKILL_ElbowRoom_NAME
+Elbow Room[X]
+## MSG_SKILL_ElbowRoom_DESC
+Elbow Room:[N]
++3 damage dealt when on[N]
 open terrain.[X]
 
 ## MSG_SKILL_NaturalCover_NAME
-N-Cover[X]
-## MSG_SKILL_NaturalCover
-Natural Cover:[NL]
--3 damage taken when on[NL]
+Natural Cover[X]
+## MSG_SKILL_NaturalCover_DESC
+Natural Cover:[N]
+-3 damage taken when on[N]
 terrain with effects.[X]
 
-## MSG_SKILL_ChaosStyle
-Chaos Style:[NL]
-+3 AS when using a physical weapon[NL]
+## MSG_SKILL_ChaosStyle_NAME
+Chaos Style[X]
+## MSG_SKILL_ChaosStyle_DESC
+Chaos Style:[N]
++3 AS when using a physical weapon[N]
 against a magical foe, or vice versa.[X]
 
-## MSG_SKILL_Wrath
-Wrath:[NL]
-If current HP is < 50%[NL]
+## MSG_SKILL_Wrath_NAME
+Wrath[X]
+## MSG_SKILL_Wrath_DESC
+Wrath:[N]
+If current HP is < 50%[N]
 of max, +20 Crit Rate.[X]
 
-## MSG_SKILL_Vigilance
-Vigilance:[NL]
+## MSG_SKILL_WrathPlus_NAME
+Wrath+[X]
+## MSG_SKILL_WrathPlus_DESC
+Wrath+:[N]
+For each HP the unit has lost,[N]
++1 crit (max 30).[X]
+
+## MSG_SKILL_Vigilance_NAME
+Vigilance[X]
+## MSG_SKILL_Vigilance_DESC
+Vigilance:[N]
 Gain +20 Avoid.[X]
 
 ## MSG_SKILL_OutdoorFighter_NAME
-Out-Fighter[X]
-
-## MSG_SKILL_OutdoorFighter
-OutdoorFighter:[NL]
-+10 Hit and Avoid when[NL]
+Outdoor Fighter[X]
+## MSG_SKILL_OutdoorFighter_DESC
+Outdoor Fighter:[N]
++10 Hit and Avoid when[N]
 fighting outdoors.[X]
 
 ## MSG_SKILL_DancingBlade_NAME
-Dan-Blade:[X]
-
-## MSG_SKILL_DancingBlade
-Dancing Blade:[NL]
-+4 Attack Speed/-2 Damage when[NL]
+Dancing Blade[X]
+## MSG_SKILL_DancingBlade_DESC
+Dancing Blade:[N]
++4 Attack Speed/-2 Damage when[N]
 unit's CON. is lower than the enemy.[X]
 
 ## MSG_SKILL_KnightAspirant_NAME
-K-Aspirant[X]
-
-## MSG_SKILL_KnightAspirant
-KnightAspirant:[NL]
-When above 75% health,[NL]
+Knight Aspirant[X]
+## MSG_SKILL_KnightAspirant_DESC
+Knight Aspirant:[N]
+When above 75% health,[N]
 +2 damage, +15% avoid.[X]
 
-## MSG_SKILL_Outrider
-Outrider:[NL]
--1 damage taken and[NL]
+## MSG_SKILL_Outrider_NAME
+Outrider[X]
+## MSG_SKILL_Outrider_DESC
+Outrider:[N]
+-1 damage taken and[N]
 +3% crit per tile moved.[X]
 
-## MSG_SKILL_EvenRhythm
-EvenRhythm:[NL]
-+10 Hit and Avoid on[NL]
+## MSG_SKILL_EvenRhythm_NAME
+Even Rhythm[X]
+## MSG_SKILL_EvenRhythm_DESC
+Even Rhythm:[N]
++10 Hit and Avoid on[N]
 even numbered turns.[X]
 
-## MSG_SKILL_OddRhythm
-OddRhythm:[NL]
-+10 Hit and Avoid on[NL]
+## MSG_SKILL_OddRhythm_NAME
+Odd Rhythm[X]
+## MSG_SKILL_OddRhythm_DESC
+Odd Rhythm:[N]
++10 Hit and Avoid on[N]
 odd numbered turns.[X]
 
-## MSG_SKILL_NoGuard
-NoGuard:[NL]
-Both sides have a[NL]
+## MSG_SKILL_NoGuard_NAME
+No Guard[X]
+## MSG_SKILL_NoGuard_DESC
+No Guard:[N]
+Both sides have a[N]
 100% chance of hitting.[X]
 
-## MSG_SKILL_Puissance
-Puissance:[NL]
-+3 Attack if the unit's attack[NL]
+## MSG_SKILL_NoGuardPlus_NAME
+No Guard+[X]
+## MSG_SKILL_NoGuardPlus_DESC
+No Guard+:[N]
+This unit has a[N]
+100% chance of hitting.[X]
+
+## MSG_SKILL_Puissance_NAME
+Puissance[X]
+## MSG_SKILL_Puissance_DESC
+Puissance:[N]
++3 Attack if the unit's attack[N]
 is greater than the enemy's.[X]
 
-## MSG_SKILL_Prescience
-Prescience:[NL]
-If initiating at melee range,[NL]
+## MSG_SKILL_Prescience_NAME
+Prescience[X]
+## MSG_SKILL_Prescience_DESC
+Prescience:[N]
+If initiating at melee range,[N]
 +15 Hit and Avoid.[X]
 
-## MSG_SKILL_SilentPride
-SilentPride:[NL]
-Gain +2 damage and take[NL]
+## MSG_SKILL_SilentPride_NAME
+Silent Pride[X]
+## MSG_SKILL_SilentPride_DESC
+Silent Pride:[N]
+Gain +2 damage and take[N]
 -2 damage per 25% below max HP.[X]
 
-## MSG_SKILL_Guts
-Guts:[NL]
-+5 Attack if afflicted by[NL]
+## MSG_SKILL_Guts_NAME
+Guts[X]
+## MSG_SKILL_Guts_DESC
+Guts:[N]
++5 Attack if afflicted by[N]
 any status condition.[X]
 
-## MSG_SKILL_StrongCon
-Strong Con:[NL]
-+5 Def/Res if afflicted by[NL]
+## MSG_SKILL_StrongCon_NAME
+Strong Constitution[X]
+## MSG_SKILL_StrongCon_DESC
+Strong Constitution:[N]
++5 Def/Res if afflicted by[N]
 any status condition.[X]
 
-## MSG_SKILL_Hero
-Hero:[NL]
-If unit's HP < 50%, add +30% to[NL]
+## MSG_SKILL_Hero_NAME
+Hero[X]
+## MSG_SKILL_Hero_DESC
+Hero:[N]
+If unit's HP < 50%, add +30% to[N]
 unit's activation skill rate.[X]
 
-## MSG_SKILL_HolyAura
-Holy Aura:[NL]
-Gain +1 damage, +5% Hit,[NL]
+## MSG_SKILL_HolyAura_NAME
+Holy Aura[X]
+## MSG_SKILL_HolyAura_DESC
+Holy Aura:[N]
+Gain +1 damage, +5% Hit,[N]
 +5% Avoid, +5% Crit when using Light.[X]
 
-## MSG_SKILL_Loyalty
-Loyalty:[NL]
-When within 2 spaces of a Lord,[NL]
+## MSG_SKILL_Loyalty_NAME
+Loyalty[X]
+## MSG_SKILL_Loyalty_DESC
+Loyalty:[N]
+When within 2 spaces of a Lord,[N]
 -3 damage taken, +15% Hit.[X]
 
-## MSG_SKILL_TowerShield
-Tower Shield:[NL]
-Gain 6 Defense against[NL]
+## MSG_SKILL_TowerShield_NAME
+Tower Shield[X]
+## MSG_SKILL_TowerShield_DESC
+Tower Shield:[N]
+Gain 6 Defense against[N]
 attacks received at range.[X]
 
 ## MSG_SKILL_StunningSmile_NAME
-Stun-Smile[X]
-
-## MSG_SKILL_StunningSmile
-Stunning Smile:[NL]
-If foe is male, inflicts -20 Avoid[NL]
+Stunning Smile[X]
+## MSG_SKILL_StunningSmile_DESC
+Stunning Smile:[N]
+If foe is male, inflicts -20 Avoid[N]
 on that foe during combat.[X]
 
-## MSG_SKILL_Trample
-Trample:[NL]
+## MSG_SKILL_Trample_NAME
+Trample[X]
+## MSG_SKILL_Trample_DESC
+Trample:[N]
 +5 damage to unmounted units.[X]
 
-## MSG_SKILL_Opportunist
-Opportunist:[NL]
+## MSG_SKILL_Opportunist_NAME
+Opportunist[X]
+## MSG_SKILL_Opportunist_DESC
+Opportunist:[N]
 +4 damage if the foe cannot counter.[X]
 
-## MSG_SKILL_SuperLuck
-SuperLuck:[NL]
+## MSG_SKILL_SuperLuck_NAME
+Super Luck[X]
+## MSG_SKILL_SuperLuck_DESC
+Super Luck:[N]
 Use Luck as crit rate.[X]
 
-## MSG_SKILL_ShortShield
-Short Shield:[NL]
-Gain 6 Defense against[NL]
+## MSG_SKILL_ShortShield_NAME
+Short Shield[X]
+## MSG_SKILL_ShortShield_DESC
+Short Shield:[N]
+Gain 6 Defense against[N]
 attacks recieved in melee.[X]
 
-## MSG_SKILL_Vanity
-Vanity:[NL]
-Gain +2 Damage and +10 Hit[NL]
+## MSG_SKILL_Vanity_NAME
+Vanity[X]
+## MSG_SKILL_Vanity_DESC
+Vanity:[N]
+Gain +2 Damage and +10 Hit[N]
 when fighting enemy at 2 range.[X]
 
-## MSG_SKILL_Skyguard
-Skyguard:[NL]
-+4 Defense against flying enemies[NL]
+## MSG_SKILL_Skyguard_NAME
+Sky Guard[X]
+## MSG_SKILL_Skyguard_DESC
+Sky Guard:[N]
++4 Defense against flying enemies[N]
 if within 3 spaces of an ally flier.[X]
 
-## MSG_SKILL_Horseguard
-Horseguard:[NL]
-+4 Defense against horseback enemies[NL]
+## MSG_SKILL_Horseguard_NAME
+Horse Guard[X]
+## MSG_SKILL_Horseguard_DESC
+Horse Guard:[N]
++4 Defense against horseback enemies[N]
 if within 3 spaces of an ally horse rider.[X]
 
-## MSG_SKILL_Armorboost
-Armorboost:[NL]
-+4 ATK/DEF against armored enemies[NL]
+## MSG_SKILL_Armorboost_NAME
+Armor Boost[X]
+## MSG_SKILL_Armorboost_DESC
+Armor Boost:[N]
++4 ATK/DEF against armored enemies[N]
 if within 3 spaces of an armored ally.[X]
 
-## MSG_SKILL_Analytic
-Analytic:[NL]
-+10 ATK if SPD is less than enemy's by[NL]
-4 or more. If between 1-3, then +5 ATK.[X]
+## MSG_SKILL_Analytic_NAME
+Analytic[X]
+## MSG_SKILL_Analytic_DESC
+Analytic:[N]
++10 ATK if SPD is < enemy's by 4 or[N]
+more. If between 1-3, then +5 ATK.[X]
 
-## MSG_SKILL_MysticBoost
-MysticBoost: Disables foe's skills[NL]
-as "calculate on lower def/res for[NL]
-damage". Restores 6 HP after combat.[X]
+## MSG_SKILL_MysticBoost_NAME
+Mystic Boost[X]
+## MSG_SKILL_MysticBoost_DESC
+Mystic Boost:[N]
+Disables enemy's skills that calculate[N]
+damage based on the lower defensive[N]
+stat. Restores 6 HP after combat.[X]
 
 ## MSG_SKILL_GuardBearing_NAME
-GuardBear[X]
+Guard Bearing[X]
+## MSG_SKILL_GuardBearing_DESC
+Guard Bearing:[N]
+During the enemy phase's first[N]
+combat, reduce the damage for[N]
+the first attack by 30%.[X]
 
-## MSG_SKILL_GuardBearing
-GuardBearing: During first combat[NL]
-in enemy phase, if attacked, reduces[NL]
-50 %damage from foe's first attack.[X]
+## MSG_SKILL_Spurn_NAME
+Spurn[X]
+## MSG_SKILL_Spurn_DESC
+Spurn:[N]
+Reduce damage taken by 4% for[N]
+each point of SPD this unit[N]
+exceeds the enemy's by (max 40%).[X]
 
-## MSG_SKILL_Spurn
-Spurn: Reduce damage as 4% AS diff[NL]
-(max 40%). Damage +5 for critical atk[NL]
-if unit HP is less than 75%[X]
+## MSG_SKILL_Bushido_NAME
+Bushido[X]
+## MSG_SKILL_Bushido_DESC
+Bushido: Reduce damage taken by[N]
+4% for each point of SPD this[N]
+unit exceeds the enemy's by (max 40%).[N]
+Damage +7[X]
 
-## MSG_SKILL_Bushido
-Bushido:[NL]
-Reduce damage as 4% AS diff[NL]
-(max 40%). Damage +7[X]
-
-## MSG_SKILL_DragonWall
-Dragon Wall:[NL]
-Reduce damage as 4% RES diff[NL]
-(max 40%).[X]
+## MSG_SKILL_DragonWall_NAME
+Dragon Wall[X]
+## MSG_SKILL_DragonWall_DESC
+Dragon Wall:[N]
+Reduce damage taken by 4% for[N]
+each point of RES this unit[N]
+exceeds the enemy's by (max 40%).[X]
 
 ## MSG_SKILL_BlueLionRule_NAME
-Blue Lion[X]
-
-## MSG_SKILL_BlueLionRule
-Blue Lion Rule:[NL]
-Reduce damage as 4% DEF diff[NL]
-(max 40%).[X]
+Blue Lion Rule[X]
+## MSG_SKILL_BlueLionRule_DESC
+Blue Lion Rule:[N]
+Reduce damage taken by 4% for[N]
+each point of DEF this unit[N]
+exceeds the enemy's by (max 40%).[X]
 
 ## MSG_SKILL_FaerghusAncestry_NAME
-Faerghus-A[X]
+Faerghus Ancestry[X]
+## MSG_SKILL_FaerghusAncestry_DESC
+Faerghus Ancestry:[N]
+x2 weapon damage, but x2 weapon[N]
+uses consumed per hit.[X]
 
-## MSG_SKILL_FaerghusAncestry
-Faerghus Ancestry:[NL]
-Weapon damage doubled,[NL]
-weapon consumption doubled[X]
-
-## MSG_SKILL_DragonWarth_NAME
-DragonWarth[X]
-
-## MSG_SKILL_DragonWarth
-Dragon's Warth: Damage -20% of the[NL]
-first attack from the foe and[NL]
-attack+20% on first own attack[X]
+## MSG_SKILL_DragonsWrath_NAME
+Dragon's Wrath[X]
+## MSG_SKILL_DragonsWrath_DESC
+Dragon's Wrath: Reduce damage from[N]
+enemy's first attack this battle by[N]
+20%. Boost damage from your own[N]
+first attack this battle by 20%.[X]
 
 ## MSG_SKILL_CrusaderWard_NAME
-Crusader-W[X]
+Crusader's Ward[X]
+## MSG_SKILL_CrusaderWard_DESC
+Crusader's Ward:[N]
+Reduces damage from foe's second[N]
+ranged attack onward this battle[N]
+by 80%[X]
 
-## MSG_SKILL_CrusaderWard
-Crusader's Ward:[NL]
-Reduces damage from foe's second[NL]
-ranged attack onward by 80%[X]
-
-## MSG_SKILL_Chlorophyll
-Chlorophyll:[NL]
-If it is sunny, double this[NL]
+## MSG_SKILL_Chlorophyll_NAME
+Chlorophyll[X]
+## MSG_SKILL_Chlorophyll_DESC
+Chlorophyll:[N]
+If it is sunny, double this[N]
 unit's battle speed.[X]
 
-## MSG_SKILL_SlushRush
-SlushRush:[NL]
-If it is snowing, double this[NL]
+## MSG_SKILL_SlushRush_NAME
+Slush Rush[X]
+## MSG_SKILL_SlushRush_DESC
+Slush Rush:[N]
+If it is snowing, double this[N]
 this unit's battle speed.[X]
 
-## MSG_SKILL_SandRush
-SwiftSwim:[NL]
-If there is a sandstorm, double[NL]
+## MSG_SKILL_SandRush_NAME
+Sand Rush[X]
+## MSG_SKILL_SandRush_DESC
+Swift Swim:[N]
+If there is a sandstorm, double[N]
 this unit's battle speed.[X]
 
-## MSG_SKILL_SwiftSwim
-SwiftSwim:[NL]
-If it is raining, double this[NL]
+## MSG_SKILL_SwiftSwim_NAME
+Swift Swim[X]
+## MSG_SKILL_SwiftSwim_DESC
+Swift Swim:[N]
+If it is raining, double this[N]
 unit's battle speed.[X]
 
-## MSG_SKILL_Dazzle
-Dazzle:[NL]
-Enemy cannot counterattack[NL]
+## MSG_SKILL_Dazzle_NAME
+Dazzle[X]
+## MSG_SKILL_Dazzle_DESC
+Dazzle:[N]
+Enemy cannot counterattack[N]
 this unit.[X]
 
-## MSG_SKILL_Moonlight
-Moonlight:[NL]
-This unit cannot double, but[NL]
+## MSG_SKILL_Moonlight_NAME
+Moonlight[X]
+## MSG_SKILL_Moonlight_DESC
+Moonlight:[N]
+This unit cannot double, but[N]
 the enemy cannot counterattack.[X]
 
-## MSG_SKILL_BlackMagic
-BlackMagic:[NL]
-Inflict a random bad status on the enemy.[NL]
-(Skill % activation).[X]
+## MSG_SKILL_BlackMagic_NAME
+Black Magic[X]
+## MSG_SKILL_BlackMagic_DESC
+Black Magic:[N]
+Inflict a random bad[N]
+status on the enemy.[X]
 
-## MSG_SKILL_LastWord
-LastWord:[NL]
-If the enemy doubles,[NL]
+## MSG_SKILL_LastWord_NAME
+Last Word[X]
+## MSG_SKILL_LastWord_DESC
+Last Word:[N]
+If the enemy doubles,[N]
 this unit doubles.[X]
 
-## MSG_SKILL_Multiscale
-Multiscale:[NL]
-Halve damage taken if the[NL]
+## MSG_SKILL_Multiscale_NAME
+Multiscale[X]
+## MSG_SKILL_Multiscale_DESC
+Multiscale:[N]
+Halve damage taken if the[N]
 user is at full HP.[X]
 
-## MSG_SKILL_MageSlayer
-MageSlayer:[NL]
-+2 damage and +10% crit[NL]
+## MSG_SKILL_MageSlayer_NAME
+Mage Slayer[X]
+## MSG_SKILL_MageSlayer_DESC
+Mage Slayer:[N]
++2 damage and +10% crit[N]
 against magical enemies.[X]
 
-## MSG_SKILL_TowerShieldPlus
-TowerShield+:[NL]
-Take no damage from attacks[NL]
+## MSG_SKILL_TowerShieldPlus_NAME
+Tower Shield+[X]
+## MSG_SKILL_TowerShieldPlus_DESC
+Tower Shield+:[N]
+Take no damage from attacks[N]
 received at range.[X]
 
-## MSG_SKILL_SolarPower
-Solar Power:[NL]
-If the weather is sunny, +25%[NL]
+## MSG_SKILL_SolarPower_NAME
+Solar Power[X]
+## MSG_SKILL_SolarPower_DESC
+Solar Power:[N]
+If the weather is sunny, +25%[N]
 damage when using magic.[X]
 
-## MSG_SKILL_Enrage
-Enrage:[NL]
-Inflict Berserk on the opponent.[NL]
+## MSG_SKILL_Enrage_NAME
+Enrage[X]
+## MSG_SKILL_Enrage_DESC
+Enrage:[N]
+Inflict Berserk on the opponent.[N]
 (Skill % activation).[X]
 
-## MSG_SKILL_Petrify
-Petrify:[NL]
-Inflict stone on the opponent.[NL]
+## MSG_SKILL_Petrify_NAME
+Petrify[X]
+## MSG_SKILL_Petrify_DESC
+Petrify:[N]
+Inflict stone on the opponent.[N]
 (Skill % activation).[X]
 
 ## MSG_SKILL_AirRaidAttack_NAME
-AR-Attack[X]
-
-## MSG_SKILL_AirRaidAttack
-AirRaid-Attack:[NL]
-When standing on a tile the enemy[NL]
+Air Raid Attack[X]
+## MSG_SKILL_AirRaidAttack_DESC
+Air Raid Attack:[N]
+When standing on a tile the enemy[N]
 cannot enter, ATK + 5.[X]
 
 ## MSG_SKILL_AirRaidAvoid_NAME
-AR-Avoid[X]
-
-## MSG_SKILL_AirRaidAvoid
-AirRaid-Avoid:[NL]
-When standing on a tile the enemy[NL]
+Air Raid Avoid[X]
+## MSG_SKILL_AirRaidAvoid_DESC
+Air Raid Avoid:[N]
+When standing on a tile the enemy[N]
 cannot enter, AVO + 15.[X]
 
 ## MSG_SKILL_AirRaidCrit_NAME
-AR-Crit[X]
-
-## MSG_SKILL_AirRaidCrit
-AirCrit-Attack:[NL]
-When standing on a tile the enemy[NL]
+Air Raid Crit[X]
+## MSG_SKILL_AirRaidCrit_DESC
+Air Crit Attack:[N]
+When standing on a tile the enemy[N]
 cannot enter, CRT + 5.[X]
 
 ## MSG_SKILL_AirRaidDefense_NAME
-AR-Defense[X]
-
-## MSG_SKILL_AirRaidDefense
-AirRaid-Defense:[NL]
-When standing on a tile the enemy[NL]
+Air Raid Defense[X]
+## MSG_SKILL_AirRaidDefense_DESC
+Air Raid Defense:[N]
+When standing on a tile the enemy[N]
 cannot enter, DEF + 5.[X]
 
 ## MSG_SKILL_AirRaidHit_NAME
-AR-Hit[X]
-
-## MSG_SKILL_AirRaidHit
-AirRaid-Hit:[NL]
-When standing on a tile the enemy[NL]
+Air Raid Hit[X]
+## MSG_SKILL_AirRaidHit_DESC
+Air Raid Hit:[N]
+When standing on a tile the enemy[N]
 cannot enter, HIT + 15.[X]
 
 ## MSG_SKILL_AirRaidResistance_NAME
-AR-Resist[X]
-
-## MSG_SKILL_AirRaidResistance
-AirRaid-Resistance:[NL]
-When standing on a tile the enemy[NL]
+Air Raid Resistance[X]
+## MSG_SKILL_AirRaidResistance_DESC
+Air Raid Resistance:[N]
+When standing on a tile the enemy[N]
 cannot enter, RES + 5.[X]
 
 ## MSG_SKILL_AirRaidSpeed_NAME
-AR-Speed[X]
-
-## MSG_SKILL_AirRaidSpeed
-AirRaid-Speed:[NL]
-When standing on a tile the enemy[NL]
+Air Raid Speed[X]
+## MSG_SKILL_AirRaidSpeed_DESC
+Air Raid Speed:[N]
+When standing on a tile the enemy[N]
 cannot enter, SPD + 5.[X]
 
-## MSG_SKILL_Pickup
-Pickup: Obtain the last item in the[NL]
-enemy's inventory after attacking[NL]
+## MSG_SKILL_Pickup_NAME
+Pickup[X]
+## MSG_SKILL_Pickup_DESC
+Pickup: Obtain the last item in the[N]
+enemy's inventory after attacking[N]
 and killing them. (Luck % activation)[X]
 
-## MSG_SKILL_Expertise
-Expertise:[NL]
-Halve damage taken from[NL]
+## MSG_SKILL_Expertise_NAME
+Expertise[X]
+## MSG_SKILL_Expertise_DESC
+Expertise:[N]
+Halve damage taken from[N]
 critical hits.[X]
 
 ## MSG_SKILL_LadyBlade_NAME
-L-Blade[X]
-
-## MSG_SKILL_LadyBlade
-LadyBlade:[NL]
-If this unit is female,[NL]
+Lady Blade[X]
+## MSG_SKILL_LadyBlade_DESC
+Lady Blade:[N]
+If this unit is female,[N]
 double weapon might.[X]
 
 ## MSG_SKILL_LullDefense_NAME
-Lull-Def[X]
-
-## MSG_SKILL_LullDefense
-Lull Defense:[NL]
-Negated the effects of DEF[NL]
-boosting rally skills on the enemy.[X]
+Lull Defense[X]
+## MSG_SKILL_LullDefense_DESC
+Lull Defense:[N]
+Negates the application of[N]
+DEF rallies in a 3 tile range.[X]
 
 ## MSG_SKILL_LullLuck_NAME
-Lull-Lck[X]
-
-## MSG_SKILL_LullLuck
-Lull Luck:[NL]
-Negated the effects of LCK[NL]
-boosting rally skills on the enemy.[X]
+Lull Luck[X]
+## MSG_SKILL_LullLuck_DESC
+Lull Luck:[N]
+Negates the application of[N]
+LCK rallies in a 3 tile range.[X]
 
 ## MSG_SKILL_LullMagic_NAME
-Lull-Mag[X]
-
-## MSG_SKILL_LullMagic
-Lull Magic:[NL]
-Negated the effects of MAG[NL]
-boosting rally skills on the enemy.[X]
+Lull Magic[X]
+## MSG_SKILL_LullMagic_DESC
+Lull Magic:[N]
+Negates the application of[N]
+MAG rallies in a 3 tile range.[X]
 
 ## MSG_SKILL_LullMovement_NAME
-Lull-Mov[X]
-
-## MSG_SKILL_LullMovement
-Lull Movement:[NL]
-Negated the effects of MOV[NL]
-boosting rally skills on the enemy.[X]
+Lull Movement[X]
+## MSG_SKILL_LullMovement_DESC
+Lull Movement:[N]
+Negates the application of[N]
+MOV rallies in a 3 tile range.[X]
 
 ## MSG_SKILL_LullResistance_NAME
-Lull-Res[X]
-
-## MSG_SKILL_LullResistance
-Lull Resistance:[NL]
-Negated the effects of RES[NL]
-boosting rally skills on the enemy.[X]
+Lull Resistance[X]
+## MSG_SKILL_LullResistance_DESC
+Lull Resistance:[N]
+Negates the application of[N]
+RES rallies in a 3 tile range.[X]
 
 ## MSG_SKILL_LullSkill_NAME
-Lull-Skl[X]
-
-## MSG_SKILL_LullSkill
-Lull Skill:[NL]
-Negated the effects of SKL[NL]
-boosting rally skills on the enemy.[X]
+Lull Skill[X]
+## MSG_SKILL_LullSkill_DESC
+Lull Skill:[N]
+Negates the application of[N]
+SKL rallies in a 3 tile range.[X]
 
 ## MSG_SKILL_LullSpectrum_NAME
-Lull-Spec[X]
-
-## MSG_SKILL_LullSpectrum
-Lull Spectrum:[NL]
-Negated the effects of any[NL]
-boosting rally skills on the enemy.[X]
+Lull Spectrum[X]
+## MSG_SKILL_LullSpectrum_DESC
+Lull Spectrum:[N]
+Negates the application of[N]
+ALL rallies in a 3 tile range.[X]
 
 ## MSG_SKILL_LullSpeed_NAME
-Lull-Spd[X]
-
-## MSG_SKILL_LullSpeed
-Lull Speed:[NL]
-Negated the effects of SPD[NL]
-boosting rally skills on the enemy.[X]
+Lull Speed[X]
+## MSG_SKILL_LullSpeed_DESC
+Lull Speed:[N]
+Negates the application of[N]
+SPD rallies in a 3 tile range.[X]
 
 ## MSG_SKILL_LullStrength_NAME
-Lull-Str[X]
-
-## MSG_SKILL_LullStrength
-Lull Strength:[NL]
-Negated the effects of STR[NL]
-boosting rally skills on the enemy.[X]
+Lull Strength[X]
+## MSG_SKILL_LullStrength_DESC
+Lull Strength:[N]
+Negates the application of[N]
+STR rallies in a 3 tile range.[X]
 
 ## MSG_SKILL_SteadyBrawler_NAME
-Steady-B[X]
-
-## MSG_SKILL_SteadyBrawler
-Steady Brawler:[NL]
-+25% damage if this unit can[NL]
+Steady Brawler[X]
+## MSG_SKILL_SteadyBrawler_DESC
+Steady Brawler:[N]
++25% damage if this unit can[N]
 double, -25% damage if not.[X]
 
 ## MSG_SKILL_LiquidOoze_NAME
-Liquid-O[X]
-
-## MSG_SKILL_LiquidOoze
-Liquid Ooze:[NL]
-Attackers trying to gain HP from[NL]
+Liquid Ooze[X]
+## MSG_SKILL_LiquidOoze_DESC
+Liquid Ooze:[N]
+Attackers trying to gain HP from[N]
 this unit lose as much instead.[X]
 
-## MSG_SKILL_Barricade
-Barricade: Damage taken is halved[NL]
-in this combat only, after first[NL]
+## MSG_SKILL_Barricade_NAME
+Barricade[X]
+## MSG_SKILL_Barricade_DESC
+Barricade: Damage taken is halved[N]
+in this combat only, after first[N]
 being struck.[X]
 
-## MSG_SKILL_BarricadePlus
-Barricade+: Damage taken is halved[NL]
-in this combat only, after every[NL]
-strike against this unit.[X]
+## MSG_SKILL_BarricadePlus_NAME
+Barricade+[X]
+## MSG_SKILL_BarricadePlus_DESC
+Barricade+: Damage taken is halved[N]
+in this combat only, after every[N]
+subsequent strike against this unit.[X]
 
-## MSG_SKILL_Pursuer
-Pursuer: If initiating combat,[NL]
-attack speed +5, attack + 25% of unit[NL]
+## MSG_SKILL_Pursuer_NAME
+Pursuer[X]
+## MSG_SKILL_Pursuer_DESC
+Pursuer: If initiating combat,[N]
+attack speed +5, attack + 25% of unit[N]
 speed, double attack immediately.[X]
 
 ## MSG_SKILL_LunarBrace_NAME
-L-Brace[X]
-
-## MSG_SKILL_LunarBrace
-Lunar Brace:[NL]
+Lunar Brace[X]
+## MSG_SKILL_LunarBrace_DESC
+Lunar Brace:[N]
 Negate 25% of enemy defense.[X]
 
 ## MSG_SKILL_EffectSpore_NAME
-E-Spore[X]
-
-## MSG_SKILL_EffectSpore
-Effect Spore:[NL]
-If attacked, 50% chance of inflicting[NL]
+Effect Spore[X]
+## MSG_SKILL_EffectSpore_DESC
+Effect Spore:[N]
+If attacked, 50% chance of inflicting[N]
 poison, silence or sleep.[X]
 
 ## MSG_SKILL_DominantArm_NAME
-D-Arm[X]
-
-## MSG_SKILL_DominantArm
-Dominant Arm: If the unit's equipped[NL]
-weapon is the same type as their[NL]
+Dominant Arm[X]
+## MSG_SKILL_DominantArm_DESC
+Dominant Arm: If the unit's equipped[N]
+weapon is the same type as their[N]
 highest weapon rank, +50% weapon ATK.[X]
 
 ## MSG_SKILL_FranticSwing_NAME
-F-Swing[X]
-
-## MSG_SKILL_FranticSwing
-Frantic Swing:[NL]
-If hit rate is less than or[NL]
+Frantic Swing[X]
+## MSG_SKILL_FranticSwing_DESC
+Frantic Swing:[N]
+If hit rate is less than or[N]
 equal to 50%, +50 crit.[X]
 
 ## MSG_SKILL_MeleeManiac_NAME
-M-Maniac[X]
-
-## MSG_SKILL_MeleeManiac
-Melee Maniac:[NL]
-Deal 2x damage at 1 range,[NL]
+Melee Maniac[X]
+## MSG_SKILL_MeleeManiac_DESC
+Melee Maniac:[N]
+Deal 2x damage at 1 range,[N]
 take 2x damage otherwise.[X]
 
 ## MSG_SKILL_CriticalOverload_NAME
-C-Overload[X]
-
-## MSG_SKILL_CriticalOverload
-Critical Overload:[NL]
-+1% crit for every +3%[NL]
+Critical Overload[X]
+## MSG_SKILL_CriticalOverload_DESC
+Critical Overload:[N]
++1% crit for every +3%[N]
 hit over 100%.[X]
 
 ## MSG_SKILL_WyvernFlight_NAME
-W-Flight[X]
+Wyvern Flight[X]
+## MSG_SKILL_WyvernFlight_DESC
+Wyvern Flight:[N]
+Debuff the foe's ATK/DEF in combat[N]
+based on the DEF difference between[N]
+units if unit's SPD > foe's SPD-10.[X]
 
-## MSG_SKILL_WyvernFlight
-Wyvern Flight:[NL]
-Debuff the foe based on DEF diff[NL]
-if unit's SPD > foe's SPD-10[X]
-
-## MSG_SKILL_Scendscale
-Scendscale: Deals 25% of[NL]
-unit's Atk as damage. After combat,[NL]
-if unit attacked, takes 7 damage.[X]
+## MSG_SKILL_Scendscale_NAME
+Scendscale[N]
+## MSG_SKILL_Scendscale_DESC
+Scendscale:[N]
+Deals 25% of unit's ATK as damage.[N]
+After combat, if unit attacked,[N]
+take 7 damage.[X]
 
 ## MSG_SKILL_LawsOfSacae_NAME
-SacaeLaw[X]
+Laws od Sacae[X]
+## MSG_SKILL_LawsOfSacae_DESC
+Laws of Sacae:[N]
+If attacked with 2+ allies in[N]
+2x2 range, ATK/SPD/DEF/RES +4.[X]
 
-## MSG_SKILL_LawsOfSacae
-Laws of Sacae:[NL]
-If attacked with 2+ allies[NL]
-in 2x2, ATK/SPD/DEF/RES +4[X]
+## MSG_SKILL_BonusDoubler_NAME
+Bonus Doubler[N]
+## MSG_SKILL_BonusDoubler_DESC
+Bonus Doubler:[N]
+Doubles any green numbers currently[N]
+being applied to the user's stats.[X]
 
-## MSG_SKILL_BonusDoubler
-BonusDoubler:[NL]
-Grants bonus to[NL]
-unit stats in battle[X]
+## MSG_SKILL_BestDefense_NAME
+Best Defense[N]
+## MSG_SKILL_BestDefense_DESC
+Best Defense:[N]
+If unit initiates combat,[N]
+boost attack by defense amount.[X]
 
-## MSG_SKILL_BestDefense
-BestDefense:[NL]
-If unit initiates combat[NL]
-Transfer defense to attack[X]
-
-## MSG_SKILL_DoOrDie
-Do or Die:[NL]
-If the enemy's damage exceeds[NL]
+## MSG_SKILL_DoOrDie_NAME
+Do or Die[N]
+## MSG_SKILL_DoOrDie_DESC
+Do or Die:[N]
+If the enemy's damage exceeds[N]
 current HP, deal effective damage.[X]
 
-## MSG_SKILL_Glorifier
-Glorifier:[NL]
-If enemy defeated, grants[NL]
-stat+3 until next combat[X]
+## MSG_SKILL_Glorifier_NAME
+Glorifier[N]
+## MSG_SKILL_Glorifier_DESC
+Glorifier:[N]
+After defeating an enemy unit,[N]
+grant +3 to all stats until[N]
+the end of the next combat[X]
 
-## MSG_SKILL_OverKill
-OverKill:[NL]
-Unit is healed for surplus[NL]
-damage if enemy defeated.[X]
+## MSG_SKILL_OverKill_NAME
+Overkill[N]
+## MSG_SKILL_OverKill_DESC
+Overkill:[N]
+Unit is healed for surplus[N]
+damage if the enemy unit dies.[X]
 
-## MSG_SKILL_Momentum
-Momentum:[NL]
-Each follow-up attack increases[NL]
-CRIT +10%.[X]
+## MSG_SKILL_Momentum_NAME
+Momentum[N]
+## MSG_SKILL_Momentum_DESC
+Momentum:[N]
+Each follow-up attack[N]
+increases CRIT +10%.[X]
 
 ## MSG_SKILL_LionFlame_NAME
-LionFlame[X]
-
-## MSG_SKILL_LionFlame
-Lion's Flame:[NL]
-Grants CRIT+15%, ATK+4 in melee,[NL]
-but cause CRIT-100%, ATK-3 in range[X]
+Lion's Flame[X]
+## MSG_SKILL_LionFlame_DESC
+Lion's Flame:[N]
+Grants CRIT+15%, ATK+4 in at 1 range,[N]
+but cause CRIT-100%, ATK-3 >1 range[X]
 
 ## MSG_SKILL_ImmovableObject_NAME
-Immov[X]
-
-## MSG_SKILL_ImmovableObject
-Immovable Object:[NL]
-Unit takes damage -50%, but[NL]
-sets unit and foe's AVO to 0[X]
+Immovable Object[X]
+## MSG_SKILL_ImmovableObject_DESC
+Immovable Object:[N]
+Halves damage to this unit, but sets[N]
+both units' AVO to 0 when in combat.[X]
 
 ## MSG_SKILL_UnstoppableForce_NAME
-Unstop[X]
+Unstoppable Force[X]
+## MSG_SKILL_UnstoppableForce_DESC
+Unstoppable Force:[N]
+Doubles this unit's damage, but sets[N]
+both units' AVO to 0 when in combat.[X]
 
-## MSG_SKILL_UnstoppableForce
-Unstoppable Force:[NL]
-Unit damage +100%, but[NL]
-sets unit and foe's AVO to 0[X]
+## MSG_SKILL_BloodSurge_NAME
+Blood Surge[N]
+## MSG_SKILL_BloodSurge_DESC
+Blood Surge:[N]
+Consumes 5 HP to boost damage[N]
+by 20% of unit's max HP in each round[X]
 
-## MSG_SKILL_BloodSurge
-Blood Surge:[NL]
-Consumes 5 HP to boost damage[NL]
-by 20% max HP in each round[X]
+## MSG_SKILL_BloodReaver_NAME
+Blood Reaver[N]
+## MSG_SKILL_BloodReaver_DESC
+Blood Reaver:[N]
+Consumes 5 HP to boost damage[N]
+by 20% of foe's max HP in each round[X]
 
-## MSG_SKILL_BloodReaver
-Blood Reaver:[NL]
-Consumes 5 HP to boost damage[NL]
-by foe's 20% max HP in each round[X]
+## MSG_SKILL_Witch_NAME
+Witch[N]
+## MSG_SKILL_Witch_DESC
+Witch:[N]
+Boost magic damage by +5[X]
 
-## MSG_SKILL_Witch
-Witch:[NL]
-B.Magic might +5[X]
+## MSG_SKILL_DishonorBreaker_NAME
+Dishonor Breaker[N]
+## MSG_SKILL_DishonorBreaker_DESC
+Dishonor Breaker:[N]
+If the enemy unit cannot counter,[N]
+this unit gains +50 AVO but -50 HIT.[X]
 
-## MSG_SKILL_Dishonorbreaker
-Dishonorbreaker:[NL]
-When only 1 unit attacks,[NL]
-he gain +50 avoid but -50 hit.[X]
+## MSG_SKILL_Stubborn_NAME
+Stubborn[X]
+## MSG_SKILL_Stubborn_DESC
+Stubborn:[N]
+If unit has more losses than the[N]
+enemy, gains +5 STR/MAG/SPD.[X]
 
-## MSG_SKILL_Stubborn
-Stubborn:[NL]
-If unit has more Losses[NL]
-than enemy, gains +5 str/spd.[X]
+## MSG_SKILL_Mimic_NAME
+Mimic[X]
+## MSG_SKILL_Mimic_DESC
+Mimic:[N]
+The unit copies the enemy's[N]
+equipped weapon during battle.[X]
 
-## MSG_SKILL_Perch
-Perch:[NL]
-Fliers receive terrain bonus.[X]
+## MSG_SKILL_Insomnia_NAME
+Insomnia[X]
+## MSG_SKILL_Insomnia_DESC
+Insomnia:[N]
+This unit is immune to[N]
+the sleep status.[X]
+
+## MSG_SKILL_MagicBounce_NAME
+Magic Bounce[X]
+## MSG_SKILL_MagicBounce_DESC
+Magic Bounce:[N]
+Reflect back any status condition[N]
+inflicted on this unit.[X]
+
+## MSG_SKILL_GoodAsGold_NAME
+Good As Gold[X]
+## MSG_SKILL_GoodAsGold_DESC
+Good As Gold:[N]
+This unit is immune to all[N]
+harmful status conditions.[X]
+
+## MSG_SKILL_ShadowGift_NAME
+ShadowGift[X]
+## MSG_SKILL_ShadowGift_DESC
+ShadowGift:[N]
+Grants this unit access to[N]
+Dark magic up to rank C.[X]
+
+## MSG_SKILL_ShadowGiftPlus_NAME
+ShadowGift+[X]
+## MSG_SKILL_ShadowGiftPlus_DESC
+ShadowGift+:[N]
+Grants this unit access to[N]
+Dark magic up to rank A.[X]
+
+## MSG_SKILL_LightGift_NAME
+LightGift[X]
+## MSG_SKILL_LightGift_DESC
+LightGift:[N]
+Grants this unit access to[N]
+Light magic up to rank C.[X]
+
+## MSG_SKILL_LightGiftPlus_NAME
+LightGift+[X]
+## MSG_SKILL_LightGiftPlus_DESC
+LightGift+:[N]
+Grants this unit access to[N]
+Light magic up to rank A.[X]
+
+## MSG_SKILL_Stormgift_NAME
+Stormgift[X]
+## MSG_SKILL_Stormgift_DESC
+Stormgift:[N]
+Grants this unit access to[N]
+Anima magic up to rank C.[X]
+
+## MSG_SKILL_StormgiftPlus_NAME
+Stormgift+[X]
+## MSG_SKILL_StormgiftPlus_DESC
+Stormgift+:[N]
+Grants this unit access to[N]
+Anima magic up to rank A.[X]
+
+## MSG_SKILL_Gracegift_NAME
+Gracegift[X]
+## MSG_SKILL_Gracegift_DESC
+Gracegift:[N]
+Grants this unit access to[N]
+Staves up to rank C.[X]
+
+## MSG_SKILL_GracegiftPlus_NAME
+Gracegift+[X]
+## MSG_SKILL_GracegiftPlus_DESC
+Gracegift+:[N]
+Grants this unit access to[N]
+Staves up to rank A.[X]
+
+## MSG_SKILL_Bladegift_NAME
+Bladegift[X]
+## MSG_SKILL_Bladegift_DESC
+Bladegift:[N]
+Grants this unit access to[N]
+Swords up to rank C.[X]
+
+## MSG_SKILL_BladegiftPlus_NAME
+Bladegift+[X]
+## MSG_SKILL_BladegiftPlus_DESC
+Bladegift+:[N]
+Grants this unit access to[N]
+Swords up to rank A.[X]
+
+## MSG_SKILL_Piercegift_NAME
+Piercegift[X]
+## MSG_SKILL_Piercegift_DESC
+Piercegift:[N]
+Grants this unit access to[N]
+Lances up to rank C.[X]
+
+## MSG_SKILL_PiercegiftPlus_NAME
+Piercegift+[X]
+## MSG_SKILL_PiercegiftPlus_DESC
+Piercegift+:[N]
+Grants this unit access to[N]
+Lances up to rank A.[X]
+
+## MSG_SKILL_Hackgift_NAME
+Hackgift[X]
+## MSG_SKILL_Hackgift_DESC
+Hackgift:[N]
+Grants this unit access to[N]
+Axes up to rank C.[X]
+
+## MSG_SKILL_HackgiftPlus_NAME
+Hackgift+[X]
+## MSG_SKILL_HackgiftPlus_DESC
+Hackgift+:[N]
+Grants this unit access to[N]
+Axes up to rank A.[X]
+
+## MSG_SKILL_Arcgift_NAME
+Arcgift[X]
+## MSG_SKILL_Arcgift_DESC
+Arcgift:[N]
+Grants this unit access to[N]
+Bows up to rank C.[X]
+
+## MSG_SKILL_ArcgiftPlus_NAME
+Arcgift+[X]
+## MSG_SKILL_ArcgiftPlus_DESC
+Arcgift+:[N]
+Grants this unit access to[N]
+Bows up to rank A.[X]
+
+## MSG_SKILL_Cultured_NAME
+Cultured[X]
+## MSG_SKILL_Cultured_DESC
+Cultured: If unit attacks next to a[N]
+unit with Nice Thighs, move again.[N]
+-50 hit against units with Nice Thighs.[X]
+
+## MSG_SKILL_NiceThighs_NAME
+Nice Thighs[X]
+## MSG_SKILL_NiceThighs_DESC
+Nice Thighs:[N]
+Doesn't do anything.[X]
+
+## MSG_SKILL_Flank_NAME
+Flank[X]
+## MSG_SKILL_Flank_DESC
+Flank: If an ally is on the[N]
+opposite side of an adjacent[N] 
+target, deal 25% more damage.[X]
+
+## MSG_SKILL_ForeignPrincess_NAME
+Foreign Princess[X]
+## MSG_SKILL_ForeignPrincess_DESC
+Foreign Princess:[N]
+If the unit is female, allied units in[N]
+a 3x3 range take -2 & deal +2 damage.[X]
+
+## MSG_SKILL_Roll12_NAME
+Roll 12[X]
+## MSG_SKILL_Roll12_DESC
+Roll 12:[N]
+Randomly apply 1 proc skill[N]
+from a list of 12 once per turn.[X]
+
+## MSG_SKILL_Thighdeology_NAME
+Thighdeology[X]
+## MSG_SKILL_Thighdeology_DESC
+Thighdeology:[N]
+If a unit within 3 tiles has Nice[N]
+Thighs, gain +2 Attack and +20 Hit.[X]
+
+## MSG_SKILL_ThotSlayer_NAME
+Thot Slayer[X]
+## MSG_SKILL_ThotSlayer_DESC
+Thot Slayer:[N]
+Gain +15 crit against[N]
+units with Nice Thighs.[X]
+
+## MSG_SKILL_Swarm_NAME
+Swarm[X]
+## MSG_SKILL_Swarm_DESC
+Swarm:[N]
+If an adjacent target is[N]
+surrounded, deal 50% more damage.[X]
+
+## MSG_SKILL_AdaptiveStance_NAME
+Adaptive Stance[X]
+## MSG_SKILL_AdaptiveStance_DESC
+Adaptive Stance:[N]
+The enemy is made to attack whichever[N]
+defense stat is higher for the unit.[X]
+
+## MSG_SKILL_TripUp_NAME
+Trip Up[X]
+## MSG_SKILL_TripUp_DESC
+Trip Up:[N]
+Ignore the enemy's[N]
+terrain bonuses.[X]
+
+## MSG_SKILL_DemolitionExpert_NAME
+Demolition Expert[X]
+## MSG_SKILL_DemolitionExpert_DESC
+Demolition Expert:[N]
+The unit can destroy walls and[N]
+barricades with one attack.[X]
+
+## MSG_SKILL_AdaptiveLunge_NAME
+Adaptive Lunge[X]
+## MSG_SKILL_AdaptiveLunge_DESC
+Adaptive Lunge:[N]
+This unit alternates which defensive[N]
+stat it targets each turn.[X]
+
+## MSG_SKILL_Fluffy_NAME
+Fluffy[X]
+## MSG_SKILL_Fluffy_DESC
+Fluffy:[N]
+Halve damage taken by melee[N]
+attacks, double damage at range.[X]
+
+## MSG_SKILL_Mantle_NAME
+Mantle[X]
+## MSG_SKILL_Mantle_DESC
+Mantle:[N]
+Cannot taken damage except[N]
+from selected weaponry.[X]
+
+## MSG_SKILL_BeginnersLuck_NAME
+Beginner's Luck[X]
+## MSG_SKILL_BeginnersLuck_DESC
+Beginner's Luck:[N]
++20 AVO/HIT.[N]
+-1 per chapter.[X]
+
+## MSG_SKILL_ExpertsExperience_NAME
+Expert's Experience[X]
+## MSG_SKILL_ExpertsExperience_DESC
+Expert's Experience:[N]
++0 AVO/HIT.[N]
++1 per chapter.[X]
+
+## MSG_SKILL_SwordProwess_NAME
+Sword Prowess[X]
+## MSG_SKILL_SwordProwess_DESC
+Sword Prowess: Ranks -> D/C/B/A/S[N]
+HIT & AVO: +5/6/7/8/10[N]
+CR.AVO +7/10/13/16/20[X]
+
+## MSG_SKILL_LanceProwess_NAME
+Lance Prowess[X]
+## MSG_SKILL_LanceProwess_DESC
+Lance Prowess: Ranks -> D/C/B/A/S[N]
+HIT & AVO: +5/6/7/8/10[N]
+CR.AVO +7/10/13/16/20[X]
+
+## MSG_SKILL_AxeProwess_NAME
+Axe Prowess[X]
+## MSG_SKILL_AxeProwess_DESC
+Axe Prowess: Ranks -> D/C/B/A/S[N]
+HIT & AVO: +5/6/7/8/10[N]
+CR.AVO +7/10/13/16/20[X]
+
+## MSG_SKILL_BowProwess_NAME
+Bow Prowess[X]
+## MSG_SKILL_BowProwess_DESC
+Bow Prowess: Ranks -> D/C/B/A/S[N]
+HIT & AVO: +5/6/7/8/10[N]
+CR.AVO +7/10/13/16/20[X]
+
+## MSG_SKILL_AnimaProwess_NAME
+Anima Prowess[X]
+## MSG_SKILL_AnimaProwess_DESC
+Anima Prowess: Ranks -> D/C/B/A/S[N]
+HIT & AVO: +5/6/7/8/10[N]
+CR.AVO +7/10/13/16/20[X]
+
+## MSG_SKILL_DarkProwess_NAME
+Dark Prowess[X]
+## MSG_SKILL_DarkProwess_DESC
+Dark Prowess: Ranks -> D/C/B/A/S[N]
+HIT & AVO: +5/6/7/8/10[N]
+CR.AVO +7/10/13/16/20[X]
+
+## MSG_SKILL_LightProwess_NAME
+Light Prowess[X]
+## MSG_SKILL_LightProwess_DESC
+Light Prowess: Ranks -> D/C/B/A/S[N]
+HIT & AVO: +5/6/7/8/10[N]
+CR.AVO +7/10/13/16/20[X]
+
+## MSG_SKILL_Seer_NAME
+Seer[X]
+## MSG_SKILL_Seer_DESC
+Seer:[N]
+All unit attacks hit,[N]
+all enemy attacks miss.[X]
+
+## MSG_SKILL_Toxic_NAME
+Toxic[X]
+## MSG_SKILL_Toxic_DESC
+Toxic:[N]
+Infict (10% * elapsed turns) of[N]
+remaining HP as damage each turn.[X]
+
+## MSG_SKILL_KillStreak_NAME
+Kill Streak[X]
+## MSG_SKILL_KillStreak_DESC
+Kill Streak:[N]
+Gain +1% crit for every battle[N]
+the unit wins in this chapter.[X]
+
+## MSG_SKILL_HyperFocus_NAME
+Hyper Focus[X]
+## MSG_SKILL_HyperFocus_DESC
+Hyper Focus:[N]
+Gain +1% hit for every battle[N]
+the unit has in this chapter.[X]
+
+## MSG_SKILL_TakerDefense_NAME
+Taker Defense[X]
+## MSG_SKILL_TakerDefense_DESC
+Taker Defense:[N]
+After attacking and defeating an[N]
+enemy, +1 DEF for map (max +10).[X]
+
+## MSG_SKILL_TakerLuck_NAME
+Taker Luck[X]
+## MSG_SKILL_TakerLuck_DESC
+Taker Luck:[N]
+After attacking and defeating an[N]
+enemy, +1 DLCK for map (max +10).[X]
+
+## MSG_SKILL_TakerMagic_NAME
+Taker Magic[X]
+## MSG_SKILL_TakerMagic_DESC
+Taker Magic:[N]
+After attacking and defeating an[N]
+enemy, +1 MAG for map (max +10).[X]
+
+## MSG_SKILL_TakerMovement_NAME
+Taker Movement[X]
+## MSG_SKILL_TakerMovement_DESC
+Taker Movement:[N]
+After attacking and defeating an[N]
+enemy, +1 MOV for map (max +10).[X]
+
+## MSG_SKILL_TakerResistance_NAME
+Taker Resistance[X]
+## MSG_SKILL_TakerResistance_DESC
+Taker Resistance:[N]
+After attacking and defeating an[N]
+enemy, +1 RES for map (max +10).[X]
+
+## MSG_SKILL_TakerSkill_NAME
+Taker Skill[X]
+## MSG_SKILL_TakerSkill_DESC
+Taker Skill:[N]
+After attacking and defeating an[N]
+enemy, +1 SKL for map (max +10).[X]
+
+## MSG_SKILL_TakerSpectrum_NAME
+Taker Spectrum[X]
+## MSG_SKILL_TakerSpectrum_DESC
+Taker Spectrum:[N]
+After attacking and defeating an[N]
+enemy, +1 all stats for map (max +10).[X]
+
+## MSG_SKILL_TakerSpeed_NAME
+Taker Speed[X]
+## MSG_SKILL_TakerSpeed_DESC
+Taker Speed:[N]
+After attacking and defeating an[N]
+enemy, +1 SPD for map (max +10).[X]
+
+## MSG_SKILL_TakerStrength_NAME
+Taker Strength[X]
+## MSG_SKILL_TakerStrength_DESC
+Taker Strength:[N]
+After attacking and defeating an[N]
+enemy, +1 STR for map (max +10).[X]
+
+## MSG_SKILL_IronDome_NAME
+Iron Dome[X]
+## MSG_SKILL_IronDome_DESC
+Iron Dome:[N]
+Unit takes half damage,[N]
+but AVO is set to 0.[X]
+
+## MSG_SKILL_Offhand_NAME
+Offhand[X]
+## MSG_SKILL_Offhand_DESC
+Offhand:[N]
+Swap the opponent's equipped weapon[N]
+after battle if they have another.[X]
+
+## MSG_SKILL_Equalizer_NAME
+Equalizer[X]
+## MSG_SKILL_Equalizer_DESC
+Equalizer:[N]
+Both sides deal damage equal to their[N]
+sum total damage divided between them.[X]
+
+## MSG_SKILL_Perch_NAME
+Perch[X]
+## MSG_SKILL_Perch_DESC
+Perch:[N]
+Flying units gain[N]
+terrain bonuses.[X]
+
+## MSG_SKILL_MountainMan_NAME
+Mountain Man[X]
+## MSG_SKILL_MountainMan_DESC
+Mountain Man:[N]
+AVO bonuses from terrain also[N]
+become HIT bonuses.[X]
+
+## MSG_SKILL_ShedSkin_NAME
+Shed Skin[X]
+## MSG_SKILL_ShedSkin_DESC
+Shed Skin:[N]
+Recover from status effects[N]
+at a rate of 2 turns per turn.[X]
+
+## MSG_SKILL_Decadon_NAME
+Decadon[X]
+## MSG_SKILL_Decadon_DESC
+Decadon:[N]
+This unit's regular attacks deal[N]
+a fixed 10 points of damage.[X]
+
+## MSG_SKILL_Camouflage_NAME
+Camouflage[X]
+## MSG_SKILL_Camouflage_DESC
+Camouflage:[N]
+Terrain avoid bonuses are[N]
+x1.5 for this unit.[X]
+
+## MSG_SKILL_Transpose_NAME
+Transpose[X]
+## MSG_SKILL_Transpose_DESC
+Transpose:[N]
+Invert the enemy unit's[N]
+AVO terrain boosts.[X]
+
+## MSG_SKILL_SwiftAttack_NAME
+Swift Attack[X]
+## MSG_SKILL_SwiftAttack_DESC
+Swift Attack:[N]
+Use this unit's SPD instead of[N]
+MAG/POW for damage calculation.[X]
+
+## MSG_SKILL_GracefulWielder_NAME
+Graceful Wielder[X]
+## MSG_SKILL_GracefulWielder_DESC
+Graceful Wielder:[N]
+Reduces weapon weight of equipped[N]
+weapon for each rank above E.[X]
+
+## MSG_SKILL_FarWard_NAME
+Far Ward[X]
+## MSG_SKILL_FarWard_DESC
+Far Ward:[N]
+Enemies from +3 range or greater[N]
+will always miss this target.[X]
+
+## MSG_SKILL_Zen_NAME
+Zen[X]
+## MSG_SKILL_Zen_DESC
+Zen:[N]
+For every 4 damage taken,[N]
++1 to defense.[X]
+
+## MSG_SKILL_TintedLens_NAME
+Tinted Lens[X]
+## MSG_SKILL_TintedLens_DESC
+Tinted Lens:[N]
+Both units' attacks do a[N]
+minimum of 6 damage.[X]
+
+## MSG_SKILL_TintedLensPlus_NAME
+Tinted Lens+[X]
+## MSG_SKILL_TintedLensPlus_DESC
+Tinted Lens+:[N]
+This units' attacks do a[N]
+minimum of 6 damage.[X]
+
+## MSG_SKILL_Emulate_NAME
+Emulate[X]
+## MSG_SKILL_Emulate_DESC
+Emulate:[N]
+Copy the enemy unit's current HP[N]
+at the start of the battle.[X]
+
+## MSG_SKILL_DualWield_NAME
+Dual Wield[X]
+## MSG_SKILL_DualWield_DESC
+Dual Wield:[N]
+Equip a secondary weapon,[N]
+using half of its stats.[X]
+
+## MSG_SKILL_DualWieldPlus_NAME
+Dual Wield+[X]
+## MSG_SKILL_DualWieldPlus_DESC
+Dual Wield+:[N]
+Equip a secondary weapon,[N]
+using half of its stats.[N]
+and its effects.[X]
+
+## MSG_SKILL_Rampart_NAME
+Rampart.[X]
+## MSG_SKILL_Rampart_DESC
+Rampart:[N]
+If attacked, reduces the damage[N]
+of the first hit by 30%.[X]
+
+## MSG_SKILL_RampartPlus_NAME
+Rampart+.[X]
+## MSG_SKILL_RampartPlus_DESC
+Rampart+:[N]
+If attacked, reduces the damage[N]
+of the first hit by 50%.[X]
+
+## MSG_SKILL_Freelancer_NAME
+Freelancer[X]
+## MSG_SKILL_Freelancer_DESC
+Freelancer:[N]
+Gain +5 to a stat for each weapon[N]
+type the unit uses. Sword = SPD,
+Lance = SKL, Axe = STR, Bow = LCK.[X]
+
+## MSG_SKILL_Flicker_NAME
+Flicker[X]
+## MSG_SKILL_Flicker_DESC
+Flicker:[N]
+If at full health and this unit[N]
+would takes >= 50% from an attack,[N]
+dodge that attack.[X]
+
+## MSG_SKILL_UnarmedCombat_NAME
+Unarmed Combat[X]
+## MSG_SKILL_UnarmedCombat_DESC
+Unarmed Combat:[N]
+This unit can attack[N]
+without a weapon.[X]
+
+## MSG_SKILL_GoldenGlory_NAME
+Golden Glory[X]
+## MSG_SKILL_GoldenGlory_DESC
+Golden Glory:[N]
+Boost all stats by +1 for every[N]
+20000g in total, max +5.[X]
+
+## MSG_SKILL_Calibration_NAME
+Calibration[X]
+## MSG_SKILL_Calibration_DESC
+Calibration:[N]
+Gain +1 hit per expended uses[N]
+on the equipped weapon.[X]
+
+## MSG_SKILL_SupremeOverlord_NAME
+Supreme Overlord[X]
+## MSG_SKILL_SupremeOverlord_DESC
+Supreme Overlord:[N]
+Player units gain +3 to all stats per[N]
+allied unit who died this chapter.[N]
+Other factions gain +1 per 3 allies dead.[X]
+
+## MSG_SKILL_Osmose_NAME
+Osmose[X]
+## MSG_SKILL_Osmose_DESC
+Osmose:[N]
+Passively drain 1/4 of the damage[N]
+inflicted on the enemy to restore your MP.[X]

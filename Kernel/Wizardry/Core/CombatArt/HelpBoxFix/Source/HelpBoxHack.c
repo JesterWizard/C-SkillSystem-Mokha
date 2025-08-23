@@ -141,6 +141,23 @@ void HelpBoxSetupstringLines(struct ProcHelpBoxIntro *proc)
 		}
 	}
 
+#ifdef CONFIG_TELLIUS_CAPACITY_SYSTEM
+    struct SkillList * list = GetUnitSkillList(gStatScreen.unit);
+    FORCE_DECLARE u8 capacity = 0;
+
+    for (int i = 0; i < list->amt; i++)
+    {
+        if (GetSkillDescMsg(list->sid[i]) == proc->msg)
+        {
+            capacity = GetSkillCapacity(list->sid[i]);
+            proc->pretext_lines = 1;
+            Text_InsertDrawString(&gHelpBoxSt.text[0], 0, TEXT_COLOR_47CF, "Capacity:");
+            Text_InsertDrawNumberOrBlank(&gHelpBoxSt.text[0], 50, TEXT_COLOR_456F, capacity);
+            break;
+        }
+    }
+#endif
+
 	SetTextFont(0);
 	Proc_Break(proc);
 }

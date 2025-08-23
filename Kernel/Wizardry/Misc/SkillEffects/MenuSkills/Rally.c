@@ -55,7 +55,7 @@ int Rally_Unhover(struct MenuProc *menu, struct MenuItemProc *menuItem)
 u8 Rally_OnSelected(struct MenuProc *menu, struct MenuItemProc *item)
 {
 	if (item->availability == MENU_DISABLED) {
-		MenuFrozenHelpBox(menu, MSG_MenuSkill_Rally_FRtext);
+		MenuFrozenHelpBox(menu, MSG_No_Adjacent_Units);
 		return MENU_ACT_SND6B;
 	}
 

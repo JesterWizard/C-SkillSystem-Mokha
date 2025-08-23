@@ -90,9 +90,9 @@ bool CheckBattleInori(struct BattleUnit *attacker, struct BattleUnit *defender)
 	}
 #endif
 
-#if (defined(SID_Inori) && (COMMON_SKILL_VALID(SID_Inori)))
-	if (CheckBattleSkillActivate(defender, attacker, SID_Inori, defender->unit.lck)) {
-		RegisterTargetEfxSkill(GetBattleHitRound(gBattleHitIterator), SID_Inori);
+#if (defined(SID_Miracle) && (COMMON_SKILL_VALID(SID_Miracle)))
+	if (CheckBattleSkillActivate(defender, attacker, SID_Miracle, defender->unit.lck)) {
+		RegisterTargetEfxSkill(GetBattleHitRound(gBattleHitIterator), SID_Miracle);
 		return true;
 	}
 #endif
@@ -106,28 +106,28 @@ bool CheckBattleInori(struct BattleUnit *attacker, struct BattleUnit *defender)
 	}
 #endif
 
-#if (defined(SID_LEGEND_InoriAtk) && (COMMON_SKILL_VALID(SID_LEGEND_InoriAtk)))
-	if (CheckBattleSkillActivate(defender, attacker, SID_LEGEND_InoriAtk, 100)) {
-		if (TryActivateLegendSkill(&defender->unit, SID_LEGEND_InoriAtk) == 0) {
-			RegisterTargetEfxSkill(GetBattleHitRound(gBattleHitIterator), SID_LEGEND_InoriAtk);
+#if (defined(SID_LEGEND_MiracleAtk) && (COMMON_SKILL_VALID(SID_LEGEND_MiracleAtk)))
+	if (CheckBattleSkillActivate(defender, attacker, SID_LEGEND_MiracleAtk, 100)) {
+		if (TryActivateLegendSkill(&defender->unit, SID_LEGEND_MiracleAtk) == 0) {
+			RegisterTargetEfxSkill(GetBattleHitRound(gBattleHitIterator), SID_LEGEND_MiracleAtk);
 			return true;
 		}
 	}
 #endif
 
-#if (defined(SID_LEGEND_InoriAvo) && (COMMON_SKILL_VALID(SID_LEGEND_InoriAvo)))
-	if (CheckBattleSkillActivate(defender, attacker, SID_LEGEND_InoriAvo, 100)) {
-		if (TryActivateLegendSkill(&defender->unit, SID_LEGEND_InoriAvo) == 0) {
-			RegisterTargetEfxSkill(GetBattleHitRound(gBattleHitIterator), SID_LEGEND_InoriAvo);
+#if (defined(SID_LEGEND_MiracleAvo) && (COMMON_SKILL_VALID(SID_LEGEND_MiracleAvo)))
+	if (CheckBattleSkillActivate(defender, attacker, SID_LEGEND_MiracleAvo, 100)) {
+		if (TryActivateLegendSkill(&defender->unit, SID_LEGEND_MiracleAvo) == 0) {
+			RegisterTargetEfxSkill(GetBattleHitRound(gBattleHitIterator), SID_LEGEND_MiracleAvo);
 			return true;
 		}
 	}
 #endif
 
-#if (defined(SID_LEGEND_InoriDef) && (COMMON_SKILL_VALID(SID_LEGEND_InoriDef)))
-	if (CheckBattleSkillActivate(defender, attacker, SID_LEGEND_InoriDef, 100)) {
-		if (TryActivateLegendSkill(&defender->unit, SID_LEGEND_InoriDef) == 0) {
-			RegisterTargetEfxSkill(GetBattleHitRound(gBattleHitIterator), SID_LEGEND_InoriDef);
+#if (defined(SID_LEGEND_MiracleDef) && (COMMON_SKILL_VALID(SID_LEGEND_MiracleDef)))
+	if (CheckBattleSkillActivate(defender, attacker, SID_LEGEND_MiracleDef, 100)) {
+		if (TryActivateLegendSkill(&defender->unit, SID_LEGEND_MiracleDef) == 0) {
+			RegisterTargetEfxSkill(GetBattleHitRound(gBattleHitIterator), SID_LEGEND_MiracleDef);
 			return true;
 		}
 	}

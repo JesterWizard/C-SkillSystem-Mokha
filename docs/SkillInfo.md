@@ -156,10 +156,10 @@
 ![image](gfx/SkillIcon_StanceSwift.png) | StanceSwift |  Grants +4 AS and RES if attacked. |
 ![image](gfx/SkillIcon_StanceWarding.png) | StanceWarding |  Grants +6 RES if attacked. |
 ![image](gfx/SkillIcon_StanceSpectrum.png) | StanceSpectrum |  Grants +2 ATK, SPD, DEF and RES if attacked. |
-![image](gfx/SkillIcon_RangeBonusBMag1.png) | RangeBonusBMag1 |  Increases black magic range by 1 |
-![image](gfx/SkillIcon_RangeBonusBMag2.png) | RangeBonusBMag2 |  Increases black magic range by 2 |
-![image](gfx/SkillIcon_RangeBonusBow1.png) | RangeBonusBow1 |  Increases bow range by 1 |
-![image](gfx/SkillIcon_RangeBonusBow2.png) | RangeBonusBow2 |  Increases bow range by 2 |
+![image](gfx/SkillIcon_MagicRangePlus1.png) | MagicRangePlus1 |  Increases black magic range by 1 |
+![image](gfx/SkillIcon_MagicRangePlus2.png) | MagicRangePlus2 |  Increases black magic range by 2 |
+![image](gfx/SkillIcon_BowRangePlus1.png) | BowRangePlus1 |  Increases bow range by 1 |
+![image](gfx/SkillIcon_BowRangePlus2.png) | BowRangePlus2 |  Increases bow range by 2 |
 ![image](gfx/SkillIcon_RunningStart.png) | RunningStart |  +1 attack range for every two tiles moved. |
 ![image](gfx/SkillIcon_InnerFlame1.png) | InnerFlame1 |  ATK +10 if no ally with 3 tiles. |
 ![image](gfx/SkillIcon_InnerFlame2.png) | InnerFlame2 |  ATK +7 if no ally with 2 tiles. |
@@ -231,9 +231,9 @@
 ![image](gfx/SkillIcon_Paragon.png) | Paragon |  Experience gained is doubled. |
 ![image](gfx/SkillIcon_VoidCurse.png) | VoidCurse |  This unit gives no experience when defeated. |
 ![image](gfx/SkillIcon_Aptitude.png) | Aptitude |  +20% to all growth rates. |
-![image](gfx/SkillIcon_LEGEND_InoriAtk.png) | LEGEND_InoriAtk | (once per chapter) If attacked to 0 HP, unit will survive and receive +10 ATK, Crit +100% |
-![image](gfx/SkillIcon_LEGEND_InoriAvo.png) | LEGEND_InoriAvo | (once per chapter) If attacked to 0 HP, unit will survive and receive +10 SPD, AVO +100% |
-![image](gfx/SkillIcon_LEGEND_InoriDef.png) | LEGEND_InoriDef | (once per chapter) If attacked to 0 HP, unit will survive, recover HP and receive +10 DEF/RES. |
+![image](gfx/SkillIcon_LEGEND_MiracleAtk.png) | LEGEND_MiracleAtk | (once per chapter) If attacked to 0 HP, unit will survive and receive +10 ATK, Crit +100% |
+![image](gfx/SkillIcon_LEGEND_MiracleAvo.png) | LEGEND_MiracleAvo | (once per chapter) If attacked to 0 HP, unit will survive and receive +10 SPD, AVO +100% |
+![image](gfx/SkillIcon_LEGEND_MiracleDef.png) | LEGEND_MiracleDef | (once per chapter) If attacked to 0 HP, unit will survive, recover HP and receive +10 DEF/RES. |
 ![image](gfx/SkillIcon_Assist.png) | Assist |  +5 damage dealt on assistance of allies' combo-attack |
 ![image](gfx/SkillIcon_Synergism.png) | Synergism |  Allies +3 damage dealt on assistance on combo-attack |
 ![image](gfx/SkillIcon_Pass.png) | Pass |  If HP more than 25% unit can move through foes' spaces. |
@@ -411,7 +411,7 @@
 ![image](gfx/SkillIcon_UnstoppableForce.png) | UnstoppableForce |  Unit damage +100%, but sets unit and foe's AVO to 0 |
 ![image](gfx/SkillIcon_WeaponHeal.png) | WeaponHeal |  50% chance to restore 1 durability to ally's equipped weapon after healing. |
 ![image](gfx/SkillIcon_BloodReaver.png) | BloodReaver |  Consumes 5 HP to boost damage by foe's 20% max HP in each round |
-![image](gfx/SkillIcon_Saint.png) | Saint |  Unit may not cost HP when using B/W.Magic. |
+![image](gfx/SkillIcon_GrandMagician.png) | GrandMagician |  Unit may not cost HP when using B/W.Magic. |
 ![image](gfx/SkillIcon_Witch.png) | Witch |  B.Magic might +5 |
 ![image](gfx/SkillIcon_KeenFighter.png) | KeenFighter |  Unit takes 50% damage if the opponent can double. |
 ![image](gfx/SkillIcon_QuickDraw.png) | QuickDraw |  +4 Damage when initiating battle. |
@@ -421,7 +421,7 @@
 ![image](gfx/SkillIcon_Technician.png) | Technician |  If the user is holding an E-ranked weapon, boost weapon damage by 50%. |
 ![image](gfx/SkillIcon_KillingMachine.png) | KillingMachine |   Double this unit's total crit rate. |
 ![image](gfx/SkillIcon_DivinePulse.png) | DivinePulse |  Turn a missed attack into a hit (30% + Luck % activation). |
-![image](gfx/SkillIcon_Dishonorbreaker.png) | Dishonorbreaker |  When only 1 unit attacks, he gain +50 avoid but -50 hit. |
+![image](gfx/SkillIcon_DishonorBreaker.png) | DishonorBreaker |  When only 1 unit attacks, he gain +50 avoid but -50 hit. |
 ![image](gfx/SkillIcon_Stubborn.png) | Stubborn |  If unit has more Losses than enemy, gains +5 str/spd. |
 ![image](gfx/SkillIcon_Shakedown.png) | Shakedown |  When initiating battle, steal gold equal to damage dealt.(Luck % activation) |
 ![image](gfx/SkillIcon_SeaWays.png) | SeaWays |  Can walk On Water |

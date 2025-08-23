@@ -279,7 +279,7 @@
 // SID_BloodSurge
 // SID_Glorifier
 // SID_Witch
-// SID_Dishonorbreaker
+// SID_DishonorBreaker
 // SID_Stubborn
 // SID_BestDefense
 // SID_LionFlame
@@ -826,6 +826,7 @@
 // SID_Eldritch
 // SID_Leader
 // SID_Latona
+// SID_GrandMagician
 
 //////// COMBAT ARTS
 // SID_COMBAT_Grounder

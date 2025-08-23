@@ -1,47 +1,68 @@
-## MSG_SKILL_SwordBreaker
-Sword Break:[NL]
-Hit and Avoid +20% if unit[NL]
+## MSG_SKILL_SwordBreaker_NAME
+Sword Breaker[X]
+## MSG_SKILL_SwordBreaker_DESC
+Sword Breaker:[N]
+Hit and Avoid +20% if unit[N]
 battles a Sword with a Lance.[X]
 
-## MSG_SKILL_AxeBreaker
-Axe Break:[NL]
-Hit and Avoid +20% if unit[NL]
+## MSG_SKILL_AxeBreaker_NAME
+Axe Breaker[X]
+## MSG_SKILL_AxeBreaker_DESC
+Axe Breaker:[N]
+Hit and Avoid +20% if unit[N]
 battles an Axe with a Sword.[X]
 
-## MSG_SKILL_LanceBreaker
-Lance Break:[NL]
-Hit and Avoid +20% if unit[NL]
+## MSG_SKILL_LanceBreaker_NAME
+Lance Breaker[X]
+## MSG_SKILL_LanceBreaker_DESC
+Lance Breaker:[N]
+Hit and Avoid +20% if unit[N]
 battles a Lance with an Axe.[X]
 
-## MSG_SKILL_BowBreaker
-Bow Break: [NL]
-Hit and Avoid +20% if unit[NL]
+## MSG_SKILL_BowBreaker_NAME
+Bow Breaker[X]
+## MSG_SKILL_BowBreaker_DESC
+Bow Breaker:[N]
+Hit and Avoid +20% if unit[N]
 battles a Bow with B.mag.[X]
 
-## MSG_SKILL_BMagBreaker
-B.Mag Break: [NL]
+## MSG_SKILL_BMagBreaker_NAME
+Magic Breaker[X]
+## MSG_SKILL_BMagBreaker_DESC
+Magic Breaker:[N]
 Hit and Avoid +20%.[X]
 
 ## MSG_SKILL_Nonconforming_NAME
-N-conforming[X]
-
-## MSG_SKILL_Nonconforming
-Nonconforming:[NL]
-Invert the effect of the weapon[NL]
+Nonconforming[X]
+## MSG_SKILL_Nonconforming_DESC
+Nonconforming:[N]
+Invert the effect of the weapon[N]
 triangle for both units in battle.[X]
 
 ## MSG_SKILL_TriangleAdept_NAME
-T-Adapt[X]
-
-## MSG_SKILL_TriangleAdept
-Triangle Adapt:[NL]
-Doubles weapon triangle[NL]
+Triangle Adept[X]
+## MSG_SKILL_TriangleAdept_DESC
+Triangle Adept:[N]
+Doubles weapon triangle[N]
 effects for this unit.[X]
 
 ## MSG_SKILL_TriangleAdeptPlus_NAME
-T-Adapt+[X]
-
-## MSG_SKILL_TriangleAdeptPlus
-Triangle Adapt+:[NL]
-Doubles weapon triangle[NL]
+Triangle Adapt+[X]
+## MSG_SKILL_TriangleAdeptPlus_DESC
+Triangle Adapt+:[N]
+Doubles weapon triangle[N]
 effects for both units.[X]
+
+## MSG_SKILL_Onimaru_NAME
+Onimaru[X]
+## MSG_SKILL_Onimaru_DESC
+Onimaru:[N]
+This unit always has weapon[N]
+triangle advantage.[X]
+
+## MSG_SKILL_Break_NAME
+Break[X]
+## MSG_SKILL_Break_DESC
+Break:[N]
+Disarm the opponent for[N]
+a turn after battle.[X]

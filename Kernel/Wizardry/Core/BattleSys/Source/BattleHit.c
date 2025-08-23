@@ -156,8 +156,8 @@ void BattleGenerateHitEffects(struct BattleUnit *attacker, struct BattleUnit *de
 
 			attacker->unit.curHP -= gBattleStats.damage;
 
-			if (attacker->unit.curHP < 0)
-				attacker->unit.curHP = 0;
+			// if (attacker->unit.curHP < 0)
+			// 	attacker->unit.curHP = 0;
 		} else {
 			if (gBattleStats.damage > defender->unit.curHP)
 				gBattleStats.damage = defender->unit.curHP;
@@ -173,8 +173,8 @@ void BattleGenerateHitEffects(struct BattleUnit *attacker, struct BattleUnit *de
 #endif
 			defender->unit.curHP -= gBattleStats.damage;
 
-			if (defender->unit.curHP < 0)
-				defender->unit.curHP = 0;
+			// if (defender->unit.curHP < 0)
+			// 	defender->unit.curHP = 0;
 		}
 
 #if CHAX
