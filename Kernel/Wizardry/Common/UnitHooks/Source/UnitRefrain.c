@@ -5,6 +5,7 @@
 #include "debuff.h"
 #include "bwl.h"
 #include "playst-expa.h"
+#include "jester_headers/class-pairs.h"
 
 typedef int (*UnitRefrainFunc_t)(struct Unit *unit);
 // extern const UnitRefrainFunc_t gUnitRefrainHooks[];
@@ -85,6 +86,19 @@ void ChapterChangeUnitCleanup(void)
 		const UnitRefrainFunc_t *it;
 		for (it = gpUnitRefrainHooks; *it; it++)
 			(*it)(unit);
+#endif
+
+#ifdef CONFIG_LAGUZ_BARS
+        for (int i = 0; i < laguzListSize; i++)
+        {
+            if (unit->pClassData->number == laguzPairs[i][1])
+            {
+                unit->pClassData = GetClassData(laguzPairs[i][0]);
+                ClearUnitStatDebuff(unit, UNIT_STAT_BUFF_LAGUZ);
+                ClearUnitStatDebuff(unit, UNIT_STAT_BUFF_LAGUZ_HALFSHIFT);
+                break;
+            }
+        }
 #endif
 
 #if defined(CONFIG_AUTO_REPAIR_WEAPONS)

@@ -81,7 +81,7 @@ bool ChapterInit_SetInitiativeStatus(ProcPtr proc)
 	return false;
 }
 
-bool PrePhsae_TickInitativeSkillStatus(ProcPtr proc)
+bool PrePhase_TickInitativeSkillStatus(ProcPtr proc)
 {
 	if (gPlaySt.chapterTurnNumber >= 2 && gPlaySt.faction == FACTION_BLUE) {
 		FOR_UNITS_ONMAP_ALL(unit, {

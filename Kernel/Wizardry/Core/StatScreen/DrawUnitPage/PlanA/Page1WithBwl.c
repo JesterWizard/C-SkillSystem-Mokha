@@ -7,6 +7,8 @@
 #include "status-getter.h"
 #include "kernel-lib.h"
 #include "constants/texts.h"
+#include "skill-system.h"
+#include "constants/skills.h"
 
 #define LOCAL_TRACE 0
 
@@ -235,6 +237,40 @@ STATIC_DECLAR void DrawPage1BattleAmt(void)
 		amt, amt, max, max);
 }
 
+static u8 GetUnitLaguzBarValue(struct Unit * unit)
+{
+    struct NewBwl * bwl;
+    u8 pid = UNIT_CHAR_ID(unit);
+    bwl = GetNewBwl(pid);
+
+    if (pid > 0x40)
+        return 0;
+    else
+        return bwl->laguzBar;
+}
+
+FORCE_DECLARE static void DrawPage1LaguzBar(void)
+{
+    int amt = GetUnitLaguzBarValue(gStatScreen.unit);
+    int max = 30;
+    int textColor = (amt == max) ? TEXT_COLOR_SYSTEM_GREEN : TEXT_COLOR_SYSTEM_BLUE;
+    
+    PutDrawText(
+        &gStatScreen.text[STATSCREEN_TEXT_ITEM4],
+        gUiTmScratchA + TILEMAP_INDEX(0x9, 0xF),
+        TEXT_COLOR_SYSTEM_GOLD, 0, 0,
+        GetStringFromIndex(MSG_MSS_LaguzBar));
+
+    PutNumber(gUiTmScratchA + TILEMAP_INDEX(0xC + CountDigits(amt), 0xF),
+        textColor, amt);
+
+    DrawStatWithBarReworkExt(
+        0xA, 0xD, 0xF,
+        gUiTmScratchC,
+        amt, amt, max, max);
+}
+
+
 /* BWL */
 STATIC_DECLAR void DrawPage1BWL(void)
 {
@@ -386,7 +422,11 @@ void DisplayPage_WithBWL(void)
 	DrawPage1ValueReal();
 	DrawPage1ValueCommon();
 	DrawPage1BattleAmt();
-	DrawPage1BWL();
+#ifdef CONFIG_LAGUZ_BARS
+    DrawPage1LaguzBar();
+#else
+    DrawPage1BWL();
+#endif
 	DrawPage1Affin();
 	DrawPage1TalkTrv();
 }

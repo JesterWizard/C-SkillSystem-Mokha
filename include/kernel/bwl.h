@@ -14,7 +14,17 @@ struct NewBwl {
 	/* bwl support */
 	u8 supports[UNIT_SUPPORT_MAX_COUNT];
 
-	STRUCT_PAD(0x0C, 0x10);
+    /* JESTER - Laguz bars and MP are stored here */
+#ifdef CONFIG_LAGUZ_BARS
+    u8 laguzBar : 5;
+    u8 leftover : 3;
+#endif
+    u8 currentMP;
+    u8 maxMP;
+    u8 _pad_;
+
+
+	//STRUCT_PAD(0x0C, 0x10);
 } BITPACKED;
 
 bool CheckHasBwl(u8 pid);
@@ -30,3 +40,5 @@ void UnitHiddenLevelPreLoad(struct Unit *unit);
 // see limition rule 5
 void WriteUnitLevelSafe(struct Unit *unit, int new_level);
 extern void (*prWriteUnitLevelSafe)(struct Unit *unit, int new_level);
+
+void DrawPage1BWL(void);

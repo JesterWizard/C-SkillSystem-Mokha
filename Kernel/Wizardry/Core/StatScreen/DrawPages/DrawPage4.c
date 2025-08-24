@@ -3,6 +3,7 @@
 #include "stat-screen.h"
 #include "skill-system.h"
 #include "constants/texts.h"
+#include "bwl.h"
 
 #define PAGE4_PINFO_MAX 8
 
@@ -164,4 +165,8 @@ void DrawPage4Rework(void)
 
 	DrawPage4SupportBonus();
 	DrawPage4SupportPInfo();
+
+#ifdef CONFIG_LAGUZ_BARS
+    DrawPage1BWL();
+#endif
 }

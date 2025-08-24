@@ -110,7 +110,6 @@ static _DECL_INFO RText_Cond = {
     };
 #endif
 
-
 /* Page left */
 static _DECL_INFO RText_Name = {
 	&RText_Hp, &RText_Class, NULL, &RText_Spd,
