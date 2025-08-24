@@ -3,7 +3,7 @@
 #include "jester_headers/custom-functions.h"
 
 // Predefine an array of key-value pairs
-const int transformationPairs[][2] = {
+const int transformationPairs[77][2] = {
     { CLASS_EIRIKA_LORD, CLASS_BONEWALKER},
     { CLASS_EIRIKA_MASTER_LORD, CLASS_WIGHT },
     { CLASS_EPHRAIM_LORD, CLASS_BONEWALKER},
@@ -85,7 +85,7 @@ const int transformationPairs[][2] = {
 
 const int transformationListSize = sizeof(transformationPairs) / sizeof(transformationPairs[0]);
 
-const int dismountPairs[][2] = {
+const int dismountPairs[14][2] = {
     { CLASS_EIRIKA_MASTER_LORD, CLASS_EIRIKA_LORD },
     { CLASS_EPHRAIM_MASTER_LORD, CLASS_EPHRAIM_LORD },
     { CLASS_PALADIN, CLASS_SOLDIER },
@@ -104,13 +104,13 @@ const int dismountPairs[][2] = {
 
 const int dismountListSize = sizeof(dismountPairs) / sizeof(dismountPairs[0]);
 
-const int dopplegangerPairs[][2] = {
+const int dopplegangerPairs[1][2] = {
     { CHARACTER_EIRIKA, CLASS_EIRIKA_LORD },
 };
 
 const int dopplegangerListSize = sizeof(dopplegangerPairs) / sizeof(dopplegangerPairs[0]);
 
-const int laguzPairs[][2] = {
+const int laguzPairs[77][2] = {
     { CLASS_EIRIKA_LORD, CLASS_BONEWALKER},
     { CLASS_EIRIKA_MASTER_LORD, CLASS_WIGHT },
     { CLASS_EPHRAIM_LORD, CLASS_BONEWALKER},
@@ -192,7 +192,7 @@ const int laguzPairs[][2] = {
 
 const int laguzListSize = sizeof(laguzPairs) / sizeof(laguzPairs[0]);
 
-const u8 gNewSummonConfig[][2] = {
+const int gNewSummonConfig[5][2] = {
     { CHARACTER_EWAN, CHARACTER_MONSTER_BD, },
     { CHARACTER_KNOLL, CHARACTER_MONSTER_BD },
     { CHARACTER_LYON_CC, CHARACTER_MONSTER_BD },

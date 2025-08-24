@@ -1,0 +1,1 @@
+extern void StartCreditsProc_ASMC(ProcPtr parent);

@@ -25,14 +25,14 @@ void GenerateSummonUnitDef(void)
     u8 rand100 = DivRem(AdvanceGetLCGRNValue(), 101);
 
     struct Unit* unit;
-    short summonerNum, i;
+    int summonerNum, i;
 
 #if defined(SID_SummonPlus) && defined(SID_SummonPlus)
     if (gActionData.unk08 == SID_SummonPlus)
     {
         // 1. Find summoner number from active unit
         summonerNum = -1;
-        for (i = 0; i < (short)ARRAY_COUNT(gNewSummonConfig); ++i) {
+        for (i = 0; i < (int)ARRAY_COUNT(gNewSummonConfig); ++i) {
             if (UNIT_CHAR_ID(gActiveUnit) == gNewSummonConfig[i][0]) {
                 summonerNum = i;
                 break;

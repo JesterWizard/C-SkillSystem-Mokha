@@ -181,3 +181,7 @@ ALIGN 4
 #ifdef CONFIG_CUSTOM_GUIDE
     #include "Common/Guide/GuideTable.event"
 #endif
+
+#ifdef CONFIG_VESLY_CREDITS_SEQUENCE
+    #include "Misc/VeslyCredits/Credits_Installer.event"
+#endif

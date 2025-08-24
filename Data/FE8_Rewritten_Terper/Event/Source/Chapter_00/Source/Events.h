@@ -154,6 +154,10 @@ static const EventListScr EventScr_Talk_EIRIKA_SETH[] = {
 #ifdef CONFIG_FORGING
     ASMC(CallForgeMenuASMC)
 #endif
+#ifdef CONFIG_VESLY_CREDITS_SEQUENCE
+    FADE_TO_BLACK(16) // slow fade to black (optional)
+    ASMC(StartCreditsProc_ASMC)
+#endif
 };
 
 static const EventListScr EventListScr_Turn[] = {

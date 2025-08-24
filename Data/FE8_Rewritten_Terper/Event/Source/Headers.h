@@ -10,6 +10,7 @@
 #include "jester_headers/flags.h"
 #include "jester_headers/miscellaneous.h"
 #include "jester_headers/LimitedShopStock.h"
+#include "jester_headers/credits.h"
 #include "EAstdlib.h"
 
 #define NO_REDA 0
