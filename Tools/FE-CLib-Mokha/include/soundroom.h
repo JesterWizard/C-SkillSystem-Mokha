@@ -90,6 +90,6 @@ void DrawSoundRoomSongTitle(int index);
 // ??? SoundRoom_DrawSprites_Loop(???);
 ProcPtr DrawSoundRoomSprites(ProcPtr);
 
-extern struct SoundRoomEnt gSoundRoomTable[];
+extern struct SoundRoomEnt const gSoundRoomTable[];
 
 #endif // GUARD_SOUNDROOM_H

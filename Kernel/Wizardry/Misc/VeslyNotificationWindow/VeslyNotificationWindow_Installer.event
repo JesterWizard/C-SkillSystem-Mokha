@@ -1,0 +1,86 @@
+// Replaces: TerrainDisplay_Init
+// Hooks: SetChapterFlag, SetPermanentFlag
+
+#include "EAstdlib.event" 
+#include "C_Code.lyn.event"
+#include "AsmHooks.lyn.event"
+#include "LynJump.event"
+
+ALIGN 4 
+NotificationWindow_DisplayFrames: 
+WORD 120 // Disappear 2 seconds after it finishes printing (60 frames per second)
+DisableBGMNotificationsFlag:
+WORD 0x12A // Choose a flag if you want to disable new BGM notifications ingame 
+MAX_LINE_WIDTH:
+WORD 144 // 152 will cause a little text to be outside the right side of the box (this is measured in pixels. GBA has a max of 160px in width)
+
+// #define NotificationEntry(stringLabel, textID, flagID) "POIN stringLabel; SHORT textID flagID" 
+#define NotificationEntry(stringLabel, flagID, colour) "POIN stringLabel; SHORT 0 flagID; BYTE colour colour colour colour" 
+#define NotificationEntry(stringLabel, flagID, colour1, colour2) "POIN stringLabel; SHORT 0 flagID; BYTE colour1 colour2 colour2 colour2" 
+#define NotificationEntry(stringLabel, flagID) "POIN stringLabel; SHORT 0 flagID; BYTE 0 0 0 0" 
+#define NotificationEntryTextID(textID, flagID, colour) "POIN 0; SHORT textID flagID; BYTE colour colour colour colour" 
+#define NotificationEntryTextID(textID, flagID, colour1, colour2) "POIN 0; SHORT textID flagID; BYTE colour1 colour2 colour2 colour2" 
+#define NotificationEntryTextID(textID, flagID) "POIN 0; SHORT textID flagID; BYTE 0 0 0 0" 
+
+#define TEXT_COLOR_SYSTEM_WHITE 0
+#define TEXT_COLOR_SYSTEM_GRAY  1
+#define TEXT_COLOR_SYSTEM_BLUE  2
+#define TEXT_COLOR_SYSTEM_GOLD  3
+#define TEXT_COLOR_SYSTEM_GREEN 4
+#define TEXT_COLOR_SYSTEM_BLACK 5
+
+ALIGN 4 
+gNotificationsData:
+// NotificationEntryTextID(0x505, 1) // textID "Sword", flagID 
+// NotificationEntryTextID(0x3D, 1) // textID, flagID 
+NotificationEntry(text0, 1, TEXT_COLOR_SYSTEM_GOLD, TEXT_COLOR_SYSTEM_WHITE) // text label, flagID 
+NotificationEntry(text1, 0xA, TEXT_COLOR_SYSTEM_GOLD, TEXT_COLOR_SYSTEM_GREEN) 
+// NotificationEntry(text2, 0x65) 
+
+// NotificationEntry(text3, 0) 
+// NotificationEntry(text4, 0) 
+WORD 0 0 // Terminator 
+
+// don't exceed 6 lines 
+text0: 
+String("Achievement Completed:"); BYTE 1
+String("Scuffed."); BYTE 0
+
+text1: 
+String("New Game+ Unlock:"); BYTE 1
+String("Silver Sword."); BYTE 0 
+
+/*
+// text0: 
+String("Because I could not stop for Death- \He kindly stopped for me- \The Carriage held but just Ourselves- \And Immortality."); BYTE 0 
+
+text3: 
+String("We slowly drove - He knew no haste");
+And I had put away");
+My labor and my leisure too,");
+For His Civility -")
+
+text1: 
+String("Critical security updates are required."); BYTE 0 
+text2: 
+String("Achievement unlocked: Pacifist."); BYTE 0 
+text0: 
+String("A new update for CandyCrushSaga is available."); BYTE 0 
+text4: 
+String("NG+ feature unlocked: Silver Sword."); BYTE 0 
+text5: 
+String("Critical security updates are required."); BYTE 0 
+
+*/
+
+#ifndef callHackNew
+	#define callHackNew(offset) "BYTE $01 $4B $9E $46 $00 $F8 $01 $E0; POIN (offset|0x1)"
+    #define jumpToHack(offset) "BYTE 0x00 0x4B 0x18 0x47; POIN (offset|0x1); PROTECT CURRENTOFFSET-8 CURRENTOFFSET-1"
+#endif 
+
+PUSH 
+ORG 0x83BE0 
+callHackNew(HookSetLocalFlag_NotificationWindow) 
+ORG 0x83CAC
+callHackNew(HookSetGlobalFlag_NotificationWindow) 
+POP
