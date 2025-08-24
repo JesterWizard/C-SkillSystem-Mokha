@@ -185,3 +185,7 @@ ALIGN 4
 #ifdef CONFIG_VESLY_CREDITS_SEQUENCE
     #include "Misc/VeslyCredits/Credits_Installer.event"
 #endif
+
+#ifdef CONFIG_FORGING
+    #include "Misc/Forging/Forging_Installer.event"
+#endif

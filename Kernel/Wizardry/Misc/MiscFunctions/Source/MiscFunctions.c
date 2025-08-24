@@ -12,9 +12,10 @@
 #include "constants/texts.h"
 #include "action-expa.h"
 #include "jester_headers/event-call.h"
+#include "jester_headers/custom-structs.h"
 #include "jester_headers/custom-arrays.h"
+#include "jester_headers/Forging.h"
 #include "player_interface.h"
-
 
 typedef struct {
     /* 00 */ struct Font font;
@@ -24,6 +25,14 @@ extern const int sExpaConvoyItemAmount;
 
 extern const u16 * Events_WM_Beginning[];
 extern const u16 * Events_WM_ChapterIntro[];
+
+#if defined(SID_SummonPlus) && (COMMON_SKILL_VALID(SID_SummonPlus))
+   FORCE_DECLARE static const u8 classIndexes_SP[6] = {CLASS_TARVOS, CLASS_BAEL, CLASS_GARGOYLE, CLASS_GORGONEGG, CLASS_MOGALL, CLASS_MAUTHEDOOG};
+   FORCE_DECLARE static const u8 classPromotedIndexes_SP[6] = {CLASS_MAELDUIN, CLASS_ELDER_BAEL, CLASS_DEATHGOYLE, CLASS_GORGON, CLASS_ARCH_MOGALL, CLASS_GWYLLGI};
+
+   FORCE_DECLARE static const u8 classWeapons_SP[6] = {ITEM_AXE_IRON, ITEM_MONSTER_POISON_CLAW, ITEM_LANCE_JAVELIN, ITEM_MONSTER_DEMON_SURGE, ITEM_MONSTER_EVIL_EYE, ITEM_MONSTER_FIRE_FANG};
+   FORCE_DECLARE static const u8 classPromotedWeapons_SP[6] = {ITEM_AXE_BRAVE, ITEM_MONSTER_LETHAL_TALON, ITEM_LANCE_SPEAR, ITEM_MONSTER_SHADOW_SHOT, ITEM_MONSTER_CRIMSON_EYE, ITEM_MONSTER_HELL_FANG};
+#endif
 
 //! FE8U = 0x08098620
 LYN_REPLACE_CHECK(PrepItemScreen_SetupGfx);
@@ -1259,4 +1268,491 @@ const struct ClassData* GetClassData(int classId) {
         return NULL;
 
     return gClassData_NEW + (classId - 1);
+}
+
+LYN_REPLACE_CHECK(RefreshUnitStealInventoryInfoWindow);
+void RefreshUnitStealInventoryInfoWindow(struct Unit *unit)
+{
+    int i;
+    int itemCount;
+    int xPos;
+    struct UnitInfoWindowProc *proc;
+
+    itemCount = GetUnitItemCount(unit);
+
+    xPos = GetUnitInfoWindowX(unit, 0xd);
+
+    proc = UnitInfoWindow_DrawBase(0, unit, xPos, 0, 0xd, itemCount);
+
+    bool stealPlus = false;
+
+#if defined(SID_StealPlus) && (COMMON_SKILL_VALID(SID_StealPlus))
+    if (SkillTester(gActiveUnit, SID_StealPlus))
+        stealPlus = true;
+#endif
+
+    for (i = 0; i < itemCount; i++)
+    {
+        int yPos = 0 + i * 2 + 3;
+
+        int item = unit->items[i];
+        s8 stealable = IsItemStealable(item);
+
+        // Skill holder cannot steal a unit's equipped weapon
+        if (GetUnitEquippedWeaponSlot(GetUnit(gActionData.targetIndex)) == i && stealPlus)
+            stealable = false;
+
+        ClearText(proc->lines + i);
+
+        Text_SetColor(proc->lines + i, stealable ? 0 : 1);
+        Text_DrawString(proc->lines + i, GetItemName(item));
+
+        PutText(proc->lines + i, gBG0TilemapBuffer + TILEMAP_INDEX(xPos + 3, yPos));
+
+        PutNumberOrBlank(gBG0TilemapBuffer + TILEMAP_INDEX(xPos + 11, yPos), stealable ? 2 : 1, GetItemUses(item));
+
+#ifdef CONFIG_FORGING
+		struct ForgeLimits limits = gForgeLimits[GetItemIndex(item)];
+        
+        if (CanItemBeForged(item)) {
+            PutSpecialChar(gBG0TilemapBuffer + TILEMAP_INDEX(xPos + 8, yPos), stealable ? TEXT_COLOR_SYSTEM_GOLD : TEXT_COLOR_SYSTEM_GRAY, TEXT_SPECIAL_PLUS);
+            PutNumberOrBlank(gBG0TilemapBuffer + TILEMAP_INDEX(xPos + 9, yPos), stealable ? TEXT_COLOR_SYSTEM_GOLD : TEXT_COLOR_SYSTEM_GRAY, GetItemForgeCount(item));
+            PutNumberOrBlank(gBG0TilemapBuffer + TILEMAP_INDEX(xPos + 11, yPos), stealable ? TEXT_COLOR_SYSTEM_BLUE : TEXT_COLOR_SYSTEM_GRAY, GetForgedItemDurability(item));
+        } else if (limits.maxCount == 0) {
+            PutNumberOrBlank(gBG0TilemapBuffer + TILEMAP_INDEX(xPos + 11, yPos), stealable ? TEXT_COLOR_SYSTEM_BLUE : TEXT_COLOR_SYSTEM_GRAY, GetItemUses(item));
+        }
+#endif
+
+        DrawIcon(gBG0TilemapBuffer + TILEMAP_INDEX(xPos + 1, yPos), GetItemIconId(item), 0x4000);
+    }
+
+    return;
+}
+
+//! FE8U = 0x0809D300 (DisplayConvoyItemStrings?)
+LYN_REPLACE_CHECK(sub_809D300);
+void sub_809D300(struct Text * textBase, u16 * tm, int yLines, struct Unit * unit)
+{
+    int i;
+
+    TileMap_FillRect(tm, 12, 31, 0);
+
+    if (gUnknown_02012F56 == 0) {
+        ClearText(textBase);
+        Text_InsertDrawString(textBase, 0, 1, GetStringFromIndex(0x5a8)); // TODO: msgid "Nothing[.]"
+        PutText(textBase, tm + 3);
+        return;
+    }
+
+    for (i = yLines; (i < yLines + 7) && (i < gUnknown_02012F56); i++) {
+        struct Text* th = textBase + (i & 7);
+        int item = gPrepScreenItemList[i].item;
+        int unusable = !IsItemDisplayUsable(unit, item);
+
+        ClearText(th);
+
+        Text_InsertDrawString(
+            th,
+            0,
+            unusable,
+            GetItemName(item)
+        );
+
+        DrawIcon(tm + TILEMAP_INDEX(1, i*2 & 0x1f), GetItemIconId(item), 0x4000);
+
+        PutText(th, tm + TILEMAP_INDEX(3, i*2 & 0x1f));
+
+#ifndef CONFIG_INFINITE_DURABILITY
+        PutNumberOrBlank(tm + TILEMAP_INDEX(12, i*2 & 0x1f), !unusable ? 2 : 1, GetItemUses(item));
+#endif
+
+#ifdef CONFIG_FORGING
+		struct ForgeLimits limits = gForgeLimits[GetItemIndex(item)];
+        if (CanItemBeForged(item)) {
+            PutSpecialChar(tm + TILEMAP_INDEX(8, i * 2 & 0x1f),
+                            !unusable ? TEXT_COLOR_SYSTEM_GOLD
+                                    : TEXT_COLOR_SYSTEM_GRAY,
+                            TEXT_SPECIAL_PLUS);
+            PutNumberOrBlank(tm + TILEMAP_INDEX(9, i * 2 & 0x1f),
+                            !unusable ? TEXT_COLOR_SYSTEM_GOLD
+                                        : TEXT_COLOR_SYSTEM_GRAY,
+                            GetItemForgeCount(item));
+            PutNumberOrBlank(tm + TILEMAP_INDEX(12, i * 2 & 0x1f), !unusable ? 2 : 1,
+                            GetForgedItemDurability(item));
+        } else if (limits.maxCount == 0) {
+            PutNumberOrBlank(tm + TILEMAP_INDEX(12, i * 2 & 0x1f), !unusable ? 2 : 1,
+                            GetItemUses(item));
+        }
+#endif
+    }
+
+    return;
+}
+
+//! FE8U = 0x0809D47C
+LYN_REPLACE_CHECK(sub_809D47C);
+void sub_809D47C(struct Text * textBase, u16 * tm, int yLines, struct Unit * unit)
+{
+    if (gUnknown_02012F56 > yLines) {
+        int y = (yLines * 2) & 0x1f;
+        struct Text* th = textBase + (yLines & 7);
+        int item = gPrepScreenItemList[yLines].item;
+        int unusable = !IsItemDisplayUsable(unit, item);
+
+        int offset = TILEMAP_INDEX(0, y);
+        TileMap_FillRect(tm + offset, 12, 1, 0);
+
+        ClearText(th);
+        Text_InsertDrawString(th, 0, unusable, GetItemName(item));
+        DrawIcon(tm + offset + 1, GetItemIconId(item), 0x4000);
+        PutText(th, tm + offset + 3);
+
+#ifndef CONFIG_INFINITE_DURABILITY
+        PutNumberOrBlank(tm + offset + 12, !unusable ? TEXT_COLOR_SYSTEM_BLUE : TEXT_COLOR_SYSTEM_GRAY,  GetItemUses(item));
+#endif
+
+#ifdef CONFIG_FORGING
+		struct ForgeLimits limits = gForgeLimits[GetItemIndex(item)];
+        if (CanItemBeForged(item)) {
+            PutSpecialChar(tm + offset + 8,
+                            !unusable ? TEXT_COLOR_SYSTEM_GOLD
+                                    : TEXT_COLOR_SYSTEM_GRAY,
+                            TEXT_SPECIAL_PLUS);
+            PutNumberOrBlank(tm + offset + 9,
+                            !unusable ? TEXT_COLOR_SYSTEM_GOLD
+                                        : TEXT_COLOR_SYSTEM_GRAY,
+                            GetItemForgeCount(item));
+            PutNumberOrBlank(tm + offset + 12, !unusable ? TEXT_COLOR_SYSTEM_BLUE : TEXT_COLOR_SYSTEM_GRAY,
+                            GetForgedItemDurability(item));
+        } else if (limits.maxCount == 0) {
+            PutNumberOrBlank(tm + offset + 12, !unusable ? TEXT_COLOR_SYSTEM_BLUE : TEXT_COLOR_SYSTEM_GRAY, GetItemUses(item));
+        }
+#endif
+    }
+}
+
+//! FE8U = 0x08099F7C
+LYN_REPLACE_CHECK(sub_8099F7C);
+void sub_8099F7C(struct Text* th, u16 * tm, struct Unit* unit, u16 flags) {
+    int itemCount;
+    int i;
+
+    TileMap_FillRect(tm, 12, 20, 0);
+
+    if ((flags & 2) != 0) {
+        ResetIconGraphics();
+    }
+
+    if (!unit) {
+        return;
+    }
+
+    itemCount = GetUnitItemCount(unit);
+
+    for (i = 0; i < itemCount; th++, i++) {
+        u16 item = unit->items[i];
+
+        int isUnusable = ((flags & 4) != 0)
+            ? !CanUnitUseItemPrepScreen(unit, item)
+            : !IsItemDisplayUsable(unit, item);
+
+        if ((flags & 1) == 0) {
+            ClearText(th);
+            Text_SetColor(th, isUnusable);
+            Text_SetCursor(th, 0);
+            Text_DrawString(th, GetItemName(item));
+        }
+
+        DrawIcon(tm + i * 0x40, GetItemIconId(item), 0x4000);
+
+        PutText(th, tm + 2 + i * 0x40);
+
+#ifdef CONFIG_FORGING
+        struct ForgeLimits limits = gForgeLimits[GetItemIndex(item)];
+        if (CanItemBeForged(item)) {
+            PutSpecialChar(tm + 8 + i * 0x40,
+                            !isUnusable ? TEXT_COLOR_SYSTEM_GOLD
+                                        : TEXT_COLOR_SYSTEM_GRAY,
+                            TEXT_SPECIAL_PLUS);
+            PutNumberOrBlank(tm + 9 + i * 0x40,
+                            !isUnusable ? TEXT_COLOR_SYSTEM_GOLD
+                                        : TEXT_COLOR_SYSTEM_GRAY,
+                            GetItemForgeCount(item));
+            PutNumberOrBlank(tm + 11 + i * 0x40,
+                            !isUnusable ? TEXT_COLOR_SYSTEM_BLUE
+                                        : TEXT_COLOR_SYSTEM_GRAY,
+                            GetForgedItemDurability(item));
+        } else if (limits.maxCount == 0) {
+            PutNumberOrBlank(tm + 11 + i * 0x40,
+                            !isUnusable ? TEXT_COLOR_SYSTEM_BLUE
+                                        : TEXT_COLOR_SYSTEM_GRAY,
+                            GetItemUses(item));
+        }
+#endif
+
+#ifndef CONFIG_INFINITE_DURABILITY
+        PutNumberOrBlank(tm + 11 + i * 0x40, !isUnusable ? TEXT_COLOR_SYSTEM_BLUE : TEXT_COLOR_SYSTEM_GRAY, GetItemUses(item));
+#endif
+    }
+
+    return;
+}
+
+//! FE8U = 0x0809B74C
+LYN_REPLACE_CHECK(DrawPrepScreenItems);
+void DrawPrepScreenItems(u16 * tm, struct Text* th, struct Unit* unit, u8 checkPrepUsability) {
+    s8 isUsable;
+    int i;
+    int itemCount;
+
+    TileMap_FillRect(tm, 11, 9, 0);
+
+    itemCount = GetUnitItemCount(unit);
+
+    for (i = 0; i < itemCount; i++) {
+        int item = unit->items[i];
+
+        if (checkPrepUsability != 0) {
+            isUsable = CanUnitUseItemPrepScreen(unit, item);
+        } else {
+            isUsable = IsItemDisplayUsable(unit, item);
+        }
+
+        ClearText(th);
+        PutDrawText(
+            th,
+            tm + i * 0x40 + 2,
+            !isUsable ? TEXT_COLOR_SYSTEM_GRAY : TEXT_COLOR_SYSTEM_WHITE,
+            0,
+            0,
+            GetItemName(item)
+        );
+
+#ifndef CONFIG_INFINITE_DURABILITY
+        PutNumberOrBlank(tm + i * 0x40 + 0xB, isUsable ? TEXT_COLOR_SYSTEM_BLUE : TEXT_COLOR_SYSTEM_GRAY, GetItemUses(item));
+#endif
+
+#ifdef CONFIG_FORGING
+		struct ForgeLimits limits = gForgeLimits[GetItemIndex(item)];
+        if (CanItemBeForged(item)) {
+            PutSpecialChar(tm + i * 0x40 + 8,
+                            isUsable ? TEXT_COLOR_SYSTEM_GOLD : TEXT_COLOR_SYSTEM_GRAY,
+                            TEXT_SPECIAL_PLUS);
+            PutNumberOrBlank(tm + i * 0x40 + 9,
+                            isUsable ? TEXT_COLOR_SYSTEM_GOLD
+                                        : TEXT_COLOR_SYSTEM_GRAY,
+                            GetItemForgeCount(item));
+            PutNumberOrBlank(tm + i * 0x40 + 0xB,
+                            isUsable ? TEXT_COLOR_SYSTEM_BLUE
+                                        : TEXT_COLOR_SYSTEM_GRAY,
+                            GetForgedItemDurability(item));
+            } else if (limits.maxCount == 0) {
+            PutNumberOrBlank(tm + i * 0x40 + 0xB,
+                            isUsable ? TEXT_COLOR_SYSTEM_BLUE
+                                        : TEXT_COLOR_SYSTEM_GRAY,
+                            GetItemUses(item));
+        }
+#endif
+
+        DrawIcon(tm + i * 0x40, GetItemIconId(item), 0x4000);
+
+        th++;
+    }
+
+    return;
+}
+
+LYN_REPLACE_CHECK(ProcessMenuDpadInput);
+void ProcessMenuDpadInput(struct MenuProc* proc)
+{
+    proc->itemPrevious = proc->itemCurrent;
+
+    // Handle Up keyin
+
+    if (gKeyStatusPtr->repeatedKeys & DPAD_UP)
+    {
+        if (proc->itemCurrent == 0)
+        {
+            if (gKeyStatusPtr->repeatedKeys != gKeyStatusPtr->newKeys)
+                return;
+
+            proc->itemCurrent = proc->itemCount;
+        }
+
+        proc->itemCurrent--;
+
+// Reset the last item forge count if we move to another item
+#ifdef CONFIG_FORGING
+        if (gActionData.unk08 == 10000) // Arbitrary value we set to indicate the forge menu is active
+        {
+            int item = gActiveUnit->items[proc->itemPrevious];
+            gEventSlots[EVT_SLOT_7] = GetItemForgeCost(gActiveUnit->items[proc->itemCurrent]);
+            SetItemForgeCount(item, gEventSlots[EVT_SLOT_8]);
+            // Set the initial count of the latest item
+            gEventSlots[EVT_SLOT_8] = GetItemForgeCount(gActiveUnit->items[proc->itemCurrent]); 
+        }
+#endif
+
+/* A little something to change the monster image displayed as the user scrolls the summon select screen */
+#if defined(SID_SummonPlus) && (COMMON_SKILL_VALID(SID_SummonPlus))
+        if (gActionData.unk08 == SID_SummonPlus)
+        {
+            if (UNIT_CATTRIBUTES(gActiveUnit) & CA_PROMOTED)
+                PutFace80x72_Core(gBG0TilemapBuffer + 0x63 + 0x40, GetClassData(classPromotedIndexes_SP[proc->itemCurrent])->defaultPortraitId, 0x200, 5);
+            else
+                PutFace80x72_Core(gBG0TilemapBuffer + 0x63 + 0x40, GetClassData(classIndexes_SP[proc->itemCurrent])->defaultPortraitId, 0x200, 5);
+        }
+#endif
+    }
+
+    // Handle down keyin
+
+    if (gKeyStatusPtr->repeatedKeys & DPAD_DOWN)
+    {
+        if (proc->itemCurrent == (proc->itemCount - 1))
+        {
+            if (gKeyStatusPtr->repeatedKeys != gKeyStatusPtr->newKeys)
+                return;
+
+            proc->itemCurrent = -1;
+        }
+
+        proc->itemCurrent++;
+
+// Reset the last item forge count if we move to another item
+#ifdef CONFIG_FORGING
+        if (gActionData.unk08 == 10000) // Arbitrary value we set to indicate the forge menu is active
+        {
+            int item = gActiveUnit->items[proc->itemPrevious];
+            gEventSlots[EVT_SLOT_7] = GetItemForgeCost(gActiveUnit->items[proc->itemCurrent]);
+            SetItemForgeCount(item, gEventSlots[EVT_SLOT_8]);
+            // Set the initial count of the latest item
+            gEventSlots[EVT_SLOT_8] = GetItemForgeCount(gActiveUnit->items[proc->itemCurrent]); 
+        }
+#endif
+
+/* A little something to change the monster image displayed as the user scrolls the summon select screen */
+#if defined(SID_SummonPlus) && (COMMON_SKILL_VALID(SID_SummonPlus))
+        if (gActionData.unk08 == SID_SummonPlus)
+        {
+            if (UNIT_CATTRIBUTES(gActiveUnit) & CA_PROMOTED)
+                PutFace80x72_Core(gBG0TilemapBuffer + 0x63 + 0x40, GetClassData(classPromotedIndexes_SP[proc->itemCurrent])->defaultPortraitId, 0x200, 5);
+            else
+                PutFace80x72_Core(gBG0TilemapBuffer + 0x63 + 0x40, GetClassData(classIndexes_SP[proc->itemCurrent])->defaultPortraitId, 0x200, 5);
+        }
+#endif
+    }
+
+#ifdef CONFIG_FORGING
+    if (gActionData.unk08 == 10000) // Arbitrary value we set to indicate the forge menu is active
+    {
+        // Handle left/right input for forge menu
+        int item = gActiveUnit->items[proc->itemCurrent];
+        struct ForgeLimits limits = gForgeLimits[GetItemIndex(item)];
+        int count = GetItemForgeCount(item);
+
+        if (gKeyStatusPtr->repeatedKeys & DPAD_LEFT)
+        {
+            // Ensure the forge count can't go below what it started at (which is stored in EVT_SLOT_8)
+            if (count > 0 && (u32)(count - 1) >= gEventSlots[EVT_SLOT_8])
+            {
+                int forgeSlot = ITEM_USES(item);
+                if (forgeSlot >= 0)
+                {
+                    // Calculate cumulative cost increase  
+                    u32 costAmount = (count + 1) * limits.baseCost;
+
+                    item = GetItemIndex(item) | (forgeSlot << 8);
+                    // Calculate cumulative cost reduction
+                    u32 refundAmount = 0;
+                    for (int i = count; i > count - 1; i--) // This loop refunds 'count * limits.baseCost'
+                        refundAmount += i * limits.baseCost;
+
+                    gActiveUnit->items[proc->itemCurrent] = DecrementForgeCount(item, 1);
+                    gPlaySt.partyGoldAmount += refundAmount;
+                    gEventSlots[EVT_SLOT_7] -= costAmount;
+
+                    struct ForgeLimits limits = gForgeLimits[GetItemIndex(item)];
+
+                    if (GetItemForgeCount(gActiveUnit->items[proc->itemCurrent]) < limits.maxCount - 1)
+                        MakeForgedItemUnbreakable(item, false);
+
+                    // Refresh the menu display
+                    if (proc->menuItems[proc->itemCurrent]->def->onSwitchIn)
+                        proc->menuItems[proc->itemCurrent]->def->onSwitchIn(proc, proc->menuItems[proc->itemCurrent]);
+                }
+            }
+        }
+
+        if (gKeyStatusPtr->repeatedKeys & DPAD_RIGHT)
+        {
+            if (count < limits.maxCount - 1 && IsItemForgeable(item))
+            {
+                int forgeSlot = ITEM_USES(item);
+                if (!forgeSlot)
+                    forgeSlot = InitFreeForgedItemSlot(item);
+                if (forgeSlot >= 0)
+                {
+                    // Calculate cumulative cost increase  
+                    u32 costAmount = (count + 2) * limits.baseCost;
+
+                    if (costAmount <= gPlaySt.partyGoldAmount)
+                    {
+                        item = GetItemIndex(item) | (forgeSlot << 8);
+                        gPlaySt.partyGoldAmount -= costAmount;
+                        gActiveUnit->items[proc->itemCurrent] = IncrementForgeCount(item, 1);
+                        gEventSlots[EVT_SLOT_7] += costAmount;
+
+                        struct ForgeLimits limits = gForgeLimits[GetItemIndex(item)];
+
+                        if (GetItemForgeCount(gActiveUnit->items[proc->itemCurrent]) == limits.maxCount - 1)
+                            MakeForgedItemUnbreakable(item, true);
+                        
+                        // Refresh the menu display
+                        if (proc->menuItems[proc->itemCurrent]->def->onSwitchIn)
+                            proc->menuItems[proc->itemCurrent]->def->onSwitchIn(proc, proc->menuItems[proc->itemCurrent]);
+                    }
+                }
+            }
+        }
+    }
+#endif
+
+    if (proc->itemPrevious != proc->itemCurrent)
+    {
+        DrawMenuItemHover(proc, proc->itemPrevious, FALSE);
+        DrawMenuItemHover(proc, proc->itemCurrent, TRUE);
+
+        PlaySoundEffect(SONG_SE_SYS_CURSOR_UD1);
+    }
+
+    // Call def's switch in/out funcs
+
+    if (HasMenuChangedItem(proc))
+    {
+        if (proc->menuItems[proc->itemPrevious]->def->onSwitchOut)
+            proc->menuItems[proc->itemPrevious]->def->onSwitchOut(proc, proc->menuItems[proc->itemPrevious]);
+
+        if (proc->menuItems[proc->itemCurrent]->def->onSwitchIn)
+            proc->menuItems[proc->itemCurrent]->def->onSwitchIn(proc, proc->menuItems[proc->itemCurrent]);
+    }
+}
+
+LYN_REPLACE_CHECK(MenuCancelSelect);
+u8 MenuCancelSelect(struct MenuProc* menu, struct MenuItemProc* item)
+{
+    
+    /*
+    ** So we reset this value here after exiting the forge menu.
+    ** This way, the left and right dPad buttons do not take effect in other menus
+    */
+    
+#ifdef CONFIG_FORGING
+    if (gActionData.unk08 == 10000)
+    {
+        gActionData.unk08 = 0;
+    }
+#endif
+
+    return MENU_ACT_SKIPCURSOR | MENU_ACT_CLEAR | MENU_ACT_END | MENU_ACT_SND6B;
 }
