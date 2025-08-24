@@ -2,6 +2,8 @@
 #include "stat-screen.h"
 #include "kernel-lib.h"
 #include "skill-system.h"
+#include "savemenu.h"
+#include "unitlistscreen.h"
 
 LYN_REPLACE_CHECK(StartStatScreenHelp);
 void StartStatScreenHelp(int pageid, struct Proc *proc)
@@ -46,7 +48,7 @@ LYN_REPLACE_CHECK(LoadHelpBoxGfx);
 void LoadHelpBoxGfx(void * vram, int palId)
 {
 // Repoint the vram used for the stat screen help box
-#ifdef CONFIG_EXTENDED_HELPBOXES
+#ifdef CONFIG_VESLY_EXTENDED_ITEM_DESCRIPTIONS
     if (vram == NULL) {
         if (Proc_Find(gProcScr_StatScreen))
             vram = (void *)0x06012000;
@@ -78,7 +80,7 @@ void LoadHelpBoxGfx(void * vram, int palId)
     InitSpriteText(&gHelpBoxSt.text[2]);
 
     /* Only provide the extra text box tiles if we're not in the save menu or chapter status screens */
-#ifdef CONFIG_EXTENDED_HELPBOXES
+#ifdef CONFIG_VESLY_EXTENDED_ITEM_DESCRIPTIONS
 
     const struct ProcCmd * procExceptionsList[9] = 
     {
@@ -105,8 +107,10 @@ void LoadHelpBoxGfx(void * vram, int palId)
         }
     }
 
+#if defined(SID_SummonPlus) && (COMMON_SKILL_VALID(SID_SummonPlus))
     if (gActionData.unk08 == SID_SummonPlus && !procFound)
         procFound = true;
+#endif
 
     if (!procFound)
     {
@@ -137,7 +141,7 @@ void HelpBoxIntroDrawTexts(struct ProcHelpBoxIntro * proc)
     Text_SetColor(&gHelpBoxSt.text[1], 6);
     Text_SetColor(&gHelpBoxSt.text[2], 6);
 
-#ifdef CONFIG_EXTENDED_HELPBOXES
+#ifdef CONFIG_VESLY_EXTENDED_ITEM_DESCRIPTIONS
     Text_SetColor(&gHelpBoxSt.text[3], 6);
     Text_SetColor(&gHelpBoxSt.text[4], 6);
 #endif
@@ -153,7 +157,7 @@ void HelpBoxIntroDrawTexts(struct ProcHelpBoxIntro * proc)
     otherProc->texts[1] = &gHelpBoxSt.text[1];
     otherProc->texts[2] = &gHelpBoxSt.text[2];
 
-#ifdef CONFIG_EXTENDED_HELPBOXES
+#ifdef CONFIG_VESLY_EXTENDED_ITEM_DESCRIPTIONS
     otherProc->texts[3] = &gHelpBoxSt.text[3];
     otherProc->texts[4] = &gHelpBoxSt.text[4];
 #endif
@@ -194,7 +198,7 @@ LYN_REPLACE_CHECK(sub_80898C4);
 void sub_80898C4(void* vram, int palId) {
 
 // Repoint the vram used for the stat screen help box
-#ifdef CONFIG_EXTENDED_HELPBOXES
+#ifdef CONFIG_VESLY_EXTENDED_ITEM_DESCRIPTIONS
     if (vram == NULL) {
         vram = (void *)0x06012000;
     }
@@ -222,7 +226,7 @@ void sub_80898C4(void* vram, int palId) {
     InitSpriteText(&gHelpBoxSt.text[0]);
     InitSpriteText(&gHelpBoxSt.text[1]);
     
-#ifdef CONFIG_EXTENDED_HELPBOXES
+#ifdef CONFIG_VESLY_EXTENDED_ITEM_DESCRIPTIONS
     InitSpriteText(&gHelpBoxSt.text[2]);
     InitSpriteText(&gHelpBoxSt.text[3]);
     InitSpriteText(&gHelpBoxSt.text[4]);

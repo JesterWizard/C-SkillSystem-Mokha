@@ -121,8 +121,8 @@ Unit can use[N]
 Summon[X]
 ## MSG_SKILL_Summon_DESC
 Summon:[N]
-Unit summon a[N]
-monter on assistance[X]
+Unit can summon a phanton[N]
+monster for assistance.[X]
 
 ## MSG_SKILL_Supply_NAME
 Supply[X]

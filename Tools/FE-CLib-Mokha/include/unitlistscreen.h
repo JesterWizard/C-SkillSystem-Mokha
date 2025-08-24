@@ -195,10 +195,10 @@ extern u8 gUnknown_0200E158[0x1000];
 extern u8 gUnknown_0200F158;
 extern EWRAM_OVERLAY(0) u32 gUnknown_0200F15C[8];
 
-// extern ??? ProcScr_UnitListScreen_Field
+extern struct ProcCmd ProcScr_UnitListScreen_Field[];
 extern struct ProcCmd ProcScr_UnitListScreen_PrepMenu[];
-// extern ??? ProcScr_UnitListScreen_SoloAnim
-// extern ??? ProcScr_UnitListScreen_WorldMap
-// extern ??? ProcScr_bmview
+extern struct ProcCmd ProcScr_UnitListScreen_SoloAnim[];
+extern struct ProcCmd ProcScr_UnitListScreen_WorldMap[];
+extern struct ProcCmd CONST_DATA ProcScr_bmview[];
 
 #endif // GUARD_UNITLISTSCREEN_H

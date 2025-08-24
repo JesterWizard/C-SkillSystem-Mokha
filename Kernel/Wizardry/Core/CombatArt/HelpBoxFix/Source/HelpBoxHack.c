@@ -290,6 +290,20 @@ void ApplyHelpBoxContentSize(struct HelpBoxProc *proc, int width, int height)
 		}
 	}
 
+// Add an extra line of height to the texbox to account for the capacity text
+#ifdef CONFIG_TELLIUS_CAPACITY_SYSTEM
+    struct SkillList * list = GetUnitSkillList(gStatScreen.unit);
+
+    for (int i = 0; i < list->amt; i++)
+    {
+        if (GetSkillDescMsg(list->sid[i]) == proc->mid)
+        {
+            height += 0x10;
+            break;
+        }
+    }
+#endif
+
 	proc->wBoxFinal = width;
 	proc->hBoxFinal = height;
 
@@ -377,7 +391,7 @@ void DisplayHelpBoxObj(int x, int y, int w, int h, int unk) {
         h = 0x10;
     }
 
-#ifdef CONFIG_EXTENDED_HELPBOXES
+#ifdef CONFIG_VESLY_EXTENDED_ITEM_DESCRIPTIONS
     /* Now we limit it to 5 lines (0x10 * 5) */
     if (h > 0x50) {
         h = 0x50;
@@ -497,7 +511,7 @@ void ClearHelpBoxText(void) {
     SpriteText_DrawBackground(&gHelpBoxSt.text[1]);
     SpriteText_DrawBackground(&gHelpBoxSt.text[2]);
 
-#ifdef CONFIG_EXTENDED_HELPBOXES
+#ifdef CONFIG_VESLY_EXTENDED_ITEM_DESCRIPTIONS
     SpriteText_DrawBackground(&gHelpBoxSt.text[3]);
     SpriteText_DrawBackground(&gHelpBoxSt.text[4]);
 #endif
@@ -549,7 +563,7 @@ void InitBoxDialogue(void * vram_dst, int pad_idx) {
     FORCE_DECLARE int iVar4;
     FORCE_DECLARE int iVar5;
 
-#ifdef CONFIG_EXTENDED_HELPBOXES
+#ifdef CONFIG_VESLY_EXTENDED_ITEM_DESCRIPTIONS
     if (vram_dst == 0) {
         vram_dst = (void *)0x06012000;
     }

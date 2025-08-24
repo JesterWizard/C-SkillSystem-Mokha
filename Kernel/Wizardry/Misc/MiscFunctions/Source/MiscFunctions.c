@@ -101,7 +101,7 @@ void PrepItemScreen_SetupGfx(struct PrepItemScreenProc * proc)
     InitText(&gPrepItemTexts[30], 7);
     InitText(&gPrepItemTexts[31], 5);
 
-#ifdef CONFIG_EXTENDED_HELPBOXES
+#ifdef CONFIG_VESLY_EXTENDED_ITEM_DESCRIPTIONS
     LoadHelpBoxGfx((void *)0x06012000, -1);    
 #else
     LoadHelpBoxGfx((void *)0x06014000, -1);
@@ -202,7 +202,7 @@ void PrepItemTrade_Init(struct PrepMenuTradeProc * proc)
     BG_SetPosition(1, 0, 0);
     BG_SetPosition(2, 0, 0);
 
-#ifdef CONFIG_EXTENDED_HELPBOXES
+#ifdef CONFIG_VESLY_EXTENDED_ITEM_DESCRIPTIONS
     LoadHelpBoxGfx((void*)0x06012000, -1);
 #else
     LoadHelpBoxGfx((void*)0x06014000, -1);
@@ -301,7 +301,7 @@ void sub_809D914(struct PrepItemSupplyProc * proc)
     BG_SetPosition(1, 0, 0);
     BG_SetPosition(2, 0, proc->yOffsetPerPage[proc->currentPage] - 0x28);
 
-#ifdef CONFIG_EXTENDED_HELPBOXES
+#ifdef CONFIG_VESLY_EXTENDED_ITEM_DESCRIPTIONS
     LoadHelpBoxGfx((void*)0x06012000, -1);
 #else
     LoadHelpBoxGfx((void*)0x06013000, -1);
@@ -352,7 +352,7 @@ void PrepItemList_InitGfx(struct PrepItemListProc * proc)
     BG_SetPosition(1, 0, 0);
     BG_SetPosition(2, 0, proc->yOffsetPerPage[proc->currentPage] - 40);
 
-#ifdef CONFIG_EXTENDED_HELPBOXES
+#ifdef CONFIG_VESLY_EXTENDED_ITEM_DESCRIPTIONS
     LoadHelpBoxGfx((void*)0x06013000, -1);
 #else
     LoadHelpBoxGfx((void*)0x06012000, -1);
@@ -470,7 +470,7 @@ void TradeMenu_InitUnitNameDisplay(struct TradeMenuProc * proc)
     int xStart;
 
     // TODO: constants
-#ifdef CONFIG_EXTENDED_HELPBOXES
+#ifdef CONFIG_VESLY_EXTENDED_ITEM_DESCRIPTIONS
     StartSysBrownBox(6, 0x5800, 0x08, 0x800, 0x400, (struct Proc *) (proc));
 #else
     StartSysBrownBox(6, 0x4800, 0x08, 0x800, 0x400, (struct Proc *) (proc));
