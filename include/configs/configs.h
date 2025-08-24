@@ -286,7 +286,6 @@
 #define CONFIG_VESLY_RECLASS
 // #define CONFIG_VESLY_UI //Conflicts graphically with RES_TERRAIN_WINDOW
 #define CONFIG_VESLY_EXTENDED_ITEM_DESCRIPTIONS
-// #define CONFIG_VESLY_CREDITS_SEQUENCE // A bit of a mess, not ready to be used
 #define CONFIG_STAT_SCREEN_ALLEGIANCE_COLORS
 // #define CONFIG_CASUAL_MODE // Doesn't seem to work right now, look into remaking in C
 #define CONFIG_RES_TERRAIN_WINDOW
@@ -357,6 +356,8 @@
 #define CONFIG_TELLIUS_CAPACITY_BASE 50
 #define CONFIG_TELLIUS_CAPACITY_PROMOTED 25
 #define CONFIG_LAGUZ_BARS
-#define CONFIG_FORGING
+// #define CONFIG_FORGING
+
+// #define CONFIG_VESLY_CREDITS_SEQUENCE // A bit of a mess, not ready to be used
 
 #endif /* CONFIG_INSTALLED */

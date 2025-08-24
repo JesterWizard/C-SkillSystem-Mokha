@@ -194,9 +194,8 @@ void InitCreditsBodyText(CreditsTextProc * proc, signed char * str, int rowID)
             {
                 break;
             }
-            iter = (void *)Text_DrawCharacterAscii_BL(&th[line],
-                                                      (void *)iter); // 160k cycles
-            // iter = Text_DrawCharacter(&th[line], iter); // 278k cycles
+            //iter = (void *)Text_DrawCharacterAscii_BL(&th[line], (void *)iter); // 160k cycles
+            iter = (void *)Text_DrawCharacter(&th[line], (char *)iter); // 278k cycles
         }
     }
     proc->strLen[rowID] = curX;

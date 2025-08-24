@@ -4,7 +4,9 @@
 #include "constants/skills.h"
 #include "constants/texts.h"
 #include "bmitem.h"
-#include "jester_headers/Forging.h"
+#ifdef CONFIG_FORGING
+    #include "jester_headers/Forging.h"
+#endif
 #include "bwl.h"
 
 #ifdef CONFIG_FORGING
