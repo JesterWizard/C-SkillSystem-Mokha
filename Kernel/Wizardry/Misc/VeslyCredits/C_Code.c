@@ -1,5 +1,7 @@
 #include "C_Code.h"
 #include "common-chax.h"
+#include "kernel-lib.h"
+
 // //JOQUXY
 extern ProcPtr StartClassNameIntroLetter(ProcPtr parent, u8 index);
 #define brk asm("mov r11, r11");
@@ -282,12 +284,14 @@ int TryAdvanceID(CreditsTextProc * proc);
 int GetCurrentSlot(CreditsTextProc * proc) // after TryAdvanceID runs
 {
     int lineIndex = proc->firstLineIndex + proc->slot;
-    return lineIndex % LinesBuffered;
+    return k_umod(lineIndex, LinesBuffered);
+    //return lineIndex % LinesBuffered;
 }
 int GetSlotAt(CreditsTextProc * proc, int i)
 {
     int lineIndex = proc->firstLineIndex + i;
-    return lineIndex % LinesBuffered;
+    return k_umod(lineIndex, LinesBuffered);
+    //return lineIndex % LinesBuffered;
 }
 
 int ShouldAdvanceFrame(CreditsTextProc * proc);
@@ -349,11 +353,13 @@ void CreditsTextLoop(CreditsTextProc * proc)
 
     for (int line = proc->firstLineIndex; line < proc->firstLineIndex + LinesBuffered; ++line)
     {
-        int slot = proc->slotIndex[line % LinesBuffered];
+        int slot = proc->slotIndex[k_umod(line, LinesBuffered)];
+        //int slot = proc->slotIndex[line % LinesBuffered];
         if (slot < 0)
             continue;
         int isBody = proc->textTypeBitfield & (1 << slot);
-        int nextLine = (line + 1) % LinesBuffered;
+        int nextLine = k_umod((line + 1), LinesBuffered);
+        //int nextLine = (line + 1) % LinesBuffered;
         int nextSlot = proc->slotIndex[nextLine];
         // int nextLineIsTop = ((line + 1) % LinesBuffered) == 0;
         int nextLineIsTop = nextSlot == 0;
@@ -449,7 +455,8 @@ int GetFreeRow(CreditsTextProc * proc)
 
 void FreeRow(CreditsTextProc * proc, int i)
 {
-    i %= LinesBuffered;
+    //i %= LinesBuffered;
+    i = k_umod(i, LinesBuffered);
     proc->slotIndex[i] = (-1);
     proc->usedRows &= ~(1 << i); // unset the bit, as it is now free.
     CpuFastFill(0, (void *)(0x800 * i + OBJ_VRAM0), 0x800);
@@ -458,11 +465,13 @@ int GetCurrentSlot(CreditsTextProc * proc);
 
 void SetIndent(CreditsTextProc * proc, int slot)
 {
-    proc->indentBitfield |= (1 << (slot % LinesBuffered));
+    proc->indentBitfield |= (1 << k_umod(slot, LinesBuffered));
+    //proc->indentBitfield |= (1 << (slot % LinesBuffered));
 }
 void UnsetIndent(CreditsTextProc * proc, int slot)
 {
-    proc->indentBitfield &= ~(1 << (slot % LinesBuffered));
+    proc->indentBitfield &= ~(1 << k_umod(slot, LinesBuffered));
+    //proc->indentBitfield &= ~(1 << (slot % LinesBuffered));
 }
 
 signed char * GetStringAtLine(signed char * str, int targetLine, CreditsTextProc * proc, int slot)
@@ -978,7 +987,8 @@ int TryAdvanceID(CreditsTextProc * proc)
     {
         int lineIndex = proc->firstLineIndex + i;
         int spriteY = proc->y + (lineIndex * 16);
-        int slot = lineIndex % LinesBuffered;
+        int slot = k_umod(lineIndex, LinesBuffered);
+        //int slot = lineIndex % LinesBuffered;
         if (spriteY < SPRITE_OFFSCREEN_Y && proc->slotIndex[slot] >= 0)
         {
             FreeRow(proc, slot);

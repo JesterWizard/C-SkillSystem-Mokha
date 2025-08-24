@@ -9,7 +9,7 @@ WORD 1
 DefaultSpeed:
 WORD 3 // 4 
 Width_BigChar: 
-WORD 8 // 8 is overlapping, 12 has no overlap, more than 12 has some space between characters 
+WORD 14 // 8 is overlapping, 12 has no overlap, more than 12 has some space between characters 
 DarkenAmount: // default 
 // WORD 0xC0 // Backgrounds are 25% darker during credits 
 // WORD 0x80 // 50% darker 
@@ -18,20 +18,16 @@ WORD 0x60 // 62.5% darker
 SkipWithStartEnabled:
 WORD 0 // 1 for enabled 
 
-
 #define LyonStoneCG 2 
 #define DemonKingCG 5
-
 
 #define PondBG 0x21 
 #define BurningBG 0x2B 
 #define BlackBG 0x35 
 #define RandomBG 0x37 
  
-
 #define BG_Type 1
 #define CG_Type 2 
-
 
 #define CreditsEntryBG(header, body, bgID, darkenAmount) "POIN header body; BYTE bgID BG_Type darkenAmount 0" 
 #define CreditsEntryBG(header, body, bgID) "POIN header body; BYTE bgID BG_Type 0 0" 
@@ -43,31 +39,24 @@ WORD 0 // 1 for enabled
 ALIGN 4 
 gCreditsData: 
 CreditsEntryCG(header1, body1, LyonStoneCG) 
+CreditsEntry(emptyString, emptyStringLong) 
 CreditsEntryBG(header2, body2, RandomBG) 
+CreditsEntry(emptyString, emptyStringLong) 
 CreditsEntryCG(header3, body3, DemonKingCG, 0x80) 
+CreditsEntry(emptyString, emptyStringLong)
 CreditsEntryBG(header4, body4, BurningBG) 
 CreditsEntry(emptyString, emptyStringLong) 
 CreditsEntryBG(theEnd, emptyString, BlackBG) 
 CreditsEntry(emptyString, emptyStringLong) 
 CreditsEnd
 
-// #define NewLine "BYTE 0x1" 
-// #define EndText "BYTE 0x0" 
-
-// #ifndef txt
-// #inctbl "fe8TR" "fe8_tr.tbl"
-//     #define String(string2) STRING string2 "fe8TR"; BYTE 0 0; 
-// #endif 
-
 theEnd: 
-String("  T h e   E n d") 
-
-// with notepad++, replace (ctrl+h) your line endings with  BYTE 1 
+String("    The End"); BYTE 0 // It is centered in game as it is now
 
 header1: 
 String("Patches"); BYTE 0 
 body1: 
-String(" Casual Mode: Circles, 7743"); BYTE 1
+String("Casual Mode: Circles, 7743"); BYTE 1
 String("Danger Zone: Circles"); BYTE 1
 String("UNL_Creditsock Mode Select: Doesnt"); BYTE 1
 String("Tutorial Disabler: 7743"); BYTE 1
@@ -81,7 +70,7 @@ String("Skip Intro: Gryz BYTE 1"); BYTE 0
 header2: 
 String("Animations"); BYTE 0
 body2: 
-String(" Alm_T1 animation by Nuramon, HyperGammaSpaces"); BYTE 1
+String("Alm_T1 animation by Nuramon, HyperGammaSpaces"); BYTE 1
 String("Alm_T2 animation by Nuramon"); BYTE 1
 String("Ike_Lord animation by xxx_Drama"); BYTE 1
 String("Ike_Ranger animation by Mikey, Khrene, Khardros"); BYTE 1
@@ -96,7 +85,7 @@ String("Dragoon animation by MercLord, NYZGamer, Maiser6"); BYTE 0
 header3: 
 String("Class Sprites"); BYTE 0
 body3: 
-String(" Alm sprites by Norikins"); BYTE 1
+String("Alm sprites by Norikins"); BYTE 1
 String("AngelSMS by Unknown"); BYTE 1
 String("ArcanistSMS by Norikins"); BYTE 1
 String("BaronSMS by Topazlight, Nuramon, Its_Just_Jay"); BYTE 1
@@ -129,42 +118,5 @@ String("  "); BYTE 1
 String("  "); BYTE 1
 String("  "); BYTE 1
 String("  "); BYTE 1
+String("  "); BYTE 1
 String("  "); BYTE 0
-
-
-// #define TESTING_CREDITS 
-#define SetBg(background) "SVAL 0x2 background; CALL $9EE2E8"
-
-PUSH 
-
-ORG $B65F8 
-SHORT $E002 // b 0x80b6600 
-SHORT 0 0 0 // so FEBuilder will recognize the CG patch 
-WORD $46C04778 $E59FC000 $E12FFF1C
-POIN DisplayCGfx
-
-#ifdef TESTING_CREDITS
-ORG $8B0917
-// BYTE 1 // fade to black //map 
-
-ORG $9EEBFC // Prologue start event 
-FADI 4 // slow fade to black (optional)
-ASMC StartCreditsProc_ASMC
-
-// direct to background 
-// SetBg(0)
-// Text(0x9df) 
-// FADI 4 
-
-// direct to title 
-MNTS 0
-
-// direct to map 
-// CLEAN 
-// FADU 4 
-NoFade 
-ENDA 
-#endif 
-
-
-POP 

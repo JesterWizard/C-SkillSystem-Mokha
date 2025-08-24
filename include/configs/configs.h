@@ -358,6 +358,6 @@
 #define CONFIG_LAGUZ_BARS
 // #define CONFIG_FORGING
 
-// #define CONFIG_VESLY_CREDITS_SEQUENCE // A bit of a mess, not ready to be used
+#define CONFIG_VESLY_CREDITS_SEQUENCE // A bit of a mess, not ready to be used
 
 #endif /* CONFIG_INSTALLED */
