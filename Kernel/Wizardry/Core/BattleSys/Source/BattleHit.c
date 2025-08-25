@@ -302,8 +302,6 @@ bool BattleGenerateHit(struct BattleUnit *attacker, struct BattleUnit *defender)
 				unit_tar->state |= US_DROP_ITEM;
 			}
 #endif
-			gBattleHitIterator->info |= BATTLE_HIT_INFO_KILLS_TARGET;
-		}
 
 #ifdef CONFIG_FORGING
     #ifdef CONFIG_FE4_CRIT_BONUS_ON_KILL
@@ -315,6 +313,9 @@ bool BattleGenerateHit(struct BattleUnit *attacker, struct BattleUnit *defender)
             }
     #endif
 #endif
+
+			gBattleHitIterator->info |= BATTLE_HIT_INFO_KILLS_TARGET;
+		}
 
 		gBattleHitIterator++;
 		return true;

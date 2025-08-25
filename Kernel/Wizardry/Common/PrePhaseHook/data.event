@@ -10,7 +10,9 @@ gPrePhaseFuncs:
     POIN PrePhsae_ClearMiscUES
     POIN PrePhase_UpdateLengendSkillStatus
     POIN PrePhase_UnitStatusEffectSkills
+#ifdef CONFIG_LAGUZ_BARS
     POIN PrePhase_LaguzBars
+#endif
 
     POIN PrePhaseFunc_AversaNight
     POIN PrePhaseFunc_HoneFortify
