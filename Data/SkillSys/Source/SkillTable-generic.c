@@ -4,7 +4,7 @@
 
 const struct SkillPreloadPConf gSkillPreloadPData[0x100] = {
 	[CHARACTER_EIRIKA] = {{
-		[0] = SID_BloodMagic
+		[0] = SID_HalfMP
 	}},
 
 	[CHARACTER_EPHRAIM] = {{

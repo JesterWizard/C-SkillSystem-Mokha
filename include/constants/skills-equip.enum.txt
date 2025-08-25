@@ -828,6 +828,7 @@ SID_Leader
 SID_Latona
 SID_GrandMagician
 SID_BloodMagic
+SID_HalfMP
 
 //////// COMBAT ARTS
 // SID_COMBAT_Grounder

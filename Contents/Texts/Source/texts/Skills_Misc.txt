@@ -469,3 +469,10 @@ Blood Magic[X]
 Blood Magic:[N]
 Unit can use Gaiden magic[N]
 by paying HP.[X]
+
+## MSG_SKILL_HalfMP_NAME
+Half MP[X]
+## MSG_SKILL_HalfMP_DESC
+Half MP:[N]
+Gaiden Magic costs half[N]
+as much to use.[X]
