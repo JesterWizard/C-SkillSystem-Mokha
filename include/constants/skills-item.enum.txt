@@ -829,6 +829,7 @@
 // SID_GrandMagician
 // SID_BloodMagic
 // SID_HalfMP
+// SID_TurboMP
 
 //////// COMBAT ARTS
 // SID_COMBAT_Grounder

@@ -1550,6 +1550,12 @@ L_FairyTaleFolk_done:
 			break;
 #endif
 
+#if (defined(SID_TurboMP) && (COMMON_SKILL_VALID(SID_TurboMP)))
+		case SID_TurboMP:
+			attacker->battleAttack += ((attacker->battleAttack / 3) * 2);
+			break;
+#endif
+
 		case MAX_SKILL_NUM:
 			Fatal("ENOSUPP");
 			break;

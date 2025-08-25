@@ -831,3 +831,4 @@
 #define MSG_SKILL_Osmose_PRICE 1000
 #define MSG_SKILL_BloodMagic_PRICE 1000
 #define MSG_SKILL_HalfMP_PRICE 1000
+#define MSG_SKILL_TurboMP_PRICE 1000

@@ -831,3 +831,4 @@
 #define MSG_SKILL_Osmose_CAPACITY 1
 #define MSG_SKILL_BloodMagic_CAPACITY 1
 #define MSG_SKILL_HalfMP_CAPACITY 1
+#define MSG_SKILL_TurboMP_CAPACITY 1
