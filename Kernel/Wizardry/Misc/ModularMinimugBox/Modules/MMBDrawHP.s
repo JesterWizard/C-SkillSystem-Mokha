@@ -99,7 +99,7 @@ SkipBottom:
 	mov		lr, r1
 	bllr
 
-	cmp		r0, #254 // JESTER - Originally 99, but expanded as I have made until HP go up to 254
+	cmp		r0, #254 // JESTER - Originally 99, but expanded as I have made HP go up to 254
 	ble		SkipDashedCurrentHP
 
 	@ HP too high, display --
@@ -124,7 +124,7 @@ SkipDashedCurrentHP:
 	mov		lr, r1
 	bllr
 
-	cmp		r0, #254 // JESTER - Originally 99, but expanded as I have made until HP go up to 254
+	cmp		r0, #254 // JESTER - Originally 99, but expanded as I have made HP go up to 254
 	ble		SkipDashedMaxHP
 
 	@ HP too high, display --

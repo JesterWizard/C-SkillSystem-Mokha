@@ -544,15 +544,30 @@ ALIGN 4
 		#endif // MMBNumberDrawing
 	#endif // MMBHPStatus
 
-	// #ifdef MMBMPStatus
-	// 	#include "Modules/MMBDrawMPStatus.lyn.event"
-	// 	WORD MMBMPStatusX
-	// 	WORD MMBMPStatusY
+	// #ifdef MMBMP
+	// 	#include "Modules/MMBDrawMP.lyn.event"
+	// 	WORD (2 * ((32 * MMBMPY) + MMBMPX))
+	// 	SHORT ((MMBMPX+3)*8) (MMBMPY*8)
 	// 	WORD MMBHeight
+	// 	WORD ((MMBMPPaletteIndex << 12) | MMBMPVRAMTile)
+	// 	POIN MMBMPGraphic
+	// 	ALIGN 4
+	// 	MMBMPGraphic:
+	// 	#incbin "Modules/MPLabel.4bpp"
 	// 	#ifndef MMBNumberDrawing
 	// 		#define MMBNumberDrawing
 	// 	#endif // MMBNumberDrawing
-	// #endif // MMBMPStatus
+	// #endif // MMBMP
+
+	#ifdef MMBMP
+		#include "Modules/MMBDrawMP.lyn.event"
+		WORD MMBMPX
+		WORD MMBMPY
+		WORD MMBHeight
+		#ifndef MMBNumberDrawing
+			#define MMBNumberDrawing
+		#endif // MMBNumberDrawing
+	#endif // MMBHP
 
 	#ifdef MMBHP
 		#include "Modules/MMBDrawHP.lyn.event"
@@ -1573,6 +1588,10 @@ MMBDynamicRoutines:
 	#ifdef MMBHP
 		POIN MMBDrawHP
 	#endif // MMBHP
+
+	#ifdef MMBMP
+		POIN MMBDrawMP
+	#endif // MMBMP
 
 	#ifdef MMBDEFRES
 		POIN MMBDrawDEFRES

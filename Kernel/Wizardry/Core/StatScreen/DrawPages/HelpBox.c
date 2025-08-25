@@ -3,6 +3,7 @@
 #include "kernel-lib.h"
 #include "skill-system.h"
 #include "savemenu.h"
+#include "uichapterstatus.h"
 #include "unitlistscreen.h"
 
 LYN_REPLACE_CHECK(StartStatScreenHelp);
@@ -27,6 +28,12 @@ void StartStatScreenHelp(int pageid, struct Proc *proc)
 		case 3:
 			gStatScreen.help = RTextPageSupport;
 			break;
+
+#ifdef CONFIG_MP_SYSTEM
+        case 4:
+            gStatScreen.help = RTextPageMagic;
+            break;
+#endif
 		} // switch (pageid)
 	}
 	StartMovingHelpBox(gStatScreen.help, proc);

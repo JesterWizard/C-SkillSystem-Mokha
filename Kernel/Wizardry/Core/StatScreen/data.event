@@ -1,5 +1,9 @@
 #include "DrawPages/HelpBoxPage4.event"
 
+#ifdef CONFIG_MP_SYSTEM
+    #include "DrawPages/HelpBoxPage5.event"
+#endif
+
 #include "DrawSkillPage/data.event"
 #include "DrawUnitPage/data.event"
 
@@ -9,4 +13,7 @@ gStatScreenDrawPages:
     POIN 0x08087485
     POIN 0x0808784D
     POIN DrawPage4Rework
+#ifdef CONFIG_MP_SYSTEM
+    POIN DrawPage5Rework
+#endif
     WORD 0

@@ -36,14 +36,31 @@ STATIC_DECLAR const u16 Sprite_Page4NameRework[] = {
 	0x4104, 0x9048, TILEREF(22, 0),
 };
 
-u16 const *const Sprites_PageNameRework[] = {
-	Sprite_Page0NameRework,
-	Sprite_Page1NameRework,
-	Sprite_Page2NameRework,
-	Sprite_Page3NameRework,
-	Sprite_Page4NameRework,
+STATIC_DECLAR const u16 Sprite_Page5NameRework[] =
+{
+    3,
+    0x4104, 0x9008, TILEREF(14, 0),
+    0x4104, 0x9028, TILEREF(18, 0),
+    0x4104, 0x9048, TILEREF(22, 0),
 };
 
-const u16 gPageNameChrOffsetLutRe[] = {
-	0x00, 0x40, 0x0E, 0x80, 0x80
-};
+#ifdef CONFIG_MP_SYSTEM
+	u16 const *const Sprites_PageNameRework[] = {
+		Sprite_Page0NameRework,
+		Sprite_Page1NameRework,
+		Sprite_Page2NameRework,
+		Sprite_Page3NameRework,
+		Sprite_Page4NameRework,
+		Sprite_Page5NameRework,
+	};
+#endif
+
+#ifdef CONFIG_MP_SYSTEM
+	const u16 gPageNameChrOffsetLutRe[] = {
+		0x00, 0x40, 0x0E, 0x80, 0x80, 0x80
+	};
+#else
+	const u16 gPageNameChrOffsetLutRe[] = {
+		0x00, 0x40, 0x0E, 0x80, 0x80
+	};
+#endif

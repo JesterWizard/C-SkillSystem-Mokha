@@ -15,7 +15,7 @@ MMBMaxMPGetter:
 	.type	MMBMaxMPGetter, %function
 
 	@ 1. Get unit pointer for the attacker
-	@ 2. Get BWL entry 0xE for that unit
+	@ 2. Get BWL entry 0xD for that unit
 
 	ldr		r0, =BattleBufAttacker
 	ldr 	r0, [r0, #0] 		@ Load class data of unit
@@ -28,7 +28,7 @@ MMBMaxMPGetter:
 	mov 	lr, r3
 	cmp 	r0, #0
 	beq 	NoBWLData
-	add 	r0, #0xE
+	add 	r0, #0xD
 	ldrb 	r0, [r0]
 	b 		End
 

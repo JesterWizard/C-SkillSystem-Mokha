@@ -6,11 +6,26 @@
 #include <constants/skills.h>
 
 #include <gaiden-magic.h>
+#include "bwl.h"
 
 bool TryBattleHpCost(struct BattleUnit *bu, int hp_cost)
 {
+#ifdef CONFIG_MP_SYSTEM
+	if (CheckGaidenMagicAttack(bu)) {
+		struct NewBwl * bwl = GetNewBwl(UNIT_CHAR_ID(GetUnit(bu->unit.index)));
+
+		if (hp_cost > bwl->currentMP)
+			return false;
+	}
+	else
+	{
+		if (hp_cost >= bu->unit.curHP)
+			return false;
+	}
+#else
 	if (hp_cost >= bu->unit.curHP)
 		return false;
+#endif
 
 	return true;
 }
@@ -20,15 +35,40 @@ bool AddBattleHpCost(struct BattleUnit *bu, int round, int hp_cost)
 	if (!TryBattleHpCost(bu, hp_cost))
 		return false;
 
+#ifdef CONFIG_MP_SYSTEM
+	if (CheckGaidenMagicAttack(bu)) {
+		struct NewBwl * bwl = GetNewBwl(UNIT_CHAR_ID(GetUnit(bu->unit.index)));
+		bwl->currentMP -= hp_cost;
+	}
+	else
+		bu->unit.curHP -= hp_cost;
+#else
 	bu->unit.curHP -= hp_cost;
+#endif
+
 	GetExtBattleHit(round)->hp_cost += hp_cost;
 	return true;
 }
 
 void ForceAddBattleHpCost(struct BattleUnit *bu, int round, int hp_cost)
 {
+	
+#ifdef CONFIG_MP_SYSTEM
+	if (CheckGaidenMagicAttack(bu)) {
+		struct NewBwl * bwl = GetNewBwl(UNIT_CHAR_ID(GetUnit(bu->unit.index)));
+		
+		if (hp_cost > bwl->currentMP)
+			hp_cost = bwl->currentMP - 1;
+	}
+	else
+	{
+		if (hp_cost >= bu->unit.curHP)
+			hp_cost = bu->unit.curHP - 1;		
+	}
+#else
 	if (hp_cost >= bu->unit.curHP)
 		hp_cost = bu->unit.curHP - 1;
+#endif
 
 	AddBattleHpCost(bu, round, hp_cost);
 }

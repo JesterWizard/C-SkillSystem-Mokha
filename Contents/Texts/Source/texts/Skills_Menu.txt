@@ -121,7 +121,7 @@ Unit can use[N]
 Summon[X]
 ## MSG_SKILL_Summon_DESC
 Summon:[N]
-Unit can summon a phanton[N]
+Unit can summon a phantom[N]
 monster for assistance.[X]
 
 ## MSG_SKILL_Supply_NAME

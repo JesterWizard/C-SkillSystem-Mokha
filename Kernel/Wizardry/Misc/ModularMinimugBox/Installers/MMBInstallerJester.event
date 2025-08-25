@@ -11,8 +11,6 @@ Comment out (by typing // before a line's #define) or delete module options you 
 After each set of module options are definitions that you can use to adjust the module.
 */
 
-#include "../Modules/MMBDrawMPStatus.lyn.event"
-
 // Some helper definitions:
 
 #define TextWhite  0
@@ -452,6 +450,8 @@ After each set of module options are definitions that you can use to adjust the 
 		 */
 
 	#define MMBHP
+
+	#define MMBMP
 		/*
 		 * Draws HP ## / ## to [MMBHPX, MMBHPY].
 		 */
@@ -468,11 +468,9 @@ After each set of module options are definitions that you can use to adjust the 
 	#define MMBHPX 5
 	#define MMBHPY 3
 
-	
-	#define MMBMPStatus
-	// MP/Status options
-	#define MMBMPStatusX 5
-	#define MMBMPStatusY 7
+	// MP options
+	#define MMBMPX 5
+	#define MMBMPY 7
 	#define MMBMPVRAMTile 0x10C
 	#define MMBMPPaletteIndex 2
 
@@ -621,9 +619,8 @@ After each set of module options are definitions that you can use to adjust the 
 	// #define MMBRTGNumber
 	// #define MMBCurrentHPNumber
 	// #define MMBMaxHPNumber
-
-	#define MMBCurrentMPNumber
-	#define MMBMaxMPNumber
+	// #define MMBCurrentMPNumber
+	// #define MMBMaxMPNumber
 		/*
 		 * Draws the number for the specified stat
 		 * to [MMB(STAT)X, MMB(STAT)Y].

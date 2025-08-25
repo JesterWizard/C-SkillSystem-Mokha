@@ -364,4 +364,10 @@
 #endif
 #define CONFIG_CUSTOM_SUPPORT_CONVOS
 
+#define CONFIG_MP_SYSTEM
+#ifdef CONFIG_MP_SYSTEM
+	#define CONFIG_MP_RESTORE_AMOUNT 5
+#endif
+
+
 #endif /* CONFIG_INSTALLED */

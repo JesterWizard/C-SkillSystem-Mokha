@@ -3,14 +3,14 @@
 
 .include "../CommonDefinitions.inc"
 
-MMBDrawMPStatus:
+MMBDrawMP:
 
-	.global	MMBDrawMPStatus
-	.type	MMBDrawMPStatus, %function
+	.global	MMBDrawMP
+	.type	MMBDrawMP, %function
 
-	.set MMBMPStatusXCoordinate,	EALiterals + 0
-	.set MMBMPStatusYCoordinate,	EALiterals + 4
-	.set MMBHeight,					EALiterals + 8
+	.set MMBMPXCoordinate,	EALiterals + 0
+	.set MMBMPYCoordinate,	EALiterals + 4
+	.set MMBHeight,			EALiterals + 8
 
 	@ Inputs:
 	@ r0: pointer to proc state
@@ -21,69 +21,10 @@ MMBDrawMPStatus:
 	mov		r4, r0
 	mov		r5, r1
 
-	@ Grab time unit's been selected
-
-	add		r0, #HoverFramecount
-	ldrh	r0, [r0]
-
-	mov		r1, #0x40
-	and		r0, r1
-
-	cmp		r0, #0x00
-	beq		DrawNumber
-
-	@ Check for status
-
-	mov		r0, r5
-	add		r0, #UnitStatus
-	ldrb	r0, [r0]
-	mov		r1, #0x0F
-	and		r0, r1
-
-	cmp		r0, #0x00
-	beq		DrawNumber
-
-	@ Check if egg, if so don't
-	@ display status
-
-	cmp		r0, #0x0A
-	beq		DrawNumber
-
-	@ Otherwise we draw the status
-
-	@ Get buffer position to draw to
-
-	ldr		r0, MMBMPStatusXCoordinate
-	ldr		r1, MMBMPStatusYCoordinate
-	ldr		r2, =WindowBuffer
-
-	lsl		r0, r0, #0x01
-	lsl		r1, r1, #0x06
-
-	add		r0, r1, r0
-	add		r0, r0, r2
-
-	mov		r1, r5 @ Character
-
-	@ Draw status image and tilemap
-
-	ldr		r2, =DrawStatus
-	mov		lr, r2
-	bllr
-
-	mov		r0, #0x01
-	ldr		r1, =EnableBackgroundSyncByMask
-	mov		lr, r1
-	bllr
-
-	b		End
-
-DrawNumber:
-
 	@ Get tilemap position
 
-	ldr		r0, MMBMPStatusXCoordinate
-	ldr		r1, MMBMPStatusYCoordinate
+	ldr		r0, MMBMPXCoordinate
+	ldr		r1, MMBMPYCoordinate
 
 	ldr		r2, =WindowBuffer
 
@@ -121,13 +62,13 @@ DrawNumber:
 
 	@ Get positions for numbers
 
-	ldr		r6, MMBMPStatusXCoordinate
-	ldr		r7, MMBMPStatusYCoordinate
+	ldr		r6, MMBMPXCoordinate
+	ldr		r7, MMBMPYCoordinate
 
 	lsl		r6, r6, #0x03 @ mult by 8
 	lsl		r7, r7, #0x03
 
-	add		r6, #24 @ past the MP label
+	add		r6, #24 @ past the HP label
 
 	@ check for lower window
 
@@ -153,15 +94,32 @@ SkipBottom:
 
 	@ Get MP numbers
 
-	mov		r0, r5
-	ldr		r1, =GetCurrentHP
-	mov		lr, r1
-	bllr
+	@ BWL - Current MP
+	@ 1. Get unit pointer for the attacker
+	@ 2. Get BWL entry 0xC for that unit
 
-	cmp		r0, #99
+	mov 	r0, r5
+	ldr 	r0, [r0, #0] 		@ Load class data of unit
+	ldrb 	r0, [r0, #4] 		@ Load character index
+	ldr 	r1, =BWL_GetEntry
+	push 	{lr}
+	mov 	lr, r1
+	bllr
+	pop		{r3}
+	mov 	lr, r3
+	cmp 	r0, #0
+	beq 	NoBWLData
+	add 	r0, #0xC
+	ldrb 	r0, [r0]
+	b 		End
+
+	NoBWLData:
+	mov 	r0, #0
+
+	cmp		r0, #254 // JESTER - Originally 99, but expanded as I have made HP go up to 254
 	ble		SkipDashedCurrentHP
 
-	@ MP too high, display --
+	@ HP too high, display --
 
 	mov		r0, #0xFF
 
@@ -178,12 +136,29 @@ SkipDashedCurrentHP:
 
 	add		r6, r6, #25
 
-	mov		r0, r5
-	ldr		r1, =GetMaxHP
-	mov		lr, r1
-	bllr
+	@ BWL - Max MP
+	@ 1. Get unit pointer for the attacker
+	@ 2. Get BWL entry 0xD for that unit
 
-	cmp		r0, #99
+	mov 	r0, r5
+	ldr 	r0, [r0, #0] 		@ Load class data of unit
+	ldrb 	r0, [r0, #4] 		@ Load character index
+	ldr 	r1, =BWL_GetEntry
+	push 	{lr}
+	mov 	lr, r1
+	bllr
+	pop		{r3}
+	mov 	lr, r3
+	cmp 	r0, #0
+	beq 	NoBWLData2
+	add 	r0, #0xD
+	ldrb 	r0, [r0]
+	b 		End
+
+	NoBWLData2:
+	mov 	r0, #0
+
+	cmp		r0, #254 // JESTER - Originally 99, but expanded as I have made HP go up to 254
 	ble		SkipDashedMaxHP
 
 	@ HP too high, display --
@@ -210,8 +185,8 @@ End:
 .ltorg
 
 EALiterals:
-	@ MMBMPStatusXCoordinate
-	@ MMBMPStatusYCoordinate
+	@ MMBHPXCoordinate
+	@ MMBHPYCoordinate
 	@ MMBHeight
 
 
