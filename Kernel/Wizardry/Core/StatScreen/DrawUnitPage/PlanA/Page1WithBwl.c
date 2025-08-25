@@ -237,6 +237,7 @@ STATIC_DECLAR void DrawPage1BattleAmt(void)
 		amt, amt, max, max);
 }
 
+#ifdef CONFIG_LAGUZ_BARS
 static u8 GetUnitLaguzBarValue(struct Unit * unit)
 {
     struct NewBwl * bwl;
@@ -269,7 +270,7 @@ FORCE_DECLARE static void DrawPage1LaguzBar(void)
         gUiTmScratchC,
         amt, amt, max, max);
 }
-
+#endif
 
 /* BWL */
 STATIC_DECLAR void DrawPage1BWL(void)
