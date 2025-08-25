@@ -3,6 +3,9 @@
 #include "skill-system.h"
 #include "constants/skills.h"
 #include "battle-system.h"
+#include "eventinfo.h"
+#include "jester_headers/custom-arrays.h"
+#include "../../../../../Contents/Texts/build/msgs.h"
 
 #define LOCAL_TRACE 0
 
@@ -106,6 +109,38 @@ void CallSupportViewerEvent(u16 textIndex) {
     gEventSlots[0x2] = textIndex;
 }
 
+//! FE8U = 0x080847F8
+LYN_REPLACE_CHECK(GetSupportTalkList);
+struct SupportTalkEnt* GetSupportTalkList(void) {
+
+#ifdef CONFIG_CUSTOM_SUPPORT_CONVOS
+    return (struct SupportTalkEnt* )gNewSupportTalkList;
+#else
+	return gSupportTalkList;
+#endif
+}
+
+//! FE8U = 0x08084748
+LYN_REPLACE_CHECK(GetSupportTalkEntry);
+struct SupportTalkEnt * GetSupportTalkEntry(u16 pidA, u16 pidB)
+{
+    const struct SupportTalkEnt * it;
+
+#ifdef CONFIG_CUSTOM_SUPPORT_CONVOS
+    for (it = gNewSupportTalkList; it->unitA != 0xFFFF; it++)
+#else
+    for (it = gSupportTalkList; it->unitA != 0xFFFF; it++)
+#endif	
+	{
+        if ((pidA == it->unitA) && (pidB == it->unitB))
+            return (struct SupportTalkEnt *)it;  // Cast const away only on return
+            
+        if ((pidB == it->unitA) && (pidA == it->unitB))
+            return (struct SupportTalkEnt *)it;  // Cast const away only on return
+    }
+    
+    return NULL;
+}
 
 LYN_REPLACE_CHECK(GetUnitSupportLevel);
 int GetUnitSupportLevel(struct Unit *unit, int num)

@@ -1,0 +1,236 @@
+#define CharacterSupport(Char1, Char2, Char3, Char4, Char5, Char6, Char7) "BYTE Char1 Char2 Char3 Char4 Char5 Char6 Char7"
+#define SupportBases(Char1, Char2, Char3, Char4, Char5, Char6, Char7) "BYTE Char1 Char2 Char3 Char4 Char5 Char6 Char7"
+#define SupportGrowths(Char1, Char2, Char3, Char4, Char5, Char6, Char7) "BYTE Char1 Char2 Char3 Char4 Char5 Char6 Char7"
+
+#define NULL 0
+
+Eirika_Support:
+CharacterSupport(Ephraim,Seth,Saleh,LArachel,Tana,Innes,Forde)
+SupportBases(30,25,5,10,20,10,20)
+SupportGrowths(4,3,2,2,2,2,2)
+BYTE 7 // Support partners
+BYTE 0 0
+
+Seth_Support:
+CharacterSupport(Franz,Eirika,Garcia,Natasha,Cormag,Duessel,NULL)
+SupportBases(15,25,10,5,0,10,NULL)
+SupportGrowths(2,3,2,2,2,3,NULL)
+BYTE 6 // Support partners
+BYTE 0 0
+
+Gilliam_Support:
+CharacterSupport(Garcia,Franz,Syrene,Moulder,Neimi,NULL,NULL)
+SupportBases(0,10,20,10,0,NULL,NULL)
+SupportGrowths(2,2,3,2,2,NULL,NULL)
+BYTE 5 // Support partners
+BYTE 0 0
+
+Franz_Support:
+CharacterSupport(Seth,Gilliam,Forde,Amelia,Natasha,NULL,NULL)
+SupportBases(15,10,25,5,10,NULL,NULL)
+SupportGrowths(2,2,3,3,2,NULL,NULL)
+BYTE 5 // Support partners
+BYTE 0 0
+
+Moulder_Support:
+CharacterSupport(Vanessa,Colm,Gilliam,Syrene,NULL,NULL,NULL)
+SupportBases(15,0,10,10,NULL,NULL,NULL)
+SupportGrowths(2,2,2,2,NULL,NULL,NULL)
+BYTE 4 // Support partners
+BYTE 0 0
+
+Vanessa_Support:
+CharacterSupport(Moulder,Syrene,Lute,Forde,Innes,NULL,NULL)
+SupportBases(15,20,10,5,10,NULL,NULL)
+SupportGrowths(2,3,2,2,3,NULL,NULL)
+BYTE 5 // Support partners
+BYTE 0 0
+
+Ross_Support:
+CharacterSupport(Garcia,Lute,Amelia,Ewan,Gerik,NULL,NULL)
+SupportBases(35,5,5,5,0,NULL,NULL)
+SupportGrowths(4,2,2,3,3,NULL,NULL)
+BYTE 5 // Support partners
+BYTE 0 0
+
+Neimi_Support:
+CharacterSupport(Colm,Garcia,Amelia,Artur,Gilliam,NULL,NULL)
+SupportBases(80,10,15,5,0,NULL,NULL)
+SupportGrowths(3,2,3,3,2,NULL,NULL)
+BYTE 5 // Support partners
+BYTE 0 0
+
+Colm_Support:
+CharacterSupport(Neimi,Marisa,Rennac,Moulder,Kyle,NULL,NULL)
+SupportBases(80,0,5,0,5,NULL,NULL)
+SupportGrowths(3,2,2,2,2,NULL,NULL)
+BYTE 5 // Support partners
+BYTE 0 0
+
+Garcia_Support:
+CharacterSupport(Ross,Dozla,Seth,Neimi,Gilliam,NULL,NULL)
+SupportBases(35,10,10,10,0,NULL,NULL)
+SupportGrowths(4,2,2,2,2,NULL,NULL)
+BYTE 5 // Support partners
+BYTE 0 0
+
+Innes_Support:
+CharacterSupport(Gerik,Vanessa,Tana,Joshua,LArachel,Eirika,NULL)
+SupportBases(15,10,25,0,5,10,NULL)
+SupportGrowths(3,3,3,2,2,2,NULL)
+BYTE 6 // Support partners
+BYTE 0 0
+
+Lute_Support:
+CharacterSupport(Artur,Ross,Knoll,Kyle,Vanessa,NULL,NULL)
+SupportBases(15,5,5,5,10,NULL,NULL)
+SupportGrowths(3,2,2,3,2,NULL,NULL)
+BYTE 5 // Support partners
+BYTE 0 0
+
+Natasha_Support:
+CharacterSupport(Joshua,Knoll,Cormag,Seth,Franz,NULL,NULL)
+SupportBases(20,10,5,5,10,NULL,NULL)
+SupportGrowths(3,2,2,2,2,NULL,NULL)
+BYTE 5 // Support partners
+BYTE 0 0
+
+Cormag_Support:
+CharacterSupport(Duessel,Tana,Natasha,Artur,Seth,NULL,NULL)
+SupportBases(10,0,5,5,0,NULL,NULL)
+SupportGrowths(2,2,2,2,2,NULL,NULL)
+BYTE 5 // Support partners
+BYTE 0 0
+
+Ephraim_Support:
+CharacterSupport(Eirika,Kyle,Forde,Myrrh,LArachel,Duessel,Tana)
+SupportBases(30,20,20,10,5,30,25)
+SupportGrowths(4,3,3,4,3,3,3)
+BYTE 7 // Support partners
+BYTE 0 0
+
+Forde_Support:
+CharacterSupport(Kyle,Vanessa,Ephraim,Franz,Eirika,NULL,NULL)
+SupportBases(30,5,20,25,20,NULL,NULL)
+SupportGrowths(3,2,3,3,2,NULL,NULL)
+BYTE 5 // Support partners
+BYTE 0 0
+
+Kyle_Support:
+CharacterSupport(Forde,Ephraim,Syrene,Colm,Lute,NULL,NULL)
+SupportBases(30,20,5,5,5,NULL,NULL)
+SupportGrowths(3,3,3,2,3,NULL,NULL)
+BYTE 5 // Support partners
+BYTE 0 0
+
+Amelia_Support:
+CharacterSupport(Neimi,Duessel,Ewan,Ross,Franz,NULL,NULL)
+SupportBases(15,10,5,5,5,NULL,NULL)
+SupportGrowths(3,3,3,2,3,NULL,NULL)
+BYTE 5 // Support partners
+BYTE 0 0
+
+Artur_Support:
+CharacterSupport(Lute,Tethys,Cormag,Neimi,Joshua,NULL,NULL)
+SupportBases(15,10,5,5,5,NULL,NULL)
+SupportGrowths(3,2,2,3,2,NULL,NULL)
+BYTE 5 // Support partners
+BYTE 0 0
+
+Gerik_Support:
+CharacterSupport(Innes,Tethys,Marisa,Saleh,Joshua,Ross,NULL)
+SupportBases(15,30,20,25,15,0,NULL)
+SupportGrowths(3,4,3,3,3,3,NULL)
+BYTE 6 // Support partners
+BYTE 0 0
+
+Tethys_Support:
+CharacterSupport(Ewan,Gerik,Marisa,Rennac,Artur,NULL,NULL)
+SupportBases(25,30,10,5,10,NULL,NULL)
+SupportGrowths(3,4,2,1,2,NULL,NULL)
+BYTE 5 // Support partners
+BYTE 0 0
+
+Marisa_Support:
+CharacterSupport(Tana,Tethys,Gerik,Joshua,Colm,NULL,NULL)
+SupportBases(10,10,20,10,0,NULL,NULL)
+SupportGrowths(2,2,3,3,2,NULL,NULL)
+BYTE 5 // Support partners
+BYTE 0 0
+
+Saleh_Support:
+CharacterSupport(Myrrh,Ewan,Gerik,Eirika,NULL,NULL,NULL)
+SupportBases(30,15,25,5,NULL,NULL,NULL)
+SupportGrowths(3,3,3,2,NULL,NULL,NULL)
+BYTE 4 // Support partners
+BYTE 0 0
+
+Ewan_Support:
+CharacterSupport(Tethys,Saleh,Dozla,Amelia,Ross,Myrrh,NULL)
+SupportBases(25,15,0,5,5,5,NULL)
+SupportGrowths(3,3,3,3,3,3,NULL)
+BYTE 6 // Support partners
+BYTE 0 0
+
+LArachel_Support:
+CharacterSupport(Dozla,Rennac,Joshua,Eirika,Ephraim,Innes,NULL)
+SupportBases(25,10,5,10,5,5,NULL)
+SupportGrowths(3,2,2,2,3,2,NULL)
+BYTE 6 // Support partners
+BYTE 0 0
+
+Dozla_Support:
+CharacterSupport(LArachel,Myrrh,Rennac,Ewan,Garcia,NULL,NULL)
+SupportBases(25,0,10,0,10,NULL,NULL)
+SupportGrowths(3,2,2,3,2,NULL,NULL)
+BYTE 5 // Support partners
+BYTE 0 0
+
+Rennac_Support:
+CharacterSupport(Tethys,LArachel,Dozla,Colm,Joshua,NULL,NULL)
+SupportBases(5,10,10,5,1,NULL,NULL)
+SupportGrowths(2,2,2,2,2,NULL,NULL)
+BYTE 5 // Support partners
+BYTE 0 0
+
+Duessel_Support:
+CharacterSupport(Cormag,Amelia,Knoll,Ephraim,Seth,NULL,NULL)
+SupportBases(10,10,0,30,10,NULL,NULL)
+SupportGrowths(2,3,2,3,3,NULL,NULL)
+BYTE 5 // Support partners
+BYTE 0 0
+
+Myrrh_Support:
+CharacterSupport(Saleh,Dozla,Ephraim,Ewan,NULL,NULL,NULL)
+SupportBases(30,0,10,5,NULL,NULL,NULL)
+SupportGrowths(3,2,4,3,NULL,NULL,NULL)
+BYTE 4 // Support partners
+BYTE 0 0
+
+Knoll_Support:
+CharacterSupport(Natasha,Duessel,Lute,NULL,NULL,NULL,NULL)
+SupportBases(10,0,5,NULL,NULL,NULL,NULL)
+SupportGrowths(2,2,2,NULL,NULL,NULL,NULL)
+BYTE 3 // Support partners
+BYTE 0 0
+
+Joshua_Support:
+CharacterSupport(Natasha,Innes,Artur,LArachel,Marisa,Gerik,Rennac)
+SupportBases(20,0,5,5,10,15,3)
+SupportGrowths(2,2,2,3,3,2,2)
+BYTE 7 // Support partners
+BYTE 0 0
+
+Syrene_Support:
+CharacterSupport(Kyle,Vanessa,Moulder,Gilliam,Tana,NULL,NULL)
+SupportBases(5,20,10,20,20,NULL,NULL)
+SupportGrowths(3,3,2,3,3,NULL,NULL)
+BYTE 5 // Support partners
+BYTE 0 0
+
+Tana_Support:
+CharacterSupport(Ephraim,Syrene,Cormag,Innes,Eirika,Marisa,NULL)
+SupportBases(25,20,0,25,20,10,NULL)
+SupportGrowths(3,3,2,3,2,2,NULL)
+BYTE 6 // Support partners
+BYTE 0 0

@@ -60,6 +60,10 @@ ALIGN 4
     #include "Common/GameOver/GameOver.event"
 #endif
 
+#ifdef CONFIG_CUSTOM_SUPPORT_CONVOS
+    #include "Common/Supports/Supports_Installer.event"
+#endif
+
 #include "Core/SkillSys/SkillSys.event"
 #include "Core/DebuffRework/DebuffRework.event"
 #include "Core/WeaponRange/WeaponRange.event"
