@@ -470,7 +470,7 @@ After each set of module options are definitions that you can use to adjust the 
 
 	// MP options
 	#define MMBMPX 5
-	#define MMBMPY 7
+	#define MMBMPY 4
 	#define MMBMPVRAMTile 0x10C
 	#define MMBMPPaletteIndex 2
 

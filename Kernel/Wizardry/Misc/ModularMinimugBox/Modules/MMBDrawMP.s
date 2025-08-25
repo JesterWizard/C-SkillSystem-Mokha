@@ -111,11 +111,12 @@ SkipBottom:
 	beq 	NoBWLData
 	add 	r0, #0xC
 	ldrb 	r0, [r0]
-	b 		End
+	b 		CheckLimit
 
 	NoBWLData:
 	mov 	r0, #0
 
+	CheckLimit:
 	cmp		r0, #254 // JESTER - Originally 99, but expanded as I have made HP go up to 254
 	ble		SkipDashedCurrentHP
 
@@ -153,11 +154,12 @@ SkipDashedCurrentHP:
 	beq 	NoBWLData2
 	add 	r0, #0xD
 	ldrb 	r0, [r0]
-	b 		End
+	b 		CheckLimit2
 
 	NoBWLData2:
 	mov 	r0, #0
 
+	CheckLimit2:
 	cmp		r0, #254 // JESTER - Originally 99, but expanded as I have made HP go up to 254
 	ble		SkipDashedMaxHP
 
