@@ -34,15 +34,16 @@ MMBDrawMP:
 	add		r0, r1, r0
 	add		r0, r0, r2
 
-	ldr		r1, =0x2120
-	strh	r1, [r0]
-	add		r1, #0x01
-	strh	r1, [r0, #0x02]
-	mov		r1, #0x00
-	strh	r1, [r0, #0x04]
-	strh	r1, [r0, #0x06]
-	strh	r1, [r0, #0x0A]
-	strh	r1, [r0, #0x0C]
+	@ JESTER - This draws the HP label, but we have an MP label
+	@ ldr		r1, =0x2120
+	@ strh	r1, [r0]
+	@ add		r1, #0x01
+	@ strh	r1, [r0, #0x02]
+	@ mov		r1, #0x00
+	@ strh	r1, [r0, #0x04]
+	@ strh	r1, [r0, #0x06]
+	@ strh	r1, [r0, #0x0A]
+	@ strh	r1, [r0, #0x0C]
 	ldr		r1, =0x213E
 	strh	r1, [r0, #0x08]
 
