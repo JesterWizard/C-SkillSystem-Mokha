@@ -36,9 +36,15 @@ bool AddBattleHpCost(struct BattleUnit *bu, int round, int hp_cost)
 		return false;
 
 #ifdef CONFIG_MP_SYSTEM
+
 	if (CheckGaidenMagicAttack(bu)) {
+#if (defined(SID_BloodMagic) && COMMON_SKILL_VALID(SID_BloodMagic))
+		if (SkillTester(GetUnit(bu->unit.index), SID_BloodMagic))
+			bu->unit.curHP -= hp_cost;
+#else
 		struct NewBwl * bwl = GetNewBwl(UNIT_CHAR_ID(GetUnit(bu->unit.index)));
 		bwl->currentMP -= hp_cost;
+#endif
 	}
 	else
 		bu->unit.curHP -= hp_cost;

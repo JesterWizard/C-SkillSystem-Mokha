@@ -827,6 +827,7 @@ SID_Eldritch
 SID_Leader
 SID_Latona
 SID_GrandMagician
+SID_BloodMagic
 
 //////// COMBAT ARTS
 // SID_COMBAT_Grounder

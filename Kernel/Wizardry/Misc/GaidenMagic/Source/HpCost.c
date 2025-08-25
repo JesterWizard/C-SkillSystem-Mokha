@@ -7,6 +7,7 @@
 
 int GetGaidenWeaponHpCost(struct Unit *unit, int item)
 {
+
 #if (defined(SID_GrandMagician) && COMMON_SKILL_VALID(SID_GrandMagician))
 	if (SkillTester(unit, SID_GrandMagician))
 		return 0;
