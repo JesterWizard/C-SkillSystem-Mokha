@@ -295,7 +295,7 @@ const struct ProcCmd ProcScr_ManimLevelUp_CUSTOM[] = {
     PROC_REPEAT(ManimLevelUp_PutStatGainLabels),
     PROC_SLEEP(15),
     PROC_CALL(DisplayCharacterSpeech), /* My character speech insertion */
-    PROC_SLEEP(60),a
+    PROC_SLEEP(60),
 #else
     PROC_SLEEP(30),
     PROC_REPEAT(ManimLevelUp_PutStatGainLabels),

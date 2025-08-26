@@ -339,7 +339,7 @@
 #endif
 
 #define CONFIG_CUSTOM_STAFF_ACCURACY 100
-// #define CONFIG_TALK_LEVEL_UP
+#define CONFIG_TALK_LEVEL_UP
 #define CONFIG_DEATH_DANCE
 // #define CONFIG_SUPPORT_REWARDS // Go to BwlSupport.c in StartSupportTalk to adjust items gained
 #define CONFIG_CUSTOM_GUIDE //Enable flag 0xB4 to view (configurable in GuideTable.event)
@@ -357,7 +357,7 @@
 #define CONFIG_TELLIUS_CAPACITY_SYSTEM
 #define CONFIG_TELLIUS_CAPACITY_BASE 50
 #define CONFIG_TELLIUS_CAPACITY_PROMOTED 25
- //#define CONFIG_LAGUZ_BARS
+#define CONFIG_LAGUZ_BARS
 #define CONFIG_FORGING
 #ifdef CONFIG_FORGING
 	#define CONFIG_FE4_CRIT_BONUS_ON_KILL

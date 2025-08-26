@@ -14,7 +14,7 @@ struct ProcCmd
 };
 
 #define PROC_END                                     { 0x00, 0x0000, 0 }
-#define PROC_NAME(aName)                             { 0x01, 0x0000, aName }
+#define PROC_NAME(aName)                             { 0x01, 0x0000, (aName) }
 #define PROC_CALL(apRoutine)                         { 0x02, 0x0000, (apRoutine) }
 #define PROC_REPEAT(apRoutine)                       { 0x03, 0x0000, (apRoutine) }
 #define PROC_SET_END_CB(apRoutine)                   { 0x04, 0x0000, (apRoutine) }
