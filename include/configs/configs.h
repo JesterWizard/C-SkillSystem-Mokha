@@ -48,7 +48,7 @@
  * 1: Only show kernel tutorial in tutorial mode
  * 2: show kernel tutorial at anytime
  */
-#define CONFIG_KTUT_LEVEL 2
+#define CONFIG_KTUT_LEVEL 0
 
 /**
  * If uncommented, enable patch
@@ -161,9 +161,9 @@
  * 3: 100%
  * 4: 0%
  */
-#define CONFIG_LVUP_MODE_TUTORIAL 2
+#define CONFIG_LVUP_MODE_TUTORIAL 0
 #define CONFIG_LVUP_MODE_NORMAL 0
-#define CONFIG_LVUP_MODE_HARD 1
+#define CONFIG_LVUP_MODE_HARD 0
 
 /**
  * Page1 styles

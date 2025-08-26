@@ -259,11 +259,11 @@ void DisplayCharacterSpeech(struct ManimLevelUpProc *proc)
     int message = -1;
     int unitID = gManimSt.actor[proc->actor_id].unit->pCharacterData->number;
 
-    if (gEventSlots[2] <= 2) 
+    if (gEventSlots[EVT_SLOT_2] <= 2) 
         message = 0;
-    else if (gEventSlots[2] <= 5) 
+    else if (gEventSlots[EVT_SLOT_2] <= 5) 
         message = 1;
-    else if (gEventSlots[2] <= 8) 
+    else if (gEventSlots[EVT_SLOT_2] <= 8) 
         message = 2;
 
     const char * unit_dialogue = character_level_up_strings[unitID].values[message];

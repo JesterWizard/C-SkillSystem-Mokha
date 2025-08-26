@@ -6,6 +6,32 @@
 #include "kernel-lib.h"
 #include "skill-system.h"
 #include "jester_headers/custom-functions.h"
+#include "constants/skills.h"
+#include "mapanim.h"
+
+static bool IsStatUncapped(struct Unit *unit, int statIndex, int limitBreaker)
+{
+    switch (statIndex) {
+        case 0: // HP
+            return unit->maxHP < unit->pClassData->maxHP + limitBreaker;
+        case 1: // POW
+            return unit->pow < unit->pClassData->maxPow + limitBreaker;
+        case 2: // SKL
+            return unit->skl < unit->pClassData->maxSkl + limitBreaker;
+        case 3: // SPD
+            return unit->spd < unit->pClassData->maxSpd + limitBreaker;
+        case 4: // LCK
+            return unit->lck < (30 + limitBreaker);
+        case 5: // DEF
+            return unit->def < unit->pClassData->maxDef + limitBreaker;
+        case 6: // RES
+            return unit->res < unit->pClassData->maxRes + limitBreaker;
+        case 7: // MAG
+            return GetUnitMagic(unit) < GetUnitMaxMagic(unit) + limitBreaker;
+        default:
+            return false;
+    }
+}
 
 STATIC_DECLAR int GetStatIncreaseRandC(int growth)
 {
@@ -46,7 +72,7 @@ STATIC_DECLAR int GetStatIncreaseFixed(int growth, int ref)
 
 STATIC_DECLAR void UnitLvup_Vanilla(struct BattleUnit *bu, int bonus)
 {
-  int expGained = bu->expPrevious + bu->expGain;
+    int expGained = bu->expPrevious + bu->expGain;
     struct Unit * unit = GetUnit(bu->unit.index);
     int statCounter = 0;
     int limitBreaker = 0;
@@ -116,7 +142,7 @@ STATIC_DECLAR void UnitLvup_Vanilla(struct BattleUnit *bu, int bonus)
 #endif
 
 #if (defined(SID_TripleUp) && (COMMON_SKILL_VALID(SID_TripleUp)))
-    if (BattleSkillTester(bu, SID_TripleUp))
+    if (BattleFastSkillTester(bu, SID_TripleUp))
     {
         // Check if any values are greater than 0
         int anyStatIncrease = 0; // Flag to track if there's any stats to increase
@@ -158,7 +184,7 @@ STATIC_DECLAR void UnitLvup_Vanilla(struct BattleUnit *bu, int bonus)
 #endif
 
 #if (defined(SID_DoubleUp) && (COMMON_SKILL_VALID(SID_DoubleUp)))
-    if (BattleSkillTester(bu, SID_DoubleUp) && !tripleUpExecuted)
+    if (BattleFastSkillTester(bu, SID_DoubleUp) && !tripleUpExecuted)
     {
         // Check if any values are greater than 0
         int anyStatIncrease = 0; // Flag to track if there's any stat greater than 0
@@ -199,13 +225,13 @@ STATIC_DECLAR void UnitLvup_Vanilla(struct BattleUnit *bu, int bonus)
 #endif
 
 #if (defined(SID_Mercurious) && (COMMON_SKILL_VALID(SID_Mercurious)))
-    if (BattleSkillTester(bu, SID_Mercurious) && Roll1RN(SKILL_EFF0(SID_Mercurious)))
+    if (BattleFastSkillTester(bu, SID_Mercurious) && Roll1RN(SKILL_EFF0(SID_Mercurious)))
         for (u8 i = 0; i < ARRAY_COUNT(statChanges); i++)
             *statChanges[i] *= SKILL_EFF1(SID_Mercurious);
 #endif
 
 #if (defined(SID_Velocity) && (COMMON_SKILL_VALID(SID_Velocity)))
-    if (BattleSkillTester(bu, SID_Velocity) && Roll1RN(SKILL_EFF0(SID_Velocity)))
+    if (BattleFastSkillTester(bu, SID_Velocity) && Roll1RN(SKILL_EFF0(SID_Velocity)))
         GetUnit(bu->unit.index)->movBonus += 1;
 #endif
 
