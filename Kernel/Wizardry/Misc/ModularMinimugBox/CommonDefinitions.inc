@@ -70,8 +70,8 @@
 
 @ BWL values (JESTER)
 
-	.set UnitCurrentMP,				0xD @14
-	.set UnitMaxMP,					0xE	@15
+	.set UnitCurrentMP,				0xC @13
+	.set UnitMaxMP,					0xD	@14
 
 @ Proc State
 

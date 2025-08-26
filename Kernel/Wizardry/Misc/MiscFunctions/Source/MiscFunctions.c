@@ -2207,6 +2207,7 @@ void SwitchPhases(void)
                     if (bwl) { 
                         // Increment the currentMP
                         bwl->currentMP += CONFIG_MP_RESTORE_AMOUNT; 
+                        NoCashGBAPrintf("Current MP is: %d", bwl->currentMP);
 
                         #if defined(SID_MPChanneling) && (COMMON_SKILL_VALID(SID_MPChanneling))
                             if (SkillTester(unit, SID_MPChanneling))

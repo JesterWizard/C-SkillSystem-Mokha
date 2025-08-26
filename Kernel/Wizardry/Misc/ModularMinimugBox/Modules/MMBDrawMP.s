@@ -34,16 +34,6 @@ MMBDrawMP:
 	add		r0, r1, r0
 	add		r0, r0, r2
 
-	@ JESTER - This draws the HP label, but we have an MP label
-	@ ldr		r1, =0x2120
-	@ strh	r1, [r0]
-	@ add		r1, #0x01
-	@ strh	r1, [r0, #0x02]
-	@ mov		r1, #0x00
-	@ strh	r1, [r0, #0x04]
-	@ strh	r1, [r0, #0x06]
-	@ strh	r1, [r0, #0x0A]
-	@ strh	r1, [r0, #0x0C]
 	ldr		r1, =0x213E
 	strh	r1, [r0, #0x08]
 
@@ -110,7 +100,7 @@ SkipBottom:
 	mov 	lr, r3
 	cmp 	r0, #0
 	beq 	NoBWLData
-	add 	r0, #0xC
+	add 	r0, #UnitCurrentMP
 	ldrb 	r0, [r0]
 	b 		CheckLimit
 
@@ -146,14 +136,12 @@ SkipDashedCurrentHP:
 	ldr 	r0, [r0, #0] 		@ Load class data of unit
 	ldrb 	r0, [r0, #4] 		@ Load character index
 	ldr 	r1, =BWL_GetEntry
-	push 	{lr}
 	mov 	lr, r1
 	bllr
-	pop		{r3}
 	mov 	lr, r3
 	cmp 	r0, #0
 	beq 	NoBWLData2
-	add 	r0, #0xD
+	add 	r0, #UnitMaxMP
 	ldrb 	r0, [r0]
 	b 		CheckLimit2
 
