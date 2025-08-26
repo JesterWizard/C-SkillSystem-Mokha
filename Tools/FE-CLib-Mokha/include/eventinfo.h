@@ -67,13 +67,11 @@ struct SupportTalkEnt {
 
     /* 04 */ u16 msgSupports[3];
 
-    /* JESTER - My custom supports array complains that these padding bytes aren't initialized */
-#ifndef CONFIG_CUSTOM_SUPPORT_CONVOS
     /* 0A */ u16 _pad1;
     /* 0C */ u16 unk_0c_0 : 5;
     /* 0C */ u16 unk_0c_5 : 5;
     /* 0D */ u16 unk_0d_3 : 5;
-#endif
+
 } BITPACKED;
 
 struct BattleTalkEnt {

@@ -1740,24 +1740,15 @@ void ProcessMenuDpadInput(struct MenuProc* proc)
     }
 }
 
-LYN_REPLACE_CHECK(MenuCancelSelect);
-u8 MenuCancelSelect(struct MenuProc* menu, struct MenuItemProc* item)
-{
-    
-    /*
-    ** So we reset this value here after exiting the forge menu.
-    ** This way, the left and right dPad buttons do not take effect in other menus
-    */
-    
-#ifdef CONFIG_FORGING
-    if (gActionData.unk08 == 10000)
-    {
-        gActionData.unk08 = 0;
-    }
-#endif
-
-    return MENU_ACT_SKIPCURSOR | MENU_ACT_CLEAR | MENU_ACT_END | MENU_ACT_SND6B;
-}
+/* 
+** This seems to cause a crash when selecting R text on the action menu 
+** so commenting it out for now and moving the additional custom stuff to UnitActionMenu_CancelRe
+*/
+// LYN_REPLACE_CHECK(MenuCancelSelect);
+// u8 MenuCancelSelect(struct MenuProc* menu, struct MenuItemProc* item)
+// {
+//     return MENU_ACT_SKIPCURSOR | MENU_ACT_CLEAR | MENU_ACT_END | MENU_ACT_SND6B;
+// }
 
 struct SoundRoomEnt const gSoundRoomTable_NEW[] =
 {
