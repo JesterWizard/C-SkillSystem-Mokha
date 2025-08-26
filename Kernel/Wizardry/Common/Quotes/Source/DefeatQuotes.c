@@ -5,6 +5,8 @@
 #include "jester_headers/maps.h"
 #include "jester_headers/custom-structs.h"
 
+// CONFIG_MULTIPLE_DEATH_QUOTES
+
 /* Rewritten to be like the battle quotes, so multiple can be used */
 const struct DefeatTalkEntNew gNewDefeatTalkList[] = {
     {

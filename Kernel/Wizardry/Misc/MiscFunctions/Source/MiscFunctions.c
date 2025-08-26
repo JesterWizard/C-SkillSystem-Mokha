@@ -2196,7 +2196,7 @@ void SwitchPhases(void)
              */
             for (int uid = gPlaySt.faction + 1; uid <= (gPlaySt.faction + GetFactionUnitAmount(gPlaySt.faction)); uid++)
             {
-                struct Unit * unit = GetUnit(uid);
+                FORCE_DECLARE struct Unit * unit = GetUnit(uid);
 
                 // if (CheckBitUES(unit, UES_BIT_CHANGED_FACTIONS))
                 //     UnitChangeFaction(unit, FACTION_RED);
