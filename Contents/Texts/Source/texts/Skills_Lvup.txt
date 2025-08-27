@@ -116,3 +116,10 @@ Pulse[X]
 Pulse:[N]
 Gain a minmum of 10 EXP per[N]
 battle, regardless of outcome.[X]
+
+## MSG_SKILL_Carnage_NAME
+Carnage[X]
+## MSG_SKILL_Carnage_DESC
+Carnage:[N]
+Half of damage dealt is[N]
+converted to EXP.[X]
