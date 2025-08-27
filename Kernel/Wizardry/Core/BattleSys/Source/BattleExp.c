@@ -121,6 +121,11 @@ STATIC_DECLAR int KernelModifyBattleUnitExp(int base, struct BattleUnit *actor, 
 		status += ((target->hpInitial - target->unit.curHP) / 2);
 #endif
 
+#if defined(SID_Crisis) && (COMMON_SKILL_VALID(SID_Crisis))
+	if (BattleFastSkillTester(actor, SID_Crisis))
+		status += ((actor->hpInitial - actor->unit.curHP) / 2);
+#endif
+
 	LIMIT_AREA(status, 0, 100);
 	if (base > 0 && status <= 0)
 		status = 1;

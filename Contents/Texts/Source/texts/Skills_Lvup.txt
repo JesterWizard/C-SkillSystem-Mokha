@@ -123,3 +123,10 @@ Carnage[X]
 Carnage:[N]
 Half of damage dealt is[N]
 converted to EXP.[X]
+
+## MSG_SKILL_Crisis_NAME
+Crisis[X]
+## MSG_SKILL_Crisis_DESC
+Crisis:[N]
+Half of damage received[N]
+is converted to EXP.[X]

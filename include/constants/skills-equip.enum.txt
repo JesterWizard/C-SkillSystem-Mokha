@@ -719,6 +719,7 @@ SID_PeoplesKnight
 SID_ItemLore
 SID_Pulse
 SID_Carnage
+SID_Crisis
 
 //////// MOVEMENT SKILLS
 SID_Pass
