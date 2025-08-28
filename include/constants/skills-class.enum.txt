@@ -493,6 +493,7 @@
 // SID_ChillLck
 // SID_ChillDef
 // SID_ChillRes
+// SID_Overdraft
 
 //////// WEAPON TRIANGLE ADVANTAGE SKILLS
 // SID_SwordBreaker

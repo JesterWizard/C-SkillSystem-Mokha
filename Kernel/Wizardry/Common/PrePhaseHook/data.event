@@ -21,6 +21,8 @@ gPrePhaseFuncs:
     POIN PrePhase_CheckTile
     POIN PrePhsae_ExecYuneWhisperSkills
 
+    POIN PrePhase_HurtAmount
+
     // End
     POIN CallExternalPrePhaseHook
     POIN PrePhaseHook_VanillaEnd

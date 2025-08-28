@@ -33,5 +33,10 @@ int HpGetterSkills(int status, struct Unit *unit)
 		status += SKILL_EFF0(SID_HpBonus);
 #endif
 
+#if defined(SID_Overdraft) && (COMMON_SKILL_VALID(SID_Overdraft))
+	if (SkillTester(unit, SID_Overdraft))
+		status += unit->maxHP;
+#endif
+
 	return status;
 }

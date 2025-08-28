@@ -609,3 +609,10 @@ Slow Start[X]
 Slow Start:[N]
 This unit's POW/SPD are halved[N]
 until the 6th turn.[X]
+
+## MSG_SKILL_Overdraft_NAME
+Overdraft[X]
+## MSG_SKILL_Overdraft_DESC
+Overdraft:[N]
+Double max HP but lose[N]
+10% per turn.[X]

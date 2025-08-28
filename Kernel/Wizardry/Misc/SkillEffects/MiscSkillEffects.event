@@ -66,6 +66,8 @@
     #include "PrePhaseSkills/PrePhase_LaguzBars.lyn.event"
 #endif
 
+#include "PrePhaseSkills/PrePhaseHurt.lyn.event"
+
 #include "EndTurnSkills/FreeSpirit.lyn.event"
 
 #include "AiSkills/Teleportation.event"
