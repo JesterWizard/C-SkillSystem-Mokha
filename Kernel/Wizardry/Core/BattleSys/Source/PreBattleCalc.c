@@ -1556,6 +1556,13 @@ L_FairyTaleFolk_done:
 			break;
 #endif
 
+#if defined(SID_Crescendo) && (COMMON_SKILL_VALID(SID_Crescendo))
+		case SID_Crescendo:
+			attacker->battleCritRate += SKILL_EFF0(SID_Crescendo) * (gPlaySt.chapterTurnNumber > 10 ? 10 : gPlaySt.chapterTurnNumber);
+			break;
+#endif
+
+
 		case MAX_SKILL_NUM:
 			Fatal("ENOSUPP");
 			break;

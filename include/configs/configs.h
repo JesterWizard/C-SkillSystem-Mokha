@@ -200,7 +200,7 @@
 /**
  * Install Bow2Decrease
  */
-#define CONFIG_INSTALL_BOW2DECREASE
+// #define CONFIG_INSTALL_BOW2DECREASE
 
 /**
  * Install none-kernel related patches (not necessary)

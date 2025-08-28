@@ -837,3 +837,4 @@
 #define MSG_SKILL_Samaritan_PRICE 1000
 #define MSG_SKILL_Turret_PRICE 1000
 #define MSG_SKILL_Overdraft_PRICE 1000
+#define MSG_SKILL_Crescendo_PRICE 1000

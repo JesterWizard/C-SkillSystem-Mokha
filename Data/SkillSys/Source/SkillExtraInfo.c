@@ -1162,4 +1162,8 @@ const struct SkillExtraInfo gSkillExtraInfo[MAX_SKILL_NUM + 1] = {
 #if (defined(SID_MeleeManiac) && COMMON_SKILL_VALID(SID_MeleeManiac))
 	[SID_MeleeManiac] = {{ 100, 100 }},
 #endif
+
+#if (defined(SID_Crescendo) && COMMON_SKILL_VALID(SID_Crescendo))
+	[SID_Crescendo] = {{ 3 }},
+#endif
 };

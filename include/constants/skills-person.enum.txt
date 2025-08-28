@@ -286,8 +286,9 @@
 // SID_Scendscale
 // SID_LawsOfSacae
 // SID_MagicEye
+// SID_Crescendo
 
-//////// POST-BATTLE SKILLS
+//////// POST-BATTLE SKILL
 // SID_Canto
 // SID_CantoPlus
 // SID_Galeforce

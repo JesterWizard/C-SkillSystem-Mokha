@@ -1764,3 +1764,10 @@ Osmose[X]
 Osmose:[N]
 Passively drain 1/4 of the damage[N]
 inflicted on the enemy to restore your MP.[X]
+
+## MSG_SKILL_Crescendo_NAME
+Crescendo[N]
+## MSG_SKILL_Crescendo_DESC
+Crescendo:[N]
+Pre battle skill that boosts crit by[N]
++3 each turn up to a maximum of +30.[X]

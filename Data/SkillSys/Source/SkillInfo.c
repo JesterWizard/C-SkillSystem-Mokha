@@ -8403,4 +8403,14 @@ const struct SkillInfo gSkillInfos[MAX_SKILL_NUM + 1] = {
     },
 #endif
 
+#if (defined(SID_Crescendo) && COMMON_SKILL_VALID(SID_Crescendo))
+    [SID_Crescendo] = {
+        .name = MSG_SKILL_Crescendo_NAME,
+        .desc = MSG_SKILL_Crescendo_DESC,
+        .capacity = MSG_SKILL_Crescendo_CAPACITY,
+        .price = MSG_SKILL_Crescendo_PRICE,
+        .icon = GFX_SkillIcon_WIP,
+    },
+#endif
+
 };

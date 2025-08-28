@@ -286,6 +286,7 @@ SID_LionFlame
 SID_Scendscale
 SID_LawsOfSacae
 SID_MagicEye
+SID_Crescendo
 
 //////// POST-BATTLE SKILLS
 SID_Canto
