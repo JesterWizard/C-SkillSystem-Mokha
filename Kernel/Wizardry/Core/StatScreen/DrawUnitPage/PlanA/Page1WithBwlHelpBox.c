@@ -3,7 +3,10 @@
 #include "constants/texts.h"
 
 static _DECL_INFO RText_Pow, RText_Mag, RText_Skl, RText_Spd, RText_Lck, RText_Def, RText_Res;
-static _DECL_INFO RText_Mov, RText_Con, RText_Aid, RText_Affin, RText_Trv, RText_Cond, RText_BAmt, RText_LBar;
+static _DECL_INFO RText_Mov, RText_Con, RText_Aid, RText_Affin, RText_Trv, RText_Cond, RText_BAmt;
+#ifdef CONFIG_TELLIUS_CAPACITY_SYSTEM
+	static _DECL_INFO RText_LBar;
+#endif
 static _DECL_INFO RText_Name, RText_Class, RText_Level, RText_Exp, RText_Hp;
 
 _DECL_INFO *const RTextPageUnit_WithBWL = &RText_Pow;

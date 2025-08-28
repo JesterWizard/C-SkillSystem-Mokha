@@ -198,4 +198,6 @@ ALIGN 4
     #include "Misc/VeslyNotificationWindow/VeslyNotificationWindow_Installer.event"
 #endif
 
-#include "Misc/VeslyAOE/AOE_Installer.event"
+#ifdef CONFIG_VESLY_AOE
+    #include "Misc/VeslyAOE/AOE_Installer.event"
+#endif

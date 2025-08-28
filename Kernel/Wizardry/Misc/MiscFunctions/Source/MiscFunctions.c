@@ -14,7 +14,9 @@
 #include "jester_headers/event-call.h"
 #include "jester_headers/custom-structs.h"
 #include "jester_headers/custom-arrays.h"
-#include "jester_headers/Forging.h"
+#ifdef CONFIG_FORGING
+    #include "jester_headers/Forging.h"
+#endif
 #include "player_interface.h"
 #include "soundroom.h"
 #include "bwl.h"
@@ -1115,8 +1117,8 @@ void StoreNumberStringOrDashesToSmallBuffer(int n)
 #else
     if (n == 255 || n == -1)
     {
-        gUnknown_02028E44[7] = ':';
-        gUnknown_02028E44[6] = ':';
+        gNumberStr[7] = ':';
+        gNumberStr[6] = ':';
     }
     else
     {

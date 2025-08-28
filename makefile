@@ -446,12 +446,21 @@ pre_build: $(PRE_BUILD)
 # misc
 CLEAN_FILES += $(shell find $(HACK_DIRS) -type f -name '*.EXPERIMENTAL-checkpatch-fixes')
 
+# clean_basic:
+# 	@rm -f $(CLEAN_FILES)
+# 	@rm -f $(CLEAN_PNG_FILES)
+# 	@rm -rf $(CLEAN_DIRS)
+
+# clean:
+# 	@for i in $(CLEAN_BUILD); do if test -e $$i/makefile ; then echo "Clean $$i .."; $(MAKE) -f $$i/makefile clean || { exit 1;} fi; done;
+# 	@$(MAKE) clean_basic
+# 	@echo "All cleaned .."
+
 clean_basic:
-	@rm -f $(CLEAN_FILES)
-	@rm -f $(CLEAN_PNG_FILES)
-	@rm -rf $(CLEAN_DIRS)
+	@find . -type f -name '*.o' -print0 | xargs -0 rm -f
+	@find . -type d -name 'temp*' -print0 | xargs -0 rm -rf
 
 clean:
-	@for i in $(CLEAN_BUILD); do if test -e $$i/makefile ; then echo "Clean $$i .."; $(MAKE) -f $$i/makefile clean || { exit 1;} fi; done;
+	@for i in $(CLEAN_BUILD); do if test -e $$i/makefile ; then $(MAKE) -f $$i/makefile clean || { exit 1;} fi; done;
 	@$(MAKE) clean_basic
-	@echo "All cleaned .."
+	@echo "Kernel cleaned .."

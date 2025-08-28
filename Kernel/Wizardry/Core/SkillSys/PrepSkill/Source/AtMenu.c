@@ -67,7 +67,11 @@ void PrepAtMenu_OnInit(struct ProcAtMenu * proc)
 }
 
 LYN_REPLACE_CHECK(PrepMenu_OnInit);
+#ifdef CONFIG_EXPANDED_PREP_MENU_OPTIONS
 void PrepMenu_OnInit(struct ProcPrepMenu_Scroll * proc)
+#else
+void PrepMenu_OnInit(struct ProcPrepMenu * proc)
+#endif
 {
     int i;
     for (i = 0; i < proc->max_index; i++)
@@ -84,7 +88,9 @@ void PrepMenu_OnInit(struct ProcPrepMenu_Scroll * proc)
     proc->on_End = 0;
     proc->do_help = 0;
 
+#ifdef CONFIG_EXPANDED_PREP_MENU_OPTIONS
     proc->firstVisibleIndex = 0;
+#endif
 
     StartMenuScrollBar(proc);
     PutMenuScrollBarAt(3, 60); // x and y
@@ -94,7 +100,12 @@ void PrepMenu_OnInit(struct ProcPrepMenu_Scroll * proc)
 LYN_REPLACE_CHECK(SetPrepScreenMenuOnBPress);
 void SetPrepScreenMenuOnBPress(const void* func)
 {
+#ifdef CONFIG_EXPANDED_PREP_MENU_OPTIONS
     struct ProcPrepMenu_Scroll *proc;
+#else
+    struct ProcPrepMenu *proc;
+#endif
+
     proc = Proc_Find(ProcScr_PrepMenu);
 
     if (proc)
@@ -104,7 +115,12 @@ void SetPrepScreenMenuOnBPress(const void* func)
 LYN_REPLACE_CHECK(SetPrepScreenMenuOnStartPress);
 void SetPrepScreenMenuOnStartPress(const void* func)
 {
+#ifdef CONFIG_EXPANDED_PREP_MENU_OPTIONS
     struct ProcPrepMenu_Scroll *proc;
+#else
+    struct ProcPrepMenu *proc;
+#endif
+
     proc = Proc_Find(ProcScr_PrepMenu);
 
     if (proc)
@@ -113,19 +129,26 @@ void SetPrepScreenMenuOnStartPress(const void* func)
 
 extern struct ProcCmd sProc_Menu[];
 LYN_REPLACE_CHECK(PrepMenu_CtrlLoop);
+#ifdef CONFIG_EXPANDED_PREP_MENU_OPTIONS
 void PrepMenu_CtrlLoop(struct ProcPrepMenu_Scroll *proc)
+#else
+void PrepMenu_CtrlLoop(struct ProcPrepMenu *proc)
+#endif
 {
     struct ProcPrepMenuItem* cmd;
-    int index = proc->cur_index;
+    // int index = proc->cur_index;
     int xPos = (proc->xPos + 1) * 8 + 4;
     int yPos = (proc->yPos + 1) * 8 + proc->cur_index * 16;
 
+#ifdef CONFIG_EXPANDED_PREP_MENU_OPTIONS
     int visibleY = (proc->yPos + 1) * 8 + (proc->cur_index - proc->firstVisibleIndex) * 16;
-
     ShowSysHandCursor(xPos, visibleY, 0x6, 0x400);
     struct MenuProc* proc2 = Proc_Find(sProc_Menu);
     GetMenuCursorPosition(proc2, &xPos, &yPos);
     ApplyMenuCursorVScroll(proc2, &xPos, &yPos);
+#else
+    ShowSysHandCursor(xPos, yPos, 0x6, 0x400);
+#endif
 
     cmd = proc->cmds[proc->cur_index];
 
@@ -198,7 +221,7 @@ void PrepMenu_CtrlLoop(struct ProcPrepMenu_Scroll *proc)
         // else if (DPAD_DOWN & gKeyStatusPtr->newKeys) // Allows looping of cursor when at bottom
         //     proc->cur_index = 0;
     }
-
+#ifdef CONFIG_EXPANDED_PREP_MENU_OPTIONS
     if (proc->cur_index < proc->firstVisibleIndex) {
         proc->firstVisibleIndex = proc->cur_index;
     }
@@ -218,26 +241,26 @@ void PrepMenu_CtrlLoop(struct ProcPrepMenu_Scroll *proc)
         (u8)PREP_MENU_VISIBLE_COUNT                // visibleRows: window size
     );
 
-    if (index != proc->cur_index) {
-        PlaySoundEffect(SONG_SE_SYS_CURSOR_UD1);
-
-        if (proc->do_help) {
-            StartHelpBox((proc->xPos + 1) * 8 + 4,
-                         (proc->yPos + 1) * 8 + proc->cur_index * 16,
-                         (cmd = proc->cmds[proc->cur_index])->msg_rtext);
-        }
-    }
+#endif
 }
 
 LYN_REPLACE_CHECK(PrepMenu_ShowFrozenHand);
+#ifdef CONFIG_EXPANDED_PREP_MENU_OPTIONS
 void PrepMenu_ShowFrozenHand(struct ProcPrepMenu_Scroll *proc)
+#else
+void PrepMenu_ShowFrozenHand(struct ProcPrepMenu *proc)
+#endif
 {
     DisplayFrozenUiHand((proc->xPos + 1) * 8 + 4,
                         (proc->yPos + 1) * 8 + proc->cur_index * 16);
 }
 
 LYN_REPLACE_CHECK(PrepMenu_ShowActiveHand);
+#ifdef CONFIG_EXPANDED_PREP_MENU_OPTIONS
 void PrepMenu_ShowActiveHand(struct ProcPrepMenu_Scroll *proc)
+#else
+void PrepMenu_ShowActiveHand(struct ProcPrepMenu *proc)
+#endif
 {    
     ShowSysHandCursor((proc->xPos + 1) * 8 + 4,
                              (proc->yPos + 1) * 8 + proc->cur_index * 16,
@@ -245,7 +268,11 @@ void PrepMenu_ShowActiveHand(struct ProcPrepMenu_Scroll *proc)
 }
 
 LYN_REPLACE_CHECK(PrepMenu_OnEnd);
+#ifdef CONFIG_EXPANDED_PREP_MENU_OPTIONS
 void PrepMenu_OnEnd(struct ProcPrepMenu_Scroll *proc)
+#else
+void PrepMenu_OnEnd(struct ProcPrepMenu *proc)
+#endif
 {
     if (proc->on_End)
         proc->on_End(proc->proc_parent);
@@ -420,7 +447,13 @@ LYN_REPLACE_CHECK(DrawPrepScreenMenuFrameAt);
 void DrawPrepScreenMenuFrameAt(int x, int y)
 {
     int i;
+
+#ifdef CONFIG_EXPANDED_PREP_MENU_OPTIONS
     struct ProcPrepMenu_Scroll *proc;
+#else
+    struct ProcPrepMenu *proc;
+#endif
+
     struct ProcPrepMenuItem *cmd;
     proc = Proc_Find(ProcScr_PrepMenu);
 
@@ -452,7 +485,13 @@ LYN_REPLACE_CHECK(SetPrepScreenMenuPosition);
 void SetPrepScreenMenuPosition(int x, int y)
 {
     int i;
+
+#ifdef CONFIG_EXPANDED_PREP_MENU_OPTIONS
     struct ProcPrepMenu_Scroll *proc;
+#else
+    struct ProcPrepMenu *proc;
+#endif
+
     struct ProcPrepMenuItem *cmd;
     proc = Proc_Find(ProcScr_PrepMenu);
 
@@ -460,14 +499,13 @@ void SetPrepScreenMenuPosition(int x, int y)
         proc->xPos = x;
         proc->yPos = y;
 
-        // NoCashGBAPrintf("Max index is: %d", proc->max_index);
-
         if (proc->max_index > 1) {
             // Loop through the *visible slots* on the screen (0 to PREP_MENU_VISIBLE_COUNT)
+    
+#ifdef CONFIG_EXPANDED_PREP_MENU_OPTIONS
             for (i = 0; i < PREP_MENU_VISIBLE_COUNT; i++) {
                 // Calculate the actual index of the menu item that should be in this visible slot
                 int actualItemIndex = proc->firstVisibleIndex + i;
-                //NoCashGBAPrintf("2 - Index %d message is %s", actualItemIndex+4, GetStringFromIndex(proc->cmds[actualItemIndex+4]->msg));
 
                 if (actualItemIndex < proc->max_index) {
                     cmd = proc->cmds[actualItemIndex]; // Get the menu item data
@@ -481,9 +519,20 @@ void SetPrepScreenMenuPosition(int x, int y)
                         GetStringFromIndex(cmd->msg)
                     );
                 }
-
-              //  NoCashGBAPrintf("INDEX IS: %d", actualItemIndex);
             }
+#else
+            for (i = 0; i < proc->max_index; i++) {
+                cmd = proc->cmds[i];
+                ClearText(&cmd->text);
+    
+                PutDrawText(
+                    &cmd->text,
+                    TILEMAP_LOCATED(gBG0TilemapBuffer, x + 2, y + 2 * i + 1),
+                    1 & cmd->color,
+                    0, 0,
+                    GetStringFromIndex(cmd->msg) );
+            }
+#endif
         }
         BG_EnableSyncByMask(0x1);
     }
@@ -493,7 +542,13 @@ LYN_REPLACE_CHECK(SetPrepScreenMenuSelectedItem);
 void SetPrepScreenMenuSelectedItem(int index)
 {
     int i, cur = 0;
+
+#ifdef CONFIG_EXPANDED_PREP_MENU_OPTIONS
     struct ProcPrepMenu_Scroll *proc;
+#else
+    struct ProcPrepMenu *proc;
+#endif
+
     proc = Proc_Find(ProcScr_PrepMenu);
 
     if (proc) {
@@ -514,7 +569,13 @@ LYN_REPLACE_CHECK(GetActivePrepMenuItemIndex);
 int GetActivePrepMenuItemIndex()
 {
     int i, cur = 0;
+
+#ifdef CONFIG_EXPANDED_PREP_MENU_OPTIONS
     struct ProcPrepMenu_Scroll *proc;
+#else
+    struct ProcPrepMenu *proc;
+#endif
+
     proc = Proc_Find(ProcScr_PrepMenu);
 
     if (proc) {
@@ -539,7 +600,13 @@ void SetPrepScreenMenuItem(int index, const void* func, int color, int msg, int 
     int i;
     // int max_index; // Not used?
     // struct ProcPrepMenuItem* cmd; // Not used?
+
+#ifdef CONFIG_EXPANDED_PREP_MENU_OPTIONS
     struct ProcPrepMenu_Scroll *proc;
+#else
+    struct ProcPrepMenu *proc;
+#endif
+
     proc = Proc_Find(ProcScr_PrepMenu);
 
     if (proc) {
@@ -566,8 +633,6 @@ void SetPrepScreenMenuItem(int index, const void* func, int color, int msg, int 
     	proc->cmds[i]->msg_rtext = msg_rtext;
         InitText(&proc->cmds[i]->text, 7);
         proc->max_index++;
-
-      // NoCashGBAPrintf("1 - Index %d message is %s", i, GetStringFromIndex(proc->cmds[i]->msg));
     }
 }
 
@@ -587,10 +652,12 @@ void InitPrepScreenMainMenu(struct ProcAtMenu* proc)
             SetPrepScreenMenuItem(PREP_MAINMENU_SAVE, PrepScreenMenu_OnSave, TEXT_COLOR_SYSTEM_GRAY, MSG_PREP_SCREEN_TITLE_SAVE, 0);
     
         SetPrepScreenMenuItem(PREP_MAINMENU_SUPPORT, PrepScreenMenu_OnSupport, TEXT_COLOR_SYSTEM_WHITE, MSG_PREP_SCREEN_TITLE_SUPPORT, 0);
+#ifdef CONFIG_EXPANDED_PREP_MENU_OPTIONS
         SetPrepScreenMenuItem(PREP_MAINMENU_AUGURY, PrepScreenMenu_Augury, TEXT_COLOR_SYSTEM_WHITE, MSG_PREP_SCREEN_TITLE_AUGURY, 0);
         SetPrepScreenMenuItem(PREP_MAINMENU_BONUX_EXP, PrepScreenMenu_BEXP, TEXT_COLOR_SYSTEM_WHITE, MSG_PREP_SCREEN_TITLE_BEXP, 0);
-        SetPrepScreenMenuItem(PREP_MAINMENU_CHECKMAP, PrepScreenMenu_OnCheckMap, TEXT_COLOR_SYSTEM_WHITE, MSG_PREP_SCREEN_TITLE_CHECK_MAP, 0);
         SetPrepScreenMenuItem(PREP_MAINMENU_SKILLS, PrepScreenMenu_OnEquip, TEXT_COLOR_SYSTEM_WHITE, MSG_PREP_SCREEN_TITLE_SKILLS, 0);
+#endif
+        SetPrepScreenMenuItem(PREP_MAINMENU_CHECKMAP, PrepScreenMenu_OnCheckMap, TEXT_COLOR_SYSTEM_WHITE, MSG_PREP_SCREEN_TITLE_CHECK_MAP, 0);
         //SetPrepScreenMenuItem(PREP_MAINMENU_BASE_CONVERSATIONS, PrepScreenMenu_BaseConversations, TEXT_COLOR_SYSTEM_WHITE, MSG_PREP_SCREEN_TITLE_BASE_CONVERSATIONS, 0);
     } 
     else 

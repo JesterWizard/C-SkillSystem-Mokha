@@ -248,7 +248,7 @@ PUSH
     BYTE 0x3F
     ORG $8C536
     BYTE 0x3F
-    PROTECT $8C45C $8C5D0
+    // PROTECT $8C45C $8C5D0
 #endif
 
     ORG $1D58E // GetUnitSelectionValueThing
