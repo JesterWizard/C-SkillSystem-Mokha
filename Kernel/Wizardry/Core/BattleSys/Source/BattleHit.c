@@ -303,6 +303,13 @@ bool BattleGenerateHit(struct BattleUnit *attacker, struct BattleUnit *defender)
 			}
 #endif
 
+#if (defined(SID_Graverobber) && (COMMON_SKILL_VALID(SID_Graverobber)))
+			if (CheckBattleSkillActivate(&gBattleActor, &gBattleTarget, SID_Graverobber, gBattleActor.unit.skl))
+			{
+				
+			}
+#endif
+
 #ifdef CONFIG_FORGING
     #ifdef CONFIG_FE4_CRIT_BONUS_ON_KILL
             u16 item = GetUnitEquippedWeapon(GetUnit(gBattleActor.unit.index));

@@ -343,6 +343,7 @@
 // SID_GoodListener
 // SID_ScrollScribePlus
 // SID_Shakedown
+// SID_Samaritan
 
 //////// AURA SKILLS
 // SID_Anathema

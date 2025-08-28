@@ -834,3 +834,4 @@
 #define MSG_SKILL_TurboMP_CAPACITY 1
 #define MSG_SKILL_Carnage_CAPACITY 1
 #define MSG_SKILL_Crisis_CAPACITY 1
+#define MSG_SKILL_Samaritan_CAPACITY 1

@@ -313,3 +313,10 @@ Shakedown:[N]
 When initiating battle, steal[N]
 gold equal to damage dealt[N]
 (Luck % activation).[X]
+
+## MSG_SKILL_Samaritan_NAME
+Samaritan[X]
+## MSG_SKILL_Samaritan_DESC
+Samaritan:[N]
+Gain another action after[N]
+rescuing a unit.[X]

@@ -12,6 +12,17 @@
 
 extern u8 gPostActionGaleforceFlag;
 
+static void refreshUnit(struct Unit * unit, ProcPtr parent)
+{
+	if (!UnitAvaliable(unit) || UNIT_STONED(unit))
+		return;
+		
+	gActionDataExpa.refrain_action = true;
+	EndAllMus();
+	StartStatusHealEffect(unit, parent);
+	return;
+}
+
 bool PostActionTsuzuku(ProcPtr parent)
 {
 	FORCE_DECLARE struct Unit *unit = gActiveUnit;
@@ -41,6 +52,14 @@ bool PostActionTsuzuku(ProcPtr parent)
 #if defined(SID_PowerStaff) && (COMMON_SKILL_VALID(SID_PowerStaff))
 		if (CheckActiveUnitSkillActivate(SID_PowerStaff, GetUnitLuck(unit)))
 			goto L_exec_rafrain_action_anim;
+#endif
+
+	/* fall through */
+
+	case UNIT_ACTION_RESCUE:
+#if defined(SID_Samaritan) && (COMMON_SKILL_VALID(SID_Samaritan))
+		if (SkillTester(unit, SID_Samaritan))
+			refreshUnit(unit, parent);
 #endif
 
 	/* fall through */

@@ -8373,4 +8373,14 @@ const struct SkillInfo gSkillInfos[MAX_SKILL_NUM + 1] = {
     },
 #endif
 
+#if (defined(SID_Samaritan) && COMMON_SKILL_VALID(SID_Samaritan))
+    [SID_Samaritan] = {
+        .name = MSG_SKILL_Samaritan_NAME,
+        .desc = MSG_SKILL_Samaritan_DESC,
+        .capacity = MSG_SKILL_Samaritan_CAPACITY,
+        .price = MSG_SKILL_Samaritan_PRICE,
+        .icon = GFX_SkillIcon_WIP,
+    },
+#endif
+
 };
