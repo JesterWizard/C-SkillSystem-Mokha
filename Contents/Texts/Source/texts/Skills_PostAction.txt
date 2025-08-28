@@ -320,3 +320,10 @@ Samaritan[X]
 Samaritan:[N]
 Gain another action after[N]
 rescuing a unit.[X]
+
+## MSG_SKILL_Turret_NAME
+Turret[X]
+## MSG_SKILL_Turret_DESC
+Turret:[N]
+Keep tacking actions so long[N]
+as this unit doesn't move.[X]

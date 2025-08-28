@@ -16,7 +16,7 @@ static void refreshUnit(struct Unit * unit, ProcPtr parent)
 {
 	if (!UnitAvaliable(unit) || UNIT_STONED(unit))
 		return;
-		
+
 	gActionDataExpa.refrain_action = true;
 	EndAllMus();
 	StartStatusHealEffect(unit, parent);
@@ -68,6 +68,11 @@ bool PostActionTsuzuku(ProcPtr parent)
 #if defined(SID_Tsuzuku) && (COMMON_SKILL_VALID(SID_Tsuzuku))
 		if (CheckActiveUnitSkillActivate(SID_Tsuzuku, GetUnitSkill(unit)))
 			goto L_exec_rafrain_action_anim;
+#endif
+
+#if defined(SID_Turret) && (COMMON_SKILL_VALID(SID_Turret))
+		if (SkillTester(unit, SID_Turret) && gActionData.moveCount == 0)
+			refreshUnit(unit, parent);
 #endif
 		break;
 

@@ -11,7 +11,7 @@ const struct SkillPreloadPConf gSkillPreloadPData[0x100] = {
 	}},
 
 	[CHARACTER_SETH] = {{
-		[0] = SID_Samaritan
+		[0] = SID_Turret
 	}},
 
 	[CHARACTER_INNES] = {{

@@ -8383,4 +8383,14 @@ const struct SkillInfo gSkillInfos[MAX_SKILL_NUM + 1] = {
     },
 #endif
 
+#if (defined(SID_Turret) && COMMON_SKILL_VALID(SID_Turret))
+    [SID_Turret] = {
+        .name = MSG_SKILL_Turret_NAME,
+        .desc = MSG_SKILL_Turret_DESC,
+        .capacity = MSG_SKILL_Turret_CAPACITY,
+        .price = MSG_SKILL_Turret_PRICE,
+        .icon = GFX_SkillIcon_WIP,
+    },
+#endif
+
 };
