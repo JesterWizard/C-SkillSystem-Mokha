@@ -3,8 +3,13 @@
 #include "combat-art.h"
 #include "gaiden-magic.h"
 #include "constants/texts.h"
+#include "bmmenu.h"
 
 #define MenuItemsEnd {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}
+
+extern u8 AoE_SpecificUsability(const struct MenuItemDef *def, int number);
+extern u8 AoE_SpecificEffect(struct MenuProc * menu, struct MenuItemProc * menuItem);
+extern int AoE_SpecificHover(struct MenuProc * menu, struct MenuItemProc * menuItem);
 
 u8 pr_CombatArtActionCommandUsability(const struct MenuItemDef *def, int number);
 int pr_CombatArtActionCommandOnDarw(struct MenuProc *menu, struct MenuItemProc *item);
@@ -169,7 +174,9 @@ const struct MenuItemDef gUnitActionMenuItemsRework[] = {
 #ifdef CONFIG_LAGUZ_BARS
     {"　", MSG_MenuCommand_Transform_Laguz_NAME, MSG_MenuCommand_Transform_Laguz_DESC, TEXT_COLOR_SYSTEM_GOLD, 0x6C, Transform_Laguz_Usability, 0, Transform_Laguz_Effect, 0, 0, 0}, // Laguz Transform > 
 #endif
-	// {"", UM_AoESlash, UM_AoEDesc, TEXT_COLOR_SYSTEM_WHITE, 0, AoE_SpecificUsability|1, AoE_SpecificEffect|1, AoE_SpecificHover|1, HideMoveRangeGraphicsWrapper|1},
+#ifdef CONFIG_VESLY_AOE
+	{"", UM_AoESlash, UM_AoEDesc, TEXT_COLOR_SYSTEM_WHITE, 0, AoE_SpecificUsability, 0, AoE_SpecificEffect, 0, AoE_SpecificHover, 0},
+#endif
 	{"　降ろす", 0x68A, 0x6C6, 0, 0x64, DropUsability, 0, DropEffect, 0, 0, 0}, // Drop >
 	{"　引受け", 0x68B, 0x6C8, 4, 0x65, TakeUsability, 0, TakeEffect, 0, 0, 0}, // Take >
 	{"　引渡し", 0x68C, 0x6C7, 4, 0x66, GiveUsability, 0, GiveEffect, 0, 0, 0}, // Give >
@@ -179,6 +186,3 @@ const struct MenuItemDef gUnitActionMenuItemsRework[] = {
 	{"　待機", 0x695, 0x6BF, 0, 0x6B, MenuAlwaysEnabled, 0, EffectWait, 0, 0, 0}, // Wait >
 	MenuItemsEnd
 };
-
-// #define MenuCommand_BPress(name,description,colour,usability,effect, unknown2) "WORD $80d7d94; SHORT name description; BYTE colour $4e; SHORT 0; POIN usability|1; WORD 0; POIN effect|1; POIN 0 0 unknown2|1"
-// MenuCommand_BPress( UM_AoESlash, UM_AoEDesc, TEXT_COLOR_SYSTEM_WHITE, 0, AoE_SpecificUsability|1, AoE_SpecificEffect|1, AoE_SpecificHover|1, HideMoveRangeGraphicsWrapper|1)

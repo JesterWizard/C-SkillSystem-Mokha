@@ -315,16 +315,19 @@ TargetTileConfirm_2:
 #include "TargetTileConfirm.lyn.event"
 POIN OptionalAdditionalRangeSelectionCheck
 
-ALIGN 4 
-AoE_SpecificUsability:
+ALIGN 4
+PUSH; ORG CURRENTOFFSET+1; AoE_SpecificUsability: 
+POP
 #include "AoE_SpecificUsability.lyn.event"
 
 ALIGN 4
-AoE_SpecificEffect:
+PUSH; ORG CURRENTOFFSET+1; AoE_SpecificEffect: 
+POP
 #include "AoE_SpecificEffect.lyn.event"
 
 ALIGN 4
-AoE_SpecificHover:
+PUSH; ORG CURRENTOFFSET+1; AoE_SpecificHover: 
+POP
 #include "AoE_SpecificHover.lyn.event"
 
 ALIGN 4
