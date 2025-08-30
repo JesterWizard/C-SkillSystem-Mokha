@@ -484,3 +484,10 @@ Turbo MP:[N]
 Gaiden Magic costs twice[N]
 as much MP to use, but damage[N]
 is increased by 66%.[X]
+
+## MSG_SKILL_DilligentMind_NAME
+Dilligent Mind[X]
+## MSG_SKILL_DilligentMind_DESC
+Dilligent Mind:[N]
+Boost offensive stave[N]
+accuracy by 15%.[X]

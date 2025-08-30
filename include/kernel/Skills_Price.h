@@ -840,3 +840,4 @@
 #define MSG_SKILL_Crescendo_PRICE 1000
 #define MSG_SKILL_PenanceStare_PRICE 1000
 #define MSG_SKILL_QuickSalve_PRICE 1000
+#define MSG_SKILL_DilligentMind_PRICE 1000
