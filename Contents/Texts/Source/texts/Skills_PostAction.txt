@@ -327,3 +327,10 @@ Turret[X]
 Turret:[N]
 Keep tacking actions so long[N]
 as this unit doesn't move.[X]
+
+## MSG_SKILL_QuickSalve_NAME
+Quick Salve[X]
+## MSG_SKILL_QuickSalve_DESC
+Quick Salve:[N]
+Unit can take another action[N]
+after using a healing item.[X]

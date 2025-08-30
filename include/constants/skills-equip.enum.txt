@@ -347,6 +347,7 @@ SID_ScrollScribePlus
 SID_Shakedown
 SID_Samaritan
 SID_Turret
+SID_QuickSalve
 
 //////// AURA SKILLS
 SID_Anathema

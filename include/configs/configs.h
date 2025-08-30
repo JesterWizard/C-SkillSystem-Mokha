@@ -288,7 +288,7 @@
 #define CONFIG_VESLY_EXTENDED_ITEM_DESCRIPTIONS
 #define CONFIG_VESLY_CREDITS_SEQUENCE
 #define CONFIG_VESLY_NOTIFICATION_SYSTEM /* Has issues with setting custom notifications and displaying UTF8 text */
-#define CONFIG_VESLY_AOE
+//#define CONFIG_VESLY_AOE
 #define CONFIG_STAT_SCREEN_ALLEGIANCE_COLORS
 // #define CONFIG_CASUAL_MODE // Doesn't seem to work right now, look into remaking in C
 #define CONFIG_RES_TERRAIN_WINDOW

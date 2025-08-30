@@ -64,6 +64,25 @@ bool PostActionTsuzuku(ProcPtr parent)
 
 	/* fall through */
 
+	case UNIT_ACTION_USE_ITEM:
+#if defined(SID_QuickSalve) && (COMMON_SKILL_VALID(SID_QuickSalve))
+		if (SkillTester(unit, SID_QuickSalve))
+		{
+			switch (GetItemIndex(gBattleActor.weaponBefore))
+			{
+			case ITEM_VULNERARY:
+			case ITEM_VULNERARY_2:
+			case ITEM_ELIXIR:
+				refreshUnit(unit, parent);
+				break;
+			default:
+				break;
+			}
+		}
+#endif
+
+	/* fall through */
+
 	default:
 #if defined(SID_Tsuzuku) && (COMMON_SKILL_VALID(SID_Tsuzuku))
 		if (CheckActiveUnitSkillActivate(SID_Tsuzuku, GetUnitSkill(unit)))
