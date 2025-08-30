@@ -8,7 +8,8 @@
 const struct CombatArtInfo gCombatArtInfos[0x100] = {
 	/* Sword arts */
 	[CID_WrathStrike] = {
-		.name = MSG_COMART_NAME_WrathStrike,
+		.name = MSG_SKILL_COMBAT_WrathStrike_NAME,
+		.desc = MSG_SKILL_COMBAT_WrathStrike_DESC,
 		.icon = GFX_CombatArtIcon_SwordArtAtk,
 		.wtype = ITYPE_SWORD,
 		.cost = 3,
@@ -16,8 +17,8 @@ const struct CombatArtInfo gCombatArtInfos[0x100] = {
 		.battle_status.hit = 10,
 	},
 	[CID_Grounder] = {
-		.name = MSG_COMART_NAME_Grounder,
-		.desc = MSG_COMART_DESC_Grounder,
+		.name = MSG_SKILL_COMBAT_Grounder_NAME,
+		.desc = MSG_SKILL_COMBAT_Grounder_DESC,
 		.icon = GFX_CombatArtIcon_SwordArtAtk,
 		.wtype = ITYPE_SWORD,
 		.cost = 4,
@@ -27,8 +28,8 @@ const struct CombatArtInfo gCombatArtInfos[0x100] = {
 		.effectiveness = COMBART_EFF_FLIER,
 	},
 	[CID_Soulblade] = {
-		.name = MSG_COMART_NAME_Soulblade,
-		.desc = MSG_COMART_DESC_Soulblade,
+		.name = MSG_SKILL_COMBAT_Soulblade_NAME,
+		.desc = MSG_SKILL_COMBAT_Soulblade_DESC,
 		.icon = GFX_CombatArtIcon_SwordArtMag,
 		.wtype = ITYPE_SWORD,
 		.cost = 2,
@@ -37,8 +38,8 @@ const struct CombatArtInfo gCombatArtInfos[0x100] = {
 		.magic_attack = true,
 	},
 	[CID_BaneOfMonsters] = {
-		.name = MSG_COMART_NAME_BaneOfMonsters,
-		.desc = MSG_COMART_DESC_BaneOfMonsters,
+		.name = MSG_SKILL_COMBAT_BaneOfMonsters_NAME,
+		.desc = MSG_SKILL_COMBAT_BaneOfMonsters_DESC,
 		.icon = GFX_CombatArtIcon_SwordArtAtk,
 		.wtype = ITYPE_SWORD,
 		.cost = 4,
@@ -47,7 +48,8 @@ const struct CombatArtInfo gCombatArtInfos[0x100] = {
 		.effectiveness = COMBART_EFF_MONSTER,
 	},
 	[CID_Sunder] = {
-		.name = MSG_COMART_NAME_Sunder,
+		.name = MSG_SKILL_COMBAT_Sunder_NAME,
+		.desc = MSG_SKILL_COMBAT_Sunder_DESC,
 		.icon = GFX_CombatArtIcon_SwordArtCrit,
 		.wtype = ITYPE_SWORD,
 		.cost = 3,
@@ -55,8 +57,8 @@ const struct CombatArtInfo gCombatArtInfos[0x100] = {
 		.battle_status.crit = 15,
 	},
 	[CID_Hexblade] = {
-		.name = MSG_COMART_NAME_Hexblade,
-		.desc = MSG_COMART_DESC_Hexblade,
+		.name = MSG_SKILL_COMBAT_Hexblade_NAME,
+		.desc = MSG_SKILL_COMBAT_Hexblade_DESC,
 		.icon = GFX_CombatArtIcon_SwordArtMag,
 		.wtype = ITYPE_SWORD,
 		.cost = 3,
@@ -65,7 +67,8 @@ const struct CombatArtInfo gCombatArtInfos[0x100] = {
 		.magic_attack = true,
 	},
 	[CID_HazeSlice] = {
-		.name = MSG_COMART_NAME_HazeSlice,
+		.name = MSG_SKILL_COMBAT_HazeSlice_NAME,
+		.desc = MSG_SKILL_COMBAT_HazeSlice_DESC,
 		.icon = GFX_CombatArtIcon_SwordArtAtk,
 		.wtype = ITYPE_SWORD,
 		.cost = 5,
@@ -73,8 +76,8 @@ const struct CombatArtInfo gCombatArtInfos[0x100] = {
 		.battle_status.avo = 30,
 	},
 	[CID_FinesseBlade] = {
-		.name = MSG_COMART_NAME_FinesseBlade,
-		.desc = MSG_COMART_DESC_FinesseBlade,
+		.name = MSG_SKILL_COMBAT_FinesseBlade_NAME,
+		.desc = MSG_SKILL_COMBAT_FinesseBlade_DESC,
 		.icon = GFX_CombatArtIcon_SwordArtAtk,
 		.wtype = ITYPE_SWORD,
 		.cost = 4,
@@ -82,8 +85,8 @@ const struct CombatArtInfo gCombatArtInfos[0x100] = {
 		.battle_status.avo = 10,
 	},
 	[CID_Assassinate] = {
-		.name = MSG_COMART_NAME_Assassinate,
-		.desc = MSG_COMART_DESC_Assassinate,
+		.name = MSG_SKILL_COMBAT_Assassinate_NAME,
+		.desc = MSG_SKILL_COMBAT_Assassinate_DESC,
 		.icon = GFX_CombatArtIcon_SwordArtCrit,
 		.wtype = ITYPE_SWORD,
 		.cost = 4,
@@ -92,8 +95,8 @@ const struct CombatArtInfo gCombatArtInfos[0x100] = {
 		.battle_status.crit = 15,
 	},
 	[CID_FoudroyantStrike] = {
-		.name = MSG_COMART_NAME_FoudroyantStrike,
-		.desc = MSG_COMART_DESC_FoudroyantStrike,
+		.name = MSG_SKILL_COMBAT_FoudroyantStrike_NAME,
+		.desc = MSG_SKILL_COMBAT_FoudroyantStrike_DESC,
 		.icon = GFX_CombatArtIcon_SwordArtCrit,
 		.wtype = ITYPE_SWORD,
 		.cost = 3,
@@ -105,8 +108,8 @@ const struct CombatArtInfo gCombatArtInfos[0x100] = {
 
 	/* Lance arts */
 	[CID_TempestLance] = {
-		.name = MSG_COMART_NAME_TempestLance,
-		.desc = 0,
+		.name = MSG_SKILL_COMBAT_TempestLance_NAME,
+		.desc = MSG_SKILL_COMBAT_TempestLance_DESC,
 		.icon = GFX_CombatArtIcon_LanceArtAtk,
 		.wtype = ITYPE_LANCE,
 		.cost = 5,
@@ -114,8 +117,8 @@ const struct CombatArtInfo gCombatArtInfos[0x100] = {
 		.battle_status.hit = 10,
 	},
 	[CID_Knightkneeler] = {
-		.name = MSG_COMART_NAME_Knightkneeler,
-		.desc = MSG_COMART_DESC_Knightkneeler,
+		.name = MSG_SKILL_COMBAT_Knightkneeler_NAME,
+		.desc = MSG_SKILL_COMBAT_Knightkneeler_DESC,
 		.icon = GFX_CombatArtIcon_LanceArtAtk,
 		.wtype = ITYPE_LANCE,
 		.cost = 4,
@@ -125,8 +128,8 @@ const struct CombatArtInfo gCombatArtInfos[0x100] = {
 		.effectiveness = COMBART_EFF_CAVALRY,
 	},
 	[CID_ShatterSlash] = {
-		.name = MSG_COMART_NAME_ShatterSlash,
-		.desc = MSG_COMART_DESC_ShatterSlash,
+		.name = MSG_SKILL_COMBAT_ShatterSlash_NAME,
+		.desc = MSG_SKILL_COMBAT_ShatterSlash_DESC,
 		.icon = GFX_CombatArtIcon_LanceArtAtk,
 		.wtype = ITYPE_LANCE,
 		.cost = 3,
@@ -135,8 +138,8 @@ const struct CombatArtInfo gCombatArtInfos[0x100] = {
 		.debuff = NEW_UNIT_STATUS_PIERCE_ARMOR,
 	},
 	[CID_MonsterPiercer] = {
-		.name = MSG_COMART_NAME_MonsterPiercer,
-		.desc = MSG_COMART_DESC_MonsterPiercer,
+		.name = MSG_SKILL_COMBAT_MonsterPiercer_NAME,
+		.desc = MSG_SKILL_COMBAT_MonsterPiercer_DESC,
 		.icon = GFX_CombatArtIcon_LanceArtCrit,
 		.wtype = ITYPE_LANCE,
 		.cost = 4,
@@ -145,8 +148,8 @@ const struct CombatArtInfo gCombatArtInfos[0x100] = {
 		.effectiveness = COMBART_EFF_MONSTER,
 	},
 	[CID_SwiftStrikes] = {
-		.name = MSG_COMART_NAME_SwiftStrikes,
-		.desc = MSG_COMART_DESC_SwiftStrikes,
+		.name = MSG_SKILL_COMBAT_SwiftStrikes_NAME,
+		.desc = MSG_SKILL_COMBAT_SwiftStrikes_DESC,
 		.icon = GFX_CombatArtIcon_LanceArtAtk,
 		.wtype = ITYPE_LANCE,
 		.cost = 2,
@@ -155,8 +158,8 @@ const struct CombatArtInfo gCombatArtInfos[0x100] = {
 		.double_attack = COMBART_DOUBLE_FORCE_ENABLED,
 	},
 	[CID_FrozenLance] = {
-		.name = MSG_COMART_NAME_FrozenLance,
-		.desc = MSG_COMART_DESC_FrozenLance,
+		.name = MSG_SKILL_COMBAT_FrozenLance_NAME,
+		.desc = MSG_SKILL_COMBAT_FrozenLance_DESC,
 		.icon = GFX_CombatArtIcon_LanceArtMag,
 		.wtype = ITYPE_LANCE,
 		.cost = 4,
@@ -165,8 +168,8 @@ const struct CombatArtInfo gCombatArtInfos[0x100] = {
 		.magic_attack = true,
 	},
 	[CID_Vengeance] = {
-		.name = MSG_COMART_NAME_Vengeance,
-		.desc = MSG_COMART_DESC_Vengeance,
+		.name = MSG_SKILL_COMBAT_Vengeance_NAME,
+		.desc = MSG_SKILL_COMBAT_Vengeance_DESC,
 		.icon = GFX_CombatArtIcon_LanceArtCrit,
 		.wtype = ITYPE_LANCE,
 		.cost = 4,
@@ -175,8 +178,8 @@ const struct CombatArtInfo gCombatArtInfos[0x100] = {
 		.battle_status.crit = 5,
 	},
 	[CID_LanceJab] = {
-		.name = MSG_COMART_NAME_LanceJab,
-		.desc = MSG_COMART_DESC_LanceJab,
+		.name = MSG_SKILL_COMBAT_LanceJab_NAME,
+		.desc = MSG_SKILL_COMBAT_LanceJab_DESC,
 		.icon = GFX_CombatArtIcon_LanceArtAtk,
 		.wtype = ITYPE_LANCE,
 		.cost = 5,
@@ -186,7 +189,8 @@ const struct CombatArtInfo gCombatArtInfos[0x100] = {
 
 	/* Axe arts */
 	[CID_Smash] = {
-		.name = MSG_COMART_NAME_Smash,
+		.name = MSG_SKILL_COMBAT_Smash_NAME,
+		.desc = MSG_SKILL_COMBAT_Smash_DESC,
 		.icon = GFX_CombatArtIcon_AxeArtAtk,
 		.wtype = ITYPE_AXE,
 		.cost = 5,
@@ -195,8 +199,8 @@ const struct CombatArtInfo gCombatArtInfos[0x100] = {
 		.battle_status.crit = 20,
 	},
 	[CID_HelmSplitter] = {
-		.name = MSG_COMART_NAME_HelmSplitter,
-		.desc = MSG_COMART_DESC_HelmSplitter,
+		.name = MSG_SKILL_COMBAT_HelmSplitter_NAME,
+		.desc = MSG_SKILL_COMBAT_HelmSplitter_DESC,
 		.icon = GFX_CombatArtIcon_AxeArtAtk,
 		.wtype = ITYPE_AXE,
 		.cost = 5,
@@ -205,8 +209,8 @@ const struct CombatArtInfo gCombatArtInfos[0x100] = {
 		.effectiveness = COMBART_EFF_ARMOR,
 	},
 	[CID_MonsterBreaker] = {
-		.name = MSG_COMART_NAME_MonsterBreaker,
-		.desc = MSG_COMART_DESC_MonsterBreaker,
+		.name = MSG_SKILL_COMBAT_MonsterBreaker_NAME,
+		.desc = MSG_SKILL_COMBAT_MonsterBreaker_DESC,
 		.icon = GFX_CombatArtIcon_AxeArtCrit,
 		.wtype = ITYPE_AXE,
 		.cost = 5,
@@ -215,14 +219,16 @@ const struct CombatArtInfo gCombatArtInfos[0x100] = {
 		.effectiveness = COMBART_EFF_MONSTER,
 	},
 	[CID_FocusedStrike] = {
-		.name = MSG_COMART_NAME_FocusedStrike,
+		.name = MSG_SKILL_COMBAT_FocusedStrike_NAME,
+		.desc = MSG_SKILL_COMBAT_FocusedStrike_DESC,
 		.icon = GFX_CombatArtIcon_AxeArtAtk,
 		.wtype = ITYPE_AXE,
 		.cost = 3,
 		.battle_status.hit = 30,
 	},
 	[CID_WildAbandon] = {
-		.name = MSG_COMART_NAME_WildAbandon,
+		.name = MSG_SKILL_COMBAT_WildAbandon_NAME,
+		.desc = MSG_SKILL_COMBAT_WildAbandon_DESC,
 		.icon = GFX_CombatArtIcon_AxeArtCrit,
 		.wtype = ITYPE_AXE,
 		.cost = 5,
@@ -231,7 +237,8 @@ const struct CombatArtInfo gCombatArtInfos[0x100] = {
 		.battle_status.crit = 30,
 	},
 	[CID_Spike] = {
-		.name = MSG_COMART_NAME_Spike,
+		.name = MSG_SKILL_COMBAT_Spike_NAME,
+		.desc = MSG_SKILL_COMBAT_Spike_DESC,
 		.icon = GFX_CombatArtIcon_AxeArtAtk,
 		.wtype = ITYPE_AXE,
 		.cost = 5,
@@ -240,7 +247,8 @@ const struct CombatArtInfo gCombatArtInfos[0x100] = {
 		.battle_status.crit = 10,
 	},
 	[CID_DiamondAxe] = {
-		.name = MSG_COMART_NAME_DiamondAxe,
+		.name = MSG_SKILL_COMBAT_DiamondAxe_NAME,
+		.desc = MSG_SKILL_COMBAT_DiamondAxe_DESC,
 		.icon = GFX_CombatArtIcon_AxeArtAtk,
 		.wtype = ITYPE_AXE,
 		.cost = 7,
@@ -248,8 +256,8 @@ const struct CombatArtInfo gCombatArtInfos[0x100] = {
 		.battle_status.hit = -20,
 	},
 	[CID_LightningAxe] = {
-		.name = MSG_COMART_NAME_LightningAxe,
-		.desc = MSG_COMART_DESC_LightningAxe,
+		.name = MSG_SKILL_COMBAT_LightningAxe_NAME,
+		.desc = MSG_SKILL_COMBAT_LightningAxe_DESC,
 		.icon = GFX_CombatArtIcon_AxeArtMag,
 		.wtype = ITYPE_AXE,
 		.cost = 3,
@@ -257,8 +265,8 @@ const struct CombatArtInfo gCombatArtInfos[0x100] = {
 		.magic_attack = true,
 	},
 	[CID_ArmoredStrike] = {
-		.name = MSG_COMART_NAME_ArmoredStrike,
-		.desc = MSG_COMART_DESC_ArmoredStrike,
+		.name = MSG_SKILL_COMBAT_ArmoredStrike_NAME,
+		.desc = MSG_SKILL_COMBAT_ArmoredStrike_DESC,
 		.icon = GFX_CombatArtIcon_AxeArtAtk,
 		.wtype = ITYPE_AXE,
 		.cost = 4,
@@ -266,8 +274,8 @@ const struct CombatArtInfo gCombatArtInfos[0x100] = {
 		.battle_status.hit = 10,
 	},
 	[CID_WarMasterStrike] = {
-		.name = MSG_COMART_NAME_WarMasterStrike,
-		.desc = MSG_COMART_DESC_WarMasterStrike,
+		.name = MSG_SKILL_COMBAT_WarMasterStrike_NAME,
+		.desc = MSG_SKILL_COMBAT_WarMasterStrike_DESC,
 		.icon = GFX_CombatArtIcon_AxeArtCrit,
 		.wtype = ITYPE_AXE,
 		.cost = 5,
@@ -277,8 +285,8 @@ const struct CombatArtInfo gCombatArtInfos[0x100] = {
 		.effectiveness = COMBART_EFF_ALL,
 	},
 	[CID_FlickeringFlower] = {
-		.name = MSG_COMART_NAME_FlickeringFlower,
-		.desc = MSG_COMART_DESC_FlickeringFlower,
+		.name = MSG_SKILL_COMBAT_FlickeringFlower_NAME,
+		.desc = MSG_SKILL_COMBAT_FlickeringFlower_DESC,
 		.icon = GFX_CombatArtIcon_AxeArtDebuff,
 		.wtype = ITYPE_AXE,
 		.cost = 3,
@@ -289,9 +297,9 @@ const struct CombatArtInfo gCombatArtInfos[0x100] = {
 
 	/* Bow arts */
 	[CID_CurvedShot] = {
-		.name = MSG_COMART_NAME_CurvedShot,
+		.name = MSG_SKILL_COMBAT_CurvedShot_NAME,
+		.desc = MSG_SKILL_COMBAT_CurvedShot_DESC,
 		.icon = GFX_CombatArtIcon_BowArtAtk,
-		.desc = 0,
 		.wtype = ITYPE_BOW,
 		.cost = 3,
 		.range_bonus = 1,
@@ -299,17 +307,17 @@ const struct CombatArtInfo gCombatArtInfos[0x100] = {
 		.battle_status.crit = 30,
 	},
 	[CID_Deadeye] = {
-		.name = MSG_COMART_NAME_Deadeye,
+		.name = MSG_SKILL_COMBAT_Deadeye_NAME,
+		.desc = MSG_SKILL_COMBAT_Deadeye_DESC,
 		.icon = GFX_CombatArtIcon_BowArtAtk,
-		.desc = 0,
 		.wtype = ITYPE_BOW,
 		.cost = 5,
 		.range_bonus = 3,
 		.battle_status.atk = 6,
 	},
 	[CID_Encloser] = {
-		.name = MSG_COMART_NAME_Encloser,
-		.desc = MSG_COMART_DESC_Encloser,
+		.name = MSG_SKILL_COMBAT_Encloser_NAME,
+		.desc = MSG_SKILL_COMBAT_Encloser_DESC,
 		.icon = GFX_CombatArtIcon_BowArtDebuff,
 		.wtype = ITYPE_BOW,
 		.cost = 5,
@@ -318,8 +326,8 @@ const struct CombatArtInfo gCombatArtInfos[0x100] = {
 		.debuff = NEW_UNIT_STATUS_HEAVY_GRAVITY,
 	},
 	[CID_EncloserPlus] = {
-		.name = MSG_COMART_NAME_EncloserPlus,
-		.desc = MSG_COMART_DESC_EncloserPlus,
+		.name = MSG_SKILL_COMBAT_EncloserPlus_NAME,
+		.desc = MSG_SKILL_COMBAT_EncloserPlus_DESC,
 		.icon = GFX_CombatArtIcon_BowArtDebuff,
 		.wtype = ITYPE_BOW,
 		.cost = 7,
@@ -329,8 +337,8 @@ const struct CombatArtInfo gCombatArtInfos[0x100] = {
 		.aoe_debuff = true,
 	},
 	[CID_MonsterBlast] = {
-		.name = MSG_COMART_NAME_MonsterBlast,
-		.desc = MSG_COMART_DESC_MonsterBlast,
+		.name = MSG_SKILL_COMBAT_MonsterBlast_NAME,
+		.desc = MSG_SKILL_COMBAT_MonsterBlast_DESC,
 		.icon = GFX_CombatArtIcon_BowArtCrit,
 		.wtype = ITYPE_BOW,
 		.cost = 4,
@@ -339,8 +347,8 @@ const struct CombatArtInfo gCombatArtInfos[0x100] = {
 		.effectiveness = COMBART_EFF_MONSTER,
 	},
 	[CID_SchismShot] = {
-		.name = MSG_COMART_NAME_SchismShot,
-		.desc = MSG_COMART_DESC_SchismShot,
+		.name = MSG_SKILL_COMBAT_SchismShot_NAME,
+		.desc = MSG_SKILL_COMBAT_SchismShot_DESC,
 		.icon = GFX_CombatArtIcon_BowArtMag,
 		.wtype = ITYPE_BOW,
 		.cost = 3,
@@ -351,8 +359,8 @@ const struct CombatArtInfo gCombatArtInfos[0x100] = {
 		.debuff = NEW_UNIT_STATUS_PIERCE_MAGIC,
 	},
 	[CID_BreakShot] = {
-		.name = MSG_COMART_NAME_BaneOfMonsters,
-		.desc = MSG_COMART_DESC_BaneOfMonsters,
+		.name = MSG_SKILL_COMBAT_BaneOfMonsters_NAME,
+		.desc = MSG_SKILL_COMBAT_BaneOfMonsters_DESC,
 		.icon = GFX_CombatArtIcon_BowArtDebuff,
 		.wtype = ITYPE_BOW,
 		.cost = 3,
@@ -361,8 +369,8 @@ const struct CombatArtInfo gCombatArtInfos[0x100] = {
 		.debuff = NEW_UNIT_STATUS_PIERCE_ARMOR,
 	},
 	[CID_BreakShotPlus] = {
-		.name = MSG_COMART_NAME_BreakShotPlus,
-		.desc = MSG_COMART_DESC_BreakShotPlus,
+		.name = MSG_SKILL_COMBAT_BreakShotPlus_NAME,
+		.desc = MSG_SKILL_COMBAT_BreakShotPlus_DESC,
 		.icon = GFX_CombatArtIcon_BowArtDebuff,
 		.wtype = ITYPE_BOW,
 		.cost = 5,
@@ -372,8 +380,8 @@ const struct CombatArtInfo gCombatArtInfos[0x100] = {
 		.aoe_debuff = true,
 	},
 	[CID_WaningShot] = {
-		.name = MSG_COMART_NAME_WaningShot,
-		.desc = MSG_COMART_DESC_WaningShot,
+		.name = MSG_SKILL_COMBAT_WaningShot_NAME,
+		.desc = MSG_SKILL_COMBAT_WaningShot_DESC,
 		.icon = GFX_CombatArtIcon_BowArtDebuff,
 		.wtype = ITYPE_BOW,
 		.cost = 3,
@@ -383,8 +391,8 @@ const struct CombatArtInfo gCombatArtInfos[0x100] = {
 		.debuff = NEW_UNIT_STATUS_WEAKEN,
 	},
 	[CID_WaningShotPlus] = {
-		.name = MSG_COMART_NAME_WaningShotPlus,
-		.desc = MSG_COMART_DESC_WaningShotPlus,
+		.name = MSG_SKILL_COMBAT_WaningShotPlus_NAME,
+		.desc = MSG_SKILL_COMBAT_WaningShotPlus_DESC,
 		.icon = GFX_CombatArtIcon_BowArtDebuff,
 		.wtype = ITYPE_BOW,
 		.cost = 5,
@@ -394,8 +402,8 @@ const struct CombatArtInfo gCombatArtInfos[0x100] = {
 		.aoe_debuff = true,
 	},
 	[CID_HuntersVolley] = {
-		.name = MSG_COMART_NAME_HuntersVolley,
-		.desc = MSG_COMART_DESC_HuntersVolley,
+		.name = MSG_SKILL_COMBAT_HuntersVolley_NAME,
+		.desc = MSG_SKILL_COMBAT_HuntersVolley_DESC,
 		.icon = GFX_CombatArtIcon_BowArtAtk,
 		.wtype = ITYPE_BOW,
 		.cost = 2,
@@ -406,8 +414,8 @@ const struct CombatArtInfo gCombatArtInfos[0x100] = {
 		.double_attack = COMBART_DOUBLE_FORCE_ENABLED,
 	},
 	[CID_Galeforce] = {
-		.name = MSG_COMART_NAME_Galeforce,
-		.desc = MSG_SKILL_COMBAT_Galeforce,
+		.name = MSG_SKILL_COMBAT_Galeforce_NAME,
+		.desc = MSG_SKILL_COMBAT_Galeforce_DESC,
 		.icon = GFX_SkillIcon_Galeforce,
 		.wtype = CA_WTYPE_ANY,
 		.cost = 3,
@@ -417,7 +425,7 @@ const struct CombatArtInfo gCombatArtInfos[0x100] = {
 	},
 	[CID_Gamble] = {
 		.name = MSG_SKILL_COMBAT_Gamble_NAME,
-		.desc = MSG_SKILL_COMBAT_Gamble,
+		.desc = MSG_SKILL_COMBAT_Gamble_DESC,
 		.icon = GFX_SkillIcon_Gamble,
 		.wtype = CA_WTYPE_ANY,
 		.cost = 1,
@@ -426,7 +434,7 @@ const struct CombatArtInfo gCombatArtInfos[0x100] = {
 	},
 	[CID_Detonate] = {
 		.name = MSG_SKILL_COMBAT_Detonate_NAME,
-		.desc = MSG_SKILL_COMBAT_Detonate,
+		.desc = MSG_SKILL_COMBAT_Detonate_DESC,
 		.icon = GFX_SkillIcon_Detonate,
 		.wtype = CA_WTYPE_ANY,
 		.cost = 255,
@@ -435,7 +443,7 @@ const struct CombatArtInfo gCombatArtInfos[0x100] = {
 	},
 	[CID_BloodTribute] = {
 		.name = MSG_SKILL_COMBAT_BloodTribute_NAME,
-		.desc = MSG_SKILL_COMBAT_BloodTribute,
+		.desc = MSG_SKILL_COMBAT_BloodTribute_DESC,
 		.icon = GFX_SkillIcon_WIP,
 		.wtype = CA_WTYPE_ANY,
 		.cost = 1,
@@ -444,7 +452,7 @@ const struct CombatArtInfo gCombatArtInfos[0x100] = {
 	},
 	[CID_CrimsonStrike] = {
 		.name = MSG_SKILL_COMBAT_CrimsonStrike_NAME,
-		.desc = MSG_SKILL_COMBAT_CrimsonStrike,
+		.desc = MSG_SKILL_COMBAT_CrimsonStrike_DESC,
 		.icon = GFX_SkillIcon_WIP,
 		.wtype = CA_WTYPE_ANY,
 		.cost = 1,
@@ -453,7 +461,7 @@ const struct CombatArtInfo gCombatArtInfos[0x100] = {
 	},
 	[CID_VitalReckoning] = {
 		.name = MSG_SKILL_COMBAT_VitalReckoning_NAME,
-		.desc = MSG_SKILL_COMBAT_VitalReckoning,
+		.desc = MSG_SKILL_COMBAT_VitalReckoning_DESC,
 		.icon = GFX_SkillIcon_WIP,
 		.wtype = CA_WTYPE_ANY,
 		.cost = 1,

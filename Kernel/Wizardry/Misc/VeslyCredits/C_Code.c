@@ -4,7 +4,7 @@
 
 // //JOQUXY
 extern ProcPtr StartClassNameIntroLetter(ProcPtr parent, u8 index);
-#define brk asm("mov r11, r11");
+// #define brk asm("mov r11, r11");
 
 #define CreditsSpeed 1
 #define NumOfStrs 2
@@ -863,6 +863,7 @@ void brkpnt(void)
 {
     asm("mov r11, r11");
 }
+
 struct ProcCmd const gFade256Cols[] = {
     PROC_YIELD,
     PROC_REPEAT(fadePalettesOut),

@@ -170,7 +170,7 @@ void StartNotificationProc(int id)
     else
     {
         int slot = GetFreeQueueSlot(proc);
-        brk;
+        // brk;
         proc->queue[slot] = id;
         proc->id = slot;
         Proc_Goto(proc, StartLabel);

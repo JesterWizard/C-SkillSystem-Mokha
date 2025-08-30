@@ -838,3 +838,4 @@
 #define MSG_SKILL_Turret_CAPACITY 1
 #define MSG_SKILL_Overdraft_CAPACITY 1
 #define MSG_SKILL_Crescendo_CAPACITY 1
+#define MSG_SKILL_PenanceStare_CAPACITY 1

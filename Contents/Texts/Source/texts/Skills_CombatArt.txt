@@ -1,148 +1,278 @@
-## MSG_SKILL_COMBAT_Grounder
-Grounder: Unit get[NL]
-combat-art: Grounder[X]
+## MSG_SKILL_COMBAT_Grounder_NAME
+Grounder[X]
+## MSG_SKILL_COMBAT_Grounder_DESC
+Grounder:[N]
+Effective against flier units.[X]
 
-## MSG_SKILL_COMBAT_BaneOfMonsters
-B-Monster: Unit get[NL]
-combat-art: B-Monster[X]
+## MSG_SKILL_COMBAT_BaneOfMonsters_NAME
+Bane of Monsters[X]
+## MSG_SKILL_COMBAT_BaneOfMonsters_DESC
+Bane of Monsters:[N]
+Effective against monster units.[X]
 
-## MSG_SKILL_COMBAT_Hexblade
-Hexblade: Unit get[NL]
-combat-art: Hexblade[X]
+## MSG_SKILL_COMBAT_Hexblade_NAME
+Hexblade[X]
+## MSG_SKILL_COMBAT_Hexblade_DESC
+Hexblade:[N]
+Acts as a magic attack.[X]
 
-## MSG_SKILL_COMBAT_FoudroyantStrike
-Foudroyant: Unit get[NL]
-combat-art: Foudroyant[X]
+## MSG_SKILL_COMBAT_FoudroyantStrike_NAME
+Foudroyant Strike[X]
+## MSG_SKILL_COMBAT_FoudroyantStrike_DESC
+Foudroyant Strike:[N]
+Effective against armored units.[X]
 
-## MSG_SKILL_COMBAT_TempestLance
-Tempest: Unit get[NL]
-combat-art: Tempest[X]
+## MSG_SKILL_COMBAT_TempestLance_NAME
+Tempest Lance[X]
+## MSG_SKILL_COMBAT_TempestLance_DESC
+Tempest Lance[X]
 
-## MSG_SKILL_COMBAT_SwiftStrikes
-Swift Strike: Unit get[NL]
-combat-art: Swift Strike[X]
+## MSG_SKILL_COMBAT_SwiftStrikes_NAME
+Swift Strikes[X]
+## MSG_SKILL_COMBAT_SwiftStrikes_DESC
+Swift Strike[X]
 
-## MSG_SKILL_COMBAT_FrozenLance
-Frozen: Unit get[NL]
-combat-art: Frozen[X]
+## MSG_SKILL_COMBAT_FrozenLance_NAME
+Frozen Lance[X]
+## MSG_SKILL_COMBAT_FrozenLance_DESC
+Frozen Lance:[N]
+Acts as a magic attack.[X]
 
-## MSG_SKILL_COMBAT_Vengeance
-Vengeance: Unit get[NL]
-combat-art: Vengeance[X]
+## MSG_SKILL_COMBAT_Vengeance_NAME
+Vengeance[X]
+## MSG_SKILL_COMBAT_Vengeance_DESC
+Vengeance[X]
 
-## MSG_SKILL_COMBAT_HelmSplitter
-HelmSplit: Unit get[NL]
-combat-art: HelmSplit[X]
+## MSG_SKILL_COMBAT_HelmSplitter_NAME
+Helm Splitter[X]
+## MSG_SKILL_COMBAT_HelmSplitter_DESC
+Helm Splitter:[N]
+Effectiv against armored units.[X]
 
-## MSG_SKILL_COMBAT_LightningAxe
-Lightning: Unit get[NL]
-combat-art: Lightning[X]
+## MSG_SKILL_COMBAT_LightningAxe_NAME
+Lightning Axe[X]
+## MSG_SKILL_COMBAT_LightningAxe_DESC
+Lightning Axe:[N]
+Acts as a magic attack.[X]
 
-## MSG_SKILL_COMBAT_WarMasterStrike
-W-M Strike: Unit get[NL]
-combat-art: W-M Strike[X]
+## MSG_SKILL_COMBAT_WarMasterStrike_NAME
+Warmaster Strike[X]
+## MSG_SKILL_COMBAT_WarMasterStrike_DESC
+Warmaster Strike[N]
+Inflict the status: Heavy Gravity.[X]
 
-## MSG_SKILL_COMBAT_CurvedShot
-Curve Shot: Unit get[NL]
-combat-art: Curve Shot[X]
+## MSG_SKILL_COMBAT_CurvedShot_NAME
+Curved Shot[X]
+## MSG_SKILL_COMBAT_CurvedShot_DESC
+Curved Shot[X]
 
-## MSG_SKILL_COMBAT_Deadeye
-Dead Eye: Unit get[NL]
-combat-art: Dead Eye[X]
+## MSG_SKILL_COMBAT_Deadeye_NAME
+Dead Eye[X]
+## MSG_SKILL_COMBAT_Deadeye_DESC
+Dead Eye[X]
 
-## MSG_SKILL_COMBAT_Encloser
-Encloser: Unit get[NL]
-combat-art: Encloser[X]
+## MSG_SKILL_COMBAT_Encloser_NAME
+Encloser[X]
+## MSG_SKILL_COMBAT_Encloser_DESC
+Encloser:[N]
+Inflict the status: Heavy Gravity.[X]
 
-## MSG_SKILL_COMBAT_EncloserPlus
-Encloser+: Unit get[NL]
-combat-art: Encloser+[X]
+## MSG_SKILL_COMBAT_EncloserPlus_NAME
+Encloser+[X]
+## MSG_SKILL_COMBAT_EncloserPlus_DESC
+Encloser+:[N]
+Inflict the status: Heavy Gravity.[X]
 
-## MSG_SKILL_COMBAT_MonsterBlast
-M-Blast: Unit get[NL]
-combat-art: M-Blast[X]
+## MSG_SKILL_COMBAT_MonsterBlast_NAME
+Monster Blast[X]
+## MSG_SKILL_COMBAT_MonsterBlast_DESC
+Monster Blast:[N]
+Effective against monsters.[X]
 
-## MSG_SKILL_COMBAT_SchismShot
-Schism Shot: Unit get[NL]
-combat-art: Schism Shot[X]
+## MSG_SKILL_COMBAT_SchismShot_NAME
+Schism Shot[X]
+## MSG_SKILL_COMBAT_SchismShot_DESC
+Schism Shot[N]
 
-## MSG_SKILL_COMBAT_BreakShot
-Break Shot: Unit get[NL]
-combat-art: Break Shot[X]
+## MSG_SKILL_COMBAT_BreakShot_NAME
+Break Shot[X]
+## MSG_SKILL_COMBAT_BreakShot_DESC
+Break Shot:[N]
+Inflict the status: Pierce Armor.[X]
 
-## MSG_SKILL_COMBAT_BreakShotPlus
-Break Shot+: Unit get[NL]
-combat-art: Break Shot+[X]
+## MSG_SKILL_COMBAT_BreakShotPlus_NAME
+Break Shot+[X]
+## MSG_SKILL_COMBAT_BreakShotPlus_DESC
+Break Shot+:[N]
+Inllict the status: Pierce Armor.[X]
 
-## MSG_SKILL_COMBAT_WaningShot
-Waning Shot: Unit get[NL]
-combat-art: Waning Shot[X]
+## MSG_SKILL_COMBAT_WaningShot_NAME
+Waning Shot[X]
+## MSG_SKILL_COMBAT_WaningShot_DESC
+Waning Shot:[N]
+Inflict the status: Weaken.[X]
 
-## MSG_SKILL_COMBAT_WaningShotPlus
-Waning Shot+: Unit get[NL]
-combat-art: Waning Shot+[X]
+## MSG_SKILL_COMBAT_WaningShotPlus_NAME
+Waning Shot+[X]
+## MSG_SKILL_COMBAT_WaningShotPlus_DESC
+Waning Shot+:[N]
+Inflict the status: Weaken (via AOE).[X]
 
-## MSG_SKILL_COMBAT_HuntersVolley
-H-Volley: Unit get[NL]
-combat-art: H-Volley[X]
+## MSG_SKILL_COMBAT_HuntersVolley_NAME
+Hunter's Volley[X]
+## MSG_SKILL_COMBAT_HuntersVolley_DESC
+Hunter's Volley:[N]
+Brave attack enabled.[X]
 
-## MSG_SKILL_COMBAT_Galeforce
-Galeforce:[NL]
-Art: ATK +3, Move again[NL]
+## MSG_SKILL_COMBAT_Galeforce_NAME
+Galeforce[X]
+## MSG_SKILL_COMBAT_Galeforce_DESC
+Galeforce:[N]
+ATK +3, Move again[N]
 after defeating enemy.[X]
 
 ## MSG_SKILL_COMBAT_Gamble_NAME
 Gamble[X]
-
-## MSG_SKILL_COMBAT_Gamble
-Gamble:[NL]
-Art: A reckless attack with[NL]
+## MSG_SKILL_COMBAT_Gamble_DESC
+Gamble:[N]
+AA reckless attack with[N]
 halved hit but doubled crit.[X]
 
 ## MSG_SKILL_COMBAT_Detonate_NAME
 Detonate[X]
-
-## MSG_SKILL_COMBAT_Detonate
-Detonate:[NL]
-Art: Strike a powerful pierced[NL]
+## MSG_SKILL_COMBAT_Detonate_DESC
+Detonate:[N]
+Strike a powerful pierced[N]
 blow by sacrificing own weapon[X]
 
 ## MSG_SKILL_COMBAT_BloodTribute_NAME
 BloodTribute[X]
-
-## MSG_SKILL_COMBAT_BloodTribute
-Blood Tribute:[NL]
-Art: Sacrifice 30% HP to deal[NL]
+## MSG_SKILL_COMBAT_BloodTribute_DESC
+Blood Tribute:[N]
+Sacrifice 30% HP to deal[N]
 more damage as the cost.[X]
 
 ## MSG_SKILL_COMBAT_CrimsonStrike_NAME
 CrimsonStrike[X]
-
-## MSG_SKILL_COMBAT_CrimsonStrike
-Crimson Strike:[NL]
-Art: Sacrifice 50% HP to deal[NL]
+## MSG_SKILL_COMBAT_CrimsonStrike_DESC
+Crimson Strike:[N]
+Sacrifice 50% HP to deal[N]
 more damage as the cost.[X]
 
 ## MSG_SKILL_COMBAT_VitalReckoning_NAME
 VitalReckoning[X]
-
-## MSG_SKILL_COMBAT_VitalReckoning
-Vital Reckoning:[NL]
-Art: Sacrifice 80% HP to deal[NL]
+## MSG_SKILL_COMBAT_VitalReckoning_DESC
+Vital Reckoning:[N]
+Sacrifice 80% HP to deal[N]
 more damage as the cost.[X]
 
 ## MSG_SKILL_COMBAT_AstraStorm_NAME
 Astra Storm[X]
-
-## MSG_SKILL_COMBAT_AstraStorm
+## MSG_SKILL_COMBAT_AstraStorm_DESC
 Astra Storm:[N]
-Art: 5 strikes at 10 range[N]
+5 strikes at 10 range[N]
 at 30% damage.[X]
 
 ## MSG_SKILL_COMBAT_Practice_NAME
 Practice[X]
-
-## MSG_SKILL_COMBAT_Practice
+## MSG_SKILL_COMBAT_Practice_DESC
 Practice:[N]
-Art: Deal 1.5x damage and[N]
+Deal 1.5x damage and[N]
 gain 1.5x EXP.[X]
+
+## MSG_SKILL_COMBAT_Smash_NAME
+Smash[X]
+## MSG_SKILL_COMBAT_Smash_DESC
+Smash[X]
+
+## MSG_SKILL_COMBAT_FlickeringFlower_NAME
+Flickering Flower[X]
+## MSG_SKILL_COMBAT_FlickeringFlower_DESC
+Flickering Flower:[N]
+Inflict status Heavy Gravity.[X]
+
+## MSG_SKILL_COMBAT_ArmoredStrike_NAME
+Armored Strike[X]
+## MSG_SKILL_COMBAT_ArmoredStrike_DESC
+Armored Strike[X]
+
+## MSG_SKILL_COMBAT_DiamondAxe_NAME
+Diamond Axe[X]
+## MSG_SKILL_COMBAT_DiamondAxe_DESC
+Diamond Axe[X]
+
+## MSG_SKILL_COMBAT_Spike_NAME
+Spike[X]
+## MSG_SKILL_COMBAT_Spike_DESC
+Spike[X]
+
+## MSG_SKILL_COMBAT_WildAbandon_NAME
+Wild Abandon[X]
+## MSG_SKILL_COMBAT_WildAbandon_DESC
+Wild Abandon[X]
+
+## MSG_SKILL_COMBAT_FocusedStrike_NAME
+Focused Strike[X]
+## MSG_SKILL_COMBAT_FocusedStrike_DESC
+Focused Strike[X]
+
+## MSG_SKILL_COMBAT_MonsterBreaker_NAME
+Monster Breaker[X]
+## MSG_SKILL_COMBAT_MonsterBreaker_DESC
+Monster Breaker[N]
+Effective against monster units.[X]
+
+## MSG_SKILL_COMBAT_LanceJab_NAME
+Lance Jab[X]
+## MSG_SKILL_COMBAT_LanceJab_DESC
+Lance Jab[X]
+
+## MSG_SKILL_COMBAT_MonsterPiercer_NAME
+Monster Piercer[X]
+## MSG_SKILL_COMBAT_MonsterPiercer_DESC
+Monster Piercer[N]
+Effective against monster units.[X]
+
+## MSG_SKILL_COMBAT_ShatterSlash_NAME
+Shatter Slash[X]
+## MSG_SKILL_COMBAT_ShatterSlash_DESC
+Shatter Slash[N]
+Effective against armored units.[X]
+
+## MSG_SKILL_COMBAT_Knightkneeler_NAME
+Knight Kneeler[X]
+## MSG_SKILL_COMBAT_Knightkneeler_DESC
+Knight Kneeler[N]
+Effective against calvary units.[X]
+
+## MSG_SKILL_COMBAT_Assassinate_NAME
+Assassinate[X]
+## MSG_SKILL_COMBAT_Assassinate_DESC
+Assassinate[X]
+Boosts silencer activation by 50%.[X]
+
+## MSG_SKILL_COMBAT_FinesseBlade_NAME
+Finesse Blade[X]
+## MSG_SKILL_COMBAT_FinesseBlade_DESC
+Finesse Blade[X]
+
+## MSG_SKILL_COMBAT_HazeSlice_NAME
+Haze Slice[X]
+## MSG_SKILL_COMBAT_HazeSlice_DESC
+Haze Slice[X]
+
+## MSG_SKILL_COMBAT_Sunder_NAME
+Sunder[X]
+## MSG_SKILL_COMBAT_Sunder_DESC
+Sunder[X]
+
+## MSG_SKILL_COMBAT_Soulblade_NAME
+Soul Blade[X]
+## MSG_SKILL_COMBAT_Soulblade_DESC
+Soul Blade[N]
+Acts as  magic attack.[X]
+
+## MSG_SKILL_COMBAT_WrathStrike_NAME
+Wrath Strike[X]
+## MSG_SKILL_COMBAT_WrathStrike_DESC
+Wrath Strike[X]

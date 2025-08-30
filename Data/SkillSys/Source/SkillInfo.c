@@ -8413,4 +8413,14 @@ const struct SkillInfo gSkillInfos[MAX_SKILL_NUM + 1] = {
     },
 #endif
 
+#if (defined(SID_PenanceStare) && COMMON_SKILL_VALID(SID_PenanceStare))
+    [SID_PenanceStare] = {
+        .name = MSG_SKILL_PenanceStare_NAME,
+        .desc = MSG_SKILL_PenanceStare_DESC,
+        .capacity = MSG_SKILL_PenanceStare_CAPACITY,
+        .price = MSG_SKILL_PenanceStare_PRICE,
+        .icon = GFX_SkillIcon_WIP,
+    },
+#endif
+
 };

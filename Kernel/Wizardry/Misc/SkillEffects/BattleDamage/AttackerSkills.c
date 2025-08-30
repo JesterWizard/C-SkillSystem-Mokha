@@ -22,6 +22,19 @@ void BattleDamageCalc_AttackerSkills(struct BattleUnit *attacker, struct BattleU
 	list = GetUnitSkillList(&attacker->unit);
 	for (_skill_list_cnt = 0; _skill_list_cnt < list->amt; _skill_list_cnt++) {
 		switch (list->sid[_skill_list_cnt]) {
+#if (defined(SID_PenanceStare) && (COMMON_SKILL_VALID(SID_PenanceStare)))
+		case SID_PenanceStare:
+			if (GetBattleGlobalFlags(attacker)->round_cnt_hit == 1) {
+				RegisterActorEfxSkill(GetBattleHitRound(gBattleHitIterator), SID_PenanceStare);
+
+				defender->unit.curHP -= (attacker->unit.maxHP - attacker->unit.curHP) / 2;
+
+				if (defender->unit.curHP <= 0)
+					defender->unit.curHP = 1;
+			}
+			break;
+#endif
+
 #if (defined(SID_FatalTen) && (COMMON_SKILL_VALID(SID_FatalTen)))
 		case SID_FatalTen:
 			if (GetBattleGlobalFlags(attacker)->round_cnt_hit >= SKILL_EFF0(SID_FatalTen)) {

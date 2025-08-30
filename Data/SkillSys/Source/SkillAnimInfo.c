@@ -263,6 +263,10 @@ const u8 EfxSkillAnimPriority[MAX_SKILL_NUM + 1] = {
 #if (defined(SID_COMBAT_VitalReckoning) && COMMON_SKILL_VALID(SID_COMBAT_VitalReckoning))
 	[SID_COMBAT_VitalReckoning] = EFX_PRIORITY_LOW,
 #endif
+
+#if (defined(SID_PenanceStare) && COMMON_SKILL_VALID(SID_PenanceStare))
+	[SID_PenanceStare] = EFX_PRIORITY_NORMAL,
+#endif
 };
 
 struct EfxAnimConf const *const EfxSkillAnims[MAX_SKILL_NUM + 1] = {
@@ -524,5 +528,9 @@ struct EfxAnimConf const *const EfxSkillAnims[MAX_SKILL_NUM + 1] = {
 
 #if (defined(SID_COMBAT_VitalReckoning) && COMMON_SKILL_VALID(SID_COMBAT_VitalReckoning))
 	[SID_COMBAT_VitalReckoning] = &EfxSkillVanilla,
+#endif
+
+#if (defined(SID_PenanceStare) && COMMON_SKILL_VALID(SID_PenanceStare))
+	[SID_PenanceStare] = &EfxSkillVanilla,
 #endif
 };

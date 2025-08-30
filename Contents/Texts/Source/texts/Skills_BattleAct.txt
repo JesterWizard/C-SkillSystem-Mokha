@@ -384,3 +384,11 @@ Limit Break:[N]
 Limit Break:[N]
 After 5 hits, next attack deals[N]
 double damage with 100% accuracy.[X]
+
+## MSG_SKILL_PenanceStare_NAME
+Penance Stare:[N]
+## MSG_SKILL_PenanceStare_DESC
+Penance Stare:[N]
+If this unit can attack, deal half of[N]
+their missing HP as damage at the start[N]
+of each round. Cannot kill.[X]
