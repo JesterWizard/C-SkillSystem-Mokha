@@ -1158,6 +1158,7 @@ bx r1
 
 
 
+
 .type CallShowHealsplatProc, %function 
 .global CallShowHealsplatProc 
 CallShowHealsplatProc: 

@@ -174,8 +174,40 @@ const struct MenuItemDef gUnitActionMenuItemsRework[] = {
 #ifdef CONFIG_LAGUZ_BARS
     {"　", MSG_MenuCommand_Transform_Laguz_NAME, MSG_MenuCommand_Transform_Laguz_DESC, TEXT_COLOR_SYSTEM_GOLD, 0x6C, Transform_Laguz_Usability, 0, Transform_Laguz_Effect, 0, 0, 0}, // Laguz Transform > 
 #endif
+	/**
+	 * The 5th parameter in this array determins the type of AOE skill
+	 * 0 - SLASH - Usable to anyone who has a SWORD they can wield
+	 * 1 - CLEAVE - Usable to anyone who has a LANCE they can wield
+	 * 2 - IMPALE - Usable by anyone who has an AXE they can wield
+	 * 3 - SHOOT - Usable by anyone who has a BOW they can wield
+	 * 4 - BLAST - Usable by anyone who has an ANIMA magic tome they can wield
+	 * 5 - EXPEL - Usable by anyone who has a LIGHT magic tome they can wield
+	 * 6 - HEX - Usable by anyone who has a DARK magic tome they can wield
+	 * 7 - HEAL - Usable by anyone who can use the aforementioned stave
+	 * 8 - RESTORE - Usable by anyone who can use the aforementioned stave
+	 * 9 - MEND - Usable by anyone who can use the aforementioned stave
+	 * 10 - PHYSIC - Usable by anyone who can use the aforementioned stave
+	 * 11 - RECOVER - Usable by anyone who can use the aforementioned stave
+	 * 12 - FORTIIFY - Usable by anyone who can use the aforementioned stave
+	 * 13 - EXCALIBUR - Usable by anyone who can use the aforementioned weapon
+	 * 14 - ELFIRE - Usable by anyone who can use the aforementioned weapon
+	 * 15 - THUNDER - Usable by anyone who can use the aforementioned weapon
+	 * 16 - FIMBULVETR - Usable by anyone who can use the aforementioned weapon
+	 */
 #ifdef CONFIG_VESLY_AOE
 	{"", UM_AoESlash, UM_AoEDesc, TEXT_COLOR_SYSTEM_WHITE, 0, AoE_SpecificUsability, 0, AoE_SpecificEffect, 0, AoE_SpecificHover, 0},
+	{"", UM_AoECleave, UM_AoEDesc, TEXT_COLOR_SYSTEM_WHITE, 1, AoE_SpecificUsability, 0, AoE_SpecificEffect, 0, AoE_SpecificHover, 0},
+	{"", UM_AoEImpale, UM_AoEDesc, TEXT_COLOR_SYSTEM_WHITE, 2, AoE_SpecificUsability, 0, AoE_SpecificEffect, 0, AoE_SpecificHover, 0},
+	{"", UM_AoEShoot, UM_AoEDesc, TEXT_COLOR_SYSTEM_WHITE, 3, AoE_SpecificUsability, 0, AoE_SpecificEffect, 0, AoE_SpecificHover, 0},
+	{"", UM_AoEBlast, UM_AoEDesc, TEXT_COLOR_SYSTEM_WHITE, 4, AoE_SpecificUsability, 0, AoE_SpecificEffect, 0, AoE_SpecificHover, 0},
+	{"", UM_AoEExpel, UM_AoEDesc, TEXT_COLOR_SYSTEM_WHITE, 5, AoE_SpecificUsability, 0, AoE_SpecificEffect, 0, AoE_SpecificHover, 0},
+	{"", UM_AoEHex, UM_AoEDesc, TEXT_COLOR_SYSTEM_WHITE, 6, AoE_SpecificUsability, 0, AoE_SpecificEffect, 0, AoE_SpecificHover, 0},
+	{"", UM_AoEHeal, UM_AoEHealHelp, TEXT_COLOR_SYSTEM_WHITE, 7, AoE_SpecificUsability, 0, AoE_SpecificEffect, 0, AoE_SpecificHover, 0},
+	{"", UM_AoERestore, UM_AoEHealHelp, TEXT_COLOR_SYSTEM_WHITE, 8, AoE_SpecificUsability, 0, AoE_SpecificEffect, 0, AoE_SpecificHover, 0},
+	{"", UM_AoEMend, UM_AoEHealHelp, TEXT_COLOR_SYSTEM_WHITE, 9, AoE_SpecificUsability, 0, AoE_SpecificEffect, 0, AoE_SpecificHover, 0},
+	{"", UM_AoEPhysic, UM_AoEHealHelp, TEXT_COLOR_SYSTEM_WHITE, 10, AoE_SpecificUsability, 0, AoE_SpecificEffect, 0, AoE_SpecificHover, 0},
+	{"", UM_AoERecover, UM_AoEHealHelp, TEXT_COLOR_SYSTEM_WHITE, 11, AoE_SpecificUsability, 0, AoE_SpecificEffect, 0, AoE_SpecificHover, 0},
+	{"", UM_AoEFortify, UM_AoEHealHelp, TEXT_COLOR_SYSTEM_WHITE, 12, AoE_SpecificUsability, 0, AoE_SpecificEffect, 0, AoE_SpecificHover, 0},
 #endif
 	{"　降ろす", 0x68A, 0x6C6, 0, 0x64, DropUsability, 0, DropEffect, 0, 0, 0}, // Drop >
 	{"　引受け", 0x68B, 0x6C8, 4, 0x65, TakeUsability, 0, TakeEffect, 0, 0, 0}, // Take >

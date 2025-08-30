@@ -202,9 +202,9 @@ BYTE Sword 0 // Weapon Type and WEXP to use this. Eg. All units carrying a D ran
 BYTE 2 // Amount of weapon uses to deplete. 
 BYTE UseWepMt|UseWepEffectiveness|UseWepRange // Config2 
 
-// Next entry 
+// Entry 1
 BYTE 0 0 0 0
-BYTE 0 0 0 0 // Usable by anyone carrying a sword they can wield 
+BYTE 0 0 0 0 // Usable by anyone carrying a lance they can wield 
 BYTE 0 FriendlyFireBool|DepleteItemBool
 BYTE 0 0 // mt, randMt 
 BYTE 0 0 // Attack range 
@@ -216,9 +216,9 @@ BYTE 2 // Amount of weapon uses to deplete.
 BYTE UseWepMt|UseWepEffectiveness|UseWepRange // Config2 
 
 
-// Next entry 
+// Entry 2
 BYTE 0 0 0 0
-BYTE 0 0 0 0 // Usable by anyone carrying a sword they can wield 
+BYTE 0 0 0 0 // Usable by anyone carrying a axe they can wield 
 BYTE 0 FriendlyFireBool|DepleteItemBool
 BYTE 0 0 // mt, randMt 
 BYTE 0 0 // Attack range 
@@ -229,9 +229,9 @@ BYTE Lance 0 // Weapon Type and WEXP to use this.
 BYTE 2 // Amount of weapon uses to deplete. 
 BYTE UseWepMt|UseWepEffectiveness|UseWepRange // Config2 
 
-// Next entry 
+// Entry 3
 BYTE 0 0 0 0
-BYTE 0 0 0 0 // Usable by anyone carrying a sword they can wield 
+BYTE 0 0 0 0 // Usable by anyone carrying a bow they can wield 
 BYTE 0 FriendlyFireBool|DepleteItemBool
 BYTE 0 0 // mt, randMt 
 BYTE 0 0 // Attack range 
@@ -242,9 +242,9 @@ BYTE Bow 0 // Weapon Type and WEXP to use this.
 BYTE 2 // Amount of weapon uses to deplete. 
 BYTE UseWepMt|UseWepEffectiveness|UseWepRange // Config2 
 
-// Next entry 
+// Entry 4
 BYTE 0 0 0 0
-BYTE 0 0 0 0 // Usable by anyone carrying a sword they can wield 
+BYTE 0 0 0 0 // Usable by anyone carrying an anima magic tome they can wield 
 BYTE 0 FriendlyFireBool|DepleteItemBool|MagBasedBool|HitResBool
 BYTE 0 0 // mt, randMt 
 BYTE 0 0 // Attack range 
@@ -256,9 +256,9 @@ BYTE 2 // Amount of weapon uses to deplete.
 BYTE UseWepMt|UseWepEffectiveness|UseWepRange // Config2 
 
 
-// Next entry 
+// Entry 5
 BYTE 0 0 0 0
-BYTE 0 0 0 0 // Usable by anyone carrying a sword they can wield 
+BYTE 0 0 0 0 // Usable by anyone carrying a light magic tome they can wield 
 BYTE 0 FriendlyFireBool|DepleteItemBool|MagBasedBool|HitResBool
 BYTE 0 0 // mt, randMt 
 BYTE 0 0 // Attack range 
@@ -270,9 +270,9 @@ BYTE 2 // Amount of weapon uses to deplete.
 BYTE UseWepMt|UseWepEffectiveness|UseWepRange // Config2 
 
 
-// Next entry 
+// Entry 6
 BYTE 0 0 0 0
-BYTE 0 0 0 0 // Usable by anyone carrying a sword they can wield 
+BYTE 0 0 0 0 // Usable by anyone carrying a dark magic tome they can wield 
 BYTE 0 FriendlyFireBool|DepleteItemBool|MagBasedBool|HitResBool
 BYTE 0 0 // mt, randMt 
 BYTE 0 0 // Attack range 
@@ -284,7 +284,7 @@ BYTE 2 // Amount of weapon uses to deplete.
 BYTE UseWepMt|UseWepEffectiveness|UseWepRange // Config2 
 
 
-// Next entry 
+// Entry 7
 BYTE 0 0 0 Heal 
 BYTE 0 0 0 0 // Always usable by anyone who using a Heal staff 
 BYTE 0 FriendlyFireBool|MagBasedBool|HealBool|DepleteItemBool
@@ -297,7 +297,7 @@ BYTE 0xFF 0 // Weapon Type and WEXP to use this. Eg. All units carrying a D rank
 BYTE 2 // Amount of weapon uses to deplete. 
 BYTE UseWepMt|UseWepRange // Config2 
 
-// Next entry 
+// Entry 8
 BYTE 0 0 0 Restore
 BYTE 0 0 0 0 // Always usable by anyone who using a Heal staff 
 BYTE 0 FriendlyFireBool|MagBasedBool|HealBool|DepleteItemBool
@@ -310,7 +310,7 @@ BYTE 0xFF 0 // Weapon Type and WEXP to use this. Eg. All units carrying a D rank
 BYTE 2 // Amount of weapon uses to deplete. 
 BYTE UseWepMt|UseWepRange // Config2 
 
-// Next entry 
+// Entry 9
 BYTE 0 0 0 Mend  
 BYTE 0 0 0 0 // Always usable by anyone using the aforementioned staff 
 BYTE 0 FriendlyFireBool|MagBasedBool|HealBool|DepleteItemBool
@@ -323,7 +323,7 @@ BYTE 0xFF 0 // Weapon Type and WEXP to use this. Eg. All units carrying a D rank
 BYTE 2 // Amount of weapon uses to deplete. 
 BYTE UseWepMt|UseWepRange // Config2 
 
-// Next entry 
+// Entry 10
 BYTE 0 0 0 Physic
 BYTE 0 0 0 0 // Always usable by anyone using the aforementioned staff 
 BYTE 0 FriendlyFireBool|MagBasedBool|HealBool|DepleteItemBool
@@ -336,7 +336,7 @@ BYTE 0xFF 0 // Weapon Type and WEXP to use this. Eg. All units carrying a D rank
 BYTE 2 // Amount of weapon uses to deplete. 
 BYTE UseWepMt|UseWepRange // Config2 
 
-// Next entry 
+// Entry 11
 BYTE 0 0 0 Recover 
 BYTE 0 0 0 0 // Always usable by anyone using the aforementioned staff 
 BYTE 0 FriendlyFireBool|MagBasedBool|HealBool|DepleteItemBool
@@ -349,7 +349,7 @@ BYTE 0xFF 0 // Weapon Type and WEXP to use this. Eg. All units carrying a D rank
 BYTE 2 // Amount of weapon uses to deplete. 
 BYTE UseWepMt|UseWepRange // Config2 
 
-// Next entry 
+// Entry 12
 BYTE 0 0 0 Fortify 
 BYTE 0 0 0 0 // Always usable by anyone using the aforementioned staff 
 BYTE 0 FriendlyFireBool|MagBasedBool|HealBool|DepleteItemBool
@@ -363,9 +363,9 @@ BYTE 2 // Amount of weapon uses to deplete.
 BYTE UseWepMt|UseWepRange // Config2 
 
 
-// Next entry 
+// Entry 13
 BYTE 0 0 0 Excalibur
-BYTE 0 0 0 0 // Usable by anyone carrying a sword they can wield 
+BYTE 0 0 0 0 // Usable by anyone carrying the aforementioned tome they can wield 
 BYTE 0 FriendlyFireBool|DepleteItemBool|MagBasedBool|HitResBool
 BYTE 45 0 // mt, randMt 
 BYTE 0 0 // Attack range 
@@ -376,9 +376,9 @@ BYTE 0xFF 0 // Weapon Type and WEXP to use this.
 BYTE 2 // Amount of weapon uses to deplete. 
 BYTE UseWepEffectiveness|UseWepRange // Config2 
 
-// Next entry 
+// Entry 14
 BYTE 0 0 0 Elfire
-BYTE 0 0 0 0 // Usable by anyone carrying a sword they can wield 
+BYTE 0 0 0 0 // Usable by anyone carrying the aforementioned tome they can wield 
 BYTE 0 FriendlyFireBool|DepleteItemBool|MagBasedBool|HitResBool
 BYTE 0 0 // mt, randMt 
 BYTE 0 0 // Attack range 
@@ -390,9 +390,9 @@ BYTE 2 // Amount of weapon uses to deplete.
 BYTE UseWepMt|UseWepEffectiveness|UseWepRange // Config2 
 
 
-// Next entry 
+// Entry 15
 BYTE 0 0 0 Thunder
-BYTE 0 0 0 0 // Usable by anyone carrying a sword they can wield 
+BYTE 0 0 0 0 // Usable by anyone carrying the aforementioned tome they can wield 
 BYTE 0 FriendlyFireBool|DepleteItemBool|MagBasedBool|HitResBool
 BYTE 0 0 // mt, randMt 
 BYTE 0 0 // Attack range 
@@ -403,9 +403,9 @@ BYTE 0xFF 0 // Weapon Type and WEXP to use this.
 BYTE 2 // Amount of weapon uses to deplete. 
 BYTE UseWepMt|UseWepEffectiveness|UseWepRange // Config2 
 
-// Next entry 
+// Entry 16
 BYTE 0 0 0 Fimbulvetr
-BYTE 0 0 0 0 // Usable by anyone carrying a sword they can wield 
+BYTE 0 0 0 0 // Usable by anyone carrying the aforementioned tome they can wield 
 BYTE 0 FriendlyFireBool|DepleteItemBool|MagBasedBool|HitResBool
 BYTE 0 0 // mt, randMt 
 BYTE 0 0 // Attack range 
