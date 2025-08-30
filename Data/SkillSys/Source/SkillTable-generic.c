@@ -4,14 +4,14 @@
 
 const struct SkillPreloadPConf gSkillPreloadPData[0x100] = {
 	[CHARACTER_EIRIKA] = {{
-		[0] = SID_DilligentMind
+		[0] = SID_Domino
 	}},
 
 	[CHARACTER_EPHRAIM] = {{
 	}},
 
 	[CHARACTER_SETH] = {{
-	//	[0] = SID_Crescendo
+		[0] = SID_Sol
 	}},
 
 	[CHARACTER_INNES] = {{

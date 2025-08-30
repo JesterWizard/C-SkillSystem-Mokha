@@ -8443,4 +8443,14 @@ const struct SkillInfo gSkillInfos[MAX_SKILL_NUM + 1] = {
     },
 #endif
 
+#if (defined(SID_Domino) && COMMON_SKILL_VALID(SID_Domino))
+    [SID_Domino] = {
+        .name = MSG_SKILL_Domino_NAME,
+        .desc = MSG_SKILL_Domino_DESC,
+        .capacity = MSG_SKILL_Domino_CAPACITY,
+        .price = MSG_SKILL_Domino_PRICE,
+        .icon = GFX_SkillIcon_WIP,
+    },
+#endif
+
 };

@@ -29,6 +29,28 @@ STATIC_DECLAR bool CheckSkillActivateExt(struct Unit *unit, int sid, int rate, b
 			rate += SKILL_EFF0(SID_Hero);
 #endif
 
+#if (defined(SID_Domino) && (COMMON_SKILL_VALID(SID_Domino)))
+	for (int i = 0; i < ARRAY_COUNT_RANGE3x3; i++)
+	{
+		int _x = unit->xPos + gVecs_3x3[i].x;
+		int _y = unit->yPos + gVecs_3x3[i].y;
+
+		struct Unit *unit_ally = GetUnitAtPosition(_x, _y);
+
+		if (!UNIT_IS_VALID(unit_ally))
+			continue;
+
+		if (unit_ally->state & (US_HIDDEN | US_DEAD | US_RESCUED | US_BIT16))
+			continue;
+
+		if (tester(unit_ally, SID_Domino), AreUnitsAllied(unit->index, unit_ally->index)) {
+			rate += 10;
+			break;
+		}
+	}
+#endif
+
+
 	LIMIT_AREA(rate, 0, 100);
 
 	if (Roll2RN(rate))

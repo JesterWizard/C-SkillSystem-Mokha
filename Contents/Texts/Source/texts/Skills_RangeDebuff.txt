@@ -243,3 +243,10 @@ Mark of the Beast[X]
 Mark of the Beast:[N]
 Grants +3 stats to all ally monster[N]
 classes within 3 tiles of this unit.[X]
+
+## MSG_SKILL_Domino_NAME
+Domino[X]
+## MSG_SKILL_Domino_DESC
+Domino:[N]
+Boost the skill activation rates of[N]
+adjacent allied units by 10%.[X]
