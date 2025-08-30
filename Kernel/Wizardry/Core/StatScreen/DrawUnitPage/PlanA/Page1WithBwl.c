@@ -103,12 +103,14 @@ STATIC_DECLAR void DrawPage1TextCommon(void)
 		0, 0,
 		GetStringFromIndex(0x4F8)); // Aid
 
+#ifndef CONFIG_MODULAR_FOG_UNIT_SIGHT
 	PutDrawText(
 		&gStatScreen.text[STATSCREEN_TEXT_SUPPORT4],
 		gUiTmScratchA + TILEMAP_INDEX(0x9, 0x7),
 		TEXT_COLOR_SYSTEM_GOLD,
 		0, 0,
 		GetStringFromIndex(0x4F1)); // Affin
+#endif
 
 	PutDrawText(
 		&gStatScreen.text[STATSCREEN_TEXT_STATUS],
@@ -272,6 +274,30 @@ FORCE_DECLARE static void DrawPage1LaguzBar(void)
 }
 #endif
 
+#ifdef CONFIG_MODULAR_FOG_UNIT_SIGHT
+FORCE_DECLARE static void DrawPage1SightBar(void)
+{
+    int amt = GetUnitFogViewRange(gStatScreen.unit);
+    int max = 15;
+    int textColor = (amt == max) ? TEXT_COLOR_SYSTEM_GREEN : TEXT_COLOR_SYSTEM_BLUE;
+    
+	PutDrawText(
+		&gStatScreen.text[STATSCREEN_TEXT_SUPPORT4],
+		gUiTmScratchA + TILEMAP_INDEX(0x9, 0x7),
+		TEXT_COLOR_SYSTEM_GOLD,
+		0, 0,
+		GetStringFromIndex(MSG_StatMenu_Sight_NAME));
+
+    PutNumber(gUiTmScratchA + TILEMAP_INDEX(0xC + CountDigits(amt), 0x7),
+        textColor, amt);
+
+    DrawStatWithBarReworkExt(
+        0xA, 0xD, 0x7,
+        gUiTmScratchC,
+        amt, amt, max, max);
+}
+#endif
+
 /* BWL */
 STATIC_DECLAR void DrawPage1BWL(void)
 {
@@ -428,6 +454,12 @@ void DisplayPage_WithBWL(void)
 #else
     DrawPage1BWL();
 #endif
+
+#ifdef CONFIG_MODULAR_FOG_UNIT_SIGHT
+	DrawPage1SightBar();
+#else
 	DrawPage1Affin();
+#endif
+
 	DrawPage1TalkTrv();
 }

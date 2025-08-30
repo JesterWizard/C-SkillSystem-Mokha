@@ -370,5 +370,7 @@
 	#define CONFIG_MP_RESTORE_AMOUNT 5
 #endif
 
+#define CONFIG_MODULAR_FOG_UNIT_SIGHT
+
 
 #endif /* CONFIG_INSTALLED */

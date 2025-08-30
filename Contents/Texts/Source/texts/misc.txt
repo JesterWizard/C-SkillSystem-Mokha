@@ -215,3 +215,9 @@ Elfire[X]
 Thunder[X]
 ## UM_AoEFimbulvetr
 Fimnulvetur[X]
+
+## MSG_StatMenu_Sight_NAME
+Sight[X]
+## MSG_StatMenu_Sight_DESC
+Determines how many spaces[N]
+a unit can see in fog.[X]

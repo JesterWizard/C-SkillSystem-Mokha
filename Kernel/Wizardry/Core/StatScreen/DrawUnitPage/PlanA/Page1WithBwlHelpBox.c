@@ -73,11 +73,19 @@ static _DECL_INFO RText_Aid = {
 	NULL, NULL
 };
 
-static _DECL_INFO RText_Affin = {
-	&RText_Aid, &RText_Trv, &RText_Spd, NULL,
-	0xA6, 0x48, 0x551,
-	NULL, NULL
-};
+#ifdef CONFIG_MODULAR_FOG_UNIT_SIGHT
+	static _DECL_INFO RText_Affin = {
+		&RText_Aid, &RText_Trv, &RText_Spd, NULL,
+		0xA6, 0x48, MSG_StatMenu_Sight_DESC,
+		NULL, NULL
+	};
+#else
+	static _DECL_INFO RText_Affin = {
+		&RText_Aid, &RText_Trv, &RText_Spd, NULL,
+		0xA6, 0x48, 0x551,
+		NULL, NULL
+	};
+#endif
 
 static _DECL_INFO RText_Trv = {
 	&RText_Affin, &RText_Cond, &RText_Lck, NULL,

@@ -18,6 +18,8 @@ void SetGameOptions_Chapter0()
     SetGameOption(GAME_OPTION_TEXT_SPEED, 1); // Set game speed to max
     SetGameOption(GAME_OPTION_GAME_SPEED, 3); // Set text speed to max
 
+    gPlaySt.chapterVisionRange = 1;
+
     SetPartyGoldAmount(100000);
 
     struct Unit * unit_eirika = GetUnitFromCharId(CHARACTER_EIRIKA);
