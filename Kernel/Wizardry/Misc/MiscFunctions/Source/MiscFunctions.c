@@ -2200,14 +2200,13 @@ void SwitchPhases(void)
                     if (bwl) { 
                         // Increment the currentMP
                         bwl->currentMP += CONFIG_MP_RESTORE_AMOUNT; 
-                        NoCashGBAPrintf("Current MP is: %d", bwl->currentMP);
 
                         #if defined(SID_MPChanneling) && (COMMON_SKILL_VALID(SID_MPChanneling))
                             if (SkillTester(unit, SID_MPChanneling))
                                 bwl->currentMP += CONFIG_MP_RESTORE_AMOUNT;
                         #endif
                         
-                        // Clamp the value to maxMP using a ternary operator
+                        // Clamp the value to max MP using a ternary operator
                         bwl->currentMP = (bwl->currentMP > bwl->maxMP) ? bwl->maxMP : bwl->currentMP; 
                     }
                 #endif
@@ -2248,5 +2247,105 @@ void SwitchPhases(void)
             //     PlayStExpa_ClearBit(PLAYSTEXPA_BIT_AbsorbAlternation_InForce);
 
             ProcessTurnSupportExp();
+    }
+}
+
+LYN_REPLACE_CHECK(RefreshUnitsOnBmMap);
+void RefreshUnitsOnBmMap(void) {
+    struct Unit* unit;
+    int i;
+
+    // 1. Blue & Green units
+
+    for (i = 1; i < FACTION_RED; ++i) {
+        unit = GetUnit(i);
+
+        if (!UNIT_IS_VALID(unit))
+            continue;
+
+        if (unit->state & US_HIDDEN)
+            continue;
+
+        // Put unit on unit map
+        gBmMapUnit[unit->yPos][unit->xPos] = i;
+
+        // If fog is enabled, apply unit vision to fog map
+        if (gPlaySt.chapterVisionRange)
+            MapAddInRange(unit->xPos, unit->yPos, GetUnitFogViewRange(unit), 1);
+    }
+
+    // 2. Red (& Purple) units
+
+    if (gPlaySt.faction != FACTION_RED) {
+        // 2.1. No red phase
+
+        for (i = FACTION_RED + 1; i < FACTION_PURPLE + 6; ++i) {
+            unit = GetUnit(i);
+
+            if (!UNIT_IS_VALID(unit))
+                continue;
+
+            if (unit->state & US_HIDDEN)
+                continue;
+
+            // If unit is magic seal, set fog in range 0-10.
+            // Magic seal set the fog map probably solely for the alternate map palette.
+            if (UNIT_CATTRIBUTES(unit) & CA_MAGICSEAL)
+                MapAddInRange(unit->xPos, unit->yPos, 10, -1);
+
+#ifdef CONFIG_MULTIPLE_FOG_STAGES
+            gBmMapUnit[unit->yPos][unit->xPos] = i;
+
+            if (unit->state & US_BIT9)
+                unit->state = (unit->state &~ US_BIT9) | US_BIT8;
+#else
+            if (gPlaySt.chapterVisionRange && !gBmMapFog[unit->yPos][unit->xPos]) {
+                // If in fog, set unit bit on the hidden map, and set the "hidden in fog" state
+
+                gBmMapHidden[unit->yPos][unit->xPos] |= HIDDEN_BIT_UNIT;
+                unit->state = unit->state | US_BIT9;
+            } else {
+                // If not in fog, put unit on the map, and update state accordingly
+
+                gBmMapUnit[unit->yPos][unit->xPos] = i;
+
+                if (unit->state & US_BIT9)
+                    unit->state = (unit->state &~ US_BIT9) | US_BIT8;
+            }
+#endif
+
+        }
+    } else {
+        // 2.2. Yes red phase
+
+        // This does mostly the same as the "No red phase" loop, except:
+        // - It always puts the units on the unit map
+        // - It never sets the "spotted" unit state bit (even if unit is seen)
+
+        for (i = FACTION_RED + 1; i < FACTION_PURPLE + 6; ++i) {
+            unit = GetUnit(i);
+
+            if (!UNIT_IS_VALID(unit))
+                continue;
+
+            if (unit->state & US_HIDDEN)
+                continue;
+
+            // See above
+            if (UNIT_CATTRIBUTES(unit) & CA_MAGICSEAL)
+                MapAddInRange(unit->xPos, unit->yPos, 10, -1);
+
+            if (gPlaySt.chapterVisionRange) {
+                // Update unit state according to fog level
+
+                if (!gBmMapFog[unit->yPos][unit->xPos])
+                    unit->state = unit->state | US_BIT9;
+                else
+                    unit->state = unit->state &~ US_BIT9;
+            }
+
+            // Put on unit map
+            gBmMapUnit[unit->yPos][unit->xPos] = i;
+        }
     }
 }

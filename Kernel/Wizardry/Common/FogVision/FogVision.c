@@ -55,13 +55,12 @@ int GetUnitFogViewRange(struct Unit* unit) {
     case CLASS_ROGUE:
     case CLASS_ASSASSIN:
     case CLASS_ASSASSIN_F:
-        result += 5
+        result += 5;
 
     default:
         break;
     }
 #else
-    int result = gPlaySt.chapterVisionRange;
     if (UNIT_CATTRIBUTES(unit) & CA_THIEF)
         result += 5;
 #endif

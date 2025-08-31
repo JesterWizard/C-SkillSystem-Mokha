@@ -15,16 +15,18 @@ bool CanShowUnitStatScreen(struct Unit * unit)
 {
 #ifdef CONFIG_DENY_STAT_SCREEN
 	for (int i = 0; i < sizeOfDenyClasses; i++)
-	{
 		if (UNIT_CLASS_ID(unit) == statScreenDenyClasses[i])
 			return false;
-	}
-#else
-    if (UNIT_IS_GORGON_EGG(unit))
-    {
-        return false;
-    }
 #endif
+
+/* If the unit is in fog, deny access to their stat screen */
+#ifdef CONFIG_MULTIPLE_FOG_STAGES
+    if (!gBmMapFog[unit->yPos][unit->xPos])
+        return false;
+#endif
+
+    if (UNIT_IS_GORGON_EGG(unit))
+        return false;
 
     return true;
 }
@@ -67,12 +69,18 @@ struct Unit* FindNextUnit(struct Unit* u, int direction)
         for (int i = 0; i < sizeOfDenyClasses; i++)
         {
             if (UNIT_CLASS_ID(unit) == statScreenDenyClasses[i])
-                return u;
+                continue;
         }
-#else
-        if (UNIT_IS_GORGON_EGG(unit))
+#endif
+
+/* If the unit is in fog, deny access to their stat screen */
+#ifdef CONFIG_MULTIPLE_FOG_STAGES
+        if (!gBmMapFog[unit->yPos][unit->xPos])
             continue;
 #endif
+
+        if (UNIT_IS_GORGON_EGG(unit))
+            continue;
 
         return unit;
     }
