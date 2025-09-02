@@ -81,5 +81,11 @@ Unit temporarily ignore stat caps[N]
 because it's needed for a skill[N]
 with the same name.[X]
 
+## MSG_DEBUFF_SHOCK_NAME
+Shock[X]
+## MSG_DEBUFF_SHOCK_DESC
+Shock:[N]
+Unit's avoidance is set to 0.[X]
+
 ## MSG_STATUS_SLEEP_NAME
 Sleep[X]

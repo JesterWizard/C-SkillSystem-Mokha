@@ -843,3 +843,4 @@
 #define MSG_SKILL_DilligentMind_PRICE 1000
 #define MSG_SKILL_Domino_PRICE 1000
 #define MSG_SKILL_RadiantEdict_PRICE 1000
+#define MSG_SKILL_EvasionLock_PRICE 1000

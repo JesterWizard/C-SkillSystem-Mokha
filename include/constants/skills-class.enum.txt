@@ -412,6 +412,7 @@
 // SID_MarkOfTheBeast
 // SID_Domino
 // SID_RadiantEdict
+// SID_EvasionLock
 
 //////// STAT MODIFIER SKILLS
 // SID_HpBonus

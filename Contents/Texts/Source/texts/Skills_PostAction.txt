@@ -334,3 +334,10 @@ Quick Salve[X]
 Quick Salve:[N]
 Unit can take another action[N]
 after using a healing item.[X]
+
+## MSG_SKILL_EvasionLock_NAME
+Evasion Lock[X]
+## MSG_SKILL_EvasionLock_DESC
+Evasion Lock:[N]
+Reduce target's avoid to 0 for[N]
+1 turn after battle.[X]

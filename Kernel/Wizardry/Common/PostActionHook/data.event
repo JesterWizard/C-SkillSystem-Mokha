@@ -17,6 +17,7 @@ gPostActionFuncs:
     POIN PostActionSkillShakedown
     POIN PostAction_Clearance
     POIN PostAction_TargetClearance
+    POIN PostAction_EvasionLock
     POIN ResetComboAtkList
 
     //End
