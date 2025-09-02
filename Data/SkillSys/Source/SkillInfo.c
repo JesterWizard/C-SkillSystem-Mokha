@@ -8473,4 +8473,14 @@ const struct SkillInfo gSkillInfos[MAX_SKILL_NUM + 1] = {
     },
 #endif
 
+#if (defined(SID_Pyrotechnics) && COMMON_SKILL_VALID(SID_Pyrotechnics))
+    [SID_Pyrotechnics] = {
+        .name = MSG_SKILL_Pyrotechnics_NAME,
+        .desc = MSG_SKILL_Pyrotechnics_DESC,
+        .capacity = MSG_SKILL_Pyrotechnics_CAPACITY,
+        .price = MSG_SKILL_Pyrotechnics_PRICE,
+        .icon = GFX_SkillIcon_WIP,
+    },
+#endif
+
 };

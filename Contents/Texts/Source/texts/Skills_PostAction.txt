@@ -341,3 +341,11 @@ Evasion Lock[X]
 Evasion Lock:[N]
 Reduce target's avoid to 0 for[N]
 1 turn after battle.[X]
+
+## MSG_SKILL_Pyrotechnics_NAME
+Pyrotechnics[X]
+## MSG_SKILL_Pyrotechnics_DESC
+Pyrotechnics:[N]
+When the user initiates combat at 50% HP+,[N]
+they and all enemies within 2 tiles take[N]
+20% of their max HP as damage post-combat.[X]

@@ -413,6 +413,7 @@
 // SID_Domino
 // SID_RadiantEdict
 // SID_EvasionLock
+// SID_Pyrotechnics
 
 //////// STAT MODIFIER SKILLS
 // SID_HpBonus
