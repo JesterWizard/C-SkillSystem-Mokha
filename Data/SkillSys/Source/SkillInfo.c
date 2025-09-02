@@ -8453,4 +8453,14 @@ const struct SkillInfo gSkillInfos[MAX_SKILL_NUM + 1] = {
     },
 #endif
 
+#if (defined(SID_RadiantEdict) && COMMON_SKILL_VALID(SID_RadiantEdict))
+    [SID_RadiantEdict] = {
+        .name = MSG_SKILL_RadiantEdict_NAME,
+        .desc = MSG_SKILL_RadiantEdict_DESC,
+        .capacity = MSG_SKILL_RadiantEdict_CAPACITY,
+        .price = MSG_SKILL_RadiantEdict_PRICE,
+        .icon = GFX_SkillIcon_WIP,
+    },
+#endif
+
 };

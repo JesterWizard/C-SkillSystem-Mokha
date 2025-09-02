@@ -250,3 +250,10 @@ Domino[X]
 Domino:[N]
 Boost the skill activation rates of[N]
 adjacent allied units by 10%.[X]
+
+## MSG_SKILL_RadiantEdict_NAME
+Radiant Edict[X]
+## MSG_SKILL_RadiantEdict_DESC
+Radiant Edict:[N]
+Remove all positive buffs for enemy[N]
+units within a 3 tile radius.[X]

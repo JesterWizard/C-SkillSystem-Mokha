@@ -64,6 +64,18 @@ static const u8 debuffs[] = {
     NEW_UNIT_STATUS_SLOW,
 };
 
+static const u8 buffs[] = {
+    UNIT_STATUS_ATTACK,
+    UNIT_STATUS_DEFENSE,
+    UNIT_STATUS_CRIT,
+    UNIT_STATUS_AVOID,
+    UNIT_STATUS_RECOVER,
+    NEW_UNIT_STATUS_AVOID,
+    NEW_UNIT_STATUS_AVOID_PLUS,
+    NEW_UNIT_STATUS_DECOY,
+    NEW_UNIT_STATUS_HIDE
+};
+
 enum DEBUFF_POSITIVE_TYPE {
 	/* DebuffInfo::positive_type */
 	STATUS_DEBUFF_NONE,

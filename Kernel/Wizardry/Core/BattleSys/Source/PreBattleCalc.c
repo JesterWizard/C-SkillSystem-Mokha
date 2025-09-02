@@ -10,6 +10,7 @@
 #include "combat-art.h"
 #include "kernel-tutorial.h"
 #include "constants/skills.h"
+#include "jester_headers/custom-arrays.h"
 
 #define LOCAL_TRACE 0
 
@@ -1812,6 +1813,22 @@ void PreBattleCalcAuraEffect(struct BattleUnit *attacker, struct BattleUnit *def
 				attacker->battleCritRate -= SKILL_EFF1(SID_Daunt);
 			}
 #endif
+
+#if (defined(SID_RadiantEdict) && (COMMON_SKILL_VALID(SID_RadiantEdict)))
+			if (SkillTester(unit, SID_RadiantEdict)) {
+				const int buffLength = sizeof(buffs) / sizeof(buffs[0]);
+				for (int i = 0; i < buffLength; i++)
+				{
+					if (GetUnitStatusIndex(&attacker->unit) == buffs[i])
+					{
+						SetUnitStatusIndex(GetUnit(attacker->unit.index), 0);
+						break;
+					}
+				}
+			}
+#endif
+
+
 
 			/* Since we just calc in 3x3, so here is always true */
 			enmies_gRange3_In3x3++;

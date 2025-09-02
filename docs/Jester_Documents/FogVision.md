@@ -1,7 +1,5 @@
 # Modular Fog Vision Range
 
-Add GIF
-
 ##  Index 
 - ### [Introduction](#Introduction)
 - ### [Plan](#Plan)

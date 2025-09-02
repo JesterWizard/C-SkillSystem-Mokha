@@ -1,14 +1,6 @@
 #include "common-chax.h"
 #include "jester_headers/custom-arrays.h"
 
-const int statScreenDenyClasses[] = {
-    CLASS_GORGONEGG, 
-    CLASS_GORGONEGG2, 
-    CLASS_FIGHTER
-};
-
-const int sizeOfDenyClasses = sizeof(statScreenDenyClasses) / sizeof(statScreenDenyClasses[0]);
-
 //! FE8U = 0x0801C928
 LYN_REPLACE_CHECK(CanShowUnitStatScreen);
 bool CanShowUnitStatScreen(struct Unit * unit)

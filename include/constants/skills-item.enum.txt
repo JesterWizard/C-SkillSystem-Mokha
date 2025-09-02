@@ -411,6 +411,7 @@
 // SID_BlueFlame
 // SID_MarkOfTheBeast
 // SID_Domino
+// SID_RadiantEdict
 
 //////// STAT MODIFIER SKILLS
 // SID_HpBonus

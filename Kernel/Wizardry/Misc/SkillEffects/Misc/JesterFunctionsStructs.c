@@ -1,6 +1,8 @@
 #include "common-chax.h"
+#include "debuff.h"
 #include "jester_headers/class-pairs.h"
 #include "jester_headers/custom-functions.h"
+#include "jester_headers/custom-arrays.h"
 
 // Predefine an array of key-value pairs
 const int transformationPairs[77][2] = {
@@ -201,3 +203,11 @@ const int gNewSummonConfig[5][2] = {
 };
 
 const int summonArraySize = sizeof(gNewSummonConfig) / sizeof(gNewSummonConfig[0]);
+
+const int statScreenDenyClasses[] = {
+    CLASS_GORGONEGG, 
+    CLASS_GORGONEGG2, 
+    CLASS_FIGHTER
+};
+
+const int sizeOfDenyClasses = sizeof(statScreenDenyClasses) / sizeof(statScreenDenyClasses[0]);

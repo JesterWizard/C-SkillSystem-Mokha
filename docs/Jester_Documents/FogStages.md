@@ -1,6 +1,6 @@
-# Make Fog Great Again
+# Make Fog Great Again!
 
-Add GIF
+![](../Gifs/Fog_Stages.gif)
 
 ##  Index 
 - ### [Introduction](#Introduction)
@@ -12,7 +12,7 @@ Add GIF
 ## Introduction
 This is my plan to make fog more inclusive and strategic as a gameplay element.
 
-Historically, fog has plagued every Fire Emblem it has appeared in due mostly to the fact
+Historically, fog has plagued every Fire Emblem it has appeared in mostly due to the fact
 that its standard implementation stands in direct contradiction to how a strategy game
 ought to be played. Wherein you make a plan of action based on the available map data to
 determine which of your units should move to fight / defend.

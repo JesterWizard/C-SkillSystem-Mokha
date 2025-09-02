@@ -842,3 +842,4 @@
 #define MSG_SKILL_QuickSalve_CAPACITY 1
 #define MSG_SKILL_DilligentMind_CAPACITY 1
 #define MSG_SKILL_Domino_CAPACITY 1
+#define MSG_SKILL_RadiantEdict_CAPACITY 1
