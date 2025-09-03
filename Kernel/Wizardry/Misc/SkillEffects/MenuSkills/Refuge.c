@@ -8,20 +8,14 @@
 #include "unit-expa.h"
 #include "action-expa.h"
 
-s8 CanUnitRefuge(struct Unit* actor, struct Unit* target);
-void TryAddUnitToRefugeTargetList(struct Unit* unit);
-void MakeRefugeTargetList(struct Unit* unit);
-void MakeRefugeTargetListForAdjacentAlly(struct Unit * unit);
-extern void ForEachAdjacentUnit(int x, int y, void (*)(struct Unit *));
-
-s8 CanUnitRefuge(struct Unit* actor, struct Unit* target) {
+static s8 CanUnitRefuge(struct Unit* actor, struct Unit* target) {
     int actorCon  = UNIT_CON(actor);
     int targetAid = GetUnitAid(target);
 
     return (actorCon <= targetAid) ? TRUE : FALSE;
 }
 
-void TryAddUnitToRefugeTargetList(struct Unit* unit) {
+static void TryAddUnitToRefugeTargetList(struct Unit* unit) {
 
     if (!IsSameAllegiance(gSubjectUnit->index, unit->index)) {
         return;
@@ -48,7 +42,7 @@ void TryAddUnitToRefugeTargetList(struct Unit* unit) {
     return;
 }
 
-void MakeRefugeTargetList(struct Unit* unit) {
+static void MakeRefugeTargetList(struct Unit* unit) {
     int x = unit->xPos;
     int y = unit->yPos;
 
@@ -98,7 +92,7 @@ static u8 Refuge_OnSelectTarget(ProcPtr proc, struct SelectTarget * target)
         TARGETSELECTION_ACTION_CLEARBGS;
 }
 
-void MakeRefugeTargetListForAdjacentAlly(struct Unit * unit)
+static void MakeRefugeTargetListForAdjacentAlly(struct Unit * unit)
 {
     InitTargets(0, 0);
     int x = unit->xPos;

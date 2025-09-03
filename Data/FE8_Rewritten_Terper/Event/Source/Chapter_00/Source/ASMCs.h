@@ -19,7 +19,7 @@ void SetGameOptions_Chapter0()
     SetGameOption(GAME_OPTION_GAME_SPEED, 3); // Set text speed to max
 
     /* Fog activates when this is between 1 - 4 */
-    gPlaySt.chapterVisionRange = 1;
+    // gPlaySt.chapterVisionRange = 1;
 
     SetPartyGoldAmount(100000);
 

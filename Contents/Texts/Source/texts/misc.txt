@@ -177,9 +177,9 @@ Not enough gold to forge item.[X]
 ## UM_AoEDesc
 Hit multiple units.[X]
 ## UM_AoEHelp
-Select an area to Attack. Press L/R to Rotate.[X]
+Select an area to Attack. L/R to rotate.[X]
 ## UM_AoEHealHelp
-Select an area to Heal. Press L/R to Rotate.[X]
+Select an area to Heal. L/R to rotate.[X]
 
 ## UM_AoESlash
 Slash[X]
