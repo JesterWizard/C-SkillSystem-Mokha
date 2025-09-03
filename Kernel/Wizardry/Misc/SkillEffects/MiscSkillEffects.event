@@ -34,6 +34,8 @@
 #include "MenuSkills/Swarp.lyn.event"
 #include "MenuSkills/Repair.lyn.event"
 #include "MenuSkills/DivineReprieve/DivineReprieve.event"
+#include "MenuSkills/Replicate.lyn.event"
+
 #ifdef CONFIG_REFUGE_FEATURE
     #include "MenuSkills/Refuge.lyn.event"
 #endif

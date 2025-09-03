@@ -19,7 +19,8 @@ ORG $17D18
     SHORT $3000 $3000 $3000 $3000
 #endif
 
-    PROTECT $17AC4 $17D3A
+    /* JESTER - Need to disable for the sake for LoadUnit */
+    // PROTECT $17AC4 $17D3A
 
 POP
 

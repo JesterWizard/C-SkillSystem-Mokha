@@ -335,4 +335,19 @@ struct MenuItemDef const *const gSkillMenuInfos[MAX_SKILL_NUM + 1] = {
 		.onSwitchOut = NULL,
 	},
 #endif
+
+#if (defined(SID_Replicate) && COMMON_SKILL_VALID(SID_Replicate))
+	[SID_Replicate] = &(const struct MenuItemDef) {
+		.name = "　召喚",
+		.nameMsgId = MSG_SKILL_Replicate_NAME,
+		.helpMsgId = MSG_SKILL_Replicate_DESC,
+		.color = TEXT_COLOR_SYSTEM_GOLD,
+		.isAvailable = Replicate_Usability,
+		.onDraw = NULL,
+		.onSelected = Replicate_OnSelected,
+		.onIdle = NULL,
+		.onSwitchIn = NULL,
+		.onSwitchOut = NULL
+	},
+#endif
 };

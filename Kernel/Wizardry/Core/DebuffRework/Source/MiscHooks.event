@@ -89,7 +89,9 @@ PUSH
 
     ORG $25250 // TryAddUnitToTradeTargetList
     BYTE 0x3F
-    PROTECT $2521C $252D0
+
+    /* JESTER - Needed to turn off to hook TruAddUnitToTradeTargetList */
+    // PROTECT $2521C $252D0
 
     ORG $25378 // TryAddUnitToRescueTargetList
     BYTE 0x3F

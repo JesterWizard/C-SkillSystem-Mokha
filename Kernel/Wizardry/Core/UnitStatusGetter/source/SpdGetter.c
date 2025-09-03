@@ -22,7 +22,6 @@ int _GetUnitSpeed(struct Unit *unit)
         status -= gPlaySt.chapterIndex < INJURED_TURN_COUNT ? INJURED_TURN_COUNT - gPlaySt.chapterIndex : 0;
 #endif
 
-
 	return status;
 }
 

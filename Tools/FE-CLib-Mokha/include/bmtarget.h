@@ -4,7 +4,7 @@
 // ??? ForEachUnitInMovement(???);
 void ForEachUnitInRange(void(* func)(struct Unit * unit));
 // ??? ForEachPosInRange(???);
-// ??? ForEachAdjacentUnit(???);
+void ForEachAdjacentUnit(int x, int y, void(*func)(struct Unit* unit));
 // ??? ForEachAdjacentPosition(???);
 // ??? sub_8024FD8(???);
 // ??? ForEachPosIn12Range(???);
@@ -12,7 +12,7 @@ void ForEachUnitInRange(void(* func)(struct Unit * unit));
 // ??? TryAddTrapsToTargetList(???);
 void AddUnitToTargetListIfNotAllied(struct Unit * unit);
 void MakeTargetListForWeapon(struct Unit* unit, int item);
-// ??? TryAddUnitToTradeTargetList(???);
+void TryAddUnitToTradeTargetList(struct Unit * unit);
 void MakeTradeTargetList(struct Unit* unit);
 // ??? TryAddUnitToRescueTargetList(???);
 void MakeRescueTargetList(struct Unit* unit);

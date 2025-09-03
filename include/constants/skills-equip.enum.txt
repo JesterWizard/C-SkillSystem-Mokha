@@ -70,6 +70,7 @@ SID_AcidicPlus
 SID_Reinforce
 SID_SealedZone
 SID_Thrust
+SID_Replicate
 
 //////// PRE-BATTLE SKILLS
 SID_DefiantStr

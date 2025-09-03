@@ -20,6 +20,7 @@
 #include "player_interface.h"
 #include "soundroom.h"
 #include "bwl.h"
+#include "debuff.h"
 
 typedef struct {
     /* 00 */ struct Font font;
@@ -2348,4 +2349,94 @@ void RefreshUnitsOnBmMap(void) {
             gBmMapUnit[unit->yPos][unit->xPos] = i;
         }
     }
+}
+
+LYN_REPLACE_CHECK(TryAddUnitToTradeTargetList);
+void TryAddUnitToTradeTargetList(struct Unit* unit) {
+
+    if (!IsSameAllegiance(gSubjectUnit->index, unit->index)) {
+        return;
+    }
+
+    if (gSubjectUnit->pClassData->number == CLASS_PHANTOM || unit->pClassData->number == CLASS_PHANTOM) {
+        return;
+    }
+
+    if (GetUnitStatusIndex(unit) == NEW_UNIT_STATUS_REPLICATE)
+        return;
+
+    if (unit->statusIndex != UNIT_STATUS_BERSERK) {
+
+        if (gSubjectUnit->items[0] != 0 || unit->items[0] != 0) {
+
+            if (!(UNIT_CATTRIBUTES(unit) & CA_SUPPLY)) {
+                AddTarget(unit->xPos, unit->yPos, unit->index, 0);
+            }
+        }
+    }
+
+    if (unit->state & US_RESCUING) {
+        struct Unit* rescue = GetUnit(unit->rescue);
+
+        if (UNIT_FACTION(rescue) != FACTION_BLUE) {
+            return;
+        }
+
+        if (gSubjectUnit->items[0] == 0 && rescue->items[0] == 0 ) {
+            return;
+        }
+
+        AddTarget(unit->xPos, unit->yPos, rescue->index, 0);
+    }
+
+    return;
+}
+
+LYN_REPLACE_CHECK(MakeTradeTargetList);
+void MakeTradeTargetList(struct Unit* unit) {
+    int x = unit->xPos;
+    int y = unit->yPos;
+
+    gSubjectUnit = unit;
+
+    BmMapFill(gBmMapRange, 0);
+    ForEachAdjacentUnit(x, y, TryAddUnitToTradeTargetList);
+
+    if (gSubjectUnit->state & US_RESCUING) {
+        int count = GetSelectTargetCount();
+        TryAddUnitToTradeTargetList(GetUnit(gSubjectUnit->rescue));
+
+        if (count != GetSelectTargetCount()) {
+            GetTarget(count)->x = gSubjectUnit->xPos;
+            GetTarget(count)->y = gSubjectUnit->yPos;
+        }
+    }
+
+    return;
+}
+
+LYN_REPLACE_CHECK(ItemSubMenu_IsTradeAvailable);
+u8 ItemSubMenu_IsTradeAvailable(const struct MenuItemDef* def, int number) {
+    if (gActiveUnit->state & US_HAS_MOVED) {
+        return MENU_NOTSHOWN;
+    }
+
+    if (gBmSt.taken_action & BM_TAKEN_ACTION_TRADE) {
+        return MENU_NOTSHOWN;
+    }
+
+    if (UNIT_CATTRIBUTES(gActiveUnit) & CA_SUPPLY) {
+        return MENU_NOTSHOWN;
+    }
+
+    if (GetUnitStatusIndex(gActiveUnit) == NEW_UNIT_STATUS_REPLICATE)
+        return MENU_NOTSHOWN;
+
+    MakeTradeTargetList(gActiveUnit);
+
+    if (GetSelectTargetCount() == 0) {
+        return MENU_NOTSHOWN;
+    }
+
+    return MENU_ENABLED;
 }

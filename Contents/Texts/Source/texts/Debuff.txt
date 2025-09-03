@@ -87,5 +87,12 @@ Shock[X]
 Shock:[N]
 Unit's avoidance is set to 0.[X]
 
+## MSG_DEBUFF_REPLICATE_NAME
+Replicate[X]
+## MSG_DEBUFF_REPLICATE_DESC
+Replicate:[N]
+This unit is a copy and transfers[N]
+all earned experience to the original.[X]
+
 ## MSG_STATUS_SLEEP_NAME
 Sleep[X]

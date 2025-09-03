@@ -450,6 +450,8 @@ u8 DivineReprieve_Usability(const struct MenuItemDef *def, int number);
 u8 DivineReprieve_OnSelected(struct MenuProc *menu, struct MenuItemProc *item);
 u8 Refuge_Usability(const struct MenuItemDef * def, int number);
 u8 Refuge_OnSelected(struct MenuProc * menu, struct MenuItemProc * item);
+u8 Replicate_Usability(const struct MenuItemDef * def, int number);
+u8 Replicate_OnSelected(struct MenuProc * menu, struct MenuItemProc * item);
 
 u8 Transform_Laguz_Usability(const struct MenuItemDef * def, int number);
 u8 Transform_Laguz_OnSelected(struct MenuProc * menu, struct MenuItemProc * item);
@@ -467,5 +469,6 @@ bool Action_Swarp(ProcPtr parent);
 bool Action_Blacksmith(ProcPtr parent);
 bool Action_DivineReprieve(ProcPtr parent);
 bool Action_Refuge(ProcPtr parent);
+bool Action_Replicate(ProcPtr parent);
 
 bool Action_Transform_Laguz(ProcPtr parent);

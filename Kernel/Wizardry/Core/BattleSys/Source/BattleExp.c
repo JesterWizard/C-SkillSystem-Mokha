@@ -3,6 +3,7 @@
 #include "battle-system.h"
 #include "bwl.h"
 #include "constants/skills.h"
+#include "debuff.h"
 
 #ifdef CONFIG_MODULAR_STAFF_EXP
     inline static int StaffEXP(int weapon)
@@ -249,6 +250,7 @@ void BattleApplyExpGains(void)
 
 	if ((UNIT_FACTION(&gBattleActor.unit) != FACTION_BLUE) || (UNIT_FACTION(&gBattleTarget.unit) != FACTION_BLUE)) {
 		if (!(gPlaySt.chapterStateBits & PLAY_FLAG_EXTRA_MAP)) {
+
 			gBattleActor.expGain  = GetBattleUnitExpGainRework(&gBattleActor, &gBattleTarget);
 			gBattleTarget.expGain = GetBattleUnitExpGainRework(&gBattleTarget, &gBattleActor);
 
@@ -258,6 +260,45 @@ void BattleApplyExpGains(void)
 #if CHAX
 			ResetPopupSkillStack();
 #endif
+
+            if (GetUnitStatusIndex(GetUnit(gBattleActor.unit.index)) == NEW_UNIT_STATUS_REPLICATE)
+            {
+                for (int i = FACTION_BLUE; i < FACTION_GREEN; i++)
+                {
+                    struct Unit * unit = GetUnit(i);
+
+                    if (!UNIT_IS_VALID(unit))
+                        continue;
+
+                    if (gBattleActor.unit.pCharacterData->number == unit->pCharacterData->number && GetUnitStatusIndex(unit) != NEW_UNIT_STATUS_REPLICATE)
+                    {
+                        unit->exp += gBattleActor.expGain;
+                        gBattleActor.unit.exp -= gBattleActor.expGain;
+                        InitBattleUnit(&gBattleActor, unit);
+                        break;
+                    }
+                }
+            }
+
+            if (GetUnitStatusIndex(GetUnit(gBattleTarget.unit.index)) == NEW_UNIT_STATUS_REPLICATE)
+            {
+                for (int i = FACTION_BLUE; i < FACTION_GREEN; i++)
+                {
+                    struct Unit * unit = GetUnit(i);
+
+                    if (!UNIT_IS_VALID(unit))
+                        continue;
+
+                    if (gBattleTarget.unit.pCharacterData->number == unit->pCharacterData->number && GetUnitStatusIndex(unit) != NEW_UNIT_STATUS_REPLICATE)
+                    {
+                        unit->exp += gBattleTarget.expGain;
+                        gBattleTarget.unit.exp -= gBattleTarget.expGain;
+                        InitBattleUnit(&gBattleTarget, unit);
+                        break;
+                    }
+                }
+            }
+
 
 			CheckBattleUnitLevelUp(&gBattleActor);
 			CheckBattleUnitLevelUp(&gBattleTarget);

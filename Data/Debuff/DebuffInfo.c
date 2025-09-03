@@ -202,4 +202,20 @@ const struct DebuffInfo gDebuffInfos[NEW_UNIT_STATUS_MAX] = {
 		.battle_status.avo = -127,
 		.img = GFX_DebuffMinibox_Gravity,
 	},
+	[IGNORE] = {
+		.name = 0,
+		.desc = 0,
+		.positive_type = STATUS_DEBUFF_POSITIVE,
+		.tick_type = STATUS_DEBUFF_NO_TICK,
+		.duration = 1,
+		.efx_config = {EFX_DEBUFF_NORMAL, 0x0, 0x0, 0x8},
+	},
+	[NEW_UNIT_STATUS_REPLICATE] = {
+		.name = MSG_DEBUFF_REPLICATE_NAME,
+		.desc = MSG_DEBUFF_REPLICATE_DESC,
+		.positive_type = STATUS_DEBUFF_POSITIVE,
+		.tick_type = STATUS_DEBUFF_NO_TICK,
+		.duration = 1,
+		.efx_config = {EFX_DEBUFF_NORMAL, 0x0, 0x0, 0x8},
+	},
 };

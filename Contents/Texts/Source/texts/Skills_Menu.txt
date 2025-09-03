@@ -593,3 +593,11 @@ Refuge[X]
 Refuge:[N]
 Retreat into an ally who's[N]
 AID >= the unit's CON.[X]
+
+## MSG_SKILL_Replicate_NAME
+Replicate[X]
+## MSG_SKILL_Replicate_DESC
+Replicate:[N]
+Create a duplicate of this unit[N]
+that shares items, uses, stats[N]
+and skills.[X]

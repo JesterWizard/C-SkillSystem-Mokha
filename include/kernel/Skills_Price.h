@@ -845,3 +845,4 @@
 #define MSG_SKILL_RadiantEdict_PRICE 1000
 #define MSG_SKILL_EvasionLock_PRICE 1000
 #define MSG_SKILL_Pyrotechnics_PRICE 1000
+#define MSG_SKILL_Replicate_PRICE 1000
