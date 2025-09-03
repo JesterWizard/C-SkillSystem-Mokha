@@ -92,17 +92,22 @@
 
     int GetItemForgeCount(int item) {
         struct ForgeLimits limits = gForgeLimits[GetItemIndex(item)];
+        int id = ITEM_USES(item);
+
         if (limits.maxCount == 0) {
             return 0;
         }
+
         if (!UseForgedItemDurability) {
-            return ITEM_USES(item);
+            return id;
         }
-        return gForgedItemRam[ITEM_USES(item)].hit;
+        return gForgedItemRam[id].hit;
     }
 
     int SetItemForgeCount(int item, int val) {
         struct ForgeLimits limits = gForgeLimits[GetItemIndex(item)];
+        int id = ITEM_USES(item);
+
         if (limits.maxCount == 0) {
             return item;
         }
@@ -110,7 +115,7 @@
             return GetItemIndex(item) | (val << 8);
         }
 
-        gForgedItemRam[ITEM_USES(item)].hit = val;
+        gForgedItemRam[id].hit = val;
         return item;
     }
 
@@ -228,7 +233,6 @@
         InitText(&texts[11], 14);
         
         for(int i = 0; i < 12; i++) {
-            
             ClearText(&texts[i]);
         }
 
@@ -394,7 +398,8 @@
             if (forgeSlot >= 0) { // ensure we found a valid forge ID
                 item = GetItemIndex(item) | forgeSlot << 8; // ensure the forge slot is set
                 gPlaySt.partyGoldAmount -= GetItemForgeCost(item);
-                gActiveUnit->items[menuItem->itemNumber] = IncrementForgeCount(item, 1);
+                //gActiveUnit->items[menuItem->itemNumber] = IncrementForgeCount(item, 1);
+                SetItemForgeCount(item, GetItemForgeCount(item) + 1);
                 AnimOnActiveUnit(gActionData.unk08, callback_anim, callback_exec);
                 return MENU_ACT_CLEAR | MENU_ACT_SND6A | MENU_ACT_END | MENU_ACT_SKIPCURSOR;
             }
