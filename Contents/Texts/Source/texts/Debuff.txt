@@ -94,5 +94,12 @@ Replicate:[N]
 This unit is a copy and transfers[N]
 all earned experience to the original.[X]
 
+## MSG_DEBUFF_DEFAULT_NAME
+Default[X]
+## MSG_DEBUFF_DEFAULT_DESC
+Default:[N]
+Reduce incoming damage by 25%[N]
+while you build usable turns.[X]
+
 ## MSG_STATUS_SLEEP_NAME
 Sleep[X]

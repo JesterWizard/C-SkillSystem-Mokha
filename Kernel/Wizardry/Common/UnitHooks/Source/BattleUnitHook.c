@@ -5,6 +5,7 @@
 #include "status-getter.h"
 #include "combat-art.h"
 #include "constants/skills.h"
+#include "debuff.h"
 
 typedef int (*BattleToUnitFunc_t)(struct BattleUnit *bu, struct Unit *unit);
 // extern const BattleToUnitFunc_t gExternalBattleToUnitHook[];
@@ -133,4 +134,55 @@ void UpdateUnitFromBattle(struct Unit *unit, struct BattleUnit *bu)
 
 	for (it = gpExternalBattleToUnitHook; *it; it++)
 		(*it)(bu, unit);
+}
+
+LYN_REPLACE_CHECK(BattleGenerateRealInternal);
+void BattleGenerateRealInternal(struct Unit* actor, struct Unit* target) {
+    InitBattleUnit(&gBattleActor, actor);
+    InitBattleUnit(&gBattleTarget, target);
+
+    gBattleStats.range = RECT_DISTANCE(
+        gBattleActor.unit.xPos, gBattleActor.unit.yPos,
+        gBattleTarget.unit.xPos, gBattleTarget.unit.yPos
+    );
+
+    if (gBattleStats.config & BATTLE_CONFIG_BALLISTA)
+        SetBattleUnitWeaponBallista(&gBattleActor);
+    else
+        SetBattleUnitWeapon(&gBattleActor, BU_ISLOT_AUTO);
+
+    SetBattleUnitWeapon(&gBattleTarget, BU_ISLOT_AUTO);
+
+    BattleInitTargetCanCounter();
+    BattleApplyWeaponTriangleEffect(&gBattleActor, &gBattleTarget);
+
+    DisableAllLightRunes();
+
+    SetBattleUnitTerrainBonusesAuto(&gBattleActor);
+    SetBattleUnitTerrainBonusesAuto(&gBattleTarget);
+
+    BattleGenerate(actor, target);
+
+    EnableAllLightRunes();
+
+    BattleUnitTargetCheckCanCounter(&gBattleTarget);
+    BattleUnitTargetSetEquippedWeapon(&gBattleTarget);
+
+    if (gBattleTarget.unit.index) {
+        BattleApplyExpGains();
+        PidStatsRecordBattleRes();
+
+        PidStatsAddBattleAmt(actor);
+        PidStatsAddBattleAmt(target);
+
+		/* JESTER - These are general use (per unit) bitpacked counters */
+		if (GetUnitStatusIndex(actor) == NEW_UNIT_STATUS_DEFAULT && actor->counters < 7)
+			actor->counters += 1;
+
+		if (GetUnitStatusIndex(target) == NEW_UNIT_STATUS_DEFAULT && target->counters < 7)
+			target->counters += 1;
+
+		NoCashGBAPrintf("Start of Battle - Actor unit counters equals: %d", actor->counters);
+		NoCashGBAPrintf("Start of Battle - Target unit counters equals: %d", target->counters);
+    }
 }

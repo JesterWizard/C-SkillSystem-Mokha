@@ -9,6 +9,7 @@
 #include "kernel-tutorial.h"
 #include "constants/skills.h"
 #include "constants/combat-arts.h"
+#include "debuff.h"
 
 #define LOCAL_TRACE 0
 
@@ -170,6 +171,13 @@ int BattleHit_CalcDamage(struct BattleUnit *attacker, struct BattleUnit *defende
 		result = 1; // at least 1 damage left.
 
 	result += gDmg.real_damage;
+
+	/* Reduce incoming damage by 25% if the defending unit has the 'default' status */
+#if defined(SID_BravelyDefault) && (COMMON_SKILL_VALID(SID_BravelyDefault))
+	if (BattleFastSkillTester(defender, SID_BravelyDefault))
+		if (GetUnitStatusIndex(GetUnit(attacker->unit.index)) == NEW_UNIT_STATUS_DEFAULT)
+			result -= (result / 4);
+#endif
 
 	LTRACEF("[round %d] dmg=%d: max=%d, base=%d (atk=%d, def=%d, cor=%d), inc=%d, crt=%d, dec=%d, real=%d",
 					GetBattleHitRound(gBattleHitIterator), result, max_damage, base_damage,

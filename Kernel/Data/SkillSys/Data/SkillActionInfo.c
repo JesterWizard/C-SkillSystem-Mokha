@@ -82,4 +82,8 @@ const SkillActionFunc_t gSkillActionFuncTable[MAX_SKILL_NUM + 1] = {
 #if (defined(SID_MasterForge) && COMMON_SKILL_VALID(SID_MasterForge))
 	[SID_MasterForge] = Action_MasterForge,
 #endif
+
+#if (defined(SID_BravelyDefault) && COMMON_SKILL_VALID(SID_BravelyDefault))
+	[SID_BravelyDefault] = Action_BravelyDefault,
+#endif
 };

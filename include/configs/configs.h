@@ -373,5 +373,7 @@
 #define CONFIG_MODULAR_FOG_UNIT_SIGHT
 #define CONFIG_MULTIPLE_FOG_STAGES
 
+#define CONFIG_MISC_UNIT_COUNTERS /* Used for Skill - Bravely Default */
+
 
 #endif /* CONFIG_INSTALLED */

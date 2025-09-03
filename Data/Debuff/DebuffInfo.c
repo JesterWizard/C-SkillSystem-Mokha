@@ -218,4 +218,12 @@ const struct DebuffInfo gDebuffInfos[NEW_UNIT_STATUS_MAX] = {
 		.duration = 1,
 		.efx_config = {EFX_DEBUFF_NORMAL, 0x0, 0x0, 0x8},
 	},
+	[NEW_UNIT_STATUS_DEFAULT] = {
+		.name = MSG_DEBUFF_DEFAULT_NAME,
+		.desc = MSG_DEBUFF_DEFAULT_DESC,
+		.positive_type = STATUS_DEBUFF_POSITIVE,
+		.tick_type = STATUS_DEBUFF_TICK_ON_ALLY,
+		.duration = 1,
+		.efx_config = {EFX_DEBUFF_NORMAL, 0x0, 0x0, 0x8},
+	},
 };

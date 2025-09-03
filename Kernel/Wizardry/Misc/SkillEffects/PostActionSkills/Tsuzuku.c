@@ -30,6 +30,15 @@ bool PostActionTsuzuku(ProcPtr parent)
 	if (!UNIT_IS_VALID(unit) || CheckBitUES(unit, UES_BIT_TSZUKU_SKILL_USED))
 		return false;
 
+#if defined(SID_BravelyDefault) && (COMMON_SKILL_VALID(SID_BravelyDefault))
+	if (SkillTester(unit, SID_BravelyDefault) && unit->counters > 0)
+	{
+		NoCashGBAPrintf("Post Action - Unit counters equals: %d", unit->counters);
+		unit->counters -= 1;
+		refreshUnit(unit, parent);
+	}
+#endif
+
 	switch (gActionData.unitActionType) {
 	case UNIT_ACTION_COMBAT:
 	case CONFIG_UNIT_ACTION_EXPA_GaidenMagicCombat:

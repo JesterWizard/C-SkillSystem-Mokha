@@ -847,3 +847,4 @@
 #define MSG_SKILL_Pyrotechnics_CAPACITY 1
 #define MSG_SKILL_Replicate_CAPACITY 1
 #define MSG_SKILL_MasterForge_CAPACITY 1
+#define MSG_SKILL_BravelyDefault_CAPACITY 1

@@ -70,7 +70,11 @@ struct ClassData
     /* 08 */ u16 defaultPortraitId;
     /* 0A */ u8 sort_order;
 
+#ifdef CONFIG_UNLOCK_ALLY_MHP_LIMIT
+    /* 0B */ u8 baseHP;
+#else
     /* 0B */ s8 baseHP;
+#endif
     /* 0C */ s8 basePow;
     /* 0D */ s8 baseSkl;
     /* 0E */ s8 baseSpd;
@@ -145,7 +149,6 @@ struct Unit
 
     /* 10 */ s8 xPos;
     /* 11 */ s8 yPos;
-
 #ifdef CONFIG_UNLOCK_ALLY_MHP_LIMIT
     /* 12 */ u8 maxHP;
     /* 13 */ u8 curHP;
@@ -159,8 +162,12 @@ struct Unit
     /* 17 */ s8 def;
     /* 18 */ s8 res;
     /* 19 */ s8 lck;
-
+#ifdef CONFIG_MISC_UNIT_COUNTERS
+    /* 1A */ u8 conBonus : 5;
+    /* 1A */ u8 counters : 3;
+#else
     /* 1A */ s8 conBonus;
+#endif
     /* 1B */ u8 rescue;
     /* 1C */ u8 ballistaIndex;
     /* 1D */ s8 movBonus;
@@ -190,7 +197,7 @@ struct Unit
     /* 45 */ u8 ai_b_pc;
     /* 46 */ u8 ai_counter;
 
-    /* pad */
+    /* Pad - Used as MAG stat */
     /* 47 */ u8 _u47;
 };
 

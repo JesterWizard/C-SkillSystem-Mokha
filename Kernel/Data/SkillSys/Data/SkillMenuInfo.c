@@ -365,4 +365,19 @@ struct MenuItemDef const *const gSkillMenuInfos[MAX_SKILL_NUM + 1] = {
 		.onSwitchOut = NULL
 	},
 #endif
+
+#if (defined(SID_BravelyDefault) && COMMON_SKILL_VALID(SID_BravelyDefault))
+	[SID_BravelyDefault] = &(const struct MenuItemDef) {
+		.name = "　召喚",
+		.nameMsgId = MSG_SKILL_BravelyDefault_NAME,
+		.helpMsgId = MSG_SKILL_BravelyDefault_DESC,
+		.color = TEXT_COLOR_SYSTEM_GOLD,
+		.isAvailable = BravelyDefault_Usability,
+		.onDraw = NULL,
+		.onSelected = BravelyDefault_OnSelected,
+		.onIdle = NULL,
+		.onSwitchIn = NULL,
+		.onSwitchOut = NULL
+	},
+#endif
 };

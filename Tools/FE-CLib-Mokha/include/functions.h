@@ -80,7 +80,7 @@ void ShinningEventCursor(int lo, int hi, int cur);
 void ChangeUnitAi(struct Unit *, u8, u8, u8);
 void ChangeAiForCharacter(u8, u8, u8, u8);
 // ??? ChangeAiForPositions(???);
-// ??? EvtBattleGenerateRealInternal(???);
+// ??? EvtBattleGenerateRealInternal(???); /* JESTER - Now exists in bmbattle.h */
 // ??? EvtBattleGenerateReal(???);
 // ??? EvtBattleGenerateBallistaReal(???);
 // ??? StartScriptBattleAnim(???);
