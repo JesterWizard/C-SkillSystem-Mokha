@@ -8493,4 +8493,14 @@ const struct SkillInfo gSkillInfos[MAX_SKILL_NUM + 1] = {
     },
 #endif
 
+#if (defined(SID_MasterForge) && COMMON_SKILL_VALID(SID_MasterForge))
+    [SID_MasterForge] = {
+        .name = MSG_SKILL_MasterForge_NAME,
+        .desc = MSG_SKILL_MasterForge_DESC,
+        .capacity = MSG_SKILL_MasterForge_CAPACITY,
+        .price = MSG_SKILL_MasterForge_PRICE,
+        .icon = GFX_SkillIcon_WIP,
+    },
+#endif
+
 };

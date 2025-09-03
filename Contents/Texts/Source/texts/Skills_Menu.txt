@@ -601,3 +601,10 @@ Replicate:[N]
 Create a duplicate of this unit[N]
 that shares items, uses, stats[N]
 and skills.[X]
+
+## MSG_SKILL_MasterForge_NAME
+Master Forge[X]
+## MSG_SKILL_MasterForge_DESC
+Master Forge:[N]
+Expend all gold reserves to make a[N]
+weapon unbreakable (Once per map).[X]

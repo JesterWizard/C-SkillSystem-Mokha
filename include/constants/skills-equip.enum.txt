@@ -71,6 +71,7 @@ SID_Reinforce
 SID_SealedZone
 SID_Thrust
 SID_Replicate
+SID_MasterForge
 
 //////// PRE-BATTLE SKILLS
 SID_DefiantStr

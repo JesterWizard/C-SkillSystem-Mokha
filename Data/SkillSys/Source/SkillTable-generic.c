@@ -9,18 +9,18 @@
 
 const struct SkillPreloadPConf gSkillPreloadPData[0x100] = {
 	[CHARACTER_EIRIKA] = {{
-		[0] = SID_Pyrotechnics
+		[0] = SID_MasterForge
 	}},
 
 	[CHARACTER_EPHRAIM] = {{
 	}},
 
 	[CHARACTER_SETH] = {{
-		[0] = SID_Replicate,
-		[1] = SID_Blacksmith,
-		[2] = SID_Sol,
-		[3] = SID_Adept,
-		[4] = SID_Acrobat
+		// [0] = SID_Replicate,
+		// [1] = SID_Blacksmith,
+		// [2] = SID_Sol,
+		// [3] = SID_Adept,
+		// [4] = SID_Acrobat
 	}},
 
 	[CHARACTER_INNES] = {{

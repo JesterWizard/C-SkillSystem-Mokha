@@ -425,6 +425,10 @@ void BattleHit_ConsumeWeapon(struct BattleUnit *attacker, struct BattleUnit *def
 	}
 #endif
 
+	/* This is for SID_MasterForge where item uses are set to 0xFF */
+	if (GetItemUses(attacker->weapon) == 0xFF)
+		weapon_cost = false;
+
 	if (weapon_cost) {
 #ifdef CHAX
 		/* Check on combat-art */

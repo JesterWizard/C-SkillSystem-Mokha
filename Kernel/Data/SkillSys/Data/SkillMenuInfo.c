@@ -350,4 +350,19 @@ struct MenuItemDef const *const gSkillMenuInfos[MAX_SKILL_NUM + 1] = {
 		.onSwitchOut = NULL
 	},
 #endif
+
+#if (defined(SID_MasterForge) && COMMON_SKILL_VALID(SID_MasterForge))
+	[SID_MasterForge] = &(const struct MenuItemDef) {
+		.name = "　召喚",
+		.nameMsgId = MSG_SKILL_MasterForge_NAME,
+		.helpMsgId = MSG_SKILL_MasterForge_DESC,
+		.color = TEXT_COLOR_SYSTEM_GOLD,
+		.isAvailable = MasterForge_Usability,
+		.onDraw = NULL,
+		.onSelected = MasterForge_OnSelected,
+		.onIdle = NULL,
+		.onSwitchIn = NULL,
+		.onSwitchOut = NULL
+	},
+#endif
 };

@@ -78,4 +78,8 @@ const SkillActionFunc_t gSkillActionFuncTable[MAX_SKILL_NUM + 1] = {
 #if (defined(SID_Replicate) && COMMON_SKILL_VALID(SID_Replicate))
 	[SID_Replicate] = Action_Replicate,
 #endif
+
+#if (defined(SID_MasterForge) && COMMON_SKILL_VALID(SID_MasterForge))
+	[SID_MasterForge] = Action_MasterForge,
+#endif
 };

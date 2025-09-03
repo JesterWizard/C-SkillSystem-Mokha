@@ -62,3 +62,9 @@ Choose a class to summon[X]
 
 ## MSG_WeaponForged
 Weapon forge level increased.[X]
+
+## MSG_MasterForgeSelect
+Select weapon to make unbreakable.[X]
+
+## MSG_AllGoldSpent
+All gold has been expended.[X]
