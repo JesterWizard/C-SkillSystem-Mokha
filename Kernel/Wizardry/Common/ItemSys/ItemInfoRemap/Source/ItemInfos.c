@@ -476,6 +476,9 @@ int GetItemWeight(int item) {
 	int forgeWt = (GetItemForgeCount(item) * bonuses.wtBonus) / 6;
 		
 	result += forgeWt;
+
+    if (result < 0)
+        result = 0;
 #endif
 
     return result;
@@ -600,6 +603,11 @@ int GetItemUses(int item)
 #if CHAX
 	if (IsDuraItem(item))
 		return 1;
+#endif
+
+#ifdef CONFIG_FORGING
+    if (CanItemBeForged(item))
+        return GetForgedItemDurability(item);
 #endif
 
 	return ITEM_USES(item);

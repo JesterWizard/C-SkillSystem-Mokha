@@ -11,6 +11,7 @@ void BattleForecastHitCountUpdate(struct BattleUnit *bu, u8 *hitsCounter, int *u
 	struct BattleUnit *target = (bu == &gBattleActor) ? &gBattleTarget : &gBattleActor;
 	int count  = CheckCanTwiceAttackOrder(bu, target) ? GetBattleUnitHitCount(bu) * 2 : GetBattleUnitHitCount(bu);
 
+
 	for (i = 0; i < count; i++) {
 		int _i;
 
@@ -29,6 +30,9 @@ void InitBattleForecastBattleStats(struct BattleForecastProc *proc)
 {
 	int usesA = GetItemUses(gBattleActor.weaponBefore);
 	int usesB = GetItemUses(gBattleTarget.weaponBefore);
+
+	NoCashGBAPrintf("Item uses A: %d", usesA);
+	NoCashGBAPrintf("Item uses B: %d", usesB);
 
 	proc->hitCountA = 0;
 	proc->isEffectiveA = false;
