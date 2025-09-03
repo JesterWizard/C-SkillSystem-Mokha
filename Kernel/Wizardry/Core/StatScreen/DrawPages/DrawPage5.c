@@ -83,9 +83,23 @@ void DisplayMP(struct Unit * unit)
         0, 0,
         "MP:");
 
-    PutNumber((gUiTmScratchA + TILEMAP_INDEX(0x8, 0xE)), TEXT_COLOR_SYSTEM_BLUE, bwl->currentMP);
+    int currentMP;
+    int maxMP;
+
+    if (UNIT_FACTION(unit) != FACTION_BLUE)
+    {
+        currentMP = 0;
+        maxMP = 0;
+    }
+    else
+    {
+        currentMP = bwl->currentMP;
+        maxMP = bwl->maxMP;
+    }
+
+    PutNumber((gUiTmScratchA + TILEMAP_INDEX(0x8, 0xE)), TEXT_COLOR_SYSTEM_BLUE, currentMP);
     PutSpecialChar((gUiTmScratchA + TILEMAP_INDEX(0x9, 0xE)), TEXT_COLOR_SYSTEM_WHITE, TEXT_SPECIAL_SLASH);
-    PutNumber((gUiTmScratchA + TILEMAP_INDEX(0xB, 0xE)), TEXT_COLOR_SYSTEM_BLUE, bwl->maxMP);
+    PutNumber((gUiTmScratchA + TILEMAP_INDEX(0xB, 0xE)), TEXT_COLOR_SYSTEM_BLUE, maxMP);
 };
 
 static void DrawPage5MagicList(void)
