@@ -73,6 +73,7 @@ SID_Thrust
 SID_Replicate
 SID_MasterForge
 SID_BravelyDefault
+SID_Fogger
 
 //////// PRE-BATTLE SKILLS
 SID_DefiantStr

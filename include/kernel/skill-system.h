@@ -456,6 +456,8 @@ u8 MasterForge_Usability(const struct MenuItemDef * def, int number);
 u8 MasterForge_OnSelected(struct MenuProc * menu, struct MenuItemProc * item);
 u8 BravelyDefault_Usability(const struct MenuItemDef * def, int number);
 u8 BravelyDefault_OnSelected(struct MenuProc * menu, struct MenuItemProc * item);
+u8 Fogger_Usability(const struct MenuItemDef * def, int number);
+u8 Fogger_OnSelected(struct MenuProc * menu, struct MenuItemProc * item);
 
 u8 Transform_Laguz_Usability(const struct MenuItemDef * def, int number);
 u8 Transform_Laguz_OnSelected(struct MenuProc * menu, struct MenuItemProc * item);
@@ -476,5 +478,6 @@ bool Action_Refuge(ProcPtr parent);
 bool Action_Replicate(ProcPtr parent);
 bool Action_MasterForge(ProcPtr parent);
 bool Action_BravelyDefault(ProcPtr parent);
+bool Action_Fogger(ProcPtr parent);
 
 bool Action_Transform_Laguz(ProcPtr parent);

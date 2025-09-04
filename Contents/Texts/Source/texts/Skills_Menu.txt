@@ -616,3 +616,9 @@ Bravely Default:[N]
 Enter a default state for a turn.[N]
 During the next turn this unit can move[N]
 as many times as units who attacked them.[X]
+
+## MSG_SKILL_Fogger_NAME
+Fogger[X]
+## MSG_SKILL_Fogger_DESC
+Fogger:[N]
+Summon fog.[X]

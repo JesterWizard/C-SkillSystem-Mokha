@@ -849,3 +849,4 @@
 #define MSG_SKILL_MasterForge_CAPACITY 1
 #define MSG_SKILL_BravelyDefault_CAPACITY 1
 #define MSG_SKILL_Quagmire_CAPACITY 1
+#define MSG_SKILL_Fogger_CAPACITY 1

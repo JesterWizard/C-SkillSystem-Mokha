@@ -380,4 +380,19 @@ struct MenuItemDef const *const gSkillMenuInfos[MAX_SKILL_NUM + 1] = {
 		.onSwitchOut = NULL
 	},
 #endif
+
+#if (defined(SID_Fogger) && COMMON_SKILL_VALID(SID_Fogger))
+	[SID_Fogger] = &(const struct MenuItemDef) {
+		.name = "　召喚",
+		.nameMsgId = MSG_SKILL_Fogger_NAME,
+		.helpMsgId = MSG_SKILL_Fogger_DESC,
+		.color = TEXT_COLOR_SYSTEM_GOLD,
+		.isAvailable = Fogger_Usability,
+		.onDraw = NULL,
+		.onSelected = Fogger_OnSelected,
+		.onIdle = NULL,
+		.onSwitchIn = NULL,
+		.onSwitchOut = NULL
+	},
+#endif
 };

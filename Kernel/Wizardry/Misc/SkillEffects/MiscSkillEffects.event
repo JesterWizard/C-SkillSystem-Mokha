@@ -37,6 +37,7 @@
 #include "MenuSkills/Replicate.lyn.event"
 #include "MenuSkills/MasterForge.lyn.event"
 #include "MenuSkills/BravelyDefault.lyn.event"
+#include "MenuSkills/Fogger.lyn.event"
 
 #ifdef CONFIG_REFUGE_FEATURE
     #include "MenuSkills/Refuge.lyn.event"
