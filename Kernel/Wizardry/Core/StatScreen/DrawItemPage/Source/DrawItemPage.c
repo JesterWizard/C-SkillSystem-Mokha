@@ -295,4 +295,39 @@ void HbPopulate_SSItem(struct HelpBoxProc *proc)
 
 	proc->item = item;
 	proc->mid  = GetItemDescId(item);
+
+#ifdef CONFIG_USE_GAIDEN_MAGIC
+	if (gpKernelDesigerConfig->gaiden_magic_en)
+	{
+		struct GaidenMagicList *list_gaiden = GetGaidenMagicList(gStatScreen.unit);
+
+		/* 
+		** This only works alongside the normal item page because every 
+		** gaiden magic starts at unique coordinates
+		*/
+
+		/* White magic */
+		for (int i = 0; i < 5; ++i)
+		{
+			if (proc->info->xDisplay == 102 && proc->info->yDisplay == (40 + i * 16))
+			{
+				proc->item = list_gaiden->wmags[i];
+				proc->mid = GetItemDescId(list_gaiden->wmags[i]);
+				break; // Exit the loop once a match is found
+			}
+		}
+
+		/* Black magic */
+		for (int i = 0; i < 5; ++i)
+		{
+			if (proc->info->xDisplay == 166 && proc->info->yDisplay == (40 + i * 16))
+			{
+				proc->item = list_gaiden->bmags[i];
+				proc->mid = GetItemDescId(list_gaiden->bmags[i]);
+				break; // Exit the loop once a match is found
+			}
+		}
+	}
+#endif
+
 }

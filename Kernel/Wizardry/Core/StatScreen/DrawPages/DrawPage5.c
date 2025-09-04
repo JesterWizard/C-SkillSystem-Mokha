@@ -7,13 +7,39 @@
 #include "gaiden-magic.h"
 #include "utf8.h"
 
+/*
+** gStatScreen.text is 35 fields long
+** 15 - Page 5 - White Magic Title
+** 16 - Page 5 - White Magic 1
+** 17 - Page 5 - White Magic 2
+** 18 - Page 5 - White Magic 3
+** 19 - Page 5 - White Magic 4
+** 20 - Page 5 - White Magic 5
+** 21 - Page 1 - ATK
+
+** 28 - Page 5 - MP
+** 29 - Page 5 - Black Magic Title
+** 30 - Page 5 - Black Magic 1
+** 31 - Page 5 - Black Magic 2
+** 32 - Page 5 - Black Magic 3
+** 33 - Page 5 - Black Magic 4
+** 34 - Page 5 - Black Magic 5
+*/
+
 #define PAGE4_PINFO_MAX 8
-#define WHITE_MAGIC_STARTING_TEXT_FIELD 15
-#define BLACK_MAGIC_STARTING_TEXT_FIELD 29
+#define WHITE_MAGIC_STARTING_TEXT_FIELD 15 // Needs 6 consecutive entries
+#define BLACK_MAGIC_STARTING_TEXT_FIELD 29 // Needs 6 consecutive entries
+
+static void PutGaidenCost(int number, u16 *tm)
+{
+    if (number == 0)
+        return;
+
+    PutNumberSmall(tm + ((number >= 10) ? 2 : 1), TEXT_COLOR_SYSTEM_GRAY, number);
+}
 
 static void WhiteMagicList(struct Unit * unit)
 {
-
     PutDrawText(
         &gStatScreen.text[WHITE_MAGIC_STARTING_TEXT_FIELD],
         gUiTmScratchA + TILEMAP_INDEX(0x1, 0x1),
@@ -38,6 +64,8 @@ static void WhiteMagicList(struct Unit * unit)
                 TEXT_COLOR_SYSTEM_GOLD,
                 0, 0,
                 Utf8ToNarrowFonts(GetItemName(item)));
+
+            PutGaidenCost(GetGaidenWeaponHpCost(unit, item), gUiTmScratchA + TILEMAP_INDEX(0x6, 0x3 + (i * 2)));
 		}
 #endif
 };
@@ -68,6 +96,8 @@ static void BlackMagicList(struct Unit * unit)
                 TEXT_COLOR_SYSTEM_GOLD,
                 0, 0,
                 Utf8ToNarrowFonts(GetItemName(item)));
+
+            PutGaidenCost(GetGaidenWeaponHpCost(unit, item), gUiTmScratchA + TILEMAP_INDEX(0xF, 0x3 + (i * 2)));
 		}
 #endif
 };
@@ -77,7 +107,7 @@ void DisplayMP(struct Unit * unit)
     struct NewBwl * bwl = GetNewBwl(UNIT_CHAR_ID(unit));
     
     PutDrawText(
-        &gStatScreen.text[18],
+        &gStatScreen.text[28],
         gUiTmScratchA + TILEMAP_INDEX(0x5, 0xE),
         TEXT_COLOR_SYSTEM_WHITE,
         0, 0,
@@ -114,10 +144,10 @@ static void DrawPage5MagicList(void)
 void DrawPage5Rework(void)
 {
     int i;
-    for (i = 15; i < 20; i++)
+    for (i = 15; i < 21; i++)
         ClearText(&gStatScreen.text[i]);
 
-    for (i = 29; i < 34; i++)
+    for (i = 29; i < 35; i++)
         ClearText(&gStatScreen.text[i]);
 
     DrawPage5MagicList();
