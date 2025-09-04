@@ -848,3 +848,4 @@
 #define MSG_SKILL_Replicate_PRICE 1000
 #define MSG_SKILL_MasterForge_PRICE 1000
 #define MSG_SKILL_BravelyDefault_PRICE 1000
+#define MSG_SKILL_Quagmire_PRICE 1000

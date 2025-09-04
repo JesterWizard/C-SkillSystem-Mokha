@@ -9,7 +9,7 @@
 
 const struct SkillPreloadPConf gSkillPreloadPData[0x100] = {
 	[CHARACTER_EIRIKA] = {{
-		[0] = SID_BravelyDefault
+		[0] = SID_Quagmire
 	}},
 
 	[CHARACTER_EPHRAIM] = {{

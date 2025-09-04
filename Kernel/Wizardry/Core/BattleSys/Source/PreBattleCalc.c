@@ -1828,8 +1828,6 @@ void PreBattleCalcAuraEffect(struct BattleUnit *attacker, struct BattleUnit *def
 			}
 #endif
 
-
-
 			/* Since we just calc in 3x3, so here is always true */
 			enmies_gRange3_In3x3++;
 

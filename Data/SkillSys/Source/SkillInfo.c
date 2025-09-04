@@ -8513,4 +8513,14 @@ const struct SkillInfo gSkillInfos[MAX_SKILL_NUM + 1] = {
     },
 #endif
 
+#if (defined(SID_Quagmire) && COMMON_SKILL_VALID(SID_Quagmire))
+    [SID_Quagmire] = {
+        .name = MSG_SKILL_Quagmire_NAME,
+        .desc = MSG_SKILL_Quagmire_DESC,
+        .capacity = MSG_SKILL_Quagmire_CAPACITY,
+        .price = MSG_SKILL_Quagmire_PRICE,
+        .icon = GFX_SkillIcon_WIP,
+    },
+#endif
+
 };

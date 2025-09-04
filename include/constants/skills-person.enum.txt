@@ -417,6 +417,7 @@
 // SID_RadiantEdict
 // SID_EvasionLock
 // SID_Pyrotechnics
+// SID_Quagmire
 
 //////// STAT MODIFIER SKILLS
 // SID_HpBonus

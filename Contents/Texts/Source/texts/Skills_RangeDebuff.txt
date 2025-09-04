@@ -257,3 +257,10 @@ Radiant Edict[X]
 Radiant Edict:[N]
 Remove all positive buffs for enemy[N]
 units within a 3 tile radius.[X]
+
+## MSG_SKILL_Quagmire_NAME
+Quagmire[X]
+## MSG_SKILL_Quagmire_DESC
+Quagmire:[N]
+Half enemy unit movement[N]
+in a 3 tile radius.[X]

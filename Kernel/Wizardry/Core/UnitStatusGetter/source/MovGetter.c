@@ -86,5 +86,26 @@ int MovGetterSkills(int status, struct Unit *unit)
 		status += SKILL_EFF0(SID_Poise);
 #endif
 
+#if (defined(SID_Quagmire) && (COMMON_SKILL_VALID(SID_Quagmire)))
+	for (int i = 0; i < ARRAY_COUNT_RANGE3x3; i++)
+	{
+		int _x = unit->xPos + gVecs_3x3[i].x;
+		int _y = unit->yPos + gVecs_3x3[i].y;
+
+		struct Unit *unit_enemy = GetUnitAtPosition(_x, _y);
+
+		if (!UNIT_IS_VALID(unit_enemy))
+			continue;
+
+		if (unit_enemy->state & (US_HIDDEN | US_DEAD | US_RESCUED | US_BIT16))
+			continue;
+
+		if (SkillTester(unit_enemy, SID_Quagmire), !AreUnitsAllied(unit->index, unit_enemy->index)) {
+			status /= 2;
+			break;
+		}
+	}
+#endif
+
 	return status;
 }
