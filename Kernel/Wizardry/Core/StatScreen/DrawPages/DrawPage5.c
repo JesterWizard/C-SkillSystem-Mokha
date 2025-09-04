@@ -35,7 +35,7 @@ static void PutGaidenCost(int number, u16 *tm)
     if (number == 0)
         return;
 
-    PutNumberSmall(tm + ((number >= 10) ? 2 : 1), TEXT_COLOR_SYSTEM_GRAY, number);
+    PutNumberSmall(tm + 2, TEXT_COLOR_SYSTEM_GRAY, number);
 }
 
 static void WhiteMagicList(struct Unit * unit)
