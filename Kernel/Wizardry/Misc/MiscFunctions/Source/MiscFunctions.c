@@ -2488,3 +2488,78 @@ s8 IsCharacterForceDeployed(int char_id)
     }
     return false;
 }
+
+
+//! FE8U = 0x0803247C
+LYN_REPLACE_CHECK(ActionSteal);
+s8 ActionSteal(ProcPtr proc) {
+    int item;
+
+    struct Unit* target = GetUnit(gActionData.targetIndex);
+
+    if (target->state & US_DROP_ITEM) {
+        if (gActionData.itemSlotIndex == (GetUnitItemCount(target) - 1)) {
+            target->state &= ~US_DROP_ITEM;
+        }
+    }
+
+    item = GetUnit(gActionData.targetIndex)->items[gActionData.itemSlotIndex];
+
+#if defined(SID_Duplicate) && (COMMON_SKILL_VALID(SID_Duplicate))
+    if (gActionData.unk08 != SID_Duplicate)
+        UnitRemoveItem(GetUnit(gActionData.targetIndex), gActionData.itemSlotIndex);
+#else
+    UnitRemoveItem(GetUnit(gActionData.targetIndex), gActionData.itemSlotIndex);
+#endif
+
+    switch (ITEM_INDEX(item)) {
+        case ITEM_1G:
+        case ITEM_5G:
+        case ITEM_10G:
+        case ITEM_50G:
+        case ITEM_100G:
+        case ITEM_150G:
+        case ITEM_200G:
+        case ITEM_3000G:
+        case ITEM_5000G:
+            SetPartyGoldAmount(GetPartyGoldAmount() + GetItemCost(item));
+            break;
+
+        default:
+#if defined(SID_Duplicate) && (COMMON_SKILL_VALID(SID_Duplicate))
+            if (gActionData.unk08 == SID_Duplicate)
+            {
+                // Assuming 'item' is your initial u16 value
+                u16 originalItem = item; // Keep original item if needed
+
+                // Extract the Item ID
+                u8 itemId = ITEM_INDEX(originalItem);
+
+                // Set the desired uses to 1 (which is 1 << 8 when shifted)
+                // Combine Item ID and new uses
+                u16 newItemWithUses = itemId | (1 << 8);
+
+                // Add the item with the updated uses to the unit's inventory
+                UnitAddItem(GetUnit(gActionData.subjectIndex), newItemWithUses);
+            }
+            else
+            {
+                UnitAddItem(GetUnit(gActionData.subjectIndex), item);
+            }
+#else
+            UnitAddItem(GetUnit(gActionData.subjectIndex), item);
+#endif
+            break;
+    }
+
+    BattleInitItemEffect(GetUnit(gActionData.subjectIndex), -1);
+    gBattleTarget.terrainId = TERRAIN_PLAINS;
+    InitBattleUnit(&gBattleTarget, GetUnit(gActionData.targetIndex));
+    gBattleTarget.weapon = item;
+    BattleApplyMiscAction(proc);
+
+    EndAllMus();
+    BeginMapAnimForSteal();
+
+    return 0;
+}

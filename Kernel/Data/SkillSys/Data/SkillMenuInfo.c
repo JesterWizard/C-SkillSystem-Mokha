@@ -410,4 +410,19 @@ struct MenuItemDef const *const gSkillMenuInfos[MAX_SKILL_NUM + 1] = {
         .onSwitchOut = 0
     },
 #endif
+
+#if (defined(SID_Duplicate) && COMMON_SKILL_VALID(SID_Duplicate))
+    [SID_Duplicate] = &(const struct MenuItemDef) {
+        .name = "　",
+        .nameMsgId = MSG_SKILL_Duplicate_NAME,
+        .helpMsgId = MSG_SKILL_Duplicate_DESC,
+        .color = TEXT_COLOR_SYSTEM_GOLD,
+        .isAvailable = Duplicate_Usability,
+        .onDraw = NULL,
+        .onSelected = Duplicate_OnSelected,
+        .onIdle = 0,
+        .onSwitchIn = 0,
+        .onSwitchOut = 0
+    },
+#endif
 };

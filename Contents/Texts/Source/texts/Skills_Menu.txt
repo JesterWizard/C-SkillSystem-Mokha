@@ -622,3 +622,10 @@ Fogger[X]
 ## MSG_SKILL_Fogger_DESC
 Fogger:[N]
 Summon fog.[X]
+
+## MSG_SKILL_Duplicate_NAME
+Duplicate[X]
+## MSG_SKILL_Duplicate_DESC
+Duplicate:[N]
+Copy an item in an enemy's inventory[N]
+at 1 durability. (Once per chapter).[X]

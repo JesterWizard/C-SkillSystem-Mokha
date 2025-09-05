@@ -90,4 +90,8 @@ const SkillActionFunc_t gSkillActionFuncTable[MAX_SKILL_NUM + 1] = {
 #if (defined(SID_Fogger) && COMMON_SKILL_VALID(SID_Fogger))
 	[SID_Fogger] = Action_Fogger,
 #endif
+
+#if (defined(SID_Duplicate) && COMMON_SKILL_VALID(SID_Duplicate))
+	[SID_Duplicate] = Action_Duplicate,
+#endif
 };

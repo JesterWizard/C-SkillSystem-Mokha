@@ -152,6 +152,7 @@ s8 IsItemStealable(int item) {
 
 #if defined(SID_StealPlus) && (COMMON_SKILL_VALID(SID_StealPlus))
     if (SkillTester(gActiveUnit, SID_StealPlus))
+	{
         stealable = (GetItemType(item) == ITYPE_ITEM  || 
         GetItemType(item) == ITYPE_ANIMA ||
         GetItemType(item) == ITYPE_LIGHT ||
@@ -161,11 +162,20 @@ s8 IsItemStealable(int item) {
         GetItemType(item) == ITYPE_BOW   ||
         GetItemType(item) == ITYPE_SWORD ||
         GetItemType(item) == ITYPE_LANCE);
-    else
-        stealable = GetItemType(item) == ITYPE_ITEM;
-#else
-    stealable = GetItemType(item) == ITYPE_ITEM;
+
+		return stealable;
+	}
 #endif
+
+#if defined(SID_Duplicate) && (COMMON_SKILL_VALID(SID_Duplicate))
+    if (SkillTester(gActiveUnit, SID_Duplicate))
+	{
+		stealable = GetItemType(item) != ITYPE_ITEM;
+		return stealable;
+	}
+#endif
+
+    stealable = GetItemType(item) == ITYPE_ITEM;
 
     return stealable;
 
@@ -224,6 +234,17 @@ void AddAsTarget_IfCanStealFrom(struct Unit* unit) {
 LYN_REPLACE_CHECK(StealItemMenuCommand_Effect);
 u8 StealItemMenuCommand_Effect(struct MenuProc *menu, struct MenuItemProc *menuItem)
 {
+
+#if defined(SID_Duplicate) && (COMMON_SKILL_VALID(SID_Duplicate))
+    if (gActionData.unk08 == SID_Duplicate)
+	{
+		gActionData.itemSlotIndex = menuItem->itemNumber;
+		gActionData.unitActionType = UNIT_ACTION_STEAL;
+
+		return MENU_ACT_SKIPCURSOR | MENU_ACT_END | MENU_ACT_SND6A | MENU_ACT_CLEAR;
+	}
+#endif
+
     if (menuItem->availability == MENU_DISABLED)
     {
         MenuFrozenHelpBox(menu, MSG_ITEM_CANT_STEAL_PLUS); // TODO: msgid "Weapons, magic, and[.][NL]staves can't be stolen.[.]"

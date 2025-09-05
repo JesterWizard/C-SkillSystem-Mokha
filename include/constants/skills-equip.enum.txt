@@ -74,6 +74,7 @@ SID_Replicate
 SID_MasterForge
 SID_BravelyDefault
 SID_Fogger
+SID_Duplicate
 
 //////// PRE-BATTLE SKILLS
 SID_DefiantStr

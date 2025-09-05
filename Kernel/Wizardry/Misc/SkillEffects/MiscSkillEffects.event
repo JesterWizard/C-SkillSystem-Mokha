@@ -39,6 +39,7 @@
 #include "MenuSkills/BravelyDefault.lyn.event"
 #include "MenuSkills/Fogger.lyn.event"
 #include "MenuSkills/StealPlus.lyn.event"
+#include "MenuSkills/Duplicate.lyn.event"
 
 #ifdef CONFIG_REFUGE_FEATURE
     #include "MenuSkills/Refuge.lyn.event"
