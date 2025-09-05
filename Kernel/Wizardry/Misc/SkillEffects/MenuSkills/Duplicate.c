@@ -1,4 +1,5 @@
 #include "common-chax.h"
+#include "playst-expa.h"
 #include "map-anims.h"
 #include "kernel-lib.h"
 #include "skill-system.h"
@@ -47,6 +48,9 @@ u8 Duplicate_Usability(const struct MenuItemDef *def, int number)
 	if (!HasSelectTarget(gActiveUnit, MakeTargetListForDuplicate))
 		return MENU_NOTSHOWN;
 
+	if (PlayStExpa_CheckBit(PLAYSTEXPA_BIT_Duplicate_Used))
+		return MENU_NOTSHOWN;
+
 	return MENU_ENABLED;
 }
 
@@ -64,6 +68,8 @@ u8 Duplicate_OnSelected(struct MenuProc *menu, struct MenuItemProc *item)
 
 	gActionData.unk08 = SID_Duplicate;
 	gActionData.unitActionType = CONFIG_UNIT_ACTION_EXPA_ExecSkill;
+
+	PlayStExpa_SetBit(PLAYSTEXPA_BIT_Duplicate_Used);
 
 	PlaySoundEffect(0x6A);
 	return MENU_ACT_SKIPCURSOR | MENU_ACT_END | MENU_ACT_SND6A;
