@@ -395,4 +395,19 @@ struct MenuItemDef const *const gSkillMenuInfos[MAX_SKILL_NUM + 1] = {
 		.onSwitchOut = NULL
 	},
 #endif
+
+#if (defined(SID_StealPlus) && COMMON_SKILL_VALID(SID_StealPlus))
+    [SID_StealPlus] = &(const struct MenuItemDef) {
+        .name = "　",
+        .nameMsgId = MSG_SKILL_StealPlus_NAME,
+        .helpMsgId = MSG_SKILL_StealPlus_DESC,
+        .color = TEXT_COLOR_SYSTEM_GOLD,
+        .isAvailable = StealPlus_Usability,
+        .onDraw = NULL,
+        .onSelected = StealPlus_Effect,
+        .onIdle = 0,
+        .onSwitchIn = 0,
+        .onSwitchOut = 0
+    },
+#endif
 };

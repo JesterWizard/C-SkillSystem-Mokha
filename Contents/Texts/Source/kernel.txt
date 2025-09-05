@@ -40,5 +40,6 @@ W.I.P.[X]
 #include "texts/kernel_tutorial.txt"
 #include "texts/misc.txt"
 #include "texts/Affinity_Descriptions.txt"
+#include "texts/Items.txt"
 
 #include "texts/FE8_Rewritten/Text.txt"
