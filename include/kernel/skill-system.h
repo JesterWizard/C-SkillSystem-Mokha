@@ -421,6 +421,8 @@ int SpdGetterLegendSkills(int status, struct Unit *unit);
 int DefGetterLegendSkills(int status, struct Unit *unit);
 int ResGetterLegendSkills(int status, struct Unit *unit);
 
+extern const struct ProcCmd ProcScr_SkillScrollUseSoftLock[];
+
 /* Menu skills */
 u8 HealingFocus_Usability(const struct MenuItemDef *def, int number);
 u8 HealingFocus_OnSelected(struct MenuProc *menu, struct MenuItemProc *item);
@@ -462,6 +464,8 @@ u8 StealPlus_Usability(const struct MenuItemDef * def, int number);
 u8 StealPlus_Effect(struct MenuProc* menu, struct MenuItemProc* menuItem);
 u8 Duplicate_Usability(const struct MenuItemDef * def, int number);
 u8 Duplicate_OnSelected(struct MenuProc* menu, struct MenuItemProc* menuItem);
+u8 Reroll_Usability(const struct MenuItemDef * def, int number);
+u8 Reroll_OnSelected(struct MenuProc* menu, struct MenuItemProc* menuItem);
 
 u8 Transform_Laguz_Usability(const struct MenuItemDef * def, int number);
 u8 Transform_Laguz_OnSelected(struct MenuProc * menu, struct MenuItemProc * item);
@@ -484,5 +488,6 @@ bool Action_MasterForge(ProcPtr parent);
 bool Action_BravelyDefault(ProcPtr parent);
 bool Action_Fogger(ProcPtr parent);
 bool Action_Duplicate(ProcPtr parent);
+bool Action_Reroll(ProcPtr parent);
 
 bool Action_Transform_Laguz(ProcPtr parent);

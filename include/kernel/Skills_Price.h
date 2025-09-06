@@ -851,3 +851,4 @@
 #define MSG_SKILL_Quagmire_PRICE 1000
 #define MSG_SKILL_Fogger_PRICE 1000
 #define MSG_SKILL_Duplicate_PRICE 1000
+#define MSG_SKILL_Reroll_PRICE 1000

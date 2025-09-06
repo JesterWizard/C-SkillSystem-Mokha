@@ -425,4 +425,19 @@ struct MenuItemDef const *const gSkillMenuInfos[MAX_SKILL_NUM + 1] = {
         .onSwitchOut = 0
     },
 #endif
+
+#if (defined(SID_Reroll) && COMMON_SKILL_VALID(SID_Reroll))
+    [SID_Reroll] = &(const struct MenuItemDef) {
+        .name = "　",
+        .nameMsgId = MSG_SKILL_Reroll_NAME,
+        .helpMsgId = MSG_SKILL_Reroll_DESC,
+        .color = TEXT_COLOR_SYSTEM_GOLD,
+        .isAvailable = Reroll_Usability,
+        .onDraw = NULL,
+        .onSelected = Reroll_OnSelected,
+        .onIdle = 0,
+        .onSwitchIn = 0,
+        .onSwitchOut = 0
+    },
+#endif
 };

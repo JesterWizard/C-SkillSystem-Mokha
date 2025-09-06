@@ -3,9 +3,9 @@
 #include "icon-rework.h"
 #include "kernel-lib.h"
 #include "constants/texts.h"
+#include "constants/skills.h"
 #include "stat-screen.h"
 #include "item-sys.h"
-#include "constants/texts.h"
 #include "event-rework.h"
 #include "action-expa.h"
 

@@ -288,7 +288,7 @@
 #define CONFIG_VESLY_EXTENDED_ITEM_DESCRIPTIONS
 #define CONFIG_VESLY_CREDITS_SEQUENCE
 #define CONFIG_VESLY_NOTIFICATION_SYSTEM /* Has issues with setting custom notifications and displaying UTF8 text */
-#define CONFIG_VESLY_AOE
+// #define CONFIG_VESLY_AOE /* This needs to be updated with Vesly's latest fixes as it's affecting the item menu and minimug palettes */
 #define CONFIG_STAT_SCREEN_ALLEGIANCE_COLORS
 // #define CONFIG_CASUAL_MODE // Doesn't seem to work right now, look into remaking in C
 #define CONFIG_RES_TERRAIN_WINDOW
@@ -308,6 +308,14 @@
 // #define CONFIG_ARENA_LIMITS
 #define CONFIG_QUINTESSANCE_EFFECT
 #define CONFIG_TURN_ON_ALL_SKILLS
+#ifdef CONFIG_TURN_ON_ALL_SKILLS
+	#define CONFIG_ITEM_INDEX_SKILL_SCROLL_1 0x0A
+	#define CONFIG_ITEM_INDEX_SKILL_SCROLL_2 0xBD
+	#define CONFIG_ITEM_INDEX_SKILL_SCROLL_3 0xC9
+	#define CONFIG_ITEM_INDEX_SKILL_SCROLL_4 0xCA
+#else
+	#define CONFIG_ITEM_INDEX_SKILL_SCROLL_1 0xBD
+#endif
 #define CONFIG_PROMOTION_ON_MAX_LEVEL
 #define CONFIG_GREEN_BONUS_GROWTHS // Must disable CONFIG_GROWTHS_AS_LETTERS
 // #define CONFIG_GROWTHS_AS_LETTERS  // Must disable CONFIG_GREEN_BONUS_GROWTHS

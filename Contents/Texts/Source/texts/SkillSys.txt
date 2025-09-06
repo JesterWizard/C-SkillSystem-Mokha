@@ -33,6 +33,9 @@ Skill learned.[X]
 ## MSG_SkillRemoved
 Skill Removed.[X]
 
+## MSG_ScrollObtained
+Scroll.[X]
+
 ## MSG_RemoveSkillSubtitle
 Select a skill to remove and generate scroll[X]
 
@@ -68,3 +71,6 @@ Select weapon to make unbreakable.[X]
 
 ## MSG_AllGoldSpent
 All gold has been expended.[X]
+
+## MSG_RerollSelect
+Select skill to reroll.[X]

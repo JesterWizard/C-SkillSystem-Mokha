@@ -629,3 +629,11 @@ Duplicate[X]
 Duplicate:[N]
 Copy an item in an enemy's inventory[N]
 at 1 durability. (Once per chapter).[X]
+
+## MSG_SKILL_Reroll_NAME
+Reroll[X]
+## MSG_SKILL_Reroll_DESC
+Reroll:[N]
+Choose one of this unit's skills and[N]
+randomly replace it with another.[N]
+(Once per map).[X]

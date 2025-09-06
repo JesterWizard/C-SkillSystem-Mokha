@@ -94,4 +94,8 @@ const SkillActionFunc_t gSkillActionFuncTable[MAX_SKILL_NUM + 1] = {
 #if (defined(SID_Duplicate) && COMMON_SKILL_VALID(SID_Duplicate))
 	[SID_Duplicate] = Action_Duplicate,
 #endif
+
+#if (defined(SID_Reroll) && COMMON_SKILL_VALID(SID_Reroll))
+	[SID_Reroll] = Action_Reroll,
+#endif
 };

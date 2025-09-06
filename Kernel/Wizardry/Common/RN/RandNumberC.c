@@ -35,7 +35,7 @@ STATIC_DECLAR int RandNextC(void)
 	return KernelRandRoll(sRandSeedsC);
 }
 
-STATIC_DECLAR int RandNextC_100(void)
+int RandNextC_100(void)
 {
 	return Div(RandNextC() * 100, 0x10000);
 }

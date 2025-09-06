@@ -851,3 +851,4 @@
 #define MSG_SKILL_Quagmire_CAPACITY 1
 #define MSG_SKILL_Fogger_CAPACITY 1
 #define MSG_SKILL_Duplicate_CAPACITY 1
+#define MSG_SKILL_Reroll_CAPACITY 1

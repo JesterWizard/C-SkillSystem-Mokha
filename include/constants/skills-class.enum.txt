@@ -75,6 +75,7 @@
 // SID_BravelyDefault
 // SID_Fogger
 // SID_Duplicate
+// SID_Reroll
 
 //////// PRE-BATTLE SKILLS
 // SID_DefiantStr

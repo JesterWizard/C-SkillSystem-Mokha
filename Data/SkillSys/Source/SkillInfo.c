@@ -8543,4 +8543,14 @@ const struct SkillInfo gSkillInfos[MAX_SKILL_NUM + 1] = {
     },
 #endif
 
+#if (defined(SID_Reroll) && COMMON_SKILL_VALID(SID_Reroll))
+    [SID_Reroll] = {
+        .name = MSG_SKILL_Reroll_NAME,
+        .desc = MSG_SKILL_Reroll_DESC,
+        .capacity = MSG_SKILL_Reroll_CAPACITY,
+        .price = MSG_SKILL_Reroll_PRICE,
+        .icon = GFX_SkillIcon_WIP,
+    },
+#endif
+
 };
