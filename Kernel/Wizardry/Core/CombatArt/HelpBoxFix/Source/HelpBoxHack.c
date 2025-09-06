@@ -2,6 +2,9 @@
 #include "help-box.h"
 #include "combat-art.h"
 #include "wrank-bonus.h"
+#include "savemenu.h"
+#include "uichapterstatus.h"
+#include "unitlistscreen.h"
 
 LYN_REPLACE_CHECK(HbMoveCtrl_OnIdle);
 void HbMoveCtrl_OnIdle(struct HelpBoxProc *proc)
@@ -511,9 +514,39 @@ void ClearHelpBoxText(void) {
     SpriteText_DrawBackground(&gHelpBoxSt.text[1]);
     SpriteText_DrawBackground(&gHelpBoxSt.text[2]);
 
+    /* Only provide the extra text box tiles if we're not in the save menu or chapter status screens */
 #ifdef CONFIG_VESLY_EXTENDED_ITEM_DESCRIPTIONS
-    SpriteText_DrawBackground(&gHelpBoxSt.text[3]);
-    SpriteText_DrawBackground(&gHelpBoxSt.text[4]);
+
+    const struct ProcCmd * procExceptionsList[9] = 
+    {
+        ProcScr_SaveMenu,
+        gProcScr_SaveMenuPostChapter,
+        gProcScr_ChapterStatusScreen,
+        gProcScr_DrawUnitInfoBgSprites,
+        ProcScr_bmview,
+        ProcScr_UnitListScreen_Field,
+        ProcScr_UnitListScreen_PrepMenu,
+        ProcScr_UnitListScreen_SoloAnim,
+        ProcScr_UnitListScreen_WorldMap,
+        // PrepScreenProc_MapIdle,
+    };
+
+    FORCE_DECLARE bool procFound = false;
+    
+    for (int i = 0; i < (int)ARRAY_COUNT(procExceptionsList); i++)
+    {
+        if (Proc_Find(procExceptionsList[i]))
+        {
+            procFound = true;
+            break;
+        }
+    }
+
+    if (!procFound)
+    {
+    	SpriteText_DrawBackground(&gHelpBoxSt.text[3]);
+    	SpriteText_DrawBackground(&gHelpBoxSt.text[4]);
+    }
 #endif
 
     Proc_EndEach(gProcScr_HelpBoxTextScroll);

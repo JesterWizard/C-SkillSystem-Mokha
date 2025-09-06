@@ -103,7 +103,7 @@ void LoadHelpBoxGfx(void * vram, int palId)
         // PrepScreenProc_MapIdle,
     };
 
-    bool procFound = false;
+    FORCE_DECLARE bool procFound = false;
     
     for (int i = 0; i < (int)ARRAY_COUNT(procExceptionsList); i++)
     {
