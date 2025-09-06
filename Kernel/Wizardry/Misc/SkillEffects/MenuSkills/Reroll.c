@@ -13,8 +13,8 @@ u8 Reroll_Usability(const struct MenuItemDef *def, int number)
     if (gActiveUnit->state & US_CANTOING)
         return MENU_NOTSHOWN;
 
-    // if (PlayStExpa_CheckBit(PLAYSTEXPA_BIT_Reroll_Used))
-    //     return MENU_NOTSHOWN;
+    if (PlayStExpa_CheckBit(PLAYSTEXPA_BIT_Reroll_Used))
+        return MENU_NOTSHOWN;
 
     return MENU_ENABLED;
 }
