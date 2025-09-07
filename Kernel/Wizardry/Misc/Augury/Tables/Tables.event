@@ -17,7 +17,7 @@ Ch00:Ch01:Ch02:Ch03:
 PREEXT_AuguryTextTerminate
 
 Ch04:
-// PREEXT_AuguryTextEntryNoCond(Augury_Chapter_04)
+PREEXT_AuguryTextEntryNoCond(Augury_Chapter_04)
 PREEXT_AuguryTextTerminate
 
 Ch05:Ch06:Ch07:Ch08:Ch09:

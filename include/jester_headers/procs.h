@@ -1,1 +1,1 @@
-extern const struct ProcCmd PREEXT_Procs_Augury[];
+extern CONST_DATA struct ProcCmd PREEXT_Procs_Augury[];
