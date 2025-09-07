@@ -21,7 +21,7 @@ install-devkitpro-pacman
 # Wizardry
 *.o
 *.d
-*.dmp
+# *.dmp
 *.lyn.event
 
 # Spritans
