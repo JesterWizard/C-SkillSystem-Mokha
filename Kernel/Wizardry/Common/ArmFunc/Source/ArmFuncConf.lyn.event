@@ -1,0 +1,20 @@
+ALIGN 4
+PUSH
+ORG CURRENTOFFSET+$0;gKernelArmFunConfig:
+POP
+WORD $3003FF0 $3004150
+POIN _ARM_SkillTester_CopyStart
+POIN _ARM_SkillTester_CopyEnd
+WORD $3004838 $3004924
+POIN _ARM_UnitList_CopyStart
+POIN _ARM_UnitList_CopyEnd
+WORD $3004924 $3004960
+POIN _ARM_SkillList_CopyStart
+POIN _ARM_SkillList_CopyEnd
+WORD $3003CAC $3003F94
+POIN _ARM_MapFloodCore_CopyStart
+POIN _ARM_MapFloodCore_CopyEnd
+WORD $3003F94 $3003FF0
+POIN _ARM_MapTask_CopyStart
+POIN _ARM_MapTask_CopyEnd
+WORD $0 $0 $0 $0

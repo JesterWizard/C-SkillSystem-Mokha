@@ -1,0 +1,14 @@
+ALIGN 4
+PUSH
+ORG CURRENTOFFSET+$0;IconGetters:
+POP
+POIN IconGetterVanilla
+POIN GetAffinIcon
+POIN GetMountIcon
+POIN GetWTypeIcon
+POIN GetCombatArtIcon
+POIN GetSkillIcon1
+POIN GetSkillIcon2
+POIN GetSkillIcon3
+POIN GetSkillIcon4
+WORD $0 $0 $0 $0 $0 $0 $0

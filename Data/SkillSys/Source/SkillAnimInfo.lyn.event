@@ -1,0 +1,96 @@
+ALIGN 4
+PUSH
+ORG CURRENTOFFSET+$0;EfxSkillAnims:
+ORG CURRENTOFFSET+$1000;EfxSkillAnimPriority:
+POP
+WORD $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0
+POIN EfxSkillVanilla
+WORD $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0
+POIN EfxSkillVanilla
+WORD $0
+POIN EfxSkillVanilla
+WORD $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0
+POIN EfxSkillVanilla
+WORD $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0
+POIN EfxSkillVanilla
+POIN EfxSkillVanilla
+WORD $0 $0
+POIN EfxSkillVanilla
+POIN EfxSkillVanilla
+POIN EfxSkillVanilla
+WORD $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0
+POIN EfxSkillVanilla
+WORD $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0
+POIN EfxSkillVanilla
+WORD $0 $0 $0 $0
+POIN EfxSkillVanilla
+WORD $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0
+POIN EfxSkillVanilla
+WORD $0
+POIN EfxSkillVanilla
+WORD $0
+POIN EfxSkillVanilla
+WORD $0 $0
+POIN EfxSkillVanilla
+WORD $0 $0 $0 $0 $0 $0 $0 $0 $0 $0
+POIN EfxSkillVanilla
+WORD $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0
+POIN EfxSkillVanilla
+POIN EfxSkillVanilla
+POIN EfxSkillVanilla
+POIN EfxSkillVanilla
+POIN EfxSkillVanilla
+WORD $0
+POIN EfxSkillVanilla
+POIN EfxSkillVanilla
+POIN EfxSkillVanilla
+POIN EfxSkillVanilla
+POIN EfxSkillVanilla
+POIN EfxSkillVanilla
+WORD $0
+POIN EfxSkillVanilla
+POIN EfxSkillVanilla
+POIN EfxSkillVanilla
+POIN EfxSkillVanilla
+POIN EfxSkillVanilla
+POIN EfxSkillVanilla
+POIN EfxSkillVanilla
+WORD $0
+POIN EfxSkillVanilla
+WORD $0 $0 $0 $0
+POIN EfxSkillVanilla
+WORD $0 $0 $0
+POIN EfxSkillVanilla
+POIN EfxSkillVanilla
+POIN EfxSkillVanilla
+WORD $0
+POIN EfxSkillVanilla
+POIN EfxSkillVanilla
+POIN EfxSkillVanilla
+WORD $0 $0 $0 $0
+POIN EfxSkillVanilla
+WORD $0 $0
+POIN EfxSkillVanilla
+WORD $0 $0 $0 $0 $0 $0 $0 $0
+POIN EfxSkillVanilla
+POIN EfxSkillVanilla
+POIN EfxSkillVanilla
+POIN EfxSkillVanilla
+POIN EfxSkillVanilla
+WORD $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0
+POIN EfxSkillVanilla
+POIN EfxSkillVanilla
+POIN EfxSkillVanilla
+POIN EfxSkillVanilla
+POIN EfxSkillVanilla
+POIN EfxSkillVanilla
+POIN EfxSkillVanilla
+WORD $0
+POIN EfxSkillVanilla
+POIN EfxSkillVanilla
+POIN EfxSkillVanilla
+WORD $0 $0
+POIN EfxSkillVanilla
+WORD $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0
+POIN EfxSkillVanilla
+WORD $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $10000 $0 $0 $0 $0 $2000000 $200 $0 $0 $0 $0 $0 $200 $0 $0 $3000000 $2000003 $202 $0 $0 $1000000 $0 $0 $0 $0 $0 $0 $0 $0 $0 $200 $20000 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $1000000 $2000200 $10000 $0 $0 $200 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $2020100 $2000303 $2020202 $2020002 $2020202 $20002 $2000000 $2000000 $2000202 $202 $20000 $200 $0 $2020000 $20202 $0 $0 $0 $0 $0 $0 $0 $2020202 $20102 $20202 $200 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $20000 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0

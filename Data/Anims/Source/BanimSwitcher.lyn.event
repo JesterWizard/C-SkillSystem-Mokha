@@ -1,0 +1,5 @@
+ALIGN 4
+PUSH
+ORG CURRENTOFFSET+$0;gCustomAnimnSwitcher:
+POP
+WORD $1 $0 $8 $0 $0 $0 $0 $0

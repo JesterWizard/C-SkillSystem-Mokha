@@ -1,0 +1,5 @@
+ALIGN 4
+PUSH
+ORG CURRENTOFFSET+$0;gKernelBattleDesignerConfig:
+POP
+WORD $143214 $AF6012C

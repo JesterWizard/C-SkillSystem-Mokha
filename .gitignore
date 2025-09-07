@@ -22,15 +22,15 @@ install-devkitpro-pacman
 *.o
 *.d
 # *.dmp
-*.lyn.event
+# *.lyn.event
 
 # Spritans
 *.4bpp
-*.gbapal
+# *.gbapal
 *.lz
-*.img.bin
-*.map.bin
-*.pal.bin
+# *.img.bin
+# *.map.bin
+# *.pal.bin
 *.lz77
 
 # Tables

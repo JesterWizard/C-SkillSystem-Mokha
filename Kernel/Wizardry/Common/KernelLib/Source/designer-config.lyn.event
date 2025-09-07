@@ -1,0 +1,5 @@
+ALIGN 4
+PUSH
+ORG CURRENTOFFSET+$0;gKernelDesigerConfig:
+POP
+WORD $70001 $10000 $1 $0
