@@ -22,6 +22,23 @@ void PrepScreenMenu_BEXP(struct ProcAtMenu* proc)
     Proc_Goto(proc, 0xA);
 }
 
+LYN_REPLACE_CHECK(PrepScreenMenu_OnBPress);
+int PrepScreenMenu_OnBPress(struct ProcAtMenu* proc) {
+
+    if (false != CheckInLinkArena()) {
+        Proc_Goto(proc, 0x5);
+        return true;
+    }
+    
+    if (false == CanPrepScreenCheckMap())
+        return false;
+
+    PrepSpecialChar_BlinkButtonB();
+    Proc_Goto(proc, 0x5);
+    return true;
+}
+
+
 LYN_REPLACE_CHECK(PrepScreenMenu_OnCheckMap);
 void PrepScreenMenu_OnCheckMap(struct ProcAtMenu* proc) 
 {
@@ -136,11 +153,12 @@ void PrepMenu_CtrlLoop(struct ProcPrepMenu *proc)
 #endif
 {
     struct ProcPrepMenuItem* cmd;
-    // int index = proc->cur_index;
+    int index = proc->cur_index;
     int xPos = (proc->xPos + 1) * 8 + 4;
     int yPos = (proc->yPos + 1) * 8 + proc->cur_index * 16;
 
 #ifdef CONFIG_EXPANDED_PREP_MENU_OPTIONS
+    int visibleX = (proc->xPos + 1) * 8 + (4 - proc->firstVisibleIndex);
     int visibleY = (proc->yPos + 1) * 8 + (proc->cur_index - proc->firstVisibleIndex) * 16;
     ShowSysHandCursor(xPos, visibleY, 0x6, 0x400);
     struct MenuProc* proc2 = Proc_Find(sProc_Menu);
@@ -161,7 +179,11 @@ void PrepMenu_CtrlLoop(struct ProcPrepMenu *proc)
     } else {
         if (R_BUTTON & gKeyStatusPtr->newKeys) {
             if (cmd->msg_rtext) {
+#ifdef CONFIG_EXPANDED_PREP_MENU_OPTIONS
+                StartHelpBox(visibleX, visibleY, cmd->msg_rtext);
+#else
                 StartHelpBox(xPos, yPos, cmd->msg_rtext);
+#endif
                 proc->do_help = 1;
             }
             return;
@@ -221,6 +243,17 @@ void PrepMenu_CtrlLoop(struct ProcPrepMenu *proc)
         // else if (DPAD_DOWN & gKeyStatusPtr->newKeys) // Allows looping of cursor when at bottom
         //     proc->cur_index = 0;
     }
+
+    if (index != proc->cur_index) {
+        PlaySoundEffect(SONG_SE_SYS_CURSOR_UD1);
+
+        if (proc->do_help) {
+            StartHelpBox((proc->xPos + 1) * 8 + 4,
+                         (proc->yPos + 1) * 8 + proc->cur_index * 16,
+                         (cmd = proc->cmds[proc->cur_index])->msg_rtext);
+        }
+    }
+
 #ifdef CONFIG_EXPANDED_PREP_MENU_OPTIONS
     if (proc->cur_index < proc->firstVisibleIndex) {
         proc->firstVisibleIndex = proc->cur_index;
@@ -770,3 +803,70 @@ void StartChapterStatusScreen_FromPrep(ProcPtr parent)
 
     return;
 };
+
+//! FE8U = 0x08033548
+LYN_REPLACE_CHECK(PrepHelpPrompt_Init);
+void PrepHelpPrompt_Init(struct ProcPrepSallyCursor * proc)
+{
+    // StartHelpPromptSprite(170, 140, 2, proc);
+    // Decompress(Img_PrepHelpButtonSprites, (void *)(OBJ_VRAM1 + 0x3000));
+    // proc->unk_58 = 0;
+    return;
+}
+
+//! FE8U = 0x08033574
+LYN_REPLACE_CHECK(PrepHelpPrompt_Loop);
+void PrepHelpPrompt_Loop(void)
+{
+    PutSprite(4, 100, 140, gObject_32x16, OAM2_CHR(0x38B) + OAM2_PAL(2));
+    PutSprite(4, 132, 140, gObject_32x16, OAM2_CHR(0x38F) + OAM2_PAL(2));
+    PutSprite(4, 164, 140, gObject_16x16, OAM2_CHR(0x393) + OAM2_PAL(2));
+    PutSprite(4, 16, 140, gObject_32x16, OAM2_CHR(0x395) + OAM2_PAL(2));
+    PutSprite(4, 48, 140, gObject_32x16, OAM2_CHR(0x399) + OAM2_PAL(2));
+    PutSprite(4, 80, 140, gObject_8x16, OAM2_CHR(0x39D) + OAM2_PAL(2));
+}
+
+//! FE8U = 0x08033648
+LYN_REPLACE_CHECK(PrepScreenProc_StartMapMenu);
+void PrepScreenProc_StartMapMenu(struct ProcPrepSallyCursor * proc)
+{
+    LoadHelpBoxGfx(0, -1);
+    ResetText();
+    EndPlayerPhaseSideWindows();
+    HideMoveRangeGraphics();
+
+    StartPrepScreenMenu(proc);
+
+    SetPrepScreenMenuItem(1, PrepMapMenu_OnViewMap, TEXT_COLOR_SYSTEM_WHITE, 0x590, 0x5BB);
+
+    SetPrepScreenMenuItem(
+        2, PrepMapMenu_OnFormation, (PrepGetDeployedUnitAmt() ? TEXT_COLOR_SYSTEM_WHITE : TEXT_COLOR_SYSTEM_GRAY),
+        0x591, 0x5BC);
+
+    SetPrepScreenMenuItem(8, PrepMapMenu_OnOptions, TEXT_COLOR_SYSTEM_WHITE, 0x592, 0x5BD);
+
+    if (CanPrepScreenSave())
+    {
+        SetPrepScreenMenuItem(9, PrepMapMenu_OnSave, TEXT_COLOR_SYSTEM_WHITE, 0x579, 0x5BE);
+    }
+    else
+    {
+        SetPrepScreenMenuItem(9, PrepMapMenu_OnSave, TEXT_COLOR_SYSTEM_GRAY, 0x579, 0x5BE);
+    }
+
+    /* JESTER - 
+    ** This turns off the other two button icons in the prep screen
+    ** This is to combat a problem where leftover graphics from this screeb
+    ** display in the prep menu and on the map.
+    */ 
+    // StartPrepHelpPrompt(proc);
+    SetPrepScreenMenuOnBPress(PrepMapMenu_OnBPress);
+    SetPrepScreenMenuOnStartPress(PrepMapMenu_OnStartPress);
+    SetPrepScreenMenuOnEnd(PrepMapMenu_OnEnd);
+    DrawPrepScreenMenuFrameAt(10, 2);
+
+    SetPrepScreenMenuSelectedItem(proc->unk_58);
+    BG_EnableSyncByMask(BG0_SYNC_BIT | BG1_SYNC_BIT);
+
+    return;
+}
