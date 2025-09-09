@@ -2563,3 +2563,81 @@ s8 ActionSteal(ProcPtr proc) {
 
     return 0;
 }
+
+LYN_REPLACE_CHECK(PutSubtitleHelpText);
+void PutSubtitleHelpText(struct SubtitleHelpProc * proc, int y)
+{
+    static u16 lut[] = {
+        0x00,
+        0x04, 0x08, 0x0C, 0x10, 0x14, 0x18,
+        0x44, 0x48, 0x4C, 0x50, 0x54, 0x58,
+    };
+
+    int i;
+    /* JESTER - The modulo operator is broken here so I've swapped it out for k_umod */
+    for (i = 0; i < 9; i++) {
+        int x = (i * 32) - 32 + proc->textOffset;
+        int index = k_umod((proc->textNum + i), proc->textCount);
+    /* JESTER - Ensure the subtitle text doesn't overlap with extended item descriptions */
+#ifdef CONFIG_VESLY_EXTENDED_ITEM_DESCRIPTIONS
+        PutSprite(2, x, y, gObject_32x16, 0x4300 + lut[index]);
+#else
+        PutSprite(2, x, y, gObject_32x16, 0x4240 + lut[index]);
+#endif
+    }
+    return;
+}
+
+LYN_REPLACE_CHECK(InitSubtitleHelpText);
+void InitSubtitleHelpText(struct SubtitleHelpProc * proc)
+{
+    const char * iter;
+    int line;
+    u32 width;
+
+    iter = proc->string;
+
+    /* JESTER - Ensure the subtitle text doesn't overlap with extended item descriptions */
+#ifdef CONFIG_VESLY_EXTENDED_ITEM_DESCRIPTIONS
+    InitSpriteTextFont(&proc->font, OBJ_VRAM0 + 0x6000, 0x14);
+#else
+    InitSpriteTextFont(&proc->font, OBJ_VRAM0 + 0x4800, 0x14);
+#endif
+
+    SetTextFontGlyphs(1);
+
+    ApplyPalette(gUnknown_0859EF20, 0x14);
+
+    for (line = 0; line < 2; line++) {
+        InitSpriteText(proc->text + line);
+
+        SpriteText_DrawBackgroundExt(proc->text + line, 0);
+        Text_SetColor(proc->text + line, 0);
+    }
+
+    line = 0;
+
+    if (iter != 0) {
+        while (*iter > 1) {
+
+            iter = Text_DrawCharacter(proc->text + line, iter);
+
+            if (Text_GetCursor(proc->text + line) > 0xE0) {
+
+                iter -= 2;
+                line++;
+
+                GetCharTextLen(iter, &width);
+
+                Text_SetCursor(proc->text + line, (Text_GetCursor(proc->text) - width) - 0xC0);
+            }
+        }
+
+        proc->textCount = ((GetStringTextLen(proc->string) + 16) >> 5) + 1;
+        proc->textNum = proc->textCount - 1;
+    }
+
+    SetTextFont(0);
+
+    return;
+}
