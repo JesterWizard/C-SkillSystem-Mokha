@@ -58,6 +58,9 @@ void ChapterChangeUnitCleanup(void)
 
 	// Reset player unit "temporary" states (HP, status, some state flags, etc)
 	FOR_UNITS_VALID_FACTION(FACTION_BLUE, unit, {
+		u32 pid = UNIT_CHAR_ID(unit);
+ 		struct NewBwl * bwl = GetNewBwl(pid);
+
 		SetUnitHp(unit, GetUnitMaxHp(unit));
 		SetUnitStatus(unit, UNIT_STATUS_NONE);
 
@@ -108,14 +111,17 @@ void ChapterChangeUnitCleanup(void)
 #endif
 
 #if defined(CONFIG_RESET_BWL_STATS_EACH_CHAPTER)
-		u32 pid = UNIT_CHAR_ID(unit);
- 		struct NewBwl * bwl = GetNewBwl(pid);
         if (bwl != NULL)
         {
             bwl->battleAmt = 0;
             bwl->winAmt = 0;
             bwl->lossAmt = 0;
         }
+#endif
+
+#ifdef CONFIG_MP_SYSTEM
+		if (bwl != NULL)
+			bwl->currentMP = 0;
 #endif
 	})
 
