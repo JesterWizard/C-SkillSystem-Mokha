@@ -32,11 +32,11 @@ void SetGameOptions_Chapter0()
     unit_eirika->items[0] = MakeNewItem(ITEM_SWORD_IRON);
     // unit_eirika->items[1] = MakeNewItem(CONFIG_ITEM_INDEX_FORGE_STAFF);
 
-    struct NewBwl * bwl_eirika = GetNewBwl(CHARACTER_EIRIKA);
-    struct NewBwl * bwl_seth = GetNewBwl(CHARACTER_SETH);
-    bwl_eirika->currentMP += 10;
-    bwl_eirika->maxMP = 30;
-    bwl_seth->maxMP = 20;
+    // struct NewBwl * bwl_eirika = GetNewBwl(CHARACTER_EIRIKA);
+    // struct NewBwl * bwl_seth = GetNewBwl(CHARACTER_SETH);
+    // bwl_eirika->currentMP += 10;
+    // bwl_eirika->maxMP = 30;
+    // bwl_seth->maxMP = 20;
 
 
     // unit_eirika->ranks[ITYPE_STAFF] = WPN_EXP_A;

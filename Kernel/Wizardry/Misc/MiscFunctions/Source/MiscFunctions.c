@@ -2188,29 +2188,13 @@ void SwitchPhases(void)
              * I change back the unit faction for a 'turncoat' unit
              * if they haven't moved after switching factions initially.
              */
-            for (int uid = gPlaySt.faction + 1; uid <= (gPlaySt.faction + GetFactionUnitAmount(gPlaySt.faction)); uid++)
+            for (int uid = gPlaySt.faction; uid <= (gPlaySt.faction + GetFactionUnitAmount(gPlaySt.faction)); uid++)
             {
                 FORCE_DECLARE struct Unit * unit = GetUnit(uid);
 
                 // if (CheckBitUES(unit, UES_BIT_CHANGED_FACTIONS))
                 //     UnitChangeFaction(unit, FACTION_RED);
                 
-                #ifdef CONFIG_MP_SYSTEM
-                    struct NewBwl* bwl = GetNewBwl(uid-1); 
-
-                    if (bwl) { 
-                        // Increment the currentMP
-                        bwl->currentMP += CONFIG_MP_RESTORE_AMOUNT; 
-
-                        #if defined(SID_MPChanneling) && (COMMON_SKILL_VALID(SID_MPChanneling))
-                            if (SkillTester(unit, SID_MPChanneling))
-                                bwl->currentMP += CONFIG_MP_RESTORE_AMOUNT;
-                        #endif
-                        
-                        // Clamp the value to max MP using a ternary operator
-                        bwl->currentMP = (bwl->currentMP > bwl->maxMP) ? bwl->maxMP : bwl->currentMP; 
-                    }
-                #endif
             }
             gPlaySt.faction = FACTION_RED;
 

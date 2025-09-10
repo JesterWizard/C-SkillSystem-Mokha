@@ -5,6 +5,7 @@
 #include "skill-system.h"
 #include "constants/skills.h"
 #include "constants/texts.h"
+#include "jester_headers/custom-arrays.h"
 
 typedef int (*LoadUnitFunc_t)(struct Unit *unit, const struct CharacterData *character);
 // extern const LoadUnitFunc_t gLoadUnitHooks[];
@@ -24,9 +25,16 @@ void UnitLoadStatsFromChracterVanilla(struct Unit *unit, const struct CharacterD
 
 	unit->conBonus = 0;
 
+#ifdef CONFIG_MP_SYSTEM
+    struct NewBwl * bwl = GetNewBwl(UNIT_CHAR_ID(unit));
+
+    if (bwl != NULL)
+        bwl->maxMP = gMpSystemPInfoConfigList[UNIT_CHAR_ID(unit)].maxMP;
+#endif
+
+#if defined(SID_Replicate) && (COMMON_SKILL_VALID(SID_Replicate))
 	if (gActionData.unk08 == SID_Replicate)
 	{
-		// unit->curHP = gActiveUnit->curHP;
 		SetUnitStatusIndex(unit, 30);
 
 		for (i = 0; i < 8; ++i) {
@@ -49,6 +57,23 @@ void UnitLoadStatsFromChracterVanilla(struct Unit *unit, const struct CharacterD
 		else
 			unit->exp = UNIT_EXP_DISABLED;
 	}
+
+#else
+
+    for (i = 0; i < 8; ++i) {
+        unit->ranks[i] = unit->pClassData->baseRanks[i];
+
+        if (unit->pCharacterData->baseRanks[i])
+            unit->ranks[i] = unit->pCharacterData->baseRanks[i];
+    }
+
+    if (UNIT_FACTION(unit) == FACTION_BLUE && (unit->level != UNIT_LEVEL_MAX))
+        unit->exp = 0;
+    else
+        unit->exp = UNIT_EXP_DISABLED;
+
+#endif
+
 }
 
 LYN_REPLACE_CHECK(UnitLoadStatsFromChracter);

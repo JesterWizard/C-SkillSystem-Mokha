@@ -28,6 +28,7 @@
 #include "StatScreen/StatScreen.event"
 #include "Misc/FarAttackAnimItem.lyn.event"
 #include "Misc/IconTable.lyn.event"
+#include "MpSystem/MpSystem.lyn.event"
 
 #include "ClassData/ClassData.lyn.event"
 

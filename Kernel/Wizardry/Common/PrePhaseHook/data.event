@@ -14,6 +14,10 @@ gPrePhaseFuncs:
     POIN PrePhase_LaguzBars
 #endif
 
+#ifdef CONFIG_MP_SYSTEM
+    POIN PrePhase_ApplyMpStartingAmount
+#endif
+
     POIN PrePhaseFunc_AversaNight
     POIN PrePhaseFunc_HoneFortify
     POIN PrePhaseFunc_Chill
