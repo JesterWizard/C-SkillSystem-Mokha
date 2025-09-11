@@ -424,9 +424,11 @@ STATIC_DECLAR u8 RemoveSkillMenu_OnSelected(struct MenuProc * menu, struct MenuI
         {
             rand_sid = Div(RandNextC() * 1023, 0x10000);
         }
-
+#ifdef CONFIG_TURN_ON_ALL_SKILLS
         SetUnitSkillIndex(gActiveUnit, MENU_SKILL_INDEX(item->def), rand_sid);
-
+#else
+        SET_SKILL(gActiveUnit, MENU_SKILL_INDEX(item->def), rand_sid);
+#endif
         return MENU_ACT_SKIPCURSOR | MENU_ACT_END | MENU_ACT_SND6A | MENU_ACT_CLEAR; 
     }
 #endif

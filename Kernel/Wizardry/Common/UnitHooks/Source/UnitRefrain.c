@@ -59,7 +59,7 @@ void ChapterChangeUnitCleanup(void)
 	// Reset player unit "temporary" states (HP, status, some state flags, etc)
 	FOR_UNITS_VALID_FACTION(FACTION_BLUE, unit, {
 		u32 pid = UNIT_CHAR_ID(unit);
- 		struct NewBwl * bwl = GetNewBwl(pid);
+ 		FORCE_DECLARE struct NewBwl * bwl = GetNewBwl(pid);
 
 		SetUnitHp(unit, GetUnitMaxHp(unit));
 		SetUnitStatus(unit, UNIT_STATUS_NONE);

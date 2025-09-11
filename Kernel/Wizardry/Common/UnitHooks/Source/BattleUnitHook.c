@@ -176,13 +176,12 @@ void BattleGenerateRealInternal(struct Unit* actor, struct Unit* target) {
         PidStatsAddBattleAmt(target);
 
 		/* JESTER - These are general use (per unit) bitpacked counters */
+#ifdef CONFIG_MISC_UNIT_COUNTERS
 		if (GetUnitStatusIndex(actor) == NEW_UNIT_STATUS_DEFAULT && actor->counters < 7)
 			actor->counters += 1;
 
 		if (GetUnitStatusIndex(target) == NEW_UNIT_STATUS_DEFAULT && target->counters < 7)
 			target->counters += 1;
-
-		NoCashGBAPrintf("Start of Battle - Actor unit counters equals: %d", actor->counters);
-		NoCashGBAPrintf("Start of Battle - Target unit counters equals: %d", target->counters);
+#endif
     }
 }
