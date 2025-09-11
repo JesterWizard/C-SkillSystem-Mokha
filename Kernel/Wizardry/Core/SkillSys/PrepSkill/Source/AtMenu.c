@@ -687,7 +687,7 @@ void InitPrepScreenMainMenu(struct ProcAtMenu* proc)
         SetPrepScreenMenuItem(PREP_MAINMENU_SUPPORT, PrepScreenMenu_OnSupport, TEXT_COLOR_SYSTEM_WHITE, MSG_PREP_SCREEN_TITLE_SUPPORT, 0);
 #ifdef CONFIG_EXPANDED_PREP_MENU_OPTIONS
         SetPrepScreenMenuItem(PREP_MAINMENU_AUGURY, PrepScreenMenu_Augury, TEXT_COLOR_SYSTEM_WHITE, MSG_PREP_SCREEN_TITLE_AUGURY, 0);
-        SetPrepScreenMenuItem(PREP_MAINMENU_BONUX_EXP, PrepScreenMenu_BEXP, TEXT_COLOR_SYSTEM_WHITE, MSG_PREP_SCREEN_TITLE_BEXP, 0);
+        // SetPrepScreenMenuItem(PREP_MAINMENU_BONUS_EXP, PrepScreenMenu_BEXP, TEXT_COLOR_SYSTEM_WHITE, MSG_PREP_SCREEN_TITLE_BEXP, 0);
         SetPrepScreenMenuItem(PREP_MAINMENU_SKILLS, PrepScreenMenu_OnEquip, TEXT_COLOR_SYSTEM_WHITE, MSG_PREP_SCREEN_TITLE_SKILLS, 0);
 #endif
         SetPrepScreenMenuItem(PREP_MAINMENU_CHECKMAP, PrepScreenMenu_OnCheckMap, TEXT_COLOR_SYSTEM_WHITE, MSG_PREP_SCREEN_TITLE_CHECK_MAP, 0);
@@ -869,4 +869,42 @@ void PrepScreenProc_StartMapMenu(struct ProcPrepSallyCursor * proc)
     BG_EnableSyncByMask(BG0_SYNC_BIT | BG1_SYNC_BIT);
 
     return;
+}
+
+//! FE8U = 0x080333A4
+LYN_REPLACE_CHECK(PrepMapMenu_OnStartPress);
+bool PrepMapMenu_OnStartPress(ProcPtr proc)
+{
+    if (PrepGetDeployedUnitAmt() == 0)
+    {
+        return false;
+    }
+
+    Proc_Goto(proc, 55);
+
+    return true;
+}
+
+//! FE8U = 0x080333C4
+LYN_REPLACE_CHECK(PrepMapMenu_OnBPress);
+bool PrepMapMenu_OnBPress(ProcPtr proc)
+{
+    Proc_Goto(proc, 51);
+    return true;
+}
+
+LYN_REPLACE_CHECK(SetPrepScreenMenuOnEnd);
+void SetPrepScreenMenuOnEnd(const void * func)
+{
+    
+#ifdef CONFIG_EXPANDED_PREP_MENU_OPTIONS
+    struct ProcPrepMenu_Scroll *proc;
+#else
+    struct ProcPrepMenu *proc;
+#endif
+
+    proc = Proc_Find(ProcScr_PrepMenu);
+
+    if (proc)
+        proc->on_End = func;
 }
