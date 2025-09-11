@@ -36,7 +36,7 @@ void PrePhase_ApplyMpStartingAmount(ProcPtr proc)
 			unit_id = UNIT_CHAR_ID(unit);
 			bwl = GetNewBwl(unit_id); 
 
-			if (bwl != NULL)
+			if (UNIT_IS_VALID(unit) && bwl != NULL)
 			{
 				#if defined(SID_MPChanneling) && (COMMON_SKILL_VALID(SID_MPChanneling))
 					if (SkillTester(unit, SID_MPChanneling))
