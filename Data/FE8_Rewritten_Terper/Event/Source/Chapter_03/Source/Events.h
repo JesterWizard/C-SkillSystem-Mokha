@@ -45,7 +45,7 @@ LABEL(0x2)
     TEXT_BG_HIDE_MAP(0xC, Chapter_03_Scene_06_Convo_01)
     FADE_FROM_BLACK(16)
     CLEAR_ALL_UNITS // CLEAN
-    // LOMA(INSIDE_GRADO_CASTLE) This is broken - https://github.com/JesterWizard/C-SkillSystem-Mokha/issues/307
+    LOMA(INSIDE_GRADO_CASTLE) // This is broken - https://github.com/JesterWizard/C-SkillSystem-Mokha/issues/307
     MOVE_CAMERA_TO_POSITION_CENTER(14,2)
     LOAD_WAIT(CH3_GRADO_1)
     FADE_TO_BLACK(16)
@@ -138,8 +138,8 @@ static const EventListScr EventScr_Talk_COLM_NEIMI[] = {
  */
 
 static const EventListScr EventListScr_Turn[] = {
-    AFEV(EVFLAG_TMP(7), EventScr_COLM_APPEARS, 0)
-    AFEV(EVFLAG_TMP(8), EventScr_ROSS_APPEARS, 0)
+    TURN(EVFLAG_TMP(7), EventScr_COLM_APPEARS, 1, 255, FACTION_BLUE)
+    TURN(EVFLAG_TMP(8), EventScr_ROSS_APPEARS, 1, 255, FACTION_BLUE)
     END_MAIN
 };
 

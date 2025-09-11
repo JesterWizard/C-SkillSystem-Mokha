@@ -6,6 +6,10 @@
     TEXTEND \
     REMA
 
+#define TEXT_CONSECUTIVE(msg) \
+    EvtTextShow2(msg) \
+    TEXTEND
+
 #define TEXT_BG(bg, msg) \
     SVAL(EVT_SLOT_2, (bg)) \
     SVAL(EVT_SLOT_3, (msg)) \

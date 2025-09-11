@@ -190,7 +190,7 @@ LABEL(0x63)
  */
 
 static const EventListScr EventListScr_Turn[] = {
-    AFEV(EVFLAG_TMP(7), EventScr_CH6_TURN_4_REINFORCEMENTS, 0)
+    TURN(EVFLAG_TMP(7), EventScr_CH6_TURN_4_REINFORCEMENTS, 1, 255, FACTION_BLUE)
     END_MAIN
 };
 
