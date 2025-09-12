@@ -83,11 +83,11 @@ Label1:
 add		r4,#1
 str		r4,[r5]
 Label2389238:
-ldr		r1,=HandleNormalTextCodesTable	@defined by EA
-lsl		r0,r6,#2
-add		r0,r1
-ldr		r0,[r0]
-mov		r15,r0
+@ ldr		r1,=HandleNormalTextCodesTable	@defined by EA
+@ lsl		r0,r6,#2
+@ add		r0,r1
+@ ldr		r0,[r0]
+@ mov		r15,r0
 
 ExtraTextCodes:			@80 XX
 ldrb	r6,[r4,#1]
@@ -97,11 +97,11 @@ cmp		r6,#MaxExtraTextCode
 bls		Label2
 b		RetOne
 Label2:
-ldr		r1,=HandleExtendedTextCodesTable	@defined by EA
-lsl		r0,r6,#2
-add		r0,r1
-ldr		r0,[r0]
-mov		r15,r0
+@ ldr		r1,=HandleExtendedTextCodesTable	@defined by EA
+@ lsl		r0,r6,#2
+@ add		r0,r1
+@ ldr		r0,[r0]
+@ mov		r15,r0
 
 .ltorg
 

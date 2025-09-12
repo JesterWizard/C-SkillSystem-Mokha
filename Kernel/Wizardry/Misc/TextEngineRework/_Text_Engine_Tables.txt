@@ -7,25 +7,25 @@ FontGlyphsPointerTable:
 //1 (Normal text)
 POIN $58F6F4
 //2 (Bold)
-POIN Text_Bold
+//POIN Text_Bold
 //3 (Italics)
-POIN Text_Ital
+//POIN Text_Ital
 //4 (Narrow Regular)
-POIN Text_Narrow_Regular
+//POIN Text_Narrow_Regular
 //5 (Narrow Menu)
 POIN Text_Narrow_Menu
 
-ALIGN 4
-Text_Bold:
-#include "Fonts/FE8_Text_Bold.txt"
+// ALIGN 4
+// Text_Bold:
+// #include "Fonts/FE8_Text_Bold.txt"
 
-ALIGN 4
-Text_Ital:
-#include "Fonts/FE8_Text_Ital.txt"
+// ALIGN 4
+// Text_Ital:
+// #include "Fonts/FE8_Text_Ital.txt"
 
-ALIGN 4
-Text_Narrow_Regular:
-#include "Fonts/FE8_Text_Narrow_Regular.txt"
+// ALIGN 4
+// Text_Narrow_Regular:
+// #include "Fonts/FE8_Text_Narrow_Regular.txt"
 
 ALIGN 4
 Text_Narrow_Menu:
