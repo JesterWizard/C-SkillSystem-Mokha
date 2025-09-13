@@ -349,3 +349,10 @@ Pyrotechnics:[N]
 When the user initiates at 50% HP+,[N]
 they and all enemies within 2 tiles[N]
 take 20% of their max HP as damage.[X]
+
+## MSG_SKILL_Caltrops_NAME
+Caltrops[X]
+## MSG_SKILL_Caltrops_DESC
+Caltrops:[N]
+Set a trap under the unit[N]
+who attacked this one.[X]
