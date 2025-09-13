@@ -5,18 +5,18 @@
 #define NEW_UNIT_STATUS_MAX_DURATION 4
 
 struct UnitStatusRework {
-	u8 index : 6;
-	u8 duration: 2;
+    u8 index : 6;
+    u8 duration : 2;
 };
 
 #define UNIT_STATUS(unit) ((struct UnitStatusRework *)((u8 *)(unit) + 0x30))
 #define UNIT_STATUS_INDEX(unit) (UNIT_STATUS(unit)->index)
 #define UNIT_STATUS_DURATION(unit) (UNIT_STATUS(unit)->duration)
 
-bool UNIT_STONED(struct Unit *unit);
+bool UNIT_STONED(struct Unit* unit);
 
 enum UNIT_STATUS_IDENTIFIER {
-	/* Expand here */
+    /* Expand here */
     // UNIT_STATUS_NONE,
     // UNIT_STATUS_POISON,
     // UNIT_STATUS_SLEEP,
@@ -46,11 +46,15 @@ enum UNIT_STATUS_IDENTIFIER {
     NEW_UNIT_STATUS_SLOW,
     NEW_UNIT_STATUS_DISMOUNT,
     NEW_UNIT_STATUS_SHOCK,
-    IGNORE,
+    IGNORE, // This unit status index wasn't working for replicate at the time
     NEW_UNIT_STATUS_REPLICATE,
     NEW_UNIT_STATUS_DEFAULT,
+    NEW_UNIT_STATUS_CAVALRY_EFFECTIVE,
+    NEW_UNIT_STATUS_ARMOR_EFFECTIVE,
+    NEW_UNIT_STATUS_FLIER_EFFECTIVE,
+    NEW_UNIT_STATUS_INFANTRY_EFFECTIVE,
 
-	NEW_UNIT_STATUS_MAX = 64
+    NEW_UNIT_STATUS_MAX = 64
 };
 
 static const u8 debuffs[] = {
@@ -82,98 +86,98 @@ static const u8 buffs[] = {
 };
 
 enum DEBUFF_POSITIVE_TYPE {
-	/* DebuffInfo::positive_type */
-	STATUS_DEBUFF_NONE,
-	STATUS_DEBUFF_NEGATIVE,
-	STATUS_DEBUFF_POSITIVE,
+    /* DebuffInfo::positive_type */
+    STATUS_DEBUFF_NONE,
+    STATUS_DEBUFF_NEGATIVE,
+    STATUS_DEBUFF_POSITIVE,
 
-	STATUS_DEBUFF_NONE_NO_CALC,
+    STATUS_DEBUFF_NONE_NO_CALC,
 };
 
 enum STATUS_DEBUFF_TICK_TYPE {
-	/* DebuffInfo::tick_type */
-	STATUS_DEBUFF_NO_TICK = 0,
-	STATUS_DEBUFF_TICK_ON_ENEMY = 1,
-	STATUS_DEBUFF_TICK_ON_ALLY = 2,
+    /* DebuffInfo::tick_type */
+    STATUS_DEBUFF_NO_TICK = 0,
+    STATUS_DEBUFF_TICK_ON_ENEMY = 1,
+    STATUS_DEBUFF_TICK_ON_ALLY = 2,
 };
 
 enum DEBUFF_INFO_EFX_SPEED {
-	/* DebuffInfo::efx_config::speed */
-	EFX_DEBUFF_LOWLOW,
-	EFX_DEBUFF_LOW,
-	EFX_DEBUFF_NORMAL,
-	EFX_DEBUFF_FAST,
+    /* DebuffInfo::efx_config::speed */
+    EFX_DEBUFF_LOWLOW,
+    EFX_DEBUFF_LOW,
+    EFX_DEBUFF_NORMAL,
+    EFX_DEBUFF_FAST,
 };
 
 struct DebuffInfo {
-	const u8 *img;
-	void (*on_draw)(struct Unit *unit, int ix, int iy);
-	u16 name, desc;
+    const u8* img;
+    void (*on_draw)(struct Unit* unit, int ix, int iy);
+    u16 name, desc;
 
-	u8 positive_type;
-	u8 tick_type;
-	u8 duration;
+    u8 positive_type;
+    u8 tick_type;
+    u8 duration;
 
-	u8 _pad_;
+    u8 _pad_;
 
-	struct {
-		u8 speed;
-		u8 r, g, b;
-	} efx_config;
+    struct {
+        u8 speed;
+        u8 r, g, b;
+    } efx_config;
 
-	struct {
-		s8 pow, mag, skl, spd, def, res, lck, mov;
-	} unit_status;
+    struct {
+        s8 pow, mag, skl, spd, def, res, lck, mov;
+    } unit_status;
 
-	struct {
-		s8 atk, def, hit, avo, crit, silencer, dodge;
-	} battle_status;
+    struct {
+        s8 atk, def, hit, avo, crit, silencer, dodge;
+    } battle_status;
 
-	u8 cannot_move;
+    u8 cannot_move;
 };
 
 extern const struct DebuffInfo gDebuffInfos[NEW_UNIT_STATUS_MAX];
-extern struct DebuffInfo const *const gpDebuffInfos;
+extern struct DebuffInfo const* const gpDebuffInfos;
 
-int GetUnitStatusIndex(struct Unit *unit);
-int GetUnitStatusDuration(struct Unit *unit);
-void SetUnitStatusIndex(struct Unit *unit, int status);
-void SetUnitStatusDuration(struct Unit *unit, int duration);
-int TryTickUnitStatusDuration(struct Unit *unit);
+int GetUnitStatusIndex(struct Unit* unit);
+int GetUnitStatusDuration(struct Unit* unit);
+void SetUnitStatusIndex(struct Unit* unit, int status);
+void SetUnitStatusDuration(struct Unit* unit, int duration);
+int TryTickUnitStatusDuration(struct Unit* unit);
 
 static inline bool IsDebuff(int status_idx)
 {
-	return (gpDebuffInfos[status_idx].positive_type == STATUS_DEBUFF_NEGATIVE);
+    return (gpDebuffInfos[status_idx].positive_type == STATUS_DEBUFF_NEGATIVE);
 }
 
-void PutUnitDanceRingBuffIcon(struct Unit *unit, int ix, int iy);
-void PutUnitPoisonDebuffOAM(struct Unit *unit, int x, int y);
-void PutUnitSleepDebuffOAM(struct Unit *unit, int x, int y);
-void PutUnitBerserkDebuffOAM(struct Unit *unit, int x, int y);
-void PutUnitSilenceDebuffOAM(struct Unit *unit, int x, int y);
+void PutUnitDanceRingBuffIcon(struct Unit* unit, int ix, int iy);
+void PutUnitPoisonDebuffOAM(struct Unit* unit, int x, int y);
+void PutUnitSleepDebuffOAM(struct Unit* unit, int x, int y);
+void PutUnitBerserkDebuffOAM(struct Unit* unit, int x, int y);
+void PutUnitSilenceDebuffOAM(struct Unit* unit, int x, int y);
 
-void pr_PutUnitDanceRingBuffIcon(struct Unit *unit, int ix, int iy);
-void pr_PutUnitPoisonDebuffOAM(struct Unit *unit, int x, int y);
-void pr_PutUnitSleepDebuffOAM(struct Unit *unit, int x, int y);
-void pr_PutUnitBerserkDebuffOAM(struct Unit *unit, int x, int y);
-void pr_PutUnitSilenceDebuffOAM(struct Unit *unit, int x, int y);
+void pr_PutUnitDanceRingBuffIcon(struct Unit* unit, int ix, int iy);
+void pr_PutUnitPoisonDebuffOAM(struct Unit* unit, int x, int y);
+void pr_PutUnitSleepDebuffOAM(struct Unit* unit, int x, int y);
+void pr_PutUnitBerserkDebuffOAM(struct Unit* unit, int x, int y);
+void pr_PutUnitSilenceDebuffOAM(struct Unit* unit, int x, int y);
 
-void PreBattleCalcDebuffs(struct BattleUnit *attacker, struct BattleUnit *defender);
-int PowGetterDebuff(int status, struct Unit *unit);
-int MagGetterDebuff(int status, struct Unit *unit);
-int SklGetterDebuff(int status, struct Unit *unit);
-int SpdGetterDebuff(int status, struct Unit *unit);
-int DefGetterDebuff(int status, struct Unit *unit);
-int ResGetterDebuff(int status, struct Unit *unit);
-int LckGetterDebuff(int status, struct Unit *unit);
-int MovGetterDebuff(int status, struct Unit *unit);
+void PreBattleCalcDebuffs(struct BattleUnit* attacker, struct BattleUnit* defender);
+int PowGetterDebuff(int status, struct Unit* unit);
+int MagGetterDebuff(int status, struct Unit* unit);
+int SklGetterDebuff(int status, struct Unit* unit);
+int SpdGetterDebuff(int status, struct Unit* unit);
+int DefGetterDebuff(int status, struct Unit* unit);
+int ResGetterDebuff(int status, struct Unit* unit);
+int LckGetterDebuff(int status, struct Unit* unit);
+int MovGetterDebuff(int status, struct Unit* unit);
 
 /**
  * StatDebuff
  */
 
 enum UNIT_STAT_DEBUFF_IDX {
-	/* 0/1 is set as a bitmask to identify postive/negative status */
+    /* 0/1 is set as a bitmask to identify postive/negative status */
     UNIT_STAT_POSITIVE_BIT0,
     UNIT_STAT_POSITIVE_BIT1,
     UNIT_STAT_DEBUFF_IDX_START,
@@ -269,45 +273,45 @@ enum UNIT_STAT_DEBUFF_IDX {
     UNIT_STAT_BUFF_TRANSFORM,
     UNIT_STAT_BUFF_LAGUZ,
     UNIT_STAT_BUFF_LAGUZ_HALFSHIFT,
-	UNIT_STAT_DEBUFF_CHILL_POW,
-	UNIT_STAT_DEBUFF_CHILL_MAG,
-	UNIT_STAT_DEBUFF_CHILL_SKL,
-	UNIT_STAT_DEBUFF_CHILL_SPD,
-	UNIT_STAT_DEBUFF_CHILL_LCK,
-	UNIT_STAT_DEBUFF_CHILL_DEF,
-	UNIT_STAT_DEBUFF_CHILL_RES,
-	UNIT_STAT_BUFF_GLORIFIER,
-	UNIT_STAT_BUFF_FREESPIRIT,
+    UNIT_STAT_DEBUFF_CHILL_POW,
+    UNIT_STAT_DEBUFF_CHILL_MAG,
+    UNIT_STAT_DEBUFF_CHILL_SKL,
+    UNIT_STAT_DEBUFF_CHILL_SPD,
+    UNIT_STAT_DEBUFF_CHILL_LCK,
+    UNIT_STAT_DEBUFF_CHILL_DEF,
+    UNIT_STAT_DEBUFF_CHILL_RES,
+    UNIT_STAT_BUFF_GLORIFIER,
+    UNIT_STAT_BUFF_FREESPIRIT,
 
-	UNIT_STAT_DEBUFF_MAX_REAL,
-	UNIT_STAT_DEBUFF_MAX = 128, /* DO NOT modify this */
+    UNIT_STAT_DEBUFF_MAX_REAL,
+    UNIT_STAT_DEBUFF_MAX = 128, /* DO NOT modify this */
 };
 
 extern const struct DebuffInfo gStatDebuffInfos[UNIT_STAT_DEBUFF_MAX];
-extern struct DebuffInfo const *const gpStatDebuffInfos;
+extern struct DebuffInfo const* const gpStatDebuffInfos;
 
 struct StatDebuffStatus {
-	union {
-		struct {
-			u32 is_buff_chk : 2;
-			u32 f1 : 29;
-			u32 f2, f3, f4;
-		} bitfile;
+    union {
+        struct {
+            u32 is_buff_chk : 2;
+            u32 f1 : 29;
+            u32 f2, f3, f4;
+        } bitfile;
 
-		u32 bitmask[4];
-	} st;
+        u32 bitmask[4];
+    } st;
 };
 
 #ifndef CONFIG_UNIT_AMT_ALLY
-    #define CONFIG_UNIT_AMT_ALLY 51
+#define CONFIG_UNIT_AMT_ALLY 51
 #endif
 
 #ifndef CONFIG_UNIT_AMT_ENEMY
-    #define CONFIG_UNIT_AMT_ENEMY 50
+#define CONFIG_UNIT_AMT_ENEMY 50
 #endif
 
 #ifndef CONFIG_UNIT_AMT_NPC
-    #define CONFIG_UNIT_AMT_NPC 8
+#define CONFIG_UNIT_AMT_NPC 8
 #endif
 
 extern struct StatDebuffStatus sStatDebuffStatusAlly[CONFIG_UNIT_AMT_ALLY];
@@ -318,51 +322,51 @@ extern struct StatDebuffStatus sStatDebuffStatusFourth[CONFIG_UNIT_AMT_FOURTH];
 #endif
 extern struct StatDebuffStatus sStatDebuffStatusBattleUnit[2];
 // extern struct StatDebuffStatus *const sStatDebuffStatusPool[0x100];
-extern struct StatDebuffStatus *const *const gpStatDebuffStatusPool;
+extern struct StatDebuffStatus* const* const gpStatDebuffStatusPool;
 
-struct StatDebuffStatus *GetUnitStatDebuffStatus(struct Unit *unit);
+struct StatDebuffStatus* GetUnitStatDebuffStatus(struct Unit* unit);
 
 #define STAT_DEBUFF_MSG_BUF_AMT 7
 #define STAT_DEBUFF_MSG_BUF_NEXT(idx) (((idx) - 1) & 3)
 
 struct StatDebuffMsgBuf {
-	u32 bitfile[4];
-	u32 special_mask;
-	s8 uid;
-	s16 pow, mag, skl, spd, def, res, lck, mov;
+    u32 bitfile[4];
+    u32 special_mask;
+    s8 uid;
+    s16 pow, mag, skl, spd, def, res, lck, mov;
 };
 extern struct StatDebuffMsgBuf sStatDebuffMsgBuf[STAT_DEBUFF_MSG_BUF_AMT];
 extern u8 sStatDebuffMsgBufNext;
 
 enum STAT_BUFF_MSG_BUF_SPECIAL_MASK {
-	SP_STAT_CANNOT_MOVE = (1 << 0x00),
+    SP_STAT_CANNOT_MOVE = (1 << 0x00),
 };
 
-int IsPositiveStatDebuff(struct Unit *unit);
-void MSU_SaveStatDebuff(u8 *dst, const u32 size);
-void MSU_LoadStatDebuff(u8 *src, const u32 size);
-void SetUnitStatDebuff(struct Unit *unit, enum UNIT_STAT_DEBUFF_IDX debuff);
-void ClearUnitStatDebuff(struct Unit *unit, enum UNIT_STAT_DEBUFF_IDX debuff);
-bool CheckUnitStatDebuff(struct Unit *unit, enum UNIT_STAT_DEBUFF_IDX debuff);
-void TickUnitStatDebuff(struct Unit *unit, enum STATUS_DEBUFF_TICK_TYPE type);
-int SimulateStatDebuffPositiveType(struct Unit *unit);
+int IsPositiveStatDebuff(struct Unit* unit);
+void MSU_SaveStatDebuff(u8* dst, const u32 size);
+void MSU_LoadStatDebuff(u8* src, const u32 size);
+void SetUnitStatDebuff(struct Unit* unit, enum UNIT_STAT_DEBUFF_IDX debuff);
+void ClearUnitStatDebuff(struct Unit* unit, enum UNIT_STAT_DEBUFF_IDX debuff);
+bool CheckUnitStatDebuff(struct Unit* unit, enum UNIT_STAT_DEBUFF_IDX debuff);
+void TickUnitStatDebuff(struct Unit* unit, enum STATUS_DEBUFF_TICK_TYPE type);
+int SimulateStatDebuffPositiveType(struct Unit* unit);
 
-void PreBattleCalcStatDebuffs(struct BattleUnit *attacker, struct BattleUnit *defender);
-int PowGetterStatDebuff(int status, struct Unit *unit);
-int MagGetterStatDebuff(int status, struct Unit *unit);
-int SklGetterStatDebuff(int status, struct Unit *unit);
-int SpdGetterStatDebuff(int status, struct Unit *unit);
-int DefGetterStatDebuff(int status, struct Unit *unit);
-int ResGetterStatDebuff(int status, struct Unit *unit);
-int LckGetterStatDebuff(int status, struct Unit *unit);
-int MovGetterStatDebuff(int status, struct Unit *unit);
+void PreBattleCalcStatDebuffs(struct BattleUnit* attacker, struct BattleUnit* defender);
+int PowGetterStatDebuff(int status, struct Unit* unit);
+int MagGetterStatDebuff(int status, struct Unit* unit);
+int SklGetterStatDebuff(int status, struct Unit* unit);
+int SpdGetterStatDebuff(int status, struct Unit* unit);
+int DefGetterStatDebuff(int status, struct Unit* unit);
+int ResGetterStatDebuff(int status, struct Unit* unit);
+int LckGetterStatDebuff(int status, struct Unit* unit);
+int MovGetterStatDebuff(int status, struct Unit* unit);
 
 void StatDeuff_OnNewGameInit(void);
 void ResetStatDeuffBuf(void);
-void StatDeuff_OnLoadUnit(struct Unit *unit);
+void StatDeuff_OnLoadUnit(struct Unit* unit);
 
 /* Misc API */
-bool UnitHasNegativeStatus(struct Unit *unit);
-bool UnitHasPositiveStatus(struct Unit *unit);
-void RemoveUnitNegativeStatus(struct Unit *unit);
-void RemoveUnitPositiveStatus(struct Unit *unit);
+bool UnitHasNegativeStatus(struct Unit* unit);
+bool UnitHasPositiveStatus(struct Unit* unit);
+void RemoveUnitNegativeStatus(struct Unit* unit);
+void RemoveUnitPositiveStatus(struct Unit* unit);

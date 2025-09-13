@@ -41,12 +41,13 @@
 #include "MenuSkills/StealPlus.lyn.event"
 #include "MenuSkills/Duplicate.lyn.event"
 #include "MenuSkills/Reroll.lyn.event"
+#include "MenuSkills/SpellBlade.lyn.event"
 
 #ifdef CONFIG_REFUGE_FEATURE
-    #include "MenuSkills/Refuge.lyn.event"
+#include "MenuSkills/Refuge.lyn.event"
 #endif
 #ifdef CONFIG_LAGUZ_BARS
-    #include "MenuSkills/Laguz.lyn.event"
+#include "MenuSkills/Laguz.lyn.event"
 #endif
 
 #include "Misc/HealAmount.lyn.event"
@@ -73,7 +74,7 @@
 #include "PrePhaseSkills/KeepUp.lyn.event"
 #include "PrePhaseSkills/ChillSkills.lyn.event"
 #ifdef CONFIG_LAGUZ_BARS
-    #include "PrePhaseSkills/PrePhase_LaguzBars.lyn.event"
+#include "PrePhaseSkills/PrePhase_LaguzBars.lyn.event"
 #endif
 
 #include "PrePhaseSkills/PrePhaseHurt.lyn.event"

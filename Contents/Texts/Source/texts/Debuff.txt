@@ -101,5 +101,33 @@ Default:[N]
 Reduce incoming damage by 25%[N]
 while you build usable turns.[X]
 
+## MSG_DEBUFF_CAVALRY_EFFECTIVE_NAME
+CavEff[X]
+## MSG_DEBUFF_CAVALRY_EFFECTIVE_DESC
+Cavalry Effective:[N]
+Deal effective damage to[N]
+cavalry units.[X]
+
+## MSG_DEBUFF_ARMOR_EFFECTIVE_NAME
+ArmEff[X]
+## MSG_DEBUFF_ARMOR_EFFECTIVE_DESC
+Armor Effective:[N]
+Deal effective damage to[N]
+armored units.[X]
+
+## MSG_DEBUFF_FLIER_EFFECTIVE_NAME
+FlyEff[X]
+## MSG_DEBUFF_FLIER_EFFECTIVE_DESC
+Flier Effective:[N]
+Deal effective damage to[N]
+flying units.[X]
+
+## MSG_DEBUFF_INFANTRY_EFFECTIVE_NAME
+InfEff[X]
+## MSG_DEBUFF_INFANTRY_EFFECTIVE_DESC
+Infantry Effective:[N]
+Deal effective damage to[N]
+infantry units.[X]
+
 ## MSG_STATUS_SLEEP_NAME
 Sleep[X]

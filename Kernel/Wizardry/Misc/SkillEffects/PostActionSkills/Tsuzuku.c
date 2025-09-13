@@ -105,6 +105,11 @@ bool PostActionTsuzuku(ProcPtr parent)
 		if (SkillTester(unit, SID_Turret) && gActionData.moveCount == 0)
 			refreshUnit(unit, parent);
 #endif
+
+#if defined(SID_SpellBlade) && (COMMON_SKILL_VALID(SID_SpellBlade))
+		if (SkillTester(unit, SID_SpellBlade) && gActionData.unk08 == SID_SpellBlade)
+			refreshUnit(unit, parent);
+#endif
 		break;
 
 	case UNIT_ACTION_WAIT:

@@ -21,7 +21,7 @@ bool CheckSameClassType(u8 jid1, u8 jid2)
 		NULL
 	};
 
-	const ClassTypeFunc_t *it;
+	const ClassTypeFunc_t* it;
 
 	for (it = jdg_funcs; *it; it++) {
 		switch (jdg_list[((*it)(jid1) << 1) | (*it)(jid2)]) {
@@ -43,7 +43,7 @@ bool CheckSameClassType(u8 jid1, u8 jid2)
 
 bool CheckClassFlier(u8 jid)
 {
-	const u8 *it;
+	const u8* it;
 
 	for (it = gpKernelClassList_Flier; *it != CLASS_NONE; it++)
 		if (*it == jid)
@@ -54,7 +54,7 @@ bool CheckClassFlier(u8 jid)
 
 bool CheckClassCavalry(u8 jid)
 {
-	const u8 *it;
+	const u8* it;
 
 	for (it = gpKernelClassList_Cavalry; *it != CLASS_NONE; it++)
 		if (*it == jid)
@@ -65,7 +65,7 @@ bool CheckClassCavalry(u8 jid)
 
 bool CheckClassArmor(u8 jid)
 {
-	const u8 *it;
+	const u8* it;
 
 	for (it = gpKernelClassList_Armor; *it != CLASS_NONE; it++)
 		if (*it == jid)
@@ -76,7 +76,7 @@ bool CheckClassArmor(u8 jid)
 
 bool CheckClassDragon(u8 jid)
 {
-	const u8 *it;
+	const u8* it;
 
 	for (it = gpKernelClassList_Dragon; *it != CLASS_NONE; it++)
 		if (*it == jid)
@@ -87,9 +87,20 @@ bool CheckClassDragon(u8 jid)
 
 bool CheckClassBeast(u8 jid)
 {
-	const u8 *it;
+	const u8* it;
 
 	for (it = gpKernelClassList_Beast; *it != CLASS_NONE; it++)
+		if (*it == jid)
+			return true;
+
+	return false;
+}
+
+bool CheckClassInfantry(u8 jid)
+{
+	const u8* it;
+
+	for (it = gpKernelClassList_Infantry; *it != CLASS_NONE; it++)
 		if (*it == jid)
 			return true;
 

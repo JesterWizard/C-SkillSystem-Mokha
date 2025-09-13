@@ -4952,93 +4952,93 @@ const struct SkillInfo gSkillInfos[MAX_SKILL_NUM + 1] = {
 #endif
 
 #if (defined(SID_WyvernFlight) && COMMON_SKILL_VALID(SID_WyvernFlight))
-	[SID_WyvernFlight] = {
-		.name = MSG_SKILL_WyvernFlight_NAME,
-		.desc = MSG_SKILL_WyvernFlight_DESC,
-	    .capacity = MSG_SKILL_WyvernFlight_CAPACITY,
+    [SID_WyvernFlight] = {
+        .name = MSG_SKILL_WyvernFlight_NAME,
+        .desc = MSG_SKILL_WyvernFlight_DESC,
+        .capacity = MSG_SKILL_WyvernFlight_CAPACITY,
         .price = MSG_SKILL_WyvernFlight_PRICE,
-		.icon = GFX_SkillIcon_WIP,
-	},
+        .icon = GFX_SkillIcon_WIP,
+    },
 #endif
 
 #if (defined(SID_YngviAscendant) && COMMON_SKILL_VALID(SID_YngviAscendant))
-	[SID_YngviAscendant] = {
-		.name = MSG_SKILL_YngviAscendant_NAME,
-		.desc = MSG_SKILL_YngviAscendant_DESC,
-	    .capacity = MSG_SKILL_YngviAscendant_CAPACITY,
+    [SID_YngviAscendant] = {
+        .name = MSG_SKILL_YngviAscendant_NAME,
+        .desc = MSG_SKILL_YngviAscendant_DESC,
+        .capacity = MSG_SKILL_YngviAscendant_CAPACITY,
         .price = MSG_SKILL_YngviAscendant_PRICE,
-		.icon = GFX_SkillIcon_YngviAscendant,
-	},
+        .icon = GFX_SkillIcon_YngviAscendant,
+    },
 #endif
 
 #if (defined(SID_ChillPow) && COMMON_SKILL_VALID(SID_ChillPow))
-	[SID_ChillPow] = {
-		.name = MSG_SKILL_ChillPow_NAME,
-		.desc = MSG_SKILL_ChillPow_DESC,
-	    .capacity = MSG_SKILL_ChillPow_CAPACITY,
+    [SID_ChillPow] = {
+        .name = MSG_SKILL_ChillPow_NAME,
+        .desc = MSG_SKILL_ChillPow_DESC,
+        .capacity = MSG_SKILL_ChillPow_CAPACITY,
         .price = MSG_SKILL_ChillPow_PRICE,
-		.icon = GFX_SkillIcon_WIP,
-	},
+        .icon = GFX_SkillIcon_WIP,
+    },
 #endif
 
 #if (defined(SID_ChillMag) && COMMON_SKILL_VALID(SID_ChillMag))
-	[SID_ChillMag] = {
-		.name = MSG_SKILL_ChillMag_NAME,
-		.desc = MSG_SKILL_ChillMag_DESC,
-	    .capacity = MSG_SKILL_ChillMag_CAPACITY,
+    [SID_ChillMag] = {
+        .name = MSG_SKILL_ChillMag_NAME,
+        .desc = MSG_SKILL_ChillMag_DESC,
+        .capacity = MSG_SKILL_ChillMag_CAPACITY,
         .price = MSG_SKILL_ChillMag_PRICE,
-		.icon = GFX_SkillIcon_WIP,
-	},
+        .icon = GFX_SkillIcon_WIP,
+    },
 #endif
 
 #if (defined(SID_ChillSkl) && COMMON_SKILL_VALID(SID_ChillSkl))
-	[SID_ChillSkl] = {
-		.name = MSG_SKILL_ChillSkl_NAME,
-		.desc = MSG_SKILL_ChillSkl_DESC,
-	    .capacity = MSG_SKILL_ChillSkl_CAPACITY,
+    [SID_ChillSkl] = {
+        .name = MSG_SKILL_ChillSkl_NAME,
+        .desc = MSG_SKILL_ChillSkl_DESC,
+        .capacity = MSG_SKILL_ChillSkl_CAPACITY,
         .price = MSG_SKILL_ChillSkl_PRICE,
-		.icon = GFX_SkillIcon_WIP,
-	},
+        .icon = GFX_SkillIcon_WIP,
+    },
 #endif
 
 #if (defined(SID_ChillSpd) && COMMON_SKILL_VALID(SID_ChillSpd))
-	[SID_ChillSpd] = {
-		.name = MSG_SKILL_ChillSpd_NAME,
-		.desc = MSG_SKILL_ChillSpd_DESC,
-	    .capacity = MSG_SKILL_ChillSpd_CAPACITY,
+    [SID_ChillSpd] = {
+        .name = MSG_SKILL_ChillSpd_NAME,
+        .desc = MSG_SKILL_ChillSpd_DESC,
+        .capacity = MSG_SKILL_ChillSpd_CAPACITY,
         .price = MSG_SKILL_ChillSpd_PRICE,
-		.icon = GFX_SkillIcon_WIP,
-	},
+        .icon = GFX_SkillIcon_WIP,
+    },
 #endif
 
 #if (defined(SID_ChillLck) && COMMON_SKILL_VALID(SID_ChillLck))
-	[SID_ChillLck] = {
-		.name = MSG_SKILL_ChillLck_NAME,
-		.desc = MSG_SKILL_ChillLck_DESC,
-	    .capacity = MSG_SKILL_ChillLck_CAPACITY,
+    [SID_ChillLck] = {
+        .name = MSG_SKILL_ChillLck_NAME,
+        .desc = MSG_SKILL_ChillLck_DESC,
+        .capacity = MSG_SKILL_ChillLck_CAPACITY,
         .price = MSG_SKILL_ChillLck_PRICE,
-		.icon = GFX_SkillIcon_WIP
-	},
+        .icon = GFX_SkillIcon_WIP
+    },
 #endif
 
 #if (defined(SID_ChillDef) && COMMON_SKILL_VALID(SID_ChillDef))
-	[SID_ChillDef] = {
-		.name = MSG_SKILL_ChillDef_NAME,
-		.desc = MSG_SKILL_ChillDef_DESC,
-	    .capacity = MSG_SKILL_ChillDef_CAPACITY,
+    [SID_ChillDef] = {
+        .name = MSG_SKILL_ChillDef_NAME,
+        .desc = MSG_SKILL_ChillDef_DESC,
+        .capacity = MSG_SKILL_ChillDef_CAPACITY,
         .price = MSG_SKILL_ChillDef_PRICE,
-		.icon = GFX_SkillIcon_WIP,
-	},
+        .icon = GFX_SkillIcon_WIP,
+    },
 #endif
 
 #if (defined(SID_ChillRes) && COMMON_SKILL_VALID(SID_ChillRes))
-	[SID_ChillRes] = {
-		.name = MSG_SKILL_ChillRes_NAME,
-		.desc = MSG_SKILL_ChillRes_DESC,
-	    .capacity = MSG_SKILL_ChillRes_CAPACITY,
+    [SID_ChillRes] = {
+        .name = MSG_SKILL_ChillRes_NAME,
+        .desc = MSG_SKILL_ChillRes_DESC,
+        .capacity = MSG_SKILL_ChillRes_CAPACITY,
         .price = MSG_SKILL_ChillRes_PRICE,
-		.icon = GFX_SkillIcon_WIP,
-	},
+        .icon = GFX_SkillIcon_WIP,
+    },
 #endif
 
 #if (defined(SID_DragonWrath) && COMMON_SKILL_VALID(SID_DragonWrath))
@@ -7363,13 +7363,13 @@ const struct SkillInfo gSkillInfos[MAX_SKILL_NUM + 1] = {
 #endif
 
 #if (defined(SID_DivineReprieve) && COMMON_SKILL_VALID(SID_DivineReprieve))
-	[SID_DivineReprieve] = {
-		.name = MSG_SKILL_DivineReprieve_NAME,
-		.desc = MSG_SKILL_DivineReprieve_DESC,
+    [SID_DivineReprieve] = {
+        .name = MSG_SKILL_DivineReprieve_NAME,
+        .desc = MSG_SKILL_DivineReprieve_DESC,
         .capacity = MSG_SKILL_DivineReprieve_CAPACITY,
         .price = MSG_SKILL_DivineReprieve_PRICE,
-		.icon = GFX_SkillIcon_WIP,
-	},
+        .icon = GFX_SkillIcon_WIP,
+    },
 #endif
 
 #if (defined(SID_EternalVanity) && COMMON_SKILL_VALID(SID_EternalVanity))
@@ -8549,6 +8549,16 @@ const struct SkillInfo gSkillInfos[MAX_SKILL_NUM + 1] = {
         .desc = MSG_SKILL_Reroll_DESC,
         .capacity = MSG_SKILL_Reroll_CAPACITY,
         .price = MSG_SKILL_Reroll_PRICE,
+        .icon = GFX_SkillIcon_WIP,
+    },
+#endif
+
+#if (defined(SID_SpellBlade) && COMMON_SKILL_VALID(SID_SpellBlade))
+    [SID_SpellBlade] = {
+        .name = MSG_SKILL_SpellBlade_NAME,
+        .desc = MSG_SKILL_SpellBlade_DESC,
+        .capacity = MSG_SKILL_SpellBlade_CAPACITY,
+        .price = MSG_SKILL_SpellBlade_PRICE,
         .icon = GFX_SkillIcon_WIP,
     },
 #endif

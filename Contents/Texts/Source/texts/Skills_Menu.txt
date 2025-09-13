@@ -637,3 +637,11 @@ Reroll:[N]
 Choose one of this unit's skills and[N]
 randomly replace it with another.[N]
 (Once per map).[X]
+
+## MSG_SKILL_SpellBlade_NAME
+Spell Blade[X]
+## MSG_SKILL_SpellBlade_DESC
+Spell Blade:[N]
+Choose an adjacent unit's class to[N]
+deal effective damage to this turn.[N]
+Sets a status to do so.[X]

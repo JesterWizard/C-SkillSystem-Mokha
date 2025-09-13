@@ -14,9 +14,12 @@
 #include "jester_headers/event-call.h"
 #include "jester_headers/custom-structs.h"
 #include "jester_headers/custom-arrays.h"
+#include "jester_headers/custom-functions.h"
+
 #ifdef CONFIG_FORGING
-    #include "jester_headers/Forging.h"
+#include "jester_headers/Forging.h"
 #endif
+
 #include "player_interface.h"
 #include "soundroom.h"
 #include "bwl.h"
@@ -28,20 +31,20 @@ typedef struct {
 } PrepItemSuppyText;
 extern const int sExpaConvoyItemAmount;
 
-extern const u16 * Events_WM_Beginning[];
-extern const u16 * Events_WM_ChapterIntro[];
+extern const u16* Events_WM_Beginning[];
+extern const u16* Events_WM_ChapterIntro[];
 
 #if defined(SID_SummonPlus) && (COMMON_SKILL_VALID(SID_SummonPlus))
-   FORCE_DECLARE static const u8 classIndexes_SP[6] = {CLASS_TARVOS, CLASS_BAEL, CLASS_GARGOYLE, CLASS_GORGONEGG, CLASS_MOGALL, CLASS_MAUTHEDOOG};
-   FORCE_DECLARE static const u8 classPromotedIndexes_SP[6] = {CLASS_MAELDUIN, CLASS_ELDER_BAEL, CLASS_DEATHGOYLE, CLASS_GORGON, CLASS_ARCH_MOGALL, CLASS_GWYLLGI};
+FORCE_DECLARE static const u8 classIndexes_SP[6] = { CLASS_TARVOS, CLASS_BAEL, CLASS_GARGOYLE, CLASS_GORGONEGG, CLASS_MOGALL, CLASS_MAUTHEDOOG };
+FORCE_DECLARE static const u8 classPromotedIndexes_SP[6] = { CLASS_MAELDUIN, CLASS_ELDER_BAEL, CLASS_DEATHGOYLE, CLASS_GORGON, CLASS_ARCH_MOGALL, CLASS_GWYLLGI };
 
-   FORCE_DECLARE static const u8 classWeapons_SP[6] = {ITEM_AXE_IRON, ITEM_MONSTER_POISON_CLAW, ITEM_LANCE_JAVELIN, ITEM_MONSTER_DEMON_SURGE, ITEM_MONSTER_EVIL_EYE, ITEM_MONSTER_FIRE_FANG};
-   FORCE_DECLARE static const u8 classPromotedWeapons_SP[6] = {ITEM_AXE_BRAVE, ITEM_MONSTER_LETHAL_TALON, ITEM_LANCE_SPEAR, ITEM_MONSTER_SHADOW_SHOT, ITEM_MONSTER_CRIMSON_EYE, ITEM_MONSTER_HELL_FANG};
+FORCE_DECLARE static const u8 classWeapons_SP[6] = { ITEM_AXE_IRON, ITEM_MONSTER_POISON_CLAW, ITEM_LANCE_JAVELIN, ITEM_MONSTER_DEMON_SURGE, ITEM_MONSTER_EVIL_EYE, ITEM_MONSTER_FIRE_FANG };
+FORCE_DECLARE static const u8 classPromotedWeapons_SP[6] = { ITEM_AXE_BRAVE, ITEM_MONSTER_LETHAL_TALON, ITEM_LANCE_SPEAR, ITEM_MONSTER_SHADOW_SHOT, ITEM_MONSTER_CRIMSON_EYE, ITEM_MONSTER_HELL_FANG };
 #endif
 
 //! FE8U = 0x08098620
 LYN_REPLACE_CHECK(PrepItemScreen_SetupGfx);
-void PrepItemScreen_SetupGfx(struct PrepItemScreenProc * proc)
+void PrepItemScreen_SetupGfx(struct PrepItemScreenProc* proc)
 {
     int i;
 
@@ -106,9 +109,9 @@ void PrepItemScreen_SetupGfx(struct PrepItemScreenProc * proc)
     InitText(&gPrepItemTexts[31], 5);
 
 #ifdef CONFIG_VESLY_EXTENDED_ITEM_DESCRIPTIONS
-    LoadHelpBoxGfx((void *)0x06012000, -1);    
+    LoadHelpBoxGfx((void*)0x06012000, -1);
 #else
-    LoadHelpBoxGfx((void *)0x06014000, -1);
+    LoadHelpBoxGfx((void*)0x06014000, -1);
 #endif
 
 
@@ -135,7 +138,7 @@ void PrepItemScreen_SetupGfx(struct PrepItemScreenProc * proc)
 
     ForceSyncUnitSpriteSheet();
 
-    Decompress(Img_PrepTextShadow, (void *)0x06013E00);
+    Decompress(Img_PrepTextShadow, (void*)0x06013E00);
     UiCursorHand_80ACA4C(0, 0, 0, 0xd0, 0x3c);
     DisplaySysHandCursorTextShadow(0x600, 1);
 
@@ -171,7 +174,7 @@ void PrepItemScreen_SetupGfx(struct PrepItemScreenProc * proc)
 
 //! FE8U = 0x0809B86C
 LYN_REPLACE_CHECK(PrepItemTrade_Init);
-void PrepItemTrade_Init(struct PrepMenuTradeProc * proc)
+void PrepItemTrade_Init(struct PrepMenuTradeProc* proc)
 {
     const char* str;
     int i;
@@ -225,10 +228,12 @@ void PrepItemTrade_Init(struct PrepMenuTradeProc * proc)
 
     if (proc->unk_40 != -1) {
         proc->cursorItemSlot = proc->unk_40 + 8;
-    } else {
+    }
+    else {
         if (GetUnitItemCount(proc->units[0]) == 0) {
             proc->cursorItemSlot = 8;
-        } else {
+        }
+        else {
             proc->cursorItemSlot = 0;
         }
     }
@@ -280,7 +285,7 @@ void PrepItemTrade_Init(struct PrepMenuTradeProc * proc)
 
 //! FE8U = 0x0809D914
 LYN_REPLACE_CHECK(sub_809D914);
-void sub_809D914(struct PrepItemSupplyProc * proc)
+void sub_809D914(struct PrepItemSupplyProc* proc)
 {
 
     gLCDControlBuffer.dispcnt.mode = 0;
@@ -326,7 +331,7 @@ void sub_809D914(struct PrepItemSupplyProc * proc)
 
 //! FE8U = 0x0809ED8C
 LYN_REPLACE_CHECK(PrepItemList_InitGfx);
-void PrepItemList_InitGfx(struct PrepItemListProc * proc)
+void PrepItemList_InitGfx(struct PrepItemListProc* proc)
 {
     int i;
     const char* str;
@@ -468,16 +473,16 @@ void PrepItemList_InitGfx(struct PrepItemListProc * proc)
 }
 
 LYN_REPLACE_CHECK(TradeMenu_InitUnitNameDisplay);
-void TradeMenu_InitUnitNameDisplay(struct TradeMenuProc * proc)
+void TradeMenu_InitUnitNameDisplay(struct TradeMenuProc* proc)
 {
     char* str;
     int xStart;
 
     // TODO: constants
 #ifdef CONFIG_VESLY_EXTENDED_ITEM_DESCRIPTIONS
-    StartSysBrownBox(6, 0x5800, 0x08, 0x800, 0x400, (struct Proc *) (proc));
+    StartSysBrownBox(6, 0x5800, 0x08, 0x800, 0x400, (struct Proc*)(proc));
 #else
-    StartSysBrownBox(6, 0x4800, 0x08, 0x800, 0x400, (struct Proc *) (proc));
+    StartSysBrownBox(6, 0x4800, 0x08, 0x800, 0x400, (struct Proc*)(proc));
 #endif
 
     EnableSysBrownBox(0, -40, -1, 1);
@@ -488,7 +493,7 @@ void TradeMenu_InitUnitNameDisplay(struct TradeMenuProc * proc)
 
     // TODO: name functions
     SetBlendTargetA(FALSE, FALSE, FALSE, FALSE, FALSE);
-    SetBlendTargetB(TRUE,  TRUE,  TRUE,  TRUE,  TRUE);
+    SetBlendTargetB(TRUE, TRUE, TRUE, TRUE, TRUE);
 
     // TODO: text color constants
 
@@ -519,11 +524,11 @@ void KillUnitOnCombatDeath(struct Unit* unitA, struct Unit* unitB) {
         {
             if (unitA->items[i] == 0)
                 break;
-            
+
             if (GetConvoyItemCount() < sExpaConvoyItemAmount)
                 AddItemToConvoy(unitA->items[i]);
         }
-    }
+}
 #endif
 
     PidStatsRecordDefeatInfo(unitA->pCharacterData->number, unitB->pCharacterData->number, DEFEAT_CAUSE_COMBAT);
@@ -547,11 +552,11 @@ void KillUnitOnArenaDeathMaybe(struct Unit* unit) {
         {
             if (unit->items[i] == 0)
                 break;
-            
+
             if (GetConvoyItemCount() < sExpaConvoyItemAmount)
                 AddItemToConvoy(unit->items[i]);
         }
-    }
+}
 #endif
 
     UnitKill(unit);
@@ -573,57 +578,57 @@ s8 PlayerPhase_PrepareAction(ProcPtr proc)
     cameraReturn ^= 1;
 
 #ifdef CONFIG_NO_WAIT_AFTER_TRADING
-        gBmSt.taken_action = 0;
+    gBmSt.taken_action = 0;
 #endif
 
     switch (gActionData.unitActionType)
     {
-        case 0:
-            /**
-             * If character has use some action: such as trade with somebody,
-             * then he may get chance to take another action but cannot change to another.
-             * If player want to control other character, the current unit may caught wait action.
-             */
-            if (gBmSt.taken_action != 0)
-            {
-                gActionData.unitActionType = UNIT_ACTION_FORCE_WAIT;
-                break;
-            }
+    case 0:
+        /**
+         * If character has use some action: such as trade with somebody,
+         * then he may get chance to take another action but cannot change to another.
+         * If player want to control other character, the current unit may caught wait action.
+         */
+        if (gBmSt.taken_action != 0)
+        {
+            gActionData.unitActionType = UNIT_ACTION_FORCE_WAIT;
+            break;
+        }
 
-            PlayerPhase_BackToMove(proc);
+        PlayerPhase_BackToMove(proc);
 
-            return 1;
+        return 1;
 
-        case UNIT_ACTION_TRADED:
-            gBmSt.taken_action |= BM_TAKEN_ACTION_TRADE;
-            PlayerPhase_CancelAction(proc);
+    case UNIT_ACTION_TRADED:
+        gBmSt.taken_action |= BM_TAKEN_ACTION_TRADE;
+        PlayerPhase_CancelAction(proc);
 
-            return 1;
+        return 1;
 
-        case UNIT_ACTION_TRADED_SUPPLY:
-            gBmSt.taken_action |= BM_TAKEN_ACTION_SUPPLY;
-            PlayerPhase_CancelAction(proc);
+    case UNIT_ACTION_TRADED_SUPPLY:
+        gBmSt.taken_action |= BM_TAKEN_ACTION_SUPPLY;
+        PlayerPhase_CancelAction(proc);
 
-            return 1;
+        return 1;
 
-        case UNIT_ACTION_TAKE:
-        case UNIT_ACTION_GIVE:
-            gBmSt.taken_action |= BM_TAKEN_ACTION_TAKE;
-            PlayerPhase_CancelAction(proc);
+    case UNIT_ACTION_TAKE:
+    case UNIT_ACTION_GIVE:
+        gBmSt.taken_action |= BM_TAKEN_ACTION_TAKE;
+        PlayerPhase_CancelAction(proc);
 
-            return 1;
+        return 1;
 
-        case UNIT_ACTION_RIDE_BALLISTA:
-        case UNIT_ACTION_EXIT_BALLISTA:
-            gBmSt.taken_action |= BM_TAKEN_ACTION_BALLISTA;
-            PlayerPhase_CancelAction(proc);
+    case UNIT_ACTION_RIDE_BALLISTA:
+    case UNIT_ACTION_EXIT_BALLISTA:
+        gBmSt.taken_action |= BM_TAKEN_ACTION_BALLISTA;
+        PlayerPhase_CancelAction(proc);
 
-            return 1;
+        return 1;
 
-        case UNIT_ACTION_TRADED_1D:
-            PlayerPhase_CancelAction(proc);
+    case UNIT_ACTION_TRADED_1D:
+        PlayerPhase_CancelAction(proc);
 
-            return 1;
+        return 1;
     }
 
     item = GetItemIndex(GetUnit(gActionData.subjectIndex)->items[gActionData.itemSlotIndex]);
@@ -632,18 +637,18 @@ s8 PlayerPhase_PrepareAction(ProcPtr proc)
 
     switch (item)
     {
-        case ITEM_HEAVENSEAL:
-        case ITEM_HEROCREST:
-        case ITEM_KNIGHTCREST:
-        case ITEM_ORIONSBOLT:
-        case ITEM_ELYSIANWHIP:
-        case ITEM_GUIDINGRING:
-        case ITEM_MASTERSEAL:
-        case ITEM_OCEANSEAL:
-        case ITEM_LUNARBRACE:
-        case ITEM_SOLARBRACE:
-        case ITEM_UNK_C1:
-            return cameraReturn;
+    case ITEM_HEAVENSEAL:
+    case ITEM_HEROCREST:
+    case ITEM_KNIGHTCREST:
+    case ITEM_ORIONSBOLT:
+    case ITEM_ELYSIANWHIP:
+    case ITEM_GUIDINGRING:
+    case ITEM_MASTERSEAL:
+    case ITEM_OCEANSEAL:
+    case ITEM_LUNARBRACE:
+    case ITEM_SOLARBRACE:
+    case ITEM_UNK_C1:
+        return cameraReturn;
     }
 
     if ((gActionData.unitActionType != UNIT_ACTION_WAIT) && !gBmSt.just_resumed)
@@ -658,7 +663,7 @@ s8 PlayerPhase_PrepareAction(ProcPtr proc)
 #ifdef CONFIG_FE8_REWRITE
 LYN_REPLACE_CHECK(WorldMap_CallBeginningEvent);
 //! FE8U = 0x080BA334
-void WorldMap_CallBeginningEvent(struct WorldMapMainProc * proc)
+void WorldMap_CallBeginningEvent(struct WorldMapMainProc* proc)
 {
     int chIndex;
     int node_next;
@@ -681,7 +686,7 @@ void WorldMap_CallBeginningEvent(struct WorldMapMainProc * proc)
             chIndex = WMLoc_GetChapterId(node_next);
 
             gPlaySt.chapterIndex = chIndex;
-            
+
 
             if (Events_WM_Beginning[GetROMChapterStruct(chIndex)->gmapEventId] == NULL)
                 return;
@@ -697,46 +702,46 @@ void WorldMap_CallBeginningEvent(struct WorldMapMainProc * proc)
             int eventID = GetROMChapterStruct(chIndex)->gmapEventId;
 
             // NoCashGBAPrintf("SET event id is: %d", eventID);
-            
+
             switch (eventID) {
             case 55:
-                CallEvent((const u16 *)EventScrWM_Ch1_ENDING, 0);
+                CallEvent((const u16*)EventScrWM_Ch1_ENDING, 0);
                 break;
             case 1:
-                CallEvent((const u16 *)EventScrWM_Prologue_SET_NODE, 0);
+                CallEvent((const u16*)EventScrWM_Prologue_SET_NODE, 0);
                 break;
             case 2:
                 break;
             case 3:
-                CallEvent((const u16 *)EventScrWM_Ch2_SET_NODE, 0);
+                CallEvent((const u16*)EventScrWM_Ch2_SET_NODE, 0);
                 break;
             case 4:
-                CallEvent((const u16 *)EventScrWM_Ch3_SET_NODE, 0);
+                CallEvent((const u16*)EventScrWM_Ch3_SET_NODE, 0);
                 break;
             case 5:
-                CallEvent((const u16 *)EventScrWM_Ch4_SET_NODE, 0);
+                CallEvent((const u16*)EventScrWM_Ch4_SET_NODE, 0);
                 break;
             case 6:
                 break;
             case 7:
-                CallEvent((const u16 *)EventScrWM_Ch5_SET_NODE, 0);
+                CallEvent((const u16*)EventScrWM_Ch5_SET_NODE, 0);
                 break;
             case 8:
-                CallEvent((const u16 *)EventScrWM_Ch6_SET_NODE, 0);
+                CallEvent((const u16*)EventScrWM_Ch6_SET_NODE, 0);
                 break;
             case 9:
-                CallEvent((const u16 *)EventScrWM_Ch7_SET_NODE, 0);
+                CallEvent((const u16*)EventScrWM_Ch7_SET_NODE, 0);
                 break;
             case 10:
-                CallEvent((const u16 *)EventScrWM_Ch8_SET_NODE, 0);
+                CallEvent((const u16*)EventScrWM_Ch8_SET_NODE, 0);
                 break;
             case 11:
-                CallEvent((const u16 *)EventScrWM_Ch9_SET_NODE, 0);
+                CallEvent((const u16*)EventScrWM_Ch9_SET_NODE, 0);
                 break;
             case 12:
-                CallEvent((const u16 *)EventScrWM_Ch10_SET_NODE, 0);
+                CallEvent((const u16*)EventScrWM_Ch10_SET_NODE, 0);
                 break;
-            default: 
+            default:
                 CallEvent(Events_WM_Beginning[eventID], 0);
                 break;
             }
@@ -753,53 +758,53 @@ void CallChapterWMIntroEvents(ProcPtr proc)
 {
     if (Events_WM_ChapterIntro[GetROMChapterStruct(gPlaySt.chapterIndex)->gmapEventId] != NULL)
     {
-         /**
-        * JESTER - I've resorted to hooking into the WM call function to directly load the
-        * WM events I want based on the supplied eventSCR. It's an unfortunate bit of hardcoding
-        * I'm looking to remove, but it frees me from having to rely on the list in ASM in vanilla.
-        */
+        /**
+       * JESTER - I've resorted to hooking into the WM call function to directly load the
+       * WM events I want based on the supplied eventSCR. It's an unfortunate bit of hardcoding
+       * I'm looking to remove, but it frees me from having to rely on the list in ASM in vanilla.
+       */
         int eventID = GetROMChapterStruct(gPlaySt.chapterIndex)->gmapEventId;
 
         // NoCashGBAPrintf("TRAVEL event id is: %d", eventID);
-            
+
         switch (eventID) {
         case 55:
             break;
         case 1:
-            CallEvent((const u16 *)EventScrWM_Prologue_TRAVEL_TO_NODE, 0);
+            CallEvent((const u16*)EventScrWM_Prologue_TRAVEL_TO_NODE, 0);
             break;
         case 2:
             break;
         case 3:
-            CallEvent((const u16 *)EventScrWM_Ch2_TRAVEL_TO_NODE, 0);
+            CallEvent((const u16*)EventScrWM_Ch2_TRAVEL_TO_NODE, 0);
             break;
         case 4:
-            CallEvent((const u16 *)EventScrWM_Ch3_TRAVEL_TO_NODE, 0);
+            CallEvent((const u16*)EventScrWM_Ch3_TRAVEL_TO_NODE, 0);
             break;
         case 5:
-            CallEvent((const u16 *)EventScrWM_Ch4_TRAVEL_TO_NODE, 0);
+            CallEvent((const u16*)EventScrWM_Ch4_TRAVEL_TO_NODE, 0);
             break;
         case 6:
             break;
         case 7:
-            CallEvent((const u16 *)EventScrWM_Ch5_TRAVEL_TO_NODE, 0);
+            CallEvent((const u16*)EventScrWM_Ch5_TRAVEL_TO_NODE, 0);
             break;
         case 8:
-            CallEvent((const u16 *)EventScrWM_Ch6_TRAVEL_TO_NODE, 0);
+            CallEvent((const u16*)EventScrWM_Ch6_TRAVEL_TO_NODE, 0);
             break;
         case 9:
-            CallEvent((const u16 *)EventScrWM_Ch7_TRAVEL_TO_NODE, 0);
+            CallEvent((const u16*)EventScrWM_Ch7_TRAVEL_TO_NODE, 0);
             break;
         case 10:
-            CallEvent((const u16 *)EventScrWM_Ch8_TRAVEL_TO_NODE, 0);
+            CallEvent((const u16*)EventScrWM_Ch8_TRAVEL_TO_NODE, 0);
             break;
         case 11:
-            CallEvent((const u16 *)EventScrWM_Ch9_TRAVEL_TO_NODE, 0);
+            CallEvent((const u16*)EventScrWM_Ch9_TRAVEL_TO_NODE, 0);
             break;
         case 12:
-            CallEvent((const u16 *)EventScrWM_Ch10_TRAVEL_TO_NODE, 0);
+            CallEvent((const u16*)EventScrWM_Ch10_TRAVEL_TO_NODE, 0);
             break;
-        default: 
+        default:
             CallEvent(Events_WM_ChapterIntro[eventID], 0);
             break;
         }
@@ -810,7 +815,7 @@ void CallChapterWMIntroEvents(ProcPtr proc)
 
 LYN_REPLACE_CHECK(Event97_WmInitNextStoryNode);
 //! FE8U = 0x0800C2DC
-u8 Event97_WmInitNextStoryNode(struct EventEngineProc * proc)
+u8 Event97_WmInitNextStoryNode(struct EventEngineProc* proc)
 {
     // struct WorldMapMainProc * worldMapProc;
 
@@ -847,7 +852,7 @@ u8 Event97_WmInitNextStoryNode(struct EventEngineProc * proc)
 
 LYN_REPLACE_CHECK(Event3E_PrepScreenCall);
 //! FE8U = 0x08010968
-u8 Event3E_PrepScreenCall(struct EventEngineProc * proc)
+u8 Event3E_PrepScreenCall(struct EventEngineProc* proc)
 {
     HideAllUnits();
     ClearFlag(0x84);
@@ -859,193 +864,193 @@ u8 Event3E_PrepScreenCall(struct EventEngineProc * proc)
 
 #ifdef CONFIG_QUALITY_OF_LIFE_EPILOGUE_FADE
 
-    //! FE8U = 0x080B723C
-    LYN_REPLACE_CHECK(PairedEndingBattleDisp_InitBlend);
-    void PairedEndingBattleDisp_InitBlend(struct EndingBattleDisplayProc * proc)
+//! FE8U = 0x080B723C
+LYN_REPLACE_CHECK(PairedEndingBattleDisp_InitBlend);
+void PairedEndingBattleDisp_InitBlend(struct EndingBattleDisplayProc* proc)
+{
+    proc->timer = 0;
+
+    SetBlendAlpha(0x10, 0);
+    SetBlendTargetA(0, 0, 0, 0, 0);
+    SetBlendTargetB(0, 0, 1, 0, 0);
+
+    return;
+}
+
+//! FE8U = 0x080B7274
+LYN_REPLACE_CHECK(PairedEndingBattleDisp_Loop_Blend);
+void PairedEndingBattleDisp_Loop_Blend(struct EndingBattleDisplayProc* proc)
+{
+    int bldAmt = proc->timer >> 2;
+
+    proc->timer++;
+
+    SetBlendAlpha(0x10 - bldAmt, bldAmt);
+
+    if (bldAmt == 8)
     {
-        proc->timer = 0;
-
-        SetBlendAlpha(0x10, 0);
-        SetBlendTargetA(0, 0, 0, 0, 0);
-        SetBlendTargetB(0, 0, 1, 0, 0);
-
-        return;
+        Proc_Break(proc);
     }
 
-    //! FE8U = 0x080B7274
-    LYN_REPLACE_CHECK(PairedEndingBattleDisp_Loop_Blend);
-    void PairedEndingBattleDisp_Loop_Blend(struct EndingBattleDisplayProc * proc)
-    {
-        int bldAmt = proc->timer >> 2;
+    return;
+}
 
-        proc->timer++;
+static const struct ProcCmd gProcScr_EndingBattleDisplay_Solo_NEW[] =
+{
+    PROC_YIELD,
 
-        SetBlendAlpha(0x10 - bldAmt, bldAmt);
+    PROC_CALL(SoloEndingBattleDisp_Init),
+    PROC_REPEAT(SoloEndingBattleDisp_Loop),
 
-        if (bldAmt == 8)
-        {
-            Proc_Break(proc);
-        }
+    PROC_SLEEP(16),
 
-        return;
-    }
+    PROC_CALL(PairedEndingBattleDisp_InitBlend),
+    PROC_REPEAT(PairedEndingBattleDisp_Loop_Blend),
 
-    static const struct ProcCmd gProcScr_EndingBattleDisplay_Solo_NEW[] =
-    {
-        PROC_YIELD,
+    PROC_END,
+};
 
-        PROC_CALL(SoloEndingBattleDisp_Init),
-        PROC_REPEAT(SoloEndingBattleDisp_Loop),
-        
-        PROC_SLEEP(16),
+LYN_REPLACE_CHECK(StartSoloEndingBattleDisplay);
+void StartSoloEndingBattleDisplay(struct CharacterEndingEnt* endingEnt, struct Unit* unit, struct CharacterEndingProc* parent)
+{
+    struct EndingBattleDisplayProc* proc = Proc_StartBlocking(gProcScr_EndingBattleDisplay_Solo_NEW, parent);
 
-        PROC_CALL(PairedEndingBattleDisp_InitBlend),
-        PROC_REPEAT(PairedEndingBattleDisp_Loop_Blend),
+    proc->units[0] = unit;
+    proc->units[1] = NULL;
 
-        PROC_END,
-    };
+    proc->pCharacterEnding = endingEnt;
 
-    LYN_REPLACE_CHECK(StartSoloEndingBattleDisplay);
-    void StartSoloEndingBattleDisplay(struct CharacterEndingEnt * endingEnt, struct Unit * unit, struct CharacterEndingProc * parent)
-    {
-        struct EndingBattleDisplayProc * proc = Proc_StartBlocking(gProcScr_EndingBattleDisplay_Solo_NEW, parent);
-
-        proc->units[0] = unit;
-        proc->units[1] = NULL;
-
-        proc->pCharacterEnding = endingEnt;
-
-        return;
-    }
+    return;
+}
 
 #endif
 
 #ifdef CONFIG_QUALITY_OF_LIFE_UNIT_NAME_DROP
 
-    struct PopupInstruction const NewItemDropPopup[] = {
-        POPUP_SOUND(0x5A),
-        POPUP_COLOR(TEXT_COLOR_SYSTEM_BLUE),
-        POPUP_UNIT_NAME,
-        POPUP_COLOR(TEXT_COLOR_SYSTEM_WHITE),
-        POPUP_MSG(MSG_GOT_ITEM),             /* got */
-        POPUP_COLOR(TEXT_COLOR_SYSTEM_BLUE),
-        POPUP_ITEM_STR,
-        POPUP_SPACE(1),
-        POPUP_ITEM_ICON,
-        POPUP_COLOR(TEXT_COLOR_SYSTEM_WHITE),
-        POPUP_SPACE(1),
-        POPUP_MSG(0x022),                   /* .[.] */
-        POPUP_END
-    };
+struct PopupInstruction const NewItemDropPopup[] = {
+    POPUP_SOUND(0x5A),
+    POPUP_COLOR(TEXT_COLOR_SYSTEM_BLUE),
+    POPUP_UNIT_NAME,
+    POPUP_COLOR(TEXT_COLOR_SYSTEM_WHITE),
+    POPUP_MSG(MSG_GOT_ITEM),             /* got */
+    POPUP_COLOR(TEXT_COLOR_SYSTEM_BLUE),
+    POPUP_ITEM_STR,
+    POPUP_SPACE(1),
+    POPUP_ITEM_ICON,
+    POPUP_COLOR(TEXT_COLOR_SYSTEM_WHITE),
+    POPUP_SPACE(1),
+    POPUP_MSG(0x022),                   /* .[.] */
+    POPUP_END
+};
 
-    struct PopupInstruction const NewItemPilferedPopup[] = {
-        POPUP_SOUND(0x5A),
-        POPUP_COLOR(TEXT_COLOR_SYSTEM_BLUE),
-        POPUP_UNIT_NAME,
-        POPUP_COLOR(TEXT_COLOR_SYSTEM_WHITE),
-        POPUP_MSG(MSG_PILFERED_ITEM),       /* pilfered */
-        POPUP_COLOR(TEXT_COLOR_SYSTEM_BLUE),
-        POPUP_ITEM_STR,
-        POPUP_SPACE(1),
-        POPUP_ITEM_ICON,
-        POPUP_COLOR(TEXT_COLOR_SYSTEM_WHITE),
-        POPUP_SPACE(1),
-        POPUP_MSG(0x022),                   /* .[.] */
-        POPUP_END
-    };
+struct PopupInstruction const NewItemPilferedPopup[] = {
+    POPUP_SOUND(0x5A),
+    POPUP_COLOR(TEXT_COLOR_SYSTEM_BLUE),
+    POPUP_UNIT_NAME,
+    POPUP_COLOR(TEXT_COLOR_SYSTEM_WHITE),
+    POPUP_MSG(MSG_PILFERED_ITEM),       /* pilfered */
+    POPUP_COLOR(TEXT_COLOR_SYSTEM_BLUE),
+    POPUP_ITEM_STR,
+    POPUP_SPACE(1),
+    POPUP_ITEM_ICON,
+    POPUP_COLOR(TEXT_COLOR_SYSTEM_WHITE),
+    POPUP_SPACE(1),
+    POPUP_MSG(0x022),                   /* .[.] */
+    POPUP_END
+};
 
-    struct PopupInstruction const NewItemStolePopup[] = {
-        POPUP_SOUND(0x5C),
-        POPUP_COLOR(TEXT_COLOR_SYSTEM_BLUE),
-        POPUP_UNIT_NAME,
-        POPUP_COLOR(TEXT_COLOR_SYSTEM_WHITE),
-        POPUP_MSG(MSG_STOLE_ITEM),          /* Stole */
-        POPUP_COLOR(TEXT_COLOR_SYSTEM_BLUE),
-        POPUP_ITEM_STR,
-        POPUP_SPACE(1),
-        POPUP_ITEM_ICON,
-        POPUP_SPACE(1),
-        POPUP_COLOR(TEXT_COLOR_SYSTEM_WHITE),
-        POPUP_MSG(0x022),                   /* .[.] */
-        POPUP_END
-    };
+struct PopupInstruction const NewItemStolePopup[] = {
+    POPUP_SOUND(0x5C),
+    POPUP_COLOR(TEXT_COLOR_SYSTEM_BLUE),
+    POPUP_UNIT_NAME,
+    POPUP_COLOR(TEXT_COLOR_SYSTEM_WHITE),
+    POPUP_MSG(MSG_STOLE_ITEM),          /* Stole */
+    POPUP_COLOR(TEXT_COLOR_SYSTEM_BLUE),
+    POPUP_ITEM_STR,
+    POPUP_SPACE(1),
+    POPUP_ITEM_ICON,
+    POPUP_SPACE(1),
+    POPUP_COLOR(TEXT_COLOR_SYSTEM_WHITE),
+    POPUP_MSG(0x022),                   /* .[.] */
+    POPUP_END
+};
 
-    struct PopupInstruction const NewGoldGotPopup[] = {
-        POPUP_SOUND(0x5A),
-        POPUP_COLOR(TEXT_COLOR_SYSTEM_BLUE),
-        POPUP_UNIT_NAME,
-        POPUP_COLOR(TEXT_COLOR_SYSTEM_WHITE),
-        POPUP_MSG(MSG_GOT_ITEM),               /* got */
-        POPUP_COLOR(TEXT_COLOR_SYSTEM_BLUE),
-        POPUP_NUM,
-        POPUP_SPACE(3),
-        POPUP_COLOR(TEXT_COLOR_SYSTEM_WHITE),
-        POPUP_MSG(MSG_GOLD),                   /* gold.[.] */
-        POPUP_END
-    };
+struct PopupInstruction const NewGoldGotPopup[] = {
+    POPUP_SOUND(0x5A),
+    POPUP_COLOR(TEXT_COLOR_SYSTEM_BLUE),
+    POPUP_UNIT_NAME,
+    POPUP_COLOR(TEXT_COLOR_SYSTEM_WHITE),
+    POPUP_MSG(MSG_GOT_ITEM),               /* got */
+    POPUP_COLOR(TEXT_COLOR_SYSTEM_BLUE),
+    POPUP_NUM,
+    POPUP_SPACE(3),
+    POPUP_COLOR(TEXT_COLOR_SYSTEM_WHITE),
+    POPUP_MSG(MSG_GOLD),                   /* gold.[.] */
+    POPUP_END
+};
 
-    struct PopupInstruction const NewGoldStolenPopup[] = {
-        POPUP_SOUND(0x5C),
-        POPUP_COLOR(TEXT_COLOR_SYSTEM_BLUE),
-        POPUP_UNIT_NAME,
-        POPUP_COLOR(TEXT_COLOR_SYSTEM_WHITE),
-        POPUP_MSG(MSG_STOLE_ITEM),              /* Stole */
-        POPUP_COLOR(TEXT_COLOR_SYSTEM_BLUE),
-        POPUP_NUM,
-        POPUP_SPACE(3),
-        POPUP_COLOR(TEXT_COLOR_SYSTEM_WHITE),
-        POPUP_MSG(MSG_GOLD),                   /* gold. */
-        POPUP_END
-    };
+struct PopupInstruction const NewGoldStolenPopup[] = {
+    POPUP_SOUND(0x5C),
+    POPUP_COLOR(TEXT_COLOR_SYSTEM_BLUE),
+    POPUP_UNIT_NAME,
+    POPUP_COLOR(TEXT_COLOR_SYSTEM_WHITE),
+    POPUP_MSG(MSG_STOLE_ITEM),              /* Stole */
+    POPUP_COLOR(TEXT_COLOR_SYSTEM_BLUE),
+    POPUP_NUM,
+    POPUP_SPACE(3),
+    POPUP_COLOR(TEXT_COLOR_SYSTEM_WHITE),
+    POPUP_MSG(MSG_GOLD),                   /* gold. */
+    POPUP_END
+};
 
-    LYN_REPLACE_CHECK(NewPopup_ItemGot_unused);
-    void NewPopup_ItemGot_unused(struct Unit* unit, u16 item, ProcPtr parent)
+LYN_REPLACE_CHECK(NewPopup_ItemGot_unused);
+void NewPopup_ItemGot_unused(struct Unit* unit, u16 item, ProcPtr parent)
+{
+    SetPopupItem(item);
+    SetPopupUnit(unit);
+
+    if (FACTION_BLUE == UNIT_FACTION(unit))
+        NewPopup_Simple(NewItemDropPopup, 0x60, 0x0, parent);
+    else
+        NewPopup_Simple(NewItemPilferedPopup, 0x60, 0x0, parent);
+}
+
+LYN_REPLACE_CHECK(NewPopup_GoldGot);
+void NewPopup_GoldGot(ProcPtr parent, struct Unit* unit, int value)
+{
+    SetPopupNumber(value);
+    SetPopupUnit(unit);
+
+    if (FACTION_BLUE == UNIT_FACTION(unit))
     {
-        SetPopupItem(item);
-        SetPopupUnit(unit);
-
-        if (FACTION_BLUE == UNIT_FACTION(unit))
-            NewPopup_Simple(NewItemDropPopup, 0x60, 0x0, parent);
-        else
-            NewPopup_Simple(NewItemPilferedPopup, 0x60, 0x0, parent);
+        value += GetPartyGoldAmount();
+        SetPartyGoldAmount(value);
+        NewPopup_Simple(NewGoldGotPopup, 0x60, 0x0, parent);
     }
+    else
+        NewPopup_Simple(NewGoldStolenPopup, 0x60, 0x0, parent);
+}
 
-    LYN_REPLACE_CHECK(NewPopup_GoldGot);
-    void NewPopup_GoldGot(ProcPtr parent, struct Unit *unit, int value)
-    {
-        SetPopupNumber(value);
-        SetPopupUnit(unit);
+LYN_REPLACE_CHECK(NewPopup_ItemStealing);
+void NewPopup_ItemStealing(u16 item, ProcPtr parent)
+{
+    SetPopupItem(item);
+    SetPopupUnit(gActiveUnit);
 
-        if (FACTION_BLUE == UNIT_FACTION(unit)) 
-        {
-            value += GetPartyGoldAmount();
-            SetPartyGoldAmount(value);
-            NewPopup_Simple(NewGoldGotPopup, 0x60, 0x0, parent);
-        } 
-        else
-            NewPopup_Simple(NewGoldStolenPopup, 0x60, 0x0, parent);
-    }
-
-    LYN_REPLACE_CHECK(NewPopup_ItemStealing);
-    void NewPopup_ItemStealing(u16 item, ProcPtr parent)
-    {
-        SetPopupItem(item);
-        SetPopupUnit(gActiveUnit);
-
-        NewPopup_Simple(NewItemStolePopup, 0x60, 0x0, parent);
-    }
+    NewPopup_Simple(NewItemStolePopup, 0x60, 0x0, parent);
+}
 
 #endif
 
 LYN_REPLACE_CHECK(UnitDrop);
-void UnitDrop(struct Unit * actor, int xTarget, int yTarget)
+void UnitDrop(struct Unit* actor, int xTarget, int yTarget)
 {
-    struct Unit * target = GetUnit(actor->rescue);
+    struct Unit* target = GetUnit(actor->rescue);
 
     actor->state = actor->state & ~(US_RESCUING | US_RESCUED);
     target->state = target->state & ~(US_RESCUING | US_RESCUED | US_HIDDEN);
 
-/* Let rescued units move after the rescuer dies */
+    /* Let rescued units move after the rescuer dies */
 #ifdef CONFIG_DEATH_DANCE
     if (UNIT_FACTION(target) == gPlaySt.faction && actor->curHP != 0)
         target->state |= US_UNSELECTABLE; // TODO: US_GRAYED    
@@ -1069,9 +1074,9 @@ void UnitDrop(struct Unit * actor, int xTarget, int yTarget)
 }
 
 LYN_REPLACE_CHECK(TradeMenu_InitItemDisplay);
-void TradeMenu_InitItemDisplay(struct TradeMenuProc * proc)
+void TradeMenu_InitItemDisplay(struct TradeMenuProc* proc)
 {
-    DrawUiFrame2(1,  8, 14, 12, 0);
+    DrawUiFrame2(1, 8, 14, 12, 0);
     DrawUiFrame2(15, 8, 14, 12, 0);
 
     ResetTextFont();
@@ -1093,13 +1098,13 @@ void TradeMenu_InitItemDisplay(struct TradeMenuProc * proc)
         noPortraitUnit_2 = true;
 
     if (!noPortraitUnit_1)
-        StartFace(0, GetUnitPortraitId(proc->units[0]), 64,  -4, 3);
+        StartFace(0, GetUnitPortraitId(proc->units[0]), 64, -4, 3);
     if (!noPortraitUnit_2)
         StartFace(1, GetUnitPortraitId(proc->units[1]), 176, -4, 2);
 
 #else
     // TODO: face display type (arg 5) constants
-    StartFace(0, GetUnitPortraitId(proc->units[0]), 64,  -4, 3);
+    StartFace(0, GetUnitPortraitId(proc->units[0]), 64, -4, 3);
     StartFace(1, GetUnitPortraitId(proc->units[1]), 176, -4, 2);
 #endif
 
@@ -1124,7 +1129,7 @@ void StoreNumberStringOrDashesToSmallBuffer(int n)
     else
     {
         StoreNumberStringToSmallBuffer(n);
-    }
+}
 #endif
 }
 
@@ -1158,15 +1163,17 @@ void UnitMapUiUpdate(struct PlayerInterfaceProc* proc, struct Unit* unit) {
             PutUnitMapUiStatus(proc->statusTm, unit);
 
             BG_EnableSyncByMask(BG0_SYNC_BIT);
-        } else {
+        }
+        else {
 #ifdef CONFIG_UNLOCK_ALLY_MHP_LIMIT
             StoreNumberStringOrDashesToSmallBuffer(GetUnitCurrentHp(unit));
 #else
             if (GetUnitCurrentHp(unit) >= 100) {
                 StoreNumberStringOrDashesToSmallBuffer(0xFF);
-            } else {
-                StoreNumberStringOrDashesToSmallBuffer(GetUnitCurrentHp(unit));
             }
+            else {
+                StoreNumberStringOrDashesToSmallBuffer(GetUnitCurrentHp(unit));
+        }
 #endif
 
             proc->hpCurHi = gNumberStr[6] - 0x30;
@@ -1177,9 +1184,10 @@ void UnitMapUiUpdate(struct PlayerInterfaceProc* proc, struct Unit* unit) {
 #else
             if (GetUnitMaxHp(unit) >= 100) {
                 StoreNumberStringOrDashesToSmallBuffer(0xFF);
-            } else {
-                StoreNumberStringOrDashesToSmallBuffer(GetUnitMaxHp(unit));
             }
+            else {
+                StoreNumberStringOrDashesToSmallBuffer(GetUnitMaxHp(unit));
+    }
 #endif
 
             proc->hpMaxHi = gNumberStr[6] - 0x30;
@@ -1188,7 +1196,7 @@ void UnitMapUiUpdate(struct PlayerInterfaceProc* proc, struct Unit* unit) {
             sub_808C360(proc, proc->statusTm, unit);
 
             BG_EnableSyncByMask(BG0_SYNC_BIT);
-        }
+}
     }
 
     if ((proc->hideContents == false) && ((frameCount & 64) == 0 || (unit->statusIndex == UNIT_STATUS_NONE))) {
@@ -1276,12 +1284,12 @@ const struct ClassData* GetClassData(int classId) {
 }
 
 LYN_REPLACE_CHECK(RefreshUnitStealInventoryInfoWindow);
-void RefreshUnitStealInventoryInfoWindow(struct Unit *unit)
+void RefreshUnitStealInventoryInfoWindow(struct Unit* unit)
 {
     int i;
     int itemCount;
     int xPos;
-    struct UnitInfoWindowProc *proc;
+    struct UnitInfoWindowProc* proc;
 
     itemCount = GetUnitItemCount(unit);
 
@@ -1317,13 +1325,14 @@ void RefreshUnitStealInventoryInfoWindow(struct Unit *unit)
         PutNumberOrBlank(gBG0TilemapBuffer + TILEMAP_INDEX(xPos + 11, yPos), stealable ? 2 : 1, GetItemUses(item));
 
 #ifdef CONFIG_FORGING
-		struct ForgeLimits limits = gForgeLimits[GetItemIndex(item)];
-        
+        struct ForgeLimits limits = gForgeLimits[GetItemIndex(item)];
+
         if (CanItemBeForged(item)) {
             PutSpecialChar(gBG0TilemapBuffer + TILEMAP_INDEX(xPos + 8, yPos), stealable ? TEXT_COLOR_SYSTEM_GOLD : TEXT_COLOR_SYSTEM_GRAY, TEXT_SPECIAL_PLUS);
             PutNumberOrBlank(gBG0TilemapBuffer + TILEMAP_INDEX(xPos + 9, yPos), stealable ? TEXT_COLOR_SYSTEM_GOLD : TEXT_COLOR_SYSTEM_GRAY, GetItemForgeCount(item));
             PutNumberOrBlank(gBG0TilemapBuffer + TILEMAP_INDEX(xPos + 11, yPos), stealable ? TEXT_COLOR_SYSTEM_BLUE : TEXT_COLOR_SYSTEM_GRAY, GetForgedItemDurability(item));
-        } else if (limits.maxCount == 0) {
+        }
+        else if (limits.maxCount == 0) {
             PutNumberOrBlank(gBG0TilemapBuffer + TILEMAP_INDEX(xPos + 11, yPos), stealable ? TEXT_COLOR_SYSTEM_BLUE : TEXT_COLOR_SYSTEM_GRAY, GetItemUses(item));
         }
 #endif
@@ -1336,7 +1345,7 @@ void RefreshUnitStealInventoryInfoWindow(struct Unit *unit)
 
 //! FE8U = 0x0809D300 (DisplayConvoyItemStrings?)
 LYN_REPLACE_CHECK(sub_809D300);
-void sub_809D300(struct Text * textBase, u16 * tm, int yLines, struct Unit * unit)
+void sub_809D300(struct Text* textBase, u16* tm, int yLines, struct Unit* unit)
 {
     int i;
 
@@ -1363,30 +1372,31 @@ void sub_809D300(struct Text * textBase, u16 * tm, int yLines, struct Unit * uni
             GetItemName(item)
         );
 
-        DrawIcon(tm + TILEMAP_INDEX(1, i*2 & 0x1f), GetItemIconId(item), 0x4000);
+        DrawIcon(tm + TILEMAP_INDEX(1, i * 2 & 0x1f), GetItemIconId(item), 0x4000);
 
-        PutText(th, tm + TILEMAP_INDEX(3, i*2 & 0x1f));
+        PutText(th, tm + TILEMAP_INDEX(3, i * 2 & 0x1f));
 
 #ifndef CONFIG_INFINITE_DURABILITY
-        PutNumberOrBlank(tm + TILEMAP_INDEX(12, i*2 & 0x1f), !unusable ? 2 : 1, GetItemUses(item));
+        PutNumberOrBlank(tm + TILEMAP_INDEX(12, i * 2 & 0x1f), !unusable ? 2 : 1, GetItemUses(item));
 #endif
 
 #ifdef CONFIG_FORGING
-		struct ForgeLimits limits = gForgeLimits[GetItemIndex(item)];
+        struct ForgeLimits limits = gForgeLimits[GetItemIndex(item)];
         if (CanItemBeForged(item)) {
             PutSpecialChar(tm + TILEMAP_INDEX(8, i * 2 & 0x1f),
-                            !unusable ? TEXT_COLOR_SYSTEM_GOLD
-                                    : TEXT_COLOR_SYSTEM_GRAY,
-                            TEXT_SPECIAL_PLUS);
+                !unusable ? TEXT_COLOR_SYSTEM_GOLD
+                : TEXT_COLOR_SYSTEM_GRAY,
+                TEXT_SPECIAL_PLUS);
             PutNumberOrBlank(tm + TILEMAP_INDEX(9, i * 2 & 0x1f),
-                            !unusable ? TEXT_COLOR_SYSTEM_GOLD
-                                        : TEXT_COLOR_SYSTEM_GRAY,
-                            GetItemForgeCount(item));
+                !unusable ? TEXT_COLOR_SYSTEM_GOLD
+                : TEXT_COLOR_SYSTEM_GRAY,
+                GetItemForgeCount(item));
             PutNumberOrBlank(tm + TILEMAP_INDEX(12, i * 2 & 0x1f), !unusable ? 2 : 1,
-                            GetForgedItemDurability(item));
-        } else if (limits.maxCount == 0) {
+                GetForgedItemDurability(item));
+        }
+        else if (limits.maxCount == 0) {
             PutNumberOrBlank(tm + TILEMAP_INDEX(12, i * 2 & 0x1f), !unusable ? 2 : 1,
-                            GetItemUses(item));
+                GetItemUses(item));
         }
 #endif
     }
@@ -1396,7 +1406,7 @@ void sub_809D300(struct Text * textBase, u16 * tm, int yLines, struct Unit * uni
 
 //! FE8U = 0x0809D47C
 LYN_REPLACE_CHECK(sub_809D47C);
-void sub_809D47C(struct Text * textBase, u16 * tm, int yLines, struct Unit * unit)
+void sub_809D47C(struct Text* textBase, u16* tm, int yLines, struct Unit* unit)
 {
     if (gUnknown_02012F56 > yLines) {
         int y = (yLines * 2) & 0x1f;
@@ -1413,23 +1423,24 @@ void sub_809D47C(struct Text * textBase, u16 * tm, int yLines, struct Unit * uni
         PutText(th, tm + offset + 3);
 
 #ifndef CONFIG_INFINITE_DURABILITY
-        PutNumberOrBlank(tm + offset + 12, !unusable ? TEXT_COLOR_SYSTEM_BLUE : TEXT_COLOR_SYSTEM_GRAY,  GetItemUses(item));
+        PutNumberOrBlank(tm + offset + 12, !unusable ? TEXT_COLOR_SYSTEM_BLUE : TEXT_COLOR_SYSTEM_GRAY, GetItemUses(item));
 #endif
 
 #ifdef CONFIG_FORGING
-		struct ForgeLimits limits = gForgeLimits[GetItemIndex(item)];
+        struct ForgeLimits limits = gForgeLimits[GetItemIndex(item)];
         if (CanItemBeForged(item)) {
             PutSpecialChar(tm + offset + 8,
-                            !unusable ? TEXT_COLOR_SYSTEM_GOLD
-                                    : TEXT_COLOR_SYSTEM_GRAY,
-                            TEXT_SPECIAL_PLUS);
+                !unusable ? TEXT_COLOR_SYSTEM_GOLD
+                : TEXT_COLOR_SYSTEM_GRAY,
+                TEXT_SPECIAL_PLUS);
             PutNumberOrBlank(tm + offset + 9,
-                            !unusable ? TEXT_COLOR_SYSTEM_GOLD
-                                        : TEXT_COLOR_SYSTEM_GRAY,
-                            GetItemForgeCount(item));
+                !unusable ? TEXT_COLOR_SYSTEM_GOLD
+                : TEXT_COLOR_SYSTEM_GRAY,
+                GetItemForgeCount(item));
             PutNumberOrBlank(tm + offset + 12, !unusable ? TEXT_COLOR_SYSTEM_BLUE : TEXT_COLOR_SYSTEM_GRAY,
-                            GetForgedItemDurability(item));
-        } else if (limits.maxCount == 0) {
+                GetForgedItemDurability(item));
+        }
+        else if (limits.maxCount == 0) {
             PutNumberOrBlank(tm + offset + 12, !unusable ? TEXT_COLOR_SYSTEM_BLUE : TEXT_COLOR_SYSTEM_GRAY, GetItemUses(item));
         }
 #endif
@@ -1438,7 +1449,7 @@ void sub_809D47C(struct Text * textBase, u16 * tm, int yLines, struct Unit * uni
 
 //! FE8U = 0x08099F7C
 LYN_REPLACE_CHECK(sub_8099F7C);
-void sub_8099F7C(struct Text* th, u16 * tm, struct Unit* unit, u16 flags) {
+void sub_8099F7C(struct Text* th, u16* tm, struct Unit* unit, u16 flags) {
     int itemCount;
     int i;
 
@@ -1476,22 +1487,23 @@ void sub_8099F7C(struct Text* th, u16 * tm, struct Unit* unit, u16 flags) {
         struct ForgeLimits limits = gForgeLimits[GetItemIndex(item)];
         if (CanItemBeForged(item)) {
             PutSpecialChar(tm + 8 + i * 0x40,
-                            !isUnusable ? TEXT_COLOR_SYSTEM_GOLD
-                                        : TEXT_COLOR_SYSTEM_GRAY,
-                            TEXT_SPECIAL_PLUS);
+                !isUnusable ? TEXT_COLOR_SYSTEM_GOLD
+                : TEXT_COLOR_SYSTEM_GRAY,
+                TEXT_SPECIAL_PLUS);
             PutNumberOrBlank(tm + 9 + i * 0x40,
-                            !isUnusable ? TEXT_COLOR_SYSTEM_GOLD
-                                        : TEXT_COLOR_SYSTEM_GRAY,
-                            GetItemForgeCount(item));
+                !isUnusable ? TEXT_COLOR_SYSTEM_GOLD
+                : TEXT_COLOR_SYSTEM_GRAY,
+                GetItemForgeCount(item));
             PutNumberOrBlank(tm + 11 + i * 0x40,
-                            !isUnusable ? TEXT_COLOR_SYSTEM_BLUE
-                                        : TEXT_COLOR_SYSTEM_GRAY,
-                            GetForgedItemDurability(item));
-        } else if (limits.maxCount == 0) {
+                !isUnusable ? TEXT_COLOR_SYSTEM_BLUE
+                : TEXT_COLOR_SYSTEM_GRAY,
+                GetForgedItemDurability(item));
+        }
+        else if (limits.maxCount == 0) {
             PutNumberOrBlank(tm + 11 + i * 0x40,
-                            !isUnusable ? TEXT_COLOR_SYSTEM_BLUE
-                                        : TEXT_COLOR_SYSTEM_GRAY,
-                            GetItemUses(item));
+                !isUnusable ? TEXT_COLOR_SYSTEM_BLUE
+                : TEXT_COLOR_SYSTEM_GRAY,
+                GetItemUses(item));
         }
 #endif
 
@@ -1505,7 +1517,7 @@ void sub_8099F7C(struct Text* th, u16 * tm, struct Unit* unit, u16 flags) {
 
 //! FE8U = 0x0809B74C
 LYN_REPLACE_CHECK(DrawPrepScreenItems);
-void DrawPrepScreenItems(u16 * tm, struct Text* th, struct Unit* unit, u8 checkPrepUsability) {
+void DrawPrepScreenItems(u16* tm, struct Text* th, struct Unit* unit, u8 checkPrepUsability) {
     s8 isUsable;
     int i;
     int itemCount;
@@ -1519,7 +1531,8 @@ void DrawPrepScreenItems(u16 * tm, struct Text* th, struct Unit* unit, u8 checkP
 
         if (checkPrepUsability != 0) {
             isUsable = CanUnitUseItemPrepScreen(unit, item);
-        } else {
+        }
+        else {
             isUsable = IsItemDisplayUsable(unit, item);
         }
 
@@ -1538,24 +1551,25 @@ void DrawPrepScreenItems(u16 * tm, struct Text* th, struct Unit* unit, u8 checkP
 #endif
 
 #ifdef CONFIG_FORGING
-		struct ForgeLimits limits = gForgeLimits[GetItemIndex(item)];
+        struct ForgeLimits limits = gForgeLimits[GetItemIndex(item)];
         if (CanItemBeForged(item)) {
             PutSpecialChar(tm + i * 0x40 + 8,
-                            isUsable ? TEXT_COLOR_SYSTEM_GOLD : TEXT_COLOR_SYSTEM_GRAY,
-                            TEXT_SPECIAL_PLUS);
+                isUsable ? TEXT_COLOR_SYSTEM_GOLD : TEXT_COLOR_SYSTEM_GRAY,
+                TEXT_SPECIAL_PLUS);
             PutNumberOrBlank(tm + i * 0x40 + 9,
-                            isUsable ? TEXT_COLOR_SYSTEM_GOLD
-                                        : TEXT_COLOR_SYSTEM_GRAY,
-                            GetItemForgeCount(item));
+                isUsable ? TEXT_COLOR_SYSTEM_GOLD
+                : TEXT_COLOR_SYSTEM_GRAY,
+                GetItemForgeCount(item));
             PutNumberOrBlank(tm + i * 0x40 + 0xB,
-                            isUsable ? TEXT_COLOR_SYSTEM_BLUE
-                                        : TEXT_COLOR_SYSTEM_GRAY,
-                            GetForgedItemDurability(item));
-            } else if (limits.maxCount == 0) {
+                isUsable ? TEXT_COLOR_SYSTEM_BLUE
+                : TEXT_COLOR_SYSTEM_GRAY,
+                GetForgedItemDurability(item));
+        }
+        else if (limits.maxCount == 0) {
             PutNumberOrBlank(tm + i * 0x40 + 0xB,
-                            isUsable ? TEXT_COLOR_SYSTEM_BLUE
-                                        : TEXT_COLOR_SYSTEM_GRAY,
-                            GetItemUses(item));
+                isUsable ? TEXT_COLOR_SYSTEM_BLUE
+                : TEXT_COLOR_SYSTEM_GRAY,
+                GetItemUses(item));
         }
 #endif
 
@@ -1586,7 +1600,7 @@ void ProcessMenuDpadInput(struct MenuProc* proc)
 
         proc->itemCurrent--;
 
-// Reset the last item forge count if we move to another item
+        // Reset the last item forge count if we move to another item
 #ifdef CONFIG_FORGING
         if (gActionData.unk08 == 10000) // Arbitrary value we set to indicate the forge menu is active
         {
@@ -1594,11 +1608,11 @@ void ProcessMenuDpadInput(struct MenuProc* proc)
             gEventSlots[EVT_SLOT_7] = GetItemForgeCost(gActiveUnit->items[proc->itemCurrent]);
             SetItemForgeCount(item, gEventSlots[EVT_SLOT_8]);
             // Set the initial count of the latest item
-            gEventSlots[EVT_SLOT_8] = GetItemForgeCount(gActiveUnit->items[proc->itemCurrent]); 
+            gEventSlots[EVT_SLOT_8] = GetItemForgeCount(gActiveUnit->items[proc->itemCurrent]);
         }
 #endif
 
-/* A little something to change the monster image displayed as the user scrolls the summon select screen */
+        /* A little something to change the monster image displayed as the user scrolls the summon select screen */
 #if defined(SID_SummonPlus) && (COMMON_SKILL_VALID(SID_SummonPlus))
         if (gActionData.unk08 == SID_SummonPlus)
         {
@@ -1624,7 +1638,7 @@ void ProcessMenuDpadInput(struct MenuProc* proc)
 
         proc->itemCurrent++;
 
-// Reset the last item forge count if we move to another item
+        // Reset the last item forge count if we move to another item
 #ifdef CONFIG_FORGING
         if (gActionData.unk08 == 10000) // Arbitrary value we set to indicate the forge menu is active
         {
@@ -1632,11 +1646,11 @@ void ProcessMenuDpadInput(struct MenuProc* proc)
             gEventSlots[EVT_SLOT_7] = GetItemForgeCost(gActiveUnit->items[proc->itemCurrent]);
             SetItemForgeCount(item, gEventSlots[EVT_SLOT_8]);
             // Set the initial count of the latest item
-            gEventSlots[EVT_SLOT_8] = GetItemForgeCount(gActiveUnit->items[proc->itemCurrent]); 
+            gEventSlots[EVT_SLOT_8] = GetItemForgeCount(gActiveUnit->items[proc->itemCurrent]);
         }
 #endif
 
-/* A little something to change the monster image displayed as the user scrolls the summon select screen */
+        /* A little something to change the monster image displayed as the user scrolls the summon select screen */
 #if defined(SID_SummonPlus) && (COMMON_SKILL_VALID(SID_SummonPlus))
         if (gActionData.unk08 == SID_SummonPlus)
         {
@@ -1712,7 +1726,7 @@ void ProcessMenuDpadInput(struct MenuProc* proc)
 
                         if (GetItemForgeCount(gActiveUnit->items[proc->itemCurrent]) == limits.maxCount - 1)
                             MakeForgedItemUnbreakable(item, true);
-                        
+
                         // Refresh the menu display
                         if (proc->menuItems[proc->itemCurrent]->def->onSwitchIn)
                             proc->menuItems[proc->itemCurrent]->def->onSwitchIn(proc, proc->menuItems[proc->itemCurrent]);
@@ -1743,8 +1757,8 @@ void ProcessMenuDpadInput(struct MenuProc* proc)
     }
 }
 
-/* 
-** This seems to cause a crash when selecting R text on the action menu 
+/*
+** This seems to cause a crash when selecting R text on the action menu
 ** so commenting it out for now and moving the additional custom stuff to UnitActionMenu_CancelRe
 */
 // LYN_REPLACE_CHECK(MenuCancelSelect);
@@ -2180,58 +2194,58 @@ void SwitchPhases(void)
 {
     switch (gPlaySt.faction)
     {
-        case FACTION_BLUE:
+    case FACTION_BLUE:
 
-            /**
-             * There's probably a more efficient way to do this,
-             * but this is all I've found to work right now.
-             * I change back the unit faction for a 'turncoat' unit
-             * if they haven't moved after switching factions initially.
-             */
-            for (int uid = gPlaySt.faction; uid <= (gPlaySt.faction + GetFactionUnitAmount(gPlaySt.faction)); uid++)
-            {
-                FORCE_DECLARE struct Unit * unit = GetUnit(uid);
+        /**
+         * There's probably a more efficient way to do this,
+         * but this is all I've found to work right now.
+         * I change back the unit faction for a 'turncoat' unit
+         * if they haven't moved after switching factions initially.
+         */
+        for (int uid = gPlaySt.faction; uid <= (gPlaySt.faction + GetFactionUnitAmount(gPlaySt.faction)); uid++)
+        {
+            FORCE_DECLARE struct Unit* unit = GetUnit(uid);
 
-                // if (CheckBitUES(unit, UES_BIT_CHANGED_FACTIONS))
-                //     UnitChangeFaction(unit, FACTION_RED);
-                
-            }
-            gPlaySt.faction = FACTION_RED;
+            // if (CheckBitUES(unit, UES_BIT_CHANGED_FACTIONS))
+            //     UnitChangeFaction(unit, FACTION_RED);
 
-            break;
+        }
+        gPlaySt.faction = FACTION_RED;
 
-        case FACTION_RED:
-            gPlaySt.faction = FACTION_GREEN;
+        break;
 
-            for (int uid = gPlaySt.faction + 1; uid <= (gPlaySt.faction + GetFactionUnitAmount(gPlaySt.faction)); uid++)
-            {
-               // struct Unit * unit = GetUnit(uid);
+    case FACTION_RED:
+        gPlaySt.faction = FACTION_GREEN;
 
-                // if (CheckBitUES(unit, UES_BIT_CHANGED_FACTIONS))
-                //     UnitChangeFaction(unit, FACTION_BLUE);
-            }
-            break;
+        for (int uid = gPlaySt.faction + 1; uid <= (gPlaySt.faction + GetFactionUnitAmount(gPlaySt.faction)); uid++)
+        {
+            // struct Unit * unit = GetUnit(uid);
 
-        case FACTION_GREEN:
-            gPlaySt.faction = FACTION_BLUE;
+             // if (CheckBitUES(unit, UES_BIT_CHANGED_FACTIONS))
+             //     UnitChangeFaction(unit, FACTION_BLUE);
+        }
+        break;
 
-            for (int uid = gPlaySt.faction + 1; uid <= (gPlaySt.faction + GetFactionUnitAmount(gPlaySt.faction)); uid++)
-            {
-                // struct Unit * unit = GetUnit(uid);
+    case FACTION_GREEN:
+        gPlaySt.faction = FACTION_BLUE;
 
-                // if (CheckBitUES(unit, UES_BIT_CHANGED_FACTIONS))
-                //     UnitChangeFaction(unit, FACTION_RED);
-            }
+        for (int uid = gPlaySt.faction + 1; uid <= (gPlaySt.faction + GetFactionUnitAmount(gPlaySt.faction)); uid++)
+        {
+            // struct Unit * unit = GetUnit(uid);
 
-            if (gPlaySt.chapterTurnNumber < 999)
-                gPlaySt.chapterTurnNumber++;
+            // if (CheckBitUES(unit, UES_BIT_CHANGED_FACTIONS))
+            //     UnitChangeFaction(unit, FACTION_RED);
+        }
 
-            // if (gPlaySt.chapterTurnNumber % 2 == 0)
-            //     PlayStExpa_SetBit(PLAYSTEXPA_BIT_AbsorbAlternation_InForce);
-            // else
-            //     PlayStExpa_ClearBit(PLAYSTEXPA_BIT_AbsorbAlternation_InForce);
+        if (gPlaySt.chapterTurnNumber < 999)
+            gPlaySt.chapterTurnNumber++;
 
-            ProcessTurnSupportExp();
+        // if (gPlaySt.chapterTurnNumber % 2 == 0)
+        //     PlayStExpa_SetBit(PLAYSTEXPA_BIT_AbsorbAlternation_InForce);
+        // else
+        //     PlayStExpa_ClearBit(PLAYSTEXPA_BIT_AbsorbAlternation_InForce);
+
+        ProcessTurnSupportExp();
     }
 }
 
@@ -2282,25 +2296,27 @@ void RefreshUnitsOnBmMap(void) {
             gBmMapUnit[unit->yPos][unit->xPos] = i;
 
             if (unit->state & US_BIT9)
-                unit->state = (unit->state &~ US_BIT9) | US_BIT8;
+                unit->state = (unit->state & ~US_BIT9) | US_BIT8;
 #else
             if (gPlaySt.chapterVisionRange && !gBmMapFog[unit->yPos][unit->xPos]) {
                 // If in fog, set unit bit on the hidden map, and set the "hidden in fog" state
 
                 gBmMapHidden[unit->yPos][unit->xPos] |= HIDDEN_BIT_UNIT;
                 unit->state = unit->state | US_BIT9;
-            } else {
+            }
+            else {
                 // If not in fog, put unit on the map, and update state accordingly
 
                 gBmMapUnit[unit->yPos][unit->xPos] = i;
 
                 if (unit->state & US_BIT9)
-                    unit->state = (unit->state &~ US_BIT9) | US_BIT8;
-            }
+                    unit->state = (unit->state & ~US_BIT9) | US_BIT8;
+        }
 #endif
 
-        }
-    } else {
+    }
+}
+    else {
         // 2.2. Yes red phase
 
         // This does mostly the same as the "No red phase" loop, except:
@@ -2326,7 +2342,7 @@ void RefreshUnitsOnBmMap(void) {
                 if (!gBmMapFog[unit->yPos][unit->xPos])
                     unit->state = unit->state | US_BIT9;
                 else
-                    unit->state = unit->state &~ US_BIT9;
+                    unit->state = unit->state & ~US_BIT9;
             }
 
             // Put on unit map
@@ -2366,7 +2382,7 @@ void TryAddUnitToTradeTargetList(struct Unit* unit) {
             return;
         }
 
-        if (gSubjectUnit->items[0] == 0 && rescue->items[0] == 0 ) {
+        if (gSubjectUnit->items[0] == 0 && rescue->items[0] == 0) {
             return;
         }
 
@@ -2426,7 +2442,7 @@ u8 ItemSubMenu_IsTradeAvailable(const struct MenuItemDef* def, int number) {
 }
 
 
-/* 
+/*
 ** I've need to combine IsCharacterForceDeployed_ into IsCharcterForceDeployed as either
 ** the support menu or or the chapter prep menu would crash if I hooked the former or not
 */
@@ -2455,7 +2471,7 @@ s8 IsCharacterForceDeployed(int char_id)
     };
 #endif
 
-    const struct ForceDeploymentEnt * it;
+    const struct ForceDeploymentEnt* it;
 
     for (it = gForceDeploymentList; it->pid != (u16)-1; it++)
     {
@@ -2497,43 +2513,43 @@ s8 ActionSteal(ProcPtr proc) {
 #endif
 
     switch (ITEM_INDEX(item)) {
-        case ITEM_1G:
-        case ITEM_5G:
-        case ITEM_10G:
-        case ITEM_50G:
-        case ITEM_100G:
-        case ITEM_150G:
-        case ITEM_200G:
-        case ITEM_3000G:
-        case ITEM_5000G:
-            SetPartyGoldAmount(GetPartyGoldAmount() + GetItemCost(item));
-            break;
+    case ITEM_1G:
+    case ITEM_5G:
+    case ITEM_10G:
+    case ITEM_50G:
+    case ITEM_100G:
+    case ITEM_150G:
+    case ITEM_200G:
+    case ITEM_3000G:
+    case ITEM_5000G:
+        SetPartyGoldAmount(GetPartyGoldAmount() + GetItemCost(item));
+        break;
 
-        default:
+    default:
 #if defined(SID_Duplicate) && (COMMON_SKILL_VALID(SID_Duplicate))
-            if (gActionData.unk08 == SID_Duplicate)
-            {
-                // Assuming 'item' is your initial u16 value
-                u16 originalItem = item; // Keep original item if needed
+        if (gActionData.unk08 == SID_Duplicate)
+        {
+            // Assuming 'item' is your initial u16 value
+            u16 originalItem = item; // Keep original item if needed
 
-                // Extract the Item ID
-                u8 itemId = ITEM_INDEX(originalItem);
+            // Extract the Item ID
+            u8 itemId = ITEM_INDEX(originalItem);
 
-                // Set the desired uses to 1 (which is 1 << 8 when shifted)
-                // Combine Item ID and new uses
-                u16 newItemWithUses = itemId | (1 << 8);
+            // Set the desired uses to 1 (which is 1 << 8 when shifted)
+            // Combine Item ID and new uses
+            u16 newItemWithUses = itemId | (1 << 8);
 
-                // Add the item with the updated uses to the unit's inventory
-                UnitAddItem(GetUnit(gActionData.subjectIndex), newItemWithUses);
-            }
-            else
-            {
-                UnitAddItem(GetUnit(gActionData.subjectIndex), item);
-            }
-#else
+            // Add the item with the updated uses to the unit's inventory
+            UnitAddItem(GetUnit(gActionData.subjectIndex), newItemWithUses);
+        }
+        else
+        {
             UnitAddItem(GetUnit(gActionData.subjectIndex), item);
+        }
+#else
+        UnitAddItem(GetUnit(gActionData.subjectIndex), item);
 #endif
-            break;
+        break;
     }
 
     BattleInitItemEffect(GetUnit(gActionData.subjectIndex), -1);
@@ -2549,7 +2565,7 @@ s8 ActionSteal(ProcPtr proc) {
 }
 
 LYN_REPLACE_CHECK(PutSubtitleHelpText);
-void PutSubtitleHelpText(struct SubtitleHelpProc * proc, int y)
+void PutSubtitleHelpText(struct SubtitleHelpProc* proc, int y)
 {
     static u16 lut[] = {
         0x00,
@@ -2562,7 +2578,7 @@ void PutSubtitleHelpText(struct SubtitleHelpProc * proc, int y)
     for (i = 0; i < 9; i++) {
         int x = (i * 32) - 32 + proc->textOffset;
         int index = k_umod((proc->textNum + i), proc->textCount);
-    /* JESTER - Ensure the subtitle text doesn't overlap with extended item descriptions */
+        /* JESTER - Ensure the subtitle text doesn't overlap with extended item descriptions */
 #ifdef CONFIG_VESLY_EXTENDED_ITEM_DESCRIPTIONS
         PutSprite(2, x, y, gObject_32x16, 0x4300 + lut[index]);
 #else
@@ -2573,9 +2589,9 @@ void PutSubtitleHelpText(struct SubtitleHelpProc * proc, int y)
 }
 
 LYN_REPLACE_CHECK(InitSubtitleHelpText);
-void InitSubtitleHelpText(struct SubtitleHelpProc * proc)
+void InitSubtitleHelpText(struct SubtitleHelpProc* proc)
 {
-    const char * iter;
+    const char* iter;
     int line;
     u32 width;
 
@@ -2622,6 +2638,151 @@ void InitSubtitleHelpText(struct SubtitleHelpProc * proc)
     }
 
     SetTextFont(0);
+
+    return;
+}
+
+
+void TryAddUnitToAdjacentSameFactionTargetList(struct Unit* unit) {
+
+    if (UNIT_FACTION(gSubjectUnit) != UNIT_FACTION(unit))
+    {
+        return;
+    }
+
+    if (unit->state & US_RESCUED) {
+        return;
+    }
+
+    AddTarget(unit->xPos, unit->yPos, unit->index, 0);
+
+    return;
+}
+
+void MakeTargetListForAdjacentSameFaction(struct Unit* unit) {
+    int x = unit->xPos;
+    int y = unit->yPos;
+
+    gSubjectUnit = unit;
+
+    BmMapFill(gBmMapRange, 0);
+
+    ForEachAdjacentUnit(x, y, TryAddUnitToAdjacentSameFactionTargetList);
+
+    return;
+}
+
+void TryAddUnitToAdjacentEnemyTargetList(struct Unit* unit) {
+
+    if (AreUnitsAllied(gSubjectUnit->index, unit->index)) {
+        return;
+    }
+
+    if (unit->state & US_RESCUED) {
+        return;
+    }
+
+    AddTarget(unit->xPos, unit->yPos, unit->index, 0);
+
+    return;
+}
+
+void MakeTargetListForAdjacentEnemies(struct Unit* unit) {
+    int x = unit->xPos;
+    int y = unit->yPos;
+
+    gSubjectUnit = unit;
+
+    BmMapFill(gBmMapRange, 0);
+
+    ForEachAdjacentUnit(x, y, TryAddUnitToAdjacentEnemyTargetList);
+
+    return;
+}
+
+void TryAddUnitToAdjacentEnemyNonBossTargetList(struct Unit* unit) {
+
+    if (AreUnitsAllied(gSubjectUnit->index, unit->index)) {
+        return;
+    }
+
+    if (UNIT_CATTRIBUTES(unit) & CA_BOSS) {
+        return;
+    }
+
+    if (unit->state & US_RESCUED) {
+        return;
+    }
+
+    AddTarget(unit->xPos, unit->yPos, unit->index, 0);
+
+    return;
+}
+
+void MakeTargetListForAdjacentNonBossEnemies(struct Unit* unit) {
+    int x = unit->xPos;
+    int y = unit->yPos;
+
+    gSubjectUnit = unit;
+
+    BmMapFill(gBmMapRange, 0);
+
+    ForEachAdjacentUnit(x, y, TryAddUnitToAdjacentEnemyNonBossTargetList);
+
+    return;
+}
+
+void TryAddUnitToAdjacentUnitsTargetList(struct Unit* unit) {
+    if (unit->state & US_RESCUED) {
+        return;
+    }
+
+    AddTarget(unit->xPos, unit->yPos, unit->index, 0);
+
+    return;
+}
+
+void MakeTargetListForAdjacentUnits(struct Unit* unit) {
+    int x = unit->xPos;
+    int y = unit->yPos;
+
+    gSubjectUnit = unit;
+
+    BmMapFill(gBmMapRange, 0);
+
+    ForEachAdjacentUnit(x, y, TryAddUnitToAdjacentUnitsTargetList);
+
+    return;
+}
+
+void TryAddUnitToRangedStatusStavesTargetList(struct Unit* unit) {
+
+    if (AreUnitsAllied(gSubjectUnit->index, unit->index)) {
+        return;
+    }
+
+    if (unit->state & US_RESCUED) {
+        return;
+    }
+
+    AddTarget(unit->xPos, unit->yPos, unit->index, 0);
+
+    return;
+}
+
+void MakeTargetListForRangedStatusStaves(struct Unit* unit) {
+    int x = unit->xPos;
+    int y = unit->yPos;
+
+    gSubjectUnit = unit;
+
+    InitTargets(x, y);
+
+    BmMapFill(gBmMapRange, 0);
+
+    MapAddInRange(x, y, GetUnitMagBy2Range(gSubjectUnit), 1);
+
+    ForEachUnitInRange(TryAddUnitToRangedStatusStavesTargetList);
 
     return;
 }

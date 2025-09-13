@@ -4,8 +4,9 @@
 #include "combat-art.h"
 #include "class-types.h"
 #include "constants/skills.h"
+#include "debuff.h"
 
-STATIC_DECLAR bool CheckBeastNullEffective(struct Unit *unit)
+STATIC_DECLAR bool CheckBeastNullEffective(struct Unit* unit)
 {
 	/* Check skill */
 #if (defined(SID_BeastShield) && (COMMON_SKILL_VALID(SID_BeastShield)))
@@ -16,7 +17,7 @@ STATIC_DECLAR bool CheckBeastNullEffective(struct Unit *unit)
 	return false;
 }
 
-STATIC_DECLAR bool CheckFlierNullEffective(struct Unit *unit)
+STATIC_DECLAR bool CheckFlierNullEffective(struct Unit* unit)
 {
 	int i;
 
@@ -34,7 +35,7 @@ STATIC_DECLAR bool CheckFlierNullEffective(struct Unit *unit)
 	return false;
 }
 
-STATIC_DECLAR bool CheckUnitNullEffective(struct Unit *unit)
+STATIC_DECLAR bool CheckUnitNullEffective(struct Unit* unit)
 {
 #if (defined(SID_Nullify) && (COMMON_SKILL_VALID(SID_Nullify)))
 	/* Check unit */
@@ -46,10 +47,10 @@ STATIC_DECLAR bool CheckUnitNullEffective(struct Unit *unit)
 }
 
 LYN_REPLACE_CHECK(IsItemEffectiveAgainst);
-bool IsItemEffectiveAgainst(u16 item, struct Unit *unit)
+bool IsItemEffectiveAgainst(u16 item, struct Unit* unit)
 {
 	int i, jid;
-	const u8 *list;
+	const u8* list;
 
 	if (!unit->pClassData)
 		return false;
@@ -73,7 +74,7 @@ check_null_effective:
 	return true;
 }
 
-STATIC_DECLAR bool IsBattleUnitEffectiveAgainst(struct BattleUnit *actor, struct BattleUnit *target)
+STATIC_DECLAR bool IsBattleUnitEffectiveAgainst(struct BattleUnit* actor, struct BattleUnit* target)
 {
 	int jid_target = UNIT_CLASS_ID(&target->unit);
 
@@ -134,12 +135,38 @@ STATIC_DECLAR bool IsBattleUnitEffectiveAgainst(struct BattleUnit *actor, struct
 }
 
 LYN_REPLACE_CHECK(IsUnitEffectiveAgainst);
-bool IsUnitEffectiveAgainst(struct Unit *actor, struct Unit *target)
+bool IsUnitEffectiveAgainst(struct Unit* actor, struct Unit* target)
 {
 	FORCE_DECLARE int jid_target = UNIT_CLASS_ID(target);
 
+	switch (GetUnitStatusIndex(actor)) {
+	case NEW_UNIT_STATUS_CAVALRY_EFFECTIVE:
+		if (CheckClassCavalry(jid_target))
+			return true;
+		
+		break;
+	case NEW_UNIT_STATUS_ARMOR_EFFECTIVE:
+		if (CheckClassArmor(jid_target))
+			return true;
+
+		break;
+	case NEW_UNIT_STATUS_FLIER_EFFECTIVE:
+		if (CheckClassFlier(jid_target))
+			return true;
+
+		break;
+	case NEW_UNIT_STATUS_INFANTRY_EFFECTIVE:
+		if (CheckClassInfantry(jid_target))
+			return true;
+
+		break;
+
+	default:
+		break;
+	}
+
 	if (IS_BATTLE_UNIT(actor) && IS_BATTLE_UNIT(target)) {
-		if (IsBattleUnitEffectiveAgainst((struct BattleUnit *)actor, (struct BattleUnit *)target))
+		if (IsBattleUnitEffectiveAgainst((struct BattleUnit*)actor, (struct BattleUnit*)target))
 			goto check_null_effective;
 	}
 
@@ -169,7 +196,7 @@ check_null_effective:
 
 int CalcWeaponEffectivenessScale(int weapon)
 {
-	const struct WeaponEffectivenessEnt *it;
+	const struct WeaponEffectivenessEnt* it;
 	int iid = ITEM_INDEX(weapon);
 
 	for (it = gpWeaponEffectivenessConfigs; it->iid != ITEM_NONE; it++) {

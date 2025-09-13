@@ -76,6 +76,7 @@
 // SID_Fogger
 // SID_Duplicate
 // SID_Reroll
+// SID_SpellBlade
 
 //////// PRE-BATTLE SKILLS
 // SID_DefiantStr

@@ -3,7 +3,7 @@
 #include "constants/skills.h"
 #include "constants/texts.h"
 
-struct MenuItemDef const *const gSkillMenuInfos[MAX_SKILL_NUM + 1] = {
+struct MenuItemDef const* const gSkillMenuInfos[MAX_SKILL_NUM + 1] = {
 #if (defined(SID_Dance) && COMMON_SKILL_VALID(SID_Dance))
 	[SID_Dance] = &(const struct MenuItemDef) {
 		.name = "　踊る",
@@ -397,47 +397,62 @@ struct MenuItemDef const *const gSkillMenuInfos[MAX_SKILL_NUM + 1] = {
 #endif
 
 #if (defined(SID_StealPlus) && COMMON_SKILL_VALID(SID_StealPlus))
-    [SID_StealPlus] = &(const struct MenuItemDef) {
-        .name = "　",
-        .nameMsgId = MSG_SKILL_StealPlus_NAME,
-        .helpMsgId = MSG_SKILL_StealPlus_DESC,
-        .color = TEXT_COLOR_SYSTEM_GOLD,
-        .isAvailable = StealPlus_Usability,
-        .onDraw = NULL,
-        .onSelected = StealPlus_Effect,
-        .onIdle = 0,
-        .onSwitchIn = 0,
-        .onSwitchOut = 0
-    },
+	[SID_StealPlus] = &(const struct MenuItemDef) {
+		.name = "　",
+		.nameMsgId = MSG_SKILL_StealPlus_NAME,
+		.helpMsgId = MSG_SKILL_StealPlus_DESC,
+		.color = TEXT_COLOR_SYSTEM_GOLD,
+		.isAvailable = StealPlus_Usability,
+		.onDraw = NULL,
+		.onSelected = StealPlus_Effect,
+		.onIdle = NULL,
+		.onSwitchIn = NULL,
+		.onSwitchOut = NULL
+	},
 #endif
 
 #if (defined(SID_Duplicate) && COMMON_SKILL_VALID(SID_Duplicate))
-    [SID_Duplicate] = &(const struct MenuItemDef) {
-        .name = "　",
-        .nameMsgId = MSG_SKILL_Duplicate_NAME,
-        .helpMsgId = MSG_SKILL_Duplicate_DESC,
-        .color = TEXT_COLOR_SYSTEM_GOLD,
-        .isAvailable = Duplicate_Usability,
-        .onDraw = NULL,
-        .onSelected = Duplicate_OnSelected,
-        .onIdle = 0,
-        .onSwitchIn = 0,
-        .onSwitchOut = 0
-    },
+	[SID_Duplicate] = &(const struct MenuItemDef) {
+		.name = "　",
+		.nameMsgId = MSG_SKILL_Duplicate_NAME,
+		.helpMsgId = MSG_SKILL_Duplicate_DESC,
+		.color = TEXT_COLOR_SYSTEM_GOLD,
+		.isAvailable = Duplicate_Usability,
+		.onDraw = NULL,
+		.onSelected = Duplicate_OnSelected,
+		.onIdle = NULL,
+		.onSwitchIn = NULL,
+		.onSwitchOut = NULL
+	},
 #endif
 
 #if (defined(SID_Reroll) && COMMON_SKILL_VALID(SID_Reroll))
-    [SID_Reroll] = &(const struct MenuItemDef) {
-        .name = "　",
-        .nameMsgId = MSG_SKILL_Reroll_NAME,
-        .helpMsgId = MSG_SKILL_Reroll_DESC,
-        .color = TEXT_COLOR_SYSTEM_GOLD,
-        .isAvailable = Reroll_Usability,
-        .onDraw = NULL,
-        .onSelected = Reroll_OnSelected,
-        .onIdle = 0,
-        .onSwitchIn = 0,
-        .onSwitchOut = 0
-    },
+	[SID_Reroll] = &(const struct MenuItemDef) {
+		.name = "　",
+		.nameMsgId = MSG_SKILL_Reroll_NAME,
+		.helpMsgId = MSG_SKILL_Reroll_DESC,
+		.color = TEXT_COLOR_SYSTEM_GOLD,
+		.isAvailable = Reroll_Usability,
+		.onDraw = NULL,
+		.onSelected = Reroll_OnSelected,
+		.onIdle = NULL,
+		.onSwitchIn = NULL,
+		.onSwitchOut = NULL
+	},
+#endif
+
+#if (defined(SID_SpellBlade) && COMMON_SKILL_VALID(SID_SpellBlade))
+	[SID_SpellBlade] = &(const struct MenuItemDef) {
+		.name = "　",
+		.nameMsgId = MSG_SKILL_SpellBlade_NAME,
+		.helpMsgId = MSG_SKILL_SpellBlade_DESC,
+		.color = TEXT_COLOR_SYSTEM_GOLD,
+		.isAvailable = SpellBlade_Usability,
+		.onDraw = NULL,
+		.onSelected = SpellBlade_OnSelected,
+		.onIdle = NULL,
+		.onSwitchIn = SpellBlade_Hover,
+		.onSwitchOut = SpellBlade_Unhover
+	},
 #endif
 };
