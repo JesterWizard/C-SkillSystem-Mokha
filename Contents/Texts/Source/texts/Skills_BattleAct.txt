@@ -335,9 +335,9 @@ Disables the devil backfire[N]
 chance for this unit.[X]
 
 ## MSG_SKILL_Forcefield_NAME
-Forcefield[X]
+Force Field[X]
 ## MSG_SKILL_Forcefield_DESC
-Forcefield:[N]
+Force Field:[N]
 If this unit is at full HP and would[N]
 take >= 50% damage from an attack,[N]
 dodge the attack chance for this unit.[X]
@@ -365,28 +365,28 @@ This unit is immune to damage from[N]
 non-magic and non-flying enemies.[X]
 
 ## MSG_SKILL_ShieldPulse_NAME
-ShieldPulse:[N]
+Shield Pulse[N]
 ## MSG_SKILL_ShieldPulse_DESC
-ShieldPulse:[N]
+Shield Pulse:[N]
 Reduce 50% damage on[N]
 foe's critical attack[X]
 
 ## MSG_SKILL_FatalTen_NAME
-Fatal Ten:[N]
+Fatal Ten[N]
 ## MSG_SKILL_FatalTen_DESC
 Fatal Ten:[N]
 If unit attacks 10 times during[N]
 one turn, he wins the Duel.[X]
 
 ## MSG_SKILL_LimitBreak_NAME
-Limit Break:[N]
+Limit Break[N]
 ## MSG_SKILL_LimitBreak_DESC
 Limit Break:[N]
 After 5 hits, next attack deals[N]
 double damage with 100% accuracy.[X]
 
 ## MSG_SKILL_PenanceStare_NAME
-Penance Stare:[N]
+Penance Stare[N]
 ## MSG_SKILL_PenanceStare_DESC
 Penance Stare:[N]
 If this unit can attack, deal half of[N]

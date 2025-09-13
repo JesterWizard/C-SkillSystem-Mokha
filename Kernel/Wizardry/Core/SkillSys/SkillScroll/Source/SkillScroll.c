@@ -12,24 +12,74 @@
 /* External hooks */
 bool IsSkillScrollItem(int item)
 {
-	switch (ITEM_INDEX(item)) {
-	case CONFIG_ITEM_INDEX_SKILL_SCROLL:
-	case CONFIG_ITEM_INDEX_SKILL_SCROLL_FEB:
+
+#ifdef CONFIG_ITEM_INDEX_SKILL_SCROLL_1
+    if (ITEM_INDEX(item) == CONFIG_ITEM_INDEX_SKILL_SCROLL_1)
+        return true;
+#endif
+
+#ifdef CONFIG_ITEM_INDEX_SKILL_SCROLL_2
+    if (ITEM_INDEX(item) == CONFIG_ITEM_INDEX_SKILL_SCROLL_2)
+        return true;
+#endif
+
+#ifdef CONFIG_ITEM_INDEX_SKILL_SCROLL_3
+    if (ITEM_INDEX(item) == CONFIG_ITEM_INDEX_SKILL_SCROLL_3)
+        return true;
+#endif
+
+#ifdef CONFIG_ITEM_INDEX_SKILL_SCROLL_4
+    if (ITEM_INDEX(item) == CONFIG_ITEM_INDEX_SKILL_SCROLL_4)
+        return true;
+#endif
+
+	if (ITEM_INDEX(item) == CONFIG_ITEM_INDEX_SKILL_SCROLL_FEB)
 		return true;
 
-	default:
-		return false;
-	}
+    return false;
+
 }
 
-char *GetSkillScrollItemName(int item)
+char * GetSkillScrollItemName(int item)
 {
-	return GetSkillNameStr(ITEM_USES(item));
+#ifdef CONFIG_ITEM_INDEX_SKILL_SCROLL_1
+    if (ITEM_INDEX(item) == CONFIG_ITEM_INDEX_SKILL_SCROLL_1)
+        return GetSkillNameStr(ITEM_USES(item));
+#endif
+#ifdef CONFIG_ITEM_INDEX_SKILL_SCROLL_2
+    if (ITEM_INDEX(item) == CONFIG_ITEM_INDEX_SKILL_SCROLL_2)
+        return GetSkillNameStr(ITEM_USES(item) + 0xFF);
+#endif
+#ifdef CONFIG_ITEM_INDEX_SKILL_SCROLL_3
+    if (ITEM_INDEX(item) == CONFIG_ITEM_INDEX_SKILL_SCROLL_3)
+        return GetSkillNameStr(ITEM_USES(item) + 0x1FF);
+#endif
+#ifdef CONFIG_ITEM_INDEX_SKILL_SCROLL_4
+    if (ITEM_INDEX(item) == CONFIG_ITEM_INDEX_SKILL_SCROLL_4)
+        return GetSkillNameStr(ITEM_USES(item) + 0x2FF);
+#endif
+    return "";
 }
 
 int GetSkillScrollItemDescId(int item)
 {
-	return GetSkillDescMsg(ITEM_USES(item));
+#ifdef CONFIG_ITEM_INDEX_SKILL_SCROLL_1
+    if (ITEM_INDEX(item) == CONFIG_ITEM_INDEX_SKILL_SCROLL_1)
+        return GetSkillDescMsg(ITEM_USES(item));
+#endif
+#ifdef CONFIG_ITEM_INDEX_SKILL_SCROLL_2
+    if (ITEM_INDEX(item) == CONFIG_ITEM_INDEX_SKILL_SCROLL_2)
+        return GetSkillDescMsg(ITEM_USES(item) + 0xFF);
+#endif
+#ifdef CONFIG_ITEM_INDEX_SKILL_SCROLL_3
+    if (ITEM_INDEX(item) == CONFIG_ITEM_INDEX_SKILL_SCROLL_3)
+        return GetSkillDescMsg(ITEM_USES(item) + 0x1FF);
+#endif
+#ifdef CONFIG_ITEM_INDEX_SKILL_SCROLL_4
+    if (ITEM_INDEX(item) == CONFIG_ITEM_INDEX_SKILL_SCROLL_4)
+        return GetSkillDescMsg(ITEM_USES(item) + 0x2FF);
+#endif
+    return 0;
 }
 
 int GetSkillScrollItemUseDescId(int item)
@@ -40,7 +90,23 @@ int GetSkillScrollItemUseDescId(int item)
 
 int GetSkillScrollItemIconId(int item)
 {
-	return SKILL_ICON(ITEM_USES(item));
+#ifdef CONFIG_ITEM_INDEX_SKILL_SCROLL_1
+    if (ITEM_INDEX(item) == CONFIG_ITEM_INDEX_SKILL_SCROLL_1)
+        return SKILL_ICON(ITEM_USES(item));
+#endif
+#ifdef CONFIG_ITEM_INDEX_SKILL_SCROLL_2
+    if (ITEM_INDEX(item) == CONFIG_ITEM_INDEX_SKILL_SCROLL_2)
+        return SKILL_ICON(ITEM_USES(item) + 0xFF);
+#endif
+#ifdef CONFIG_ITEM_INDEX_SKILL_SCROLL_3
+    if (ITEM_INDEX(item) == CONFIG_ITEM_INDEX_SKILL_SCROLL_3)
+        return SKILL_ICON(ITEM_USES(item) + 0x1FF);
+#endif
+#ifdef CONFIG_ITEM_INDEX_SKILL_SCROLL_4
+    if (ITEM_INDEX(item) == CONFIG_ITEM_INDEX_SKILL_SCROLL_4)
+        return SKILL_ICON(ITEM_USES(item) + 0x2FF);
+#endif
+    return 0;
 }
 
 /* Item use */

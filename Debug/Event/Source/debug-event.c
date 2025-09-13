@@ -423,7 +423,7 @@ static void modify_unit_status(void)
 	unit = GetUnitFromCharId(CHARACTER_EPHRAIM);
 	if (unit) {
 #if defined(SID_Fury) && (EQUIP_SKILL_VALID(SID_Fury))
-		UnitAddItem(unit, (SID_Fury << 8) | CONFIG_ITEM_INDEX_SKILL_SCROLL);
+		UnitAddItem(unit, (SID_Fury << 8) | CONFIG_ITEM_INDEX_SKILL_SCROLL_1);
 #endif
 
 		unit->items[0] = (10 << 8) | ITEM_LANCE_IRON;

@@ -9,6 +9,19 @@
 #include "Source/SkillTable-weapon.lyn.event"
 #include "Source/LegendSkill.lyn.event"
 
+#ifndef CONFIG_ITEM_INDEX_SKILL_SCROLL_1
+	#define CONFIG_ITEM_INDEX_SKILL_SCROLL_1 0x0A
+#endif
+#ifndef CONFIG_ITEM_INDEX_SKILL_SCROLL_2
+	#define CONFIG_ITEM_INDEX_SKILL_SCROLL_2 0xBD
+#endif
+#ifndef CONFIG_ITEM_INDEX_SKILL_SCROLL_3
+	#define CONFIG_ITEM_INDEX_SKILL_SCROLL_3 0xC9
+#endif
+#ifndef CONFIG_ITEM_INDEX_SKILL_SCROLL_4
+	#define CONFIG_ITEM_INDEX_SKILL_SCROLL_4 0xCA
+#endif
+
 ALIGN 4
 Img_MapAnimSKILL:
     #incbin "SkillMapAnim/skill-mapanimap.lz77"
@@ -21,6 +34,15 @@ Img_EfxSkillBoxBG:
 #include "PrepSkill.event"
 
 PUSH
-    ORG CONFIG_PR_ITEM_TABLE + CONFIG_ITEM_INDEX_SKILL_SCROLL * 0x24
-        #include "SkillScroll/ItemData_Scroll.lyn.event"
+    ORG CONFIG_PR_ITEM_TABLE + CONFIG_ITEM_INDEX_SKILL_SCROLL_1 * 0x24
+        #include "SkillScroll/ItemData_Scroll_1.lyn.event"
+
+    ORG CONFIG_PR_ITEM_TABLE + CONFIG_ITEM_INDEX_SKILL_SCROLL_2 * 0x24
+        #include "SkillScroll/ItemData_Scroll_2.lyn.event"
+
+    ORG CONFIG_PR_ITEM_TABLE + CONFIG_ITEM_INDEX_SKILL_SCROLL_3 * 0x24
+        #include "SkillScroll/ItemData_Scroll_3.lyn.event"
+        
+    ORG CONFIG_PR_ITEM_TABLE + CONFIG_ITEM_INDEX_SKILL_SCROLL_4 * 0x24
+        #include "SkillScroll/ItemData_Scroll_4.lyn.event"
 POP

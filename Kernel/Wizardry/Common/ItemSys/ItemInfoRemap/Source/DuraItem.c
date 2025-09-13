@@ -4,14 +4,31 @@
 
 bool IsDuraItem(int item)
 {
-	switch (ITEM_INDEX(item)) {
-	case CONFIG_ITEM_INDEX_SKILL_SCROLL:
+    switch (ITEM_INDEX(item)) {
+#ifdef CONFIG_ITEM_INDEX_SKILL_SCROLL_1
+    case CONFIG_ITEM_INDEX_SKILL_SCROLL_1:
 	case CONFIG_ITEM_INDEX_SKILL_SCROLL_FEB:
-		return true;
-
-	default:
-		return false;
-	}
+        return true;
+#endif
+#ifdef CONFIG_ITEM_INDEX_SKILL_SCROLL_2
+    case CONFIG_ITEM_INDEX_SKILL_SCROLL_2:
+        return true;
+#endif
+#ifdef CONFIG_ITEM_INDEX_SKILL_SCROLL_3
+    case CONFIG_ITEM_INDEX_SKILL_SCROLL_3:
+        return true;
+#endif
+#ifdef CONFIG_ITEM_INDEX_SKILL_SCROLL_4
+    case CONFIG_ITEM_INDEX_SKILL_SCROLL_4:
+        return true;
+#endif
+#ifdef CONFIG_ITEM_INDEX_ARMS_SCROLL
+    case CONFIG_ITEM_INDEX_ARMS_SCROLL:
+        return true;
+#endif
+    default:
+        return false;
+    }
 }
 
 char *GetDuraItemName(int item)
