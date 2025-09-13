@@ -8,7 +8,7 @@
 bool PrePhsae_ClearMiscUES(ProcPtr proc)
 {
 	int uid;
-	struct Unit *unit;
+	struct Unit* unit;
 
 	for (uid = 1; uid < 0xC0; uid++) {
 		unit = GetUnit(uid);
@@ -24,9 +24,9 @@ bool PrePhsae_ClearMiscUES(ProcPtr proc)
 
 void PrePhase_ApplyMpStartingAmount(ProcPtr proc)
 {
-	struct Unit * unit;
+	struct Unit* unit;
 	int unit_id;
-	struct NewBwl * bwl;
+	struct NewBwl* bwl;
 
 	if (gPlaySt.faction == FACTION_BLUE)
 	{
@@ -34,22 +34,22 @@ void PrePhase_ApplyMpStartingAmount(ProcPtr proc)
 
 			unit = GetUnit(uid);
 			unit_id = UNIT_CHAR_ID(unit);
-			bwl = GetNewBwl(unit_id); 
+			bwl = GetNewBwl(unit_id);
 
 			if (UNIT_IS_VALID(unit) && bwl != NULL)
 			{
-				#if defined(SID_MPChanneling) && (COMMON_SKILL_VALID(SID_MPChanneling))
-					if (SkillTester(unit, SID_MPChanneling))
-						bwl->currentMP += gMpSystemPInfoConfigList[unit_id].generationRate * 2;
-					else
-						bwl->currentMP += gMpSystemPInfoConfigList[unit_id].generationRate;
-				#else
-					bwl->currentMP += gMpSystemPInfoConfigList[unit_id].generationRate;
-				#endif
+#if defined(SID_MPChanneling) && (COMMON_SKILL_VALID(SID_MPChanneling))
+				if (SkillTester(unit, SID_MPChanneling))
+					bwl->currentMP += gMpSystemPInfoConfigList[unit_id].idleGeneration * 2;
+				else
+					bwl->currentMP += gMpSystemPInfoConfigList[unit_id].idleGeneration;
+#else
+				bwl->currentMP += gMpSystemPInfoConfigList[unit_id].generationRate;
+#endif
 			}
 
 			// Clamp the value to max MP using a ternary operator
-			bwl->currentMP = (bwl->currentMP > bwl->maxMP) ? bwl->maxMP : bwl->currentMP; 
+			bwl->currentMP = (bwl->currentMP > bwl->maxMP) ? bwl->maxMP : bwl->currentMP;
 		}
 	}
 }

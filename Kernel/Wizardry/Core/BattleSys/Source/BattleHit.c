@@ -11,13 +11,15 @@
 #include "constants/skills.h"
 #include "jester_headers/custom-structs.h"
 #include "jester_headers/custom-functions.h"
+#include "jester_headers/custom-arrays.h"
 #include "jester_headers/Forging.h"
 #include "playst-expa.h"
+#include "bwl.h"
 
 #define LOCAL_TRACE 0
 
 LYN_REPLACE_CHECK(BattleUpdateBattleStats);
-void BattleUpdateBattleStats(struct BattleUnit *attacker, struct BattleUnit *defender)
+void BattleUpdateBattleStats(struct BattleUnit* attacker, struct BattleUnit* defender)
 {
 	int attack = attacker->battleAttack;
 	int defense = defender->battleDefense;
@@ -98,7 +100,7 @@ void BattleUpdateBattleStats(struct BattleUnit *attacker, struct BattleUnit *def
 }
 
 LYN_REPLACE_CHECK(BattleGenerateHitAttributes);
-void BattleGenerateHitAttributes(struct BattleUnit *attacker, struct BattleUnit *defender)
+void BattleGenerateHitAttributes(struct BattleUnit* attacker, struct BattleUnit* defender)
 {
 	gBattleStats.damage = 0;
 
@@ -136,15 +138,15 @@ void BattleGenerateHitAttributes(struct BattleUnit *attacker, struct BattleUnit 
 }
 
 LYN_REPLACE_CHECK(BattleGenerateHitEffects);
-void BattleGenerateHitEffects(struct BattleUnit *attacker, struct BattleUnit *defender)
+void BattleGenerateHitEffects(struct BattleUnit* attacker, struct BattleUnit* defender)
 {
 #if (defined(SID_Discipline) && (COMMON_SKILL_VALID(SID_Discipline)))
-		if (BattleFastSkillTester(attacker, SID_Discipline))
-			attacker->wexpMultiplier += 2;
-		else
-			attacker->wexpMultiplier++;
-#else
+	if (BattleFastSkillTester(attacker, SID_Discipline))
+		attacker->wexpMultiplier += 2;
+	else
 		attacker->wexpMultiplier++;
+#else
+	attacker->wexpMultiplier++;
 #endif
 
 	if (!(gBattleHitIterator->attributes & BATTLE_HIT_ATTR_MISS)) {
@@ -162,7 +164,8 @@ void BattleGenerateHitEffects(struct BattleUnit *attacker, struct BattleUnit *de
 
 			// if (attacker->unit.curHP < 0)
 			// 	attacker->unit.curHP = 0;
-		} else {
+		}
+		else {
 			if (gBattleStats.damage > defender->unit.curHP)
 				gBattleStats.damage = defender->unit.curHP;
 
@@ -204,7 +207,7 @@ void BattleGenerateHitEffects(struct BattleUnit *attacker, struct BattleUnit *de
 }
 
 LYN_REPLACE_CHECK(BattleGenerateHit);
-bool BattleGenerateHit(struct BattleUnit *attacker, struct BattleUnit *defender)
+bool BattleGenerateHit(struct BattleUnit* attacker, struct BattleUnit* defender)
 {
 	int hp_pre = defender->unit.curHP;
 
@@ -274,20 +277,20 @@ bool BattleGenerateHit(struct BattleUnit *attacker, struct BattleUnit *defender)
 			gBattleActorGlobalFlag.enemy_defeated = true;
 
 #ifdef CONFIG_PROMOTE_ENEMIES_IF_KILLED_UNIT
-            struct Unit * enemyUnit = GetUnit(gBattleActor.unit.index); 
-            if (UNIT_FACTION(enemyUnit) == FACTION_RED)
-            {
-                ApplyUnitDefaultPromotion(enemyUnit);
-                enemyUnit->maxHP += CONFIG_ENEMY_PROMOTION_BOOST;
-                enemyUnit->curHP += CONFIG_ENEMY_PROMOTION_BOOST;
-                enemyUnit->pow += CONFIG_ENEMY_PROMOTION_BOOST;
-                enemyUnit->_u47 += CONFIG_ENEMY_PROMOTION_BOOST; // magic
-                enemyUnit->skl += CONFIG_ENEMY_PROMOTION_BOOST;
-                enemyUnit->spd += CONFIG_ENEMY_PROMOTION_BOOST;
-                enemyUnit->lck += CONFIG_ENEMY_PROMOTION_BOOST;
-                enemyUnit->def += CONFIG_ENEMY_PROMOTION_BOOST;
-                enemyUnit->res += CONFIG_ENEMY_PROMOTION_BOOST;
-            }
+			struct Unit* enemyUnit = GetUnit(gBattleActor.unit.index);
+			if (UNIT_FACTION(enemyUnit) == FACTION_RED)
+			{
+				ApplyUnitDefaultPromotion(enemyUnit);
+				enemyUnit->maxHP += CONFIG_ENEMY_PROMOTION_BOOST;
+				enemyUnit->curHP += CONFIG_ENEMY_PROMOTION_BOOST;
+				enemyUnit->pow += CONFIG_ENEMY_PROMOTION_BOOST;
+				enemyUnit->_u47 += CONFIG_ENEMY_PROMOTION_BOOST; // magic
+				enemyUnit->skl += CONFIG_ENEMY_PROMOTION_BOOST;
+				enemyUnit->spd += CONFIG_ENEMY_PROMOTION_BOOST;
+				enemyUnit->lck += CONFIG_ENEMY_PROMOTION_BOOST;
+				enemyUnit->def += CONFIG_ENEMY_PROMOTION_BOOST;
+				enemyUnit->res += CONFIG_ENEMY_PROMOTION_BOOST;
+			}
 #endif
 
 #if (defined(SID_Galeforce) && (COMMON_SKILL_VALID(SID_Galeforce)))
@@ -297,28 +300,29 @@ bool BattleGenerateHit(struct BattleUnit *attacker, struct BattleUnit *defender)
 
 #if (defined(SID_Pickup) && (COMMON_SKILL_VALID(SID_Pickup)))
 			if (CheckBattleSkillActivate(&gBattleActor, &gBattleTarget, SID_Pickup, gBattleActor.unit.lck)) {
-				struct Unit *unit_tar = &gBattleTarget.unit;
+				struct Unit* unit_tar = &gBattleTarget.unit;
 
 				unit_tar->state |= US_DROP_ITEM;
 			}
 #endif
 
-#if (defined(SID_Graverobber) && (COMMON_SKILL_VALID(SID_Graverobber)))
-			if (CheckBattleSkillActivate(&gBattleActor, &gBattleTarget, SID_Graverobber, gBattleActor.unit.skl))
+#ifdef CONFIG_FORGING
+#ifdef CONFIG_FE4_CRIT_BONUS_ON_KILL
+			u16 item = GetUnitEquippedWeapon(GetUnit(gBattleActor.unit.index));
+			if (CanItemBeForged(item))
 			{
-				
+				u8 id = ITEM_USES(item);
+				gForgedItemRam[id].crit += 1;
 			}
 #endif
+#endif
 
-#ifdef CONFIG_FORGING
-    #ifdef CONFIG_FE4_CRIT_BONUS_ON_KILL
-            u16 item = GetUnitEquippedWeapon(GetUnit(gBattleActor.unit.index));
-            if (CanItemBeForged(item))
-            {
-                u8 id = ITEM_USES(item);
-                gForgedItemRam[id].crit += 1;
-            }
-    #endif
+
+#ifdef CONFIG_MP_SYSTEM
+			struct NewBwl* bwl = GetNewBwl(UNIT_CHAR_ID(GetUnit(gBattleActor.unit.index)));
+
+			if (bwl != NULL)
+				bwl->currentMP += gMpSystemPInfoConfigList[UNIT_CHAR_ID(GetUnit(gBattleActor.unit.index))].killGeneration;
 #endif
 
 			gBattleHitIterator->info |= BATTLE_HIT_INFO_KILLS_TARGET;

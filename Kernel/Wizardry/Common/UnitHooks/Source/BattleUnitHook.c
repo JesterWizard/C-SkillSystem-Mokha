@@ -6,16 +6,18 @@
 #include "combat-art.h"
 #include "constants/skills.h"
 #include "debuff.h"
+#include "bwl.h"
+#include "jester_headers/custom-arrays.h"
 
-typedef int (*BattleToUnitFunc_t)(struct BattleUnit *bu, struct Unit *unit);
+typedef int (*BattleToUnitFunc_t)(struct BattleUnit* bu, struct Unit* unit);
 // extern const BattleToUnitFunc_t gExternalBattleToUnitHook[];
-extern BattleToUnitFunc_t const *const gpExternalBattleToUnitHook;
+extern BattleToUnitFunc_t const* const gpExternalBattleToUnitHook;
 
-typedef int (*UnitToBattleFunc_t)(struct Unit *unit, struct BattleUnit *bu);
+typedef int (*UnitToBattleFunc_t)(struct Unit* unit, struct BattleUnit* bu);
 // extern const UnitToBattleFunc_t gExternalUnitToBattleHook[];
-extern UnitToBattleFunc_t const *const gpExternalUnitToBattleHook;
+extern UnitToBattleFunc_t const* const gpExternalUnitToBattleHook;
 
-STATIC_DECLAR void InitBattleUnitVanilla(struct BattleUnit *bu, struct Unit *unit)
+STATIC_DECLAR void InitBattleUnitVanilla(struct BattleUnit* bu, struct Unit* unit)
 {
 	if (!unit)
 		return;
@@ -62,12 +64,12 @@ STATIC_DECLAR void InitBattleUnitVanilla(struct BattleUnit *bu, struct Unit *uni
 	gBattleTarget.expGain = 0;
 }
 
-STATIC_DECLAR void UpdateUnitFromBattleVanilla(struct Unit *unit, struct BattleUnit *bu)
+STATIC_DECLAR void UpdateUnitFromBattleVanilla(struct Unit* unit, struct BattleUnit* bu)
 {
 	int tmp;
 
 	unit->level = bu->unit.level;
-	unit->exp   = bu->unit.exp;
+	unit->exp = bu->unit.exp;
 	unit->curHP = bu->unit.curHP;
 	unit->state = bu->unit.state;
 
@@ -77,12 +79,12 @@ STATIC_DECLAR void UpdateUnitFromBattleVanilla(struct Unit *unit, struct BattleU
 		SetUnitStatus(unit, bu->statusOut);
 
 	unit->maxHP += bu->changeHP;
-	unit->pow   += bu->changePow;
-	unit->skl   += bu->changeSkl;
-	unit->spd   += bu->changeSpd;
-	unit->def   += bu->changeDef;
-	unit->res   += bu->changeRes;
-	unit->lck   += bu->changeLck;
+	unit->pow += bu->changePow;
+	unit->skl += bu->changeSkl;
+	unit->spd += bu->changeSpd;
+	unit->def += bu->changeDef;
+	unit->res += bu->changeRes;
+	unit->lck += bu->changeLck;
 
 	UnitCheckStatCaps(unit);
 
@@ -101,9 +103,9 @@ STATIC_DECLAR void UpdateUnitFromBattleVanilla(struct Unit *unit, struct BattleU
 }
 
 LYN_REPLACE_CHECK(InitBattleUnit);
-void InitBattleUnit(struct BattleUnit *bu, struct Unit *unit)
+void InitBattleUnit(struct BattleUnit* bu, struct Unit* unit)
 {
-	const UnitToBattleFunc_t *it;
+	const UnitToBattleFunc_t* it;
 
 	InitBattleUnitVanilla(bu, unit);
 
@@ -118,9 +120,9 @@ void InitBattleUnit(struct BattleUnit *bu, struct Unit *unit)
 }
 
 LYN_REPLACE_CHECK(UpdateUnitFromBattle);
-void UpdateUnitFromBattle(struct Unit *unit, struct BattleUnit *bu)
+void UpdateUnitFromBattle(struct Unit* unit, struct BattleUnit* bu)
 {
-	const BattleToUnitFunc_t *it;
+	const BattleToUnitFunc_t* it;
 
 	UpdateUnitFromBattleVanilla(unit, bu);
 
@@ -134,46 +136,53 @@ void UpdateUnitFromBattle(struct Unit *unit, struct BattleUnit *bu)
 
 	for (it = gpExternalBattleToUnitHook; *it; it++)
 		(*it)(bu, unit);
+
+#ifdef CONFIG_MP_SYSTEM
+	struct NewBwl* bwl = GetNewBwl(UNIT_CHAR_ID(unit));
+
+	if (bwl != NULL)
+		bwl->currentMP += gMpSystemPInfoConfigList[UNIT_CHAR_ID(unit)].battleGeneration;
+#endif
 }
 
 LYN_REPLACE_CHECK(BattleGenerateRealInternal);
 void BattleGenerateRealInternal(struct Unit* actor, struct Unit* target) {
-    InitBattleUnit(&gBattleActor, actor);
-    InitBattleUnit(&gBattleTarget, target);
+	InitBattleUnit(&gBattleActor, actor);
+	InitBattleUnit(&gBattleTarget, target);
 
-    gBattleStats.range = RECT_DISTANCE(
-        gBattleActor.unit.xPos, gBattleActor.unit.yPos,
-        gBattleTarget.unit.xPos, gBattleTarget.unit.yPos
-    );
+	gBattleStats.range = RECT_DISTANCE(
+		gBattleActor.unit.xPos, gBattleActor.unit.yPos,
+		gBattleTarget.unit.xPos, gBattleTarget.unit.yPos
+	);
 
-    if (gBattleStats.config & BATTLE_CONFIG_BALLISTA)
-        SetBattleUnitWeaponBallista(&gBattleActor);
-    else
-        SetBattleUnitWeapon(&gBattleActor, BU_ISLOT_AUTO);
+	if (gBattleStats.config & BATTLE_CONFIG_BALLISTA)
+		SetBattleUnitWeaponBallista(&gBattleActor);
+	else
+		SetBattleUnitWeapon(&gBattleActor, BU_ISLOT_AUTO);
 
-    SetBattleUnitWeapon(&gBattleTarget, BU_ISLOT_AUTO);
+	SetBattleUnitWeapon(&gBattleTarget, BU_ISLOT_AUTO);
 
-    BattleInitTargetCanCounter();
-    BattleApplyWeaponTriangleEffect(&gBattleActor, &gBattleTarget);
+	BattleInitTargetCanCounter();
+	BattleApplyWeaponTriangleEffect(&gBattleActor, &gBattleTarget);
 
-    DisableAllLightRunes();
+	DisableAllLightRunes();
 
-    SetBattleUnitTerrainBonusesAuto(&gBattleActor);
-    SetBattleUnitTerrainBonusesAuto(&gBattleTarget);
+	SetBattleUnitTerrainBonusesAuto(&gBattleActor);
+	SetBattleUnitTerrainBonusesAuto(&gBattleTarget);
 
-    BattleGenerate(actor, target);
+	BattleGenerate(actor, target);
 
-    EnableAllLightRunes();
+	EnableAllLightRunes();
 
-    BattleUnitTargetCheckCanCounter(&gBattleTarget);
-    BattleUnitTargetSetEquippedWeapon(&gBattleTarget);
+	BattleUnitTargetCheckCanCounter(&gBattleTarget);
+	BattleUnitTargetSetEquippedWeapon(&gBattleTarget);
 
-    if (gBattleTarget.unit.index) {
-        BattleApplyExpGains();
-        PidStatsRecordBattleRes();
+	if (gBattleTarget.unit.index) {
+		BattleApplyExpGains();
+		PidStatsRecordBattleRes();
 
-        PidStatsAddBattleAmt(actor);
-        PidStatsAddBattleAmt(target);
+		PidStatsAddBattleAmt(actor);
+		PidStatsAddBattleAmt(target);
 
 		/* JESTER - These are general use (per unit) bitpacked counters */
 #ifdef CONFIG_MISC_UNIT_COUNTERS
@@ -183,5 +192,5 @@ void BattleGenerateRealInternal(struct Unit* actor, struct Unit* target) {
 		if (GetUnitStatusIndex(target) == NEW_UNIT_STATUS_DEFAULT && target->counters < 7)
 			target->counters += 1;
 #endif
-    }
+	}
 }

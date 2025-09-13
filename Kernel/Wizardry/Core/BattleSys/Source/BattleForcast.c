@@ -5,11 +5,11 @@
 extern const u8 Gfx_BKSEL[12][0x80];
 
 LYN_REPLACE_CHECK(BattleForecastHitCountUpdate);
-void BattleForecastHitCountUpdate(struct BattleUnit *bu, u8 *hitsCounter, int *usesCounter)
+void BattleForecastHitCountUpdate(struct BattleUnit* bu, u8* hitsCounter, int* usesCounter)
 {
 	int i;
-	struct BattleUnit *target = (bu == &gBattleActor) ? &gBattleTarget : &gBattleActor;
-	int count  = CheckCanTwiceAttackOrder(bu, target) ? GetBattleUnitHitCount(bu) * 2 : GetBattleUnitHitCount(bu);
+	struct BattleUnit* target = (bu == &gBattleActor) ? &gBattleTarget : &gBattleActor;
+	int count = CheckCanTwiceAttackOrder(bu, target) ? GetBattleUnitHitCount(bu) * 2 : GetBattleUnitHitCount(bu);
 
 
 	for (i = 0; i < count; i++) {
@@ -26,19 +26,16 @@ void BattleForecastHitCountUpdate(struct BattleUnit *bu, u8 *hitsCounter, int *u
 }
 
 LYN_REPLACE_CHECK(InitBattleForecastBattleStats);
-void InitBattleForecastBattleStats(struct BattleForecastProc *proc)
+void InitBattleForecastBattleStats(struct BattleForecastProc* proc)
 {
 	int usesA = GetItemUses(gBattleActor.weaponBefore);
 	int usesB = GetItemUses(gBattleTarget.weaponBefore);
-
-	NoCashGBAPrintf("Item uses A: %d", usesA);
-	NoCashGBAPrintf("Item uses B: %d", usesB);
 
 	proc->hitCountA = 0;
 	proc->isEffectiveA = false;
 
 	if ((gBattleActor.weapon != 0) || (gBattleActor.weaponBroke)) {
-		BattleForecastHitCountUpdate(&gBattleActor, (u8 *)&proc->hitCountA, &usesA);
+		BattleForecastHitCountUpdate(&gBattleActor, (u8*)&proc->hitCountA, &usesA);
 
 		if (IsUnitEffectiveAgainst(&gBattleActor.unit, &gBattleTarget.unit))
 			proc->isEffectiveA = true;
@@ -51,7 +48,7 @@ void InitBattleForecastBattleStats(struct BattleForecastProc *proc)
 	proc->isEffectiveB = false;
 
 	if ((gBattleTarget.weapon != 0) || (gBattleTarget.weaponBroke)) {
-		BattleForecastHitCountUpdate(&gBattleTarget, (u8 *)&proc->hitCountB, &usesB);
+		BattleForecastHitCountUpdate(&gBattleTarget, (u8*)&proc->hitCountB, &usesB);
 
 		if (IsUnitEffectiveAgainst(&gBattleTarget.unit, &gBattleActor.unit))
 			proc->isEffectiveB = true;

@@ -1,9 +1,11 @@
 #include "common-chax.h"
 #include "battle-system.h"
 #include "kernel-lib.h"
+#include "bwl.h"
+#include "jester_headers/custom-arrays.h"
 
 typedef void (*PreBattleGenerateFunc) (void);
-extern PreBattleGenerateFunc const *const gpPreBattleGenerateFuncs;
+extern PreBattleGenerateFunc const* const gpPreBattleGenerateFuncs;
 
 /**
  * This is set an addition routine on start of function: `BattleGenerate()`
@@ -13,14 +15,14 @@ extern PreBattleGenerateFunc const *const gpPreBattleGenerateFuncs;
  */
 void PreBattleGenerateHook(void)
 {
-	const PreBattleGenerateFunc *it;
+	const PreBattleGenerateFunc* it;
 
 	for (it = gpPreBattleGenerateFuncs; *it; it++)
 		(*it)();
 }
 
 LYN_REPLACE_CHECK(BattleGenerate);
-void BattleGenerate(struct Unit *actor, struct Unit *target)
+void BattleGenerate(struct Unit* actor, struct Unit* target)
 {
 #if CHAX
 	PreBattleGenerateHook();

@@ -7,56 +7,57 @@
 #include "constants/texts.h"
 #include "jester_headers/custom-arrays.h"
 
-typedef int (*LoadUnitFunc_t)(struct Unit *unit, const struct CharacterData *character);
+typedef int (*LoadUnitFunc_t)(struct Unit* unit, const struct CharacterData* character);
 // extern const LoadUnitFunc_t gLoadUnitHooks[];
-extern LoadUnitFunc_t const *const gpLoadUnitHooks;
+extern LoadUnitFunc_t const* const gpLoadUnitHooks;
 
-void UnitLoadStatsFromChracterVanilla(struct Unit *unit, const struct CharacterData *character)
+void UnitLoadStatsFromChracterVanilla(struct Unit* unit, const struct CharacterData* character)
 {
-	int i;
+    int i;
 
-	unit->maxHP = character->baseHP + unit->pClassData->baseHP;
-	unit->pow   = character->basePow + unit->pClassData->basePow;
-	unit->skl   = character->baseSkl + unit->pClassData->baseSkl;
-	unit->spd   = character->baseSpd + unit->pClassData->baseSpd;
-	unit->def   = character->baseDef + unit->pClassData->baseDef;
-	unit->res   = character->baseRes + unit->pClassData->baseRes;
-	unit->lck   = character->baseLck;
+    unit->maxHP = character->baseHP + unit->pClassData->baseHP;
+    unit->pow = character->basePow + unit->pClassData->basePow;
+    unit->skl = character->baseSkl + unit->pClassData->baseSkl;
+    unit->spd = character->baseSpd + unit->pClassData->baseSpd;
+    unit->def = character->baseDef + unit->pClassData->baseDef;
+    unit->res = character->baseRes + unit->pClassData->baseRes;
+    unit->lck = character->baseLck;
 
-	unit->conBonus = 0;
+    unit->conBonus = 0;
 
 #ifdef CONFIG_MP_SYSTEM
-    struct NewBwl * bwl = GetNewBwl(UNIT_CHAR_ID(unit));
+    struct NewBwl* bwl = GetNewBwl(UNIT_CHAR_ID(unit));
 
     if (bwl != NULL)
         bwl->maxMP = gMpSystemPInfoConfigList[UNIT_CHAR_ID(unit)].maxMP;
+
 #endif
 
 #if defined(SID_Replicate) && (COMMON_SKILL_VALID(SID_Replicate))
-	if (gActionData.unk08 == SID_Replicate)
-	{
-		SetUnitStatusIndex(unit, 30);
+    if (gActionData.unk08 == SID_Replicate)
+    {
+        SetUnitStatusIndex(unit, 30);
 
-		for (i = 0; i < 8; ++i) {
-			unit->ranks[i] = gActiveUnit->ranks[i];
-		}
+        for (i = 0; i < 8; ++i) {
+            unit->ranks[i] = gActiveUnit->ranks[i];
+        }
 
-		unit->exp = gActiveUnit->exp;
-	}
-	else
-	{
-		for (i = 0; i < 8; ++i) {
-			unit->ranks[i] = unit->pClassData->baseRanks[i];
+        unit->exp = gActiveUnit->exp;
+    }
+    else
+    {
+        for (i = 0; i < 8; ++i) {
+            unit->ranks[i] = unit->pClassData->baseRanks[i];
 
-			if (unit->pCharacterData->baseRanks[i])
-				unit->ranks[i] = unit->pCharacterData->baseRanks[i];
-		}
+            if (unit->pCharacterData->baseRanks[i])
+                unit->ranks[i] = unit->pCharacterData->baseRanks[i];
+        }
 
-		if (UNIT_FACTION(unit) == FACTION_BLUE && (unit->level != UNIT_LEVEL_MAX))
-			unit->exp = 0;
-		else
-			unit->exp = UNIT_EXP_DISABLED;
-	}
+        if (UNIT_FACTION(unit) == FACTION_BLUE && (unit->level != UNIT_LEVEL_MAX))
+            unit->exp = 0;
+        else
+            unit->exp = UNIT_EXP_DISABLED;
+    }
 
 #else
 
@@ -77,12 +78,12 @@ void UnitLoadStatsFromChracterVanilla(struct Unit *unit, const struct CharacterD
 }
 
 LYN_REPLACE_CHECK(UnitLoadStatsFromChracter);
-void UnitLoadStatsFromChracter(struct Unit *unit, const struct CharacterData *character)
+void UnitLoadStatsFromChracter(struct Unit* unit, const struct CharacterData* character)
 {
-	const LoadUnitFunc_t *it;
+    const LoadUnitFunc_t* it;
 
-	for (it = gpLoadUnitHooks; *it; it++)
-		(*it)(unit, character);
+    for (it = gpLoadUnitHooks; *it; it++)
+        (*it)(unit, character);
 }
 
 // For now, no need to hack this funcion
@@ -186,7 +187,8 @@ struct Unit* LoadUnit(const struct UnitDefinition* uDef) {
         if (UNIT_FACTION(unit) == FACTION_BLUE) {
             UnitAutolevelRealistic(unit);
             UnitAutolevelWExp(unit, uDef);
-        } else {
+        }
+        else {
             if ((UNIT_CATTRIBUTES(unit) & CA_BOSS) || (unit->pCharacterData->number < 0x40)) {
                 struct Unit* unit2 = GetFreeUnit(0);
 
@@ -200,9 +202,10 @@ struct Unit* LoadUnit(const struct UnitDefinition* uDef) {
 
                 ClearUnit(unit2);
 
-                unit->exp   = UNIT_EXP_DISABLED;
+                unit->exp = UNIT_EXP_DISABLED;
                 unit->level = uDef->level;
-            } else
+            }
+            else
                 UnitAutolevel(unit);
 
             UnitAutolevelWExp(unit, uDef);
@@ -221,17 +224,17 @@ struct Unit* LoadUnit(const struct UnitDefinition* uDef) {
 
     UnitCheckStatCaps(unit);
 
-	if (gActionData.unk08 == SID_Replicate)
-	{
-		unit->curHP = gActiveUnit->curHP;
-		
-		/* Need to reset this to prevent newly loaded units from having the replicate status set */
-		gActionData.unk08 = 0;
-	}
-	else
-	{
-		unit->curHP = GetUnitMaxHp(unit);
-	}
+    if (gActionData.unk08 == SID_Replicate)
+    {
+        unit->curHP = gActiveUnit->curHP;
+
+        /* Need to reset this to prevent newly loaded units from having the replicate status set */
+        gActionData.unk08 = 0;
+    }
+    else
+    {
+        unit->curHP = GetUnitMaxHp(unit);
+    }
 
     if (UNIT_IS_GORGON_EGG(unit))
         SetUnitHp(unit, 5);
