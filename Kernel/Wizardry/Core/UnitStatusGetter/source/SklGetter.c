@@ -113,3 +113,11 @@ int SklGetterSkills(int status, struct Unit *unit)
 
 	return status;
 }
+
+int SklGetterStaffBoost(int status, struct Unit *unit)
+{
+    if (unit->boostType == 2)
+	    return status + unit->barrierDuration;
+
+    return status;
+}

@@ -1,0 +1,15 @@
+
+#include "SkillStealer/Installer.event"
+#include "SpiritDust/Installer.event"
+
+#include "ForceStaff/Installer.event"   // ATK boost
+#include "TempestStaff/Installer.event" // MAG boost
+#include "AcuityStaff/Installer.event"  // SKL boost
+#include "SprintStaff/Installer.event"  // SPD boost
+#include "FortuneStaff/Installer.event" // LCK boost
+#include "IronStaff/Installer.event"    // DEF boost
+
+#include "RuneStaff/Installer.event"
+#include "MineStaff/Installer.event"
+#include "SlowStaff/Installer.event"
+#include "ForgeStaff/Installer.event"

@@ -100,6 +100,60 @@ struct IERevamp const IERevampTable[IER_MAX] = {
 		.action_effect  = IER_Action_UnlockStaff,
 		.prep_effect    = NULL,
 	},
+#ifdef CONFIG_ITEM_INDEX_FORCE_STAFF
+	[IER_STAFF_FORCE] = {
+		.usability      = IER_Usability_Barrier,
+		.prep_usability = NULL,
+		.effect         = IER_Effect_Barrier,
+		.action_effect  = IER_Action_BarrierStaff,
+		.prep_effect    = NULL,
+	},
+#endif
+#ifdef CONFIG_ITEM_INDEX_TEMPEST_STAFF
+	[IER_STAFF_TEMPEST] = {
+		.usability      = IER_Usability_Barrier,
+		.prep_usability = NULL,
+		.effect         = IER_Effect_Barrier,
+		.action_effect  = IER_Action_BarrierStaff,
+		.prep_effect    = NULL,
+	},
+#endif
+#ifdef CONFIG_ITEM_INDEX_ACUITY_STAFF
+	[IER_STAFF_ACUITY] = {
+		.usability      = IER_Usability_Barrier,
+		.prep_usability = NULL,
+		.effect         = IER_Effect_Barrier,
+		.action_effect  = IER_Action_BarrierStaff,
+		.prep_effect    = NULL,
+	},
+#endif
+#ifdef CONFIG_ITEM_INDEX_SPRINT_STAFF
+	[IER_STAFF_SPRINT] = {
+		.usability      = IER_Usability_Barrier,
+		.prep_usability = NULL,
+		.effect         = IER_Effect_Barrier,
+		.action_effect  = IER_Action_BarrierStaff,
+		.prep_effect    = NULL,
+	},
+#endif
+#ifdef CONFIG_ITEM_INDEX_FORTUNE_STAFF
+	[IER_STAFF_FORTUNE] = {
+		.usability      = IER_Usability_Barrier,
+		.prep_usability = NULL,
+		.effect         = IER_Effect_Barrier,
+		.action_effect  = IER_Action_BarrierStaff,
+		.prep_effect    = NULL,
+	},
+#endif
+#ifdef CONFIG_ITEM_INDEX_IRON_STAFF
+	[IER_STAFF_IRON] = {
+		.usability      = IER_Usability_Barrier,
+		.prep_usability = NULL,
+		.effect         = IER_Effect_Barrier,
+		.action_effect  = IER_Action_BarrierStaff,
+		.prep_effect    = NULL,
+	},
+#endif
 	[IER_STAFF_BARRIER] = {
 		.usability      = IER_Usability_Barrier,
 		.prep_usability = NULL,

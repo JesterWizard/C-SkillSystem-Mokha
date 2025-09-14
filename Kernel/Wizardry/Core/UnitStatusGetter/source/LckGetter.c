@@ -93,3 +93,11 @@ int LckGetterSkills(int status, struct Unit *unit)
 
 	return status;
 }
+
+int LckGetterStaffBoost(int status, struct Unit *unit)
+{
+    if (unit->boostType == 4)
+	    return status + unit->barrierDuration;
+
+    return status;
+}

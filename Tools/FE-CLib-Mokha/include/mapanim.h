@@ -390,6 +390,10 @@ extern CONST_DATA struct ProcCmd ProcScr_CritAtkMapEffect[];
 extern CONST_DATA struct ProcCmd ProcScr_SpellAssocBarrier[];
 extern CONST_DATA struct ProcCmd ProcScr_SpellAssocWarp[];
 extern CONST_DATA struct ProcCmd ProcScr_ManimShiftingSineWaveScanlineBuf[];
+
+extern CONST_DATA struct ProcCmd ProcScr_LightRuneAnim[];
+extern CONST_DATA struct ProcCmd ProcScr_MineFx[];
+
 extern u16 SpriteAnim_ManimStatGain[];
 extern u16 gUnknown_089A5A6C[];
 extern u16 ApConf_MapAnimTorchfx[];

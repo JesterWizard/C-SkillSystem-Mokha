@@ -8,12 +8,14 @@ gHpGetters:
 
 gPowGetters:
     POIN PowGetterWeaponBonus PowGetterSkills PowGetterDebuff
+    POIN PowGetterStaffBoost
     POIN PowGetterStatDebuff PowGetterShield
     POIN StatusGetterCheckCpas
     MSG_END
 
 gMagGetters:
     POIN MagGetterSkills MagGetterDebuff
+    POIN MagGetterStaffBoost
     POIN MagGetterWeaponBonus
     POIN MagGetterStatDebuff MagGetterShield
     POIN StatusGetterCheckCpas
@@ -21,12 +23,14 @@ gMagGetters:
 
 gSklGetters:
     POIN SklGetterWeaponBonus SklGetterSkills SklGetterDebuff
+    POIN SklGetterStaffBoost
     POIN SklGetterStatDebuff SklGetterShield
     POIN StatusGetterCheckCpas
     MSG_END
 
 gSpdGetters:
     POIN SpdGetterWeaponBonus SpdGetterSkills SpdGetterDebuff
+    POIN SpdGetterStaffBoost
     POIN SpdGetterLegendSkills
     POIN SpdGetterStatDebuff SpdGetterShield
     POIN StatusGetterCheckCpas
@@ -34,12 +38,14 @@ gSpdGetters:
 
 gLckGetters:
     POIN LckGetterWeaponBonus LckGetterSkills LckGetterDebuff
+    POIN LckGetterStaffBoost
     POIN LckGetterStatDebuff LckGetterShield
     POIN StatusGetterCheckCpas
     MSG_END
 
 gDefGetters:
     POIN DefGetterWeaponBonus DefGetterSkills DefGetterDebuff
+    POIN DefGetterStaffBoost
     POIN DefGetterLegendSkills
     POIN DefGetterStatDebuff DefGetterShield
     POIN StatusGetterCheckCpas
@@ -47,8 +53,11 @@ gDefGetters:
 
 gResGetters:
     POIN ResGetterWeaponBonus ResGetterSkills ResGetterDebuff
+    POIN ResGetterStaffBoost
     POIN ResGetterLegendSkills
+#ifndef CONFIG_MULTIPLE_BOOST_STAVES
     POIN ResGetterPureWater
+#endif
     POIN ResGetterStatDebuff ResGetterShield
     POIN StatusGetterCheckCpas
     MSG_END

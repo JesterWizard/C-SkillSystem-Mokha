@@ -23,16 +23,16 @@ const u8 gGaidenWeaponCostList[0x100] = {
 
 struct GaidenPinfoConfig const gGaidenPinfoConfigList[0x100] = {
 	[CHARACTER_EIRIKA] = { .ent = (const struct GaidenPinfoConfigEnt []) {
-		{ 1, ITEM_SWORD_KILLER },
-		{ 1, ITEM_SWORD_AUDHULMA},
-		{ 1, ITEM_ANIMA_THUNDER },
-		{ 1, ITEM_AXE_KILLER },
-		{ 1, ITEM_DARK_GLEIPNIR },
-		{ 1, ITEM_STAFF_SLEEP },
-		{ 1, ITEM_STAFF_LATONA},
-		{ 1, ITEM_STAFF_BERSERK },
-		{ 1, ITEM_STAFF_PHYSIC },
-		{ 1, ITEM_STAFF_WARP },
+		// { 1, ITEM_SWORD_KILLER },
+		// { 1, ITEM_SWORD_AUDHULMA},
+		// { 1, ITEM_ANIMA_THUNDER },
+		// { 1, ITEM_AXE_KILLER },
+		// { 1, ITEM_DARK_GLEIPNIR },
+		// { 1, ITEM_STAFF_SLEEP },
+		// { 1, ITEM_STAFF_LATONA},
+		// { 1, ITEM_STAFF_BERSERK },
+		// { 1, ITEM_STAFF_PHYSIC },
+		// { 1, ITEM_STAFF_WARP },
 		{ 0 }
 	}},
 	[CHARACTER_NATASHA] = { .ent = (const struct GaidenPinfoConfigEnt []) {

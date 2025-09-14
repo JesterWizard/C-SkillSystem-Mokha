@@ -519,7 +519,7 @@ int MakeNewItem(int item)
 	int iid = ITEM_INDEX(item);
 
 	if (iid == CONFIG_ITEM_INDEX_SKILL_SCROLL_FEB) {
-		iid = CONFIG_ITEM_INDEX_SKILL_SCROLL;
+		iid = CONFIG_ITEM_INDEX_SKILL_SCROLL_1;
 
 		item = iid | (ITEM_USES(item) << 8);
 	}
@@ -556,7 +556,7 @@ char *GetItemName(int item)
 LYN_REPLACE_CHECK(GetItemData);
 const struct ItemData * GetItemData(int itemIndex) 
 {
-    return gItemData + itemIndex;
+    return gItemData_New + itemIndex;
 }
 
 LYN_REPLACE_CHECK(GetItemAttributes);
@@ -1070,4 +1070,30 @@ void PrepUnit_DrawUnitItems(struct Unit *unit)
     }
 
     BG_EnableSyncByMask(BG0_SYNC_BIT);
+}
+
+LYN_REPLACE_CHECK(IsItemDisplayUsable);
+s8 IsItemDisplayUsable(struct Unit* unit, int item) {
+    
+    if (GetItemAttributes(item) & IA_WEAPON)
+        return CanUnitUseWeapon(unit, item);
+
+    if (GetItemAttributes(item) & IA_STAFF)
+        return CanUnitUseStaff(unit, item);
+
+    if (GetItemUseEffect(item)) {
+        if (unit->statusIndex == UNIT_STATUS_SLEEP)
+            return FALSE;
+
+        if (unit->statusIndex == UNIT_STATUS_BERSERK)
+            return FALSE;
+
+        if (!(UNIT_CATTRIBUTES(unit) & CA_THIEF) && GetItemIndex(item) == ITEM_LOCKPICK)
+            return FALSE;
+
+        if (!(UNIT_CATTRIBUTES(unit) & CA_REFRESHER) && IsItemDanceRing(item))
+            return FALSE;
+    }
+
+    return TRUE;
 }

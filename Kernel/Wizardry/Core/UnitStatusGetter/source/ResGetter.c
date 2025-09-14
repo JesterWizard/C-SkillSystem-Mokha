@@ -109,7 +109,17 @@ int ResGetterSkills(int status, struct Unit *unit)
 	return status;
 }
 
+#ifndef CONFIG_MULTIPLE_BOOST_STAVES
 int ResGetterPureWater(int status, struct Unit *unit)
 {
 	return status + unit->barrierDuration;
+}
+#endif
+
+int ResGetterStaffBoost(int status, struct Unit *unit)
+{
+    if (unit->boostType == 6)
+	    return status + unit->barrierDuration;
+
+    return status;
 }

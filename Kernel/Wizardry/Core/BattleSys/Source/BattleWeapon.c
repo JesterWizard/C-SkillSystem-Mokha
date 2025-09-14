@@ -78,6 +78,47 @@ int GetUnitEquippedWeaponSlot(struct Unit *unit)
 	return -1;
 }
 
+LYN_REPLACE_CHECK(CanUnitUseStaff);
+s8 CanUnitUseStaff(struct Unit* unit, int item) {
+    if (item == 0)
+        return FALSE;
+
+    if (!(GetItemAttributes(item) & IA_STAFF))
+        return FALSE;
+
+    if (unit->statusIndex == UNIT_STATUS_SLEEP)
+        return FALSE;
+
+    if (unit->statusIndex == UNIT_STATUS_BERSERK)
+        return FALSE;
+
+    if (unit->statusIndex == UNIT_STATUS_SILENCED)
+        return FALSE;
+
+#if (defined(SID_GracegiftPlus) && (COMMON_SKILL_VALID(SID_GracegiftPlus)))
+    if (SkillTester(unit, SID_GracegiftPlus))
+        if (GetItemType(item) == ITYPE_STAFF)
+            if (unit->ranks[ITYPE_STAFF] == 0)
+                if (GetItemRequiredExp(item) <= WPN_EXP_A) // A rank max
+                    return true;
+#endif
+
+#if (defined(SID_Gracegift) && (COMMON_SKILL_VALID(SID_Gracegift)))
+    if (SkillTester(unit, SID_Gracegift))
+        if (GetItemType(item) == ITYPE_STAFF)
+            if (unit->ranks[ITYPE_STAFF] == 0)
+                if (GetItemRequiredExp(item) <= WPN_EXP_C) // C rank max
+                    return true;
+#endif
+
+    {
+        int wRank = GetItemRequiredExp(item);
+        int uRank = unit->ranks[GetItemType(item)];
+
+        return (uRank >= wRank) ? TRUE : FALSE;
+    }
+}
+
 LYN_REPLACE_CHECK(GetUnitEquippedWeapon);
 u16 GetUnitEquippedWeapon(struct Unit *unit)
 {

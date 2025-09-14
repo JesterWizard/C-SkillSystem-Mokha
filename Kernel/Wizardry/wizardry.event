@@ -51,6 +51,7 @@ ALIGN 4
 #include "Common/PlayStExpa/PlayStExpa.event"
 #include "Common/FebCompat/FebCompat.event"
 #include "Common/ExtrasMenu/ExtrasMenu_Installer.event"
+#include "Common/UnitTarget/UnitTarget.event"
 
 #ifdef CONFIG_MULTIPLE_DEATH_QUOTES
     #include "Common/Quotes/Quotes.event"
