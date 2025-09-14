@@ -25,13 +25,13 @@ install-devkitpro-pacman
 # *.lyn.event
 
 # Spritans
-*.4bpp
+# *.4bpp
 # *.gbapal
-*.lz
+# *.lz
 # *.img.bin
 # *.map.bin
 # *.pal.bin
-*.lz77
+# *.lz77
 
 # Tables
 *.csv.event
