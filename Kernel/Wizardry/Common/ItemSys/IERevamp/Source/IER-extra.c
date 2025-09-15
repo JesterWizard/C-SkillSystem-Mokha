@@ -465,6 +465,24 @@ void ExecBarrierStaff(ProcPtr proc) {
     return;
 }
 
+
+LYN_REPLACE_CHECK(ExecMine);
+void ExecMine(ProcPtr proc) {
+    BattleInitItemEffect(GetUnit(gActionData.subjectIndex),
+        gActionData.itemSlotIndex);
+
+    AddTrap(gActionData.xOther, gActionData.yOther, TRAP_MINE, 0);
+
+    StartMineAnim(proc, gActionData.xOther, gActionData.yOther);
+
+    BattleApplyItemEffect(proc);
+    BeginBattleAnimations(); // I need this for the EXP bar but it's causing a softlock on the prologue, still grants exp and level ups though
+
+    gBattleTarget.statusOut = -1;
+
+    return;
+}
+
 LYN_REPLACE_CHECK(ExecLightRune);
 void ExecLightRune(ProcPtr proc) {
     BattleInitItemEffect(GetUnit(gActionData.subjectIndex),
