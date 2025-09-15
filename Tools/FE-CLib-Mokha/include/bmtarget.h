@@ -14,7 +14,7 @@ void AddUnitToTargetListIfNotAllied(struct Unit * unit);
 void MakeTargetListForWeapon(struct Unit* unit, int item);
 void TryAddUnitToTradeTargetList(struct Unit * unit);
 void MakeTradeTargetList(struct Unit* unit);
-// ??? TryAddUnitToRescueTargetList(???);
+void TryAddUnitToRescueTargetList(struct Unit* unit);
 void MakeRescueTargetList(struct Unit* unit);
 // ??? TryAddToDropTargetList(???);
 void MakeDropTargetList(struct Unit* unit);

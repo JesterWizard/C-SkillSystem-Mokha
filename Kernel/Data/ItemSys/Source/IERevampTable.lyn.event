@@ -224,6 +224,11 @@ WORD $0
 POIN IER_Effect_LightRune
 POIN IER_Action_LightRune
 WORD $0
+POIN IER_Usability_LightRune
+WORD $0
+POIN IER_Effect_LightRune
+POIN IER_Action_LightRune
+WORD $0
 POIN IER_Usability_DanceRing
 WORD $0
 POIN IER_Effect_SpeicalDance
@@ -293,4 +298,4 @@ POIN IER_PrepEffect_SkillScroll
 POIN IER_Usability_NightMare
 WORD $0 $0
 POIN IER_Action_NightMare
-WORD $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0
+WORD $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0

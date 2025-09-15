@@ -353,6 +353,15 @@ struct IERevamp const IERevampTable[IER_MAX] = {
 		.action_effect  = IER_Action_LightRune,
 		.prep_effect    = NULL,
 	},
+#ifdef CONFIG_ITEM_INDEX_RUNE_STAFF
+	[IER_STAFF_RUNE] = {
+		.usability      = IER_Usability_LightRune,
+		.prep_usability = NULL,
+		.effect         = IER_Effect_LightRune,
+		.action_effect  = IER_Action_LightRune,
+		.prep_effect    = NULL,
+	},
+#endif
 	[IER_FILLAS_MIGHT] = {
 		.usability      = IER_Usability_DanceRing,
 		.prep_usability = NULL,
