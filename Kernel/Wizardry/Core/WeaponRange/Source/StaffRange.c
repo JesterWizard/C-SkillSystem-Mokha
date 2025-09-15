@@ -1,5 +1,7 @@
 #include "common-chax.h"
 #include "weapon-range.h"
+#include "debuff.h"
+#include "jester_headers/custom-functions.h"
 
 LYN_REPLACE_CHECK(MakeTargetListForAdjacentHeal);
 void MakeTargetListForAdjacentHeal(struct Unit *unit)
@@ -109,4 +111,32 @@ void MakeTargetListForHammerne(struct Unit *unit)
 	BmMapFill(gBmMapRange, 0);
 	AddMapForItem(unit, ITEM_STAFF_REPAIR);
 	ForEachUnit(TryAddUnitToHammerneTargetList, gBmMapRange, 0);
+}
+
+void TryAddUnitToSlowTargetList(struct Unit* unit) 
+{
+
+    if (AreUnitsAllied(gSubjectUnit->index, unit->index)) {
+        return;
+    }
+
+    if (unit->statusIndex != UNIT_STATUS_NONE && unit->statusIndex != NEW_UNIT_STATUS_SLOW) {
+        return;
+    }
+
+    AddTarget(unit->xPos, unit->yPos, unit->index, 0);
+
+    return;
+}
+
+void MakeTargetListForSlow(struct Unit *unit)
+{
+	gSubjectUnit = unit;
+	InitTargets(unit->xPos, unit->yPos);
+
+	BmMapFill(gBmMapRange, 0);
+#ifdef CONFIG_ITEM_INDEX_SLOW_STAFF
+	AddMapForItem(unit, CONFIG_ITEM_INDEX_SLOW_STAFF);
+#endif
+	ForEachUnit(TryAddUnitToSlowTargetList, gBmMapRange, 0);
 }

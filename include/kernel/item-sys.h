@@ -42,6 +42,9 @@ enum chax_ierevamp_use_effects {
 #ifdef CONFIG_ITEM_INDEX_IRON_STAFF
     IER_STAFF_IRON,
 #endif
+#ifdef CONFIG_ITEM_INDEX_SLOW_STAFF
+    IER_STAFF_SLOW,
+#endif
 
 	/**
 	 * Boosters
@@ -217,6 +220,7 @@ IER_DECLEARE_Usability(IER_Usability_DanceRing);
 IER_DECLEARE_Usability(IER_Usability_MetisStone);
 IER_DECLEARE_Usability(IER_Usability_JunaFruit);
 IER_DECLEARE_Usability(IER_Usability_NightMare);
+IER_DECLEARE_Usability(IER_Usability_Slow);
 
 IER_DECLEARE_Effect(IER_Effect_AdjacentHeal);
 IER_DECLEARE_Effect(IER_Effect_RangedHeal);
@@ -234,6 +238,7 @@ IER_DECLEARE_Effect(IER_Effect_Mine);
 IER_DECLEARE_Effect(IER_Effect_LightRune);
 IER_DECLEARE_Effect(IER_Effect_Torch);
 IER_DECLEARE_Effect(IER_Effect_SpeicalDance);
+IER_DECLEARE_Effect(IER_Effect_Slow);
 
 IER_DECLEARE_Action(IER_Action_StandardHeal);
 IER_DECLEARE_Action(IER_Action_StatusStaff);
@@ -259,6 +264,7 @@ IER_DECLEARE_Action(IER_Action_LightRune);
 IER_DECLEARE_Action(IER_Action_TorchStaff);
 IER_DECLEARE_Action(IER_Action_DanceRing);
 IER_DECLEARE_Action(IER_Action_JunaFruitItem);
+IER_DECLEARE_Action(IER_Action_CustomStaves);
 
 IER_DECLEARE_PrepEffect(IER_PrepEffect_StatBooster);
 IER_DECLEARE_PrepEffect(IER_PrepEffect_Promotion);

@@ -2,6 +2,7 @@
 #include "item-sys.h"
 #include "battle-system.h"
 #include "constants/texts.h"
+#include "jester_headers/custom-functions.h"
 
 /**
  * Usability
@@ -149,6 +150,11 @@ bool IER_Usability_NightMare(struct Unit *unit, int item)
 	return HasSelectTarget(unit, MakeTargetListForFuckingNightmare);
 }
 
+bool IER_Usability_Slow(struct Unit *unit, int item)
+{
+	return HasSelectTarget(unit, MakeTargetListForSlow);
+}
+
 /**
  * Effects
  */
@@ -180,6 +186,11 @@ void IER_Effect_Silence(struct Unit *unit, int item)
 void IER_Effect_Sleep(struct Unit *unit, int item)
 {
 	DoUseAttackStaff(unit, MakeTargetListForSleep);
+}
+
+void IER_Effect_Slow(struct Unit *unit, int item)
+{
+	DoUseAttackStaff(unit, MakeTargetListForSlow);
 }
 
 void IER_Effect_Berserk(struct Unit *unit, int item)
@@ -380,6 +391,11 @@ void IER_Action_DanceRing(ProcPtr proc, struct Unit *unit, int item)
 void IER_Action_JunaFruitItem(ProcPtr proc, struct Unit *unit, int item)
 {
 	ExecJunaFruitItem(proc);
+}
+
+void IER_Action_CustomStaves(ProcPtr proc, struct Unit *unit, int item)
+{
+	ExecCustomStaves(proc);
 }
 
 /**

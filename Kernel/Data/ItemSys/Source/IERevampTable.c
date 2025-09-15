@@ -161,6 +161,15 @@ struct IERevamp const IERevampTable[IER_MAX] = {
 		.action_effect  = IER_Action_BarrierStaff,
 		.prep_effect    = NULL,
 	},
+#ifdef CONFIG_ITEM_INDEX_SLOW_STAFF
+	[IER_STAFF_SLOW] = {
+		.usability      = IER_Usability_Slow,
+		.prep_usability = NULL,
+		.effect         = IER_Effect_Slow,
+		.action_effect  = IER_Action_CustomStaves,
+		.prep_effect    = NULL,
+	},
+#endif
 
 	/**
 	 * Boosters

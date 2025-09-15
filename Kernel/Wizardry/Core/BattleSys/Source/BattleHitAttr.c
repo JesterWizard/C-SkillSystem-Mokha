@@ -354,6 +354,10 @@ void BattleHit_InjectNegativeStatus(struct BattleUnit *attacker, struct BattleUn
 			NEW_UNIT_STATUS_PIERCE_MAGIC,
 			NEW_UNIT_STATUS_HEAVY_GRAVITY,
 			NEW_UNIT_STATUS_WEAKEN,
+			NEW_UNIT_STATUS_BREAK,
+			NEW_UNIT_STATUS_TOXIC_POISON,
+			NEW_UNIT_STATUS_DOOM,
+			NEW_UNIT_STATUS_SLOW,
 		};
 
 		exthit->tar_debuff = _debuffs[NextRN_N(ARRAY_COUNT(_debuffs))];
