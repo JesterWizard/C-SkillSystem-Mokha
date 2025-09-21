@@ -854,3 +854,4 @@
 #define MSG_SKILL_Reroll_CAPACITY 1
 #define MSG_SKILL_SpellBlade_CAPACITY 1
 #define MSG_SKILL_Caltrops_CAPACITY 1
+#define MSG_SKILL_DamageToMP_CAPACITY 1

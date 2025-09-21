@@ -854,3 +854,4 @@
 #define MSG_SKILL_Reroll_PRICE 1000
 #define MSG_SKILL_SpellBlade_PRICE 1000
 #define MSG_SKILL_Caltrops_PRICE 1000
+#define MSG_SKILL_DamageToMP_PRICE 1000

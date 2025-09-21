@@ -140,6 +140,9 @@ void BattleGenerateHitAttributes(struct BattleUnit* attacker, struct BattleUnit*
 LYN_REPLACE_CHECK(BattleGenerateHitEffects);
 void BattleGenerateHitEffects(struct BattleUnit* attacker, struct BattleUnit* defender)
 {
+
+	FORCE_DECLARE bool divertDamageToMP = false;
+
 #if (defined(SID_Discipline) && (COMMON_SKILL_VALID(SID_Discipline)))
 	if (BattleFastSkillTester(attacker, SID_Discipline))
 		attacker->wexpMultiplier += 2;
@@ -178,7 +181,24 @@ void BattleGenerateHitEffects(struct BattleUnit* attacker, struct BattleUnit* de
 				}
 			}
 #endif
-			defender->unit.curHP -= gBattleStats.damage;
+
+#ifdef CONFIG_MP_SYSTEM
+#if defined(SID_DamageToMP) && (COMMON_SKILL_VALID(SID_DamageToMP))
+			if (BattleFastSkillTester(defender, SID_DamageToMP)) {
+				struct NewBwl* bwl = GetNewBwl(UNIT_CHAR_ID(GetUnit(defender->unit.index)));
+
+				if (bwl != NULL && bwl->currentMP > 0)
+				{
+					bwl->currentMP = gBattleStats.damage > bwl->currentMP ? 0 : bwl->currentMP - gBattleStats.damage;
+					divertDamageToMP = true;
+					attacker->nonZeroDamage = false;
+				}
+			}
+#endif
+#endif
+
+			if (!divertDamageToMP)
+				defender->unit.curHP -= gBattleStats.damage;
 
 			// if (defender->unit.curHP < 0)
 			// 	defender->unit.curHP = 0;
@@ -200,7 +220,15 @@ void BattleGenerateHitEffects(struct BattleUnit* attacker, struct BattleUnit* de
 		BattleHit_InjectNegativeStatus(attacker, defender);
 	}
 
+#ifdef CONFIG_MP_SYSTEM
+#if defined(SID_DamageToMP) && (COMMON_SKILL_VALID(SID_DamageToMP))
+	if (!BattleFastSkillTester(defender, SID_DamageToMP)) {
+		gBattleHitIterator->hpChange = gBattleStats.damage;
+	}
+#else
 	gBattleHitIterator->hpChange = gBattleStats.damage;
+#endif
+#endif
 
 	BattleHit_ConsumeWeapon(attacker, defender);
 	BattleHit_ConsumeShield(attacker, defender);

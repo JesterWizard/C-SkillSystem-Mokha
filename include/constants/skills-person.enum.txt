@@ -295,6 +295,7 @@
 // SID_MagicEye
 // SID_Crescendo
 // SID_PenanceStare
+// SID_DamageToMP
 
 //////// POST-BATTLE SKILL
 // SID_Canto

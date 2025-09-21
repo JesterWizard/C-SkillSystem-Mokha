@@ -905,7 +905,7 @@ Pickup[X]
 ## MSG_SKILL_Pickup_DESC
 Pickup: Obtain the last item in the[N]
 enemy's inventory after attacking[N]
-and killing them. (Luck % activation)[X]
+and killing them. [Luck % activation](X)
 
 ## MSG_SKILL_Expertise_NAME
 Expertise[X]
@@ -1338,7 +1338,7 @@ Doesn't do anything.[X]
 Flank[X]
 ## MSG_SKILL_Flank_DESC
 Flank: If an ally is on the[N]
-opposite side of an adjacent[N] 
+opposite side of an adjacent[N]
 target, deal 25% more damage.[X]
 
 ## MSG_SKILL_ForeignPrincess_NAME
@@ -1771,3 +1771,10 @@ Crescendo[N]
 Crescendo:[N]
 Pre battle skill that boosts crit by[N]
 +3 each turn up to a maximum of +30.[X]
+
+## MSG_SKILL_DamageToMP_NAME
+Damage To MP[X]
+## MSG_SKILL_DamageToMP_DESC
+Damage To MP:[N]
+If this unit has MP, damage[N]
+taken is deflected to it.[X]

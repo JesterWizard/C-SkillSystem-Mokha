@@ -13,15 +13,15 @@
 
 #define LOCAL_TRACE 0
 
-typedef void (*BattleDamageCalcFunc) (struct BattleUnit *buA, struct BattleUnit *buB);
-extern BattleDamageCalcFunc const *const gpBattleDamageCalcFuncs;
+typedef void (*BattleDamageCalcFunc) (struct BattleUnit* buA, struct BattleUnit* buB);
+extern BattleDamageCalcFunc const* const gpBattleDamageCalcFuncs;
 
-typedef int (*BattleRealDamageCalcFunc) (int old, struct BattleUnit *buA, struct BattleUnit *buB);
-extern BattleRealDamageCalcFunc const *const gpBattleRealDamageCalcFuncs;
+typedef int (*BattleRealDamageCalcFunc) (int old, struct BattleUnit* buA, struct BattleUnit* buB);
+extern BattleRealDamageCalcFunc const* const gpBattleRealDamageCalcFuncs;
 
-int CalcBattleRealDamage(struct BattleUnit *attacker, struct BattleUnit *defender)
+int CalcBattleRealDamage(struct BattleUnit* attacker, struct BattleUnit* defender)
 {
-	const BattleRealDamageCalcFunc *it;
+	const BattleRealDamageCalcFunc* it;
 
 	int damage = 0;
 
@@ -56,13 +56,13 @@ int CalcBattleRealDamage(struct BattleUnit *attacker, struct BattleUnit *defende
 	return damage;
 }
 
-int GetMaxDamage(struct BattleUnit *attacker, struct BattleUnit *defender)
+int GetMaxDamage(struct BattleUnit* attacker, struct BattleUnit* defender)
 {
 	/* TODO: better to put this to designer config */
 	return CONFIG_BATTLE_MAX_DAMAGE;
 }
 
-void PreBattleCalcInit_BaseDamage(struct BattleUnit *attacker, struct BattleUnit *defender)
+void PreBattleCalcInit_BaseDamage(struct BattleUnit* attacker, struct BattleUnit* defender)
 {
 	gActorBaseDmg.increase = 100;
 	gActorBaseDmg.decrease = 0x100;
@@ -73,16 +73,16 @@ void PreBattleCalcInit_BaseDamage(struct BattleUnit *attacker, struct BattleUnit
 	gTargetBaseDmg.real_damage = CalcBattleRealDamage(&gBattleTarget, &gBattleActor);
 }
 
-int BattleHit_CalcDamage(struct BattleUnit *attacker, struct BattleUnit *defender)
+int BattleHit_CalcDamage(struct BattleUnit* attacker, struct BattleUnit* defender)
 {
-	const BattleDamageCalcFunc *it;
+	const BattleDamageCalcFunc* it;
 
 	FORCE_DECLARE bool barricadePlus_activated;
 	int base_damage, crit_correction, result;
-	struct BaseDmg *base_dmg = GetBaseDmg(attacker);
+	struct BaseDmg* base_dmg = GetBaseDmg(attacker);
 	int max_damage = GetMaxDamage(attacker, defender);
 
-	FORCE_DECLARE struct BattleGlobalFlags *act_flags, *tar_flags;
+	FORCE_DECLARE struct BattleGlobalFlags* act_flags, * tar_flags;
 
 	/**
 	 * result = ([atk + gDmg.correction - def])
@@ -95,7 +95,8 @@ int BattleHit_CalcDamage(struct BattleUnit *attacker, struct BattleUnit *defende
 	if (attacker == &gBattleActor) {
 		act_flags = &gBattleActorGlobalFlag;
 		tar_flags = &gBattleTargetGlobalFlag;
-	} else {
+	}
+	else {
 		act_flags = &gBattleTargetGlobalFlag;
 		tar_flags = &gBattleActorGlobalFlag;
 	}
@@ -136,9 +137,18 @@ int BattleHit_CalcDamage(struct BattleUnit *attacker, struct BattleUnit *defende
 	if (gBattleHitIterator->attributes & BATTLE_HIT_ATTR_SILENCER) {
 		gDmg.result = max_damage;
 		return max_damage;
-	} else if (gBattleHitIterator->attributes & BATTLE_HIT_ATTR_GREATSHLD) {
+	}
+	else if (gBattleHitIterator->attributes & BATTLE_HIT_ATTR_GREATSHLD) {
+#if defined(SID_DamageToMP) && (COMMON_SKILL_VALID(SID_DamageToMP))
+		if (gActionData.unk08 != SID_DamageToMP)
+		{
+			gDmg.result = 0;
+			return 0;
+		}
+#else
 		gDmg.result = 0;
 		return 0;
+#endif
 	}
 
 	base_damage = gBattleStats.attack + gDmg.correction - gBattleStats.defense;
@@ -180,8 +190,8 @@ int BattleHit_CalcDamage(struct BattleUnit *attacker, struct BattleUnit *defende
 #endif
 
 	LTRACEF("[round %d] dmg=%d: max=%d, base=%d (atk=%d, def=%d, cor=%d), inc=%d, crt=%d, dec=%d, real=%d",
-					GetBattleHitRound(gBattleHitIterator), result, max_damage, base_damage,
-					gBattleStats.attack, gBattleStats.defense, gDmg.correction, gDmg.increase, crit_correction, gDmg.decrease, gDmg.real_damage);
+		GetBattleHitRound(gBattleHitIterator), result, max_damage, base_damage,
+		gBattleStats.attack, gBattleStats.defense, gDmg.correction, gDmg.increase, crit_correction, gDmg.decrease, gDmg.real_damage);
 
 	if (result > max_damage)
 		result = max_damage;
