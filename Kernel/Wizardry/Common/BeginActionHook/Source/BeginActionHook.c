@@ -4,6 +4,8 @@ typedef void (*BeginActionFunc_t)(struct Unit *unit);
 // extern const BeginActionFunc_t gBeginActionHooks[];
 extern BeginActionFunc_t const *const gpBeginActionHooks;
 
+#ifndef CONFIG_UNIT_SELECTION_QUOTES
+
 LYN_REPLACE_CHECK(UnitBeginAction);
 void UnitBeginAction(struct Unit *unit)
 {
@@ -34,3 +36,5 @@ void UnitBeginAction(struct Unit *unit)
 }
 #endif
 }
+
+#endif
