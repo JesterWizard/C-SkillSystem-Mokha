@@ -62,7 +62,5 @@ within each function that modifications were made.
 
 As of the time of writing, stages 2 and 3 of the fog still need fleshing out mechanically and graphically.
 There are issues that need resolving with having multiple different fogs occupying the same layer.
-Ideally they should all be able to programtically share the same space so long as the total palette sits
+Ideally they should all be able to programatically share the same space so long as the total palette sits
 below 16 colors, but we'll see.
-
-``JESTER_DOC``
