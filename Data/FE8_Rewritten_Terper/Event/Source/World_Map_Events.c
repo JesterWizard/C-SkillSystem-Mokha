@@ -25,6 +25,10 @@ extern struct ProcCmd CONST_DATA gProcScr_OpSubtitle[];
 LYN_REPLACE_CHECK(StartIntroMonologue);
 void StartIntroMonologue(ProcPtr proc) {
 
+#ifdef CONFIG_VOICE_ACTED_PROLOGUE
+    SetGameOption(GAME_OPTION_SOUND_EFFECTS, 1); // Set text speed to max
+#endif
+
 #ifndef CONFIG_SKIP_INTRO
     Proc_StartBlocking(gProcScr_OpSubtitle, proc);
 #endif
@@ -38,9 +42,12 @@ const EventScr EventScrWM_Prologue_SET_NODE[] = {
 #ifndef CONFIG_SKIP_INTRO
     WM_SPAWNLORD(WM_MU_0, CHARACTER_EIRIKA, WM_NODE_BorderMulan)
     WM_CENTERCAMONLORD(WM_MU_0)
+
+#ifndef CONFIG_VOICE_ACTED_PROLOGUE
     MUSCFAST(0x7fff)
     STAL(32)
     MUSC(0x4)
+#endif
     WM_SHOWDRAWNMAP(0, 0, 0x10)
     STAL(2)
     WM_FADEOUT(0)
@@ -51,6 +58,10 @@ const EventScr EventScrWM_Prologue_SET_NODE[] = {
     WM_WAITFORTEXT
     WM_TEXTSTART
     WM_TEXT(Chapter_00_WM, 0)
+
+#ifdef CONFIG_VOICE_ACTED_PROLOGUE
+    MUSC(0x3D2)
+#endif
 
     // wait for talk locked
     TEXTEND

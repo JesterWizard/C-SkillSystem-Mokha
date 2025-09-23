@@ -358,7 +358,7 @@
 #define CONFIG_PROMOTION_ON_MAX_LEVEL
 #define CONFIG_GREEN_BONUS_GROWTHS // Must disable CONFIG_GROWTHS_AS_LETTERS
 // #define CONFIG_GROWTHS_AS_LETTERS  // Must disable CONFIG_GREEN_BONUS_GROWTHS
-#define CONFIG_SKIP_INTRO
+// #define CONFIG_SKIP_INTRO
 #define SETH_INJURED
 #define INJURED_TURN_COUNT 5
 
@@ -423,5 +423,6 @@
 
 #define CONFIG_UNIT_SELECTION_QUOTES /* Leonarth */ /* Needed to turn off unitBeginAction's lynjump for this */
 
+#define CONFIG_VOICE_ACTED_PROLOGUE
 
 #endif /* CONFIG_INSTALLED */
