@@ -74,7 +74,7 @@
  */
 #define UsrMagicSize 0x10
 #define UsrRelocSize 0x400
-#define UsrDataSize  0x1FD5E0 // Originally 0xCD5E0
+#define UsrDataSize  0x2FD5E0 // Originally 0xCD5E0
 #define MsgTableSize 0x800C
 
 #define FreeSpace_Magic    (FreeSpaceCommon + 0x0)

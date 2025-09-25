@@ -59,9 +59,24 @@ const EventScr EventScrWM_Prologue_SET_NODE[] = {
     WM_TEXTSTART
     WM_TEXT(Chapter_00_WM, 0)
 
-#ifdef CONFIG_VOICE_ACTED_PROLOGUE
-    MUSC(0x3D2)
-#endif
+    // The continent of Magvel.
+    MUSC(0xC0)
+    TEXTCONT
+    TEXTEND     // wait for talk locked
+
+    // For some 800 years, a quiet peace reigned in the absence of the terrible darkness.
+    MUSC(0xC1)
+    TEXTCONT
+    TEXTEND     // wait for talk locked
+
+    // The Sacred Stones have been passed from generation to generation.
+    MUSC(0xC2)
+    TEXTCONT
+    TEXTEND     // wait for talk locked
+
+    // Nations have been built around their power and their legacy.
+    MUSC(0xC3)
+    TEXTCONT
 
     // wait for talk locked
     TEXTEND
@@ -71,6 +86,9 @@ const EventScr EventScrWM_Prologue_SET_NODE[] = {
     STAL(6)
     STAL(26)
     WM_HIGHLIGHT(WM_NATION_Renais)
+
+    // The kingdom of Renais, ruled by Fado, the peerless Warrior King.
+    MUSC(0xC4)
     TEXTCONT
 
     // wait for talk locked
@@ -86,6 +104,9 @@ const EventScr EventScrWM_Prologue_SET_NODE[] = {
     STAL(6)
     STAL(26)
     WM_HIGHLIGHT(WM_NATION_Frelia)
+
+    // The kingdom of Frelia, ruled by Hayden, the venerable Sage King.
+    MUSC(0xC5)
     TEXTCONT
 
     // wait for talk locked
@@ -101,6 +122,9 @@ const EventScr EventScrWM_Prologue_SET_NODE[] = {
     STAL(6)
     STAL(26)
     WM_HIGHLIGHT(WM_NATION_Jehanna)
+
+    // The kingdom of Jehanna, ruled by Ismaire, Queen of the White Dunes.
+    MUSC(0xC6)
     TEXTCONT
 
     // wait for talk locked
@@ -116,6 +140,9 @@ const EventScr EventScrWM_Prologue_SET_NODE[] = {
     STAL(6)
     STAL(26)
     WM_HIGHLIGHT(WM_NATION_Rausten)
+
+    // The theocracy of Rausten, ruled by Mansel, the Divine Emperor.
+    MUSC(0xD9)
     TEXTCONT
 
     // wait for talk locked
@@ -131,6 +158,9 @@ const EventScr EventScrWM_Prologue_SET_NODE[] = {
     STAL(6)
     STAL(26)
     WM_HIGHLIGHT(WM_NATION_Grado)
+
+    // The Grado Empire, ruled by Vigarde, the stalwart Silent Emperor.
+    MUSC(0xDA)
     TEXTCONT
 
     // wait for talk locked
@@ -139,7 +169,9 @@ const EventScr EventScrWM_Prologue_SET_NODE[] = {
     WM_HIGHLIGHTCLEAR1(WM_NATION_Grado)
     WM_HIGHLIGHTCLEAR2(WM_NATION_Grado)
     WM_CLEARPORTRAIT(0, 0x0100, 0)
-    STAL(32)
+    
+    // These five countries house the power of the Sacred Stones.
+    MUSC(0xDB)
     TEXTCONT
 
     // wait for talk locked
@@ -151,6 +183,8 @@ const EventScr EventScrWM_Prologue_SET_NODE[] = {
     STAL(6)
     STAL(26)
     WM_HIGHLIGHT(WM_NATION_Carcino)
+    // They are joined by the emerging mercantile republic of Carcino.
+    MUSC(0xE0)
     TEXTCONT
 
     // wait for talk locked
@@ -160,14 +194,37 @@ const EventScr EventScrWM_Prologue_SET_NODE[] = {
     WM_HIGHLIGHTCLEAR2(WM_NATION_Carcino)
     WM_CLEARPORTRAIT(0, 0x0100, 0)
     STAL(32)
+
+    // Though peace reigns, the harmony is fragile.
+    MUSC(0xE1)
     TEXTCONT
     TEXTEND
-    STAL(30)
+
+    // For months, rumors of Grado's military expansions have reached neighboring courts.
+    MUSC(0xE4)
     TEXTCONT
     TEXTEND
-    STAL(30)
+
+    // Renais, once a close ally of Grado, has grown cautious, strengthening its borders.
+    MUSC(0xE8)
     TEXTCONT
     TEXTEND
+
+    // Preparing for any eventuality.
+    MUSC(0xE9)
+    TEXTCONT
+    TEXTEND
+
+    // It is now the year 803...
+    MUSC(0xEC)
+    TEXTCONT
+    TEXTEND
+
+    // In an instant, the whole of Magvel is threatened by a devastating betrayal.
+    MUSC(0xED)
+    TEXTCONT
+    TEXTEND
+
     STAL(30)
     WM_MOVECAM2(0, 0, 0, 48, 60, 0)
     STAL(60)
@@ -175,10 +232,17 @@ const EventScr EventScrWM_Prologue_SET_NODE[] = {
     STAL(6)
     STAL(26)
     WM_HIGHLIGHT(WM_NATION_Grado)
+
+    // The Grado Empire, the largest of the Sacred Stone nations,
+    MUSC(0xEE)
     TEXTCONT
     TEXTEND
+
+    // has invaded the kingdom of Renais under orders from Emperor Vigarde.
+    MUSC(0x104)
     TEXTCONT
     TEXTEND
+
     WM_HIGHLIGHTCLEAR1(WM_NATION_Grado)
     WM_HIGHLIGHTCLEAR2(WM_NATION_Grado)
     WM_CLEARPORTRAIT(0, 0x0100, 0)
@@ -189,8 +253,17 @@ const EventScr EventScrWM_Prologue_SET_NODE[] = {
     STAL(6)
     STAL(26)
     WM_HIGHLIGHT(WM_NATION_Renais)
+
+    // Despite its vigilance, the sheer scale of the operation catches Renais on the backfoot.
+    MUSC(0x105)
     TEXTCONT
     TEXTEND
+
+    // Leaving it unable to mount a sufficient resistance.
+    MUSC(0x106)
+    TEXTCONT
+    TEXTEND
+
     WM_HIGHLIGHTCLEAR1(WM_NATION_Renais)
     WM_HIGHLIGHTCLEAR2(WM_NATION_Renais)
     WM_CLEARPORTRAIT(0, 0x0100, 0)
@@ -207,8 +280,12 @@ const EventScr EventScrWM_Prologue_SET_NODE[] = {
     WM_PUTMOVINGSPRITE(WM_MU_3, 0, 0x84, 0x84, 0x76, 0x57, 170, 0x3, 10)
     WM_PUTMOVINGSPRITE(WM_MU_4, 0, 0x95, 0x84, 0x86, 0x64, 150, 0x3, 10)
     STAL(20)
+
+    // Grado's forces move quickly, seizing one territory after another.
+    MUSC(0x107)
     TEXTCONT
     TEXTEND
+
     WM_WAITFORSPRITES(WM_MU_ANY)
     WM_REMSPRITE(WM_MU_2)
     WM_REMSPRITE(WM_MU_3)
@@ -219,8 +296,12 @@ const EventScr EventScrWM_Prologue_SET_NODE[] = {
     STAL(60)
     PUTSPRITE(WM_MU_2, CLASS_EPHRAIM_LORD, WM_FACTION_BLUE, WM_NODE_AdlasPlains)
     WM_PUTMOVINGSPRITE(WM_MU_2, 0, 0x5c, 0x64, 0x5c, 0x6c, 180, 0x3, 16)
+    
+    // Compounding King Fado's worries, his son, Prince Ephraim, has gone missing.
+    MUSC(0x10B)
     TEXTCONT
     TEXTEND
+
     WM_WAITFORSPRITES(WM_MU_ANY)
     WM_REMSPRITE(WM_MU_2)
     WM_CLEARPORTRAIT(0, 0x0200, 0)
@@ -233,16 +314,24 @@ const EventScr EventScrWM_Prologue_SET_NODE[] = {
     WM_PUTMOVINGSPRITE(WM_MU_2, 0, 0x84, 0x84, 0x6c, 0x5c, 210, 0x1, 0)
     WM_PUTMOVINGSPRITE(WM_MU_3, 0, 0x73, 0x92, 0x5b, 0x56, 210, 0x1, 0)
     WM_PUTMOVINGSPRITE(WM_MU_4, 0, 0x95, 0x92, 0x7d, 0x56, 210, 0x1, 0)
+    
+    // Grado's momentum carries its armies to the gates of Castle Renais itself.
+    MUSC(0x10C)
     TEXTCONT
     TEXTEND
+
     WM_WAITFORSPRITES(WM_MU_ANY)
     STAL(26)
     WM_PUTSPRITE(WM_MU_6, 0x63, 0x45)
     WM_PUTSPRITE(WM_MU_5, 0x6c, 0x4c)
     WM_FADEINSPRITE(WM_MU_6, 60)
     WM_FADEINSPRITE(WM_MU_5, 60)
+
+    // Renais will fall... It is inevitable.
+    MUSC(0x10D)
     TEXTCONT
     TEXTEND
+    
     WM_WAITFORSPRITELOAD
     WM_REMOVETEXT
     STAL(2)

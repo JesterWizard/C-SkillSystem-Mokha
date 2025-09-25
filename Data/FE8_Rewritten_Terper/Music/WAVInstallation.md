@@ -54,10 +54,12 @@ You can select ``preview`` at any given time to check how the audio sounds
 Now you should have a WAV that's as small as reasonably possible and doesn't sound like total shit.
 
 6) Now drag the WAV onto one of the two batch files (or Linux equivalents) in WAV2GBA to produce a ``BIN`` file
-7) Now open WAV2EA and locate your bin, and fill in the textboxes (The ids for Replacing ids can be found in Music List.txt, and for group its in Group List.txt)
+7) Now open WAV2EA and locate your bin, and fill in the textboxes (The ids for Replacing IDs can be found in Music List.txt, and for group IDs in Group List.txt)
 8) Click save and this should be produce an installer in ``TXT`` format in the same folder
 9) Copy paste ``MPlayDef.event`` in said folder along with the installer and WAV to your buildfile
-10) Install via event assembler aaaaaaand DONE!
+10) One thing that you don't get told is that you need to append the name of your bin file to line 19 of the txt file where ``loop_sfx_mvl`` is. So if you called the file ``my_cool_track.bin`` then ``loop_sfx_mvl`` needs to become ``loop_sfx_mvl_my_cool_track`` or it won't install.
+11) Install via event assembler aaaaaaand DONE!
+12) Now you can call the track as either as sound effect or a music track using SOUN or MUSC (and the music list ID as a parameter) respectively.
 
 ## Limitations and Bugs
 
