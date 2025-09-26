@@ -855,3 +855,4 @@
 #define MSG_SKILL_SpellBlade_CAPACITY 1
 #define MSG_SKILL_Caltrops_CAPACITY 1
 #define MSG_SKILL_DamageToMP_CAPACITY 1
+#define MSG_SKILL_Blight_CAPACITY 1

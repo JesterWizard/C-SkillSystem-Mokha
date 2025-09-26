@@ -20,7 +20,7 @@ WORD $0 $8022B31 $0
 POIN pr_AttackActionCommandHoverFix
 POIN pr_AttackActionCommandUnhoverFix
 POIN CURRENTOFFSET-440
-WORD $14A614A5 $6C00
+WORD $14A814A7 $6C00
 POIN pr_CombatArtActionCommandUsability
 POIN pr_CombatArtActionCommandOnDarw
 POIN pr_CombatArtActionCommandEffect
@@ -34,7 +34,7 @@ WORD $6D60691 $5204 $80248C5 $0 $8024921 $0 $0 $0
 POIN CURRENTOFFSET-516
 WORD $6D70692 $5304 $802494D $0 $8024981 $0 $0 $0
 POIN CURRENTOFFSET-536
-WORD $14F714F6 $8000
+WORD $14F914F8 $8000
 POIN pr_GaidenBMagActionCommandUsability
 POIN pr_GaidenBMagActionCommandOnDarw
 POIN pr_GaidenBMagActionCommandEffect
@@ -42,7 +42,7 @@ WORD $0
 POIN pr_GaidenBMagActionCommandHover
 POIN pr_GaidenBMagActionCommandUnhover
 POIN CURRENTOFFSET-556
-WORD $14F914F8 $8000
+WORD $14FB14FA $8000
 POIN pr_GaidenWMagActionCommandUsability
 POIN pr_GaidenWMagActionCommandOnDarw
 POIN pr_GaidenWMagActionCommandEffect
@@ -82,7 +82,7 @@ WORD $0
 POIN Refuge_OnSelected
 WORD $0 $0 $0
 POIN CURRENTOFFSET-864
-WORD $152D1530 $0
+WORD $152F1532 $0
 POIN AoE_SpecificUsability
 WORD $0
 POIN AoE_SpecificEffect
@@ -90,7 +90,7 @@ WORD $0
 POIN AoE_SpecificHover
 WORD $0
 POIN CURRENTOFFSET-900
-WORD $152D1531 $100
+WORD $152F1533 $100
 POIN AoE_SpecificUsability
 WORD $0
 POIN AoE_SpecificEffect
@@ -98,7 +98,7 @@ WORD $0
 POIN AoE_SpecificHover
 WORD $0
 POIN CURRENTOFFSET-936
-WORD $152D1532 $200
+WORD $152F1534 $200
 POIN AoE_SpecificUsability
 WORD $0
 POIN AoE_SpecificEffect
@@ -106,7 +106,7 @@ WORD $0
 POIN AoE_SpecificHover
 WORD $0
 POIN CURRENTOFFSET-972
-WORD $152D1533 $300
+WORD $152F1535 $300
 POIN AoE_SpecificUsability
 WORD $0
 POIN AoE_SpecificEffect
@@ -114,7 +114,7 @@ WORD $0
 POIN AoE_SpecificHover
 WORD $0
 POIN CURRENTOFFSET-1008
-WORD $152D1534 $400
+WORD $152F1536 $400
 POIN AoE_SpecificUsability
 WORD $0
 POIN AoE_SpecificEffect
@@ -122,7 +122,7 @@ WORD $0
 POIN AoE_SpecificHover
 WORD $0
 POIN CURRENTOFFSET-1044
-WORD $152D1535 $500
+WORD $152F1537 $500
 POIN AoE_SpecificUsability
 WORD $0
 POIN AoE_SpecificEffect
@@ -130,7 +130,7 @@ WORD $0
 POIN AoE_SpecificHover
 WORD $0
 POIN CURRENTOFFSET-1080
-WORD $152D1536 $600
+WORD $152F1538 $600
 POIN AoE_SpecificUsability
 WORD $0
 POIN AoE_SpecificEffect
@@ -138,7 +138,7 @@ WORD $0
 POIN AoE_SpecificHover
 WORD $0
 POIN CURRENTOFFSET-1116
-WORD $152F1537 $700
+WORD $15311539 $700
 POIN AoE_SpecificUsability
 WORD $0
 POIN AoE_SpecificEffect
@@ -146,7 +146,7 @@ WORD $0
 POIN AoE_SpecificHover
 WORD $0
 POIN CURRENTOFFSET-1152
-WORD $152F1538 $800
+WORD $1531153A $800
 POIN AoE_SpecificUsability
 WORD $0
 POIN AoE_SpecificEffect
@@ -154,7 +154,7 @@ WORD $0
 POIN AoE_SpecificHover
 WORD $0
 POIN CURRENTOFFSET-1188
-WORD $152F1539 $900
+WORD $1531153B $900
 POIN AoE_SpecificUsability
 WORD $0
 POIN AoE_SpecificEffect
@@ -162,7 +162,7 @@ WORD $0
 POIN AoE_SpecificHover
 WORD $0
 POIN CURRENTOFFSET-1224
-WORD $152F153A $A00
+WORD $1531153C $A00
 POIN AoE_SpecificUsability
 WORD $0
 POIN AoE_SpecificEffect
@@ -170,7 +170,7 @@ WORD $0
 POIN AoE_SpecificHover
 WORD $0
 POIN CURRENTOFFSET-1260
-WORD $152F153B $B00
+WORD $1531153D $B00
 POIN AoE_SpecificUsability
 WORD $0
 POIN AoE_SpecificEffect
@@ -178,7 +178,7 @@ WORD $0
 POIN AoE_SpecificHover
 WORD $0
 POIN CURRENTOFFSET-1296
-WORD $152F153C $C00
+WORD $1531153E $C00
 POIN AoE_SpecificUsability
 WORD $0
 POIN AoE_SpecificEffect

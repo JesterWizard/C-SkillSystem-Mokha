@@ -491,3 +491,10 @@ Dilligent Mind[X]
 Dilligent Mind:[N]
 Boost offensive stave[N]
 accuracy by 15%.[X]
+
+## MSG_SKILL_Blight_NAME
+Blight[X]
+## MSG_SKILL_Blight_DESC
+Blight:[N]
+Invert enemy healing effects[N]
+within 3 tiles.[X]

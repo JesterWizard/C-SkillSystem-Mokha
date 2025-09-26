@@ -39,6 +39,28 @@ void ExecStandardHeal(ProcPtr proc)
 	amount = HealAmountGetter(amount, unit_act, unit_tar);
 #endif
 
+	/* Judge on actor range 3x3 */
+	for (int i = 0; i < ARRAY_COUNT_RANGE3x3; i++) {
+		int _x = unit_act->xPos + gVecs_3x3[i].x;
+		int _y = unit_act->yPos + gVecs_3x3[i].y;
+
+		struct Unit *unit_target = GetUnitAtPosition(_x, _y);
+
+		if (!UNIT_IS_VALID(unit_target))
+			continue;
+
+		if (AreUnitsAllied(unit_act->index, unit_target->index))
+			continue;
+		
+#if (defined(SID_Blight) && COMMON_SKILL_VALID(SID_Blight))
+			if (SkillTester(unit_target, SID_Blight)) {
+				amount *= -1;
+			}
+#endif
+		
+		break;
+	}
+
 	AddUnitHp(unit_tar, amount);
 	gBattleHitIterator->hpChange = gBattleTarget.unit.curHP - GetUnitCurrentHp(unit_tar);
 	gBattleTarget.unit.curHP = GetUnitCurrentHp(unit_tar);
