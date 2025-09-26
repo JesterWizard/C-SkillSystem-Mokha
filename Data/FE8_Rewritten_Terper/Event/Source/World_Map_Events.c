@@ -25,9 +25,9 @@ extern struct ProcCmd CONST_DATA gProcScr_OpSubtitle[];
 LYN_REPLACE_CHECK(StartIntroMonologue);
 void StartIntroMonologue(ProcPtr proc) {
 
-#ifdef CONFIG_VOICE_ACTED_PROLOGUE
-    SetGameOption(GAME_OPTION_SOUND_EFFECTS, 1); // Set text speed to max
-#endif
+// #ifdef CONFIG_VOICE_ACTED_PROLOGUE
+//     SetGameOption(GAME_OPTION_SOUND_EFFECTS, 1);
+// #endif
 
 #ifndef CONFIG_SKIP_INTRO
     Proc_StartBlocking(gProcScr_OpSubtitle, proc);
@@ -62,24 +62,23 @@ const EventScr EventScrWM_Prologue_SET_NODE[] = {
     // The continent of Magvel.
     MUSC(0xC0)
     TEXTCONT
-    TEXTEND     // wait for talk locked
+    TEXTEND
 
     // For some 800 years, a quiet peace reigned in the absence of the terrible darkness.
     MUSC(0xC1)
     TEXTCONT
-    TEXTEND     // wait for talk locked
+    TEXTEND
 
     // The Sacred Stones have been passed from generation to generation.
     MUSC(0xC2)
     TEXTCONT
-    TEXTEND     // wait for talk locked
+    TEXTEND
 
     // Nations have been built around their power and their legacy.
     MUSC(0xC3)
     TEXTCONT
-
-    // wait for talk locked
     TEXTEND
+
     WM_MOVECAM2(0, 0, 0, 24, 60, 0)
     STAL(60)
     WM_SHOWPORTRAIT(0, 0x0051, 0x02BC, 0)
@@ -90,9 +89,8 @@ const EventScr EventScrWM_Prologue_SET_NODE[] = {
     // The kingdom of Renais, ruled by Fado, the peerless Warrior King.
     MUSC(0xC4)
     TEXTCONT
-
-    // wait for talk locked
     TEXTEND
+
     STAL(30)
     WM_HIGHLIGHTCLEAR1(WM_NATION_Renais)
     WM_HIGHLIGHTCLEAR2(WM_NATION_Renais)
@@ -108,9 +106,8 @@ const EventScr EventScrWM_Prologue_SET_NODE[] = {
     // The kingdom of Frelia, ruled by Hayden, the venerable Sage King.
     MUSC(0xC5)
     TEXTCONT
-
-    // wait for talk locked
     TEXTEND
+
     STAL(30)
     WM_HIGHLIGHTCLEAR1(WM_NATION_Frelia)
     WM_HIGHLIGHTCLEAR2(WM_NATION_Frelia)
@@ -126,9 +123,8 @@ const EventScr EventScrWM_Prologue_SET_NODE[] = {
     // The kingdom of Jehanna, ruled by Ismaire, Queen of the White Dunes.
     MUSC(0xC6)
     TEXTCONT
-
-    // wait for talk locked
     TEXTEND
+
     STAL(30)
     WM_HIGHLIGHTCLEAR1(WM_NATION_Jehanna)
     WM_HIGHLIGHTCLEAR2(WM_NATION_Jehanna)
@@ -144,9 +140,8 @@ const EventScr EventScrWM_Prologue_SET_NODE[] = {
     // The theocracy of Rausten, ruled by Mansel, the Divine Emperor.
     MUSC(0xD9)
     TEXTCONT
-
-    // wait for talk locked
     TEXTEND
+
     STAL(30)
     WM_HIGHLIGHTCLEAR1(WM_NATION_Rausten)
     WM_HIGHLIGHTCLEAR2(WM_NATION_Rausten)
@@ -162,9 +157,8 @@ const EventScr EventScrWM_Prologue_SET_NODE[] = {
     // The Grado Empire, ruled by Vigarde, the stalwart Silent Emperor.
     MUSC(0xDA)
     TEXTCONT
-
-    // wait for talk locked
     TEXTEND
+
     STAL(30)
     WM_HIGHLIGHTCLEAR1(WM_NATION_Grado)
     WM_HIGHLIGHTCLEAR2(WM_NATION_Grado)
@@ -173,9 +167,8 @@ const EventScr EventScrWM_Prologue_SET_NODE[] = {
     // These five countries house the power of the Sacred Stones.
     MUSC(0xDB)
     TEXTCONT
-
-    // wait for talk locked
     TEXTEND
+
     STAL(30)
     WM_MOVECAM2(0, 48, 0, 0, 60, 0)
     STAL(60)
@@ -186,9 +179,8 @@ const EventScr EventScrWM_Prologue_SET_NODE[] = {
     // They are joined by the emerging mercantile republic of Carcino.
     MUSC(0xE0)
     TEXTCONT
-
-    // wait for talk locked
     TEXTEND
+
     STAL(30)
     WM_HIGHLIGHTCLEAR1(WM_NATION_Carcino)
     WM_HIGHLIGHTCLEAR2(WM_NATION_Carcino)
@@ -331,12 +323,13 @@ const EventScr EventScrWM_Prologue_SET_NODE[] = {
     MUSC(0x10D)
     TEXTCONT
     TEXTEND
-    
+
     WM_WAITFORSPRITELOAD
     WM_REMOVETEXT
     STAL(2)
     FADI(16)
 #endif
+
     SKIPWN
     WM_FXCLEAR1(-0x1)
     WM_FXCLEAR2(-0x1)

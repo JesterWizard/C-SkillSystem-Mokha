@@ -2,6 +2,16 @@
 #include "Source/LoadUnitFix.lyn.event"
 
 PUSH
+
+	// I do not want to put this here, but I get so many protected errors from unrelated functions if I don't
+
+#ifdef CONFIG_VOICE_ACTED_PROLOGUE
+	// Sound effect that's played for text scrolling on world map
+	ORG 0x06D2E
+	BYTE 0    // Mute it
+	BYTE 0x20 // mov r0, 0
+#endif
+
 	ORG 0x0FC08
 	BL(CHAX_GetUnitDefinitionFormEventScr)
 	PROTECT 0x0000FB84 0x0000FC90 // Event2C_LoadUnits
