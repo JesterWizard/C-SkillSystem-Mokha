@@ -20,3 +20,17 @@ extern void MakeTargetListForRangedStatusStaves(struct Unit* unit);
 extern void ExecCustomStaves(ProcPtr proc);
 extern void TryAddUnitToSlowTargetList(struct Unit* unit);
 extern void MakeTargetListForSlow(struct Unit *unit);
+
+struct SecondaryGoalWindowProc {
+    PROC_HEADER;
+    struct Text text; // Enough for HP display
+    int xCursor, yCursor;
+    int xCursorPrev, yCursorPrev;
+    int unitIdPrev;
+};
+
+extern void DrawSecondaryGoalWindow(struct SecondaryGoalWindowProc *proc);
+extern void SecondaryGoalWindow_Init(struct SecondaryGoalWindowProc *proc);
+extern void SecondaryGoalWindow_Loop_Display(struct SecondaryGoalWindowProc *proc);
+extern void GetGoalWindowPosition(int* x, int* y);
+extern const struct ProcCmd gProcScr_SecondaryGoalWindow[];

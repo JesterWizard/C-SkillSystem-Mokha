@@ -206,3 +206,7 @@ ALIGN 4
 #ifdef CONFIG_UNIT_SELECTION_QUOTES
     #include "Misc/UnitSelectionSFX/UnitSelectionSFX_Installer.event"
 #endif
+
+#ifdef CONFIG_SUB_GOAL_WINDOW
+    #include "Misc/SubGoalWindow/SubGoalWindow.lyn.event"
+#endif
