@@ -427,4 +427,6 @@
 
 //#define CONFIG_FREE_MOVEMENT
 
+// #define CONFIG_BIORHYTHM
+
 #endif /* CONFIG_INSTALLED */

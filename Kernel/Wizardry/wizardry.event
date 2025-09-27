@@ -206,3 +206,7 @@ ALIGN 4
 #ifdef CONFIG_FREE_MOVEMENT
     #include "Misc/FreeMovement/FreeMovement_Installer.event"
 #endif
+
+#ifdef CONFIG_BIORHYTHM
+    #include "Misc/Biorhythm/Biorhythm_Installer.event"
+#endif

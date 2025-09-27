@@ -136,6 +136,10 @@ void ComputeBattleUnitAvoidRate_Rework(struct BattleUnit *bu)
 			status -= gpKernelBattleDesignerConfig->rider_debuff_indoor;
 	}
 
+#ifdef CONFIG_BIORHYTHM
+	status += GetBiorhythmBonus(bu, gPlaySt.chapterTurnNumber);
+#endif
+
 	bu->battleAvoidRate = status;
 	if (bu->battleAvoidRate < 0)
 		bu->battleAvoidRate = 0;
@@ -169,6 +173,23 @@ void ComputeBattleUnitCritRate(struct BattleUnit *bu)
 		status += gpKernelBattleDesignerConfig->critical_rate_bonus_cavalry;
 
 	bu->battleCritRate = status;
+}
+
+LYN_REPLACE_CHECK(ComputeBattleUnitHitRate);
+void ComputeBattleUnitHitRate(struct BattleUnit* bu) {
+	int status;
+
+	status = bu->unit.skl * 2;
+
+    status += GetItemHit(bu->weapon);
+	status += bu->unit.lck / 2;
+	status += bu->wTriangleHitBonus;
+
+#ifdef CONFIG_BIORHYTHM
+	status += GetBiorhythmBonus(bu, gPlaySt.chapterTurnNumber);
+#endif
+
+	bu->battleHitRate = status;
 }
 
 STATIC_DECLAR void Local_PreBattleCalcInitExt(struct BattleUnit *attacker, struct BattleUnit *defender)
