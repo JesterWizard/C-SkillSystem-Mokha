@@ -11,6 +11,11 @@ extern u8 AoE_SpecificUsability(const struct MenuItemDef *def, int number);
 extern u8 AoE_SpecificEffect(struct MenuProc * menu, struct MenuItemProc * menuItem);
 extern int AoE_SpecificHover(struct MenuProc * menu, struct MenuItemProc * menuItem);
 
+extern u8 GambitSelectMenu_Usability(const struct MenuItemDef *def, int number);
+extern u8 GambitSelectMenu_Effect(struct MenuProc * menu, struct MenuItemProc * menuItem);
+extern int GambitSelectMenu_Hover(struct MenuProc * menu, struct MenuItemProc * menuItem);
+extern int GambitSelectMenu_Unhover(struct MenuProc * menu, struct MenuItemProc * menuItem);
+
 u8 pr_CombatArtActionCommandUsability(const struct MenuItemDef *def, int number);
 int pr_CombatArtActionCommandOnDarw(struct MenuProc *menu, struct MenuItemProc *item);
 u8 pr_CombatArtActionCommandEffect(struct MenuProc *menu, struct MenuItemProc *menuItem);
@@ -168,6 +173,9 @@ const struct MenuItemDef gUnitActionMenuItemsRework[] = {
 	{"　秘密店", 0x687, 0x6D1, 0, 0x61, SecretShopCommandUsability, 0, SecretShopCommandEffect, 0, 0, 0}, //SecretShop >
 	{"　闘技場", 0x688, 0x6D2, 0, 0x62, ArenaCommandUsability, 0, ArenaCommandEffect, 0, 0, 0}, // Arena
 	{"　救出", 0x689, 0x6C5, 0, 0x63, RescueUsability, 0, RescueEffect, 0, 0, 0}, // Rescue >
+#ifdef CONFIG_MOKHA_AOE
+	{"", GambitAssemblyName, GambitSelectMenu_Desc, TEXT_COLOR_SYSTEM_GREEN, 0, GambitSelectMenu_Usability, 0, GambitSelectMenu_Effect, 0, GambitSelectMenu_Hover, GambitSelectMenu_Unhover},
+#endif
 #ifdef CONFIG_REFUGE_FEATURE
     {"　救出", MSG_MenuCommand_Refuge_NAME, MSG_MenuCommand_Refuge_DESC, TEXT_COLOR_SYSTEM_WHITE, 0x6C, Refuge_Usability, 0, Refuge_OnSelected, 0, 0, 0}, // Refuge > 
 #endif

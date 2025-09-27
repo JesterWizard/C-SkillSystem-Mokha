@@ -224,3 +224,8 @@ a unit can see in fog.[X]
 
 ## MSG_SELECT_UNIT
 Select unit to target.[X]
+
+## GambitAssemblyName
+Gambit[X]
+## GambitSelectMenu_Desc
+Eirika.[X]

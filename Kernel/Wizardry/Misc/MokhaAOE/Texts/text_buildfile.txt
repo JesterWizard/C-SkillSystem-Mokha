@@ -1,0 +1,9 @@
+
+
+# 0x0903 	GambitAssemblyName
+Assembly[X]
+
+##	msgUMGambitName
+Gambit[X]
+
+

@@ -210,3 +210,7 @@ ALIGN 4
 #ifdef CONFIG_BIORHYTHM
     #include "Misc/Biorhythm/Biorhythm_Installer.event"
 #endif
+
+#ifdef CONFIG_MOKHA_AOE
+    #include "Misc/MokhaAOE/MokhaAOE_Installer.event"
+#endif
