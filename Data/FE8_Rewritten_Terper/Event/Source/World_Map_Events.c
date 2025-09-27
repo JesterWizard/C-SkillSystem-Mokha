@@ -34,7 +34,7 @@ void StartIntroMonologue(ProcPtr proc) {
 
 const EventScr EventScrWM_Prologue_SET_NODE[] = {
     EVBIT_MODIFY(0x1)
-    WmEvtNoFade // ENOSUPP in EAstdlib
+    WmEvtNOFADE // ENOSUPP in EAstdlib
 #ifndef CONFIG_SKIP_INTRO
     WM_SPAWNLORD(WM_MU_0, CHARACTER_EIRIKA, WM_NODE_BorderMulan)
     WM_CENTERCAMONLORD(WM_MU_0)

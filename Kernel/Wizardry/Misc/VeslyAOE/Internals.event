@@ -137,7 +137,7 @@ ALIGN 4
 /*
 GenericASMC_DrawEvent:
 ASMC Draw_ASMC
-NoFade 
+NOFADE 
 ENDA
 */
 

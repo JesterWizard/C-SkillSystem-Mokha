@@ -297,7 +297,7 @@ enum event_cmd_idx {
     [EV_CMD_WM_BF - 0x80] = EventBF_,                                       \
     [EV_CMD_WM_C0 - 0x80] = EventC0_,                                       \
     [EV_CMD_WM_SKIPWN - 0x80] = EventC1_SKIPWM,                             \
-    [EV_CMD_WM_C2 - 0x80] = EventC2_WmNoFade,                               \
+    [EV_CMD_WM_C2 - 0x80] = EventC2_WmNOFADE,                               \
     [EV_CMD_WM_SPAWNLORD - 0x80] = EventC3_SpawnLord,                       \
     [EV_CMD_WM_SHOWPORTRAIT - 0x80] = EventC4_WmShowPortrait,               \
     [EV_CMD_WM_CLEARPORTRAIT - 0x80] = EventC5_WmClearPortrait,             \
@@ -781,7 +781,7 @@ enum event_sub_cmd_idx {
 #define WmEvtRemoveMarkPoint1(a) _EvtArg0(EV_CMD_WM_FXCLEAR1, 4, 0, 0), (EventScr)(a),
 #define WmEvtRemoveMarkPoint2(a) _EvtArg0(EV_CMD_WM_FXCLEAR2, 4, 0, 0), (EventScr)(a),
 #define WmEvtSkipWmEvents _EvtAutoCmdLen2(EV_CMD_WM_SKIPWN),
-#define WmEvtNoFade _EvtAutoCmdLen2(EV_CMD_WM_C2),
+#define WmEvtNOFADE _EvtAutoCmdLen2(EV_CMD_WM_C2),
 #define WmEvtLoadUnit(wm_uid, pid, node) _EvtArg0(EV_CMD_WM_SPAWNLORD, 6, 0, 0), _EvtParams2(wm_uid, pid), (EventListScr)node,
 #define WmEvtShowPortrait(face_slot, face, config, delay) _EvtArg0(EV_CMD_WM_SHOWPORTRAIT, 6, 0, 0), _EvtParams2(face_slot, face), _EvtParams2(config, delay),
 #define WmEvtClearPortrait(face_slot, config, delay) _EvtArg0(EV_CMD_WM_CLEARPORTRAIT, 4, 0, face_slot), _EvtParams2(config, delay),

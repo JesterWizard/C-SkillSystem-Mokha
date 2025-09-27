@@ -429,6 +429,8 @@
 
 // #define CONFIG_BIORHYTHM
 
-#define CONFIG_MOKHA_AOE // This only adds one command rather than letting you define them, turn of Vesly's AOE if using this
+// #define CONFIG_MOKHA_AOE // This only adds one command rather than letting you define them, turn of Vesly's AOE if using this
+
+// #define CONFIG_BASE_CHAPTERS // Compiles but otherwise not operational
 
 #endif /* CONFIG_INSTALLED */

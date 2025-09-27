@@ -214,3 +214,7 @@ ALIGN 4
 #ifdef CONFIG_MOKHA_AOE
     #include "Misc/MokhaAOE/MokhaAOE_Installer.event"
 #endif
+
+#ifdef CONFIG_BASE_CHAPTERS
+    #include "Misc/BaseChapters/BaseChapters_Installer.event"
+#endif

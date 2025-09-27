@@ -336,7 +336,7 @@ u8 EventBE_(struct EventEngineProc * proc);
 u8 EventBF_(struct EventEngineProc * proc);
 u8 EventC0_(struct EventEngineProc * proc);
 u8 EventC1_SKIPWM(struct EventEngineProc * proc);
-u8 EventC2_WmNoFade(struct EventEngineProc * proc);
+u8 EventC2_WmNOFADE(struct EventEngineProc * proc);
 u8 EventC3_SpawnLord(struct EventEngineProc * proc);
 u8 EventCE_(struct EventEngineProc * proc);
 u8 EventCF_(struct EventEngineProc * proc);

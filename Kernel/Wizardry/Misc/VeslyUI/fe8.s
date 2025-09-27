@@ -1695,7 +1695,7 @@ fun 0x0800CB71, EventBE_
 fun 0x0800CBAD, EventBF_
 fun 0x0800CBD9, EventC0_
 fun 0x0800CBF1, EventC1_SKIPWM
-fun 0x0800CC05, EventC2_WmNoFade
+fun 0x0800CC05, EventC2_WmNOFADE
 fun 0x0800CC19, EventC3_SpawnLord
 fun 0x0800CC5D, EventCE_
 fun 0x0800CC75, EventCF_
