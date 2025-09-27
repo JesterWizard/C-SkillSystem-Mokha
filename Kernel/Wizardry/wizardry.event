@@ -202,3 +202,5 @@ ALIGN 4
 #ifdef CONFIG_VESLY_AOE
 #include "Misc/VeslyAOE/AOE_Installer.event"
 #endif
+
+#include "Misc/FreeMovement/FreeMovement_Installer.event"

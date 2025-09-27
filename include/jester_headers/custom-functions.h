@@ -34,3 +34,4 @@ extern void SecondaryGoalWindow_Init(struct SecondaryGoalWindowProc *proc);
 extern void SecondaryGoalWindow_Loop_Display(struct SecondaryGoalWindowProc *proc);
 extern void GetGoalWindowPosition(int* x, int* y);
 extern const struct ProcCmd gProcScr_SecondaryGoalWindow[];
+extern void EnableFreeMovementASMC();

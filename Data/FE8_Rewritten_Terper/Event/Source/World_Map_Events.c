@@ -8,6 +8,7 @@
 #include "jester_headers/flags.h"
 #include "jester_headers/miscellaneous.h"
 #include "jester_headers/event-call.h"
+#include "jester_headers/custom-functions.h"
 #include "EAstdlib.h"
 
 const EventScr EventScrWM_Tutorial_SKILL_SCROLL[] = {
@@ -42,12 +43,9 @@ const EventScr EventScrWM_Prologue_SET_NODE[] = {
 #ifndef CONFIG_SKIP_INTRO
     WM_SPAWNLORD(WM_MU_0, CHARACTER_EIRIKA, WM_NODE_BorderMulan)
     WM_CENTERCAMONLORD(WM_MU_0)
-
-#ifndef CONFIG_VOICE_ACTED_PROLOGUE
     MUSCFAST(0x7fff)
     STAL(32)
     MUSC(0x4)
-#endif
     WM_SHOWDRAWNMAP(0, 0, 0x10)
     STAL(2)
     WM_FADEOUT(0)
