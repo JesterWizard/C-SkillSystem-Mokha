@@ -100,7 +100,7 @@ int MovGetterSkills(int status, struct Unit *unit)
 		if (unit_enemy->state & (US_HIDDEN | US_DEAD | US_RESCUED | US_BIT16))
 			continue;
 
-		if (SkillTester(unit_enemy, SID_Quagmire), !AreUnitsAllied(unit->index, unit_enemy->index)) {
+		if (SkillTester(unit_enemy, SID_Quagmire) && !AreUnitsAllied(unit->index, unit_enemy->index)) {
 			status /= 2;
 			break;
 		}
