@@ -1,0 +1,9 @@
+#include "Extensions/Hack Installation.txt"
+
+#include "Source/FmuFix.lyn.event"
+#include "Source/FmuHooks.lyn.event"
+
+PUSH
+    ORG 0x78D10
+    jumpToHack(MU_CALL2_FixForFreeMU_fix)
+POP

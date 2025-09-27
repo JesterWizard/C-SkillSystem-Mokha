@@ -3,7 +3,6 @@
 #include "constants/skills.h"
 #include "constants/texts.h"
 #include "jester_headers/macros.h"
-
 #include "jester_headers/maps.h"
 #include "jester_headers/flags.h"
 #include "jester_headers/miscellaneous.h"
@@ -25,10 +24,6 @@ extern struct ProcCmd CONST_DATA gProcScr_OpSubtitle[];
 //! FE8U = 0x080C541C
 LYN_REPLACE_CHECK(StartIntroMonologue);
 void StartIntroMonologue(ProcPtr proc) {
-
-// #ifdef CONFIG_VOICE_ACTED_PROLOGUE
-//     SetGameOption(GAME_OPTION_SOUND_EFFECTS, 1);
-// #endif
 
 #ifndef CONFIG_SKIP_INTRO
     Proc_StartBlocking(gProcScr_OpSubtitle, proc);

@@ -2,7 +2,7 @@
 #include "jester_headers/custom-arrays.h"
 #include "kernel-lib.h"
 
-/* CONFIG_BIORHYTHM */
+#ifdef CONFIG_BIORHYTHM
 
 const struct BiorhythmPInfoConfig gBiorhythmPInfoConfigList[0x100] = {
     [CHARACTER_EIRIKA]   = { .biorhythm = { -15, -5, 0, 5, 15 }, .startOffset = 0 },
@@ -70,3 +70,4 @@ int GetBiorhythmBonus(struct BattleUnit* bu, int turnCounter) {
     int index = k_umod((turnCounter - 1) + config->startOffset, MAX_BIORHYTHM_STATES);
     return config->biorhythm[index];
 }
+#endif

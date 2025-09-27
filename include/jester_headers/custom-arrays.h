@@ -22,13 +22,16 @@ extern const struct MpSystemPInfoConfig gMpSystemPInfoConfigList[];
 
 /* CONFIG_BIORHYTHM */
 
-#define MAX_BIORHYTHM_STATES 5
 
-struct BiorhythmPInfoConfig {
-    int biorhythm[MAX_BIORHYTHM_STATES];
-    int startOffset; // shift starting point on turn 1
-};
+#ifdef CONFIG_BIORHYTHM
+    #define MAX_BIORHYTHM_STATES 5
 
-extern const struct BiorhythmPInfoConfig gBiorhythmPInfoConfigList[];
+    struct BiorhythmPInfoConfig {
+        int biorhythm[MAX_BIORHYTHM_STATES];
+        int startOffset; // shift starting point on turn 1
+    };
 
-int GetBiorhythmBonus(struct BattleUnit* bu, int turnCounter);
+    extern const struct BiorhythmPInfoConfig gBiorhythmPInfoConfigList[];
+
+    int GetBiorhythmBonus(struct BattleUnit* bu, int turnCounter);
+#endif
