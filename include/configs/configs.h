@@ -425,6 +425,6 @@
 
 #define CONFIG_VOICE_ACTED_PROLOGUE
 
-// #define CONFIG_SUB_GOAL_WINDOW // Not operational do not use
+//#define CONFIG_FREE_MOVEMENT
 
 #endif /* CONFIG_INSTALLED */
