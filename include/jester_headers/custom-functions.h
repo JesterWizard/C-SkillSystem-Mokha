@@ -40,5 +40,42 @@ extern const struct ProcCmd gProcScr_SecondaryGoalWindow[];
     extern void DisableFreeMovementASMC();
 #endif
 
-extern void StartPuzzle();
-extern void PuzzleEvent();
+#ifdef CONFIG_LIGHTS_OUT_GAME
+
+    enum {
+        DIMENSIONS_3x3 = 0,
+        DIMENSIONS_3x4 = 1,
+        DIMENSIONS_4x4 = 2,
+        DIMENSIONS_4x5 = 3,
+
+        ICON_COUNT_2 = 2,
+        ICON_COUNT_3 = 3,
+        
+        CAN_SKIP = 0,
+        CANT_SKIP = 1,
+
+        REWARD_TIER_1 = 0,
+        REWARD_TIER_2 = 1,
+        REWARD_TIER_3 = 2,
+
+        FLAG_0 = 0,
+        FLAG_1 = 1,
+        FLAG_2 = 2,
+        FLAG_3 = 3,
+        FLAG_4 = 4,
+        FLAG_5 = 5,
+        FLAG_6 = 6,
+        FLAG_7 = 7,
+        FLAG_8 = 8,
+        FLAG_9 = 9,
+        FLAG_10 = 10,
+        FLAG_11 = 11,
+        FLAG_12 = 12,
+        FLAG_13 = 13,
+        FLAG_14 = 14,
+        FLAG_15 = 15
+    };
+
+    extern void PuzzleEvent();
+    extern void PuzzleEvent2();
+#endif

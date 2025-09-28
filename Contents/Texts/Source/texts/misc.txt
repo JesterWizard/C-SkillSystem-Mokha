@@ -229,3 +229,30 @@ Select unit to target.[X]
 Gambit[X]
 ## GambitSelectMenu_Desc
 Eirika.[X]
+
+## PuzzleMenuCommandNameText
+ Puzzle[X]
+
+## PuzzleMenuCommandDescText
+There's a puzzle here...[N]
+Solve it to get a reward![X]
+
+## PuzzleTut0
+The goal of this puzzle is to match all the symbols.[X]
+## PuzzleTut1
+You can change a symbol by moving the cursor[X]
+## PuzzleTut2
+over it and pressing     .[X]
+## PuzzleTut3
+Adjacent symbols will change as well.[X]
+## PuzzleTut4
+Symbols will change in accordance to the diagram.[X]
+## PuzzleTut5
+Completing the puzzle will net you a reward.[X]
+## PuzzleTut6
+Press      to give up on this puzzle.[X]
+## PuzzleTut7
+This puzzle can not be skipped.[X]
+
+## PuzzleQuit
+Would you like to skip this puzzle?[X]

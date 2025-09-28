@@ -219,4 +219,6 @@ ALIGN 4
     #include "Misc/BaseChapters/BaseChapters_Installer.event"
 #endif
 
-#include "Misc/LightsOutPuzzle/LightsOutPuzzle_Installer.event"
+#ifdef CONFIG_LIGHTS_OUT_GAME
+    #include "Misc/LightsOutPuzzle/LightsOutPuzzle_Installer.event"
+#endif

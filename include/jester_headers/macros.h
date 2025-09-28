@@ -373,3 +373,19 @@ enum {
     CALL(EventScr_UnitWarpOUT)
 
 #define PREP_ALT CALL(EventScr_08591FD8)
+
+
+#ifdef CONFIG_LIGHTS_OUT_GAME
+
+#define PLAY_LIGHTS_OUT_GAME(dimensions, icon_count, toggle_skip, reward, flag) \
+    SVAL(EVT_SLOT_1, dimensions) \
+    SVAL(EVT_SLOT_2, icon_count) \
+    SVAL(EVT_SLOT_3, toggle_skip) \
+    SVAL(EVT_SLOT_5, flag) \
+    CALL(PuzzleEvent) \
+    SVAL(EVT_SLOT_3, reward) \
+    GIVEITEMTO(-1) \
+    LABEL(0x4) \
+    ENDA
+
+#endif

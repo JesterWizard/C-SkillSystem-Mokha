@@ -433,4 +433,6 @@
 
 // #define CONFIG_BASE_CHAPTERS // Compiles but otherwise not operational
 
+// #define CONFIG_LIGHTS_OUT_GAME
+
 #endif /* CONFIG_INSTALLED */

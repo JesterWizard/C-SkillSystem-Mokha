@@ -16,9 +16,6 @@
 
 #define IntroSfx0 0x318
 
-#define PuzzleTut0 $1014
-#define PuzzleQuit $101C
-
 
 // StartPuzzle macros
 // Dimensions: 0 = 3x3, 1 = 3x4, 2 = 4x4, 3 = 4x5.

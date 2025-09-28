@@ -158,12 +158,9 @@ static const EventListScr EventScr_Talk_EIRIKA_SETH[] = {
 //     ASMC(CallForgeMenuASMC)
 // #endif
 
-    SVAL(EVT_SLOT_1, 2)
-    SVAL(EVT_SLOT_2, 2)
-    SVAL(EVT_SLOT_3, 1)
-    SVAL(EVT_SLOT_4, 2)
-    SVAL(EVT_SLOT_5, 10)
-    ASMC(PuzzleEvent) //     ASMC(StartPuzzle)
+#ifdef CONFIG_LIGHTS_OUT_GAME
+    PLAY_LIGHTS_OUT_GAME(DIMENSIONS_3x3, ICON_COUNT_2, CAN_SKIP, ITEM_SWORD_AUDHULMA, FLAG_10)
+#endif
 
 // #ifdef CONFIG_VESLY_CREDITS_SEQUENCE
 //     FADE_TO_BLACK(16) // slow fade to black (optional)
