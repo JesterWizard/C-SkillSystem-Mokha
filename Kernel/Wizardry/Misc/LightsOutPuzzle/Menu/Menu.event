@@ -1,0 +1,7 @@
+ALIGN 4
+PuzzleMenuUsability:
+#include "Usability.lyn.event"
+
+ALIGN 4
+PuzzleMenuEffect:
+#include "Effect.lyn.event"

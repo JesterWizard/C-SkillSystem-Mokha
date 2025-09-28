@@ -1,0 +1,75 @@
+#include "Extensions/Hack Installation.txt"
+#include "EAstdlib.event"
+
+// #ifndef FreeSpace
+// 	#define FreeSpace 0x1000000
+// 	ORG FreeSpace
+// #endif
+
+#define FortCount 22
+#define MaterialCount 27
+#define FortRAM 0x3003B48
+#define FortCountSize FortCount*5
+#define MaterialCountSize ((MaterialCount*10)>>3)+1
+#define MaterialRAM FortRAM+FortCountSize
+#define FortMatSaveChunkSize FortCountSize+MaterialCountSize    // RAM size = SRAM size.
+
+#define IntroSfx0 0x318
+
+#define PuzzleTut0 $1014
+#define PuzzleQuit $101C
+
+
+// StartPuzzle macros
+// Dimensions: 0 = 3x3, 1 = 3x4, 2 = 4x4, 3 = 4x5.
+// IconCount: Should be either 2 or 3, as I don't have tables for higher settings.
+//   Make sure at least this many weapons are available.
+// Skip: 0 means puzzle can be skipped, can't be skipped otherwise.
+// RewardTier: Should be 0, 1 or 2. Higher means better weapons.
+// Flag: Flag to be cleared when puzzle is quit. Allowing a unit to try the puzzle again.
+//   Set this to the flag given to the corresponding LOCA event command.
+#define StartPuzzle(Dimensions, IconCount, Skip, RewardTier, Flag) "SVAL 0x1 Dimensions; SVAL 0x2 IconCount; SVAL 0x3 Skip; SVAL 0x4 RewardTier; SVAL 0x5 Flag; CALL PuzzleEvent"
+
+// Special puzzle which gives item to unit 0x1 specifically.
+#define StartPuzzle2(Dimensions, IconCount, Skip, RewardTier) "SVAL 0x1 Dimensions; SVAL 0x2 IconCount; SVAL 0x3 Skip; SVAL 0x4 RewardTier; CALL PuzzleEvent2"
+
+
+// Events using the StartPuzzle ASMC
+#include "Events/Puzzle.event"
+
+// Global Variables
+  // RAM location where PuzzleWeaponFlags are kept.
+  // Should be right past Fortresses & Materials.
+  ALIGN 4
+  PuzzleWeaponFlagsRAM:
+  WORD FortRAM+FortMatSaveChunkSize
+
+
+// StartPuzzle ASMC
+ALIGN 4
+StartPuzzle:
+{
+#include "ASMC/StartPuzzle.lyn.event"
+
+// Local Variables
+  // How long it takes (in frames) for a tile to transform into another.
+  // Odd numbers may lead to weird results. Make sure there are enough entries in TileAnimAffineSrc.dmp
+  ALIGN 4
+  TileAnimSpeed:
+  BYTE 0x8
+
+PUSH
+
+  // RunLocationEvents will treat objectType 0x1A the same as 0x10,
+  // mimicking a visit event.
+  ORG 0x84174
+  POIN 0x84190
+
+POP
+
+#include "Defs/ProcDefinitions.event"
+#include "Procs/Procs.event"
+#include "Graphics/Graphics.event"
+#include "Tables/Tables.event"
+}
+#include "Menu/Menu.event"

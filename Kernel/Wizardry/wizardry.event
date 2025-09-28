@@ -218,3 +218,5 @@ ALIGN 4
 #ifdef CONFIG_BASE_CHAPTERS
     #include "Misc/BaseChapters/BaseChapters_Installer.event"
 #endif
+
+#include "Misc/LightsOutPuzzle/LightsOutPuzzle_Installer.event"

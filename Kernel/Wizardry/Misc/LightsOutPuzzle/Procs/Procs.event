@@ -1,0 +1,102 @@
+ALIGN 4
+ActionPromptsGfx:
+#incbin "Puzzle/Generics/ActionPrompts.dmp"
+
+ALIGN 4
+ButtonPromptsGfx:
+#incbin "Puzzle/Generics/ButtonPrompts.dmp"
+
+ALIGN 4
+MovementArrowsGfx:
+#incbin "Puzzle/Generics/MovementArrows.dmp"
+
+ALIGN 4
+ButtonPromptsPalette:
+MovementArrowsPalette:
+#incbin "Puzzle/Generics/ButtonPromptPalette.dmp"
+
+ALIGN 4
+PlaySFX:
+#include "Puzzle/Generics/PlaySFX.lyn.event"
+
+ALIGN 4
+DrawTextSimple:
+#include "Puzzle/Generics/DrawTextSimple.lyn.event"
+
+ALIGN 4
+GetBGPalette:
+#include "Puzzle/Generics/GetBGPalette.lyn.event"
+
+ALIGN 4
+BGPaletteTable:
+#incbin "Puzzle/Generics/Example1.dmp"
+
+ALIGN 4
+Proc_Puzzle:
+#include "Puzzle/Puzzle.event"
+  ALIGN 4
+  SetupLCDIO:
+  #include "Puzzle/SetupLCDIO.lyn.event"
+  ALIGN 4
+  InitPuzzleBG:
+  #include "Puzzle/InitPuzzleBG.lyn.event"
+  ALIGN 4
+  InitPuzzle:
+  #include "Puzzle/InitPuzzle.lyn.event"
+  ALIGN 4
+  PuzzleIdle:
+  #include "Puzzle/PuzzleIdle.lyn.event"
+    ALIGN 4
+    CheckIfSolved:
+    #include "Puzzle/CheckIfSolved.lyn.event"
+    ALIGN 4
+    MarkTiles:
+    #include "Puzzle/MarkTiles.lyn.event"
+      ALIGN 4
+      MarkTile:
+      #include "Puzzle/MarkTile.lyn.event"
+  
+ALIGN 4
+Proc_DrawSprites:
+#include "Puzzle/DrawSprites/DrawSprites.event"
+  ALIGN 4
+  InitSprites:
+  #include "Puzzle/DrawSprites/InitSprites.lyn.event"
+  ALIGN 4
+  LoopSprites:
+  #include "Puzzle/DrawSprites/LoopSprites.lyn.event"
+    ALIGN 4
+    FlipTiles:
+    #include "Puzzle/DrawSprites/FlipTiles.lyn.event"
+    
+ALIGN 4
+Proc_Tutorial:
+#include "Puzzle/Tutorial/Tutorial.event"
+  ALIGN 4
+  InitTutorial:
+  #include "Puzzle/Tutorial/InitTutorial.lyn.event"
+  ALIGN 4
+  TutorialIdle:
+  #include "Puzzle/Tutorial/TutorialIdle.lyn.event"
+    ALIGN 4
+    TutLoopSprites:
+    #include "Puzzle/Tutorial/TutLoopSprites.lyn.event"
+  ALIGN 4
+  EndTutorial:
+  #include "Puzzle/Tutorial/EndTutorial.lyn.event"
+  
+ALIGN 4
+Proc_Quit:
+#include "Puzzle/Quit/Quit.event"
+  ALIGN 4
+  InitQuit:
+  #include "Puzzle/Quit/InitQuit.lyn.event"
+  ALIGN 4
+  QuitIdle:
+  #include "Puzzle/Quit/QuitIdle.lyn.event"
+    ALIGN 4
+    QuitLoopSprites:
+    #include "Puzzle/Quit/QuitLoopSprites.lyn.event"
+  ALIGN 4
+  EndQuit:
+  #include "Puzzle/Quit/EndQuit.lyn.event"

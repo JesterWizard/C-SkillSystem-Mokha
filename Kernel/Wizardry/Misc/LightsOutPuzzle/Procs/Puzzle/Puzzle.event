@@ -1,0 +1,46 @@
+// Puzzle process
+PROC_CALL_ROUTINE_ARG(0xAE2F5, 0x10)        // NewFadeOut
+PROC_WHILE_ROUTINE(0xAE2B9)                 // FadeOutExists
+
+PROC_CALL_ROUTINE(0x30185)                  // BlockGameGraphicsLogic
+PROC_CALL_ROUTINE(0x790E1)                  // BlockAll6CMarked4 (hides map units)
+
+
+
+// Actual Puzzle stuff
+PROC_SLEEP(0xA)
+PROC_CALL_ROUTINE(SetupLCDIO+0x1)
+PROC_CALL_ROUTINE(InitPuzzleBG+0x1)
+PROC_CALL_ROUTINE(InitPuzzle+0x1)
+PROC_CALL_ROUTINE_ARG(0xAE2D1, 0x10)        // NewFadeIn
+
+PROC_LOOP_ROUTINE(PuzzleIdle+0x1)
+
+PROC_CALL_ROUTINE(0x85C71)
+PROC_SLEEP(0)
+
+PROC_WHILE_ROUTINE(0xAE2A1)                 // FadeInExists, likely unnecessary
+PROC_CALL_ROUTINE_ARG(0xAE2F5, 0x10)        // NewFadeOut
+PROC_WHILE_ROUTINE(0xAE2B9)                 // FadeOutExists
+
+PROC_LABEL(0x0)
+PROC_END_ALL(Proc_DrawSprites)
+PROC_END_ALL(Proc_Tutorial)
+PROC_SLEEP(0xA)
+
+
+// Re-init battle map stuff
+PROC_CALL_ROUTINE(0x20B21)
+PROC_CALL_ROUTINE(0x301B9)                  // UnblockGameGraphicsLogic
+PROC_CALL_ROUTINE(0x790ED)                  // UnblockEach6CMarked4 (shows map units again)
+PROC_CALL_ROUTINE(0x20B31)
+PROC_CALL_ROUTINE(0x20F01)
+PROC_LOOP_ROUTINE(0x20FF9)
+PROC_CALL_ROUTINE(0x210C9)
+PROC_CALL_ROUTINE(0x1F81)                   // SetDefaultColourEffects
+
+PROC_CALL_ROUTINE_ARG(0xAE2D1, 0x10)        // NewFadeIn
+PROC_WHILE_ROUTINE(0xAE2A1)                 // FadeInExists
+
+PROC_SLEEP(0x3C)
+PROC_END

@@ -1,0 +1,36 @@
+ALIGN 4
+PuzzleBG4x5:
+#incbin "PuzzleBG4x5.dmp"
+ALIGN 4
+PuzzleBG4x4:
+#incbin "PuzzleBG4x4.dmp"
+ALIGN 4
+PuzzleBG3x4:
+#incbin "PuzzleBG3x4.dmp"
+ALIGN 4
+PuzzleBG3x3:
+#incbin "PuzzleBG3x3.dmp"
+ALIGN 4
+PuzzleBGPal:
+#incbin "PuzzleBG_pal.dmp"
+
+ALIGN 4
+PuzzleCursor:
+#incbin "PuzzleCursor.dmp"
+ALIGN 4
+PuzzleCursorPal:
+#incbin "PuzzleCursor_pal.dmp"
+ALIGN 4
+PuzzleCursorOAM:
+#incbin "PuzzleCursorOAM.dmp"
+
+ALIGN 4
+BigWeaponIcons:
+#incbin "BigWeaponIcons.dmp"
+ALIGN 4
+BigWeaponIconsOAM:
+#incbin "BigWeaponIconsOAM.dmp"
+
+ALIGN 4
+TutDiagramOAM:
+#incbin "TutDiagramOAM.dmp"

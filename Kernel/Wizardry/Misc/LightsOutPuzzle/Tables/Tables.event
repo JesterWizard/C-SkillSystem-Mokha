@@ -1,0 +1,6 @@
+ALIGN 4
+InitPuzzleTiles:
+#incbin "InitPuzzles/InitPuzzleTiles.dmp"
+ALIGN 4
+TileAnimAffineSrc:
+#incbin "InitPuzzles/TileAnimAffineSrc.dmp"

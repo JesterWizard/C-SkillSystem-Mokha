@@ -154,9 +154,16 @@ LABEL(0x1)
 };
 
 static const EventListScr EventScr_Talk_EIRIKA_SETH[] = {
-#ifdef CONFIG_FORGING
-    ASMC(CallForgeMenuASMC)
-#endif
+// #ifdef CONFIG_FORGING
+//     ASMC(CallForgeMenuASMC)
+// #endif
+
+    SVAL(EVT_SLOT_1, 2)
+    SVAL(EVT_SLOT_2, 2)
+    SVAL(EVT_SLOT_3, 1)
+    SVAL(EVT_SLOT_4, 2)
+    SVAL(EVT_SLOT_5, 10)
+    ASMC(PuzzleEvent) //     ASMC(StartPuzzle)
 
 // #ifdef CONFIG_VESLY_CREDITS_SEQUENCE
 //     FADE_TO_BLACK(16) // slow fade to black (optional)

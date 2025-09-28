@@ -1,0 +1,4 @@
+// Draw Sprites
+PROC_CALL_ROUTINE(InitSprites+0x1)
+PROC_LOOP_ROUTINE(LoopSprites+0x1)
+PROC_END

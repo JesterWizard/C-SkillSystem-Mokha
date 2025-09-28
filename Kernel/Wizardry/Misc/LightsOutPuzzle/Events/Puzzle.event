@@ -1,0 +1,21 @@
+ALIGN 4
+PuzzleEvent:
+ASMC StartPuzzle+0x1
+SADD 0x0C3                      // Reward
+BEQ 0x0 0x3 0x0
+  GIVEITEMTO -1
+  GOTO 0x1
+LABEL 0x0
+  SADD 0x052
+  ENUF_SLOT2                    // Upon quit, reset flag.
+LABEL 0x1
+ENDA
+
+ALIGN 4
+PuzzleEvent2:
+ASMC StartPuzzle+0x1
+SADD 0x0C3                      // Reward
+BEQ 0x0 0x3 0x0
+  GIVEITEMTO 0x1
+LABEL 0x0
+ENDA

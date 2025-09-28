@@ -39,3 +39,6 @@ extern const struct ProcCmd gProcScr_SecondaryGoalWindow[];
     extern void EnableFreeMovementASMC();
     extern void DisableFreeMovementASMC();
 #endif
+
+extern void StartPuzzle();
+extern void PuzzleEvent();
