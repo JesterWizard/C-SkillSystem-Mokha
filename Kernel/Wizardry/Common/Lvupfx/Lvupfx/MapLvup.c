@@ -334,8 +334,6 @@ void ManimLevelUp_InitMainScreen(struct ManimLevelUpProc *proc)
 //    gManimSt.actor[proc->actor_id].mu = StartMu(GetUnit(CHARACTER_EIRIKA + 1));
 // #endif
 
-   NoCashGBAPrintf("Level up actor ID is: %d", proc->actor_id);
-
     ResetTextFont();
     BG_Fill(gBG0TilemapBuffer, 0);
     PutManimLevelUpFrame(proc->actor_id, 1, 1);

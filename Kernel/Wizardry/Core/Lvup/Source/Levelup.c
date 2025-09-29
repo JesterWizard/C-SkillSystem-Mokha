@@ -59,8 +59,13 @@ int GetStatIncrease_NEW(int growth, int expGained) {
         growth -= 100;
     }
 
+#ifdef CONFIG_2RN_GROWTHS
+    if (Roll2RN(growth))
+        result++;
+#else
     if (Roll1RN(growth))
         result++;
+#endif
 
     return result;
 }

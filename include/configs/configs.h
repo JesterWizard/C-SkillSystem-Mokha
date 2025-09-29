@@ -435,4 +435,6 @@
 
 // #define CONFIG_LIGHTS_OUT_GAME
 
+// #define CONFIG_2RN_GROWTHS
+
 #endif /* CONFIG_INSTALLED */
