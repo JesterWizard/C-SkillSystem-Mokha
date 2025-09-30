@@ -60,12 +60,24 @@ STATIC_DECLAR bool BattleComboGenerateHit(void)
 	}
 
 	/* step2 BattleGenerateHitEffects */
-	gBattleTarget.unit.curHP -= gBattleStats.damage;
+	// gBattleTarget.unit.curHP -= gBattleStats.damage;
 
 	// if (gBattleTarget.unit.curHP < 0)
 	// 	gBattleTarget.unit.curHP = 0;
 
-	gBattleHitIterator->hpChange = gBattleStats.damage;
+	// gBattleHitIterator->hpChange = gBattleStats.damage;
+
+	if (gBattleStats.damage > gBattleTarget.unit.curHP)
+	{
+		gBattleHitIterator->hpChange = gBattleTarget.unit.curHP;
+        gBattleTarget.unit.curHP = 0;
+	}
+    else
+	{
+		gBattleHitIterator->hpChange = gBattleStats.damage;
+        gBattleTarget.unit.curHP -= gBattleStats.damage;
+	}
+
 
 	LTRACEF("[Combo hit=%d] uid=0x%02X pid=0x%02X, weapon=0x%02X",
 		round, unit->index & 0xFF, UNIT_CHAR_ID(unit), gComboAtkList[round].weapon);

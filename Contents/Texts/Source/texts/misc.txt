@@ -256,3 +256,9 @@ This puzzle can not be skipped.[X]
 
 ## PuzzleQuit
 Would you like to skip this puzzle?[X]
+
+## MSG_Enter_District_NAME
+ Enter District[X]
+## MSG_Enter_District_DESC
+Choose to enter this world[N]
+map node to see different events.[X]

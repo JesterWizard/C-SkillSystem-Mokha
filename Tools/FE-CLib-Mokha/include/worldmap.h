@@ -773,18 +773,18 @@ struct MenuProc *StartWMGeneralMenu(ProcPtr parent);
 // ??? WMMenu_OnOptionsSelected(???);
 // ??? WMMenu_OnSaveSelected(???);
 struct MenuProc *StartWMNodeMenu(struct WorldMapMainProc *parent);
-// ??? WMNodeMenu_OnInit(???);
-// ??? WMNodeMenu_OnEnd(???);
-// ??? WMNodeMenu_OnCancel(???);
-// ??? WMMenu_IsArmoryAvailable(???);
-// ??? WMMenu_IsVendorAvailable(???);
-// ??? WMMenu_IsSecretShopAvailable(???);
+int WMNodeMenu_OnInit(struct MenuProc * menu);
+int WMNodeMenu_OnEnd(struct MenuProc * menu);
+u8 WMNodeMenu_OnCancel(struct MenuProc * menuProc, struct MenuItemProc * menuItemProc);
+u8 WMMenu_IsArmoryAvailable(const struct MenuItemDef * def, int number);
+u8 WMMenu_IsVendorAvailable(const struct MenuItemDef * def, int number);
+u8 WMMenu_IsSecretShopAvailable(const struct MenuItemDef * def, int number);
 // ??? sub_80BC72C(???);
 // ??? sub_80BC754(???);
-// ??? WMMenu_OnArmorySelected(???);
-// ??? WMMenu_OnVendorSelected(???);
-// ??? WMMenu_OnSecretShopSelected(???);
-// ??? WMMenu_OnManageItemsSelected(???);
+u8 WMMenu_OnArmorySelected(struct MenuProc * menuProc, struct MenuItemProc * menuItemProc);
+u8 WMMenu_OnVendorSelected(struct MenuProc * menuProc, struct MenuItemProc * menuItemProc);
+u8 WMMenu_OnSecretShopSelected(struct MenuProc * menuProc, struct MenuItemProc * menuItemProc);
+u8 WMMenu_OnManageItemsSelected(struct MenuProc * menuProc, struct MenuItemProc * menuItemProc);
 void GmDataInit(void);
 
 // this is a buffer at 0x201AFF0, indexed by node ID
@@ -1337,7 +1337,7 @@ int GetGMapBaseMenuKind(void);
 int GetGMapBaseMenuPid();
 void SetGMapBaseMenuPid(int);
 
-// extern ??? gFont_0201AFC0
+extern struct Font gFont_0201AFC0;
 // extern ??? gUnknown_0201AFF0
 // extern ??? gUnknown_0201B0D8
 // extern ??? gUnknown_0201B100
@@ -1383,8 +1383,8 @@ extern struct ProcCmd ProcScr_GmNodeIconDisplay[];
 // extern ??? gMenu_WMGeneralMenu
 // extern ??? gMenuRect_WMGeneralMenuRect
 // extern ??? gMenu_WMNodeMenu
-// extern ??? gMenuRect_WMNodeMenuRectA
-// extern ??? gMenuRect_WMNodeMenuRectB
+extern struct MenuRect gMenuRect_WMNodeMenuRectA;
+extern struct MenuRect gMenuRect_WMNodeMenuRectB;
 // extern ??? gUnknown_08A3E22C
 // extern ??? gUnknown_08A3E23C
 // extern ??? ProcScr_GMapMuPrim

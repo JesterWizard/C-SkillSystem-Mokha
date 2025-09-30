@@ -417,13 +417,13 @@
 
 #define CONFIG_MP_SYSTEM
 #define CONFIG_MODULAR_FOG_UNIT_SIGHT
-#define CONFIG_MULTIPLE_FOG_STAGES
+// #define CONFIG_MULTIPLE_FOG_STAGES /* Still a work in progress */
 
 #define CONFIG_MISC_UNIT_COUNTERS /* Used for Skill - Bravely Default */
 
 // #define CONFIG_UNIT_SELECTION_QUOTES /* Leonarth */ /* Needed to turn off unitBeginAction's lynjump for this */
 
-#define CONFIG_VOICE_ACTED_PROLOGUE
+// #define CONFIG_VOICE_ACTED_PROLOGUE
 
 // #define CONFIG_FREE_MOVEMENT
 
@@ -436,5 +436,7 @@
 // #define CONFIG_LIGHTS_OUT_GAME
 
 // #define CONFIG_2RN_GROWTHS
+
+#define CONFIG_ENTER_DISTRICT
 
 #endif /* CONFIG_INSTALLED */

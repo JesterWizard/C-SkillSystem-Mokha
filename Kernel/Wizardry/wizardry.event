@@ -222,3 +222,7 @@ ALIGN 4
 #ifdef CONFIG_LIGHTS_OUT_GAME
     #include "Misc/LightsOutPuzzle/LightsOutPuzzle_Installer.event"
 #endif
+
+#ifdef CONFIG_ENTER_DISTRICT
+    #include "Misc/EnterTown/EnterTown_Installer.event"
+#endif

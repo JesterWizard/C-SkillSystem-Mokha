@@ -33,6 +33,7 @@ extern const int sExpaConvoyItemAmount;
 
 extern const u16* Events_WM_Beginning[];
 extern const u16* Events_WM_ChapterIntro[];
+extern u8 ChapterID[1];
 
 #if defined(SID_SummonPlus) && (COMMON_SKILL_VALID(SID_SummonPlus))
 FORCE_DECLARE static const u8 classIndexes_SP[6] = { CLASS_TARVOS, CLASS_BAEL, CLASS_GARGOYLE, CLASS_GORGONEGG, CLASS_MOGALL, CLASS_MAUTHEDOOG };
@@ -756,6 +757,16 @@ LYN_REPLACE_CHECK(CallChapterWMIntroEvents);
 //! FE8U = 0x080BA3D4
 void CallChapterWMIntroEvents(ProcPtr proc)
 {
+
+// #ifdef CONFIG_ENTER_DISTRICT
+//     if (ChapterID[0] == 3)
+//     {
+//         CallEvent((const u16*)EventScrWM_Ch4_TRAVEL_TO_NODE, 0);
+//         StartWMFaceCtrl(proc);
+//         StartGmapMuEntry(NULL);
+//     }
+// #endif
+
     if (Events_WM_ChapterIntro[GetROMChapterStruct(gPlaySt.chapterIndex)->gmapEventId] != NULL)
     {
         /**
@@ -2864,4 +2875,40 @@ void ItemGot_GotLeItem(struct GotItemPopupProc * proc)
         HandleNewItemGetFromDrop(proc->unit, proc->item, proc);
     else
         HandleNewItemGetFromDrop(proc->unit, MakeNewItem(proc->item), proc);
+}
+
+//! FE8U = 0x080B9B38
+LYN_REPLACE_CHECK(WorldMap_CallIntroEvent);
+void WorldMap_CallIntroEvent(struct WorldMapMainProc * proc)
+{
+    GmMu_80BE108(proc->gm_mu, 0, 0);
+
+#ifdef CONFIG_ENTER_DISTRICT
+    if (ChapterID[0] > 0)
+    {
+        gPlaySt.chapterIndex = ChapterID[0];
+        ChapterID[0] = 0;
+        gGMData.state.bits.monster_merged = false;
+        CallChapterWMIntroEvents(proc);
+        gGMData.sprite_disp = 0;
+        WmRemoveRandomMonsters();
+        return;
+    }
+#endif
+
+    if (gGMData.units[0].location[gWMNodeData].placementFlag != GMAP_NODE_PLACEMENT_DUNGEON)
+    {
+        gPlaySt.chapterIndex = WMLoc_GetChapterId(proc->unk_3e);
+        gGMData.state.bits.monster_merged = false;
+    }
+    else
+    {
+        gPlaySt.chapterIndex = WMLoc_GetChapterId(gGMData.units[0].location);
+    }
+
+    CallChapterWMIntroEvents(proc);
+
+    gGMData.sprite_disp = 0;
+
+    WmRemoveRandomMonsters();
 }
