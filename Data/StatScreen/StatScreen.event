@@ -2,7 +2,8 @@
 
 ALIGN 4
 NewPageNameGraphic:
-    #incbin "Data/Gfx_StatScreenObj.lz77"
+   // #incext Png2Dmp "Data/Gfx_StatScreenObj_6pages.png" --lz77
+   #incbin "Data/Gfx_StatScreenObj.lz77"
 
 ALIGN 4
 NewPageNamePalette:

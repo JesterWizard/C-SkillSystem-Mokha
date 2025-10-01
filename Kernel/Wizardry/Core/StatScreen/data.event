@@ -16,4 +16,7 @@ gStatScreenDrawPages:
 #ifdef CONFIG_MP_SYSTEM
     POIN DrawPage5Rework
 #endif
+#ifdef CONFIG_STAT_PAGE_PERSONAL_INFO
+    POIN DrawPage6Rework
+#endif
     WORD 0

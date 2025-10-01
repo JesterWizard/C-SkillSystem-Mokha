@@ -1,17 +1,4 @@
 PUSH
-    ORG $88690
-#ifdef CONFIG_MP_SYSTEM
-    BYTE 5 //make 5 pages
-#else
-    BYTE 4
-#endif
-    // PROTECT $88670 $8873c /* StatScreen_Display */
-
-    ORG $88650
-    // POIN NewPageNameGraphic
-    /* Turned off to allow for CONFIG_STAT_SCREEN_ALLEGIANCE_COLORS */
-    // PROTECT 0x000884B0 0x00088670 // StatScreen_InitDisplay
-
     ORG $87f38
     gpSprites_PageNameRework:
     // POIN Sprites_PageNameRework
