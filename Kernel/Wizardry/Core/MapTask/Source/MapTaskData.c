@@ -8,6 +8,7 @@ const struct MapTaskConf gMapTaskConfs[] = {
 	[MTSKCONF_RESCUING]     = {  9,  7, gObject_8x8 },
 	[MTSKCONF_BOSS]         = {  9,  7, gObject_8x8 },
 	[MTSKCONF_PROTECTION]   = {  9,  7, gObject_8x8 },
+	[MTSKCONF_TALK]   		= {  -6,  -4, gObject_16x8 },
 };
 
 const u8 gHpBarChr[] = {

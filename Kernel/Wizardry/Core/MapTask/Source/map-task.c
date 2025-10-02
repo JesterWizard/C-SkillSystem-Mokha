@@ -2,6 +2,7 @@
 #include "debuff.h"
 #include "map-task.h"
 #include "kernel-lib.h"
+#include "stat-screen.h"
 
 LYN_REPLACE_CHECK(PutUnitSpriteIconsOam);
 void PutUnitSpriteIconsOam(void)
@@ -38,6 +39,13 @@ void PutUnitSpriteIconsOam(void)
 
 		MapTaskVec.x = ix;
 		MapTaskVec.y = iy;
+
+#ifdef CONFIG_DISPLAY_TALK_ICON
+		if (gBmSt.gameStateBits & BM_FLAG_1) {
+			if (GetTalkee(unit) != 0)
+   				MapTaskPutOamHi(MTSKCONF_TALK, OAM2_PAL(0) + OAM2_LAYER(2) + OAM2_CHR(0xE00 / 0x20));	
+		}
+#endif
 
 		/**
 		 * 1. HpBar
