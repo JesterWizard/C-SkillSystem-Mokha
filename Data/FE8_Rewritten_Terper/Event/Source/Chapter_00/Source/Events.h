@@ -112,8 +112,8 @@ static const EventScr EventScr_Ending[] = {
 };
 
 static const EventListScr EventListScr_ONeillAttack[] = {
-    CHECK_ENEMIES
-    SVAL(EVT_SLOT_7, 1)
+    CHECK_ENEMIES // Check how many enemies remain and save the result in EVT_SLOT_C
+    SVAL(EVT_SLOT_7, 1) // Put the value we want to check for in EVT_SLOT_7
     BNE(0x0, EVT_SLOT_C, EVT_SLOT_7)
     MUSC(SONG_TRUTH_DESPAIR_AND_HOPE)
     TEXT(Chapter_00_ONeill_Agro)

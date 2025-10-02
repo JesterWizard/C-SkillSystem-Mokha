@@ -118,6 +118,11 @@ void PutUnitSpriteIconsOam(void)
 					MTSKCONF_PROTECTION,
 					OAM2_PAL(0) + OAM2_LAYER(2) + OAM2_CHR(0x220 / 0x20));
 			}
+
+#ifdef CONFIG_DISPLAY_DROPPABLE_ITEM_ICON
+			if (unit->state & US_DROP_ITEM)
+   				MapTaskPutOamHi(MTSKCONF_DROP_ITEM, OAM2_PAL(0) + OAM2_LAYER(2) + OAM2_CHR(0xD20 / 0x20));	
+#endif
 		}
 	}
 }
