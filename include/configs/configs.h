@@ -400,7 +400,7 @@
 #endif
 
 #define CONFIG_REFUGE_FEATURE
-/* Not installed because of conflucts with phase suspend and sound mixer */
+/* Not installed because of conflicts with phase suspend and sound mixer */
 // #define CONFIG_CUSTOM_CHAPTER_SCREEN
 #define CONFIG_MODULAR_STAFF_EXP
 #define CONFIG_EXPANDED_PREP_MENU_OPTIONS
@@ -437,7 +437,7 @@
 
 // #define CONFIG_2RN_GROWTHS
 
-#define CONFIG_ENTER_DISTRICT
+// #define CONFIG_ENTER_DISTRICT // Not yet finished
 
 #define CONFIG_STAT_PAGE_PERSONAL_INFO
 
