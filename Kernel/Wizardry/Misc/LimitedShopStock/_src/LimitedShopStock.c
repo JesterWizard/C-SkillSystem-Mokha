@@ -92,7 +92,7 @@ void DrawStockedItemLine(struct Text* text, int item, s8 isUsable, u16* mapOut) 
 
     // Set the determined color
     Text_SetParams(text, 0, textColor);
-    Text_DrawStringASCII(text, GetItemName(item));
+    Text_DrawString(text, GetItemName(item));
 
     PutText(text, mapOut + 2);
 
