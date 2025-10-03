@@ -308,7 +308,7 @@
 #define CONFIG_UNIT_AMT_NPC   8
 
 #define CONFIG_VESLY_DEBUGGER
-#define CONFIG_VESLY_DANGER_BONES
+// #define CONFIG_VESLY_DANGER_BONES // Overwrites light rune paletter and makes it red
 #define CONFIG_VESLY_SUPPORT_POST_BATTLE
 
 #ifdef  CONFIG_VESLY_SUPPORT_POST_BATTLE

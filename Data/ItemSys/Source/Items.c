@@ -1890,7 +1890,7 @@ const struct ItemData gItemData_New[] = {
 		.encodedRange = 0x11,
 		.costPerUse = 500,
 		.iconId = 0x8c,
-		.useEffectId = 39,
+		.useEffectId = IER_MINE,
 	},
 	[ITEM_LIGHTRUNE] = {
 		.nameTextId = 0x403,
@@ -1901,7 +1901,7 @@ const struct ItemData gItemData_New[] = {
 		.encodedRange = 0x11,
 		.costPerUse = 800,
 		.iconId = 0x8d,
-		.useEffectId = 40,
+		.useEffectId = IER_LIGHTRUNE,
 	},
 	[ITEM_HOPLON_SHIELD] = {
 		.nameTextId = 0x3f3,
