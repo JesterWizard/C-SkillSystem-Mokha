@@ -42,7 +42,7 @@ void PutUnitSpriteIconsOam(void)
 
 #ifdef CONFIG_DISPLAY_TALK_ICON
 		if (gBmSt.gameStateBits & BM_FLAG_1) {
-			if (GetTalkee(unit) != 0)
+			if (GetTalkee(gActiveUnit) == UNIT_CHAR_ID(unit))
    				MapTaskPutOamHi(MTSKCONF_TALK, OAM2_PAL(0) + OAM2_LAYER(2) + OAM2_CHR(0xE00 / 0x20));	
 		}
 #endif

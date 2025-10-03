@@ -8,7 +8,7 @@
 
 const struct MpSystemPInfoConfig gMpSystemPInfoConfigList[0x100] = {
 	[CHARACTER_EIRIKA] = {
-		.idleGeneration = 30,
+		.idleGeneration = 2,
 		.battleGeneration = 2,
 		.killGeneration = 5,
 		.maxMP = 30
