@@ -1248,7 +1248,7 @@ const struct ItemData gItemData_New[] = {
 		.costPerUse = 20,
 		.weaponRank = WPN_EXP_E,
 		.iconId = 0x49,
-		.useEffectId = 1,
+		.useEffectId = IER_STAFF_HEAL,
 		.weaponExp = 2,
 	},
 	[ITEM_STAFF_MEND] = {
@@ -1265,7 +1265,7 @@ const struct ItemData gItemData_New[] = {
 		.costPerUse = 50,
 		.weaponRank = WPN_EXP_D,
 		.iconId = 0x4a,
-		.useEffectId = 2,
+		.useEffectId = IER_STAFF_MEND,
 		.weaponExp = 3,
 	},
 	[ITEM_STAFF_RECOVER] = {
@@ -1282,7 +1282,7 @@ const struct ItemData gItemData_New[] = {
 		.costPerUse = 150,
 		.weaponRank = WPN_EXP_C,
 		.iconId = 0x4b,
-		.useEffectId = 3,
+		.useEffectId = IER_STAFF_RECOVER,
 		.weaponExp = 3,
 	},
 	[ITEM_STAFF_PHYSIC] = {
@@ -1299,7 +1299,7 @@ const struct ItemData gItemData_New[] = {
 		.costPerUse = 250,
 		.weaponRank = WPN_EXP_B,
 		.iconId = 0x4c,
-		.useEffectId = 4,
+		.useEffectId = IER_STAFF_PHYSIC,
 		.weaponExp = 3,
 	},
 	[ITEM_STAFF_FORTIFY] = {
@@ -1316,7 +1316,7 @@ const struct ItemData gItemData_New[] = {
 		.costPerUse = 1000,
 		.weaponRank = WPN_EXP_A,
 		.iconId = 0x4d,
-		.useEffectId = 5,
+		.useEffectId = IER_STAFF_FORTIFY,
 		.weaponExp = 5,
 	},
 	[ITEM_STAFF_RESTORE] = {
@@ -1333,7 +1333,7 @@ const struct ItemData gItemData_New[] = {
 		.costPerUse = 200,
 		.weaponRank = WPN_EXP_C,
 		.iconId = 0x4e,
-		.useEffectId = 6,
+		.useEffectId = IER_STAFF_RESTORE,
 		.weaponExp = 3,
 	},
 	[ITEM_STAFF_SILENCE] = {
@@ -1351,7 +1351,7 @@ const struct ItemData gItemData_New[] = {
 		.weaponRank = WPN_EXP_B,
 		.iconId = 0x4f,
 		.useEffectId = 7,
-		.weaponExp = 5,
+		.weaponExp = IER_STAFF_SILENCE,
 	},
 	[ITEM_STAFF_SLEEP] = {
 		.nameTextId = 0x3c9,
@@ -1367,7 +1367,7 @@ const struct ItemData gItemData_New[] = {
 		.costPerUse = 500,
 		.weaponRank = WPN_EXP_B,
 		.iconId = 0x50,
-		.useEffectId = 8,
+		.useEffectId = IER_STAFF_SLEEP,
 		.weaponExp = 5,
 	},
 	[ITEM_STAFF_BERSERK] = {
@@ -1384,7 +1384,7 @@ const struct ItemData gItemData_New[] = {
 		.costPerUse = 600,
 		.weaponRank = WPN_EXP_B,
 		.iconId = 0x51,
-		.useEffectId = 9,
+		.useEffectId = IER_STAFF_BERSERK,
 		.weaponExp = 5,
 	},
 	[ITEM_STAFF_WARP] = {
@@ -1401,7 +1401,7 @@ const struct ItemData gItemData_New[] = {
 		.costPerUse = 1500,
 		.weaponRank = WPN_EXP_A,
 		.iconId = 0x52,
-		.useEffectId = 10,
+		.useEffectId = IER_STAFF_WARP,
 		.weaponExp = 7,
 	},
 	[ITEM_STAFF_RESCUE] = {
@@ -1418,7 +1418,7 @@ const struct ItemData gItemData_New[] = {
 		.costPerUse = 600,
 		.weaponRank = WPN_EXP_B,
 		.iconId = 0x53,
-		.useEffectId = 11,
+		.useEffectId = IER_STAFF_RESCUE,
 		.weaponExp = 7,
 	},
 	[ITEM_STAFF_TORCH] = {
@@ -1435,7 +1435,7 @@ const struct ItemData gItemData_New[] = {
 		.costPerUse = 100,
 		.weaponRank = WPN_EXP_D,
 		.iconId = 0x54,
-		.useEffectId = 12,
+		.useEffectId = IER_STAFF_TORCH,
 		.weaponExp = 5,
 	},
 	[ITEM_STAFF_REPAIR] = {
@@ -1452,7 +1452,7 @@ const struct ItemData gItemData_New[] = {
 		.costPerUse = 600,
 		.weaponRank = WPN_EXP_C,
 		.iconId = 0x55,
-		.useEffectId = 13,
+		.useEffectId = IER_STAFF_REPAIR,
 		.weaponExp = 8,
 	},
 	[ITEM_STAFF_UNLOCK] = {
@@ -1469,7 +1469,7 @@ const struct ItemData gItemData_New[] = {
 		.costPerUse = 150,
 		.weaponRank = WPN_EXP_D,
 		.iconId = 0x56,
-		.useEffectId = 14,
+		.useEffectId = IER_STAFF_UNLOCK,
 		.weaponExp = 5,
 	},
 	[ITEM_STAFF_BARRIER] = {
@@ -1486,7 +1486,7 @@ const struct ItemData gItemData_New[] = {
 		.costPerUse = 150,
 		.weaponRank = WPN_EXP_C,
 		.iconId = 0x57,
-		.useEffectId = 15,
+		.useEffectId = IER_STAFF_BARRIER,
 		.weaponExp = 4,
 	},
 	[ITEM_AXE_DRAGON] = {
@@ -1517,7 +1517,7 @@ const struct ItemData gItemData_New[] = {
 		.encodedRange = 0x11,
 		.costPerUse = 8000,
 		.iconId = 0x59,
-		.useEffectId = 16,
+		.useEffectId = IER_BOOSTER_HP,
 	},
 	[ITEM_BOOSTER_POW] = {
 		.nameTextId = 0x3d5,
@@ -1530,7 +1530,7 @@ const struct ItemData gItemData_New[] = {
 		.encodedRange = 0x11,
 		.costPerUse = 8000,
 		.iconId = 0x5a,
-		.useEffectId = 17,
+		.useEffectId = IER_BOOSTER_POW,
 	},
 	[ITEM_BOOSTER_SKL] = {
 		.nameTextId = 0x3d6,
@@ -1543,7 +1543,7 @@ const struct ItemData gItemData_New[] = {
 		.encodedRange = 0x11,
 		.costPerUse = 8000,
 		.iconId = 0x5b,
-		.useEffectId = 18,
+		.useEffectId = IER_BOOSTER_SKL,
 	},
 	[ITEM_BOOSTER_SPD] = {
 		.nameTextId = 0x3d7,
@@ -1556,7 +1556,7 @@ const struct ItemData gItemData_New[] = {
 		.encodedRange = 0x11,
 		.costPerUse = 8000,
 		.iconId = 0x5c,
-		.useEffectId = 19,
+		.useEffectId = IER_BOOSTER_SPD,
 	},
 	[ITEM_BOOSTER_LCK] = {
 		.nameTextId = 0x3d8,
@@ -1569,7 +1569,7 @@ const struct ItemData gItemData_New[] = {
 		.encodedRange = 0x11,
 		.costPerUse = 8000,
 		.iconId = 0x5d,
-		.useEffectId = 20,
+		.useEffectId = IER_BOOSTER_LCK,
 	},
 	[ITEM_BOOSTER_DEF] = {
 		.nameTextId = 0x3d9,
@@ -1582,7 +1582,7 @@ const struct ItemData gItemData_New[] = {
 		.encodedRange = 0x11,
 		.costPerUse = 8000,
 		.iconId = 0x5e,
-		.useEffectId = 21,
+		.useEffectId = IER_BOOSTER_DEF,
 	},
 	[ITEM_BOOSTER_RES] = {
 		.nameTextId = 0x3da,
@@ -1595,7 +1595,7 @@ const struct ItemData gItemData_New[] = {
 		.encodedRange = 0x11,
 		.costPerUse = 8000,
 		.iconId = 0x5f,
-		.useEffectId = 22,
+		.useEffectId = IER_BOOSTER_RES,
 	},
 	[ITEM_BOOSTER_MOV] = {
 		.nameTextId = 0x3db,
@@ -1608,7 +1608,7 @@ const struct ItemData gItemData_New[] = {
 		.encodedRange = 0x11,
 		.costPerUse = 8000,
 		.iconId = 0x60,
-		.useEffectId = 23,
+		.useEffectId = IER_BOOSTER_MOV,
 	},
 	[ITEM_BOOSTER_CON] = {
 		.nameTextId = 0x3dc,
@@ -1621,7 +1621,7 @@ const struct ItemData gItemData_New[] = {
 		.encodedRange = 0x11,
 		.costPerUse = 8000,
 		.iconId = 0x61,
-		.useEffectId = 24,
+		.useEffectId = IER_BOOSTER_CON,
 	},
 	[ITEM_HEROCREST] = {
 		.nameTextId = 0x3dd,
@@ -1633,7 +1633,7 @@ const struct ItemData gItemData_New[] = {
 		.encodedRange = 0x11,
 		.costPerUse = 10000,
 		.iconId = 0x62,
-		.useEffectId = 25,
+		.useEffectId = IER_HEROCREST,
 	},
 	[ITEM_KNIGHTCREST] = {
 		.nameTextId = 0x3de,
@@ -1645,7 +1645,7 @@ const struct ItemData gItemData_New[] = {
 		.encodedRange = 0x11,
 		.costPerUse = 10000,
 		.iconId = 0x63,
-		.useEffectId = 26,
+		.useEffectId = IER_KNIGHTCREST,
 	},
 	[ITEM_ORIONSBOLT] = {
 		.nameTextId = 0x3df,
@@ -1657,7 +1657,7 @@ const struct ItemData gItemData_New[] = {
 		.encodedRange = 0x11,
 		.costPerUse = 10000,
 		.iconId = 0x64,
-		.useEffectId = 27,
+		.useEffectId = IER_ORIONSBOLT,
 	},
 	[ITEM_ELYSIANWHIP] = {
 		.nameTextId = 0x3e0,
@@ -1669,7 +1669,7 @@ const struct ItemData gItemData_New[] = {
 		.encodedRange = 0x11,
 		.costPerUse = 10000,
 		.iconId = 0x65,
-		.useEffectId = 28,
+		.useEffectId = IER_ELYSIANWHIP,
 	},
 	[ITEM_GUIDINGRING] = {
 		.nameTextId = 0x3e1,
@@ -1681,7 +1681,7 @@ const struct ItemData gItemData_New[] = {
 		.encodedRange = 0x11,
 		.costPerUse = 10000,
 		.iconId = 0x66,
-		.useEffectId = 29,
+		.useEffectId = IER_GUIDINGRING,
 	},
 	[ITEM_CHESTKEY] = {
 		.nameTextId = 0x3e2,
@@ -1693,7 +1693,7 @@ const struct ItemData gItemData_New[] = {
 		.encodedRange = 0x11,
 		.costPerUse = 300,
 		.iconId = 0x67,
-		.useEffectId = 30,
+		.useEffectId = IER_CHESTKEY,
 	},
 	[ITEM_DOORKEY] = {
 		.nameTextId = 0x3e3,
@@ -1705,7 +1705,7 @@ const struct ItemData gItemData_New[] = {
 		.encodedRange = 0x11,
 		.costPerUse = 50,
 		.iconId = 0x68,
-		.useEffectId = 31,
+		.useEffectId = IER_DOORKEY,
 	},
 	[ITEM_LOCKPICK] = {
 		.nameTextId = 0x3e4,
@@ -1717,7 +1717,7 @@ const struct ItemData gItemData_New[] = {
 		.encodedRange = 0x11,
 		.costPerUse = 80,
 		.iconId = 0x69,
-		.useEffectId = 32,
+		.useEffectId = IER_LOCKPICK,
 	},
 	[ITEM_VULNERARY] = {
 		.nameTextId = 0x3e5,
@@ -1729,7 +1729,7 @@ const struct ItemData gItemData_New[] = {
 		.encodedRange = 0x11,
 		.costPerUse = 100,
 		.iconId = 0x6a,
-		.useEffectId = 33,
+		.useEffectId = IER_VULNERARY,
 	},
 	[ITEM_ELIXIR] = {
 		.nameTextId = 0x3e6,
@@ -1741,7 +1741,7 @@ const struct ItemData gItemData_New[] = {
 		.encodedRange = 0x11,
 		.costPerUse = 1000,
 		.iconId = 0x6b,
-		.useEffectId = 34,
+		.useEffectId = IER_ELIXIR,
 	},
 	[ITEM_PUREWATER] = {
 		.nameTextId = 0x3e7,
@@ -1753,7 +1753,7 @@ const struct ItemData gItemData_New[] = {
 		.encodedRange = 0x11,
 		.costPerUse = 300,
 		.iconId = 0x6c,
-		.useEffectId = 35,
+		.useEffectId = IER_PUREWATER,
 	},
 	[ITEM_ANTITOXIN] = {
 		.nameTextId = 0x3e8,
@@ -1765,7 +1765,7 @@ const struct ItemData gItemData_New[] = {
 		.encodedRange = 0x11,
 		.costPerUse = 150,
 		.iconId = 0x6d,
-		.useEffectId = 36,
+		.useEffectId = IER_ANTITOXIN
 	},
 	[ITEM_TORCH] = {
 		.nameTextId = 0x3e9,
@@ -1777,7 +1777,7 @@ const struct ItemData gItemData_New[] = {
 		.encodedRange = 0x11,
 		.costPerUse = 100,
 		.iconId = 0x6e,
-		.useEffectId = 37,
+		.useEffectId = IER_TORCH,
 	},
 	[ITEM_DELPHISHIELD] = {
 		.nameTextId = 0x3ea,
