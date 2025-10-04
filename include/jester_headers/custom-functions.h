@@ -79,3 +79,19 @@ extern const struct ProcCmd gProcScr_SecondaryGoalWindow[];
     extern void PuzzleEvent();
     extern void PuzzleEvent2();
 #endif
+
+void PrepItemUseScroll_OnInit(struct ProcPrepItemUseJunaFruit * proc);
+void PrepItemUseScroll_OnEnd(struct ProcPrepItemUseJunaFruit * proc);
+void PrepItemUseScroll_OnDraw(struct ProcPrepItemUseJunaFruit * proc, int item, int x, int y);
+extern const struct ProcCmd ProcScr_PrepItemUseScroll[];
+
+extern const struct ProcCmd ProcScr_PrepItemUseArmsScroll[];
+bool CanUnitUseArmsScroll(struct Unit * unit);
+void ItemUseAction_ArmsScroll(struct Unit * unit);
+void IER_PrepEffect_ArmsScroll(struct ProcPrepItemUse * proc, u16 item);
+bool IER_PrepUsability_ArmsScroll(struct Unit *unit, int item);
+void PrepItemUseArmsScroll_OnInit(struct ProcPrepItemUseJunaFruit * proc);
+void PrepItemUseArmsScroll_OnEnd(struct ProcPrepItemUseJunaFruit * proc);
+void PrepItemUseArmsScroll_OnDraw(struct ProcPrepItemUseJunaFruit * proc, int item, int x, int y);
+
+int GetHighestWeaponRank(struct Unit * unit);

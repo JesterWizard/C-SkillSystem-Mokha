@@ -280,13 +280,13 @@ void ItemUseAction_SkillScroll(ProcPtr proc)
     NewPopup_VerySimple(MSG_SkillLearned, 0x5A, proc);
 }
 
-bool ItemUsbility_SkillScroll(struct Unit *unit, int item)
+bool ItemUsability_SkillScroll(struct Unit *unit, int item)
 {
 	return !IsSkillLearned(unit, ITEM_USES(item));
 }
 
 /* Prep item use */
-STATIC_DECLAR void PrepItemUseScroll_OnDraw(struct ProcPrepItemUseJunaFruit *proc, int item, int x, int y)
+void PrepItemUseScroll_OnDraw(struct ProcPrepItemUseJunaFruit *proc, int item, int x, int y)
 {
 	int skill = ITEM_USES(item);
 	const char *str = GetStringFromIndex(MSG_SkillLearned);
@@ -312,7 +312,7 @@ STATIC_DECLAR void PrepItemUseScroll_OnDraw(struct ProcPrepItemUseJunaFruit *pro
 	proc->height = 2;
 }
 
-STATIC_DECLAR void PrepItemUseScroll_OnInit(struct ProcPrepItemUseJunaFruit *proc)
+void PrepItemUseScroll_OnInit(struct ProcPrepItemUseJunaFruit *proc)
 {
 	struct ProcPrepItemUse *parent = proc->proc_parent;
 
@@ -325,7 +325,7 @@ STATIC_DECLAR void PrepItemUseScroll_OnInit(struct ProcPrepItemUseJunaFruit *pro
 	PlaySoundEffect(0x5A);
 }
 
-STATIC_DECLAR void PrepItemUseScroll_OnEnd(struct ProcPrepItemUseJunaFruit *proc)
+void PrepItemUseScroll_OnEnd(struct ProcPrepItemUseJunaFruit *proc)
 {
 	struct ProcPrepItemUse *parent = proc->proc_parent;
 
@@ -334,7 +334,7 @@ STATIC_DECLAR void PrepItemUseScroll_OnEnd(struct ProcPrepItemUseJunaFruit *proc
 	PrepItemUseJuna_OnEnd(proc);
 }
 
-STATIC_DECLAR const struct ProcCmd ProcScr_PrepItemUseScroll[] = {
+const struct ProcCmd ProcScr_PrepItemUseScroll[] = {
 	PROC_SET_END_CB(PrepItemUseScroll_OnEnd),
 	PROC_CALL(PrepItemUseScroll_OnInit),
 	PROC_REPEAT(PrepItemUseJuna_IDLE),
@@ -346,7 +346,7 @@ void PrepItemEffect_SkillScroll(struct ProcPrepItemUse *proc, u16 item)
 	Proc_StartBlocking(ProcScr_PrepItemUseScroll, proc);
 }
 
-bool PrepItemUsbility_SkillScroll(struct Unit *unit, int item)
+bool PrepItemUsability_SkillScroll(struct Unit *unit, int item)
 {
 	if (gpKernelDesigerConfig->gen_new_scroll == false) {
 		/**
@@ -371,12 +371,12 @@ bool PrepItemUsbility_SkillScroll(struct Unit *unit, int item)
  */
 bool IER_Usability_SkillScroll(struct Unit *unit, int item)
 {
-	return ItemUsbility_SkillScroll(unit, item);
+	return ItemUsability_SkillScroll(unit, item);
 }
 
 bool IER_PrepUsability_SkillScroll(struct Unit *unit, int item)
 {
-	return PrepItemUsbility_SkillScroll(unit, item);
+	return PrepItemUsability_SkillScroll(unit, item);
 }
 
 void IER_Effect_SkillScroll(struct Unit *unit, int item)

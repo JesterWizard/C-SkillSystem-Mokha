@@ -21,12 +21,12 @@ Arms Scroll[X]
 
 ## MSG_ITEM_ArmsScroll_DESC
 Increase highest weapon rank by[N]
-1 stage[X]
+1 stage.[X]
 
 ## MSG_ITEM_ArmsScroll_USEDESC
 Increase highest[N]
 weapon rank by[N]
-1 stage[X]
+1 stage.[X]
 
 ## MSG_ITEM_FORCE_STAFF_NAME
 Force[X]

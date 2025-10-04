@@ -120,6 +120,10 @@ enum chax_ierevamp_use_effects {
 	IER_CHAX_SKILL_SCROLL,
 	IER_CHAX_STAFF_NIGHTMARE,
 
+#ifdef CONFIG_ITEM_INDEX_ARMS_SCROLL
+	IER_ARMS_SCROLL,
+#endif
+
 	IER_MAX = 0x51,
 };
 
@@ -279,3 +283,9 @@ IER_DECLEARE_PrepUsability(IER_PrepUsability_SkillScroll);
 IER_DECLEARE_Effect(IER_Effect_SkillScroll);
 IER_DECLEARE_Action(IER_ActionEffect_SkillScroll);
 IER_DECLEARE_PrepEffect(IER_PrepEffect_SkillScroll);
+
+IER_DECLEARE_Usability(IER_Usability_ArmsScroll);
+IER_DECLEARE_PrepUsability(IER_PrepUsability_ArmsScroll);
+IER_DECLEARE_Effect(IER_Effect_ArmsScroll);
+IER_DECLEARE_Action(IER_ActionEffect_ArmsScroll);
+IER_DECLEARE_PrepEffect(IER_PrepEffect_ArmsScroll);

@@ -43,5 +43,6 @@ InjectEventLoCmd(EVENT_CMD_SKILL, EventSkillOperation)
 
 /* Scroll */
 #include "SkillScroll/SkillScroll.event"
+#include "ArmsScroll/ArmsScroll.event"
 
 #endif

@@ -9,11 +9,11 @@ ORG CURRENTOFFSET+$58;GetSkillScrollItemUseDescId:
 ORG CURRENTOFFSET+$8;GetSkillScrollItemIconId:
 ORG CURRENTOFFSET+$48;ItemUseEffect_SkillScroll:
 ORG CURRENTOFFSET+$4c;ItemUseAction_SkillScroll:
-ORG CURRENTOFFSET+$254;ItemUsbility_SkillScroll:
+ORG CURRENTOFFSET+$254;ItemUsability_SkillScroll:
 ORG CURRENTOFFSET+$14;PrepItemUseScroll_OnDraw:
 ORG CURRENTOFFSET+$ac;PrepItemUseScroll_OnInit:
 ORG CURRENTOFFSET+$4c;PrepItemEffect_SkillScroll:
-ORG CURRENTOFFSET+$18;PrepItemUsbility_SkillScroll:
+ORG CURRENTOFFSET+$18;PrepItemUsability_SkillScroll:
 ORG CURRENTOFFSET+$30;IER_Usability_SkillScroll:
 ORG CURRENTOFFSET+$c;IER_PrepUsability_SkillScroll:
 ORG CURRENTOFFSET+$c;IER_Effect_SkillScroll:

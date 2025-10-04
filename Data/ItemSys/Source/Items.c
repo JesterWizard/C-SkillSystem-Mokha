@@ -4,6 +4,8 @@
 #include "item-sys.h"
 #include "jester_headers/custom-structs.h"
 
+/* JESTER - Something seems wrong with item ID 0xBF. It doesn't properly replace text strings. Don't use it for replacements */
+
 const struct ItemData gItemData_New[] = {
 	[ITEM_NONE] = {
 		.number = ITEM_NONE,
@@ -2846,21 +2848,6 @@ const struct ItemData gItemData_New[] = {
 		.weaponExp = 1,
 	},
 #endif
-#ifdef CONFIG_ITEM_INDEX_ARMS_SCROLL
-	[CONFIG_ITEM_INDEX_ARMS_SCROLL] = {
-		.nameTextId = MSG_ITEM_ArmsScroll_NAME,
-		.descTextId = MSG_ITEM_ArmsScroll_DESC,
-		.useDescTextId = MSG_ITEM_ArmsScroll_USEDESC,
-		.number = CONFIG_ITEM_INDEX_ARMS_SCROLL,
-		.weaponType = ITYPE_ITEM,
-		.pStatBonuses = 0,
-		.maxUses = 1,
-		.encodedRange = 0x11,
-		.costPerUse = 8000,
-		.iconId = CONFIG_ICON_INDEX_SKILL_STEALER,
-		.useEffectId = 18,
-	},
-#else
 	[ITEM_UNK_BF] = {
 		.nameTextId = 0x403,
 		.descTextId = 0x4ab,
@@ -2874,7 +2861,6 @@ const struct ItemData gItemData_New[] = {
 		.iconId = 0x0,
 		.weaponExp = 1,
 	},
-#endif
 #ifdef CONFIG_ITEM_INDEX_FORCE_STAFF
 	[CONFIG_ITEM_INDEX_FORCE_STAFF] = {
 		.nameTextId = MSG_ITEM_FORCE_STAFF_NAME,
@@ -3236,6 +3222,21 @@ const struct ItemData gItemData_New[] = {
 		.weaponExp = 1,
 	},
 #endif
+#ifdef CONFIG_ITEM_INDEX_ARMS_SCROLL
+	[CONFIG_ITEM_INDEX_ARMS_SCROLL] = {
+		.nameTextId = MSG_ITEM_ArmsScroll_NAME,
+		.descTextId = MSG_ITEM_ArmsScroll_DESC,
+		.useDescTextId = MSG_ITEM_ArmsScroll_USEDESC,
+		.number = CONFIG_ITEM_INDEX_ARMS_SCROLL,
+		.weaponType = ITYPE_ITEM,
+		.pStatBonuses = NULL,
+		.maxUses = 1,
+		.encodedRange = 0x11,
+		.costPerUse = 8000,
+		.iconId = CONFIG_ICON_INDEX_SKILL_STEALER,
+		.useEffectId = IER_ARMS_SCROLL,
+	},
+#else
 	[ITEM_UNK_CC] = {
 		.nameTextId = 0x403,
 		.descTextId = 0x4ab,
@@ -3245,6 +3246,7 @@ const struct ItemData gItemData_New[] = {
 		.encodedRange = 0x11,
 		.iconId = 0x9d,
 	},
+#endif
 	[ITEM_UNK_CD] = {
 		.nameTextId = 0x403,
 		.descTextId = 0x4ab,
