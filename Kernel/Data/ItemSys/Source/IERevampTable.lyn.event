@@ -158,6 +158,7 @@ POIN IER_Usability_Booster
 WORD $0
 POIN IER_Action_Booster
 POIN IER_PrepEffect_StatBooster
+WORD $0 $0 $0 $0 $0
 POIN IER_Usability_Promotion
 POIN IER_Usability_Promotion
 WORD $0
@@ -308,4 +309,4 @@ POIN IER_PrepEffect_SkillScroll
 POIN IER_Usability_NightMare
 WORD $0 $0
 POIN IER_Action_NightMare
-WORD $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0
+WORD $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0

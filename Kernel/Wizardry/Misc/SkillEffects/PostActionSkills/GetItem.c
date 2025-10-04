@@ -6,6 +6,7 @@
 #include "skill-system.h"
 #include "battle-system.h"
 #include "constants/skills.h"
+#include "jester_headers/macros.h"
 
 bool PostActionGetItem(ProcPtr parent)
 {
@@ -21,6 +22,21 @@ bool PostActionGetItem(ProcPtr parent)
 	case UNIT_ACTION_COMBAT:
 	case CONFIG_UNIT_ACTION_EXPA_GaidenMagicCombat:
 		if (gBattleActorGlobalFlag.enemy_defeated) {
+
+#ifdef CONFIG_ITEM_INDEX_SKILL_STEALER
+        if (UNIT_CATTRIBUTES(&gBattleTarget.unit) & CA_BOSS)
+            for (int i = 0; i < 5; i++) 
+                if(GetItemIndex(unit->items[i]) == CONFIG_ITEM_INDEX_SKILL_STEALER)
+                {
+                    struct SkillList *list;
+                    list = GetUnitSkillList(&gBattleTarget.unit);
+
+					NewPopup_ItemGot(parent, unit, (((list->sid[0] +1) << 8) | GET_SKILL_SCROLL_INDEX(list->sid[0] + 1)));
+					break;
+                }
+#endif
+
+
 #if defined(SID_Despoil) && (COMMON_SKILL_VALID(SID_Despoil))
 			if (SkillListTester(unit, SID_Despoil)) {
 				NewPopup_ItemGot(parent, unit, ITEM_REDGEM);

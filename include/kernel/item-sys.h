@@ -59,6 +59,10 @@ enum chax_ierevamp_use_effects {
 	IER_BOOSTER_MOV,
 	IER_BOOSTER_CON,
 
+#ifdef CONFIG_ITEM_INDEX_MAG_BOOSTER
+	IER_BOOSTER_MAG,
+#endif
+
 	/**
 	 * Promotion
 	 */

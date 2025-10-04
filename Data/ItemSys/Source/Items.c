@@ -156,6 +156,21 @@ const struct ItemData gItemData_New[] = {
 		.iconId = 0x8,
 		.weaponExp = 2,
 	},
+#ifdef CONFIG_ITEM_INDEX_SKILL_SCROLL_1
+	[CONFIG_ITEM_INDEX_SKILL_SCROLL_1] = {
+		.nameTextId = MSG_ITEM_SkillScrollName,
+		.descTextId = MSG_ITEM_SkillScrollName,
+		.useDescTextId = MSG_ITEM_SkillScrollUseDesc,
+		.number = CONFIG_ITEM_INDEX_SKILL_SCROLL_1,
+		.weaponType = ITYPE_ITEM,
+		.pStatBonuses = NULL,
+		.maxUses = 1,
+		.encodedRange = 0x11,
+		.costPerUse = 8000,
+		.iconId = 0,
+		.useEffectId = IER_CHAX_SKILL_SCROLL,
+	},
+#else
 	[ITEM_SWORD_MKATTI] = {
 		.nameTextId = 0x403,
 		.descTextId = 0x4ab,
@@ -170,6 +185,7 @@ const struct ItemData gItemData_New[] = {
 		.iconId = 0x9,
 		.weaponExp = 2,
 	},
+#endif
 	[ITEM_SWORD_BRAVE] = {
 		.nameTextId = 0x35d,
 		.descTextId = 0x40d,
@@ -2776,6 +2792,21 @@ const struct ItemData gItemData_New[] = {
 		.weaponExp = 1,
 	},
 #endif
+#ifdef CONFIG_ITEM_INDEX_SKILL_SCROLL_2
+	[CONFIG_ITEM_INDEX_SKILL_SCROLL_2] = {
+		.nameTextId = MSG_ITEM_SkillScrollName,
+		.descTextId = MSG_ITEM_SkillScrollName,
+		.useDescTextId = MSG_ITEM_SkillScrollUseDesc,
+		.number = CONFIG_ITEM_INDEX_SKILL_SCROLL_2,
+		.weaponType = ITYPE_ITEM,
+		.pStatBonuses = NULL,
+		.maxUses = 1,
+		.encodedRange = 0x11,
+		.costPerUse = 8000,
+		.iconId = 0,
+		.useEffectId = IER_CHAX_SKILL_SCROLL,
+	},
+#else
 	[ITEM_UNK_BD] = {
 		.nameTextId = 0x403,
 		.descTextId = 0x4ab,
@@ -2785,6 +2816,7 @@ const struct ItemData gItemData_New[] = {
 		.iconId = 0x0,
 		.weaponExp = 1,
 	},
+#endif
 #ifdef CONFIG_ITEM_INDEX_SKILL_STEALER
 	[CONFIG_ITEM_INDEX_SKILL_STEALER] = {
     .nameTextId = MSG_ITEM_SKILLSTEALER_NAME,
@@ -2797,7 +2829,7 @@ const struct ItemData gItemData_New[] = {
     .encodedRange = 0x11,
     .costPerUse = 8000,
     .iconId = CONFIG_ICON_INDEX_SKILL_STEALER,
-    .useEffectId = 17,
+    .useEffectId = 0,
 },
 #else
 	[ITEM_UNK_BE] = {
@@ -3121,6 +3153,21 @@ const struct ItemData gItemData_New[] = {
 		.weaponExp = 1,
 	},
 #endif
+#ifdef CONFIG_ITEM_INDEX_SKILL_SCROLL_3
+	[CONFIG_ITEM_INDEX_SKILL_SCROLL_3] = {
+		.nameTextId = MSG_ITEM_SkillScrollName,
+		.descTextId = MSG_ITEM_SkillScrollName,
+		.useDescTextId = MSG_ITEM_SkillScrollUseDesc,
+		.number = CONFIG_ITEM_INDEX_SKILL_SCROLL_3,
+		.weaponType = ITYPE_ITEM,
+		.pStatBonuses = NULL,
+		.maxUses = 1,
+		.encodedRange = 0x11,
+		.costPerUse = 8000,
+		.iconId = 0,
+		.useEffectId = IER_CHAX_SKILL_SCROLL,
+	},
+#else
 	[ITEM_UNK_C9] = {
 		.nameTextId = 0x403,
 		.descTextId = 0x4ab,
@@ -3133,6 +3180,22 @@ const struct ItemData gItemData_New[] = {
 		.iconId = 0x0,
 		.weaponExp = 1,
 	},
+#endif
+#ifdef CONFIG_ITEM_INDEX_SKILL_SCROLL_4
+	[CONFIG_ITEM_INDEX_SKILL_SCROLL_4] = {
+		.nameTextId = MSG_ITEM_SkillScrollName,
+		.descTextId = MSG_ITEM_SkillScrollName,
+		.useDescTextId = MSG_ITEM_SkillScrollUseDesc,
+		.number = CONFIG_ITEM_INDEX_SKILL_SCROLL_4,
+		.weaponType = ITYPE_ITEM,
+		.pStatBonuses = NULL,
+		.maxUses = 1,
+		.encodedRange = 0x11,
+		.costPerUse = 8000,
+		.iconId = 0,
+		.useEffectId = IER_CHAX_SKILL_SCROLL,
+	},
+#else
 	[ITEM_UNK_CA] = {
 		.nameTextId = 0x403,
 		.descTextId = 0x4ab,
@@ -3142,6 +3205,7 @@ const struct ItemData gItemData_New[] = {
 		.iconId = 0x0,
 		.weaponExp = 1,
 	},
+#endif
 #ifdef CONFIG_ITEM_INDEX_FORGE_STAFF
 	[CONFIG_ITEM_INDEX_FORGE_STAFF] =  {
     .nameTextId = MSG_ITEM_FORGE_STAFF_NAME,
