@@ -2762,7 +2762,7 @@ const struct ItemData gItemData_New[] = {
 		.encodedRange = 0x11,
 		.costPerUse = 8000,
 		.iconId = CONFIG_ICON_INDEX_MAG_BOOSTER,
-		.useEffectId = 17,
+		.useEffectId = IER_BOOSTER_POW,
 	},
 #else
 	[ITEM_UNK_BC] = {

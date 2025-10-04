@@ -272,7 +272,7 @@
 #define CONFIG_ICON_INDEX_RUNE_STAFF 0xAF
 #define CONFIG_ICON_INDEX_MINE_STAFF 0x6F // Literally no clue what this was originally, a necklace?
 #define CONFIG_ICON_INDEX_SLOW_STAFF 0x78 // Originally Echesacks
-#define CONFIG_ICON_INDEX_FORGE_STAFF 0xCA
+#define CONFIG_ICON_INDEX_FORGE_STAFF 0xAB // Originally a musical note, for play?
 
 /**
 * Item config

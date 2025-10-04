@@ -3,6 +3,11 @@
 #include "item-sys.h"
 #include "constants/texts.h"
 
+/*
+** JESTER - Apparently I need this active both here and in the IERevampTable.c for it to work, maybe I'll figure it out one day.
+** If I remove the entry here, the effect doesn't active. If I remove the one in IERevampTable.c, the item is removed
+*/
+
 const struct ItemData ItemData_MagBooster = {
 	.nameTextId = MSG_ITEM_MAGBOOSTER_NAME,
 	.descTextId = MSG_ITEM_MAGBOOSTER_DESC,
