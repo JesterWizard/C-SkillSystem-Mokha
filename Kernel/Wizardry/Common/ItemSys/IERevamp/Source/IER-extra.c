@@ -530,7 +530,7 @@ void ExecCustomStaves(ProcPtr proc) {
 #endif
 #ifdef CONFIG_ITEM_INDEX_FORGE_STAFF
     case CONFIG_ITEM_INDEX_FORGE_STAFF:
-        SetUnitStatus(unit_tar, NEW_UNIT_STATUS_SLOW);
+        // IER_Effect_Forge takes care of this. Splitting out its effects when it depends on the steal menu is... hard.
         break;
 #endif
     default:

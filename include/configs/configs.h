@@ -299,6 +299,10 @@
 #define CONFIG_ITEM_INDEX_SLOW_STAFF 0xC8
 #define CONFIG_ITEM_INDEX_FORGE_STAFF 0xCB
 
+#ifdef CONFIG_ITEM_INDEX_FORGE_STAFF
+	#define CONFIG_FORGE_CHECKER 5000
+#endif
+
 
 /**
  * Unit amount, since it is hard to modify, it is recommanded not change this value

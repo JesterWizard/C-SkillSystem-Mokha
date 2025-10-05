@@ -144,13 +144,16 @@ void MakeTargetListForSlow(struct Unit *unit)
 }
 
 void TryAddUnitToForgeTargetList(struct Unit* unit) 
-{
-
+{	
     if (AreUnitsAllied(gSubjectUnit->index, unit->index)) {
         return;
     }
 
-    if (unit->res >= GetUnitMagic(unit)) {
+	if (gSubjectUnit->items[4] != 0) {
+		return;
+	}
+
+    if (unit->res >= GetUnitMagic(gSubjectUnit)) {
         return;
     }
 
@@ -170,8 +173,10 @@ void TryAddUnitToForgeTargetList(struct Unit* unit)
 
 void MakeTargetListForForge(struct Unit *unit)
 {
+	int x = unit->xPos;
+    int y = unit->yPos;
 	gSubjectUnit = unit;
-	InitTargets(unit->xPos, unit->yPos);
+	InitTargets(x, y);
 
 	BmMapFill(gBmMapRange, 0);
 #ifdef CONFIG_ITEM_INDEX_FORGE_STAFF

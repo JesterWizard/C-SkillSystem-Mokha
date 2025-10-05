@@ -250,7 +250,19 @@ void IER_Effect_SpeicalDance(struct Unit *unit, int item)
 
 void IER_Effect_Forge(struct Unit *unit, int item)
 {
-	DoUsePutTrap(unit, MakeTargetListForForge, MSG_087A);
+	BG_Fill(gBG0TilemapBuffer, 0);
+	BG_Fill(gBG2TilemapBuffer, 0);
+	BG_EnableSyncByMask(BG0_SYNC_BIT | BG2_SYNC_BIT);
+	HideMoveRangeGraphics();
+	ResetIconGraphics();
+    ResetText();
+
+#ifdef CONFIG_ITEM_INDEX_FORGE_STAFF
+	gActionData.unk08 = CONFIG_FORGE_CHECKER;
+#endif
+
+    MakeTargetListForForge(gActiveUnit);
+    NewTargetSelection(&gSelectInfo_Steal);
 }
 
 /**
