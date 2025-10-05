@@ -528,6 +528,11 @@ void ExecCustomStaves(ProcPtr proc) {
         SetUnitStatus(unit_tar, NEW_UNIT_STATUS_SLOW);
         break;
 #endif
+#ifdef CONFIG_ITEM_INDEX_FORGE_STAFF
+    case CONFIG_ITEM_INDEX_FORGE_STAFF:
+        SetUnitStatus(unit_tar, NEW_UNIT_STATUS_SLOW);
+        break;
+#endif
     default:
         break;
     }

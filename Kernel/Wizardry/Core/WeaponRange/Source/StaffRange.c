@@ -115,12 +115,11 @@ void MakeTargetListForHammerne(struct Unit *unit)
 
 void TryAddUnitToSlowTargetList(struct Unit* unit) 
 {
-
     if (AreUnitsAllied(gSubjectUnit->index, unit->index)) {
         return;
     }
 
-    if (unit->statusIndex != UNIT_STATUS_NONE && unit->statusIndex != NEW_UNIT_STATUS_SLOW) {
+    if (unit->statusIndex != UNIT_STATUS_NONE) {
         return;
     }
 
@@ -131,12 +130,51 @@ void TryAddUnitToSlowTargetList(struct Unit* unit)
 
 void MakeTargetListForSlow(struct Unit *unit)
 {
+	int x = unit->xPos;
+    int y = unit->yPos;
 	gSubjectUnit = unit;
-	InitTargets(unit->xPos, unit->yPos);
+	InitTargets(x, y);
 
 	BmMapFill(gBmMapRange, 0);
 #ifdef CONFIG_ITEM_INDEX_SLOW_STAFF
 	AddMapForItem(unit, CONFIG_ITEM_INDEX_SLOW_STAFF);
 #endif
-	ForEachUnit(TryAddUnitToSlowTargetList, gBmMapRange, 0);
+	ForEachAdjacentUnit(x, y, TryAddUnitToSlowTargetList);
+}
+
+void TryAddUnitToForgeTargetList(struct Unit* unit) 
+{
+
+    if (AreUnitsAllied(gSubjectUnit->index, unit->index)) {
+        return;
+    }
+
+    if (unit->res >= gSubjectUnit->res) {
+        return;
+    }
+
+	for (int i = 0; i < UNIT_ITEM_COUNT; i++)
+	{
+		if (unit->items[i] == 0)
+			return;
+		
+		if (GetItemAttributes(unit->items[i]) == IA_WEAPON)
+			break;
+	}
+
+    AddTarget(unit->xPos, unit->yPos, unit->index, 0);
+
+    return;
+}
+
+void MakeTargetListForForge(struct Unit *unit)
+{
+	gSubjectUnit = unit;
+	InitTargets(unit->xPos, unit->yPos);
+
+	BmMapFill(gBmMapRange, 0);
+#ifdef CONFIG_ITEM_INDEX_FORGE_STAFF
+	AddMapForItem(unit, CONFIG_ITEM_INDEX_FORGE_STAFF);
+#endif
+	ForEachUnitInMagBy2Range(TryAddUnitToForgeTargetList);
 }

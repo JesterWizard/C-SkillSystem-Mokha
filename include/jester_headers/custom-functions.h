@@ -20,6 +20,8 @@ extern void MakeTargetListForRangedStatusStaves(struct Unit* unit);
 extern void ExecCustomStaves(ProcPtr proc);
 extern void TryAddUnitToSlowTargetList(struct Unit* unit);
 extern void MakeTargetListForSlow(struct Unit *unit);
+extern void TryAddUnitToForgeTargetList(struct Unit* unit);
+extern void MakeTargetListForForge(struct Unit *unit);
 
 struct SecondaryGoalWindowProc {
     PROC_HEADER;

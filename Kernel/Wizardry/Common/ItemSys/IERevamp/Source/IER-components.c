@@ -152,7 +152,13 @@ bool IER_Usability_NightMare(struct Unit *unit, int item)
 
 bool IER_Usability_Slow(struct Unit *unit, int item)
 {
-	return HasSelectTarget(unit, MakeTargetListForSlow);
+	return false;
+	//return HasSelectTarget(unit, MakeTargetListForSlow);
+}
+
+bool IER_Usability_Forge(struct Unit *unit, int item)
+{
+	return HasSelectTarget(unit, MakeTargetListForForge);
 }
 
 /**
@@ -241,6 +247,11 @@ void IER_Effect_Torch(struct Unit *unit, int item)
 void IER_Effect_SpeicalDance(struct Unit *unit, int item)
 {
 	DoUseSpecialDance(unit, MakeTargetListForDanceRing, MSG_087F);
+}
+
+void IER_Effect_Forge(struct Unit *unit, int item)
+{
+	DoUsePutTrap(unit, MakeTargetListForForge, MSG_087A);
 }
 
 /**

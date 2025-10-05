@@ -45,6 +45,10 @@ enum chax_ierevamp_use_effects {
 #ifdef CONFIG_ITEM_INDEX_SLOW_STAFF
     IER_STAFF_SLOW,
 #endif
+#ifdef CONFIG_ITEM_INDEX_FORGE_STAFF
+    IER_STAFF_FORGE,
+#endif
+
 
 	/**
 	 * Boosters
@@ -229,6 +233,7 @@ IER_DECLEARE_Usability(IER_Usability_MetisStone);
 IER_DECLEARE_Usability(IER_Usability_JunaFruit);
 IER_DECLEARE_Usability(IER_Usability_NightMare);
 IER_DECLEARE_Usability(IER_Usability_Slow);
+IER_DECLEARE_Usability(IER_Usability_Forge);
 
 IER_DECLEARE_Effect(IER_Effect_AdjacentHeal);
 IER_DECLEARE_Effect(IER_Effect_RangedHeal);
@@ -247,6 +252,7 @@ IER_DECLEARE_Effect(IER_Effect_LightRune);
 IER_DECLEARE_Effect(IER_Effect_Torch);
 IER_DECLEARE_Effect(IER_Effect_SpeicalDance);
 IER_DECLEARE_Effect(IER_Effect_Slow);
+IER_DECLEARE_Effect(IER_Effect_Forge);
 
 IER_DECLEARE_Action(IER_Action_StandardHeal);
 IER_DECLEARE_Action(IER_Action_StatusStaff);
