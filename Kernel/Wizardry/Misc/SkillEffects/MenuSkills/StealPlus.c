@@ -290,7 +290,18 @@ u8 StealItemMenuCommand_Effect(struct MenuProc *menu, struct MenuItemProc *menuI
     }
 
     gActionData.itemSlotIndex = menuItem->itemNumber;
+
+#ifdef CONFIG_ITEM_INDEX_FORGE_STAFF
+        if (gActionData.unk08 == CONFIG_FORGE_CHECKER)
+        {
+            gActionData.unitActionType = UNIT_ACTION_STAFF;
+            UnitAddItem(gActiveUnit, GetUnit(gActionData.targetIndex)->items[menuItem->itemNumber]);
+        }
+        else
+            gActionData.unitActionType = UNIT_ACTION_STEAL;
+#else
     gActionData.unitActionType = UNIT_ACTION_STEAL;
+#endif
 
     return MENU_ACT_SKIPCURSOR | MENU_ACT_END | MENU_ACT_SND6A | MENU_ACT_CLEAR;
 }

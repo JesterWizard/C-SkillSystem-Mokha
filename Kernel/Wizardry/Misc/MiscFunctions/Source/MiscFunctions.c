@@ -2519,21 +2519,9 @@ s8 ActionSteal(ProcPtr proc) {
 
 #if defined(SID_Duplicate) && (COMMON_SKILL_VALID(SID_Duplicate))
     if (gActionData.unk08 != SID_Duplicate)
-    {
-        #ifdef CONFIG_ITEM_INDEX_FORGE_STAFF
-            if (gActionData.unk08 != CONFIG_FORGE_CHECKER)
-                UnitRemoveItem(GetUnit(gActionData.targetIndex), gActionData.itemSlotIndex);        
-        #else
-            UnitRemoveItem(GetUnit(gActionData.targetIndex), gActionData.itemSlotIndex);
-        #endif
-    }
-#else
-    #ifdef CONFIG_ITEM_INDEX_FORGE_STAFF
-        if (gActionData.unk08 != CONFIG_FORGE_CHECKER)
-            UnitRemoveItem(GetUnit(gActionData.targetIndex), gActionData.itemSlotIndex);        
-    #else
         UnitRemoveItem(GetUnit(gActionData.targetIndex), gActionData.itemSlotIndex);
-    #endif
+#else
+    UnitRemoveItem(GetUnit(gActionData.targetIndex), gActionData.itemSlotIndex);
 #endif
 
     switch (ITEM_INDEX(item)) {
