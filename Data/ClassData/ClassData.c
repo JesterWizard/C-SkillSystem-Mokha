@@ -81,7 +81,7 @@ const struct ClassData gClassData_NEW[] = {
         .baseMov = 5,
 
         .maxHP  = 60,
-        .maxPow = 10,
+        .maxPow = 20,
         .maxSkl = 20,
         .maxSpd = 20,
         .maxDef = 20,

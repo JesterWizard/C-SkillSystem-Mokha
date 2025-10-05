@@ -1,6 +1,7 @@
 #include "common-chax.h"
 #include "weapon-range.h"
 #include "debuff.h"
+#include "strmag.h"
 #include "jester_headers/custom-functions.h"
 
 LYN_REPLACE_CHECK(MakeTargetListForAdjacentHeal);
@@ -149,7 +150,7 @@ void TryAddUnitToForgeTargetList(struct Unit* unit)
         return;
     }
 
-    if (unit->res >= gSubjectUnit->res) {
+    if (unit->res >= GetUnitMagic(unit)) {
         return;
     }
 

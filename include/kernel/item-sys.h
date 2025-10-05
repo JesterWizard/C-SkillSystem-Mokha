@@ -292,6 +292,5 @@ IER_DECLEARE_PrepEffect(IER_PrepEffect_SkillScroll);
 
 IER_DECLEARE_Usability(IER_Usability_ArmsScroll);
 IER_DECLEARE_PrepUsability(IER_PrepUsability_ArmsScroll);
-IER_DECLEARE_Effect(IER_Effect_ArmsScroll);
 IER_DECLEARE_Action(IER_ActionEffect_ArmsScroll);
 IER_DECLEARE_PrepEffect(IER_PrepEffect_ArmsScroll);

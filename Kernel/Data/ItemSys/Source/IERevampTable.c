@@ -521,7 +521,7 @@ struct IERevamp const IERevampTable[IER_MAX] = {
 	[IER_ARMS_SCROLL] = {
 		.usability      = IER_Usability_ArmsScroll,
 		.prep_usability = IER_PrepUsability_ArmsScroll,
-		.effect         = IER_Effect_ArmsScroll,
+		.effect         = NULL,
 		.action_effect  = IER_ActionEffect_ArmsScroll,
 		.prep_effect    = IER_PrepEffect_ArmsScroll,
 	}

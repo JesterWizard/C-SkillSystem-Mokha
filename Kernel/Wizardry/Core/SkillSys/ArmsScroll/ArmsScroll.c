@@ -102,6 +102,7 @@ void ItemUseAction_ArmsScroll(struct Unit * unit)
 {
     gActionData.unk08 = -1;
     int weaponRank = GetHighestWeaponRank(unit);
+    SetItemUseAction(unit);
 
     if (weaponRank > 7)
         return;
@@ -122,9 +123,9 @@ void ItemUseAction_ArmsScroll(struct Unit * unit)
     NewPopup_VerySimple(MSG_Weapon_Rank_Increased, 0x5A, Proc_Find(gProcScr_PlayerPhase));
 }
 
-/**
- * IER port
- */
+// /**
+//  * IER port
+//  */
 bool IER_Usability_ArmsScroll(struct Unit *unit, int item)
 {
 	return CanUnitUseArmsScroll(unit);
@@ -133,14 +134,6 @@ bool IER_Usability_ArmsScroll(struct Unit *unit, int item)
 bool IER_PrepUsability_ArmsScroll(struct Unit *unit, int item)
 {
 	return CanUnitUseArmsScroll(unit);
-}
-
-void IER_Effect_ArmsScroll(struct Unit *unit, int item)
-{
-	gActionData.unk08 = -1;
-	SetItemUseAction(unit);
-
-	Proc_StartBlocking(ProcScr_PrepItemUseArmsScroll, Proc_Find(gProcScr_PlayerPhase));
 }
 
 void IER_ActionEffect_ArmsScroll(ProcPtr proc, struct Unit *unit, int item)

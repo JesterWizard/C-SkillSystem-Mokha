@@ -11,6 +11,7 @@
 #include "worldmap.h"
 #include "constants/texts.h"
 #include "action-expa.h"
+#include "item-sys.h"
 #include "jester_headers/event-call.h"
 #include "jester_headers/custom-structs.h"
 #include "jester_headers/custom-arrays.h"
@@ -2911,4 +2912,33 @@ void WorldMap_CallIntroEvent(struct WorldMapMainProc * proc)
     gGMData.sprite_disp = 0;
 
     WmRemoveRandomMonsters();
+}
+
+LYN_REPLACE_CHECK(ItemSubMenu_IsUseAvailable);
+u8 ItemSubMenu_IsUseAvailable(const struct MenuItemDef* def, int number) {
+    int item = gActiveUnit->items[gActionData.itemSlotIndex];
+
+#ifdef CONFIG_IER_EN
+    if (!GetIERevamp(item))
+        return MENU_NOTSHOWN;
+#else
+    if (GetItemUseEffect(item) == 0) {
+        return MENU_NOTSHOWN;
+    }
+#endif
+
+    if (GetItemType(item) == ITYPE_STAFF) {
+        return MENU_NOTSHOWN;
+    }
+
+    if (GetItemType(item) == ITYPE_12) {
+        return MENU_NOTSHOWN;
+    }
+
+    if ((GetItemAttributes(item) & IA_WEAPON) && !CanUnitUseWeapon(gActiveUnit, item)) {
+        return MENU_NOTSHOWN;
+    }
+
+    return CanUnitUseItem(gActiveUnit, item)
+        ? MENU_ENABLED : MENU_DISABLED;
 }

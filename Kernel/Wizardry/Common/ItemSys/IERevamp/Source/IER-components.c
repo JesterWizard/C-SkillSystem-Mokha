@@ -152,8 +152,7 @@ bool IER_Usability_NightMare(struct Unit *unit, int item)
 
 bool IER_Usability_Slow(struct Unit *unit, int item)
 {
-	return false;
-	//return HasSelectTarget(unit, MakeTargetListForSlow);
+	return HasSelectTarget(unit, MakeTargetListForSlow);
 }
 
 bool IER_Usability_Forge(struct Unit *unit, int item)

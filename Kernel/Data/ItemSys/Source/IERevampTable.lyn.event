@@ -317,7 +317,7 @@ POIN IER_Action_NightMare
 WORD $0
 POIN IER_Usability_ArmsScroll
 POIN IER_PrepUsability_ArmsScroll
-POIN IER_Effect_ArmsScroll
+WORD $0
 POIN IER_ActionEffect_ArmsScroll
 POIN IER_PrepEffect_ArmsScroll
 WORD $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0
