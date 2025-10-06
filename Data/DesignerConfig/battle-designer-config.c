@@ -8,4 +8,10 @@ const struct KernelBattleDesignerConfig gKernelBattleDesignerConfig = {
 	.crit_correction = 300,
 	.critical_rate_bonus_cavalry = -10,
 	.critical_rate_bonus_attr = 10,
+
+	.combo_base_damage = 5,
+	.combo_additional_damage_en = false,
+	.combo_additional_damage_perc = 30,
+
+	.battle_followup_speed_threshold = BATTLE_FOLLOWUP_SPEED_THRESHOLD,
 };
