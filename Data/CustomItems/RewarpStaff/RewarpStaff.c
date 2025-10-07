@@ -111,8 +111,8 @@ void ExecRewarpStaff(ProcPtr proc)
 
     /*
     ** BUG - The unit's active sprite overlays on top of their idle sprite when the teleport effect is in progress
-    ** Turning off the map animations for warp to deal with it for now
-    **
+    ** Turning off the map animations for warp to
+    */
     // BeginBattleAnimations();
 
     Proc_StartBlocking(ProcScr_PostWarpStaffAction, proc);
