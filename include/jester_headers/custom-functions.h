@@ -22,6 +22,19 @@ extern void TryAddUnitToSlowTargetList(struct Unit* unit);
 extern void MakeTargetListForSlow(struct Unit *unit);
 extern void TryAddUnitToForgeTargetList(struct Unit* unit);
 extern void MakeTargetListForForge(struct Unit *unit);
+extern void TryAddToRewarpTargetList(int x, int y);
+extern void MakeTargetListForRewarp(struct Unit* unit) ;
+extern void DoUseRewarpStaff(struct Unit * unit);
+extern void ExecRewarpStaff(ProcPtr proc);
+extern const struct SelectInfo gSelectInfo_RewarpTile;
+extern void RewarpUnitMapSelect_Init(ProcPtr menu);
+extern void ForEachPosInMagBy2Range(void(*func)(int x, int y));
+extern const struct ProcCmd ProcScr_PostWarpStaffAction[];
+extern u8 RewarpOnSelectTarget(ProcPtr proc, struct SelectTarget* target);
+extern void RewarpMapSelect_Init(ProcPtr proc);      // Optional: setup help text/UI for tile selection
+extern u8 RewarpMapSelect_SwitchIn(ProcPtr proc, struct SelectTarget* target); // Optional: called when cursor moves to a tile
+extern void MakeRewarpRangeMap(struct Unit* unit);
+extern const struct ProcCmd gProcScr_SquareSelectWarp[];
 
 struct SecondaryGoalWindowProc {
     PROC_HEADER;

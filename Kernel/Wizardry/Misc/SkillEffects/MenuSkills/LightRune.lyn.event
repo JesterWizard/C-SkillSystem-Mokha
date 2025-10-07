@@ -1,6 +1,7 @@
 ALIGN 4
 PUSH
-ORG CURRENTOFFSET+$81;LightRune_Usability:
+ORG CURRENTOFFSET+$1;LightRune_OnSelectTarget:
+ORG CURRENTOFFSET+$80;LightRune_Usability:
 ORG CURRENTOFFSET+$44;LightRune_OnSelected:
 ORG CURRENTOFFSET+$7c;Action_LightRune:
 POP

@@ -32,7 +32,7 @@ void SetGameOptions_Chapter0()
     unit_eirika->items[0] = MakeNewItem(ITEM_SWORD_IRON);
     //unit_eirika->items[1] = MakeNewItem(CONFIG_ITEM_INDEX_ARMS_SCROLL);
     unit_eirika->items[2] = MakeNewItem(CONFIG_ITEM_INDEX_FORGE_STAFF);
-    unit_eirika->items[3] = MakeNewItem(CONFIG_ITEM_INDEX_SLOW_STAFF);
+    unit_eirika->items[3] = MakeNewItem(CONFIG_ITEM_INDEX_REWARP_STAFF);
 
     // struct NewBwl * bwl_eirika = GetNewBwl(CHARACTER_EIRIKA);
     // struct NewBwl * bwl_seth = GetNewBwl(CHARACTER_SETH);

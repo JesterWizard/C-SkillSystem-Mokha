@@ -864,7 +864,7 @@ void sub_807B4D0(void);
 void BeginMapAnimForSteal(void);
 void BeginMapAnimForSummon(void);
 void BeginMapAnimForSummonDK(void);
-// ??? BeginMapAnimForDance(???);
+void BeginMapAnimForDance(void);
 void BeginBattleMapAnims(void);
 void SetupMapAnimSpellData(struct BattleUnit* actor, struct BattleUnit* target, struct BattleHit* hit);
 void SetupMapBattleAnim(struct BattleUnit* actor, struct BattleUnit* target, struct BattleHit* hit);

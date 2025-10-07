@@ -174,3 +174,17 @@ Heal the active unit's HP by 10.[X]
 ## MSG_ITEM_CANT_FORGE_ITEM
 Cannot copy items.[N]
 Only weapons are allowed.[X]
+
+## MSG_ITEM_REWARP_STAFF_NAME
+Rewarp[X]
+
+## MSG_ITEM_REWARP_STAFF_DESC
+Warp staff user to[N]
+selected location.[X]
+
+## MSG_ITEM_REWARP_STAFF_USEDESC
+Warp staff user to[N]
+selected location.[X]
+
+## MSG_ITEM_REWARP_STAFF_SUBTITLE
+Select space to warp unit.[X]

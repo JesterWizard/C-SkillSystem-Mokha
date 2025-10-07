@@ -37,6 +37,9 @@ int GetItemMaxRangeRework(u16 item, struct Unit *unit)
 		for (it = gpWeaponRangeGetters; *it; it++)
 			status = (*it)(status, unit, item);
 	}
+
+	NoCashGBAPrintf("Max range of this item is: %d", status);
+
 	return status;
 }
 

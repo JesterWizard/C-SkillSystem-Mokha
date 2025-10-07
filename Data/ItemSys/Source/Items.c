@@ -3247,6 +3247,26 @@ const struct ItemData gItemData_New[] = {
 		.iconId = 0x9d,
 	},
 #endif
+#ifdef CONFIG_ITEM_INDEX_REWARP_STAFF
+	[CONFIG_ITEM_INDEX_REWARP_STAFF] = {
+		.nameTextId = MSG_ITEM_REWARP_STAFF_NAME,
+		.descTextId = MSG_ITEM_REWARP_STAFF_DESC,
+		.useDescTextId = MSG_ITEM_REWARP_STAFF_USEDESC,
+		.number = CONFIG_ITEM_INDEX_REWARP_STAFF,
+		.weaponType = ITYPE_STAFF,
+		.pStatBonuses = NULL,
+		.maxUses = 15,
+		.encodedRange = 0x10,
+		.costPerUse = 8000,
+		.iconId = CONFIG_ICON_INDEX_REWARP_STAFF,
+		.useEffectId = IER_STAFF_REWARP,
+		.weaponRank = WPN_EXP_C,
+		.weaponExp = 4,
+		.hit = 100,
+		.weight = 5,
+		.attributes = IA_STAFF,
+	},
+#else
 	[ITEM_UNK_CD] = {
 		.nameTextId = 0x403,
 		.descTextId = 0x4ab,
@@ -3256,4 +3276,5 @@ const struct ItemData gItemData_New[] = {
 		.iconId = 0x0,
 		.weaponExp = 1,
 	},
+#endif
 };

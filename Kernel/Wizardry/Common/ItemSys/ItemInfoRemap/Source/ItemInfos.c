@@ -1097,3 +1097,8 @@ s8 IsItemDisplayUsable(struct Unit* unit, int item) {
 
     return TRUE;
 }
+
+LYN_REPLACE_CHECK(GetItemMaxRange);
+int GetItemMaxRange(int item) {
+    return GetItemData(ITEM_INDEX(item))->encodedRange & 0xF;
+}

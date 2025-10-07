@@ -20,7 +20,7 @@ u8 LightRune_Usability(const struct MenuItemDef *def, int number)
 	return MENU_ENABLED;
 }
 
-static u8 LightRune_OnSelectTarget(ProcPtr proc, struct SelectTarget *target)
+u8 LightRune_OnSelectTarget(ProcPtr proc, struct SelectTarget *target)
 {
 	gActionData.xOther = target->x;
 	gActionData.yOther = target->y;

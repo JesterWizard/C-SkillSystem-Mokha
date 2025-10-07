@@ -14,3 +14,4 @@
 #include "MineStaff/Installer.event"
 #include "SlowStaff/Installer.event"
 #include "ForgeStaff/Installer.event"
+#include "RewarpStaff/Installer.event"
