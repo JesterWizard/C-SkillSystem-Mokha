@@ -741,6 +741,7 @@ SID_ItemLore
 SID_Pulse
 SID_Carnage
 SID_Crisis
+SID_FaustianBargain
 
 //////// MOVEMENT SKILLS
 SID_Pass

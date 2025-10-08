@@ -498,3 +498,10 @@ Blight[X]
 Blight:[N]
 Invert enemy healing effects[N]
 within 3 tiles.[X]
+
+## MSG_SKILL_FaustianBargain_NAME
+Faustian Bargain[X]
+## MSG_SKILL_FaustianBargain_DESC
+Faustian Bargain:[N]
+Gain 1 extra stat per level up,[N]
+but lose 1 HP.[X]

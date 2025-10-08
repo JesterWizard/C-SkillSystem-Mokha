@@ -856,3 +856,4 @@
 #define MSG_SKILL_Caltrops_PRICE 1000
 #define MSG_SKILL_DamageToMP_PRICE 1000
 #define MSG_SKILL_Blight_PRICE 1000
+#define MSG_SKILL_FaustianBargain_PRICE 1000

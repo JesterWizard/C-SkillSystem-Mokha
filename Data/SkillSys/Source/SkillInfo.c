@@ -8593,4 +8593,14 @@ const struct SkillInfo gSkillInfos[MAX_SKILL_NUM + 1] = {
     },
 #endif
 
+#if (defined(SID_FaustianBargain) && COMMON_SKILL_VALID(SID_FaustianBargain))
+    [SID_FaustianBargain] = {
+        .name = MSG_SKILL_FaustianBargain_NAME,
+        .desc = MSG_SKILL_FaustianBargain_DESC,
+        .capacity = MSG_SKILL_FaustianBargain_CAPACITY,
+        .price = MSG_SKILL_FaustianBargain_PRICE,
+        .icon = GFX_SkillIcon_WIP,
+    },
+#endif
+
 };

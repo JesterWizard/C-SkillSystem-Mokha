@@ -25,14 +25,14 @@ void SetGameOptions_Chapter0()
 
     struct Unit * unit_eirika = GetUnitFromCharId(CHARACTER_EIRIKA);
     // struct Unit * unit_seth = GetUnitFromCharId(CHARACTER_SETH);
-    unit_eirika->pow = 20;
-    unit_eirika->spd = 20;
+    // unit_eirika->pow = 20;
+    // unit_eirika->spd = 20;
 
     unit_eirika->ranks[ITYPE_STAFF] = WPN_EXP_A;
     unit_eirika->items[0] = MakeNewItem(ITEM_SWORD_IRON);
     //unit_eirika->items[1] = MakeNewItem(CONFIG_ITEM_INDEX_ARMS_SCROLL);
-    unit_eirika->items[2] = MakeNewItem(CONFIG_ITEM_INDEX_FORGE_STAFF);
-    unit_eirika->items[3] = MakeNewItem(CONFIG_ITEM_INDEX_REWARP_STAFF);
+    // unit_eirika->items[2] = MakeNewItem(CONFIG_ITEM_INDEX_FORGE_STAFF);
+    // unit_eirika->items[3] = MakeNewItem(CONFIG_ITEM_INDEX_REWARP_STAFF);
 
     // struct NewBwl * bwl_eirika = GetNewBwl(CHARACTER_EIRIKA);
     // struct NewBwl * bwl_seth = GetNewBwl(CHARACTER_SETH);

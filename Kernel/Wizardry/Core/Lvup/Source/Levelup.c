@@ -146,6 +146,15 @@ STATIC_DECLAR void UnitLvup_Vanilla(struct BattleUnit *bu, int bonus)
     gEventSlots[EVT_SLOT_2] = statCounter;
 #endif
 
+#if (defined(SID_FaustianBargain) && (COMMON_SKILL_VALID(SID_FaustianBargain)))
+    if (BattleFastSkillTester(bu, SID_FaustianBargain))
+    {
+        *statChanges[0] -= 1;
+        const int rand_stat_index = k_umod(NextRN_100(), 6) + 1;
+        *statChanges[rand_stat_index] += 1;
+    }
+#endif
+
 #if (defined(SID_TripleUp) && (COMMON_SKILL_VALID(SID_TripleUp)))
     if (BattleFastSkillTester(bu, SID_TripleUp))
     {
