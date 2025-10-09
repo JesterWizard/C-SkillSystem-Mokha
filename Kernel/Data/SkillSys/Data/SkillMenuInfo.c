@@ -455,4 +455,19 @@ struct MenuItemDef const* const gSkillMenuInfos[MAX_SKILL_NUM + 1] = {
 		.onSwitchOut = SpellBlade_Unhover
 	},
 #endif
+
+#if (defined(SID_FocusEnergy) && COMMON_SKILL_VALID(SID_FocusEnergy))
+	[SID_FocusEnergy] = &(const struct MenuItemDef) {
+		.name = "　",
+		.nameMsgId = MSG_SKILL_FocusEnergy_NAME,
+		.helpMsgId = MSG_SKILL_FocusEnergy_DESC,
+		.color = TEXT_COLOR_SYSTEM_GOLD,
+		.isAvailable = FocusEnergy_Usability,
+		.onDraw = NULL,
+		.onSelected = FocusEnergy_OnSelected,
+		.onIdle = NULL,
+		.onSwitchIn = FocusEnergy_Hover,
+		.onSwitchOut = FocusEnergy_Unhover
+	},
+#endif
 };

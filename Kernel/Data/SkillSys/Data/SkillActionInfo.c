@@ -102,4 +102,8 @@ const SkillActionFunc_t gSkillActionFuncTable[MAX_SKILL_NUM + 1] = {
 #if (defined(SID_SpellBlade) && COMMON_SKILL_VALID(SID_SpellBlade))
 	[SID_SpellBlade] = Action_SpellBlade,
 #endif
+
+#if (defined(SID_FocusEnergy) && COMMON_SKILL_VALID(SID_FocusEnergy))
+	[SID_FocusEnergy] = Action_FocusEnergy,
+#endif
 };

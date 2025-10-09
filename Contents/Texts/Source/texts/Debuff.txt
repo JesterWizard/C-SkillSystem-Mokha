@@ -129,5 +129,10 @@ Infantry Effective:[N]
 Deal effective damage to[N]
 infantry units.[X]
 
+## MSG_DEBUFF_FOCUS_ENERGY_NAME
+Focus[X]
+## MSG_DEBUFF_FOCUS_ENERGY_DESC
++20 crit.[X]
+
 ## MSG_STATUS_SLEEP_NAME
 Sleep[X]

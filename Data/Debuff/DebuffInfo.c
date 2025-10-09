@@ -320,4 +320,12 @@ const struct DebuffInfo gDebuffInfos[NEW_UNIT_STATUS_MAX] = {
         .img = GFX_DebuffMinibox_Avoid,
         .efx_config = {EFX_DEBUFF_NORMAL, 0x10, 0, 0x10},
     },
+    [NEW_UNIT_STATUS_FOCUS_ENERGY] = {
+        .name = MSG_DEBUFF_FOCUS_ENERGY_NAME,
+        .desc = MSG_DEBUFF_FOCUS_ENERGY_DESC,
+        .positive_type = STATUS_DEBUFF_POSITIVE,
+        .tick_type = STATUS_DEBUFF_TICK_ON_ALLY,
+        .img = GFX_DebuffMinibox_Avoid,
+        .efx_config = {EFX_DEBUFF_NORMAL, 0x10, 0, 0x10},
+    },
 };

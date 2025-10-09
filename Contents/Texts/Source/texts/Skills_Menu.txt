@@ -645,3 +645,10 @@ Spell Blade:[N]
 Choose an adjacent unit's class to[N]
 deal effective damage to this turn.[N]
 Sets a status to do so.[X]
+
+## MSG_SKILL_FocusEnergy_NAME
+Focus Energy[X]
+## MSG_SKILL_FocusEnergy_DESC
+Focus Energy:[N]
+Grants +20% crit for a single turn,[N]
+wearing off on the next turn.[X]
