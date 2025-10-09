@@ -1,9 +1,11 @@
 #include "common-chax.h"
 #include "battle-system.h"
+#include "skill-system.h"
 #include "status-getter.h"
 #include "weapon-range.h"
 #include "kernel-lib.h"
 #include "gaiden-magic.h"
+#include "constants/skills.h"
 
 LYN_REPLACE_CHECK(AiReachesByBirdsEyeDistance);
 bool AiReachesByBirdsEyeDistance(struct Unit *unit, struct Unit *other, u16 item)
@@ -496,4 +498,113 @@ void SetupUnitHealStaffAIFlags(struct Unit *unit, u16 item)
 	}
 
 	unit->aiFlags |= flags;
+}
+
+LYN_REPLACE_CHECK(SetWorkingMoveCosts);
+void SetWorkingMoveCosts(const s8 mct[])
+{
+    int i;
+
+    // Initialize all terrain costs to default
+    for (i = 0; i < TERRAIN_COUNT; ++i)
+        gWorkingTerrainMoveCosts[i] = mct[i];
+
+    // =====================
+    // Apply skill modifiers
+    // =====================
+
+#if (defined(SID_Seafarer) && COMMON_SKILL_VALID(SID_Seafarer))
+	for (int i = 0; i < ARRAY_COUNT_RANGE3x3; i++)
+	{
+		int _x = gActiveUnit->xPos + gVecs_3x3[i].x;
+		int _y = gActiveUnit->yPos + gVecs_3x3[i].y;
+
+		struct Unit * unit_ally = GetUnitAtPosition(_x, _y);
+
+		if (!UNIT_IS_VALID(unit_ally))
+			continue;
+
+		if (unit_ally->state & (US_HIDDEN | US_DEAD | US_RESCUED | US_BIT16))
+			continue;
+
+		if (SkillTester(unit_ally, SID_Seafarer) && AreUnitsAllied(gActiveUnit->index, unit_ally->index)) {
+	        APPLY_COST_IF_LOWER(TERRAIN_WATER, 3);
+        	APPLY_COST_IF_LOWER(TERRAIN_RIVER, 3);
+        	APPLY_COST_IF_LOWER(TERRAIN_SEA,   3);
+        	APPLY_COST_IF_LOWER(TERRAIN_LAKE,  3);
+			break;
+		}
+	}
+#endif
+
+#if (defined(SID_Ruinator) && COMMON_SKILL_VALID(SID_Ruinator))
+    if (SkillTester(gActiveUnit, SID_Ruinator))
+    {
+        APPLY_COST_IF_LOWER(TERRAIN_TILE_00, 1);
+    }
+#endif
+
+#if (defined(SID_PhaseShift) && COMMON_SKILL_VALID(SID_PhaseShift))
+    if (SkillTester(gActiveUnit, SID_PhaseShift))
+    {
+        APPLY_COST_IF_LOWER(TERRAIN_WALL_1A, 1);
+        APPLY_COST_IF_LOWER(TERRAIN_WALL_1B, 1);
+    }
+#endif
+
+#if (defined(SID_Acrobat) && COMMON_SKILL_VALID(SID_Acrobat))
+    if (SkillTester(gActiveUnit, SID_Acrobat))
+    {
+        for (i = 0; i < TERRAIN_COUNT; ++i)
+        {
+            if (gWorkingTerrainMoveCosts[i] > 1)
+                gWorkingTerrainMoveCosts[i] = 1;
+        }
+    }
+#endif
+
+#if (defined(SID_WaterWalkingPlus) && COMMON_SKILL_VALID(SID_WaterWalkingPlus))
+    if (SkillTester(gActiveUnit, SID_WaterWalkingPlus))
+    {
+        APPLY_COST_IF_LOWER(TERRAIN_WATER, 1);
+        APPLY_COST_IF_LOWER(TERRAIN_RIVER, 1);
+        APPLY_COST_IF_LOWER(TERRAIN_SEA,   1);
+        APPLY_COST_IF_LOWER(TERRAIN_LAKE,  1);
+    }
+#endif
+
+#if (defined(SID_WaterWalking) && COMMON_SKILL_VALID(SID_WaterWalking))
+    if (SkillTester(gActiveUnit, SID_WaterWalking))
+    {
+        APPLY_COST_IF_LOWER(TERRAIN_WATER, 3);
+        APPLY_COST_IF_LOWER(TERRAIN_RIVER, 3);
+        APPLY_COST_IF_LOWER(TERRAIN_SEA,   3);
+        APPLY_COST_IF_LOWER(TERRAIN_LAKE,  3);
+    }
+#endif
+
+#if (defined(SID_MountainClimberPlus) && COMMON_SKILL_VALID(SID_MountainClimberPlus))
+    if (SkillTester(gActiveUnit, SID_MountainClimberPlus))
+    {
+        APPLY_COST_IF_LOWER(TERRAIN_MOUNTAIN, 1);
+        APPLY_COST_IF_LOWER(TERRAIN_PEAK,     1);
+    }
+#endif
+
+#if (defined(SID_MountainClimber) && COMMON_SKILL_VALID(SID_MountainClimber))
+    if (SkillTester(gActiveUnit, SID_MountainClimber))
+    {
+        APPLY_COST_IF_LOWER(TERRAIN_MOUNTAIN, 3);
+        APPLY_COST_IF_LOWER(TERRAIN_PEAK,     3);
+    }
+#endif
+
+#if (defined(SID_DesertTiger) && COMMON_SKILL_VALID(SID_DesertTiger))
+    if (SkillTester(gActiveUnit, SID_DesertTiger))
+    {
+        APPLY_COST_IF_LOWER(TERRAIN_SAND, 1);
+    }
+#endif
+
+    #undef APPLY_COST_IF_LOWER
 }

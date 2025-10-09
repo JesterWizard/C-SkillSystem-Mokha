@@ -64,7 +64,7 @@ WORD $13191318 $103E8
 POIN GFX_SkillIcon_Blacksmith
 WORD $131D131C $103E8
 POIN GFX_SkillIcon_WIP
-WORD $14341433 $103E8
+WORD $14361435 $103E8
 POIN GFX_SkillIcon_Transform
 WORD $13231322 $103E8
 POIN GFX_SkillIcon_StealPlus
@@ -108,7 +108,7 @@ WORD $13561355 $103E8
 POIN GFX_SkillIcon_WIP
 WORD $13581357 $103E8
 POIN GFX_SkillIcon_WIP
-WORD $14861485 $103E8
+WORD $14881487 $103E8
 POIN GFX_SkillIcon_WIP
 WORD $135A1359 $103E8
 POIN GFX_SkillIcon_WIP
@@ -334,9 +334,9 @@ WORD $10DC10DB $103E8
 POIN GFX_SkillIcon_CounterMagic
 WORD $10E410E3 $103E8
 POIN GFX_SkillIcon_WIP
-WORD $1420141F $103E8
-POIN GFX_SkillIcon_WIP
 WORD $14221421 $103E8
+POIN GFX_SkillIcon_WIP
+WORD $14241423 $103E8
 POIN GFX_SkillIcon_DevilsPact
 WORD $10DE10DD $103E8
 POIN GFX_SkillIcon_DevilsWhim
@@ -514,7 +514,7 @@ WORD $103C103B $103E8
 POIN GFX_SkillIcon_WIP
 WORD $1040103F $103E8
 POIN GFX_SkillIcon_WIP
-WORD $14741473 $103E8
+WORD $14761475 $103E8
 POIN GFX_SkillIcon_WIP
 WORD $103E103D $103E8
 POIN GFX_SkillIcon_WIP
@@ -592,7 +592,7 @@ WORD $1110110F $103E8
 POIN GFX_SkillIcon_WIP
 WORD $10661065 $103E8
 POIN GFX_SkillIcon_WIP
-WORD $14A614A5 $103E8
+WORD $14A814A7 $103E8
 POIN GFX_SkillIcon_Canto
 WORD $11A811A7 $103E8
 POIN GFX_SkillIcon_CantoPlus
@@ -632,7 +632,7 @@ WORD $13A413A3 $103E8
 POIN GFX_SkillIcon_WIP
 WORD $13B013AF $103E8
 POIN GFX_SkillIcon_WIP
-WORD $144A1449 $103E8
+WORD $144C144B $103E8
 POIN GFX_SkillIcon_WIP
 WORD $11DA11D9 $103E8
 POIN GFX_SkillIcon_Synchronize
@@ -792,13 +792,13 @@ WORD $F820F81 $103E8
 POIN GFX_SkillIcon_LullStrength
 WORD $F840F83 $103E8
 POIN GFX_SkillIcon_WIP
-WORD $141A1419 $103E8
-POIN GFX_SkillIcon_WIP
 WORD $141C141B $103E8
 POIN GFX_SkillIcon_WIP
 WORD $141E141D $103E8
+POIN GFX_SkillIcon_WIP
+WORD $1420141F $103E8
 POIN GFX_SkillIcon_PastelVeil
-WORD $143C143B $103E8
+WORD $143E143D $103E8
 POIN GFX_SkillIcon_HoneCavalry
 WORD $129E129D $103E8
 POIN GFX_SkillIcon_HoneFlier
@@ -816,7 +816,7 @@ WORD $12781277 $103E8
 POIN GFX_SkillIcon_WIP
 WORD $127A1279 $103E8
 POIN GFX_SkillIcon_Pathfinder
-WORD $143A1439 $103E8
+WORD $143C143B $103E8
 POIN GFX_SkillIcon_UpWithArch
 WORD $1280127F $103E8
 POIN GFX_SkillIcon_RampUp
@@ -986,7 +986,7 @@ WORD $DDE0DDD $103E8
 POIN GFX_SkillIcon_Unaware
 WORD $E540E53 $103E8
 POIN GFX_SkillIcon_WIP
-WORD $14661465 $103E8
+WORD $14681467 $103E8
 POIN GFX_SkillIcon_WIP
 WORD $E5E0E5D $103E8
 POIN GFX_SkillIcon_WIP
@@ -1352,7 +1352,7 @@ WORD $12241223 $103E8
 POIN GFX_SkillIcon_Boon
 WORD $12261225 $103E8
 POIN GFX_SkillIcon_WIP
-WORD $1450144F $103E8
+WORD $14521451 $103E8
 POIN GFX_SkillIcon_WIP
 WORD $12A412A3 $103E8
 POIN GFX_SkillIcon_AversaNight
@@ -1396,23 +1396,23 @@ WORD $1080107F $103E8
 POIN GFX_SkillIcon_Aptitude
 WORD $10821081 $103E8
 POIN GFX_SkillIcon_DoubleUp
-WORD $1440143F $103E8
-POIN GFX_SkillIcon_TripleUp
 WORD $14421441 $103E8
+POIN GFX_SkillIcon_TripleUp
+WORD $14441443 $103E8
 POIN GFX_SkillIcon_LimitBreaker
-WORD $14461445 $103E8
-POIN GFX_SkillIcon_LimitBreakerPlus
 WORD $14481447 $103E8
+POIN GFX_SkillIcon_LimitBreakerPlus
+WORD $144A1449 $103E8
 POIN GFX_SkillIcon_DarkHorse
 WORD $10861085 $103E8
 POIN GFX_SkillIcon_WIP
-WORD $14561455 $103E8
+WORD $14581457 $103E8
 POIN GFX_SkillIcon_WIP
-WORD $145A1459 $103E8
-POIN GFX_SkillIcon_StaffParagon
 WORD $145C145B $103E8
-POIN GFX_SkillIcon_WIP
+POIN GFX_SkillIcon_StaffParagon
 WORD $145E145D $103E8
+POIN GFX_SkillIcon_WIP
+WORD $1460145F $103E8
 POIN GFX_SkillIcon_WIP
 WORD $10881087 $103E8
 POIN GFX_SkillIcon_WIP
@@ -1434,7 +1434,7 @@ WORD $10981097 $103E8
 POIN GFX_SkillIcon_WIP
 WORD $109A1099 $103E8
 POIN GFX_SkillIcon_WIP
-WORD $14841483 $103E8
+WORD $14861485 $103E8
 POIN GFX_SkillIcon_WIP
 WORD $109C109B $103E8
 POIN GFX_SkillIcon_WIP
@@ -1442,7 +1442,7 @@ WORD $109E109D $103E8
 POIN GFX_SkillIcon_WIP
 WORD $10A0109F $103E8
 POIN GFX_SkillIcon_WIP
-WORD $14A814A7 $103E8
+WORD $14AA14A9 $103E8
 POIN GFX_SkillIcon_Pass
 WORD $13921391 $103E8
 POIN GFX_SkillIcon_Obstruct
@@ -1470,17 +1470,19 @@ WORD $13B613B5 $103E8
 POIN GFX_SkillIcon_WIP
 WORD $13B813B7 $103E8
 POIN GFX_SkillIcon_WIP
-WORD $14281427 $103E8
-POIN GFX_SkillIcon_Bargain
-WORD $142C142B $103E8
-POIN GFX_SkillIcon_Secret
-WORD $144C144B $103E8
-POIN GFX_SkillIcon_Trader
-WORD $14721471 $103E8
-POIN GFX_SkillIcon_Ludopathy
-WORD $144E144D $103E8
-POIN GFX_SkillIcon_ConcealedWeapon
+WORD $13BA13B9 $103E8
+POIN GFX_SkillIcon_WIP
 WORD $142A1429 $103E8
+POIN GFX_SkillIcon_Bargain
+WORD $142E142D $103E8
+POIN GFX_SkillIcon_Secret
+WORD $144E144D $103E8
+POIN GFX_SkillIcon_Trader
+WORD $14741473 $103E8
+POIN GFX_SkillIcon_Ludopathy
+WORD $1450144F $103E8
+POIN GFX_SkillIcon_ConcealedWeapon
+WORD $142C142B $103E8
 POIN GFX_SkillIcon_Shade
 WORD $12C612C5 $103E8
 POIN GFX_SkillIcon_ShadePlus
@@ -1496,13 +1498,13 @@ WORD $12D212D1 $103E8
 POIN GFX_SkillIcon_WIP
 WORD $120E120D $103E8
 POIN GFX_SkillIcon_IdentityProblems
-WORD $14381437 $103E8
+WORD $143A1439 $103E8
 POIN GFX_SkillIcon_WIP
 WORD $FFA0FF9 $103E8
 POIN GFX_SkillIcon_TriangleAttack
 WORD $10F210F1 $103E8
 POIN GFX_SkillIcon_WIP
-WORD $14261425 $103E8
+WORD $14281427 $103E8
 POIN GFX_SkillIcon_ShadowGift
 WORD $FC60FC5 $103E8
 POIN GFX_SkillIcon_ShadowGiftPlus
@@ -1538,51 +1540,51 @@ WORD $FE40FE3 $103E8
 POIN GFX_SkillIcon_NiceThighs
 WORD $FE80FE7 $103E8
 POIN GFX_SkillIcon_Casual
-WORD $14441443 $103E8
+WORD $14461445 $103E8
 POIN GFX_SkillIcon_LiveToServe
-WORD $14241423 $103E8
+WORD $14261425 $103E8
 POIN GFX_SkillIcon_WIP
-WORD $14361435 $103E8
+WORD $14381437 $103E8
 POIN GFX_SkillIcon_Nullify
 WORD $114E114D $103E8
 POIN GFX_SkillIcon_Amische
-WORD $14321431 $103E8
+WORD $14341433 $103E8
 POIN GFX_SkillIcon_ShrewdPotential
 WORD $E3E0E3D $103E8
 POIN GFX_SkillIcon_WIP
 WORD $12B412B3 $103E8
 POIN GFX_SkillIcon_HazeHunter
-WORD $1430142F $103E8
+WORD $14321431 $103E8
 POIN GFX_SkillIcon_WIP
 WORD $FC00FBF $103E8
 POIN GFX_SkillIcon_Comatose
-WORD $142E142D $103E8
+WORD $1430142F $103E8
 POIN GFX_SkillIcon_WIP
-WORD $14521451 $103E8
-POIN GFX_SkillIcon_Anchor
 WORD $14541453 $103E8
+POIN GFX_SkillIcon_Anchor
+WORD $14561455 $103E8
 POIN GFX_SkillIcon_Absolve
-WORD $14581457 $103E8
+WORD $145A1459 $103E8
 POIN GFX_SkillIcon_HedgeFund
-WORD $1460145F $103E8
-POIN GFX_SkillIcon_WeaponHeal
 WORD $14621461 $103E8
-POIN GFX_SkillIcon_Domain
+POIN GFX_SkillIcon_WeaponHeal
 WORD $14641463 $103E8
+POIN GFX_SkillIcon_Domain
+WORD $14661465 $103E8
 POIN GFX_SkillIcon_WIP
 WORD $11E411E3 $103E8
-POIN GFX_SkillIcon_WIP
-WORD $14681467 $103E8
 POIN GFX_SkillIcon_WIP
 WORD $146A1469 $103E8
 POIN GFX_SkillIcon_WIP
 WORD $146C146B $103E8
 POIN GFX_SkillIcon_WIP
 WORD $146E146D $103E8
+POIN GFX_SkillIcon_WIP
+WORD $1470146F $103E8
 POIN GFX_SkillIcon_SelfHealing
 WORD $11981197 $103E8
 POIN GFX_SkillIcon_Wrestler
-WORD $1470146F $103E8
+WORD $14721471 $103E8
 POIN GFX_SkillIcon_TwinCrests
 WORD $11EA11E9 $103E8
 POIN GFX_SkillIcon_WIP
@@ -1590,7 +1592,7 @@ WORD $119C119B $103E8
 POIN GFX_SkillIcon_AidRefusal
 WORD $119E119D $103E8
 POIN GFX_SkillIcon_WhiteMage
-WORD $1480147F $103E8
+WORD $14821481 $103E8
 POIN GFX_SkillIcon_MoreForMe
 WORD $E580E57 $103E8
 POIN GFX_SkillIcon_Mimicry
@@ -1600,8 +1602,6 @@ WORD $11A211A1 $103E8
 POIN GFX_SkillIcon_WIP
 WORD $13B413B3 $103E8
 POIN GFX_SkillIcon_WIP
-WORD $14761475 $103E8
-POIN GFX_SkillIcon_WIP
 WORD $14781477 $103E8
 POIN GFX_SkillIcon_WIP
 WORD $147A1479 $103E8
@@ -1610,13 +1610,13 @@ WORD $147C147B $103E8
 POIN GFX_SkillIcon_WIP
 WORD $147E147D $103E8
 POIN GFX_SkillIcon_WIP
+WORD $1480147F $103E8
+POIN GFX_SkillIcon_WIP
 WORD $11A411A3 $103E8
 POIN GFX_SkillIcon_WIP
 WORD $11A611A5 $103E8
 POIN GFX_SkillIcon_WIP
-WORD $14821481 $103E8
-POIN GFX_SkillIcon_WIP
-WORD $14881487 $103E8
+WORD $14841483 $103E8
 POIN GFX_SkillIcon_WIP
 WORD $148A1489 $103E8
 POIN GFX_SkillIcon_WIP
@@ -1644,4 +1644,6 @@ WORD $14A0149F $103E8
 POIN GFX_SkillIcon_WIP
 WORD $14A214A1 $103E8
 POIN GFX_SkillIcon_WIP
-WORD $14A414A3 $103E8 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0
+WORD $14A414A3 $103E8
+POIN GFX_SkillIcon_WIP
+WORD $14A614A5 $103E8 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0

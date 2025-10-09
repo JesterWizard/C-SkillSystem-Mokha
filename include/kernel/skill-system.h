@@ -89,6 +89,13 @@ enum SkillInfoListss {
 
 #define COMMON_SKILL_VALID(sid) (sid > 0x000 && sid < 0x400)
 
+// Apply-cost macro (ensures we never set a *worse* cost)
+#define APPLY_COST_IF_LOWER(terr, newCost) \
+	do { \
+		if ((terr) < TERRAIN_COUNT && gWorkingTerrainMoveCosts[(terr)] > (newCost)) \
+			gWorkingTerrainMoveCosts[(terr)] = (newCost); \
+	} while (0)
+
 /**
  * Equippable skills
  */

@@ -137,3 +137,10 @@ Ruinator[X]
 Ruinator:[N]
 Allows the unit to walk over[N]
 Light Rune traps.[X]
+
+## MSG_SKILL_Seafarer_NAME
+Seafarer[X]
+## MSG_SKILL_Seafarer_DESC
+Seafarer:[N]
+Allies within 3 tiles gain[N]
+the ability to walk on water.[X]

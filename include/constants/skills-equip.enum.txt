@@ -757,6 +757,7 @@ SID_Acrobat
 SID_PhaseShift
 SID_DesertTiger
 SID_Ruinator
+SID_Seafarer
 
 //////// SHOP SKILLS
 SID_Deal

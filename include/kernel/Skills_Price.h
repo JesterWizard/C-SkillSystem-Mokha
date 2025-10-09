@@ -857,3 +857,4 @@
 #define MSG_SKILL_DamageToMP_PRICE 1000
 #define MSG_SKILL_Blight_PRICE 1000
 #define MSG_SKILL_FaustianBargain_PRICE 1000
+#define MSG_SKILL_Seafarer_PRICE 1000
