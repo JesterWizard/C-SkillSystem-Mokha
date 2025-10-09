@@ -144,3 +144,10 @@ Seafarer[X]
 Seafarer:[N]
 Allies within 3 tiles gain[N]
 the ability to walk on water.[X]
+
+## MSG_SKILL_Hiker_NAME
+Hiker[X]
+## MSG_SKILL_Hiker_DESC
+Hiker:[N]
+Allies within 3 tiles gain the[N]
+ability to walk on rugged terrain.[X]

@@ -758,6 +758,7 @@ SID_PhaseShift
 SID_DesertTiger
 SID_Ruinator
 SID_Seafarer
+SID_Hiker
 
 //////// SHOP SKILLS
 SID_Deal

@@ -858,3 +858,4 @@
 #define MSG_SKILL_Blight_CAPACITY 1
 #define MSG_SKILL_FaustianBargain_CAPACITY 1
 #define MSG_SKILL_Seafarer_CAPACITY 1
+#define MSG_SKILL_Hiker_CAPACITY 1

@@ -500,10 +500,57 @@ void SetupUnitHealStaffAIFlags(struct Unit *unit, u16 item)
 	unit->aiFlags |= flags;
 }
 
+#define APPLY_COST_IF_LOWER(terr, newCost) \
+    do { \
+        if ((terr) < TERRAIN_COUNT && gWorkingTerrainMoveCosts[(terr)] > (newCost)) \
+            gWorkingTerrainMoveCosts[(terr)] = (newCost); \
+    } while (0)
+
+
+// Small helper to fill a cache of nearby allies (3x3)
+static inline int CacheNearbyAllies(struct Unit *list[], int max)
+{
+    int count = 0;
+
+    for (int i = 0; i < ARRAY_COUNT_RANGE3x3 && count < max; i++)
+    {
+        int _x = gActiveUnit->xPos + gVecs_3x3[i].x;
+        int _y = gActiveUnit->yPos + gVecs_3x3[i].y;
+
+        struct Unit *u = GetUnitAtPosition(_x, _y);
+        if (!UNIT_IS_VALID(u))
+            continue;
+
+        if (u->state & (US_HIDDEN | US_DEAD | US_RESCUED | US_BIT16))
+            continue;
+
+        if (!AreUnitsAllied(gActiveUnit->index, u->index))
+            continue;
+
+        list[count++] = u;
+    }
+
+    return count;
+}
+
+// Helper to check if any cached ally has a given skill
+static inline bool CachedAlliesHaveSkill(struct Unit *list[], int count, int skillId)
+{
+    for (int i = 0; i < count; i++)
+    {
+        if (SkillTester(list[i], skillId))
+            return true;
+    }
+
+    return false;
+}
+
 LYN_REPLACE_CHECK(SetWorkingMoveCosts);
 void SetWorkingMoveCosts(const s8 mct[])
 {
-    int i;
+ 	int i;
+    struct Unit *nearbyAllies[ARRAY_COUNT_RANGE3x3];
+    int allyCount = CacheNearbyAllies(nearbyAllies, ARRAY_COUNT_RANGE3x3);
 
     // Initialize all terrain costs to default
     for (i = 0; i < TERRAIN_COUNT; ++i)
@@ -514,6 +561,24 @@ void SetWorkingMoveCosts(const s8 mct[])
     // =====================
 
 #if (defined(SID_Seafarer) && COMMON_SKILL_VALID(SID_Seafarer))
+    if (CachedAlliesHaveSkill(nearbyAllies, allyCount, SID_Seafarer))
+    {
+        APPLY_COST_IF_LOWER(TERRAIN_WATER, 3);
+        APPLY_COST_IF_LOWER(TERRAIN_RIVER, 3);
+        APPLY_COST_IF_LOWER(TERRAIN_SEA,   3);
+        APPLY_COST_IF_LOWER(TERRAIN_LAKE,  3);
+    }
+#endif
+
+#if (defined(SID_Hiker) && COMMON_SKILL_VALID(SID_Hiker))
+    if (CachedAlliesHaveSkill(nearbyAllies, allyCount, SID_Hiker))
+    {
+        APPLY_COST_IF_LOWER(TERRAIN_MOUNTAIN, 3);
+        APPLY_COST_IF_LOWER(TERRAIN_PEAK,     3);
+    }
+#endif
+
+#if (defined(SID_Hiker) && COMMON_SKILL_VALID(SID_Hiker))
 	for (int i = 0; i < ARRAY_COUNT_RANGE3x3; i++)
 	{
 		int _x = gActiveUnit->xPos + gVecs_3x3[i].x;
@@ -527,11 +592,9 @@ void SetWorkingMoveCosts(const s8 mct[])
 		if (unit_ally->state & (US_HIDDEN | US_DEAD | US_RESCUED | US_BIT16))
 			continue;
 
-		if (SkillTester(unit_ally, SID_Seafarer) && AreUnitsAllied(gActiveUnit->index, unit_ally->index)) {
-	        APPLY_COST_IF_LOWER(TERRAIN_WATER, 3);
-        	APPLY_COST_IF_LOWER(TERRAIN_RIVER, 3);
-        	APPLY_COST_IF_LOWER(TERRAIN_SEA,   3);
-        	APPLY_COST_IF_LOWER(TERRAIN_LAKE,  3);
+		if (SkillTester(unit_ally, SID_Hiker) && AreUnitsAllied(gActiveUnit->index, unit_ally->index)) {
+        	APPLY_COST_IF_LOWER(TERRAIN_MOUNTAIN, 3);
+        	APPLY_COST_IF_LOWER(TERRAIN_PEAK,     3);
 			break;
 		}
 	}
