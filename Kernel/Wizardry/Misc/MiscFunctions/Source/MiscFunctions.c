@@ -2942,3 +2942,72 @@ u8 ItemSubMenu_IsUseAvailable(const struct MenuItemDef* def, int number) {
     return CanUnitUseItem(gActiveUnit, item)
         ? MENU_ENABLED : MENU_DISABLED;
 }
+
+LYN_REPLACE_CHECK(GetPickTrapType);
+int GetPickTrapType(struct Unit * unit)
+{
+    struct Trap * trap;
+
+    if ((trap = GetTrapAt(unit->xPos, unit->yPos)) == NULL)
+        return TRAP_NONE;
+
+    switch (trap->type) {
+    case TRAP_BALLISTA:
+        return TRAP_NONE;
+
+    case TRAP_FIRETILE:
+        if ((UNIT_CATTRIBUTES(unit) & CA_THIEF))
+            return TRAP_FIRE_THIEF;
+
+        break;
+
+    case TRAP_MINE:
+#if defined(SID_TrapBuster) && (COMMON_SKILL_VALID(SID_TrapBuster))
+        if (SkillTester(unit, SID_TrapBuster))
+        {
+            if (GetUnitItemCount(unit) != UNIT_ITEM_COUNT)
+                return TRAP_MINE_ASSASSIN;
+
+            return TRAP_NONE;
+        }
+#endif
+        if ((UNIT_CATTRIBUTES(unit) & CA_ASSASSIN))
+        {
+            if (GetUnitItemCount(unit) != UNIT_ITEM_COUNT)
+                return TRAP_MINE_ASSASSIN;
+
+            return TRAP_NONE;
+        } 
+        else if ((UNIT_CATTRIBUTES(unit) & CA_STEAL))
+            return TRAP_NONE;
+
+        break;
+    }
+
+    return trap->type;
+}
+
+LYN_REPLACE_CHECK(RefreshMinesOnBmMap);
+void RefreshMinesOnBmMap(void) {
+    struct Trap* trap;
+    
+    for (trap = GetTrap(0); trap->type != TRAP_NONE; ++trap) {
+        switch (trap->type) {
+
+        case TRAP_MINE:
+#if defined(SID_TrapBuster) && (COMMON_SKILL_VALID(SID_TrapBuster))
+        if (!SkillTester(gActiveUnit, SID_TrapBuster))
+        {
+            if (!gBmMapUnit[trap->yPos][trap->xPos])
+                gBmMapHidden[trap->yPos][trap->xPos] |= HIDDEN_BIT_TRAP;
+        }
+#else
+        if (!gBmMapUnit[trap->yPos][trap->xPos])
+            gBmMapHidden[trap->yPos][trap->xPos] |= HIDDEN_BIT_TRAP;
+#endif
+
+            break;
+
+        } // switch (trap->type)
+    }
+}

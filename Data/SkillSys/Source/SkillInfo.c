@@ -8643,4 +8643,14 @@ const struct SkillInfo gSkillInfos[MAX_SKILL_NUM + 1] = {
     },
 #endif
 
+#if (defined(SID_TrapBuster) && COMMON_SKILL_VALID(SID_TrapBuster))
+    [SID_TrapBuster] = {
+        .name = MSG_SKILL_TrapBuster_NAME,
+        .desc = MSG_SKILL_TrapBuster_DESC,
+        .capacity = MSG_SKILL_TrapBuster_CAPACITY,
+        .price = MSG_SKILL_TrapBuster_PRICE,
+        .icon = GFX_SkillIcon_WIP,
+    },
+#endif
+
 };

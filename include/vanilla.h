@@ -253,3 +253,4 @@ struct UnitDefinition *GetUnitDefinitionFormEventScr(struct UnitDefinition *sour
 
 /* Added by JESTER */
 void RefreshUnitsOnBmMap(void);
+void RefreshMinesOnBmMap(void);

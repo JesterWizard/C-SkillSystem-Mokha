@@ -743,6 +743,7 @@
 // SID_Carnage
 // SID_Crisis
 // SID_FaustianBargain
+// SID_TrapBuster
 
 //////// MOVEMENT SKILLS
 // SID_Pass
