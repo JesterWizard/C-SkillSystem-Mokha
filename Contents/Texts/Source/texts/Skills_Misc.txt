@@ -505,3 +505,10 @@ Faustian Bargain[X]
 Faustian Bargain:[N]
 Gain 1 extra stat per level up,[N]
 but lose 1 HP.[X]
+
+## MSG_SKILL_MineDetector_NAME
+Mine Detector[X]
+## MSG_SKILL_MineDetector_DESC
+Mine Detector:[N]
+Unit reveals the location of[N]
+any mines in a 5 tile radius.[X]

@@ -3,6 +3,8 @@
 #include "map-task.h"
 #include "kernel-lib.h"
 #include "stat-screen.h"
+#include "skill-system.h"
+#include "constants/skills.h"
 
 LYN_REPLACE_CHECK(PutUnitSpriteIconsOam);
 void PutUnitSpriteIconsOam(void)
@@ -36,6 +38,28 @@ void PutUnitSpriteIconsOam(void)
 
 		if (iy < -16 || iy > DISPLAY_HEIGHT)
 			continue;
+
+#if defined(SID_MineDetector) && (COMMON_SKILL_VALID(SID_MineDetector))
+    if (SkillTester(gActiveUnit, SID_MineDetector) && gBmSt.gameStateBits & BM_FLAG_1)
+	{
+		struct Trap* trap;
+
+        for (int i = 0; i < ARRAY_COUNT_RANGE5x5; i++) 
+		{
+			int _x = gActiveUnit->xPos + gVecs_5x5[i].x;
+			int _y = gActiveUnit->yPos + gVecs_5x5[i].y;
+
+			trap = GetTrapAt(_x, _y);
+
+			if (trap->type == TRAP_MINE)
+			{
+				MapTaskVec.x = _x  * 16 - gBmSt.camera.x;
+				MapTaskVec.y = _y  * 16 - gBmSt.camera.y;
+				MapTaskPutOamHi(MTSKCONF_WARNING, OAM2_PAL(0) + OAM2_LAYER(2) + OAM2_CHR(0xEE0 / 0x20));	
+			}
+		}
+	}
+#endif
 
 		MapTaskVec.x = ix;
 		MapTaskVec.y = iy;

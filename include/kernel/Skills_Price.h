@@ -860,3 +860,4 @@
 #define MSG_SKILL_Seafarer_PRICE 1000
 #define MSG_SKILL_Hiker_PRICE 1000
 #define MSG_SKILL_FocusEnergy_PRICE 1000
+#define MSG_SKILL_MineDetector_PRICE 1000

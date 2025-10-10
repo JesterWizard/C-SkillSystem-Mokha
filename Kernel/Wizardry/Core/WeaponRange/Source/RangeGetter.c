@@ -38,8 +38,6 @@ int GetItemMaxRangeRework(u16 item, struct Unit *unit)
 			status = (*it)(status, unit, item);
 	}
 
-	NoCashGBAPrintf("Max range of this item is: %d", status);
-
 	return status;
 }
 

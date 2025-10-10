@@ -858,6 +858,7 @@
 // SID_HalfMP
 // SID_TurboMP
 // SID_DilligentMind
+// SID_MineDetector
 
 //////// COMBAT ARTS
 // SID_COMBAT_Grounder

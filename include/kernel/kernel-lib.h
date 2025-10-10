@@ -143,10 +143,14 @@ void KernelStartBlockingHookProc(HookProcFunc_t const *hook_list, ProcPtr parent
 #define ARRAY_COUNT_RANGE1x1 4
 #define ARRAY_COUNT_RANGE2x2 12
 #define ARRAY_COUNT_RANGE3x3 24
+#define ARRAY_COUNT_RANGE4x4 40
+#define ARRAY_COUNT_RANGE5x5 60
 
 extern const struct Vec1 gVecs_1x1[ARRAY_COUNT_RANGE1x1];
 extern const struct Vec1 gVecs_2x2[ARRAY_COUNT_RANGE2x2];
 extern const struct Vec1 gVecs_3x3[ARRAY_COUNT_RANGE3x3];
+extern const struct Vec1 gVecs_4x4[ARRAY_COUNT_RANGE4x4];
+extern const struct Vec1 gVecs_5x5[ARRAY_COUNT_RANGE5x5];
 
 extern const u8 gRange1_In2x2[ARRAY_COUNT_RANGE2x2];
 extern const u8 gRange1_In3x3[ARRAY_COUNT_RANGE3x3];

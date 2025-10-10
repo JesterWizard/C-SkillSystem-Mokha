@@ -266,6 +266,7 @@ void GenerateMovementMap(int x, int y, int movement, int uid)
 
 	CallARM_FillMovementMap();
 	WARN_GENERIC_BUF_RELEASED;
+
 }
 
 void GameInit_RedirectMapFloodFunc(void)
