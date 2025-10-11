@@ -110,4 +110,8 @@ const SkillActionFunc_t gSkillActionFuncTable[MAX_SKILL_NUM + 1] = {
 #if (defined(SID_GorillaTactics) && COMMON_SKILL_VALID(SID_GorillaTactics))
 	[SID_GorillaTactics] = Action_GorillaTactics,
 #endif
+
+#if (defined(SID_GraceOfFire) && COMMON_SKILL_VALID(SID_GraceOfFire))
+	[SID_GraceOfFire] = Action_GraceOfFire,
+#endif
 };

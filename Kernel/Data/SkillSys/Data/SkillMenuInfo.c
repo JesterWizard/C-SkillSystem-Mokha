@@ -485,4 +485,19 @@ struct MenuItemDef const* const gSkillMenuInfos[MAX_SKILL_NUM + 1] = {
 		.onSwitchOut = NULL
 	},
 #endif
+
+#if (defined(SID_GraceOfFire) && COMMON_SKILL_VALID(SID_GraceOfFire))
+	[SID_GraceOfFire] = &(const struct MenuItemDef) {
+		.name = "　神裁の恩寵",
+		.nameMsgId = MSG_SKILL_GraceOfFire_NAME,
+		.helpMsgId = MSG_SKILL_GraceOfFire_DESC,
+		.color = TEXT_COLOR_SYSTEM_GOLD,
+		.isAvailable = GraceOfFire_Usability,
+		.onDraw = NULL,
+		.onSelected = GraceOfFire_OnSelected,
+		.onIdle = NULL,
+		.onSwitchIn = NULL,
+		.onSwitchOut = NULL,
+	},
+#endif
 };

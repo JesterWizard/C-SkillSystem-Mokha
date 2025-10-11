@@ -8,6 +8,7 @@ enum play_st_expa_bits {
 	PLAYSTEXPA_BIT_MasterForge_Used,
 	PLAYSTEXPA_BIT_Duplicate_Used,
 	PLAYSTEXPA_BIT_Reroll_Used,
+	PLAYSTEXPA_BIT_GraceOfFire_Used,
 
 	/* MAX */
 	PLAYSTEXPA_BIT_USED,

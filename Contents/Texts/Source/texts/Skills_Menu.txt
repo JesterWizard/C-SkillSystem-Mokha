@@ -85,7 +85,7 @@ No allies in range to copy![X]
 ## MSG_SKILL_Arise_FRtext
 No allies to revive![X]
 
-## MSG_SKILL_DivineReprieve_FRtext
+## MSG_SKILL_CannotUseAgain_FRtext
 Cannot use again this chapter![X]
 
 ## MSG_SKILL_LightRune_FRtext
@@ -659,3 +659,10 @@ Gorilla Tactics[X]
 Gorilla Tactics:[N]
 The user can only use their equipped[N]
 weapon, but it becomes 50% stronger.[X]
+
+## MSG_SKILL_GraceOfFire_NAME
+Grace Of Fire[X]
+## MSG_SKILL_GraceOfFire_DESC
+Grace Of Fire:[N]
+Deal 5 HP of non-lethal damage to[N]
+every enemy unit, once per map.[X]

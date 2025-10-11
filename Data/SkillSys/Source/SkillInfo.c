@@ -8673,4 +8673,14 @@ const struct SkillInfo gSkillInfos[MAX_SKILL_NUM + 1] = {
     },
 #endif
 
+#if (defined(SID_GraceOfFire) && COMMON_SKILL_VALID(SID_GraceOfFire))
+    [SID_GraceOfFire] = {
+        .name = MSG_SKILL_GraceOfFire_NAME,
+        .desc = MSG_SKILL_GraceOfFire_DESC,
+        .capacity = MSG_SKILL_GraceOfFire_CAPACITY,
+        .price = MSG_SKILL_GraceOfFire_PRICE,
+        .icon = GFX_SkillIcon_WIP,
+    },
+#endif
+
 };

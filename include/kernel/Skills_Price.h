@@ -864,3 +864,4 @@
 #define MSG_SKILL_TrapBuster_PRICE 1000
 #define MSG_SKILL_EXPShare_PRICE 1000
 #define MSG_SKILL_GorillaTactics_PRICE 1000
+#define MSG_SKILL_GraceOfFire_PRICE 1000

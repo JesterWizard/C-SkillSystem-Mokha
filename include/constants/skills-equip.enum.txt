@@ -79,6 +79,7 @@ SID_Reroll
 SID_SpellBlade
 SID_FocusEnergy
 SID_GorillaTactics
+SID_GraceOfFire
 
 //////// PRE-BATTLE SKILLS
 SID_DefiantStr
