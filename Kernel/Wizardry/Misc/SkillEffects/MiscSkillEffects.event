@@ -45,6 +45,7 @@
 #include "MenuSkills/Reroll.lyn.event"
 #include "MenuSkills/SpellBlade.lyn.event"
 #include "MenuSkills/FocusEnergy.lyn.event"
+#include "MenuSkills/GorillaTactics.lyn.event"
 
 #ifdef CONFIG_REFUGE_FEATURE
 #include "MenuSkills/Refuge.lyn.event"

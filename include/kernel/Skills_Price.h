@@ -711,7 +711,7 @@
 #define MSG_SKILL_Saint_PRICE 1000
 #define MSG_SKILL_AidRefusal_PRICE 1000
 #define MSG_SKILL_WhiteMage_PRICE 1000
-#define MSG_SKILL_GorillaTactics_PRICE 1000
+#define MSG_SKILL_GuerillaTactics_PRICE 1000
 #define MSG_SKILL_MoreForMe_PRICE 1000
 #define MSG_SKILL_Mimicry_PRICE 1000
 #define MSG_SKILL_ShedSkin_PRICE 1000
@@ -863,3 +863,4 @@
 #define MSG_SKILL_MineDetector_PRICE 1000
 #define MSG_SKILL_TrapBuster_PRICE 1000
 #define MSG_SKILL_EXPShare_PRICE 1000
+#define MSG_SKILL_GorillaTactics_PRICE 1000

@@ -7162,13 +7162,13 @@ const struct SkillInfo gSkillInfos[MAX_SKILL_NUM + 1] = {
     },
 #endif
 
-#if (defined(SID_GorillaTactics) && COMMON_SKILL_VALID(SID_GorillaTactics))
-    [SID_GorillaTactics] = {
-        .name = MSG_SKILL_GorillaTactics_NAME,
-        .desc = MSG_SKILL_GorillaTactics_DESC,
-        .capacity = MSG_SKILL_GorillaTactics_CAPACITY,
-        .price = MSG_SKILL_GorillaTactics_PRICE,
-        .icon = GFX_SkillIcon_GorillaTactics,
+#if (defined(SID_GuerillaTactics) && COMMON_SKILL_VALID(SID_GuerillaTactics))
+    [SID_GuerillaTactics] = {
+        .name = MSG_SKILL_GuerillaTactics_NAME,
+        .desc = MSG_SKILL_GuerillaTactics_DESC,
+        .capacity = MSG_SKILL_GuerillaTactics_CAPACITY,
+        .price = MSG_SKILL_GuerillaTactics_PRICE,
+        .icon = GFX_SkillIcon_WIP,
     },
 #endif
 
@@ -8660,6 +8660,16 @@ const struct SkillInfo gSkillInfos[MAX_SKILL_NUM + 1] = {
         .capacity = MSG_SKILL_EXPShare_CAPACITY,
         .price = MSG_SKILL_EXPShare_PRICE,
         .icon = GFX_SkillIcon_WIP,
+    },
+#endif
+
+#if (defined(SID_GorillaTactics) && COMMON_SKILL_VALID(SID_GorillaTactics))
+    [SID_GorillaTactics] = {
+        .name = MSG_SKILL_GorillaTactics_NAME,
+        .desc = MSG_SKILL_GorillaTactics_DESC,
+        .capacity = MSG_SKILL_GorillaTactics_CAPACITY,
+        .price = MSG_SKILL_GorillaTactics_PRICE,
+        .icon = GFX_SkillIcon_GorillaTactics,
     },
 #endif
 

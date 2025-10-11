@@ -1,6 +1,8 @@
 #pragma once
 
 #include "common-chax.h"
+#include "skill-system.h"
+#include "constants/skills.h"
 
 /**
  * We use unit->_u3A and unit->_u3B
@@ -14,6 +16,9 @@ enum unit_expa_sus_bitfile_idx {
 	UES_BIT_TSZUKU_SKILL_USED,
 	UES_BIT_TELEPOTRATION_SKILL_USED,
 	UES_BIT_ACTED,
+#if defined(SID_GorillaTactics) && (COMMON_SKILL_VALID(SID_GorillaTactics))
+	UES_BIT_GorillaTactics_USED,
+#endif
 	UNIT_EXPA_SUS_BIT6,
 	UNIT_EXPA_SUS_BIT7,
 	UNIT_EXPA_SUS_BIT8,

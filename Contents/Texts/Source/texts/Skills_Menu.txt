@@ -652,3 +652,10 @@ Focus Energy[X]
 Focus Energy:[N]
 Grants +20% crit for a single turn,[N]
 wearing off on the next turn.[X]
+
+## MSG_SKILL_GorillaTactics_NAME
+Gorilla Tactics[X]
+## MSG_SKILL_GorillaTactics_DESC
+Gorilla Tactics:[N]
+The user can only use their equipped[N]
+weapon, but it becomes 50% stronger.[X]

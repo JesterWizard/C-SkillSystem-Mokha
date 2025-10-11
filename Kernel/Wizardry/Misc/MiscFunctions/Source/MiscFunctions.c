@@ -2943,6 +2943,23 @@ u8 ItemSubMenu_IsUseAvailable(const struct MenuItemDef* def, int number) {
         ? MENU_ENABLED : MENU_DISABLED;
 }
 
+LYN_REPLACE_CHECK(ItemSubMenu_IsEquipAvailable);
+u8 ItemSubMenu_IsEquipAvailable(const struct MenuItemDef* def, int number) {
+    int item = gActiveUnit->items[gActionData.itemSlotIndex];
+
+    if (!(GetItemAttributes(item) & IA_WEAPON)) {
+        return MENU_NOTSHOWN;
+    }
+
+#if defined(SID_GorillaTactics) && (COMMON_SKILL_VALID(SID_GorillaTactics))
+    if (CheckBitUES(gActiveUnit, UES_BIT_GorillaTactics_USED))
+        return MENU_NOTSHOWN;
+#endif
+
+    return CanUnitUseWeapon(gActiveUnit, item)
+        ? MENU_ENABLED : MENU_DISABLED;
+}
+
 LYN_REPLACE_CHECK(GetPickTrapType);
 int GetPickTrapType(struct Unit * unit)
 {

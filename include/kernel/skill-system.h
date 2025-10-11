@@ -481,6 +481,8 @@ u8 FocusEnergy_Usability(const struct MenuItemDef* def, int number);
 u8 FocusEnergy_OnSelected(struct MenuProc* menu, struct MenuItemProc* menuItem);
 int FocusEnergy_Hover(struct MenuProc* menu, struct MenuItemProc* item);
 int FocusEnergy_Unhover(struct MenuProc* menu, struct MenuItemProc* menuItem);
+u8 GorillaTactics_Usability(const struct MenuItemDef* def, int number);
+u8 GorillaTactics_OnSelected(struct MenuProc* menu, struct MenuItemProc* menuItem);
 
 u8 Transform_Laguz_Usability(const struct MenuItemDef* def, int number);
 u8 Transform_Laguz_OnSelected(struct MenuProc* menu, struct MenuItemProc* item);
@@ -506,5 +508,6 @@ bool Action_Duplicate(ProcPtr parent);
 bool Action_Reroll(ProcPtr parent);
 bool Action_SpellBlade(ProcPtr parent);
 bool Action_FocusEnergy(ProcPtr parent);
+bool Action_GorillaTactics(ProcPtr parent);
 
 bool Action_Transform_Laguz(ProcPtr parent);

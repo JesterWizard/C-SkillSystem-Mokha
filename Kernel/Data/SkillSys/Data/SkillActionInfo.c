@@ -106,4 +106,8 @@ const SkillActionFunc_t gSkillActionFuncTable[MAX_SKILL_NUM + 1] = {
 #if (defined(SID_FocusEnergy) && COMMON_SKILL_VALID(SID_FocusEnergy))
 	[SID_FocusEnergy] = Action_FocusEnergy,
 #endif
+
+#if (defined(SID_GorillaTactics) && COMMON_SKILL_VALID(SID_GorillaTactics))
+	[SID_GorillaTactics] = Action_GorillaTactics,
+#endif
 };

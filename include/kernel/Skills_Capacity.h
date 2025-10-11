@@ -711,7 +711,7 @@
 #define MSG_SKILL_Saint_CAPACITY 1
 #define MSG_SKILL_AidRefusal_CAPACITY 1
 #define MSG_SKILL_WhiteMage_CAPACITY 1
-#define MSG_SKILL_GorillaTactics_CAPACITY 1
+#define MSG_SKILL_GuerillaTactics_CAPACITY 1
 #define MSG_SKILL_MoreForMe_CAPACITY 1
 #define MSG_SKILL_Mimicry_CAPACITY 1
 #define MSG_SKILL_ShedSkin_CAPACITY 1
@@ -863,3 +863,4 @@
 #define MSG_SKILL_MineDetector_CAPACITY 1
 #define MSG_SKILL_TrapBuster_CAPACITY 1
 #define MSG_SKILL_EXPShare_CAPACITY 1
+#define MSG_SKILL_GorillaTactics_CAPACITY 1

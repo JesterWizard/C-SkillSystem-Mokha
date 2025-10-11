@@ -470,4 +470,19 @@ struct MenuItemDef const* const gSkillMenuInfos[MAX_SKILL_NUM + 1] = {
 		.onSwitchOut = FocusEnergy_Unhover
 	},
 #endif
+
+#if (defined(SID_GorillaTactics) && COMMON_SKILL_VALID(SID_GorillaTactics))
+	[SID_GorillaTactics] = &(const struct MenuItemDef) {
+		.name = "　",
+		.nameMsgId = MSG_SKILL_GorillaTactics_NAME,
+		.helpMsgId = MSG_SKILL_GorillaTactics_DESC,
+		.color = TEXT_COLOR_SYSTEM_GOLD,
+		.isAvailable = GorillaTactics_Usability,
+		.onDraw = NULL,
+		.onSelected = GorillaTactics_OnSelected,
+		.onIdle = NULL,
+		.onSwitchIn = NULL,
+		.onSwitchOut = NULL
+	},
+#endif
 };

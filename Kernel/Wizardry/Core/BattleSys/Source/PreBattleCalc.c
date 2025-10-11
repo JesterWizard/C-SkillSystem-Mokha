@@ -10,6 +10,7 @@
 #include "combat-art.h"
 #include "kernel-tutorial.h"
 #include "constants/skills.h"
+#include "unit-expa.h"
 #include "jester_headers/custom-arrays.h"
 
 #define LOCAL_TRACE 0
@@ -57,6 +58,11 @@ void ComputeBattleUnitAttack(struct BattleUnit *attacker, struct BattleUnit *def
 	int effective_reduce = 0x100;
 
 	status = GetItemMight(attacker->weapon);
+
+#if defined(SID_GorillaTactics) && (COMMON_SKILL_VALID(SID_GorillaTactics))
+		if (CheckBitUES(GetUnit(attacker->unit.index), UES_BIT_GorillaTactics_USED))
+			status += GetItemMight(attacker->weapon) / 2;
+#endif
 
 	if (IsItemEffectiveAgainst(attacker->weapon, &defender->unit)) {
 		effective = true;

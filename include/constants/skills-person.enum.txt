@@ -78,6 +78,7 @@
 // SID_Reroll
 // SID_SpellBlade
 // SID_FocusEnergy
+// SID_GorillaTactics
 
 //////// PRE-BATTLE SKILLS
 // SID_DefiantStr
@@ -343,7 +344,7 @@
 // SID_TakerSpeed
 // SID_TakerStrength
 // SID_Canter
-// SID_GorillaTactics
+// SID_GuerillaTactics
 // SID_Scavenger
 // SID_Predation
 // SID_PredationPlus

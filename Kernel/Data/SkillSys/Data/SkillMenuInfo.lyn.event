@@ -6,136 +6,151 @@ PUSH
 ORG CURRENTOFFSET+$0;gSkillMenuInfos:
 POP
 WORD $0 $0 $0 $0 $0 $0 $0 $0
-POIN CURRENTOFFSET+4964
-POIN CURRENTOFFSET+4456
-WORD $0
-POIN CURRENTOFFSET+4988
-POIN CURRENTOFFSET+5128
-POIN CURRENTOFFSET+5016
-POIN CURRENTOFFSET+5048
-POIN CURRENTOFFSET+5080
-WORD $0
-POIN CURRENTOFFSET+4892
-POIN CURRENTOFFSET+4852
-POIN CURRENTOFFSET+4812
-POIN CURRENTOFFSET+4772
-POIN CURRENTOFFSET+4732
-POIN CURRENTOFFSET+4692
-POIN CURRENTOFFSET+4652
-POIN CURRENTOFFSET+4612
-POIN CURRENTOFFSET+4572
-POIN CURRENTOFFSET+4532
+POIN CURRENTOFFSET+5000
 POIN CURRENTOFFSET+4492
-POIN CURRENTOFFSET+4452
-POIN CURRENTOFFSET+4412
-POIN CURRENTOFFSET+4336
+WORD $0
+POIN CURRENTOFFSET+5024
+POIN CURRENTOFFSET+5164
+POIN CURRENTOFFSET+5052
+POIN CURRENTOFFSET+5084
+POIN CURRENTOFFSET+5116
+WORD $0
+POIN CURRENTOFFSET+4928
+POIN CURRENTOFFSET+4888
+POIN CURRENTOFFSET+4848
+POIN CURRENTOFFSET+4808
+POIN CURRENTOFFSET+4768
+POIN CURRENTOFFSET+4728
+POIN CURRENTOFFSET+4688
+POIN CURRENTOFFSET+4648
+POIN CURRENTOFFSET+4608
+POIN CURRENTOFFSET+4568
+POIN CURRENTOFFSET+4528
+POIN CURRENTOFFSET+4488
+POIN CURRENTOFFSET+4448
+POIN CURRENTOFFSET+4372
 WORD $0 $0
-POIN CURRENTOFFSET+4108
+POIN CURRENTOFFSET+4144
 WORD $0 $0 $0 $0 $0 $0 $0 $0 $0 $0
-POIN CURRENTOFFSET+4244
+POIN CURRENTOFFSET+4280
 WORD $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0
-POIN CURRENTOFFSET+4096
-POIN CURRENTOFFSET+4056
-POIN CURRENTOFFSET+4016
-POIN CURRENTOFFSET+3976
-POIN CURRENTOFFSET+3900
-POIN CURRENTOFFSET+3860
-POIN CURRENTOFFSET+3820
-POIN CURRENTOFFSET+3780
-WORD $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0
+POIN CURRENTOFFSET+4132
+POIN CURRENTOFFSET+4092
+POIN CURRENTOFFSET+4052
+POIN CURRENTOFFSET+4012
+POIN CURRENTOFFSET+3936
+POIN CURRENTOFFSET+3896
+POIN CURRENTOFFSET+3856
+POIN CURRENTOFFSET+3816
+POIN CURRENTOFFSET+3776
+WORD $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0
 POIN CURRENTOFFSET-4504
-WORD $138E138D $3
+WORD $13921391 $3
+POIN GorillaTactics_Usability
+WORD $0
+POIN GorillaTactics_OnSelected
+WORD $0 $0 $0
+POIN CURRENTOFFSET-4540
+WORD $1390138F $3
 POIN FocusEnergy_Usability
 WORD $0
 POIN FocusEnergy_OnSelected
 WORD $0
 POIN FocusEnergy_Hover
 POIN FocusEnergy_Unhover
-POIN CURRENTOFFSET-4540
-WORD $138C138B $3
+POIN CURRENTOFFSET-4576
+WORD $138E138D $3
 POIN SpellBlade_Usability
 WORD $0
 POIN SpellBlade_OnSelected
 WORD $0
 POIN SpellBlade_Hover
 POIN SpellBlade_Unhover
-POIN CURRENTOFFSET-4576
-WORD $138A1389 $3
+POIN CURRENTOFFSET-4612
+WORD $138C138B $3
 POIN Reroll_Usability
 WORD $0
 POIN Reroll_OnSelected
 WORD $0 $0 $0
-POIN CURRENTOFFSET-4612
-WORD $13881387 $3
+POIN CURRENTOFFSET-4648
+WORD $138A1389 $3
 POIN Duplicate_Usability
 WORD $0
 POIN Duplicate_OnSelected
 WORD $0 $0 $0
-POIN CURRENTOFFSET-4648
-WORD $13311330 $3
+POIN CURRENTOFFSET-4684
+WORD $13331332 $3
 POIN StealPlus_Usability
 WORD $0
 POIN StealPlus_Effect
 WORD $0 $0 $0
-POIN CURRENTOFFSET-4680
-WORD $13861385 $3
+POIN CURRENTOFFSET-4716
+WORD $13881387 $3
 POIN Fogger_Usability
 WORD $0
 POIN Fogger_OnSelected
 WORD $0 $0 $0
-POIN CURRENTOFFSET-4716
-WORD $13841383 $3
+POIN CURRENTOFFSET-4752
+WORD $13861385 $3
 POIN BravelyDefault_Usability
 WORD $0
 POIN BravelyDefault_OnSelected
 WORD $0 $0 $0
-POIN CURRENTOFFSET-4752
-WORD $13821381 $3
+POIN CURRENTOFFSET-4788
+WORD $13841383 $3
 POIN MasterForge_Usability
 WORD $0
 POIN MasterForge_OnSelected
 WORD $0 $0 $0
-POIN CURRENTOFFSET-4788
-WORD $1380137F $3
+POIN CURRENTOFFSET-4824
+WORD $13821381 $3
 POIN Replicate_Usability
 WORD $0
 POIN Replicate_OnSelected
 WORD $0 $0 $0
-POIN CURRENTOFFSET-4812
-WORD $13491348 $3
+POIN CURRENTOFFSET-4848
+WORD $134B134A $3
 POIN DivineReprieve_Usability
 WORD $0
 POIN DivineReprieve_OnSelected
 WORD $0 $0 $0
-POIN CURRENTOFFSET-4828
-WORD $131F131E $3
+POIN CURRENTOFFSET-4864
+WORD $13211320 $3
 POIN Blacksmith_Usability
 WORD $0
 POIN Blacksmith_OnSelected
 WORD $0 $0 $0
-POIN CURRENTOFFSET-4848
-WORD $131D131C $3
+POIN CURRENTOFFSET-4884
+WORD $131F131E $3
 POIN Swarp_Usability
 WORD $0
 POIN Swarp_OnSelected
 WORD $0 $0 $0
-POIN CURRENTOFFSET-4868
-WORD $131B131A $3
+POIN CURRENTOFFSET-4904
+WORD $131D131C $3
 POIN Stride_Usability
 WORD $0
 POIN Stride_OnSelected
 WORD $0
 POIN Stride_Hover
 POIN Stride_Unhover
-POIN CURRENTOFFSET-4892
-WORD $13191318 $3
+POIN CURRENTOFFSET-4928
+WORD $131B131A $3
 POIN GoddessDance_Usability
 WORD $0
 POIN GoddessDance_OnSelected
 WORD $0
 POIN GoddessDance_Hover
 POIN GoddessDance_Unhover
-POIN CURRENTOFFSET-4908
+POIN CURRENTOFFSET-4944
+WORD $13191318 $3
+POIN Rally_Usability
+WORD $0
+POIN Rally_OnSelected
+WORD $0
+POIN Rally_Hover
+POIN Rally_Unhover
+POIN CURRENTOFFSET-4948
 WORD $13171316 $3
 POIN Rally_Usability
 WORD $0
@@ -143,7 +158,7 @@ POIN Rally_OnSelected
 WORD $0
 POIN Rally_Hover
 POIN Rally_Unhover
-POIN CURRENTOFFSET-4912
+POIN CURRENTOFFSET-4960
 WORD $13151314 $3
 POIN Rally_Usability
 WORD $0
@@ -151,7 +166,7 @@ POIN Rally_OnSelected
 WORD $0
 POIN Rally_Hover
 POIN Rally_Unhover
-POIN CURRENTOFFSET-4924
+POIN CURRENTOFFSET-4968
 WORD $13131312 $3
 POIN Rally_Usability
 WORD $0
@@ -159,7 +174,7 @@ POIN Rally_OnSelected
 WORD $0
 POIN Rally_Hover
 POIN Rally_Unhover
-POIN CURRENTOFFSET-4932
+POIN CURRENTOFFSET-4980
 WORD $13111310 $3
 POIN Rally_Usability
 WORD $0
@@ -167,7 +182,7 @@ POIN Rally_OnSelected
 WORD $0
 POIN Rally_Hover
 POIN Rally_Unhover
-POIN CURRENTOFFSET-4944
+POIN CURRENTOFFSET-4996
 WORD $130F130E $3
 POIN Rally_Usability
 WORD $0
@@ -175,7 +190,7 @@ POIN Rally_OnSelected
 WORD $0
 POIN Rally_Hover
 POIN Rally_Unhover
-POIN CURRENTOFFSET-4960
+POIN CURRENTOFFSET-5008
 WORD $130D130C $3
 POIN Rally_Usability
 WORD $0
@@ -183,7 +198,7 @@ POIN Rally_OnSelected
 WORD $0
 POIN Rally_Hover
 POIN Rally_Unhover
-POIN CURRENTOFFSET-4972
+POIN CURRENTOFFSET-5016
 WORD $130B130A $3
 POIN Rally_Usability
 WORD $0
@@ -191,7 +206,7 @@ POIN Rally_OnSelected
 WORD $0
 POIN Rally_Hover
 POIN Rally_Unhover
-POIN CURRENTOFFSET-4980
+POIN CURRENTOFFSET-5036
 WORD $13091308 $3
 POIN Rally_Usability
 WORD $0
@@ -199,43 +214,35 @@ POIN Rally_OnSelected
 WORD $0
 POIN Rally_Hover
 POIN Rally_Unhover
-POIN CURRENTOFFSET-5000
+POIN CURRENTOFFSET-5052
 WORD $13071306 $3
-POIN Rally_Usability
-WORD $0
-POIN Rally_OnSelected
-WORD $0
-POIN Rally_Hover
-POIN Rally_Unhover
-POIN CURRENTOFFSET-5016
-WORD $13051304 $3
 POIN Mine_Usability
 WORD $0
 POIN Mine_OnSelected
 WORD $0 $0 $0
-POIN CURRENTOFFSET-5040
-WORD $13031302 $3
+POIN CURRENTOFFSET-5076
+WORD $13051304 $3
 POIN LightRune_Usability
 WORD $0
 POIN LightRune_OnSelected
 WORD $0 $0 $0
-POIN CURRENTOFFSET-5060
-WORD $13010000 $3
+POIN CURRENTOFFSET-5096
+WORD $13030000 $3
 POIN Teleportation_Usability
 WORD $0
 POIN Teleportation_OnSelected
 WORD $0 $0 $0
-POIN CURRENTOFFSET-5084
-WORD $12FF12FE $3
+POIN CURRENTOFFSET-5120
+WORD $13011300 $3
 POIN HealingFocus_Usability
 WORD $0
 POIN HealingFocus_OnSelected
 WORD $0 $0 $0
-POIN CURRENTOFFSET-5108
+POIN CURRENTOFFSET-5144
 WORD $6DE0694 $3 $8023E7D $0 $8023EB5 $0 $0 $0
-POIN CURRENTOFFSET-5508
+POIN CURRENTOFFSET-5544
 WORD $6DD0693 $3 $80243D9 $0 $80244B9 $0 $0 $0
-POIN CURRENTOFFSET-5164
+POIN CURRENTOFFSET-5200
 WORD $6C4067F $3 $802418D $0 $80241DD $0 $0 $0
-POIN CURRENTOFFSET-5188
+POIN CURRENTOFFSET-5224
 WORD $6C2067E $3 $8023195 $0 $80231D1 $0 $0 $0
