@@ -712,6 +712,7 @@ SID_BlacksmithPlus
 SID_Lifefont
 SID_EternalVanity
 SID_Truant
+SID_WitchsBrew
 
 //////// POST-PHASE SKILLS
 SID_HoardersBane

@@ -79,11 +79,11 @@
 #include "PrePhaseSkills/TileCheck.lyn.event"
 #include "PrePhaseSkills/KeepUp.lyn.event"
 #include "PrePhaseSkills/ChillSkills.lyn.event"
+#include "PrePhaseSkills/WitchsBrew.lyn.event"
+#include "PrePhaseSkills/PrePhaseHurt.lyn.event"
 #ifdef CONFIG_LAGUZ_BARS
 #include "PrePhaseSkills/PrePhase_LaguzBars.lyn.event"
 #endif
-
-#include "PrePhaseSkills/PrePhaseHurt.lyn.event"
 
 #include "EndTurnSkills/FreeSpirit.lyn.event"
 

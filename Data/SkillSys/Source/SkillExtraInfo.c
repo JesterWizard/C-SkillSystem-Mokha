@@ -1178,4 +1178,8 @@ const struct SkillExtraInfo gSkillExtraInfo[MAX_SKILL_NUM + 1] = {
 #if (defined(SID_GraceOfWater) && COMMON_SKILL_VALID(SID_GraceOfWater))
 	[SID_GraceOfWater] = {{ 10 }},
 #endif
+
+#if (defined(SID_WitchsBrew) && COMMON_SKILL_VALID(SID_WitchsBrew))
+	[SID_WitchsBrew] = {{ 7 }},
+#endif
 };

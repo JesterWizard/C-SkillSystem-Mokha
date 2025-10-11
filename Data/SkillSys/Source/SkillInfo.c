@@ -8693,4 +8693,14 @@ const struct SkillInfo gSkillInfos[MAX_SKILL_NUM + 1] = {
     },
 #endif
 
+#if (defined(SID_WitchsBrew) && COMMON_SKILL_VALID(SID_WitchsBrew))
+    [SID_WitchsBrew] = {
+        .name = MSG_SKILL_WitchsBrew_NAME,
+        .desc = MSG_SKILL_WitchsBrew_DESC,
+        .capacity = MSG_SKILL_WitchsBrew_CAPACITY,
+        .price = MSG_SKILL_WitchsBrew_PRICE,
+        .icon = GFX_SkillIcon_WIP,
+    },
+#endif
+
 };

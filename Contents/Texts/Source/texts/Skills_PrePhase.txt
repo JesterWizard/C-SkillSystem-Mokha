@@ -144,3 +144,11 @@ Truant[X]
 Truant:[N]
 Unit can only take an[N]
 action every other turn.[X]
+
+## MSG_SKILL_WitchsBrew_NAME
+Witch's Brew[X]
+## MSG_SKILL_WitchsBrew_DESC
+Witch's Brew:[N]
+LCK % chance to obtain a healing[N]
+item during the start of the turn[N]
+for the first 7 turns of the map.[X]
