@@ -283,26 +283,6 @@ void BattleApplyExpGains(void)
                 }
             }
 
-            if (GetUnitStatusIndex(GetUnit(gBattleTarget.unit.index)) == NEW_UNIT_STATUS_REPLICATE)
-            {
-                for (int i = FACTION_BLUE; i < FACTION_GREEN; i++)
-                {
-                    struct Unit * unit = GetUnit(i);
-
-                    if (!UNIT_IS_VALID(unit))
-                        continue;
-
-                    if (gBattleTarget.unit.pCharacterData->number == unit->pCharacterData->number && GetUnitStatusIndex(unit) != NEW_UNIT_STATUS_REPLICATE)
-                    {
-                        unit->exp += gBattleTarget.expGain;
-                        gBattleTarget.unit.exp -= gBattleTarget.expGain;
-                        InitBattleUnit(&gBattleTarget, unit);
-                        break;
-                    }
-                }
-            }
-
-
 			CheckBattleUnitLevelUp(&gBattleActor);
 			CheckBattleUnitLevelUp(&gBattleTarget);
 		}

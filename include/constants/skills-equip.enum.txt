@@ -426,6 +426,7 @@ SID_EvasionLock
 SID_Pyrotechnics
 SID_Quagmire
 SID_Caltrops
+SID_EXPShare
 
 //////// STAT MODIFIER SKILLS
 SID_HpBonus

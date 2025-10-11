@@ -862,3 +862,4 @@
 #define MSG_SKILL_FocusEnergy_PRICE 1000
 #define MSG_SKILL_MineDetector_PRICE 1000
 #define MSG_SKILL_TrapBuster_PRICE 1000
+#define MSG_SKILL_EXPShare_PRICE 1000

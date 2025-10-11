@@ -356,3 +356,10 @@ Caltrops[X]
 Caltrops:[N]
 Set a trap under the unit[N]
 who attacked this one.[X]
+
+## MSG_SKILL_EXPShare_NAME
+EXP Share[X]
+## MSG_SKILL_EXPShare_DESC
+EXP Share:[N]
+Gain 10 EXP when an ally[N]
+within 2 tiles battles.[X]

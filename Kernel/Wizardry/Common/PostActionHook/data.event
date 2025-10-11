@@ -20,6 +20,7 @@ gPostActionFuncs:
     POIN PostAction_EvasionLock
     POIN PostAction_Pyrotechnics
     POIN PostAction_Caltrops
+    POIN PostAction_EXPShare
     POIN ResetComboAtkList
 
     //End
