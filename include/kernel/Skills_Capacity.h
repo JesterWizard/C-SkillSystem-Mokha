@@ -865,3 +865,4 @@
 #define MSG_SKILL_EXPShare_CAPACITY 1
 #define MSG_SKILL_GorillaTactics_CAPACITY 1
 #define MSG_SKILL_GraceOfFire_CAPACITY 1
+#define MSG_SKILL_GraceOfWater_CAPACITY 1

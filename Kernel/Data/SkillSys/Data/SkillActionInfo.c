@@ -114,4 +114,8 @@ const SkillActionFunc_t gSkillActionFuncTable[MAX_SKILL_NUM + 1] = {
 #if (defined(SID_GraceOfFire) && COMMON_SKILL_VALID(SID_GraceOfFire))
 	[SID_GraceOfFire] = Action_GraceOfFire,
 #endif
+
+#if (defined(SID_GraceOfWater) && COMMON_SKILL_VALID(SID_GraceOfWater))
+	[SID_GraceOfWater] = Action_GraceOfWater,
+#endif
 };

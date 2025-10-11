@@ -8683,4 +8683,14 @@ const struct SkillInfo gSkillInfos[MAX_SKILL_NUM + 1] = {
     },
 #endif
 
+#if (defined(SID_GraceOfWater) && COMMON_SKILL_VALID(SID_GraceOfWater))
+    [SID_GraceOfWater] = {
+        .name = MSG_SKILL_GraceOfWater_NAME,
+        .desc = MSG_SKILL_GraceOfWater_DESC,
+        .capacity = MSG_SKILL_GraceOfWater_CAPACITY,
+        .price = MSG_SKILL_GraceOfWater_PRICE,
+        .icon = GFX_SkillIcon_WIP,
+    },
+#endif
+
 };

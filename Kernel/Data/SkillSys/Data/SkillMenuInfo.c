@@ -500,4 +500,19 @@ struct MenuItemDef const* const gSkillMenuInfos[MAX_SKILL_NUM + 1] = {
 		.onSwitchOut = NULL,
 	},
 #endif
+
+#if (defined(SID_GraceOfWater) && COMMON_SKILL_VALID(SID_GraceOfWater))
+	[SID_GraceOfWater] = &(const struct MenuItemDef) {
+		.name = "　神裁の恩寵",
+		.nameMsgId = MSG_SKILL_GraceOfWater_NAME,
+		.helpMsgId = MSG_SKILL_GraceOfWater_DESC,
+		.color = TEXT_COLOR_SYSTEM_GOLD,
+		.isAvailable = GraceOfWater_Usability,
+		.onDraw = NULL,
+		.onSelected = GraceOfWater_OnSelected,
+		.onIdle = NULL,
+		.onSwitchIn = NULL,
+		.onSwitchOut = NULL,
+	},
+#endif
 };

@@ -80,6 +80,7 @@
 // SID_FocusEnergy
 // SID_GorillaTactics
 // SID_GraceOfFire
+// SID_GraceOfWater
 
 //////// PRE-BATTLE SKILLS
 // SID_DefiantStr

@@ -666,3 +666,10 @@ Grace Of Fire[X]
 Grace Of Fire:[N]
 Deal 5 HP of non-lethal damage to[N]
 every enemy unit, once per map.[X]
+
+## MSG_SKILL_GraceOfWater_NAME
+Grace Of Water[X]
+## MSG_SKILL_GraceOfWater_DESC
+Grace Of Water:[N]
+Recover 10 HP for every allied[N]
+unit, once per map.[X]

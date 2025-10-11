@@ -47,6 +47,7 @@
 #include "MenuSkills/FocusEnergy.lyn.event"
 #include "MenuSkills/GorillaTactics.lyn.event"
 #include "MenuSkills/GraceOfFire.lyn.event"
+#include "MenuSkills/GraceOfWater.lyn.event"
 
 #ifdef CONFIG_REFUGE_FEATURE
 #include "MenuSkills/Refuge.lyn.event"
