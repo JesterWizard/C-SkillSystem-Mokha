@@ -1,20 +1,6 @@
 # Misc skill effects
 
 ---
-##  legendory skill
-```
-SID_LEGEND_MiracleAtk
-SID_LEGEND_MiracleAvo
-SID_LEGEND_MiracleDef
-SID_LEGEND_4
-SID_LEGEND_5
-```
-
-Legendory skill enables unit get a decent amount of bonus. Since it's powerful, each unit can only enjoy it on one turn and can only activcate one time per chapter. At the same time, each unit can only pick one legend-skill, if he has already have one legend-skill, other legend-skills will not be activated.
-
-For now, we have defined 5 legend-skills in [LegendSkill.c](../Data/SkillSys/LegendSkill.c).
-
----
 ## post-action position fix
 
 ```

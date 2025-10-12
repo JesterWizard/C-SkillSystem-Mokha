@@ -106,12 +106,10 @@ void BattleDamageCalc_DefenderSkills(struct BattleUnit* attacker, struct BattleU
 
 #if defined(SID_GuardBearing) && (COMMON_SKILL_VALID(SID_GuardBearing))
 		case SID_GuardBearing:
-			if (!AreUnitsAllied(defender->unit.index, gPlaySt.faction) &&
-				GetBattleGlobalFlags(attacker)->round_cnt_hit == 1 &&
-				!CheckBitUES(&defender->unit, UES_BIT_GUARDBEAR_SKILL_USED)) {
+			if (!AreUnitsAllied(defender->unit.index, gPlaySt.faction) && GetBattleGlobalFlags(attacker)->round_cnt_hit == 1)
+			{
 
 				RegisterTargetEfxSkill(GetBattleHitRound(gBattleHitIterator), SID_GuardBearing);
-				SetBitUES(&defender->unit, UES_BIT_GUARDBEAR_SKILL_USED);
 				gDmg.decrease += DAMAGE_DECREASE(SKILL_EFF0(SID_GuardBearing));
 			}
 			break;

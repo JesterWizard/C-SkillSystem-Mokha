@@ -2,6 +2,8 @@
 #include "skill-system.h"
 #include "status-getter.h"
 #include "constants/skills.h"
+#include "bwl.h"
+#include "unit-expa.h"
 
 int _GetUnitResistance(struct Unit *unit)
 {
@@ -11,6 +13,13 @@ int _GetUnitResistance(struct Unit *unit)
 #ifdef CONFIG_STAT_SCREEN_TERRAIN_BONUS
 	int terrainID = GetTrueTerrainAt(unit->xPos, unit->yPos);
 	status += unit->pClassData->pTerrainResistanceLookup[terrainID];
+#endif
+
+#if defined(SID_Unaware) && (COMMON_SKILL_VALID(SID_Unaware))
+    if (unit == GetUnit(gBattleActor.unit.index) && GetUnit(gBattleTarget.unit.index) && SkillTester(GetUnit(gBattleTarget.unit.index), SID_Unaware))
+        return status;
+    else if (unit == GetUnit(gBattleTarget.unit.index) && GetUnit(gBattleActor.unit.index) && SkillTester(GetUnit(gBattleActor.unit.index), SID_Unaware))
+        return status;
 #endif
 
 	for (it = gpResGetters; *it; it++)
@@ -35,6 +44,8 @@ int ResGetterSkills(int status, struct Unit *unit)
 {
 	int cur_hp = GetUnitCurrentHp(unit);
 	int max_hp = GetUnitMaxHp(unit);
+
+    FORCE_DECLARE struct NewBwl * bwl = GetNewBwl(UNIT_CHAR_ID(unit));
 
 #if defined(SID_LifeAndDeath) && (COMMON_SKILL_VALID(SID_LifeAndDeath))
 	if (SkillTester(unit, SID_LifeAndDeath))
@@ -94,6 +105,53 @@ int ResGetterSkills(int status, struct Unit *unit)
 	}
 #endif
 
+#if defined(SID_StaffGuard) && (COMMON_SKILL_VALID(SID_StaffGuard))
+    if (SkillTester(unit, SID_StaffGuard))
+    {
+        bool hasUsableStaff = false;
+
+        for (int i = 0; i < 5; i++)
+        {
+            if (ITEM_INDEX(unit->items[i]) == 0)
+                break;
+            if (GetItemType(unit->items[i]) != ITYPE_STAFF)
+                continue;
+            if (GetItemRequiredExp(unit->items[i]) <= unit->ranks[ITYPE_STAFF])
+            {
+                hasUsableStaff = true;
+                break;
+            }
+        }
+
+        if(hasUsableStaff)
+            status += SKILL_EFF0(SID_StaffGuard);
+    }
+#endif
+
+#if (defined(SID_TakerResistance) && (COMMON_SKILL_VALID(SID_TakerResistance)) && defined(CONFIG_RESET_BWL_STATS_EACH_CHAPTER))
+    if (SkillTester(unit, SID_TakerResistance))
+    {
+        int takerBoost = bwl->winAmt * SKILL_EFF0(SID_TakerResistance);
+        
+        if (takerBoost > 10)
+            status += 10;
+        else   
+            status += takerBoost;
+    }
+#endif
+
+#if (defined(SID_TakerSpectrum) && (COMMON_SKILL_VALID(SID_TakerSpectrum)) && defined(CONFIG_RESET_BWL_STATS_EACH_CHAPTER))
+    if (SkillTester(unit, SID_TakerSpectrum))
+    {
+        int takerBoost = bwl->winAmt * SKILL_EFF0(SID_TakerSpectrum);
+        
+        if (takerBoost > 10)
+            status += 10;
+        else   
+            status += takerBoost;
+    }
+#endif
+
 	if (cur_hp == max_hp) {
 #if defined(SID_PushResistance) && (COMMON_SKILL_VALID(SID_PushResistance))
 		if (SkillTester(unit, SID_PushResistance))
@@ -106,6 +164,50 @@ int ResGetterSkills(int status, struct Unit *unit)
 #endif
 	}
 
+#if (defined(SID_PairUp) && (COMMON_SKILL_VALID(SID_PairUp)))
+    if (SkillTester(unit, SID_PairUp))
+        if (unit->state & US_RESCUING)
+            status += Div(_GetUnitResistance(GetUnit(unit->rescue)) * SKILL_EFF0(SID_PairUp), 100);
+#endif
+
+#if defined(SID_SteadyRiderPlus) && (COMMON_SKILL_VALID(SID_SteadyRiderPlus))
+        if (SkillTester(unit, SID_SteadyRiderPlus))
+            status += GetItemWeight(GetUnitEquippedWeapon(unit)) > UNIT_CON(unit) ? GetItemWeight(GetUnitEquippedWeapon(unit)) - UNIT_CON(unit) : 0;
+#endif
+
+#if defined(SID_GoldenGlory) && (COMMON_SKILL_VALID(SID_GoldenGlory))
+    if (SkillTester(unit, SID_GoldenGlory))
+    {
+        const int statBoost = gPlaySt.partyGoldAmount / 20000;
+        status += statBoost > 5 ? 5 : statBoost;
+    }
+#endif
+
+#if defined(SID_Sellsword) && (COMMON_SKILL_VALID(SID_Sellsword))
+    if (SkillTester(unit, SID_Sellsword) && CheckBitUES(unit, UES_BIT_SELLSWORD_SKILL_USED))
+        status += SKILL_EFF0(SID_Sellsword);
+#endif
+
+#if defined(SID_SupremeOverlord) && (COMMON_SKILL_VALID(SID_SupremeOverlord))
+	if (SkillTester(unit, SID_SupremeOverlord))
+	{
+		int deadAllies = 0;
+
+		for (int i = UNIT_FACTION(unit) + 1; i < (UNIT_FACTION(unit) + GetFactionUnitAmount(UNIT_FACTION(unit))); i++)
+		{
+			if (!(GetUnit(i)->pCharacterData))
+				break;
+			if (!UNIT_ALIVE(GetUnit(i)))
+				deadAllies += 1;
+		}
+
+		if (UNIT_FACTION(unit) != FACTION_RED)
+			status += deadAllies * 3;
+		else
+			status += deadAllies / 3;
+	}
+#endif
+
 	return status;
 }
 
@@ -115,6 +217,26 @@ int ResGetterPureWater(int status, struct Unit *unit)
 	return status + unit->barrierDuration;
 }
 #endif
+
+int ResPsychUpCheck(int status, struct Unit *unit)
+{
+    FORCE_DECLARE int stolen_status = 0;
+
+#if (defined(SID_PsychUp) && (COMMON_SKILL_VALID(SID_PsychUp)))
+    if (unit == GetUnit(gBattleActor.unit.index) && SkillTester(unit, SID_PsychUp))
+    {
+        stolen_status = ResGetterWeaponBonus(0, GetUnit(gBattleTarget.unit.index)) + ResGetterSkills(0, GetUnit(gBattleTarget.unit.index));
+        return status + stolen_status;
+    }
+    else if (unit == GetUnit(gBattleTarget.unit.index) && SkillTester(unit, SID_PsychUp))
+    {
+        stolen_status = ResGetterWeaponBonus(0, GetUnit(gBattleActor.unit.index)) + ResGetterSkills(0, GetUnit(gBattleActor.unit.index));
+        return status + stolen_status;
+    }
+#endif
+
+    return status;
+}
 
 int ResGetterStaffBoost(int status, struct Unit *unit)
 {

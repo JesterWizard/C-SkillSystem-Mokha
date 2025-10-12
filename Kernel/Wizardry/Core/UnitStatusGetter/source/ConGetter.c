@@ -14,3 +14,12 @@ int _GetUnitCon(struct Unit *unit)
 
 	return status;
 }
+
+int ConGetterSkills(int status, struct Unit * unit)
+{
+#if defined(SID_HeavyMetal) && (COMMON_SKILL_VALID(SID_HeavyMetal))
+    if (SkillTester(unit, SID_HeavyMetal))
+        status += SKILL_EFF0(SID_HeavyMetal);
+#endif
+    return status;
+}

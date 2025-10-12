@@ -364,13 +364,19 @@ void AppendSkillListViaDebugList(struct Unit* unit, struct SkillList* list, u16*
  */
 
 struct SkillExtraInfo {
-	s8 priv[4];
+	s8 priv[10];
 };
 extern struct SkillExtraInfo const* const gpSkillExtraInfo;
 #define SKILL_EFF0(sid) (gpSkillExtraInfo[sid].priv[0])
 #define SKILL_EFF1(sid) (gpSkillExtraInfo[sid].priv[1])
 #define SKILL_EFF2(sid) (gpSkillExtraInfo[sid].priv[2])
 #define SKILL_EFF3(sid) (gpSkillExtraInfo[sid].priv[3])
+#define SKILL_EFF4(sid) (gpSkillExtraInfo[sid].priv[4])
+#define SKILL_EFF5(sid) (gpSkillExtraInfo[sid].priv[5])
+#define SKILL_EFF6(sid) (gpSkillExtraInfo[sid].priv[6])
+#define SKILL_EFF7(sid) (gpSkillExtraInfo[sid].priv[7])
+#define SKILL_EFF8(sid) (gpSkillExtraInfo[sid].priv[8])
+#define SKILL_EFF9(sid) (gpSkillExtraInfo[sid].priv[9])
 
 bool IsSkillLearned(struct Unit* unit, const u16 sid);
 void LearnSkill(struct Unit* unit, const u16 sid);
@@ -418,15 +424,6 @@ enum skill_lucky_seven_idx {
 	LUCKY7_RES,
 	LUCKY7_MOV,
 };
-
-/* Legendary skill */
-extern u16 const* const gpLegendSkillPool;
-int TryActivateLegendSkill(struct Unit* unit, const u16 sid);
-bool SkillTesterLegendActivated(struct Unit* unit, const u16 sid);
-void PreBattleCalcLegendSkills(struct BattleUnit* attacker, struct BattleUnit* defender);
-int SpdGetterLegendSkills(int status, struct Unit* unit);
-int DefGetterLegendSkills(int status, struct Unit* unit);
-int ResGetterLegendSkills(int status, struct Unit* unit);
 
 extern const struct ProcCmd ProcScr_SkillScrollUseSoftLock[];
 
@@ -487,6 +484,104 @@ u8 GraceOfFire_Usability(const struct MenuItemDef* def, int number);
 u8 GraceOfFire_OnSelected(struct MenuProc* menu, struct MenuItemProc* item);
 u8 GraceOfWater_Usability(const struct MenuItemDef* def, int number);
 u8 GraceOfWater_OnSelected(struct MenuProc* menu, struct MenuItemProc* item);
+u8 Swap_Usability(const struct MenuItemDef * def, int number);
+u8 Swap_OnSelected(struct MenuProc * menu, struct MenuItemProc * item);
+u8 Transform_Usability(const struct MenuItemDef * def, int number);
+u8 Transform_OnSelected(struct MenuProc * menu, struct MenuItemProc * item);
+u8 DrawBack_Usability(const struct MenuItemDef * def, int number);
+u8 DrawBack_OnSelected(struct MenuProc * menu, struct MenuItemProc * item);
+u8 Pivot_Usability(const struct MenuItemDef * def, int number);
+u8 Pivot_OnSelected(struct MenuProc * menu, struct MenuItemProc * item);
+u8 Reposition_Usability(const struct MenuItemDef * def, int number);
+u8 Reposition_OnSelected(struct MenuProc * menu, struct MenuItemProc * item);
+u8 Shove_Usability(const struct MenuItemDef * def, int number);
+u8 Shove_OnSelected(struct MenuProc * menu, struct MenuItemProc * item);
+u8 Smite_Usability(const struct MenuItemDef * def, int number);
+u8 Smite_OnSelected(struct MenuProc * menu, struct MenuItemProc * item);
+u8 ArdentSacrifice_Usability(const struct MenuItemDef * def, int number);
+u8 ArdentSacrifice_OnSelected(struct MenuProc * menu, struct MenuItemProc * item);
+u8 ReciprocalAid_Usability(const struct MenuItemDef * def, int number);
+u8 ReciprocalAid_OnSelected(struct MenuProc * menu, struct MenuItemProc * item);
+u8 Sacrifice_Usability(const struct MenuItemDef * def, int number);
+u8 Sacrifice_OnSelected(struct MenuProc * menu, struct MenuItemProc * item);
+u8 Capture_Usability(const struct MenuItemDef * def, int number);
+u8 Capture_OnSelected(struct MenuProc * menu, struct MenuItemProc * item);
+u8 Doppleganger_Usability(const struct MenuItemDef * def, int number);
+u8 Doppleganger_OnSelected(struct MenuProc * menu, struct MenuItemProc * item);
+u8 Dismount_Usability(const struct MenuItemDef * def, int number);
+u8 Dismount_OnSelected(struct MenuProc * menu, struct MenuItemProc * item);
+u8 Entrepreneur_Usability(const struct MenuItemDef * def, int number);
+u8 Entrepreneur_OnSelected(struct MenuProc * menu, struct MenuItemProc * item);
+u8 Arise_Usability(const struct MenuItemDef * def, int number);
+u8 Arise_OnSelected(struct MenuProc * menu, struct MenuItemProc * item);
+u8 AssignDecoy_Usability(const struct MenuItemDef * def, int number);
+u8 AssignDecoy_OnSelected(struct MenuProc * menu, struct MenuItemProc * item);
+u8 ShadowFlash_Usability(const struct MenuItemDef * def, int number);
+u8 ShadowFlash_OnSelected(struct MenuProc * menu, struct MenuItemProc * item);
+int ShadowFlash_Hover(struct MenuProc * menu, struct MenuItemProc * item);
+int ShadowFlash_Unhover(struct MenuProc * menu, struct MenuItemProc * menuItem);
+u8 DeathBlight_Usability(const struct MenuItemDef * def, int number);
+u8 DeathBlight_OnSelected(struct MenuProc * menu, struct MenuItemProc * item);
+u8 LoadstarRush_Usability(const struct MenuItemDef * def, int number);
+u8 LoadstarRush_OnSelected(struct MenuProc * menu, struct MenuItemProc * item);
+u8 WyvernCrash_Usability(const struct MenuItemDef * def, int number);
+u8 WyvernCrash_OnSelected(struct MenuProc * menu, struct MenuItemProc * item);
+u8 Sellsword_Usability(const struct MenuItemDef * def, int number);
+u8 Sellsword_OnSelected(struct MenuProc * menu, struct MenuItemProc * item);
+u8 Switcher_Usability(const struct MenuItemDef * def, int number);
+u8 Switcher_OnSelected(struct MenuProc * menu, struct MenuItemProc * item);
+u8 LethalityPlus_Usability(const struct MenuItemDef * def, int number);
+u8 LethalityPlus_OnSelected(struct MenuProc * menu, struct MenuItemProc * item);
+u8 GrimReaper_Usability(const struct MenuItemDef * def, int number);
+u8 GrimReaper_OnSelected(struct MenuProc * menu, struct MenuItemProc * item);
+u8 Hide_Usability(const struct MenuItemDef * def, int number);
+u8 Hide_OnSelected(struct MenuProc * menu, struct MenuItemProc * item);
+u8 Salve_Usability(const struct MenuItemDef * def, int number);
+u8 Salve_OnSelected(struct MenuProc * menu, struct MenuItemProc * item);
+u8 SkillSwap_Usability(const struct MenuItemDef * def, int number);
+u8 SkillSwap_OnSelected(struct MenuProc * menu, struct MenuItemProc * item);
+u8 Shuffle_Usability(const struct MenuItemDef * def, int number);
+u8 Shuffle_OnSelected(struct MenuProc * menu, struct MenuItemProc * item);
+u8 ShufflePlus_Usability(const struct MenuItemDef * def, int number);
+u8 ShufflePlus_OnSelected(struct MenuProc * menu, struct MenuItemProc * item);
+u8 Persuade_Usability(const struct MenuItemDef * def, int number);
+u8 Persuade_OnSelected(struct MenuProc * menu, struct MenuItemProc * item);
+u8 PersuadePlus_Usability(const struct MenuItemDef * def, int number);
+u8 PersuadePlus_OnSelected(struct MenuProc * menu, struct MenuItemProc * item);
+int Kamikaze_Hover(struct MenuProc * menu, struct MenuItemProc * item);
+int Kamikaze_Unhover(struct MenuProc * menu, struct MenuItemProc * menuItem);
+u8 Kamikaze_Usability(const struct MenuItemDef * def, int number);
+u8 Kamikaze_OnSelected(struct MenuProc * menu, struct MenuItemProc * item);
+int Reinforcements_Hover(struct MenuProc * menu, struct MenuItemProc * item);
+int Reinforcements_Unhover(struct MenuProc * menu, struct MenuItemProc * menuItem);
+u8 Reinforcements_Usability(const struct MenuItemDef * def, int number);
+u8 Reinforcements_OnSelected(struct MenuProc * menu, struct MenuItemProc * item);
+u8 ResolvedHeart_Usability(const struct MenuItemDef * def, int number);
+u8 ResolvedHeart_OnSelected(struct MenuProc * menu, struct MenuItemProc * item);
+u8 Ballistary_Usability(const struct MenuItemDef * def, int number);
+u8 Ballistary_OnSelected(struct MenuProc * menu, struct MenuItemProc * item);
+u8 Bide_Usability(const struct MenuItemDef * def, int number);
+u8 Bide_OnSelected(struct MenuProc * menu, struct MenuItemProc * item);
+u8 CoinFlip_Usability(const struct MenuItemDef * def, int number);
+u8 CoinFlip_OnSelected(struct MenuProc * menu, struct MenuItemProc * item);
+u8 Geomancy_Usability(const struct MenuItemDef * def, int number);
+u8 Geomancy_OnSelected(struct MenuProc * menu, struct MenuItemProc * item);
+u8 ScrollScribePlus_Usability(const struct MenuItemDef * def, int number);
+u8 ScrollScribePlus_OnSelected(struct MenuProc * menu, struct MenuItemProc * item);
+int DancePlus_Hover(struct MenuProc * menu, struct MenuItemProc * item);
+int DancePlus_Unhover(struct MenuProc * menu, struct MenuItemProc * menuItem);
+u8 DancePlus_Usability(const struct MenuItemDef * def, int number);
+u8 DancePlus_OnSelected(struct MenuProc * menu, struct MenuItemProc * item);
+u8 Acidic_Usability(const struct MenuItemDef * def, int number);
+u8 Acidic_OnSelected(struct MenuProc * menu, struct MenuItemProc * item);
+u8 AcidicPlus_Usability(const struct MenuItemDef * def, int number);
+u8 AcidicPlus_OnSelected(struct MenuProc * menu, struct MenuItemProc * item);
+u8 Reinforce_Usability(const struct MenuItemDef * def, int number);
+u8 Reinforce_OnSelected(struct MenuProc * menu, struct MenuItemProc * item);
+u8 SealedZone_Usability(const struct MenuItemDef * def, int number);
+u8 SealedZone_OnSelected(struct MenuProc * menu, struct MenuItemProc * item);
+u8 Thrust_Usability(const struct MenuItemDef * def, int number);
+u8 Thrust_OnSelected(struct MenuProc * menu, struct MenuItemProc * item);
 
 u8 Transform_Laguz_Usability(const struct MenuItemDef* def, int number);
 u8 Transform_Laguz_OnSelected(struct MenuProc* menu, struct MenuItemProc* item);
@@ -515,5 +610,53 @@ bool Action_FocusEnergy(ProcPtr parent);
 bool Action_GorillaTactics(ProcPtr parent);
 bool Action_GraceOfFire(ProcPtr parent);
 bool Action_GraceOfWater(ProcPtr parent);
+bool Action_Swap(ProcPtr parent);
+bool Action_Transform(ProcPtr parent);
+bool Action_DrawBack(ProcPtr parent);
+bool Action_Pivot(ProcPtr parent);
+bool Action_Reposition(ProcPtr parent);
+bool Action_Shove(ProcPtr parent);
+bool Action_Smite(ProcPtr parent);
+bool Action_StealPlus(ProcPtr parent);
+bool Action_ArdentSacrifice(ProcPtr parent);
+bool Action_ReciprocalAid(ProcPtr parent);
+bool Action_Sacrifice(ProcPtr parent);
+bool Action_Capture(ProcPtr parent);
+bool Action_Doppleganger(ProcPtr parent);
+bool Action_Dismount(ProcPtr parent);
+bool Action_Entrepreneur(ProcPtr parent);
+bool Action_Arise(ProcPtr parent);
+bool Action_AssignDecoy(ProcPtr parent);
+bool Action_ShadowFlash(ProcPtr parent);
+bool Action_DeathBlight(ProcPtr parent);
+bool Action_LoadstarRush(ProcPtr parent);
+bool Action_WyvernCrash(ProcPtr parent);
+bool Action_Sellsword(ProcPtr parent);
+bool Action_Switcher(ProcPtr parent);
+bool Action_LethalityPlus(ProcPtr parent);
+bool Action_GrimReaper(ProcPtr parent);
+bool Action_Hide(ProcPtr parent);
+bool Action_Salve(ProcPtr parent);
+bool Action_SkillSwap(ProcPtr parent);
+bool Action_Shuffle(ProcPtr parent);
+bool Action_ShufflePlus(ProcPtr parent);
+bool Action_Persuade(ProcPtr parent);
+bool Action_PersuadePlus(ProcPtr parent);
+bool Action_Kamikaze(ProcPtr parent);
+bool Action_Reinforcements(ProcPtr parent);
+bool Action_ResolvedHeart(ProcPtr parent);
+bool Action_Ballistary(ProcPtr parent);
+bool Action_Bide(ProcPtr parent);
+bool Action_CoinFlip(ProcPtr parent);
+bool Action_Geomancy(ProcPtr parent);
+bool Action_ScrollScribePlus(ProcPtr parent);
+bool Action_DancePlus(ProcPtr parent);
+bool Action_Acidic(ProcPtr parent);
+bool Action_AcidicPlus(ProcPtr parent);
+bool Action_Reinforce(ProcPtr parent);
+bool Action_SealedZone(ProcPtr parent);
+bool Action_Thrust(ProcPtr parent);
 
 bool Action_Transform_Laguz(ProcPtr parent);
+
+u8 SummonPlusCommandEffect(struct MenuProc * menu, struct MenuItemProc * menuItem);

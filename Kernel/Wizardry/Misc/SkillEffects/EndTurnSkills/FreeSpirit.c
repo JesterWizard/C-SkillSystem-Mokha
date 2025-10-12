@@ -22,8 +22,8 @@ static bool Local_SkillTester(struct Unit *unit)
 
 static bool CheckHasActed(struct Unit *unit)
 {
-	if (CheckBitUES(unit, UES_BIT_ACTED))
-		return true;
+	// if (CheckBitUES(unit, UES_BIT_ACTED))
+	// 	return true;
 
 	if (unit->state & (US_HAS_MOVED | US_UNSELECTABLE))
 		return true;

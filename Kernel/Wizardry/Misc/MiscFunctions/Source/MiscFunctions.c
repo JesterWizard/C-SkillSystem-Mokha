@@ -3028,3 +3028,73 @@ void RefreshMinesOnBmMap(void) {
         } // switch (trap->type)
     }
 }
+
+void TransferStatsandExperience(void)
+{
+    UpdateUnitFromBattle(gActiveUnit, &gBattleActor);
+    gActiveUnit->state &= ~US_HIDDEN;       // Remove the hidden state that seems to get randomly set?
+    gActiveUnit->state |= US_UNSELECTABLE;  // Ensure the unit cannot be selected again
+}
+
+static const struct ProcCmd ProcScr_AddExp[] = {
+    PROC_CALL(LockGame),
+    PROC_WHILE(BattleEventEngineExists),
+    PROC_CALL(EndMapAnimInfoWindow),
+    PROC_SLEEP(1),
+    PROC_CALL(MapAnim_DisplayExpBar),
+    PROC_YIELD,
+    PROC_CALL(UnlockGame),
+    PROC_CALL(MapAnim_Cleanup),
+    PROC_CALL(TransferStatsandExperience),
+    PROC_END
+};
+
+void BattleApplyMiscActionExpGains_Modular(int exp) {
+    if (UNIT_FACTION(&gBattleActor.unit) != FACTION_BLUE)
+        return;
+
+    if (!CanBattleUnitGainLevels(&gBattleActor))
+        return;
+
+    if (gPlaySt.chapterStateBits & PLAY_FLAG_EXTRA_MAP)
+        return;
+
+    gBattleActor.expGain = exp;
+    gBattleActor.unit.exp += exp;
+
+    CheckBattleUnitLevelUp(&gBattleActor);
+}
+
+void AddExp_Event(int exp)
+{
+    gManimSt.actorCount = 1;
+    gManimSt.hp_changing = 0;
+    gManimSt.subjectActorId = 0;
+    gManimSt.targetActorId = 0;
+    InitBattleUnit(&gBattleActor, gActiveUnit);
+    BattleApplyMiscActionExpGains_Modular(exp);
+    SetupMapBattleAnim(&gBattleActor, &gBattleTarget, gBattleHitArray);
+    Proc_StartBlocking(ProcScr_AddExp, PROC_TREE_3);
+}
+
+// use vanilla version so we don't lag by using hooked versions that accounts for pass etc
+s8 Vanilla_CanUnitCrossTerrain(struct Unit * unit, int terrain)
+{
+    const s8 * lookup = (s8 *)GetUnitMovementCost(unit);
+    return (lookup[terrain] > 0) ? TRUE : FALSE;
+}
+
+bool Generic_CanUnitBeOnPos(struct Unit * unit, s8 x, s8 y, int x2, int y2)
+{
+    if (x < 0 || y < 0)
+        return 0; // position out of bounds
+    if (x >= gBmMapSize.x || y >= gBmMapSize.y)
+        return 0; // position out of bounds
+    if (gBmMapUnit[y][x])
+        return 0;
+    if (gBmMapHidden[y][x] & 1)
+        return 0; // a hidden unit is occupying this position
+    if ((x2 == x) && (y2 == y))
+        return 0;                                                  // exception / a battle unit is on this tile
+    return Vanilla_CanUnitCrossTerrain(unit, gBmMapTerrain[y][x]); // CanUnitCrossTerrain(unit, gMapTerrain[y][x]);
+}

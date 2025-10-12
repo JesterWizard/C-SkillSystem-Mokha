@@ -214,6 +214,17 @@ void BattleDamageCalc_AttackerSkills(struct BattleUnit *attacker, struct BattleU
 			break;
 #endif
 
+#if defined(SID_LoadstarRush) && (COMMON_SKILL_VALID(SID_LoadstarRush))
+		case SID_LoadstarRush:
+    		if (attacker == &gBattleActor && BattleFastSkillTester(attacker, SID_LoadstarRush))
+			{
+        		gDmg.decrease += DAMAGE_DECREASE(SKILL_EFF1(SID_LoadstarRush));
+			}
+			
+			break;
+#endif
+
+
 #if defined(SID_Astra) && (COMMON_SKILL_VALID(SID_Astra))
 		case SID_Astra:
 			if (attacker == &gBattleActor && gBattleActorGlobalFlag.skill_activated_astra)

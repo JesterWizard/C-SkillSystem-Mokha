@@ -136,9 +136,6 @@
 #define MSG_SKILL_VoidCurse_PRICE 1000
 #define MSG_SKILL_Aptitude_PRICE 1000
 #define MSG_SKILL_Peacebringer_PRICE 1000
-#define MSG_SKILL_LEGEND_MiracleAtk_PRICE 1000
-#define MSG_SKILL_LEGEND_MiracleAvo_PRICE 1000
-#define MSG_SKILL_LEGEND_MiracleDef_PRICE 1000
 #define MSG_SKILL_Frenzy_PRICE 1000
 #define MSG_SKILL_WonderGuard_PRICE 1000
 #define MSG_SKILL_PoisonPoint_PRICE 1000

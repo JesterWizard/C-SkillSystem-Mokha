@@ -10,7 +10,6 @@ gPostActionFuncs:
     POIN PostActionAlertStance
     POIN PostActionTsuzuku
     POIN PostActionGetItem
-    POIN PostActionSwap
     POIN PostActionPositionReturn
     POIN PostActionRemoveChillDebuff
     POIN PostAction_Glorifier

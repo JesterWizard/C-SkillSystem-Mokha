@@ -38,7 +38,11 @@
 #define IS_ROM_DATA(ptr)     ((((u32)(ptr)) & 0xF8000001) == 0x08000000)
 #define IS_ANTI_HUFFMAN(ptr) ((((u32)(ptr)) & 0xF8000000) == 0x88000000)
 
+#define IS_UNIT_PTR(unit)    (UNIT_IS_VALID((unit)) /* && IS_ROM_DATA((unit)->pCharacterData) && IS_ROM_DATA((unit)->pClassData) */)
+#define UNIT_ALIVE(unit)     (UNIT_IS_VALID((unit)) && !((unit)->state & US_UNAVAILABLE))
+
 #define UNIT_LEVEL_MAX_RE 20
 #define UNIT_RECORDED_LEVEL_MAX 80
+#define UNIT_MAX_INVENTORY 5
 
 typedef bool (*HookProcFunc_t)(ProcPtr proc);

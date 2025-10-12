@@ -183,7 +183,7 @@ PUSH
 
     ORG $18D10 // IsUnitMagicSealed
     BYTE 0x3F
-    PROTECT $18D08 $18D34
+    // PROTECT $18D08 $18D34
 
 /*
     ORG $361C8 // StatusDecayDisplay_Display

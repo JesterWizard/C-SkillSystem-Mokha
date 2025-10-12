@@ -278,6 +278,11 @@ void ComputeBattleUnitEffectiveStats(struct BattleUnit *attacker, struct BattleU
 	ComputeBattleUnitSilencerRate(attacker, defender);
 	ComputeBattleUnitSpecialWeaponStats(attacker, defender);
 
+#if (defined(SID_Bide) && (COMMON_SKILL_VALID(SID_Bide)))
+    if (BattleFastSkillTester(attacker, SID_Bide) && gActionData.unk08 == SID_Bide)
+        attacker->battleAttack = (attacker->unit.curHP - 1) * 2 + defender->battleDefense;
+#endif
+
 #if CHAX
 	BattleCalcReal_ComputSkills(attacker, defender);
 #endif

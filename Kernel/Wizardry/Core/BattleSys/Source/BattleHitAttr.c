@@ -106,33 +106,6 @@ bool CheckBattleInori(struct BattleUnit *attacker, struct BattleUnit *defender)
 	}
 #endif
 
-#if (defined(SID_LEGEND_MiracleAtk) && (COMMON_SKILL_VALID(SID_LEGEND_MiracleAtk)))
-	if (CheckBattleSkillActivate(defender, attacker, SID_LEGEND_MiracleAtk, 100)) {
-		if (TryActivateLegendSkill(&defender->unit, SID_LEGEND_MiracleAtk) == 0) {
-			RegisterTargetEfxSkill(GetBattleHitRound(gBattleHitIterator), SID_LEGEND_MiracleAtk);
-			return true;
-		}
-	}
-#endif
-
-#if (defined(SID_LEGEND_MiracleAvo) && (COMMON_SKILL_VALID(SID_LEGEND_MiracleAvo)))
-	if (CheckBattleSkillActivate(defender, attacker, SID_LEGEND_MiracleAvo, 100)) {
-		if (TryActivateLegendSkill(&defender->unit, SID_LEGEND_MiracleAvo) == 0) {
-			RegisterTargetEfxSkill(GetBattleHitRound(gBattleHitIterator), SID_LEGEND_MiracleAvo);
-			return true;
-		}
-	}
-#endif
-
-#if (defined(SID_LEGEND_MiracleDef) && (COMMON_SKILL_VALID(SID_LEGEND_MiracleDef)))
-	if (CheckBattleSkillActivate(defender, attacker, SID_LEGEND_MiracleDef, 100)) {
-		if (TryActivateLegendSkill(&defender->unit, SID_LEGEND_MiracleDef) == 0) {
-			RegisterTargetEfxSkill(GetBattleHitRound(gBattleHitIterator), SID_LEGEND_MiracleDef);
-			return true;
-		}
-	}
-#endif
-
 	return false;
 }
 
@@ -312,10 +285,44 @@ void BattleHit_InjectNegativeStatus(struct BattleUnit *attacker, struct BattleUn
 		exthit->tar_debuff = UNIT_STATUS_PETRIFY;
 	}
 #endif
+
+#if (defined(SID_Break) && (COMMON_SKILL_VALID(SID_Break)))
+    else if (BattleFastSkillTester(attacker, SID_Break))
+    {
+        if (GetUnit(defender->unit.index)->statusIndex == UNIT_STATUS_NONE)
+            SetUnitStatus(GetUnit(defender->unit.index), NEW_UNIT_STATUS_BREAK);
+    }
+#endif
+
+#if (defined(SID_Geomancy) && (COMMON_SKILL_VALID(SID_Geomancy)))
+    else if (BattleFastSkillTester(attacker, SID_Geomancy) && gActionData.unk08 == SID_Geomancy)
+    {
+        if (GetUnit(defender->unit.index)->statusIndex == UNIT_STATUS_NONE)
+        {
+            switch (gBmMapTerrain[attacker->unit.yPos][attacker->unit.xPos])
+            {
+            case TERRAIN_FOREST:
+                SetUnitStatus(GetUnit(defender->unit.index), NEW_UNIT_STATUS_HEAVY_GRAVITY);
+                break;
+
+            default:
+                break;
+            }
+        }
+    }
+#endif
 	else if (gBattleTemporaryFlag.skill_activated_dead_eye)
 		exthit->tar_debuff = UNIT_STATUS_SLEEP;
 	else if (GetItemWeaponEffect(attacker->weapon) == WPN_EFFECT_POISON)
 		exthit->tar_debuff = UNIT_STATUS_POISON;
+
+#if (defined(SID_Toxic) && (COMMON_SKILL_VALID(SID_Toxic)))
+    else if (BattleFastSkillTester(attacker, SID_Toxic))
+    {
+        if (GetUnit(defender->unit.index)->statusIndex == UNIT_STATUS_NONE)
+            SetUnitStatus(GetUnit(defender->unit.index), NEW_UNIT_STATUS_TOXIC_POISON);
+    }
+#endif
 
 #if (defined(SID_PoisonPoint) && (COMMON_SKILL_VALID(SID_PoisonPoint)))
 	else if (BattleFastSkillTester(attacker, SID_PoisonPoint))
@@ -342,27 +349,75 @@ void BattleHit_InjectNegativeStatus(struct BattleUnit *attacker, struct BattleUn
 
 #if (defined(SID_BlackMagic) && (COMMON_SKILL_VALID(SID_BlackMagic)))
 	else if (CheckBattleSkillActivate(attacker, defender, SID_BlackMagic, attacker->unit.skl)) {
-		static const u8 _debuffs[] = {
-			// Vanilla
-			UNIT_STATUS_POISON,
-			UNIT_STATUS_SLEEP,
-			UNIT_STATUS_SILENCED,
-			UNIT_STATUS_BERSERK,
-
-			// CHAX
-			NEW_UNIT_STATUS_PIERCE_ARMOR,
-			NEW_UNIT_STATUS_PIERCE_MAGIC,
-			NEW_UNIT_STATUS_HEAVY_GRAVITY,
-			NEW_UNIT_STATUS_WEAKEN,
-			NEW_UNIT_STATUS_BREAK,
-			NEW_UNIT_STATUS_TOXIC_POISON,
-			NEW_UNIT_STATUS_DOOM,
-			NEW_UNIT_STATUS_SLOW,
-		};
-
-		exthit->tar_debuff = _debuffs[NextRN_N(ARRAY_COUNT(_debuffs))];
+		exthit->tar_debuff = debuffs[NextRN_N(ARRAY_COUNT(debuffs))];
 		RegisterActorEfxSkill(GetBattleHitRound(gBattleHitIterator), SID_BlackMagic);
 	}
+#endif
+
+#if (defined(SID_MagicBounce) && (COMMON_SKILL_VALID(SID_MagicBounce)))
+    if (BattleFastSkillTester(defender, SID_MagicBounce))
+    {
+        for (int i = 0; i < (int)ARRAY_COUNT(debuffs); i++)
+        {
+            if (defender->statusOut == debuffs[i])
+            {
+                defender->statusOut = UNIT_STATUS_NONE;
+                attacker->statusOut = debuffs[i];
+                break;
+            }
+        }
+
+        RegisterTargetEfxSkill(GetBattleHitRound(gBattleHitIterator), SID_MagicBounce);
+    }
+#endif
+
+#if (defined(SID_Insomnia) && (COMMON_SKILL_VALID(SID_Insomnia)))
+    if (BattleFastSkillTester(defender, SID_Insomnia))
+        if (defender->statusOut == UNIT_STATUS_SLEEP)
+            defender->statusOut = UNIT_STATUS_NONE;
+#endif
+
+#if (defined(SID_GoodAsGold) && (COMMON_SKILL_VALID(SID_GoodAsGold)))
+    if (BattleFastSkillTester(defender, SID_GoodAsGold))
+    {
+        for (int i = 0; i < 9; i++)
+        {
+            if (defender->statusOut == debuffs[i])
+            {
+                defender->statusOut = UNIT_STATUS_NONE;
+                break;
+            }
+        }
+    }
+#endif
+
+#if (defined(SID_PastelVeil) && (COMMON_SKILL_VALID(SID_PastelVeil)))
+    if (defender->statusOut == UNIT_STATUS_POISON)
+    {
+        for (int i = 0; i < ARRAY_COUNT_RANGE3x3; i++)
+        {
+            int _x = GetUnit(defender->unit.index)->xPos + gVecs_3x3[i].x;
+            int _y = GetUnit(defender->unit.index)->yPos + gVecs_3x3[i].y;
+
+            struct Unit *unit_ally = GetUnitAtPosition(_x, _y);
+
+            if (!UNIT_IS_VALID(unit_ally))
+                continue;
+
+            if (unit_ally->state & (US_HIDDEN | US_DEAD | US_RESCUED | US_BIT16))
+                continue;
+
+            if (!AreUnitsAllied(defender->unit.index, unit_ally->index))
+                continue;
+
+            if (SkillTester(unit_ally, SID_PastelVeil))
+            {
+                defender->statusOut = UNIT_STATUS_NONE;
+                gBattleHitIterator->attributes &= ~BATTLE_HIT_ATTR_POISON;
+                break;
+            }
+        }
+    }
 #endif
 
 	InjectNegativeStatusExt(attacker, exthit->act_debuff);

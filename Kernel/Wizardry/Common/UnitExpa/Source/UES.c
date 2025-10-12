@@ -2,6 +2,12 @@
 #include "unit-expa.h"
 #include "kernel-lib.h"
 
+void SetBitUES_BU(struct BattleUnit * bu, int bit)
+{
+	Assert(bit >= 0 && bit < 16);
+	_BIT_SET(&bu->unit._u3A, bit);
+}
+
 void SetBitUES(struct Unit *unit, int bit)
 {
 	Assert(bit >= 0 && bit < 16);

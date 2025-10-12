@@ -515,4 +515,664 @@ struct MenuItemDef const* const gSkillMenuInfos[MAX_SKILL_NUM + 1] = {
 		.onSwitchOut = NULL,
 	},
 #endif
+
+#if (defined(SID_Swap) && COMMON_SKILL_VALID(SID_Swap))
+    [SID_Swap] = &(const struct MenuItemDef) {
+        .name = "　交換",
+        .nameMsgId = MSG_SKILL_Swap_NAME,
+        .helpMsgId = MSG_SKILL_Swap_DESC,
+        .color = TEXT_COLOR_SYSTEM_GOLD,
+        .isAvailable = Swap_Usability,
+        .onDraw = NULL,
+        .onSelected = Swap_OnSelected,
+        .onIdle = NULL,
+        .onSwitchIn = NULL,
+        .onSwitchOut = NULL,
+    },
+#endif
+
+#if (defined(SID_Transform) && COMMON_SKILL_VALID(SID_Transform))
+    [SID_Transform] = &(const struct MenuItemDef) {
+        .name = "　",
+        .nameMsgId = MSG_SKILL_Transform_NAME,
+        .helpMsgId = MSG_SKILL_Transform_DESC,
+        .color = TEXT_COLOR_SYSTEM_GOLD,
+        .isAvailable = Transform_Usability,
+        .onDraw = NULL,
+        .onSelected = Transform_OnSelected,
+        .onIdle = NULL,
+        .onSwitchIn = NULL,
+        .onSwitchOut = NULL,
+    },
+#endif
+
+#if (defined(SID_DrawBack) && COMMON_SKILL_VALID(SID_DrawBack))
+    [SID_DrawBack] = &(const struct MenuItemDef) {
+        .name = "　",
+        .nameMsgId = MSG_SKILL_DrawBack_NAME,
+        .helpMsgId = MSG_SKILL_DrawBack_DESC,
+        .color = TEXT_COLOR_SYSTEM_GOLD,
+        .isAvailable = DrawBack_Usability,
+        .onDraw = NULL,
+        .onSelected = DrawBack_OnSelected,
+        .onIdle = NULL,
+        .onSwitchIn = NULL,
+        .onSwitchOut = NULL,
+    },
+#endif
+
+#if (defined(SID_Pivot) && COMMON_SKILL_VALID(SID_Pivot))
+    [SID_Pivot] = &(const struct MenuItemDef) {
+        .name = "　",
+        .nameMsgId = MSG_SKILL_Pivot_NAME,
+        .helpMsgId = MSG_SKILL_Pivot_DESC,
+        .color = TEXT_COLOR_SYSTEM_GOLD,
+        .isAvailable = Pivot_Usability,
+        .onDraw = NULL,
+        .onSelected = Pivot_OnSelected,
+        .onIdle = NULL,
+        .onSwitchIn = NULL,
+        .onSwitchOut = NULL,
+    },
+#endif
+
+#if (defined(SID_Reposition) && COMMON_SKILL_VALID(SID_Reposition))
+    [SID_Reposition] = &(const struct MenuItemDef) {
+        .name = "　",
+        .nameMsgId = MSG_SKILL_Reposition_NAME,
+        .helpMsgId = MSG_SKILL_Reposition_DESC,
+        .color = TEXT_COLOR_SYSTEM_GOLD,
+        .isAvailable = Reposition_Usability,
+        .onDraw = NULL,
+        .onSelected = Reposition_OnSelected,
+        .onIdle = NULL,
+        .onSwitchIn = NULL,
+        .onSwitchOut = NULL,
+    },
+#endif
+
+#if (defined(SID_Shove) && COMMON_SKILL_VALID(SID_Shove))
+    [SID_Shove] = &(const struct MenuItemDef) {
+        .name = "　",
+        .nameMsgId = MSG_SKILL_Shove_NAME,
+        .helpMsgId = MSG_SKILL_Shove_DESC,
+        .color = TEXT_COLOR_SYSTEM_GOLD,
+        .isAvailable = Shove_Usability,
+        .onDraw = NULL,
+        .onSelected = Shove_OnSelected,
+        .onIdle = NULL,
+        .onSwitchIn = NULL,
+        .onSwitchOut = NULL,
+    },
+#endif
+
+#if (defined(SID_Smite) && COMMON_SKILL_VALID(SID_Smite))
+    [SID_Smite] = &(const struct MenuItemDef) {
+        .name = "　",
+        .nameMsgId = MSG_SKILL_Smite_NAME,
+        .helpMsgId = MSG_SKILL_Smite_DESC,
+        .color = TEXT_COLOR_SYSTEM_GOLD,
+        .isAvailable = Smite_Usability,
+        .onDraw = NULL,
+        .onSelected = Smite_OnSelected,
+        .onIdle = NULL,
+        .onSwitchIn = NULL,
+        .onSwitchOut = NULL,
+    },
+#endif
+
+#if (defined(SID_ArdentSacrifice) && COMMON_SKILL_VALID(SID_ArdentSacrifice))
+    [SID_ArdentSacrifice] = &(const struct MenuItemDef) {
+        .name = "　",
+        .nameMsgId = MSG_SKILL_ArdentSacrifice_NAME,
+        .helpMsgId = MSG_SKILL_ArdentSacrifice_DESC,
+        .color = TEXT_COLOR_SYSTEM_GOLD,
+        .isAvailable = ArdentSacrifice_Usability,
+        .onDraw = NULL,
+        .onSelected = ArdentSacrifice_OnSelected,
+        .onIdle = NULL,
+        .onSwitchIn = NULL,
+        .onSwitchOut = NULL,
+    },
+#endif
+
+#if (defined(SID_ReciprocalAid) && COMMON_SKILL_VALID(SID_ReciprocalAid))
+    [SID_ReciprocalAid] = &(const struct MenuItemDef) {
+        .name = "　",
+        .nameMsgId = MSG_SKILL_ReciprocalAid_NAME,
+        .helpMsgId = MSG_SKILL_ReciprocalAid_DESC,
+        .color = TEXT_COLOR_SYSTEM_GOLD,
+        .isAvailable = ReciprocalAid_Usability,
+        .onDraw = NULL,
+        .onSelected = ReciprocalAid_OnSelected,
+        .onIdle = NULL,
+        .onSwitchIn = NULL,
+        .onSwitchOut = NULL,
+    },
+#endif
+
+#if (defined(SID_Sacrifice) && COMMON_SKILL_VALID(SID_Sacrifice))
+    [SID_Sacrifice] = &(const struct MenuItemDef) {
+        .name = "　",
+        .nameMsgId = MSG_SKILL_Sacrifice_NAME,
+        .helpMsgId = MSG_SKILL_Sacrifice_DESC,
+        .color = TEXT_COLOR_SYSTEM_GOLD,
+        .isAvailable = Sacrifice_Usability,
+        .onDraw = NULL,
+        .onSelected = Sacrifice_OnSelected,
+        .onIdle = NULL,
+        .onSwitchIn = NULL,
+        .onSwitchOut = NULL,
+    },
+#endif
+
+#if (defined(SID_Capture) && COMMON_SKILL_VALID(SID_Capture))
+    [SID_Capture] = &(const struct MenuItemDef) {
+        .name = "　",
+        .nameMsgId = MSG_SKILL_Capture_NAME,
+        .helpMsgId = MSG_SKILL_Capture_DESC,
+        .color = TEXT_COLOR_SYSTEM_GOLD,
+        .isAvailable = Capture_Usability,
+        .onDraw = NULL,
+        .onSelected = Capture_OnSelected,
+        .onIdle = NULL,
+        .onSwitchIn = NULL,
+        .onSwitchOut = NULL,
+    },
+#endif
+
+#if (defined(SID_Doppleganger) && COMMON_SKILL_VALID(SID_Doppleganger))
+    [SID_Doppleganger] = &(const struct MenuItemDef) {
+        .name = "　",
+        .nameMsgId = MSG_SKILL_Doppleganger_NAME,
+        .helpMsgId = MSG_SKILL_Doppleganger_DESC,
+        .color = TEXT_COLOR_SYSTEM_GOLD,
+        .isAvailable = Doppleganger_Usability,
+        .onDraw = NULL,
+        .onSelected = Doppleganger_OnSelected,
+        .onIdle = NULL,
+        .onSwitchIn = NULL,
+        .onSwitchOut = NULL,
+    },
+#endif
+
+#if (defined(SID_Dismount) && COMMON_SKILL_VALID(SID_Dismount))
+    [SID_Dismount] = &(const struct MenuItemDef) {
+        .name = "　",
+        .nameMsgId = MSG_SKILL_Dismount_NAME,
+        .helpMsgId = MSG_SKILL_Dismount_DESC,
+        .color = TEXT_COLOR_SYSTEM_GOLD,
+        .isAvailable = Dismount_Usability,
+        .onDraw = NULL,
+        .onSelected = Dismount_OnSelected,
+        .onIdle = NULL,
+        .onSwitchIn = NULL,
+        .onSwitchOut = NULL,
+    },
+#endif
+
+#if (defined(SID_Entrepreneur) && COMMON_SKILL_VALID(SID_Entrepreneur))
+    [SID_Entrepreneur] = &(const struct MenuItemDef) {
+        .name = "　",
+        .nameMsgId = MSG_SKILL_Entrepreneur_NAME,
+        .helpMsgId = MSG_SKILL_Entrepreneur_DESC,
+        .color = TEXT_COLOR_SYSTEM_GOLD,
+        .isAvailable = Entrepreneur_Usability,
+        .onDraw = NULL,
+        .onSelected = Entrepreneur_OnSelected,
+        .onIdle = NULL,
+        .onSwitchIn = NULL,
+        .onSwitchOut = NULL,
+    },
+#endif
+
+#if (defined(SID_Arise) && COMMON_SKILL_VALID(SID_Arise))
+    [SID_Arise] = &(const struct MenuItemDef) {
+        .name = "　",
+        .nameMsgId = MSG_SKILL_Arise_NAME,
+        .helpMsgId = MSG_SKILL_Arise_DESC,
+        .color = TEXT_COLOR_SYSTEM_GOLD,
+        .isAvailable = Arise_Usability,
+        .onDraw = NULL,
+        .onSelected = Arise_OnSelected,
+        .onIdle = NULL,
+        .onSwitchIn = NULL,
+        .onSwitchOut = NULL,
+    },
+#endif
+
+#if (defined(SID_AssignDecoy) && COMMON_SKILL_VALID(SID_AssignDecoy))
+    [SID_AssignDecoy] = &(const struct MenuItemDef) {
+        .name = "　",
+        .nameMsgId = MSG_SKILL_AssignDecoy_NAME,
+        .helpMsgId = MSG_SKILL_AssignDecoy_DESC,
+        .color = TEXT_COLOR_SYSTEM_GOLD,
+        .isAvailable = AssignDecoy_Usability,
+        .onDraw = NULL,
+        .onSelected = AssignDecoy_OnSelected,
+        .onIdle = NULL,
+        .onSwitchIn = NULL,
+        .onSwitchOut = NULL,
+    },
+#endif
+
+#if (defined(SID_ShadowFlash) && COMMON_SKILL_VALID(SID_ShadowFlash))
+    [SID_ShadowFlash] = &(const struct MenuItemDef) {
+        .name = "　光の結界",
+        .nameMsgId = MSG_SKILL_ShadowFlash_NAME,
+        .helpMsgId = MSG_SKILL_ShadowFlash_DESC,
+        .color = TEXT_COLOR_SYSTEM_GOLD,
+        .isAvailable = ShadowFlash_Usability,
+        .onDraw = NULL,
+        .onSelected = ShadowFlash_OnSelected,
+        .onIdle = NULL,
+        .onSwitchIn = ShadowFlash_Hover,
+        .onSwitchOut = ShadowFlash_Unhover,
+    },
+#endif
+
+#if (defined(SID_DeathBlight) && COMMON_SKILL_VALID(SID_DeathBlight))
+    [SID_DeathBlight] = &(const struct MenuItemDef) {
+        .name = "　光の結界",
+        .nameMsgId = MSG_SKILL_DeathBlight_NAME,
+        .helpMsgId = MSG_SKILL_DeathBlight_DESC,
+        .color = TEXT_COLOR_SYSTEM_GOLD,
+        .isAvailable = DeathBlight_Usability,
+        .onDraw = NULL,
+        .onSelected = DeathBlight_OnSelected,
+        .onIdle = NULL,
+        .onSwitchIn = NULL,
+        .onSwitchOut = NULL,
+    },
+#endif
+
+#if (defined(SID_LoadstarRush) && COMMON_SKILL_VALID(SID_LoadstarRush))
+    [SID_LoadstarRush] = &(const struct MenuItemDef) {
+        .name = "　光の結界",
+        .nameMsgId = MSG_SKILL_LoadstarRush_NAME,
+        .helpMsgId = MSG_SKILL_LoadstarRush_DESC,
+        .color = TEXT_COLOR_SYSTEM_GOLD,
+        .isAvailable = LoadstarRush_Usability,
+        .onDraw = NULL,
+        .onSelected = LoadstarRush_OnSelected,
+        .onIdle = NULL,
+        .onSwitchIn = NULL,
+        .onSwitchOut = NULL,
+    },
+#endif
+
+#if (defined(SID_WyvernCrash) && COMMON_SKILL_VALID(SID_WyvernCrash))
+    [SID_WyvernCrash] = &(const struct MenuItemDef) {
+        .name = "　光の結界",
+        .nameMsgId = MSG_SKILL_WyvernCrash_NAME,
+        .helpMsgId = MSG_SKILL_WyvernCrash_DESC,
+        .color = TEXT_COLOR_SYSTEM_GOLD,
+        .isAvailable = WyvernCrash_Usability,
+        .onDraw = NULL,
+        .onSelected = WyvernCrash_OnSelected,
+        .onIdle = NULL,
+        .onSwitchIn = NULL,
+        .onSwitchOut = NULL,
+    },
+#endif
+
+#if (defined(SID_Sellsword) && COMMON_SKILL_VALID(SID_Sellsword))
+    [SID_Sellsword] = &(const struct MenuItemDef) {
+        .name = "　光の結界",
+        .nameMsgId = MSG_SKILL_Sellsword_NAME,
+        .helpMsgId = MSG_SKILL_Sellsword_DESC,
+        .color = TEXT_COLOR_SYSTEM_GOLD,
+        .isAvailable = Sellsword_Usability,
+        .onDraw = NULL,
+        .onSelected = Sellsword_OnSelected,
+        .onIdle = NULL,
+        .onSwitchIn = NULL,
+        .onSwitchOut = NULL,
+    },
+#endif
+
+#if (defined(SID_Switcher) && COMMON_SKILL_VALID(SID_Switcher))
+    [SID_Switcher] = &(const struct MenuItemDef) {
+        .name = "　光の結界",
+        .nameMsgId = MSG_SKILL_Switcher_NAME,
+        .helpMsgId = MSG_SKILL_Switcher_DESC,
+        .color = TEXT_COLOR_SYSTEM_GOLD,
+        .isAvailable = Switcher_Usability,
+        .onDraw = NULL,
+        .onSelected = Switcher_OnSelected,
+        .onIdle = NULL,
+        .onSwitchIn = NULL,
+        .onSwitchOut = NULL,
+    },
+#endif
+
+#if (defined(SID_SummonPlus) && COMMON_SKILL_VALID(SID_SummonPlus))
+    [SID_SummonPlus] = &(const struct MenuItemDef) {
+        .name = "　召喚",
+        .nameMsgId = MSG_SKILL_SummonPlus_NAME,
+        .helpMsgId = MSG_SKILL_SummonPlus_DESC,
+        .color = TEXT_COLOR_SYSTEM_GOLD,
+        .isAvailable = SummonCommandUsability,
+        .onDraw = NULL,
+        .onSelected = SummonPlusCommandEffect,
+        .onIdle = NULL,
+        .onSwitchIn = NULL,
+        .onSwitchOut = NULL
+    },
+#endif
+
+#if (defined(SID_LethalityPlus) && COMMON_SKILL_VALID(SID_LethalityPlus))
+    [SID_LethalityPlus] = &(const struct MenuItemDef) {
+        .name = "　光の結界",
+        .nameMsgId = MSG_SKILL_LethalityPlus_NAME,
+        .helpMsgId = MSG_SKILL_LethalityPlus_DESC,
+        .color = TEXT_COLOR_SYSTEM_GOLD,
+        .isAvailable = LethalityPlus_Usability,
+        .onDraw = NULL,
+        .onSelected = LethalityPlus_OnSelected,
+        .onIdle = NULL,
+        .onSwitchIn = NULL,
+        .onSwitchOut = NULL,
+    },
+#endif
+
+#if (defined(SID_GrimReaper) && COMMON_SKILL_VALID(SID_GrimReaper))
+    [SID_GrimReaper] = &(const struct MenuItemDef) {
+        .name = "　光の結界",
+        .nameMsgId = MSG_SKILL_GrimReaper_NAME,
+        .helpMsgId = MSG_SKILL_GrimReaper_DESC,
+        .color = TEXT_COLOR_SYSTEM_GOLD,
+        .isAvailable = GrimReaper_Usability,
+        .onDraw = NULL,
+        .onSelected = GrimReaper_OnSelected,
+        .onIdle = NULL,
+        .onSwitchIn = NULL,
+        .onSwitchOut = NULL,
+    },
+#endif
+
+#if (defined(SID_Hide) && COMMON_SKILL_VALID(SID_Hide))
+    [SID_Hide] = &(const struct MenuItemDef) {
+        .name = "　光の結界",
+        .nameMsgId = MSG_SKILL_Hide_NAME,
+        .helpMsgId = MSG_SKILL_Hide_DESC,
+        .color = TEXT_COLOR_SYSTEM_GOLD,
+        .isAvailable = Hide_Usability,
+        .onDraw = NULL,
+        .onSelected = Hide_OnSelected,
+        .onIdle = NULL,
+        .onSwitchIn = NULL,
+        .onSwitchOut = NULL,
+    },
+#endif
+
+#if (defined(SID_SkillSwap) && COMMON_SKILL_VALID(SID_SkillSwap))
+    [SID_SkillSwap] = &(const struct MenuItemDef) {
+        .name = "　",
+        .nameMsgId = MSG_SKILL_SkillSwap_NAME,
+        .helpMsgId = MSG_SKILL_SkillSwap_DESC,
+        .color = TEXT_COLOR_SYSTEM_GOLD,
+        .isAvailable = SkillSwap_Usability,
+        .onDraw = NULL,
+        .onSelected = SkillSwap_OnSelected,
+        .onIdle = NULL,
+        .onSwitchIn = NULL,
+        .onSwitchOut = NULL,
+    },
+#endif
+
+#if (defined(SID_Shuffle) && COMMON_SKILL_VALID(SID_Shuffle))
+    [SID_Shuffle] = &(const struct MenuItemDef) {
+        .name = "　",
+        .nameMsgId = MSG_SKILL_Shuffle_NAME,
+        .helpMsgId = MSG_SKILL_Shuffle_DESC,
+        .color = TEXT_COLOR_SYSTEM_GOLD,
+        .isAvailable = Shuffle_Usability,
+        .onDraw = NULL,
+        .onSelected = Shuffle_OnSelected,
+        .onIdle = NULL,
+        .onSwitchIn = NULL,
+        .onSwitchOut = NULL,
+    },
+#endif
+
+#if (defined(SID_ShufflePlus) && COMMON_SKILL_VALID(SID_ShufflePlus))
+    [SID_ShufflePlus] = &(const struct MenuItemDef) {
+        .name = "　",
+        .nameMsgId = MSG_SKILL_ShufflePlus_NAME,
+        .helpMsgId = MSG_SKILL_ShufflePlus_DESC,
+        .color = TEXT_COLOR_SYSTEM_GOLD,
+        .isAvailable = ShufflePlus_Usability,
+        .onDraw = NULL,
+        .onSelected = ShufflePlus_OnSelected,
+        .onIdle = NULL,
+        .onSwitchIn = NULL,
+        .onSwitchOut = NULL,
+    },
+#endif
+
+#if (defined(SID_Persuade) && COMMON_SKILL_VALID(SID_Persuade))
+    [SID_Persuade] = &(const struct MenuItemDef) {
+        .name = "　",
+        .nameMsgId = MSG_SKILL_Persuade_NAME,
+        .helpMsgId = MSG_SKILL_Persuade_DESC,
+        .color = TEXT_COLOR_SYSTEM_GOLD,
+        .isAvailable = Persuade_Usability,
+        .onDraw = NULL,
+        .onSelected = Persuade_OnSelected,
+        .onIdle = NULL,
+        .onSwitchIn = NULL,
+        .onSwitchOut = NULL,
+    },
+#endif
+
+#if (defined(SID_PersuadePlus) && COMMON_SKILL_VALID(SID_PersuadePlus))
+    [SID_PersuadePlus] = &(const struct MenuItemDef) {
+        .name = "　",
+        .nameMsgId = MSG_SKILL_PersuadePlus_NAME,
+        .helpMsgId = MSG_SKILL_PersuadePlus_DESC,
+        .color = TEXT_COLOR_SYSTEM_GOLD,
+        .isAvailable = PersuadePlus_Usability,
+        .onDraw = NULL,
+        .onSelected = PersuadePlus_OnSelected,
+        .onIdle = NULL,
+        .onSwitchIn = NULL,
+        .onSwitchOut = NULL,
+    },
+#endif
+
+#if (defined(SID_Kamikaze) && COMMON_SKILL_VALID(SID_Kamikaze))
+    [SID_Kamikaze] = &(const struct MenuItemDef) {
+        .name = "　",
+        .nameMsgId = MSG_SKILL_Kamikaze_NAME,
+        .helpMsgId = MSG_SKILL_Kamikaze_DESC,
+        .color = TEXT_COLOR_SYSTEM_GOLD,
+        .isAvailable = Kamikaze_Usability,
+        .onDraw = NULL,
+        .onSelected = Kamikaze_OnSelected,
+        .onIdle = NULL,
+        .onSwitchIn = Kamikaze_Hover,
+        .onSwitchOut = Kamikaze_Unhover,
+    },
+#endif
+
+#if (defined(SID_Reinforcements) && COMMON_SKILL_VALID(SID_Reinforcements))
+    [SID_Reinforcements] = &(const struct MenuItemDef) {
+        .name = "　",
+        .nameMsgId = MSG_SKILL_Reinforcements_NAME,
+        .helpMsgId = MSG_SKILL_Reinforcements_DESC,
+        .color = TEXT_COLOR_SYSTEM_GOLD,
+        .isAvailable = Reinforcements_Usability,
+        .onDraw = NULL,
+        .onSelected = Reinforcements_OnSelected,
+        .onIdle = NULL,
+        .onSwitchIn = NULL,
+        .onSwitchOut = NULL,
+    },
+#endif
+
+#if (defined(SID_ResolvedHeart) && COMMON_SKILL_VALID(SID_ResolvedHeart))
+    [SID_ResolvedHeart] = &(const struct MenuItemDef) {
+        .name = "　",
+        .nameMsgId = MSG_SKILL_ResolvedHeart_NAME,
+        .helpMsgId = MSG_SKILL_ResolvedHeart_DESC,
+        .color = TEXT_COLOR_SYSTEM_GOLD,
+        .isAvailable = ResolvedHeart_Usability,
+        .onDraw = NULL,
+        .onSelected = ResolvedHeart_OnSelected,
+        .onIdle = NULL,
+        .onSwitchIn = NULL,
+        .onSwitchOut = NULL,
+    },
+#endif
+
+#if (defined(SID_Ballistary) && COMMON_SKILL_VALID(SID_Ballistary))
+    [SID_Ballistary] = &(const struct MenuItemDef) {
+        .name = "　",
+        .nameMsgId = MSG_SKILL_Ballistary_NAME,
+        .helpMsgId = MSG_SKILL_Ballistary_DESC,
+        .color = TEXT_COLOR_SYSTEM_GOLD,
+        .isAvailable = Ballistary_Usability,
+        .onDraw = NULL,
+        .onSelected = Ballistary_OnSelected,
+        .onIdle = NULL,
+        .onSwitchIn = NULL,
+        .onSwitchOut = NULL,
+    },
+#endif
+
+#if (defined(SID_Bide) && COMMON_SKILL_VALID(SID_Bide))
+    [SID_Bide] = &(const struct MenuItemDef) {
+        .name = "　",
+        .nameMsgId = MSG_SKILL_Bide_NAME,
+        .helpMsgId = MSG_SKILL_Bide_DESC,
+        .color = TEXT_COLOR_SYSTEM_GOLD,
+        .isAvailable = Bide_Usability,
+        .onDraw = NULL,
+        .onSelected = Bide_OnSelected,
+        .onIdle = NULL,
+        .onSwitchIn = NULL,
+        .onSwitchOut = NULL,
+    },
+#endif
+
+#if (defined(SID_CoinFlip) && COMMON_SKILL_VALID(SID_CoinFlip))
+    [SID_CoinFlip] = &(const struct MenuItemDef) {
+        .name = "　",
+        .nameMsgId = MSG_SKILL_CoinFlip_NAME,
+        .helpMsgId = MSG_SKILL_CoinFlip_DESC,
+        .color = TEXT_COLOR_SYSTEM_GOLD,
+        .isAvailable = CoinFlip_Usability,
+        .onDraw = NULL,
+        .onSelected = CoinFlip_OnSelected,
+        .onIdle = NULL,
+        .onSwitchIn = NULL,
+        .onSwitchOut = NULL,
+    },
+#endif
+
+#if (defined(SID_Geomancy) && COMMON_SKILL_VALID(SID_Geomancy))
+    [SID_Geomancy] = &(const struct MenuItemDef) {
+        .name = "　",
+        .nameMsgId = MSG_SKILL_Geomancy_NAME,
+        .helpMsgId = MSG_SKILL_Geomancy_DESC,
+        .color = TEXT_COLOR_SYSTEM_GOLD,
+        .isAvailable = Geomancy_Usability,
+        .onDraw = NULL,
+        .onSelected = Geomancy_OnSelected,
+        .onIdle = NULL,
+        .onSwitchIn = NULL,
+        .onSwitchOut = NULL,
+    },
+#endif
+
+#if (defined(SID_ScrollScribePlus) && COMMON_SKILL_VALID(SID_ScrollScribePlus))
+    [SID_ScrollScribePlus] = &(const struct MenuItemDef) {
+        .name = "　",
+        .nameMsgId = MSG_SKILL_ScrollScribePlus_NAME,
+        .helpMsgId = MSG_SKILL_ScrollScribePlus_DESC,
+        .color = TEXT_COLOR_SYSTEM_GOLD,
+        .isAvailable = ScrollScribePlus_Usability,
+        .onDraw = NULL,
+        .onSelected = ScrollScribePlus_OnSelected,
+        .onIdle = NULL,
+        .onSwitchIn = NULL,
+        .onSwitchOut = NULL,
+    },
+#endif
+
+#if (defined(SID_Acidic) && COMMON_SKILL_VALID(SID_Acidic))
+    [SID_Acidic] = &(const struct MenuItemDef) {
+        .name = "　",
+        .nameMsgId = MSG_SKILL_Acidic_NAME,
+        .helpMsgId = MSG_SKILL_Acidic_DESC,
+        .color = TEXT_COLOR_SYSTEM_GOLD,
+        .isAvailable = Acidic_Usability,
+        .onDraw = NULL,
+        .onSelected = Acidic_OnSelected,
+        .onIdle = NULL,
+        .onSwitchIn = NULL,
+        .onSwitchOut = NULL,
+    },
+#endif
+
+#if (defined(SID_AcidicPlus) && COMMON_SKILL_VALID(SID_AcidicPlus))
+    [SID_AcidicPlus] = &(const struct MenuItemDef) {
+        .name = "　",
+        .nameMsgId = MSG_SKILL_AcidicPlus_NAME,
+        .helpMsgId = MSG_SKILL_AcidicPlus_DESC,
+        .color = TEXT_COLOR_SYSTEM_GOLD,
+        .isAvailable = AcidicPlus_Usability,
+        .onDraw = NULL,
+        .onSelected = AcidicPlus_OnSelected,
+        .onIdle = NULL,
+        .onSwitchIn = NULL,
+        .onSwitchOut = NULL,
+    },
+#endif
+
+#if (defined(SID_Reinforce) && COMMON_SKILL_VALID(SID_Reinforce))
+    [SID_Reinforce] = &(const struct MenuItemDef) {
+        .name = "　",
+        .nameMsgId = MSG_SKILL_Reinforce_NAME,
+        .helpMsgId = MSG_SKILL_Reinforce_DESC,
+        .color = TEXT_COLOR_SYSTEM_GOLD,
+        .isAvailable = Reinforce_Usability,
+        .onDraw = NULL,
+        .onSelected = Reinforce_OnSelected,
+        .onIdle = NULL,
+        .onSwitchIn = NULL,
+        .onSwitchOut = NULL,
+    },
+#endif
+
+#if (defined(SID_SealedZone) && COMMON_SKILL_VALID(SID_SealedZone))
+    [SID_SealedZone] = &(const struct MenuItemDef) {
+        .name = "　",
+        .nameMsgId = MSG_SKILL_SealedZone_NAME,
+        .helpMsgId = MSG_SKILL_SealedZone_DESC,
+        .color = TEXT_COLOR_SYSTEM_GOLD,
+        .isAvailable = SealedZone_Usability,
+        .onDraw = NULL,
+        .onSelected = SealedZone_OnSelected,
+        .onIdle = NULL,
+        .onSwitchIn = NULL,
+        .onSwitchOut = NULL,
+    },
+#endif
+
+#if (defined(SID_Thrust) && COMMON_SKILL_VALID(SID_Thrust))
+    [SID_Thrust] = &(const struct MenuItemDef) {
+        .name = "　",
+        .nameMsgId = MSG_SKILL_Thrust_NAME,
+        .helpMsgId = MSG_SKILL_Thrust_DESC,
+        .color = TEXT_COLOR_SYSTEM_GOLD,
+        .isAvailable = Thrust_Usability,
+        .onDraw = NULL,
+        .onSelected = Thrust_OnSelected,
+        .onIdle = NULL,
+        .onSwitchIn = NULL,
+        .onSwitchOut = NULL,
+    },
+#endif
 };

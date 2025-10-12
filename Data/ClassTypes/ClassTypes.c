@@ -140,3 +140,10 @@ const u8 KernelClassList_Infantry[] = {
 	CLASS_BARD,
 	CLASS_NONE
 };
+
+const u8 KernelClassList_Bandit[] = {
+    CLASS_BRIGAND,
+    CLASS_PIRATE,
+    CLASS_BERSERKER,
+    CLASS_NONE
+};

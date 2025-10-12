@@ -8,6 +8,7 @@ extern u8 const *const gpKernelClassList_Armor;
 extern u8 const *const gpKernelClassList_Dragon;
 extern u8 const *const gpKernelClassList_Beast;
 extern u8 const *const gpKernelClassList_Infantry;
+extern u8 const *const gpKernelClassList_Bandit;
 
 bool CheckSameClassType(u8 jid1, u8 jid2);
 
@@ -17,3 +18,4 @@ bool CheckClassArmor(u8 jid);
 bool CheckClassDragon(u8 jid);
 bool CheckClassBeast(u8 jid);
 bool CheckClassInfantry(u8 jid);
+bool CheckClassBandit(u8 jid);

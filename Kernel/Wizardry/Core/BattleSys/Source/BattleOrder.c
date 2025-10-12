@@ -7,6 +7,7 @@
 #include "combat-art.h"
 #include "strmag.h"
 #include "bwl.h"
+#include "unit-expa.h"
 #include "combo-attack.h"
 #include "constants/skills.h"
 
@@ -69,6 +70,16 @@ bool CheckCanTwiceAttackOrder(struct BattleUnit *actor, struct BattleUnit *targe
 	if (GetItemIndex(actor->weapon) == ITEM_MONSTER_STONE)
 		return false;
 
+#if defined(SID_LoadstarRush) && (COMMON_SKILL_VALID(SID_LoadstarRush))
+	if (gActionData.unk08 == SID_LoadstarRush && !CheckBitUES(gActiveUnit, UES_BIT_LOADSTAR_RUSH_SKILL_USED))
+		return false;
+#endif
+
+#if defined(SID_Bide) && (COMMON_SKILL_VALID(SID_Bide))
+	if (gActionData.unk08 == SID_Bide && !CheckBitUES(gActiveUnit, UES_BIT_BIDE_SKILL_USED))
+		return false;
+#endif
+
 	/* Check combat-art */
 	if (&gBattleActor == actor) {
 		int cid = GetCombatArtInForce(&actor->unit);
@@ -119,6 +130,35 @@ bool CheckCanTwiceAttackOrder(struct BattleUnit *actor, struct BattleUnit *targe
 
 	/* Check attacker */
 	if (&gBattleActor == actor) {
+#if defined(SID_TrickRoom) && (COMMON_SKILL_VALID(SID_TrickRoom))
+		if (BattleFastSkillTester(actor, SID_TrickRoom))
+		{
+			if (followup_nullified_en == false)
+				return true;
+			else
+				return false;
+		}
+		else if (BattleFastSkillTester(target, SID_TrickRoom))
+		{
+			if (followup_nullified_en == false)
+				return true;
+			else
+				return false;
+    }
+#endif
+
+#if defined(SID_Switcher) && (COMMON_SKILL_VALID(SID_Switcher))
+        if (BattleFastSkillTester(actor, SID_Switcher))
+        {
+            if (followup_nullified_en == true && gActionData.unk08 == SID_Switcher)
+            {
+                if (!CheckBitUES(GetUnit(actor->unit.index), UES_BIT_SWITCHER_SKILL_USED))
+                    return true;
+                else
+                    return false;
+            }
+        }
+#endif
 #if defined(SID_BoldFighter) && (COMMON_SKILL_VALID(SID_BoldFighter))
 		if (BattleFastSkillTester(actor, SID_BoldFighter) && ref_actor_hp_above_half) {
 			gBattleTemporaryFlag.act_force_twice_order = true;
@@ -202,6 +242,36 @@ bool CheckCanTwiceAttackOrder(struct BattleUnit *actor, struct BattleUnit *targe
 #endif
 
 	} else if (&gBattleTarget == actor) {
+#if defined(SID_TrickRoom) && (COMMON_SKILL_VALID(SID_TrickRoom))
+		if (BattleFastSkillTester(actor, SID_TrickRoom))
+		{
+			if (followup_nullified_en == false)
+				return true;
+			else
+				return false;
+		}
+		else if (BattleFastSkillTester(target, SID_TrickRoom))
+		{
+			if (followup_nullified_en == false)
+				return true;
+			else
+				return false;
+		}
+#endif
+
+#if defined(SID_Switcher) && (COMMON_SKILL_VALID(SID_Switcher))
+        if (BattleFastSkillTester(actor, SID_Switcher))
+        {
+            if (followup_nullified_en == true && gActionData.unk08 == SID_Switcher)
+            {
+                if (!CheckBitUES(GetUnit(actor->unit.index), UES_BIT_SWITCHER_SKILL_USED))
+                    return true;         
+                else
+                    return false;
+            }
+        }
+#endif
+
 #if defined(SID_VengefulFighter) && (COMMON_SKILL_VALID(SID_VengefulFighter))
 		if (BattleFastSkillTester(actor, SID_VengefulFighter) && ref_actor_hp_above_half) {
 			gBattleTemporaryFlag.tar_force_twice_order = true;
@@ -610,6 +680,15 @@ int GetBattleUnitHitCount(struct BattleUnit *actor)
 		result = result + SKILL_EFF2(SID_RuinedBladePlus);
 	}
 #endif
+
+#if defined(SID_LoadstarRush) && (COMMON_SKILL_VALID(SID_LoadstarRush))
+    if (gActionData.unk08 == SID_LoadstarRush && !CheckBitUES(gActiveUnit, UES_BIT_LOADSTAR_RUSH_SKILL_USED) && BattleFastSkillTester(actor, SID_LoadstarRush))
+    {
+        EnqueueRoundEfxSkill(SID_LoadstarRush);
+        result = result + SKILL_EFF0(SID_LoadstarRush);
+    }
+#endif
+
 
 #if defined(SID_Astra) && (COMMON_SKILL_VALID(SID_Astra))
 	if (actor == &gBattleActor && CheckBattleSkillActivate(actor, target, SID_Astra, actor->unit.spd)) {

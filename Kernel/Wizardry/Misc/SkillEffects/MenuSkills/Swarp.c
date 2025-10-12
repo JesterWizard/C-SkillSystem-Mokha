@@ -18,12 +18,6 @@ u8 Swarp_Usability(const struct MenuItemDef *def, int number)
 	return MENU_ENABLED;
 }
 
-STATIC_DECLAR void PrepareMenuPositionSwap(void)
-{
-	EndAllMus();
-	RefreshUnitSprites();
-}
-
 static void set_target_unit(void)
 {
 	struct Unit *unit_tar = GetUnit(gActionData.targetIndex);
@@ -92,12 +86,18 @@ u8 Swarp_OnSelected(struct MenuProc *menu, struct MenuItemProc *item)
 	return MENU_ACT_SKIPCURSOR | MENU_ACT_END | MENU_ACT_SND6A;
 }
 
-STATIC_DECLAR const EventScr EventScr_MenuPositionSwap[] = {
+STATIC_DECLAR void PrepareMenuPositionSwarp(void)
+{
+    EndAllMus();
+    RefreshUnitSprites();
+}
+
+STATIC_DECLAR const EventScr EventScr_MenuPositionSwarp[] = {
 
 LABEL(0)
 	SVAL(EVT_SLOT_B, SID_Swarp)
 	CALL(EventScr_MuSkillAnim)
-	ASMC(PrepareMenuPositionSwap)
+	ASMC(PrepareMenuPositionSwarp)
 	ASMC(set_actor_unit)
 	CALL(EventScr_UidWarpOUT)
 	STAL(20)
@@ -119,7 +119,7 @@ LABEL(99)
 
 bool Action_Swarp(ProcPtr parent)
 {
-	KernelCallEvent(EventScr_MenuPositionSwap, EV_EXEC_CUTSCENE, parent);
+	KernelCallEvent(EventScr_MenuPositionSwarp, EV_EXEC_CUTSCENE, parent);
 	return true;
 }
 #endif

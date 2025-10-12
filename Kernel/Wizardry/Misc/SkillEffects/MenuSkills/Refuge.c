@@ -8,6 +8,7 @@
 #include "unit-expa.h"
 #include "action-expa.h"
 
+#ifdef CONFIG_REFUGE_FEATURE
 static s8 CanUnitRefuge(struct Unit* actor, struct Unit* target) {
     int actorCon  = UNIT_CON(actor);
     int targetAid = GetUnitAid(target);
@@ -151,3 +152,4 @@ bool Action_Refuge(ProcPtr parent)
 
     return true;
 }
+#endif

@@ -145,6 +145,7 @@ void KernelStartBlockingHookProc(HookProcFunc_t const *hook_list, ProcPtr parent
 #define ARRAY_COUNT_RANGE3x3 24
 #define ARRAY_COUNT_RANGE4x4 40
 #define ARRAY_COUNT_RANGE5x5 60
+#define ARRAY_COUNT_RANGE10x10 220
 
 extern const struct Vec1 gVecs_1x1[ARRAY_COUNT_RANGE1x1];
 extern const struct Vec1 gVecs_2x2[ARRAY_COUNT_RANGE2x2];

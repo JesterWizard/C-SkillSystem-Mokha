@@ -1,3 +1,5 @@
+#pragma once
+
 extern void IsTraineeLevelCappedOrPromoted(void);
 extern int GetStatIncrease_NEW(int growth, int expGained);
 extern void MakeHurtTargetList(int faction);
@@ -108,3 +110,18 @@ void PrepItemUseArmsScroll_OnEnd(struct ProcPrepItemUseJunaFruit * proc);
 void PrepItemUseArmsScroll_OnDraw(struct ProcPrepItemUseJunaFruit * proc, int item, int x, int y);
 
 int GetHighestWeaponRank(struct Unit * unit);
+
+void BeginMapAnimForSimultaneousDamage(struct BattleUnit* actor, struct BattleUnit* target, int actorDamage, int targetDamage);
+
+extern void BattleApplyMiscActionExpGains_Modular(int exp);
+extern void AddExp_Event(int exp);
+
+extern void TransferStatsandExperience(void);
+
+// extern const struct ProcCmd ProcScr_AddExp[];
+
+bool isWeaponTriangleAdvantage(int attackerWeapon, int defenderWeapon); // weapon type
+bool weaponHasSpecialEffect(int weaponAttributes);  // weaponID
+int findMax(u8 *array, int size);  // find max value in array and return index
+
+int RandSkill(int id, struct Unit * unit);

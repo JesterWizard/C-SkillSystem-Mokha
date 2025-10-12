@@ -16,8 +16,6 @@ gpSkillPreloadJData:      POIN gSkillPreloadJData
 gpEfxSkillAnimPriority:   POIN EfxSkillAnimPriority
 gpEfxSkillAnims:          POIN EfxSkillAnims
 
-gpLegendSkillPool:  POIN gLegendSkillPool
-
 gpCombatArtInfos:           POIN gCombatArtInfos
 gpCombatArtRomPTable:       POIN gCombatArtRomPTable
 gpCombatArtRomJTable:       POIN gCombatArtRomJTable
@@ -96,6 +94,7 @@ gpKernelClassList_Armor:       POIN KernelClassList_Armor
 gpKernelClassList_Dragon:      POIN KernelClassList_Dragon
 gpKernelClassList_Beast:       POIN KernelClassList_Beast
 gpKernelClassList_Infantry:    POIN KernelClassList_Infantry
+gpKernelClassList_Bandit:    POIN KernelClassList_Bandit
 
 WORD 0
 

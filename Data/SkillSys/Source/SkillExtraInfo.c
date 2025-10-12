@@ -415,6 +415,10 @@ const struct SkillExtraInfo gSkillExtraInfo[MAX_SKILL_NUM + 1] = {
 	[SID_Astra] = {{ 4, 50 }},
 #endif
 
+#if (defined(SID_LoadstarRush) && COMMON_SKILL_VALID(SID_LoadstarRush))
+    [SID_LoadstarRush] = {{6, 70}},
+#endif
+
 #if (defined(SID_Aether) && COMMON_SKILL_VALID(SID_Aether))
 	[SID_Aether] = {{ 80 }},
 #endif
@@ -1181,5 +1185,270 @@ const struct SkillExtraInfo gSkillExtraInfo[MAX_SKILL_NUM + 1] = {
 
 #if (defined(SID_WitchsBrew) && COMMON_SKILL_VALID(SID_WitchsBrew))
 	[SID_WitchsBrew] = {{ 7 }},
+#endif
+
+#if (defined(SID_PairUp) && COMMON_SKILL_VALID(SID_PairUp))
+    [SID_PairUp] = {{20}},
+#endif
+
+#if (defined(SID_ArdentSacrifice) && COMMON_SKILL_VALID(SID_ArdentSacrifice))
+    [SID_ArdentSacrifice]
+    {{ 10 } },
+#endif
+
+#if (defined(SID_Cultured) && COMMON_SKILL_VALID(SID_Cultured))
+    [SID_Cultured] = {{50}},
+#endif
+
+#if (defined(SID_Flank) && COMMON_SKILL_VALID(SID_Flank))
+    [SID_Flank] = {{25}},
+#endif
+
+#if (defined(SID_ForeignPrincess) && COMMON_SKILL_VALID(SID_ForeignPrincess))
+    [SID_ForeignPrincess] = {{2}},
+#endif
+
+#if (defined(SID_HoardersBane) && COMMON_SKILL_VALID(SID_HoardersBane))
+    [SID_HoardersBane] = {{10}},
+#endif
+
+#if (defined(SID_Thighdeology) && COMMON_SKILL_VALID(SID_Thighdeology))
+    [SID_Thighdeology] = {{2, 20}},
+#endif
+
+#if (defined(SID_ThotSlayer) && COMMON_SKILL_VALID(SID_ThotSlayer))
+    [SID_ThotSlayer] = {{15}},
+#endif
+
+#if (defined(SID_Swarm) && COMMON_SKILL_VALID(SID_Swarm))
+    [SID_Swarm] = {{50}},
+#endif
+
+#if (defined(SID_Capture) && COMMON_SKILL_VALID(SID_Capture))
+    [SID_Capture] = {{50}},
+#endif
+
+#if (defined(SID_MoonBow) && COMMON_SKILL_VALID(SID_MoonBow))
+    [SID_MoonBow] = {{25}},
+#endif
+
+#if (defined(SID_LimitBreaker) && COMMON_SKILL_VALID(SID_LimitBreaker))
+    [SID_LimitBreaker] = {{5}},
+#endif
+
+#if (defined(SID_LimitBreakerPlus) && COMMON_SKILL_VALID(SID_LimitBreakerPlus))
+    [SID_LimitBreakerPlus] = {{10}},
+#endif
+
+#if (defined(SID_RiskItAll) && COMMON_SKILL_VALID(SID_RiskItAll))
+    [SID_RiskItAll] = {{100}},
+#endif
+
+#if (defined(SID_Fluffy) && COMMON_SKILL_VALID(SID_Fluffy))
+    [SID_Fluffy] = {{100, 50}},
+#endif
+
+#if (defined(SID_Mercurious) && COMMON_SKILL_VALID(SID_Mercurious))
+    [SID_Mercurious] = {{25, 2}},
+#endif
+
+#if (defined(SID_Velocity) && COMMON_SKILL_VALID(SID_Velocity))
+    [SID_Velocity] = {{5}},
+#endif
+
+#if (defined(SID_OgreBody) && COMMON_SKILL_VALID(SID_OgreBody))
+    [SID_OgreBody] = {{99}},
+#endif
+
+#if (defined(SID_BeginnersLuck) && COMMON_SKILL_VALID(SID_BeginnersLuck))
+    [SID_BeginnersLuck] = {{20}},
+#endif
+
+#if (defined(SID_ExpertsExperience) && COMMON_SKILL_VALID(SID_ExpertsExperience))
+    [SID_ExpertsExperience] = {{0}},
+#endif
+
+#if (defined(SID_HedgeFund) && COMMON_SKILL_VALID(SID_HedgeFund))
+    [SID_HedgeFund] = {{10}},
+#endif
+
+#if (defined(SID_Domain) && COMMON_SKILL_VALID(SID_Domain))
+    [SID_Domain] = {{2}},
+#endif
+
+#if (defined(SID_StaffGuard) && COMMON_SKILL_VALID(SID_StaffGuard))
+    [SID_StaffGuard] = {{5}},
+#endif
+
+#if (defined(SID_MakeAKilling) && COMMON_SKILL_VALID(SID_MakeAKilling))
+    [SID_MakeAKilling] = {{5}},
+#endif
+
+#if (defined(SID_SwordProwess) && COMMON_SKILL_VALID(SID_SwordProwess))
+    [SID_SwordProwess] = {{5, 7, 6, 10, 7, 13, 8, 16, 10, 20}},
+#endif
+
+#if (defined(SID_LanceProwess) && COMMON_SKILL_VALID(SID_LanceProwess))
+    [SID_LanceProwess] = {{5, 7, 6, 10, 7, 13, 8, 16, 10, 20}},
+#endif
+
+#if (defined(SID_AxeProwess) && COMMON_SKILL_VALID(SID_AxeProwess))
+    [SID_AxeProwess] = {{5, 7, 6, 10, 7, 13, 8, 16, 10, 20}},
+#endif
+
+#if (defined(SID_BowProwess) && COMMON_SKILL_VALID(SID_BowProwess))
+    [SID_BowProwess] = {{5, 7, 6, 10, 7, 13, 8, 16, 10, 20}},
+#endif
+
+#if (defined(SID_AnimaProwess) && COMMON_SKILL_VALID(SID_AnimaProwess))
+    [SID_AnimaProwess] = {{5, 7, 6, 10, 7, 13, 8, 16, 10, 20}},
+#endif
+
+#if (defined(SID_DarkProwess) && COMMON_SKILL_VALID(SID_DarkProwess))
+    [SID_DarkProwess] = {{5, 7, 6, 10, 7, 13, 8, 16, 10, 20}},
+#endif
+
+#if (defined(SID_LightProwess) && COMMON_SKILL_VALID(SID_LightProwess))
+    [SID_LightProwess] = {{5, 7, 6, 10, 7, 13, 8, 16, 10, 20}},
+#endif
+
+#if (defined(SID_Chipper) && COMMON_SKILL_VALID(SID_Chipper))
+    [SID_Chipper] = {{50}},
+#endif
+
+#if (defined(SID_KillStreak) && COMMON_SKILL_VALID(SID_KillStreak))
+    [SID_KillStreak] = {{1}},
+#endif
+
+#if (defined(SID_HyperFocus) && COMMON_SKILL_VALID(SID_HyperFocus))
+    [SID_HyperFocus] = {{1}},
+#endif
+
+#if (defined(SID_TakerDefense) && COMMON_SKILL_VALID(SID_TakerDefense))
+    [SID_TakerDefense] = {{1}},
+#endif
+
+#if (defined(SID_TakerLuck) && COMMON_SKILL_VALID(SID_TakerLuck))
+    [SID_TakerLuck] = {{1}},
+#endif
+
+#if (defined(SID_TakerMagic) && COMMON_SKILL_VALID(SID_TakerMagic))
+    [SID_TakerMagic] = {{1}},
+#endif
+
+#if (defined(SID_TakerMovement) && COMMON_SKILL_VALID(SID_TakerMovement))
+    [SID_TakerMovement] = {{1}},
+#endif
+
+#if (defined(SID_TakerResistance) && COMMON_SKILL_VALID(SID_TakerResistance))
+    [SID_TakerResistance] = {{1}},
+#endif
+
+#if (defined(SID_TakerSkill) && COMMON_SKILL_VALID(SID_TakerSkill))
+    [SID_TakerSkill] = {{1}},
+#endif
+
+#if (defined(SID_TakerSpectrum) && COMMON_SKILL_VALID(SID_TakerSpectrum))
+    [SID_TakerSpectrum] = {{1}},
+#endif
+
+#if (defined(SID_TakerSpeed) && COMMON_SKILL_VALID(SID_TakerSpeed))
+    [SID_TakerSpeed] = {{1}},
+#endif
+
+#if (defined(SID_TakerStrength) && COMMON_SKILL_VALID(SID_TakerStrength))
+    [SID_TakerStrength] = {{1}},
+#endif
+
+#if (defined(SID_IronDome) && COMMON_SKILL_VALID(SID_IronDome))
+    [SID_IronDome] = {{50}},
+#endif
+
+#if (defined(SID_AssignDecoy) && COMMON_SKILL_VALID(SID_AssignDecoy))
+    [SID_AssignDecoy] = {{100}},
+#endif
+
+#if (defined(SID_Echo) && COMMON_SKILL_VALID(SID_Echo))
+    [SID_Echo] = {{1, 50}},
+#endif
+
+#if (defined(SID_ShadowFlash) && COMMON_SKILL_VALID(SID_ShadowFlash))
+    [SID_ShadowFlash] = {{10, 3}},
+#endif
+
+#if (defined(SID_KnackStrength) && COMMON_SKILL_VALID(SID_KnackStrength))
+    [SID_KnackStrength] = {{10}},
+#endif
+
+#if (defined(SID_KnackMagic) && COMMON_SKILL_VALID(SID_KnackMagic))
+    [SID_KnackMagic] = {{10}},
+#endif
+
+#if (defined(SID_KnackSkill) && COMMON_SKILL_VALID(SID_KnackSkill))
+    [SID_KnackSkill] = {{10}},
+#endif
+
+#if (defined(SID_KnackSpeed) && COMMON_SKILL_VALID(SID_KnackSpeed))
+    [SID_KnackSpeed] = {{10}},
+#endif
+
+#if (defined(SID_KnackLuck) && COMMON_SKILL_VALID(SID_KnackLuck))
+    [SID_KnackLuck] = {{10}},
+#endif
+
+#if (defined(SID_KnackDefense) && COMMON_SKILL_VALID(SID_KnackDefense))
+    [SID_KnackDefense] = {{10}},
+#endif
+
+#if (defined(SID_KnackResistance) && COMMON_SKILL_VALID(SID_KnackResistance))
+    [SID_KnackResistance] = {{10}},
+#endif
+
+#if (defined(SID_KnackHealth) && COMMON_SKILL_VALID(SID_KnackHealth))
+    [SID_KnackHealth] = {{10}},
+#endif
+
+#if (defined(SID_Sellsword) && COMMON_SKILL_VALID(SID_Sellsword))
+    [SID_Sellsword] = {{2}},
+#endif
+
+#if (defined(SID_PeoplesKnight) && COMMON_SKILL_VALID(SID_PeoplesKnight))
+    [SID_PeoplesKnight] = {{3}},
+#endif
+
+#if (defined(SID_MarkOfTheBeast) && COMMON_SKILL_VALID(SID_MarkOfTheBeast))
+    [SID_MarkOfTheBeast] = {{3}},
+#endif
+
+#if (defined(SID_Rampart) && COMMON_SKILL_VALID(SID_Rampart))
+    [SID_Rampart] = {{30}},
+#endif
+
+#if (defined(SID_RampartPlus) && COMMON_SKILL_VALID(SID_RampartPlus))
+    [SID_RampartPlus] = {{50}},
+#endif
+
+#if (defined(SID_SlowStart) && COMMON_SKILL_VALID(SID_SlowStart))
+    [SID_SlowStart] = {{50}},
+#endif
+
+#if (defined(SID_Zenkai) && COMMON_SKILL_VALID(SID_Zenkai))
+    [SID_Zenkai] = {{30}},
+#endif
+
+#if (defined(SID_Freelancer) && COMMON_SKILL_VALID(SID_Freelancer))
+    [SID_Freelancer] = {{5}},
+#endif
+
+#if (defined(SID_Reinforcements) && COMMON_SKILL_VALID(SID_Reinforcements))
+    [SID_Reinforcements] = {{1}},
+#endif
+
+#if (defined(SID_LightningRod) && COMMON_SKILL_VALID(SID_LightningRod))
+    [SID_LightningRod] = {{100}},
+#endif
+
+#if (defined(SID_UnarmedCombat) && COMMON_SKILL_VALID(SID_UnarmedCombat))
+    [SID_UnarmedCombat] = {{70}},
 #endif
 };

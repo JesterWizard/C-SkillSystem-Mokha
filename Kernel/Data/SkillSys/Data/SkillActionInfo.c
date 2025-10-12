@@ -118,4 +118,180 @@ const SkillActionFunc_t gSkillActionFuncTable[MAX_SKILL_NUM + 1] = {
 #if (defined(SID_GraceOfWater) && COMMON_SKILL_VALID(SID_GraceOfWater))
 	[SID_GraceOfWater] = Action_GraceOfWater,
 #endif
+
+#if (defined(SID_Swap) && COMMON_SKILL_VALID(SID_Swap))
+    [SID_Swap] = Action_Swap,
+#endif
+
+#if (defined(SID_Transform) && COMMON_SKILL_VALID(SID_Transform))
+    [SID_Transform] = Action_Transform,
+#endif
+
+#if (defined(SID_DrawBack) && COMMON_SKILL_VALID(SID_DrawBack))
+    [SID_DrawBack] = Action_DrawBack,
+#endif
+
+#if (defined(SID_Pivot) && COMMON_SKILL_VALID(SID_Pivot))
+    [SID_Pivot] = Action_Pivot,
+#endif
+
+#if (defined(SID_Reposition) && COMMON_SKILL_VALID(SID_Reposition))
+    [SID_Reposition] = Action_Reposition,
+#endif
+
+#if (defined(SID_Shove) && COMMON_SKILL_VALID(SID_Shove))
+    [SID_Shove] = Action_Shove,
+#endif
+
+#if (defined(SID_Smite) && COMMON_SKILL_VALID(SID_Smite))
+    [SID_Smite] = Action_Smite,
+#endif
+
+#if (defined(SID_ArdentSacrifice) && COMMON_SKILL_VALID(SID_ArdentSacrifice))
+    [SID_ArdentSacrifice] = Action_ArdentSacrifice,
+#endif
+
+#if (defined(SID_ReciprocalAid) && COMMON_SKILL_VALID(SID_ReciprocalAid))
+    [SID_ReciprocalAid] = Action_ReciprocalAid,
+#endif
+
+#if (defined(SID_Sacrifice) && COMMON_SKILL_VALID(SID_Sacrifice))
+    [SID_Sacrifice] = Action_Sacrifice,
+#endif
+
+#if (defined(SID_Capture) && COMMON_SKILL_VALID(SID_Capture))
+    [SID_Capture] = Action_Capture,
+#endif
+
+#if (defined(SID_Doppleganger) && COMMON_SKILL_VALID(SID_Doppleganger))
+    [SID_Doppleganger] = Action_Doppleganger,
+#endif
+
+#if (defined(SID_Dismount) && COMMON_SKILL_VALID(SID_Dismount))
+    [SID_Dismount] = Action_Dismount,
+#endif
+
+#if (defined(SID_Entrepreneur) && COMMON_SKILL_VALID(SID_Entrepreneur))
+    [SID_Entrepreneur] = Action_Entrepreneur,
+#endif
+
+#if (defined(SID_Arise) && COMMON_SKILL_VALID(SID_Arise))
+    [SID_Arise] = Action_Arise,
+#endif
+
+#if (defined(SID_AssignDecoy) && COMMON_SKILL_VALID(SID_AssignDecoy))
+    [SID_AssignDecoy] = Action_AssignDecoy,
+#endif
+
+#if (defined(SID_ShadowFlash) && COMMON_SKILL_VALID(SID_ShadowFlash))
+    [SID_ShadowFlash] = Action_ShadowFlash,
+#endif
+
+#if (defined(SID_DeathBlight) && COMMON_SKILL_VALID(SID_DeathBlight))
+    [SID_DeathBlight] = Action_DeathBlight,
+#endif
+
+#if (defined(SID_LoadstarRush) && COMMON_SKILL_VALID(SID_LoadstarRush))
+	[SID_LoadstarRush] = Action_LoadstarRush,
+#endif
+
+#if (defined(SID_WyvernCrash) && COMMON_SKILL_VALID(SID_WyvernCrash))
+	[SID_WyvernCrash] = Action_WyvernCrash,
+#endif
+
+#if (defined(SID_Sellsword) && COMMON_SKILL_VALID(SID_Sellsword))
+	[SID_Sellsword] = Action_Sellsword,
+#endif
+
+#if (defined(SID_Switcher) && COMMON_SKILL_VALID(SID_Switcher))
+	[SID_Switcher] = Action_Switcher,
+#endif
+
+#if (defined(SID_LethalityPlus) && COMMON_SKILL_VALID(SID_LethalityPlus))
+	[SID_LethalityPlus] = Action_LethalityPlus,
+#endif
+
+#if (defined(SID_GrimReaper) && COMMON_SKILL_VALID(SID_GrimReaper))
+	[SID_GrimReaper] = Action_GrimReaper,
+#endif
+
+#if (defined(SID_Hide) && COMMON_SKILL_VALID(SID_Hide))
+	[SID_Hide] = Action_Hide,
+#endif
+
+#if (defined(SID_SkillSwap) && COMMON_SKILL_VALID(SID_SkillSwap))
+    [SID_SkillSwap] = Action_SkillSwap,
+#endif
+
+#if (defined(SID_Shuffle) && COMMON_SKILL_VALID(SID_Shuffle))
+    [SID_Shuffle] = Action_Shuffle,
+#endif
+
+#if (defined(SID_ShufflePlus) && COMMON_SKILL_VALID(SID_ShufflePlus))
+    [SID_ShufflePlus] = Action_ShufflePlus,
+#endif
+
+#if (defined(SID_Persuade) && COMMON_SKILL_VALID(SID_Persuade))
+    [SID_Persuade] = Action_Persuade,
+#endif
+
+#if (defined(SID_PersuadePlus) && COMMON_SKILL_VALID(SID_PersuadePlus))
+    [SID_PersuadePlus] = Action_PersuadePlus,
+#endif
+
+#if (defined(SID_Kamikaze) && COMMON_SKILL_VALID(SID_Kamikaze))
+    [SID_Kamikaze] = Action_Kamikaze,
+#endif
+
+#if (defined(SID_Reinforcements) && COMMON_SKILL_VALID(SID_Reinforcements))
+    [SID_Reinforcements] = Action_Reinforcements,
+#endif
+
+#if (defined(SID_ResolvedHeart) && COMMON_SKILL_VALID(SID_ResolvedHeart))
+	[SID_ResolvedHeart] = Action_ResolvedHeart,
+#endif
+
+#if (defined(SID_Ballistary) && COMMON_SKILL_VALID(SID_Ballistary))
+	[SID_Ballistary] = Action_Ballistary,
+#endif
+
+#if (defined(SID_Bide) && COMMON_SKILL_VALID(SID_Bide))
+	[SID_Bide] = Action_Bide,
+#endif
+
+#if (defined(SID_CoinFlip) && COMMON_SKILL_VALID(SID_CoinFlip))
+	[SID_CoinFlip] = Action_CoinFlip,
+#endif
+
+#if (defined(SID_Geomancy) && COMMON_SKILL_VALID(SID_Geomancy))
+	[SID_Geomancy] = Action_Geomancy,
+#endif
+
+#if (defined(SID_ScrollScribePlus) && COMMON_SKILL_VALID(SID_ScrollScribePlus))
+	[SID_ScrollScribePlus] = Action_ScrollScribePlus,
+#endif
+
+#if (defined(SID_DancePlus) && COMMON_SKILL_VALID(SID_DancePlus))
+	[SID_DancePlus] = Action_DancePlus,
+#endif
+
+#if (defined(SID_Acidic) && COMMON_SKILL_VALID(SID_Acidic))
+	[SID_Acidic] = Action_Acidic,
+#endif
+
+#if (defined(SID_AcidicPlus) && COMMON_SKILL_VALID(SID_AcidicPlus))
+	[SID_AcidicPlus] = Action_Acidic,
+#endif
+
+#if (defined(SID_Reinforce) && COMMON_SKILL_VALID(SID_Reinforce))
+	[SID_Reinforce] = Action_Reinforce,
+#endif
+
+#if (defined(SID_SealedZone) && COMMON_SKILL_VALID(SID_SealedZone))
+	[SID_SealedZone] = Action_SealedZone,
+#endif
+
+#if (defined(SID_Thrust) && COMMON_SKILL_VALID(SID_Thrust))
+	[SID_Thrust] = Action_Thrust,
+#endif
 };

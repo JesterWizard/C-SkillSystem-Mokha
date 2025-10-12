@@ -1387,50 +1387,6 @@ const struct SkillInfo gSkillInfos[MAX_SKILL_NUM + 1] = {
     },
 #endif
 
-#if (defined(SID_LEGEND_MiracleAtk) && COMMON_SKILL_VALID(SID_LEGEND_MiracleAtk))
-    [SID_LEGEND_MiracleAtk] = {
-        .name = MSG_SKILL_LEGEND_MiracleAtk_NAME,
-        .desc = MSG_SKILL_LEGEND_MiracleAtk_DESC,
-        .capacity = MSG_SKILL_LEGEND_MiracleAtk_CAPACITY,
-        .price = MSG_SKILL_LEGEND_MiracleAtk_PRICE,
-        .icon = GFX_SkillIcon_WIP,
-    },
-#endif
-
-#if (defined(SID_LEGEND_MiracleAvo) && COMMON_SKILL_VALID(SID_LEGEND_MiracleAvo))
-    [SID_LEGEND_MiracleAvo] = {
-        .name = MSG_SKILL_LEGEND_MiracleAvo_NAME,
-        .desc = MSG_SKILL_LEGEND_MiracleAvo_DESC,
-        .capacity = MSG_SKILL_LEGEND_MiracleAvo_CAPACITY,
-        .price = MSG_SKILL_LEGEND_MiracleAvo_PRICE,
-        .icon = GFX_SkillIcon_WIP,
-    },
-#endif
-
-#if (defined(SID_LEGEND_MiracleDef) && COMMON_SKILL_VALID(SID_LEGEND_MiracleDef))
-    [SID_LEGEND_MiracleDef] = {
-        .name = MSG_SKILL_LEGEND_MiracleDef_NAME,
-        .desc = MSG_SKILL_LEGEND_MiracleDef_DESC,
-        .capacity = MSG_SKILL_LEGEND_MiracleDef_CAPACITY,
-        .price = MSG_SKILL_LEGEND_MiracleDef_PRICE,
-        .icon = GFX_SkillIcon_WIP,
-    },
-#endif
-
-#if (defined(SID_LEGEND_4) && COMMON_SKILL_VALID(SID_LEGEND_4))
-    [SID_LEGEND_4] = {
-        .desc = MSG_WIP,
-        .icon = GFX_SkillIcon_WIP,
-    },
-#endif
-
-#if (defined(SID_LEGEND_5) && COMMON_SKILL_VALID(SID_LEGEND_5))
-    [SID_LEGEND_5] = {
-        .desc = MSG_WIP,
-        .icon = GFX_SkillIcon_WIP,
-    },
-#endif
-
 #if (defined(SID_Frenzy) && COMMON_SKILL_VALID(SID_Frenzy))
     [SID_Frenzy] = {
         .name = MSG_SKILL_Frenzy_NAME,

@@ -10,29 +10,59 @@
  */
 
 enum unit_expa_sus_bitfile_idx {
-	UES_BIT_LEGENDARY_SKILL_USED,
-	UES_BIT_LEGENDARY_SKILL_ACTIVE,
-	UES_BIT_GUARDBEAR_SKILL_USED,
-	UES_BIT_TSZUKU_SKILL_USED,
-	UES_BIT_TELEPOTRATION_SKILL_USED,
-	UES_BIT_ACTED,
+
+#if defined(SID_Teleportation) && (COMMON_SKILL_VALID(SID_Teleportation))
+    UES_BIT_TELEPORTATION_SKILL_USED,
+#endif
+#if defined(SID_Capture) && (COMMON_SKILL_VALID(SID_Capture))
+    UES_BIT_CAPTURE_SKILL_USED,
+#endif
+#if defined(SID_Turncoat) && (COMMON_SKILL_VALID(SID_Turncoat))
+    UES_BIT_CHANGED_FACTIONS,
+#endif
+#if defined(SID_Resurrection) && (COMMON_SKILL_VALID(SID_Resurrection))
+    UES_BIT_RESURRECTION_SKILL_USED,
+#endif
+#if defined(SID_ShadowFlash) && (COMMON_SKILL_VALID(SID_ShadowFlash))
+    UES_BIT_SHADOWFLASH_SKILL_USED,
+#endif
+#if defined(SID_TwinCrests) && (COMMON_SKILL_VALID(SID_TwinCrests))
+    UES_BIT_TWIN_CRESTS_SKILL_USED,
+#endif
+#if defined(SID_DeathBlight) && (COMMON_SKILL_VALID(SID_DeathBlight))
+    UES_BIT_DEATHBLIGHT_SKILL_USED,
+#endif
+#if defined(SID_LoadstarRush) && (COMMON_SKILL_VALID(SID_LoadstarRush))
+    UES_BIT_LOADSTAR_RUSH_SKILL_USED,
+#endif
+#if defined(SID_WyvernCrash) && (COMMON_SKILL_VALID(SID_WyvernCrash))
+    UES_BIT_WYVERN_CRASH_SKILL_USED,
+#endif
+#if defined(SID_Sellsword) && (COMMON_SKILL_VALID(SID_Sellsword))
+    UES_BIT_SELLSWORD_SKILL_USED,
+#endif
+#if defined(SID_Switcher) && (COMMON_SKILL_VALID(SID_Switcher)) // This is a special case, we use the bit to determine if doubling should be allowed
+    UES_BIT_SWITCHER_SKILL_USED,
+#endif
+#if defined(SID_GrimReaper) && (COMMON_SKILL_VALID(SID_GrimReaper))
+    UES_BIT_GRIM_REAPER_SKILL_USED,
+#endif
+#if defined(SID_ResolvedHeart) && (COMMON_SKILL_VALID(SID_ResolvedHeart))
+    UES_BIT_RESOLVED_HEART_SKILL_USED,
+#endif
+#if defined(SID_Bide) && (COMMON_SKILL_VALID(SID_Bide))
+    UES_BIT_BIDE_SKILL_USED,
+#endif
+#if defined(SID_Protect) && (COMMON_SKILL_VALID(SID_Protect))
+    UES_BIT_PROTECT_SKILL_USED,
+#endif
 #if defined(SID_GorillaTactics) && (COMMON_SKILL_VALID(SID_GorillaTactics))
 	UES_BIT_GorillaTactics_USED,
 #endif
-	UNIT_EXPA_SUS_BIT6,
-	UNIT_EXPA_SUS_BIT7,
-	UNIT_EXPA_SUS_BIT8,
-	UNIT_EXPA_SUS_BIT9,
-	UNIT_EXPA_SUS_BIT10,
-	UNIT_EXPA_SUS_BIT11,
-	UNIT_EXPA_SUS_BIT12,
-	UNIT_EXPA_SUS_BIT13,
-	UNIT_EXPA_SUS_BIT14,
-	UNIT_EXPA_SUS_BIT15,
 
-	UES_BIT_MAX
 };
 
+void SetBitUES_BU(struct BattleUnit * bu, int bit);
 void SetBitUES(struct Unit *unit, int bit);
 void ClearBitUES(struct Unit *unit, int bit);
 bool CheckBitUES(struct Unit *unit, int bit);

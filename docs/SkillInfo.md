@@ -231,9 +231,6 @@
 ![image](gfx/SkillIcon_Paragon.png) | Paragon |  Experience gained is doubled. |
 ![image](gfx/SkillIcon_VoidCurse.png) | VoidCurse |  This unit gives no experience when defeated. |
 ![image](gfx/SkillIcon_Aptitude.png) | Aptitude |  +20% to all growth rates. |
-![image](gfx/SkillIcon_LEGEND_MiracleAtk.png) | LEGEND_MiracleAtk | (once per chapter) If attacked to 0 HP, unit will survive and receive +10 ATK, Crit +100% |
-![image](gfx/SkillIcon_LEGEND_MiracleAvo.png) | LEGEND_MiracleAvo | (once per chapter) If attacked to 0 HP, unit will survive and receive +10 SPD, AVO +100% |
-![image](gfx/SkillIcon_LEGEND_MiracleDef.png) | LEGEND_MiracleDef | (once per chapter) If attacked to 0 HP, unit will survive, recover HP and receive +10 DEF/RES. |
 ![image](gfx/SkillIcon_Assist.png) | Assist |  +5 damage dealt on assistance of allies' combo-attack |
 ![image](gfx/SkillIcon_Synergism.png) | Synergism |  Allies +3 damage dealt on assistance on combo-attack |
 ![image](gfx/SkillIcon_Pass.png) | Pass |  If HP more than 25% unit can move through foes' spaces. |

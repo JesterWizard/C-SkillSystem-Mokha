@@ -106,3 +106,13 @@ bool CheckClassInfantry(u8 jid)
 
 	return false;
 }
+
+bool CheckClassBandit(u8 jid)
+{
+    const u8 * it;
+    for (it = gpKernelClassList_Bandit; *it != CLASS_NONE; it++)
+        if (*it == jid)
+            return true;
+
+    return false;
+}

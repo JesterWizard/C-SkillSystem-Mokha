@@ -31,7 +31,6 @@ gSklGetters:
 gSpdGetters:
     POIN SpdGetterWeaponBonus SpdGetterSkills SpdGetterDebuff
     POIN SpdGetterStaffBoost
-    POIN SpdGetterLegendSkills
     POIN SpdGetterStatDebuff SpdGetterShield
     POIN StatusGetterCheckCpas
     MSG_END
@@ -46,7 +45,6 @@ gLckGetters:
 gDefGetters:
     POIN DefGetterWeaponBonus DefGetterSkills DefGetterDebuff
     POIN DefGetterStaffBoost
-    POIN DefGetterLegendSkills
     POIN DefGetterStatDebuff DefGetterShield
     POIN StatusGetterCheckCpas
     MSG_END
@@ -54,7 +52,6 @@ gDefGetters:
 gResGetters:
     POIN ResGetterWeaponBonus ResGetterSkills ResGetterDebuff
     POIN ResGetterStaffBoost
-    POIN ResGetterLegendSkills
 #ifndef CONFIG_MULTIPLE_BOOST_STAVES
     POIN ResGetterPureWater
 #endif

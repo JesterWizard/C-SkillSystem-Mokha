@@ -136,9 +136,6 @@
 #define MSG_SKILL_VoidCurse_CAPACITY 1
 #define MSG_SKILL_Aptitude_CAPACITY 1
 #define MSG_SKILL_Peacebringer_CAPACITY 1
-#define MSG_SKILL_LEGEND_MiracleAtk_CAPACITY 1
-#define MSG_SKILL_LEGEND_MiracleAvo_CAPACITY 1
-#define MSG_SKILL_LEGEND_MiracleDef_CAPACITY 1
 #define MSG_SKILL_Frenzy_CAPACITY 1
 #define MSG_SKILL_WonderGuard_CAPACITY 1
 #define MSG_SKILL_PoisonPoint_CAPACITY 1

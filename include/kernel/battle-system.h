@@ -102,6 +102,14 @@ extern struct BattleGlobalFlags {
 	u32 skill_activated_double_lion : 1;
 	u32 skill_activated_astra : 1;
 	u32 skill_activated_galeforce : 1;
+    u32 skill_activated_vigor_dance : 1;
+    u32 skill_activated_lead_by_example : 1;
+    u32 skill_activated_capture : 1;
+    u32 skill_activated_angerpoint : 1;
+    u32 skill_activated_debilitator : 1;
+    u32 skill_activated_resurrection : 1;
+	u32 skill_activated_echo : 1;
+	u32 skill_activated_dance : 1;
 } gBattleActorGlobalFlag, gBattleTargetGlobalFlag;
 
 static inline struct BattleGlobalFlags *GetBattleGlobalFlags(struct BattleUnit *bu)
