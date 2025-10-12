@@ -21,15 +21,16 @@ ORG 0x025764
     BL(_prMaxFromSubjectUnit)
     PROTECT $25728 $25794
 
-/*
-ORG 0x02A8C2 // SetBattleUnitWeapon
-    BL(_prIsCoveringRangeFromR5)
-    PROTECT $2a730 $2a918
-*/
 
-ORG 0x0398E8
-    BL(_prMaxFromR5)
-    PROTECT $39898 $39938
+    /* JESTER - Needed for LynJump of function */
+// ORG 0x02A8C2 // SetBattleUnitWeapon
+//     BL(_prIsCoveringRangeFromR5)
+//     PROTECT $2a730 $2a918
+
+    /* JESTER - Needed for LynJump of GetUnitBattleAiPriority */
+// ORG 0x0398E8
+//     BL(_prMaxFromR5)
+//     PROTECT $39898 $39938
 
 ORG 0x03D014
     BL(_prMinFromActiveUnit)

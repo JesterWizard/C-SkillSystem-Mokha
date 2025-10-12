@@ -302,4 +302,13 @@ void sub_80410C4(int, int, struct Unit*);
 // ??? AiTryDKSummon(???);
 // ??? AiDecideDKSummon(???);
 
+void CpOrderMain(ProcPtr proc);
+void CpOrderBerserkInit(ProcPtr proc);
+void CpOrderFunc_BeginDecide(ProcPtr proc);
+int GetUnitBattleAiPriority(struct Unit* unit);
+int GetUnitAiPriority(struct Unit* unit);
+int BuildAiUnitList(void);
+void SortAiUnitList(int count);
+void CpOrderFunc_End(ProcPtr proc);
+
 #endif // GUARD_CP_COMMON_H

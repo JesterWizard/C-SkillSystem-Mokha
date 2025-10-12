@@ -3,6 +3,7 @@
 #include "constants/skills.h"
 #include "weapon-range.h"
 #include "status-getter.h"
+#include "debuff.h"
 
 extern const struct AiCombatScoreCoefficients *sCombatScoreCoefficients;
 
@@ -35,6 +36,31 @@ int AiGetDamageDealtCombatScoreComponent(void)
 #if defined(SID_Provoke) && (COMMON_SKILL_VALID(SID_Provoke))
 	if (BattleFastSkillTester(&gBattleTarget, SID_Provoke))
 		score += SKILL_EFF0(SID_Provoke);
+#endif
+
+#if defined(SID_AssignDecoy) && (COMMON_SKILL_VALID(SID_AssignDecoy))
+    if (GetUnitStatusIndex(GetUnit(gBattleTarget.unit.index)) == NEW_UNIT_STATUS_DECOY)
+        score += SKILL_EFF0(SID_AssignDecoy);
+#endif
+
+#if defined(SID_LightningRod) && (COMMON_SKILL_VALID(SID_LightningRod))
+    if (BattleSkillTester(&gBattleTarget, SID_LightningRod))
+    {
+        int weapon = GetItemIndex(GetUnitEquippedWeapon(&gBattleActor.unit)); 
+
+        switch (weapon)
+        {
+            case ITEM_LIGHT_PURGE:
+            case ITEM_ANIMA_BOLTING:
+            case ITEM_BALLISTA_REGULAR:
+            case ITEM_BALLISTA_KILLER:
+            case ITEM_BALLISTA_LONG:
+                score += SKILL_EFF0(SID_LightningRod);
+                break;
+            default:
+                break;
+        }
+    }
 #endif
 
 	return score;

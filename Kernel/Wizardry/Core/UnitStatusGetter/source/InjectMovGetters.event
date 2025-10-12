@@ -105,7 +105,7 @@ PUSH
 	ORG $3993C
 	BL(MovGetter)
 	SHORT 0x1C04 0xE002 //mov r4,r0; b
-	PROTECT $39938 $399B0
+	// PROTECT $39938 $399B0
 
 /*
 	// AiReachesByBirdsEyeDistance

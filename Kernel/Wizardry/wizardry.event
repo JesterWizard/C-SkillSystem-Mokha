@@ -15,6 +15,7 @@ ALIGN 4
 #include "Essentials/LoadUnitFix/LoadUnitFix.event"
 #include "Essentials/FebPatches/FebPatches.event"
 
+#include "Common/AI/AI.event"
 #include "Common/OverflowDetection/OverflowDetection.event"
 #include "Common/AntiHuffman/AntiHuffman.event"
 #include "Common/PopupRework/PopupRework.event"
@@ -52,6 +53,7 @@ ALIGN 4
 #include "Common/FebCompat/FebCompat.event"
 #include "Common/ExtrasMenu/ExtrasMenu_Installer.event"
 #include "Common/UnitTarget/UnitTarget.event"
+#include "Common/UnitSelection/UnitSelection.event"
 
 #ifdef CONFIG_MULTIPLE_DEATH_QUOTES
 #include "Common/Quotes/Quotes.event"

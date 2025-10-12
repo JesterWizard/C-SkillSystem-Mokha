@@ -40,11 +40,10 @@ PUSH
     BYTE 0x3F
     PROTECT $2B578 $2B600
 
-/*
-    ORG $2B664 // BattleGenerateHitEffects
-    BYTE 0x3F
-    PROTECT $2B600 $2B83C
-*/
+    /* JESTER - Needed for LynJump of function */
+    // ORG $2B664 // BattleGenerateHitEffects
+    // BYTE 0x3F
+    // PROTECT $2B600 $2B83C
 
     ORG $2C88C // BattleInitTargetCanCounter
     BYTE 0x3F
@@ -181,16 +180,18 @@ PUSH
     // GetUnitStatusName
     // TickActiveFactionTurn
 
-    ORG $18D10 // IsUnitMagicSealed
-    BYTE 0x3F
+
+    /* JESTER - Needed for LynJump of function */
+    // ORG $18D10 // IsUnitMagicSealed
+    // BYTE 0x3F
     // PROTECT $18D08 $18D34
 
-/*
-    ORG $361C8 // StatusDecayDisplay_Display
-    SHORT 0x06A4 // lsl r4, r4, #0x1A
-    SHORT 0x0EA4 // lsr r4, r4, #0x1A
-    PROTECT $361AC $3623C
-*/
+    /* JESTER - Needed for LynJump of function */
+    // ORG $361C8 // StatusDecayDisplay_Display
+    // SHORT 0x06A4 // lsl r4, r4, #0x1A
+    // SHORT 0x0EA4 // lsr r4, r4, #0x1A
+    // PROTECT $361AC $3623C
+
 
     ORG $2EC46 // ExecRestore
     BYTE 0x3F
@@ -204,19 +205,20 @@ PUSH
     BYTE 0x3F
     PROTECT $3E900 $3E93C
 
-    ORG $397F0 // CpOrderBerserkInit
-    BYTE 0x3F
-    PROTECT $397B0 $39858
+    /* JESTER - Needed for LynJump of function */
+    // ORG $397F0 // CpOrderBerserkInit
+    // BYTE 0x3F
+    // PROTECT $397B0 $39858
 
-    ORG $399F4 // BuildAiUnitList
-    BYTE 0x3F
-    PROTECT $399B0 $39A50
+    /* JESTER - Needed for LynJump of function */
+    // ORG $399F4 // BuildAiUnitList
+    // BYTE 0x3F
+    // PROTECT $399B0 $39A50
 
-/*
-    ORG $3FA54 // AiTryDoStaff
-    BYTE 0x3F
-    PROTECT $3FA40 $3FAE8
-*/
+    /* JESTER - Needed for LynJump of function */
+    // ORG $3FA54 // AiTryDoStaff
+    // BYTE 0x3F
+    // PROTECT $3FA40 $3FAE8
 
     ORG $40214 // AiStaffRestore
     BYTE 0x3F
@@ -259,13 +261,15 @@ PUSH
     // PROTECT $8C45C $8C5D0
 #endif
 
-    ORG $1D58E // GetUnitSelectionValueThing
-    BYTE 0x3F
-    PROTECT $1D51C $1D5A8
+    /* JESTER - Needed for LynJump of function */
+    // ORG $1D58E // GetUnitSelectionValueThing
+    // BYTE 0x3F
+    // PROTECT $1D51C $1D5A8
 
-    ORG $1D732 // MakeMoveunitForActiveUnit
-    BYTE 0x3F
-    PROTECT $1D70C $1D75C
+    /* JESTER - Needed for LynJump of function */
+    // ORG $1D732 // MakeMoveunitForActiveUnit
+    // BYTE 0x3F
+    // PROTECT $1D70C $1D75C
 
     ORG $1DAFE // TrySetCursorOn
     BYTE 0x3F
