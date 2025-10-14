@@ -449,33 +449,63 @@ void BattleHit_ConsumeWeapon(struct BattleUnit *attacker, struct BattleUnit *def
 	target_weapon_cost = 0;
 
 #if (defined(SID_Corrosion) && (COMMON_SKILL_VALID(SID_Corrosion)))
-	if (!(gBattleHitIterator->attributes & BATTLE_HIT_ATTR_MISS) && CheckBattleSkillActivate(attacker, defender, SID_Corrosion, attacker->unit.skl)) {
-		RegisterActorEfxSkill(GetBattleHitRound(gBattleHitIterator), SID_Corrosion);
-		target_weapon_cost += attacker->levelPrevious;
-	}
+    if (!(gBattleHitIterator->attributes & BATTLE_HIT_ATTR_MISS) && CheckBattleSkillActivate(attacker, defender, SID_Corrosion, attacker->unit.skl))
+    {
+        RegisterActorEfxSkill(GetBattleHitRound(gBattleHitIterator), SID_Corrosion);
+        int target_weapon_cost = attacker->levelPrevious;
+
+		if (target_weapon_cost > 0) {
+			u16 weapon_pre = defender->weapon;
+
+			while (target_weapon_cost > 0) {
+				u16 weapon = GetItemAfterUse(defender->weapon);
+
+				defender->weapon = weapon;
+				if (!weapon)
+					break;
+
+				target_weapon_cost--;
+			}
+
+			if (!defender->weapon && weapon_pre) {
+				LTRACE("target weapon broken!");
+				defender->weaponBroke = TRUE;
+			}
+		}
+		
+
+        if (!defender->weapon)
+            defender->weaponBroke = TRUE;
+    }
+#endif
+
+#if (defined(SID_Protean) && (COMMON_SKILL_VALID(SID_Protean)))
+    if (BattleSkillTester(attacker, SID_Protean))
+    {
+        int target_weapon_cost = 2;
+		if (target_weapon_cost > 0) {
+			u16 weapon_pre = defender->weapon;
+
+			while (target_weapon_cost > 0) {
+				u16 weapon = GetItemAfterUse(defender->weapon);
+
+				defender->weapon = weapon;
+				if (!weapon)
+					break;
+
+				target_weapon_cost--;
+			}
+
+			if (!defender->weapon && weapon_pre) {
+				LTRACE("target weapon broken!");
+				defender->weaponBroke = TRUE;
+			}
+		}
+    }
 #endif
 
 	if (CheckUnbreakableSpecialSlot(defender->weaponSlotIndex))
 		target_weapon_cost = 0;
-
-	if (target_weapon_cost > 0) {
-		u16 weapon_pre = defender->weapon;
-
-		while (target_weapon_cost > 0) {
-			u16 weapon = GetItemAfterUse(defender->weapon);
-
-			defender->weapon = weapon;
-			if (!weapon)
-				break;
-
-			target_weapon_cost--;
-		}
-
-		if (!defender->weapon && weapon_pre) {
-			LTRACE("target weapon broken!");
-			defender->weaponBroke = TRUE;
-		}
-	}
 
 	/**
 	 * Consumes the durability of the own weapon
@@ -488,8 +518,8 @@ void BattleHit_ConsumeWeapon(struct BattleUnit *attacker, struct BattleUnit *def
 		weapon_cost = true;
 	else if (attacker->weaponAttributes & (IA_UNCOUNTERABLE | IA_MAGIC))
 		weapon_cost = true;
-	else if (CheckWeaponCostForMissedBowAttack(attacker) == true)
-		weapon_cost = true;
+	// else if (CheckWeaponCostForMissedBowAttack(attacker) == true)
+	// 	weapon_cost = true;
 
 #if defined(SID_ArmsthriftPlus) && (COMMON_SKILL_VALID(SID_ArmsthriftPlus))
     if (CheckBattleSkillActivate(attacker, defender, SID_ArmsthriftPlus, 100))
