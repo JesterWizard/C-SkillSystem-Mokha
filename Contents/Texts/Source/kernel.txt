@@ -28,7 +28,6 @@ W.I.P.[X]
 #include "texts/Skills_Debuff.txt"
 #include "texts/Skills_AI.txt"
 #include "texts/Skills_Menu.txt"
-#include "texts/Skills_Legend.txt"
 #include "texts/Skills_Movement.txt"
 #include "texts/Skills_CombatArt.txt"
 #include "texts/Skills_Misc.txt"

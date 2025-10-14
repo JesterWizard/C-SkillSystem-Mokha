@@ -1077,7 +1077,7 @@ After combat, if unit attacked,[N]
 take 7 damage.[X]
 
 ## MSG_SKILL_LawsOfSacae_NAME
-Laws od Sacae[X]
+Laws of Sacae[X]
 ## MSG_SKILL_LawsOfSacae_DESC
 Laws of Sacae:[N]
 If attacked with 2+ allies in[N]
@@ -1598,7 +1598,7 @@ Perch[X]
 ## MSG_SKILL_Perch_DESC
 Perch:[N]
 Flying units gain[N]
-terrain bonuses.[X]
+terrain AVO bonuses.[X]
 
 ## MSG_SKILL_MountainMan_NAME
 Mountain Man[X]
@@ -1700,14 +1700,14 @@ using half of its stats.[N]
 and its effects.[X]
 
 ## MSG_SKILL_Rampart_NAME
-Rampart.[X]
+[X]
 ## MSG_SKILL_Rampart_DESC
 Rampart:[N]
 If attacked, reduces the damage[N]
 of the first hit by 30%.[X]
 
 ## MSG_SKILL_RampartPlus_NAME
-Rampart+.[X]
+Rampart+[X]
 ## MSG_SKILL_RampartPlus_DESC
 Rampart+:[N]
 If attacked, reduces the damage[N]

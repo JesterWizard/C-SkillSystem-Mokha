@@ -2,6 +2,8 @@
 #include "combat-art.h"
 #include "battle-system.h"
 #include "constants/texts.h"
+#include "skill-system.h"
+#include "constants/skills.h"
 
 enum CombatArtBKSELfxConfig {
 	// Real VRAM Offset to uncompress: OBJ_VRAM0 + OBJ_MOKHA_VRAMOFF
@@ -147,6 +149,29 @@ void DrawBattleForecastContentsStandard(struct BattleForecastProc * proc)
 #else
     PutBattleForecastUnitName(gUiTmScratchA + 0x161, &proc->unitNameTextA, &gBattleTarget.unit);
     PutBattleForecastItemName(gUiTmScratchA + 0x1A1, &proc->itemNameText, gBattleTarget.weaponBefore);
+#endif
+
+#if defined(SID_UnarmedCombat) && (COMMON_SKILL_VALID(SID_UnarmedCombat))
+    if (SkillTester(GetUnit(gBattleActor.unit.index), SID_UnarmedCombat))
+    {
+        if (gBattleActor.weapon == 0)
+        {
+            int actorAccuracy = gBattleActor.unit.skl * 2;
+            int targetAvoid = gBattleTarget.battleAvoidRate;
+            int calculatedHit = SKILL_EFF0(SID_UnarmedCombat) + actorAccuracy - targetAvoid;
+            gBattleActor.battleEffectiveHitRate = calculatedHit > 100 ? 100 : calculatedHit;
+        }
+    }
+    if (SkillTester(GetUnit(gBattleTarget.unit.index), SID_UnarmedCombat))
+    {
+        if (gBattleTarget.weapon == 0)
+        {
+            int targetAccuracy = gBattleTarget.unit.skl * 2;
+            int actorAvoid = gBattleActor.battleAvoidRate;
+            int calculatedHit = SKILL_EFF0(SID_UnarmedCombat) + targetAccuracy - actorAvoid;
+            gBattleTarget.battleEffectiveHitRate = calculatedHit > 100 ? 100 : calculatedHit;
+        }
+    }
 #endif
 
     if ((gBattleTarget.weapon == 0) && (gBattleTarget.weaponBroke == 0)) {

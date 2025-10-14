@@ -3098,3 +3098,214 @@ bool Generic_CanUnitBeOnPos(struct Unit * unit, s8 x, s8 y, int x2, int y2)
         return 0;                                                  // exception / a battle unit is on this tile
     return Vanilla_CanUnitCrossTerrain(unit, gBmMapTerrain[y][x]); // CanUnitCrossTerrain(unit, gMapTerrain[y][x]);
 }
+
+bool isWeaponTriangleAdvantage(int attackerWeapon, int defenderWeapon)
+{
+    if (attackerWeapon == ITYPE_SWORD && defenderWeapon == ITYPE_AXE)
+        return true;
+    if (attackerWeapon == ITYPE_LANCE && defenderWeapon == ITYPE_SWORD)
+        return true;
+    if (attackerWeapon == ITYPE_AXE && defenderWeapon == ITYPE_LANCE)
+        return true;
+    if (attackerWeapon == ITYPE_ANIMA && defenderWeapon == ITYPE_LIGHT)
+        return true;
+    if (attackerWeapon == ITYPE_LIGHT && defenderWeapon == ITYPE_DARK)
+        return true;
+    if (attackerWeapon == ITYPE_DARK && defenderWeapon == ITYPE_ANIMA)
+        return true;
+
+    return false;
+}
+
+bool weaponHasSpecialEffect(int weaponAttributes)
+{
+    if (weaponAttributes & IA_NEGATE_DEFENSE)
+        return true;
+    if (weaponAttributes & IA_NEGATE_CRIT)
+        return true;
+    if (weaponAttributes & IA_NEGATE_FLYING)
+        return true;
+    if (weaponAttributes & IA_REVERTTRIANGLE)
+        return true;
+    if (weaponAttributes & IA_UNCOUNTERABLE)
+        return true;
+    if (weaponAttributes & IA_BRAVE)
+        return true;
+    if (weaponAttributes & IA_UNBREAKABLE)
+        return true;
+    
+    return false;
+}
+
+int findMax(u8 *array, int size) {
+    u8 max = 0;
+    FORCE_DECLARE u8 array_position = 0;
+
+    for (int i = 0; i < size - 1; i++) {
+        if (array[i] > max) {
+            max = array[i];
+            array_position = i;
+        }
+    }
+    return array_position;
+}
+
+LYN_REPLACE_CHECK(AttackCommandUsability);
+u8 AttackCommandUsability(const struct MenuItemDef* def, int number) {
+    int i;
+
+#if defined(SID_GridMasterAtk) && (COMMON_SKILL_VALID(SID_GridMasterAtk))
+    if (SkillTester(gActiveUnit, SID_GridMasterAtk) && gActiveUnit->state & US_CANTOING)
+        return MENU_ENABLED;
+#endif
+
+/* These skills have the same effect here, but GridmasterAtk also prevents the unit from moving */
+#if defined(SID_Warpath) && (COMMON_SKILL_VALID(SID_Warpath))
+    if (SkillTester(gActiveUnit, SID_Warpath) && gActiveUnit->state & US_CANTOING)
+        return MENU_ENABLED;
+#endif   
+
+    if (gActiveUnit->state & US_HAS_MOVED) {
+        return MENU_NOTSHOWN;
+    }
+
+    if (gActiveUnit->state & US_IN_BALLISTA) {
+        return MENU_NOTSHOWN;
+    }
+
+    for (i = 0; i < UNIT_ITEM_COUNT; i++) {
+        int item = gActiveUnit->items[i];
+
+        if (item == 0) {
+            break;
+        }
+
+        if (!(GetItemAttributes(item) & IA_WEAPON)) {
+            continue;
+        }
+
+        if (!CanUnitUseWeaponNow(gActiveUnit, item)) {
+            continue;
+        }
+
+        MakeTargetListForWeapon(gActiveUnit, item);
+        if (GetSelectTargetCount() == 0) {
+            continue;
+        }
+
+        return MENU_ENABLED;
+    }
+
+#if (defined(SID_UnarmedCombat) && (COMMON_SKILL_VALID(SID_UnarmedCombat)))
+    if (SkillTester(gActiveUnit, SID_UnarmedCombat))
+    {
+        MakeTargetListForWeapon(gActiveUnit, ITEM_SWORD_IRON);
+        if (GetSelectTargetCount() > 0) 
+        {
+            return MENU_ENABLED;
+        }
+    }
+#endif
+
+    return MENU_NOTSHOWN;
+
+}
+
+LYN_REPLACE_CHECK(DisplayUnitStandingAttackRange);
+int DisplayUnitStandingAttackRange(struct MenuProc* menu, struct MenuItemProc* menuItem) {
+    BmMapFill(gBmMapMovement, -1);
+    BmMapFill(gBmMapRange, 0);
+
+    if (gActiveUnit->state & US_IN_BALLISTA) {
+        MapAddInBoundedRange(gActiveUnit->xPos, gActiveUnit->yPos, 1, 10);
+    } else {
+        int reach = GetUnitWeaponReachBits(gActiveUnit, -1);
+
+#if defined(SID_UnarmedCombat) && (COMMON_SKILL_VALID(SID_UnarmedCombat))
+        if (SkillTester(gActiveUnit, SID_UnarmedCombat) && reach < 3)
+            reach = 3;
+#endif  
+
+        GenerateUnitStandingReachRange(gActiveUnit, reach);
+    }
+
+    DisplayMoveRangeGraphics(3);
+
+    return 0;
+}
+
+LYN_REPLACE_CHECK(UnitActionMenu_Attack);
+u8 UnitActionMenu_Attack(struct MenuProc* menu, struct MenuItemProc* menuItem) {
+
+    if (menuItem->availability == MENU_DISABLED) {
+        MenuFrozenHelpBox(menu, 0x858); // TODO: msgid "There's no more ammo for[NL]the ballista.[.]"
+        return MENU_ACT_SND6B;
+    }
+
+    ResetIconGraphics();
+
+    LoadIconPalettes(4);
+
+    if (gActiveUnit->state & US_IN_BALLISTA) {
+        return StartUnitBallistaSelect(menu, menuItem);
+    }
+
+#if defined(SID_UnarmedCombat) && (COMMON_SKILL_VALID(SID_UnarmedCombat))
+    if (SkillTester(gActiveUnit, SID_UnarmedCombat))
+    {
+        ClearBg0Bg1();
+        MakeTargetListForWeapon(gActiveUnit, ITEM_SWORD_IRON);
+        NewTargetSelection(&gSelectInfo_Attack);
+        sub_80832C8();
+        return MENU_ACT_SKIPCURSOR | MENU_ACT_END | MENU_ACT_SND6A;
+    }
+#endif  
+
+    return StartUnitWeaponSelect(menu, menuItem);
+}
+
+LYN_REPLACE_CHECK(AttackMapSelect_SwitchIn);
+u8 AttackMapSelect_SwitchIn(ProcPtr proc, struct SelectTarget* target) {
+
+    struct Unit* unit = GetUnit(target->uid);
+
+    ChangeActiveUnitFacing(target->x, target->y);
+
+    if (target->uid == 0) {
+        gActionData.xOther = target->x;
+        gActionData.yOther = target->y;
+        gActionData.trapType = target->extra;
+
+        InitObstacleBattleUnit();
+    }
+
+    if (gActionData.itemSlotIndex == BU_ISLOT_BALLISTA) {
+        BattleGenerateBallistaSimulation(gActiveUnit, unit, gActiveUnit->xPos, gActiveUnit->yPos);
+    } else {
+        BattleGenerateSimulation(gActiveUnit, unit, -1, -1, gActionData.itemSlotIndex);
+    }
+
+    UpdateBattleForecastContents();
+
+    return 0;
+}
+
+extern struct ProcCmd CONST_DATA gProcScr_0859B630[];
+
+LYN_REPLACE_CHECK(AttackMapSelect_Cancel);
+u8 AttackMapSelect_Cancel(ProcPtr proc, struct SelectTarget * target) {
+    if (EventEngineExists() == 1) {
+        return 0;
+    }
+
+#if defined(SID_UnarmedCombat) && (COMMON_SKILL_VALID(SID_UnarmedCombat))
+    if (SkillTester(gActiveUnit, SID_UnarmedCombat))
+    {
+      return MENU_ACT_SKIPCURSOR | MENU_ACT_END | MENU_ACT_SND6B;      
+    }
+#endif
+
+    Proc_Start(gProcScr_0859B630, PROC_TREE_3);
+
+    return MENU_ACT_SKIPCURSOR | MENU_ACT_END | MENU_ACT_SND6B;
+}

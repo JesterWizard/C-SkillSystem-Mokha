@@ -237,6 +237,18 @@ void DisplayUnitEffectRange(struct Unit *unit)
 			break;
 		} /* switch */
 	}
+
+#if defined(SID_UnarmedCombat) && (COMMON_SKILL_VALID(SID_UnarmedCombat))
+    if (SkillTester(gActiveUnit, SID_UnarmedCombat))
+    {
+        if (!GetUnitEquippedWeapon(gActiveUnit))
+        {
+            GenerateUnitCompleteAttackRange(gActiveUnit);
+            movelimitv_flag = MOVLIMITV_MMAP_BLUE | MOVLIMITV_RMAP_RED;
+        }
+    }
+#endif
+
 	DisplayMoveRangeGraphics(movelimitv_flag);
 }
 

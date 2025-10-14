@@ -311,6 +311,20 @@ const struct DebuffInfo gStatDebuffInfos[UNIT_STAT_DEBUFF_MAX] = {
 		},
 	},
 
+    [UNIT_STAT_DEBUFF_DEBILITATOR] = {
+        .positive_type = STATUS_DEBUFF_NEGATIVE,
+        .tick_type = STATUS_DEBUFF_TICK_ON_ENEMY,
+        .unit_status = {
+            .pow = -4,
+            .mag = -4,
+            .skl = -4,
+            .spd = -4,
+            .lck = -4,
+            .def = -4,
+            .res = -4,
+        },
+    },
+
 	[UNIT_STAT_BUFF_PLUSMINUS] = {
 		.positive_type = STATUS_DEBUFF_POSITIVE,
 		.tick_type = STATUS_DEBUFF_TICK_ON_ALLY,
@@ -324,6 +338,15 @@ const struct DebuffInfo gStatDebuffInfos[UNIT_STAT_DEBUFF_MAX] = {
 			.res = 4,
 		},
 	},
+
+    [UNIT_STAT_BUFF_ANGERPOINT] = {
+        .positive_type = STATUS_DEBUFF_POSITIVE,
+        .tick_type = STATUS_DEBUFF_TICK_ON_ALLY,
+        .unit_status = {
+            .pow = +10,
+            .mag = +10,
+        },
+    },
 
 	[UNIT_STAT_BUFF_INDOOR_MARCH_MOV] = {
 		.positive_type = STATUS_DEBUFF_POSITIVE,
@@ -353,6 +376,61 @@ const struct DebuffInfo gStatDebuffInfos[UNIT_STAT_DEBUFF_MAX] = {
 		.positive_type = STATUS_DEBUFF_POSITIVE,
 		.tick_type = STATUS_DEBUFF_TICK_ON_ALLY,
 		.unit_status = { .mov = 3 },
+	},
+
+ [UNIT_STAT_BUFF_VIGORDANCE] = {
+        .positive_type = STATUS_DEBUFF_POSITIVE,
+        .tick_type = STATUS_DEBUFF_TICK_ON_ALLY,
+        .unit_status = {
+            .pow = +2,
+            .def = +2,
+        },
+    },
+
+    [UNIT_STAT_BUFF_TRANSFORM] = {
+        .positive_type = STATUS_DEBUFF_POSITIVE,
+        .tick_type = STATUS_DEBUFF_NO_TICK,
+        .unit_status = {
+            .pow = +6,
+            .mag = +6,
+            .skl = +6,
+            .spd = +6,
+            .lck = +6,
+            .def = +6,
+            .res = +6,
+            .curHP = +6,
+            .maxHP = +6,
+        },
+    },
+    [UNIT_STAT_BUFF_LAGUZ] = {
+        .positive_type = STATUS_DEBUFF_POSITIVE,
+        .tick_type = STATUS_DEBUFF_NO_TICK,
+        .unit_status = {
+            .pow = +6,
+            .mag = +6,
+            .skl = +6,
+            .spd = +6,
+            .lck = +6,
+            .def = +6,
+            .res = +6,
+            .curHP = +6,
+            .maxHP = +6,
+        },
+    },
+    [UNIT_STAT_BUFF_LAGUZ_HALFSHIFT] = {
+        .positive_type = STATUS_DEBUFF_POSITIVE,
+        .tick_type = STATUS_DEBUFF_NO_TICK,
+        .unit_status = {
+            .pow = +3,
+            .mag = +3,
+            .skl = +3,
+            .spd = +3,
+            .lck = +3,
+            .def = +3,
+            .res = +3,
+            .curHP = +3,
+            .maxHP = +3,
+        },
 	},
 
 	[UNIT_STAT_DEBUFF_CHILL_POW] = {

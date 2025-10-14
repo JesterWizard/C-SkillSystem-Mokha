@@ -4,6 +4,8 @@
 #include <gaiden-magic.h>
 #include <stat-screen.h>
 #include <shield.h>
+#include "skill-system.h"
+#include "constants/skills.h"
 
 #define LOCAL_TRACE 0
 
@@ -197,6 +199,19 @@ NOINLINE STATIC_DECLAR void DrawItemPageSubfix(int slot)
 	DisplayTexts(gpPage1TextInfo);
 
 	weapon = GetItemFromSlot(unit, slot);
+
+#if (defined(SID_UnarmedCombat) && (COMMON_SKILL_VALID(SID_UnarmedCombat)))
+	if (SkillTester(gStatScreen.unit, SID_UnarmedCombat))
+	{    
+		if(!GetUnitEquippedWeapon(gStatScreen.unit))
+		{
+			gBattleActor.battleAttack = (gStatScreen.unit->pow);
+			gBattleActor.battleHitRate = (gStatScreen.unit->skl * 2) + (gStatScreen.unit->lck / 2) + SKILL_EFF0(SID_UnarmedCombat);
+			gBattleActor.battleCritRate = gStatScreen.unit->lck;
+		}
+
+	}
+#endif
 
 	PutNumberOrBlank(
 		gUiTmScratchA + TILEMAP_INDEX(8,  13),

@@ -253,11 +253,12 @@ int BattleHit_CalcDamage(struct BattleUnit* attacker, struct BattleUnit* defende
 	if (base_damage <= 0)
 		base_damage = 0;
 
-	if (base_damage <= 0 && gDmg.real_damage <= 0) {
-		/* If no damage taken, directly end the damage calculation */
-		gDmg.result = 0;
-		return 0;
-	}
+	/* JESTER - This is an early return for 0 battle damage that I'm turning off for SID_TintedLens */
+	// if (base_damage <= 0 && gDmg.real_damage <= 0) {
+	// 	/* If no damage taken, directly end the damage calculation */
+	// 	gDmg.result = 0;
+	// 	return 0;
+	// }
 
 	/**
 	 * Step6: Calculate result
@@ -305,7 +306,7 @@ int BattleHit_CalcDamage(struct BattleUnit* attacker, struct BattleUnit* defende
     if ((BattleFastSkillTester(attacker, SID_TintedLens) || BattleFastSkillTester(defender, SID_TintedLens)) && !tintedLensPlus)
     {
         if (result < 6)
-            result = 6;
+			result = 6;
     }
 #endif
 

@@ -605,6 +605,22 @@ bool BattleGenerateRoundHits(struct BattleUnit *attacker, struct BattleUnit *def
 {
 	int i, count;
 	u32 attrs;
+    int unarmedCombat = false;
+
+#if defined(SID_UnarmedCombat) && (COMMON_SKILL_VALID(SID_UnarmedCombat))
+    if (!BattleFastSkillTester(attacker, SID_UnarmedCombat))
+    {
+        if (!attacker->weapon)
+            return FALSE;
+    }
+    else 
+    {
+        unarmedCombat = true;
+    }
+#else
+    if (!attacker->weapon)
+        return FALSE;
+#endif
 
 	if (!CheckCanContinueAttack(attacker))
 		return FALSE;
@@ -642,7 +658,7 @@ bool BattleGenerateRoundHits(struct BattleUnit *attacker, struct BattleUnit *def
 		}
 
 		/* I think this is a bug-fix for vanilla */
-		if (!CheckCanContinueAttack(attacker))
+		if (!CheckCanContinueAttack(attacker) && !unarmedCombat)
 			return false;
 	}
 	return false;
@@ -720,5 +736,72 @@ int GetBattleUnitHitCount(struct BattleUnit *actor)
 	}
 #endif
 
+#if defined(SID_LastStand) && (COMMON_SKILL_VALID(SID_LastStand))
+    if (actor == &gBattleActor && BattleFastSkillTester(actor, SID_LastStand) && actor->hpInitial == 1)
+    {
+        EnqueueRoundEfxSkill(SID_LastStand);
+        result = result + 1;
+    }
+#endif
+
+#if defined(SID_Echo) && (COMMON_SKILL_VALID(SID_Echo))
+    if (actor == &gBattleActor && BattleFastSkillTester(actor, SID_Echo))
+    {
+        EnqueueRoundEfxSkill(SID_Echo);
+        gBattleActorGlobalFlag.skill_activated_echo = true;
+        result = result + SKILL_EFF0(SID_Echo);
+    }
+#endif
+
+#if defined(SID_Flurry) && (COMMON_SKILL_VALID(SID_Flurry))
+    if (BattleFastSkillTester(actor, SID_Flurry))
+    {
+        EnqueueRoundEfxSkill(SID_Echo);
+        int extraAttacks = (actor->battleSpeed - target->battleSpeed) / 4;
+        result = result + extraAttacks;
+    }
+#endif
+
+#if defined(SID_UnarmedCombat) && (COMMON_SKILL_VALID(SID_UnarmedCombat))
+    if (BattleFastSkillTester(actor, SID_UnarmedCombat))
+	{
+        result = result + 1;
+	}
+#endif
+
 	return result;
+}
+
+LYN_REPLACE_CHECK(BattleCheckBraveEffect);
+int BattleCheckBraveEffect(struct BattleUnit* attacker) {
+    bool braveEffect = false;
+    
+    if (attacker->weaponAttributes & IA_BRAVE)
+    {
+        braveEffect = true;
+    }
+    else
+    {
+#if defined(SID_DualWieldPlus) && (COMMON_SKILL_VALID(SID_DualWieldPlus))
+        if (BattleFastSkillTester(attacker, SID_DualWieldPlus))
+        {
+            for (int i = 1; i < UNIT_MAX_INVENTORY; i++)
+            {
+                if (GetItemMight(attacker->unit.items[i]) > 0 && CanUnitUseWeapon(GetUnit(attacker->unit.index), attacker->unit.items[i]))
+                {
+                    if (GetItemAttributes(attacker->unit.items[i]) & IA_BRAVE)
+                    {
+                        braveEffect = true;
+                        break;
+                    }
+                }
+            }
+        }
+#endif 
+    }
+
+    if (braveEffect)
+        gBattleHitIterator->attributes |= BATTLE_HIT_ATTR_BRAVE;
+
+    return braveEffect;
 }

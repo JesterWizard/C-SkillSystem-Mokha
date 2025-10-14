@@ -128,7 +128,7 @@ struct DebuffInfo {
     } efx_config;
 
     struct {
-        s8 pow, mag, skl, spd, def, res, lck, mov;
+        s8 pow, mag, skl, spd, def, res, lck, mov, curHP, maxHP;
     } unit_status;
 
     struct {

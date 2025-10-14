@@ -1,6 +1,8 @@
 #include "common-chax.h"
 #include "debuff.h"
 #include "kernel-lib.h"
+#include "skill-system.h"
+#include "constants/skills.h"
 
 #define LOCAL_TRACE 0
 void StartStatusHealEffect(struct Unit *unit, ProcPtr proc);
@@ -64,48 +66,132 @@ void TickActiveFactionTurn(void)
 	if (gPlaySt.faction == FACTION_BLUE) {
 		/* Blue buff */
 		FOR_UNITS_ONMAP_FACTION(FACTION_BLUE, unit, {
+			bool doomStatus = false;
+
 			if (gpDebuffInfos[GetUnitStatusIndex(unit)].tick_type == STATUS_DEBUFF_TICK_ON_ALLY)
+			{
 				DEC_STATUS(unit);
+
+#if (defined(SID_ShedSkin) && COMMON_SKILL_VALID(SID_ShedSkin))
+                if (SkillTester(unit, SID_ShedSkin))
+                    DEC_STATUS(unit);
+#endif
+			}
+
+            if (GetUnitStatusDuration(unit) == 0 && doomStatus == true)
+			{
+                UnitKill(unit);
+			}
 
 			TickUnitStatDebuff(unit, STATUS_DEBUFF_TICK_ON_ALLY);
 		})
 
 		/* Red debuff */
 		FOR_UNITS_ONMAP_FACTION(FACTION_RED, unit, {
+			bool doomStatus = false;
+
 			if (gpDebuffInfos[GetUnitStatusIndex(unit)].tick_type == STATUS_DEBUFF_TICK_ON_ENEMY)
+			{
 				DEC_STATUS(unit);
+
+#if (defined(SID_ShedSkin) && COMMON_SKILL_VALID(SID_ShedSkin))
+                if (SkillTester(unit, SID_ShedSkin))
+                    DEC_STATUS(unit);
+#endif
+			}
+
+            if (GetUnitStatusDuration(unit) == 0 && doomStatus == true)
+			{
+                UnitKill(unit);
+			}
 
 			TickUnitStatDebuff(unit, STATUS_DEBUFF_TICK_ON_ENEMY);
 		})
 	} else if (gPlaySt.faction == FACTION_RED) {
 		/* Red buff */
 		FOR_UNITS_ONMAP_FACTION(FACTION_RED, unit, {
+			bool doomStatus = false;
+
 			if (gpDebuffInfos[GetUnitStatusIndex(unit)].tick_type == STATUS_DEBUFF_TICK_ON_ALLY)
+			{
 				DEC_STATUS(unit);
+
+#if (defined(SID_ShedSkin) && COMMON_SKILL_VALID(SID_ShedSkin))
+                if (SkillTester(unit, SID_ShedSkin))
+                    DEC_STATUS(unit);
+#endif
+			}
+
+            if (GetUnitStatusDuration(unit) == 0 && doomStatus == true)
+			{
+                UnitKill(unit);
+			}
 
 			TickUnitStatDebuff(unit, STATUS_DEBUFF_TICK_ON_ALLY);
 		})
 
 		/* Blue debuff */
 		FOR_UNITS_ONMAP_FACTION(FACTION_BLUE, unit, {
+			bool doomStatus = false;
+
 			if (gpDebuffInfos[GetUnitStatusIndex(unit)].tick_type == STATUS_DEBUFF_TICK_ON_ENEMY)
+			{
 				DEC_STATUS(unit);
+
+#if (defined(SID_ShedSkin) && COMMON_SKILL_VALID(SID_ShedSkin))
+                if (SkillTester(unit, SID_ShedSkin))
+                    DEC_STATUS(unit);
+#endif
+			}
+
+            if (GetUnitStatusDuration(unit) == 0 && doomStatus == true)
+			{
+                UnitKill(unit);
+			}
 
 			TickUnitStatDebuff(unit, STATUS_DEBUFF_TICK_ON_ENEMY);
 		})
 
 		/* Green debuff */
 		FOR_UNITS_ONMAP_FACTION(FACTION_GREEN, unit, {
+		  	bool doomStatus = false;
+
 			if (gpDebuffInfos[GetUnitStatusIndex(unit)].tick_type == STATUS_DEBUFF_TICK_ON_ENEMY)
+			{
 				DEC_STATUS(unit);
+
+#if (defined(SID_ShedSkin) && COMMON_SKILL_VALID(SID_ShedSkin))
+                if (SkillTester(unit, SID_ShedSkin))
+                    DEC_STATUS(unit);
+#endif
+			}
+
+            if (GetUnitStatusDuration(unit) == 0 && doomStatus == true)
+			{
+                UnitKill(unit);
+			}
 
 			TickUnitStatDebuff(unit, STATUS_DEBUFF_TICK_ON_ENEMY);
 		})
 	} else if (gPlaySt.faction == FACTION_GREEN) {
 		/* Green buff */
 		FOR_UNITS_ONMAP_FACTION(FACTION_GREEN, unit, {
+			bool doomStatus = false;
+			
 			if (gpDebuffInfos[GetUnitStatusIndex(unit)].tick_type == STATUS_DEBUFF_TICK_ON_ALLY)
+			{
 				DEC_STATUS(unit);
+
+#if (defined(SID_ShedSkin) && COMMON_SKILL_VALID(SID_ShedSkin))
+                if (SkillTester(unit, SID_ShedSkin))
+                    DEC_STATUS(unit);
+#endif
+			}
+
+            if (GetUnitStatusDuration(unit) == 0 && doomStatus == true)
+			{
+                UnitKill(unit);
+			}
 
 			TickUnitStatDebuff(unit, STATUS_DEBUFF_TICK_ON_ALLY);
 		})

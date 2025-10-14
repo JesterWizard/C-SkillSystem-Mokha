@@ -8,6 +8,8 @@
 #include "kernel-tutorial.h"
 #include "constants/combat-arts.h"
 #include "constants/skills.h"
+#include "weapon-range.h"
+#include "jester_headers/custom-functions.h"
 
 STATIC_DECLAR void BattleCalcReal_ModifyBattleStatusSkills(struct BattleUnit *attacker, struct BattleUnit *defender)
 {
@@ -148,15 +150,106 @@ STATIC_DECLAR void BattleCalcReal_ComputSkills(struct BattleUnit *attacker, stru
 			attacker->battleEffectiveCritRate = 100;
 #endif
 
+#if (defined(SID_MoonBow) && (COMMON_SKILL_VALID(SID_MoonBow)))
+    if (BattleFastSkillTester(attacker, SID_MoonBow))
+        attacker->battleAttack += Div(defender->battleDefense * SKILL_EFF0(SID_MoonBow), 100);
+#endif
+
 #if (defined(SID_WonderGuard) && (COMMON_SKILL_VALID(SID_WonderGuard)))
 	if (BattleFastSkillTester(defender, SID_WonderGuard))
 		if (defender->weaponType == attacker->weaponType)
 			attacker->battleAttack = 0;
 #endif
 
+#if (defined(SID_Mantle) && (COMMON_SKILL_VALID(SID_Mantle)))
+    if (BattleFastSkillTester(defender, SID_Mantle))
+    {
+        if (GetItemIndex(attacker->weapon) != ITEM_AXE_IRON)
+            attacker->battleAttack = 0;
+    }
+#endif
+
 #if (defined(SID_NoGuard) && (COMMON_SKILL_VALID(SID_NoGuard)))
 	if (BattleFastSkillTester(attacker, SID_NoGuard) || BattleFastSkillTester(defender, SID_NoGuard))
 		attacker->battleEffectiveHitRate = 100;
+#endif
+
+#if (defined(SID_NoGuardPlus) && (COMMON_SKILL_VALID(SID_NoGuardPlus)))
+    if (BattleFastSkillTester(attacker, SID_NoGuardPlus))
+        attacker->battleEffectiveHitRate = 100;
+#endif
+
+#if (defined(SID_Seer) && (COMMON_SKILL_VALID(SID_Seer)))
+    if (BattleFastSkillTester(attacker, SID_Seer))
+    {
+        attacker->battleEffectiveHitRate = 100;
+        defender->battleEffectiveHitRate = 0;
+    }  
+    else if (BattleFastSkillTester(defender, SID_Seer))
+    {
+        defender->battleEffectiveHitRate = 100;
+        attacker->battleEffectiveHitRate = 0;
+    }   
+#endif
+
+#if (defined(SID_Flicker) && (COMMON_SKILL_VALID(SID_Flicker)))
+    if (BattleFastSkillTester(defender, SID_Flicker) && defender->unit.curHP == defender->unit.maxHP)
+        if ((attacker->battleAttack - defender->battleDefense) > (defender->unit.maxHP / 2))
+            attacker->battleEffectiveHitRate = 0;
+#endif
+
+#if (defined(SID_FarWard) && (COMMON_SKILL_VALID(SID_FarWard)))
+    if (BattleFastSkillTester(attacker, SID_FarWard) && gBattleStats.range >= 3)
+        defender->battleEffectiveHitRate = 0;
+    else if (BattleFastSkillTester(defender, SID_FarWard) && gBattleStats.range >= 3)
+        attacker->battleEffectiveHitRate = 0;
+#endif
+
+#if (defined(SID_RiskItAll) && (COMMON_SKILL_VALID(SID_RiskItAll)))
+    if (BattleFastSkillTester(attacker, SID_RiskItAll) || BattleFastSkillTester(defender, SID_RiskItAll))
+        attacker->battleEffectiveCritRate = SKILL_EFF0(SID_RiskItAll);
+#endif
+
+#if (defined(SID_Adaptable) && (COMMON_SKILL_VALID(SID_Adaptable)))
+    if (BattleFastSkillTester(defender, SID_Adaptable) && defender == &gBattleTarget)
+    {
+        u8 weapon_score[] = { 0, 0, 0, 0, 0 };
+        u8 weapon_attack_values[] = { 0, 0, 0, 0, 0 };
+        int weapon_strongest_position = 0;
+        int weapon_strongest_details = 0;
+        struct Unit * unit_attacker = GetUnit(attacker->unit.index);
+        struct Unit * unit_defender = GetUnit(defender->unit.index);
+
+        for (int i = 0; i < GetUnitItemCount(unit_defender); i++)
+        {
+            // Weapon range falls outside the combat range, so move on to the next item
+            if (GetItemMinRangeRework(unit_defender->items[i], unit_defender) > gBattleStats.range ||
+                GetItemMaxRangeRework(unit_defender->items[i], unit_defender) < gBattleStats.range)
+                continue;
+
+            if (isWeaponTriangleAdvantage(GetItemType(unit_defender->items[i]), GetItemType(GetUnitEquippedWeapon(unit_attacker))))
+                weapon_score[i] += 4;
+            if (IsItemEffectiveAgainst(unit_defender->items[i], unit_attacker))
+                weapon_score[i] += 3;
+            if (weaponHasSpecialEffect(GetItemAttributes(unit_defender->items[i])))
+                weapon_score[i] += 2;
+
+            weapon_attack_values[i] = GetItemMight(unit_defender->items[i]);
+        }
+
+        weapon_score[findMax(weapon_attack_values, 5)] += 1;
+
+        weapon_strongest_position = findMax(weapon_score, 5);
+        weapon_strongest_details = unit_defender->items[weapon_strongest_position];
+
+        if (weapon_strongest_position != 0)
+        {
+            // Put the currently equipped weapon in the place of the strongest weapon
+            unit_defender->items[weapon_strongest_position] = unit_defender->items[0];
+            // Now equip the strongest weapon
+            unit_defender->items[0] = weapon_strongest_details;
+        }
+    }
 #endif
 
 #if (defined(SID_ImmovableObject) && COMMON_SKILL_VALID(SID_ImmovableObject))
@@ -207,6 +300,14 @@ void ComputeBattleUnitSilencerRate(struct BattleUnit *attacker, struct BattleUni
 LYN_REPLACE_CHECK(ComputeBattleUnitEffectiveHitRate);
 void ComputeBattleUnitEffectiveHitRate(struct BattleUnit *attacker, struct BattleUnit *defender)
 {
+
+#if defined(SID_UnarmedCombat) && (COMMON_SKILL_VALID(SID_UnarmedCombat))
+    if (SkillTester(GetUnit(attacker->unit.index), SID_UnarmedCombat))
+    {
+        attacker->battleHitRate += SKILL_EFF0(SID_UnarmedCombat);
+    }
+#endif
+
 	attacker->battleEffectiveHitRate = attacker->battleHitRate - defender->battleAvoidRate;
 
 	/* For non-ballista combat, Distance +2, hit rate -20% for actor */

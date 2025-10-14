@@ -240,10 +240,6 @@ const u8 EfxSkillAnimPriority[MAX_SKILL_NUM + 1] = {
 	[SID_OverKill] = EFX_PRIORITY_NORMAL,
 #endif
 
-#if (defined(SID_WeaponHeal) && COMMON_SKILL_VALID(SID_WeaponHeal))
-	[SID_WeaponHeal] = EFX_PRIORITY_NORMAL,
-#endif
-
 #if (defined(SID_BloodSurge) && COMMON_SKILL_VALID(SID_BloodSurge))
 	[SID_BloodSurge] = EFX_PRIORITY_LOW,
 #endif
@@ -266,6 +262,82 @@ const u8 EfxSkillAnimPriority[MAX_SKILL_NUM + 1] = {
 
 #if (defined(SID_PenanceStare) && COMMON_SKILL_VALID(SID_PenanceStare))
 	[SID_PenanceStare] = EFX_PRIORITY_NORMAL,
+#endif
+
+#if (defined(SID_HoldOut) && COMMON_SKILL_VALID(SID_HoldOut))
+    [SID_HoldOut] = EFX_PRIORITY_NORMAL,
+#endif
+
+#if (defined(SID_ArmsthriftPlus) && COMMON_SKILL_VALID(SID_ArmsthriftPlus))
+    [SID_ArmsthriftPlus] = EFX_PRIORITY_NORMAL,
+#endif
+
+#if (defined(SID_MagicBounce) && COMMON_SKILL_VALID(SID_MagicBounce))
+    [SID_MagicBounce] = EFX_PRIORITY_NORMAL,
+#endif
+
+#if (defined(SID_Fluffy) && COMMON_SKILL_VALID(SID_Fluffy))
+    [SID_Fluffy] = EFX_PRIORITY_NORMAL,
+#endif
+
+#if (defined(SID_WeaponHeal) && COMMON_SKILL_VALID(SID_WeaponHeal))
+    [SID_WeaponHeal] = EFX_PRIORITY_HIGH,
+#endif
+
+#if (defined(SID_IronDome) && COMMON_SKILL_VALID(SID_IronDome))
+    [SID_IronDome] = EFX_PRIORITY_NORMAL,
+#endif
+
+#if (defined(SID_Alacrity) && COMMON_SKILL_VALID(SID_Alacrity))
+    [SID_Alacrity] = EFX_PRIORITY_NORMAL,
+#endif
+
+#if (defined(SID_AlacrityPlus) && COMMON_SKILL_VALID(SID_AlacrityPlus))
+    [SID_AlacrityPlus] = EFX_PRIORITY_NORMAL,
+#endif
+
+#if (defined(SID_Echo) && COMMON_SKILL_VALID(SID_Echo))
+    [SID_Echo] = EFX_PRIORITY_NORMAL,
+#endif
+
+#if (defined(SID_WyvernCrash) && COMMON_SKILL_VALID(SID_WyvernCrash))
+    [SID_WyvernCrash] = EFX_PRIORITY_NORMAL,
+#endif
+
+#if (defined(SID_LethalityPlus) && COMMON_SKILL_VALID(SID_LethalityPlus))
+    [SID_LethalityPlus] = EFX_PRIORITY_NORMAL,
+#endif
+
+#if (defined(SID_GrimReaper) && COMMON_SKILL_VALID(SID_GrimReaper))
+    [SID_GrimReaper] = EFX_PRIORITY_NORMAL,
+#endif
+
+#if (defined(SID_TrickRoom) && COMMON_SKILL_VALID(SID_TrickRoom))
+    [SID_TrickRoom] = EFX_PRIORITY_NORMAL,
+#endif
+
+#if (defined(SID_Rampart) && COMMON_SKILL_VALID(SID_Rampart))
+    [SID_Rampart] = EFX_PRIORITY_NORMAL,
+#endif
+
+#if (defined(SID_RampartPlus) && COMMON_SKILL_VALID(SID_RampartPlus))
+    [SID_RampartPlus] = EFX_PRIORITY_NORMAL,
+#endif
+
+#if (defined(SID_Forcefield) && COMMON_SKILL_VALID(SID_Forcefield))
+    [SID_Forcefield] = EFX_PRIORITY_NORMAL,
+#endif
+
+#if (defined(SID_ResolvedHeart) && COMMON_SKILL_VALID(SID_ResolvedHeart))
+    [SID_ResolvedHeart] = EFX_PRIORITY_LOW,
+#endif
+
+#if (defined(SID_LastStand) && COMMON_SKILL_VALID(SID_LastStand))
+    [SID_LastStand] = EFX_PRIORITY_NORMAL,
+#endif
+
+#if (defined(SID_Reinforce) && COMMON_SKILL_VALID(SID_Reinforce))
+    [SID_Reinforce] = EFX_PRIORITY_NORMAL,
 #endif
 };
 
@@ -532,5 +604,73 @@ struct EfxAnimConf const *const EfxSkillAnims[MAX_SKILL_NUM + 1] = {
 
 #if (defined(SID_PenanceStare) && COMMON_SKILL_VALID(SID_PenanceStare))
 	[SID_PenanceStare] = &EfxSkillVanilla,
+#endif
+
+#if (defined(SID_ArmsthriftPlus) && COMMON_SKILL_VALID(SID_ArmsthriftPlus))
+    [SID_ArmsthriftPlus] = &EfxSkillVanilla,
+#endif
+
+#if (defined(SID_MagicBounce) && COMMON_SKILL_VALID(SID_MagicBounce))
+    [SID_MagicBounce] = &EfxSkillVanilla,
+#endif
+
+#if (defined(SID_Fluffy) && COMMON_SKILL_VALID(SID_Fluffy))
+    [SID_Fluffy] = &EfxSkillVanilla,
+#endif
+
+#if (defined(SID_IronDome) && COMMON_SKILL_VALID(SID_IronDome))
+    [SID_IronDome] = &EfxSkillVanilla,
+#endif
+
+#if (defined(SID_Alacrity) && COMMON_SKILL_VALID(SID_Alacrity))
+    [SID_Alacrity] = &EfxSkillVanilla,
+#endif
+
+#if (defined(SID_AlacrityPlus) && COMMON_SKILL_VALID(SID_AlacrityPlus))
+    [SID_AlacrityPlus] = &EfxSkillVanilla,
+#endif
+
+#if (defined(SID_Echo) && COMMON_SKILL_VALID(SID_Echo))
+    [SID_Echo] = &EfxSkillVanilla,
+#endif
+
+#if (defined(SID_WyvernCrash) && COMMON_SKILL_VALID(SID_WyvernCrash))
+    [SID_WyvernCrash] = &EfxSkillVanilla,
+#endif
+
+#if (defined(SID_LethalityPlus) && COMMON_SKILL_VALID(SID_LethalityPlus))
+    [SID_LethalityPlus] = &EfxSkillVanilla,
+#endif
+
+#if (defined(SID_GrimReaper) && COMMON_SKILL_VALID(SID_GrimReaper))
+    [SID_GrimReaper] = &EfxSkillVanilla,
+#endif
+
+#if (defined(SID_TrickRoom) && COMMON_SKILL_VALID(SID_TrickRoom))
+    [SID_TrickRoom] = &EfxSkillVanilla,
+#endif
+
+#if (defined(SID_Rampart) && COMMON_SKILL_VALID(SID_Rampart))
+    [SID_Rampart] = &EfxSkillVanilla,
+#endif
+
+#if (defined(SID_RampartPlus) && COMMON_SKILL_VALID(SID_RampartPlus))
+    [SID_RampartPlus] = &EfxSkillVanilla,
+#endif
+
+#if (defined(SID_Forcefield) && COMMON_SKILL_VALID(SID_Forcefield))
+    [SID_Forcefield] = &EfxSkillVanilla,
+#endif
+
+#if (defined(SID_ResolvedHeart) && COMMON_SKILL_VALID(SID_ResolvedHeart))
+    [SID_ResolvedHeart] = &EfxSkillVanilla,
+#endif
+
+#if (defined(SID_LastStand) && COMMON_SKILL_VALID(SID_LastStand))
+    [SID_LastStand] = &EfxSkillVanilla,
+#endif
+
+#if (defined(SID_Reinforce) && COMMON_SKILL_VALID(SID_Reinforce))
+    [SID_Reinforce] = &EfxSkillVanilla,
 #endif
 };

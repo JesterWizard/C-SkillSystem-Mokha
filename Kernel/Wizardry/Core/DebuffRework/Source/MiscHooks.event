@@ -32,13 +32,15 @@ PUSH
     // ComputeBattleUnitStatusBonuses
     // ComputeBattleUnitSpecialWeaponStats
 
-    ORG $2B152 // BattleCheckTriangleAttack
-    BYTE 0x3F
-    PROTECT $2B0CC $2B1C4
+    /* JESTER - Needed for LynJump of function */
+    // ORG $2B152 // BattleCheckTriangleAttack
+    // BYTE 0x3F
+    // PROTECT $2B0CC $2B1C4
 
-    ORG $2B5B0 // BattleGenerateHitTriangleAttack
-    BYTE 0x3F
-    PROTECT $2B578 $2B600
+    /* JESTER - Needed for LynJump of function */
+    // ORG $2B5B0 // BattleGenerateHitTriangleAttack
+    // BYTE 0x3F
+    // PROTECT $2B578 $2B600
 
     /* JESTER - Needed for LynJump of function */
     // ORG $2B664 // BattleGenerateHitEffects

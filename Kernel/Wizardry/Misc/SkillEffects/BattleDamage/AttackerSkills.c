@@ -47,6 +47,15 @@ void BattleDamageCalc_AttackerSkills(struct BattleUnit *attacker, struct BattleU
 			break;
 #endif
 
+#if defined(SID_RampUp) && (COMMON_SKILL_VALID(SID_RampUp))
+	case SID_RampUp:
+		if (BattleFastSkillTester(attacker, SID_RampUp) && gDmg.crit_atk)
+		{
+			gBattleStats.attack *= 2;
+		}
+		break;
+#endif
+
 #if (defined(SID_Flare) && (COMMON_SKILL_VALID(SID_Flare)))
 		case SID_Flare:
 			if (CheckBattleSkillActivate(attacker, defender, SID_Flare, attacker->unit.skl)) {

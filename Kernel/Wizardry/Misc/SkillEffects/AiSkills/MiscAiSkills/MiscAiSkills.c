@@ -44,7 +44,7 @@ int AiGetDamageDealtCombatScoreComponent(void)
 #endif
 
 #if defined(SID_LightningRod) && (COMMON_SKILL_VALID(SID_LightningRod))
-    if (BattleSkillTester(&gBattleTarget, SID_LightningRod))
+    if (BattleFastSkillTester(&gBattleTarget, SID_LightningRod))
     {
         int weapon = GetItemIndex(GetUnitEquippedWeapon(&gBattleActor.unit)); 
 

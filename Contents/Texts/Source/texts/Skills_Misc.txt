@@ -461,7 +461,7 @@ Grand Magician[X]
 ## MSG_SKILL_GrandMagician_DESC
 Grand Magician:[N]
 Unit can use Gaiden magic[N]
-without paying HP.[X]
+without paying a cost.[X]
 
 ## MSG_SKILL_BloodMagic_NAME
 Blood Magic[X]

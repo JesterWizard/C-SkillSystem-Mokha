@@ -190,6 +190,14 @@ STATIC_DECLAR void SetBattleUnitWeaponVanilla(struct BattleUnit *bu, int itemSlo
 
 	}
 
+#if defined(SID_UnarmedCombat) && (COMMON_SKILL_VALID(SID_UnarmedCombat))
+    if (BattleFastSkillTester(bu, SID_UnarmedCombat))
+    {
+        if (bu->weapon == 0)
+            bu->canCounter = true;
+    }
+#endif
+
 	bu->weaponBefore = bu->weapon;
 	bu->weaponAttributes = GetItemAttributes(bu->weapon);
 	bu->weaponType = GetItemType(bu->weapon);
@@ -498,6 +506,15 @@ void BattleUnitTargetCheckCanCounter(struct BattleUnit *bu)
 {
 	if (bu->canCounter)
 		return;
+
+
+#if (defined(SID_UnarmedCombat) && (COMMON_SKILL_VALID(SID_UnarmedCombat)))
+    if (BattleFastSkillTester(bu, SID_UnarmedCombat))
+	{
+		bu->canCounter = true;
+		return;
+	}
+#endif
 
 #if CHAX
 	if (CheckUnbreakableSpecialSlot(bu->weaponSlotIndex))

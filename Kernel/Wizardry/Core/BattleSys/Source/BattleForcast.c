@@ -1,6 +1,8 @@
 #include "common-chax.h"
 #include "battle-system.h"
 #include "combat-art.h"
+#include "skill-system.h"
+#include "constants/skills.h"
 
 extern const u8 Gfx_BKSEL[12][0x80];
 
@@ -34,28 +36,55 @@ void InitBattleForecastBattleStats(struct BattleForecastProc* proc)
 	proc->hitCountA = 0;
 	proc->isEffectiveA = false;
 
-	if ((gBattleActor.weapon != 0) || (gBattleActor.weaponBroke)) {
-		BattleForecastHitCountUpdate(&gBattleActor, (u8*)&proc->hitCountA, &usesA);
+    bool unarmedCombat_Actor = false;
+    bool unarmedCombat_Target = false;
 
-		if (IsUnitEffectiveAgainst(&gBattleActor.unit, &gBattleTarget.unit))
-			proc->isEffectiveA = true;
+#if defined(SID_UnarmedCombat) && (COMMON_SKILL_VALID(SID_UnarmedCombat))
+        if (SkillTester(GetUnit(gBattleActor.unit.index), SID_UnarmedCombat))
+        {
+            usesA = 100;
+            unarmedCombat_Actor = true;
+        }
+#endif
 
-		if (IsItemEffectiveAgainst(gBattleActor.weaponBefore, &gBattleTarget.unit))
-			proc->isEffectiveA = true;
-	}
+    if ((gBattleActor.weapon != 0) || (gBattleActor.weaponBroke) || unarmedCombat_Actor)
+    {
+        BattleForecastHitCountUpdate(&gBattleActor, (u8 *)&proc->hitCountA, &usesA);
+
+        if (IsUnitEffectiveAgainst(&gBattleActor.unit, &gBattleTarget.unit))
+            proc->isEffectiveA = true;
+
+        if (IsItemEffectiveAgainst(gBattleActor.weaponBefore, &gBattleTarget.unit))
+            proc->isEffectiveA = true;
+
+        if ((gBattleActor.wTriangleHitBonus > 0) && (gBattleActor.weaponAttributes & IA_REVERTTRIANGLE) != 0)
+            proc->isEffectiveA = true;
+    }
 
 	proc->hitCountB = 0;
 	proc->isEffectiveB = false;
 
-	if ((gBattleTarget.weapon != 0) || (gBattleTarget.weaponBroke)) {
-		BattleForecastHitCountUpdate(&gBattleTarget, (u8*)&proc->hitCountB, &usesB);
+#if defined(SID_UnarmedCombat) && (COMMON_SKILL_VALID(SID_UnarmedCombat))
+        if (SkillTester(GetUnit(gBattleTarget.unit.index), SID_UnarmedCombat))
+        {
+            usesB = 100;
+            unarmedCombat_Target = true;
+        }
+#endif
 
-		if (IsUnitEffectiveAgainst(&gBattleTarget.unit, &gBattleActor.unit))
-			proc->isEffectiveB = true;
+    if ((gBattleTarget.weapon != 0) || (gBattleTarget.weaponBroke) || unarmedCombat_Target)
+    {
+        BattleForecastHitCountUpdate(&gBattleTarget, (u8 *)&proc->hitCountB, &usesB);
 
-		if (IsItemEffectiveAgainst(gBattleTarget.weaponBefore, &gBattleActor.unit))
-			proc->isEffectiveB = true;
-	}
+        if (IsUnitEffectiveAgainst(&gBattleTarget.unit, &gBattleActor.unit))
+            proc->isEffectiveB = true;
+
+        if (IsItemEffectiveAgainst(gBattleTarget.weaponBefore, &gBattleActor.unit))
+            proc->isEffectiveB = true;
+
+        if ((gBattleTarget.wTriangleHitBonus > 0) && (gBattleTarget.weaponAttributes & IA_REVERTTRIANGLE) != 0)
+            proc->isEffectiveB = true;
+    }
 
 	/* Prepare GFX here */
 	switch (proc->hitCountA) {

@@ -2,6 +2,7 @@
 #include "skill-system.h"
 #include "class-types.h"
 #include "constants/skills.h"
+#include "battle-system.h"
 
 STATIC_DECLAR const struct ClassData *GetJInfoForTerrainBonus(struct Unit *unit)
 {
@@ -29,12 +30,16 @@ void SetBattleUnitTerrainBonuses(struct BattleUnit *bu, int terrain)
 	const struct ClassData *jinfo = GetJInfoForTerrainBonus(&bu->unit);
 
 	bu->terrainId = terrain;
-
-	bu->terrainAvoid      = jinfo->pTerrainAvoidLookup[bu->terrainId];
+    bu->terrainAvoid      = jinfo->pTerrainAvoidLookup[bu->terrainId];
 	
 #ifndef CONFIG_STAT_SCREEN_TERRAIN_BONUS
-    bu->terrainDefense    = bu->unit.pClassData->pTerrainDefenseLookup[bu->terrainId];
-    bu->terrainResistance = bu->unit.pClassData->pTerrainResistanceLookup[bu->terrainId];
+    bu->terrainDefense    = jinfo->pTerrainDefenseLookup[bu->terrainId];
+    bu->terrainResistance = jinfo->pTerrainResistanceLookup[bu->terrainId];
+#endif
+
+#if (defined(SID_Camouflage) && (COMMON_SKILL_VALID(SID_Camouflage)))
+    if (BattleFastSkillTester(bu, SID_Camouflage))
+        bu->terrainAvoid = (bu->terrainAvoid * 3)/2;
 #endif
 }
 

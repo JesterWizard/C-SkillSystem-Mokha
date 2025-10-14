@@ -40,6 +40,27 @@ void ComputeBattleUnitSpeed(struct BattleUnit *bu)
     wt -= con;
 #endif
 
+#if (defined(SID_GracefulWielder) && (COMMON_SKILL_VALID(SID_GracefulWielder)))
+        if (SkillTester(GetUnit(bu->unit.index), SID_GracefulWielder))
+        {
+            if (wt > 0)
+            {
+                int unitWeaponRank = bu->unit.ranks[GetItemType(bu->weapon)];
+
+                if (unitWeaponRank >= WPN_EXP_S)
+                    wt -= 5;
+                else if (unitWeaponRank >= WPN_EXP_A)
+                    wt -= 4;
+                else if (unitWeaponRank >= WPN_EXP_B)
+                    wt -= 3;
+                else if (unitWeaponRank >= WPN_EXP_C)
+                    wt -= 2;
+                else if (unitWeaponRank >= WPN_EXP_D)
+                	wt -= 1;
+            }
+        }
+#endif
+
 	if (wt < 0)
 		wt = 0;
 
@@ -56,6 +77,7 @@ void ComputeBattleUnitAttack(struct BattleUnit *attacker, struct BattleUnit *def
 	bool effective = false;
 	int effective_amplifier = 100;
 	int effective_reduce = 0x100;
+	FORCE_DECLARE bool dualWieldPlus = false;
 
 	status = GetItemMight(attacker->weapon);
 
@@ -88,6 +110,48 @@ void ComputeBattleUnitAttack(struct BattleUnit *attacker, struct BattleUnit *def
 		 */
 		status = k_udiv(status * effective_amplifier * 0x100, 100 * effective_reduce);
 	}
+
+#if (defined(SID_SwiftAttack) && (COMMON_SKILL_VALID(SID_SwiftAttack)))
+    if (BattleFastSkillTester(attacker, SID_SwiftAttack))
+        status = status + attacker->unit.spd;
+    else
+    {
+        if (IsMagicAttack(attacker))
+            status = status + UNIT_MAG(&attacker->unit);
+        else
+            status = status + attacker->unit.pow;
+    }
+#else 
+    if (IsMagicAttack(attacker))
+        status = status + UNIT_MAG(&attacker->unit);
+    else
+        status = status + attacker->unit.pow;
+#endif
+
+#if defined(SID_DualWieldPlus) && (COMMON_SKILL_VALID(SID_DualWieldPlus))
+    if (BattleFastSkillTester(attacker, SID_DualWieldPlus))
+    {
+        for (int i = 1; i < UNIT_MAX_INVENTORY; i++)
+        {
+            if (GetItemMight(attacker->unit.items[i]) > 0 && CanUnitUseWeapon(GetUnit(attacker->unit.index), attacker->unit.items[i]))
+            {
+                status += GetItemMight(attacker->unit.items[i]) / 2;
+                dualWieldPlus = true;
+            }
+        }
+    }
+#endif
+
+#if defined(SID_DualWield) && (COMMON_SKILL_VALID(SID_DualWield))
+    if (BattleFastSkillTester(attacker, SID_DualWield) && !dualWieldPlus)
+    {
+        for (int i = 1; i < UNIT_MAX_INVENTORY; i++)
+        {
+            if (GetItemMight(attacker->unit.items[i]) > 0 && CanUnitUseWeapon(GetUnit(attacker->unit.index), attacker->unit.items[i]))
+                status += GetItemMight(attacker->unit.items[i]) / 2;
+        }
+    }
+#endif
 
 	if (IsMagicAttack(attacker))
 		status = status + UNIT_MAG(&attacker->unit);
@@ -869,6 +933,15 @@ void PreBattleCalcAttackerSkills(struct BattleUnit *attacker, struct BattleUnit 
 
 			break;
 #endif
+
+#if (defined(SID_Zen) && (COMMON_SKILL_VALID(SID_Zen)))
+        case SID_Zen:
+            if ((attacker->unit.maxHP - attacker->hpInitial) >= 4)
+                attacker->battleDefense += (attacker->unit.maxHP - attacker->hpInitial) / 4;
+
+            break;
+#endif
+
 
 #if (defined(SID_KillingMachine) && (COMMON_SKILL_VALID(SID_KillingMachine)))
 		case SID_KillingMachine:
@@ -2026,6 +2099,12 @@ L_FairyTaleFolk_done:
         case SID_Calibration:
             attacker->battleHitRate += GetItemMaxUses(GetUnitEquippedWeapon(GetUnit(attacker->unit.index))) - ITEM_USES(GetUnitEquippedWeapon(GetUnit(attacker->unit.index)));
             break;
+#endif
+
+#if (defined(SID_Transpose) && (COMMON_SKILL_VALID(SID_Transpose)))
+		case SID_Transpose:
+            defender->battleAvoidRate -= defender->terrainAvoid * 2;
+			break;
 #endif
 
 

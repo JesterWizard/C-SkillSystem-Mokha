@@ -46,6 +46,11 @@ bool CheckDevilAttack(struct BattleUnit *attacker, struct BattleUnit *defender)
 		return false;
 	}
 
+#if (defined(SID_Antihex) && (COMMON_SKILL_VALID(SID_Antihex)))
+    if (BattleFastSkillTester(attacker, SID_Antihex))
+        return false;
+#endif
+
 #if (defined(SID_DevilsLuck) && (COMMON_SKILL_VALID(SID_DevilsLuck)))
 	if (BattleFastSkillTester(defender, SID_DevilsLuck) && GetItemWeaponEffect(defender->weapon) == WPN_EFFECT_DEVIL) {
 		RegisterTargetEfxSkill(GetBattleHitRound(gBattleHitIterator), SID_DevilsLuck);
@@ -95,6 +100,15 @@ bool CheckBattleInori(struct BattleUnit *attacker, struct BattleUnit *defender)
 		RegisterTargetEfxSkill(GetBattleHitRound(gBattleHitIterator), SID_Miracle);
 		return true;
 	}
+#endif
+
+#if (defined(SID_HoldOut) && (COMMON_SKILL_VALID(SID_HoldOut)))
+    if (BattleFastSkillTester(defender, SID_HoldOut))
+        if (defender->hpInitial > ((defender->unit.maxHP / 10) * 3))
+        {
+            RegisterTargetEfxSkill(GetBattleHitRound(gBattleHitIterator), SID_HoldOut);
+            return true;
+        }
 #endif
 
 #if (defined(SID_Sturdy) && (COMMON_SKILL_VALID(SID_Sturdy)))
@@ -477,6 +491,14 @@ void BattleHit_ConsumeWeapon(struct BattleUnit *attacker, struct BattleUnit *def
 	else if (CheckWeaponCostForMissedBowAttack(attacker) == true)
 		weapon_cost = true;
 
+#if defined(SID_ArmsthriftPlus) && (COMMON_SKILL_VALID(SID_ArmsthriftPlus))
+    if (CheckBattleSkillActivate(attacker, defender, SID_ArmsthriftPlus, 100))
+    {
+        weapon_cost = false;
+        RegisterActorEfxSkill(GetBattleHitRound(gBattleHitIterator), SID_ArmsthriftPlus);
+    }
+#endif
+
 #if defined(SID_Armsthrift) && (COMMON_SKILL_VALID(SID_Armsthrift))
 	if (CheckBattleSkillActivate(attacker, defender, SID_Armsthrift, attacker->unit.lck)) {
 		weapon_cost = false;
@@ -503,9 +525,16 @@ void BattleHit_ConsumeWeapon(struct BattleUnit *attacker, struct BattleUnit *def
 #else
 		attacker->weapon = GetItemAfterUse(attacker->weapon);
 #endif
-		if (!attacker->weapon && attacker->weaponBefore) {
-			LTRACE("attacker weapon broken!");
-			attacker->weaponBroke = TRUE;
-		}
+
+#if defined(SID_UnarmedCombat) && (COMMON_SKILL_VALID(SID_UnarmedCombat))
+        if (!BattleFastSkillTester(attacker, SID_UnarmedCombat))
+        {
+            if (!attacker->weapon)
+                attacker->weaponBroke = TRUE;
+        }
+#else
+        if (!attacker->weapon)
+            attacker->weaponBroke = TRUE;
+#endif
 	}
 }

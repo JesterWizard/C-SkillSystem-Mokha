@@ -15,6 +15,7 @@
 #include "jester_headers/Forging.h"
 #include "playst-expa.h"
 #include "bwl.h"
+#include "unit-expa.h"
 
 #define LOCAL_TRACE 0
 
@@ -99,26 +100,148 @@ void BattleUpdateBattleStats(struct BattleUnit* attacker, struct BattleUnit* def
 	LTRACEF("attack=%d, base=%d", attack, BattleUnitOriginalStatus(attacker)->atk);
 }
 
+LYN_REPLACE_CHECK(BattleCheckTriangleAttack);
+s8 BattleCheckTriangleAttack(struct BattleUnit * attacker, struct BattleUnit * defender)
+{
+    s8 adjacentLookup[] = { -1, 0, 0, -1, +1, 0, 0, +1 };
+
+    int i, count = 0;
+
+    int triangleAttackAttr = CA_TRIANGLEATTACK_ANY & UNIT_CATTRIBUTES(&attacker->unit);
+
+    int x = defender->unit.xPos;
+    int y = defender->unit.yPos;
+
+    int faction = UNIT_FACTION(&attacker->unit);
+
+    gBattleStats.taUnitA = NULL;
+    gBattleStats.taUnitB = NULL;
+
+    for (i = 0; i < 4; ++i)
+    {
+        int uId = gBmMapUnit[adjacentLookup[i * 2 + 1] + y][adjacentLookup[i * 2 + 0] + x];
+        struct Unit * unit;
+
+        if (!uId)
+            continue;
+
+        unit = GetUnit(uId);
+
+        if ((uId & 0xC0) != faction)
+            continue;
+
+#if (defined(SID_TriangleAttack) && (COMMON_SKILL_VALID(SID_TriangleAttack)))
+        if (SkillTester(unit, SID_TriangleAttack))
+        {
+            ++count;
+
+            if (!gBattleStats.taUnitA)
+                gBattleStats.taUnitA = unit;
+            else if (!gBattleStats.taUnitB)
+                gBattleStats.taUnitB = unit;
+
+            continue;
+        }
+#endif
+
+        if (unit->statusIndex == UNIT_STATUS_SLEEP)
+            continue;
+
+        if (unit->statusIndex == UNIT_STATUS_PETRIFY)
+            continue;
+
+        if (unit->statusIndex == UNIT_STATUS_13)
+            continue;
+
+        if (unit->pClassData->number == CLASS_WYVERN_KNIGHT_F)
+            continue;
+
+        if (UNIT_CATTRIBUTES(unit) & triangleAttackAttr)
+        {
+            ++count;
+
+            if (!gBattleStats.taUnitA)
+                gBattleStats.taUnitA = unit;
+            else if (!gBattleStats.taUnitB)
+                gBattleStats.taUnitB = unit;
+        }
+    }
+    return count >= 2 ? TRUE : FALSE;
+}
+
+LYN_REPLACE_CHECK(BattleGenerateHitTriangleAttack);
+void BattleGenerateHitTriangleAttack(struct BattleUnit * attacker, struct BattleUnit * defender)
+{
+
+    /**
+     * Since we're no longer limiting ourselves to just checking a
+     * hardcoded attribute we can turn this off.
+     */
+    // if (!(UNIT_CATTRIBUTES(&attacker->unit) & CA_TRIANGLEATTACK_ANY))
+    //    return;
+
+    if (gBattleStats.range != 1)
+        return;
+
+    if (!(gBattleHitIterator->info & BATTLE_HIT_INFO_BEGIN))
+        return;
+
+    if (attacker->unit.statusIndex == UNIT_STATUS_BERSERK)
+        return;
+
+    if (gBattleStats.config & BATTLE_CONFIG_ARENA)
+        return;
+
+    if (!BattleCheckTriangleAttack(attacker, defender))
+        return;
+
+    gBattleHitIterator->attributes |= BATTLE_HIT_ATTR_TATTACK;
+
+    gBattleStats.critRate = 100;
+    gBattleStats.hitRate = 100;
+}
+
+
 LYN_REPLACE_CHECK(BattleGenerateHitAttributes);
 void BattleGenerateHitAttributes(struct BattleUnit* attacker, struct BattleUnit* defender)
 {
+	FORCE_DECLARE bool grazingBlow = false;
 	gBattleStats.damage = 0;
 
 	/* Fasten simulation */
 	if (!BattleRoll2RN(gBattleStats.hitRate, FALSE)) {
 #if (defined(SID_DivinePulse) && (COMMON_SKILL_VALID(SID_DivinePulse)))
-		if (BattleRoll2RN(gBattleStats.hitRate, FALSE) &&
-			CheckBattleSkillActivate(attacker, defender, SID_DivinePulse, SKILL_EFF0(SID_DivinePulse) + attacker->unit.lck))
+		if (CheckBattleSkillActivate(attacker, defender, SID_DivinePulse, SKILL_EFF0(SID_DivinePulse) + attacker->unit.lck))
 			RegisterActorEfxSkill(GetBattleHitRound(gBattleHitIterator), SID_DivinePulse);
 		else {
-			RegisterHitCnt(attacker, true);
-			gBattleHitIterator->attributes |= BATTLE_HIT_ATTR_MISS;
-			return;
+/* Divine Pulse fails, so now we check for Grazing Blow */
+#if (defined(SID_GrazingBlow) && (COMMON_SKILL_VALID(SID_GrazingBlow)))
+            if (BattleFastSkillTester(attacker, SID_GrazingBlow))
+                grazingBlow = true;
+            else
+            {
+                RegisterHitCnt(attacker, true);
+                gBattleHitIterator->attributes |= BATTLE_HIT_ATTR_MISS;
+                return;
+            }
+#endif
 		}
 #else
-		RegisterHitCnt(attacker, true);
-		gBattleHitIterator->attributes |= BATTLE_HIT_ATTR_MISS;
-		return;
+    /* Divine Pulse fails, so now we check for Grazing Blow */
+    #if (defined(SID_GrazingBlow) && (COMMON_SKILL_VALID(SID_GrazingBlow)))
+                if (BattleFastSkillTester(attacker, SID_GrazingBlow))
+                        grazingBlow = true;
+                else
+                {
+                    RegisterHitCnt(attacker, true);
+                    gBattleHitIterator->attributes |= BATTLE_HIT_ATTR_MISS;
+                    return;
+                }
+    #else 
+                RegisterHitCnt(attacker, true);
+                gBattleHitIterator->attributes |= BATTLE_HIT_ATTR_MISS;
+                return;
+    #endif
 #endif
 	}
 
@@ -131,6 +254,25 @@ void BattleGenerateHitAttributes(struct BattleUnit* attacker, struct BattleUnit*
 			TriggerKtutorial(KTUTORIAL_REAL_DAMAGE);
 	}
 
+#if defined(SID_Debilitator) && (COMMON_SKILL_VALID(SID_Debilitator))
+    if (BattleFastSkillTester(attacker, SID_Debilitator) && gBattleStats.damage == 0 && !gBattleActorGlobalFlag.skill_activated_debilitator)
+        gBattleActorGlobalFlag.skill_activated_debilitator = true;
+#endif
+
+#if (defined(SID_InevitableEnd) && (COMMON_SKILL_VALID(SID_InevitableEnd)))
+    if (BattleFastSkillTester(attacker, SID_InevitableEnd))
+    {
+        /* Ensure it only applies for one hit, essentially making it only stack 'per battle' */
+        if (GetBattleGlobalFlags(attacker)->round_cnt_hit < 2)
+        {
+            struct Unit * target = GetUnit(defender->unit.index);
+
+            /* If we're at the max for the hit counter, don't increment it further */
+            target->counters += (target->counters == 7 ? 0 : 1);
+        }
+    }
+#endif
+
 	BattleCheckPetrify(attacker, defender);
 
 	if (gBattleStats.damage != 0)
@@ -140,17 +282,118 @@ void BattleGenerateHitAttributes(struct BattleUnit* attacker, struct BattleUnit*
 LYN_REPLACE_CHECK(BattleGenerateHitEffects);
 void BattleGenerateHitEffects(struct BattleUnit* attacker, struct BattleUnit* defender)
 {
-
 	FORCE_DECLARE bool divertDamageToMP = false;
+	FORCE_DECLARE bool gainWEXP = true;
 
-#if (defined(SID_Discipline) && (COMMON_SKILL_VALID(SID_Discipline)))
-	if (BattleFastSkillTester(attacker, SID_Discipline))
-		attacker->wexpMultiplier += 2;
-	else
-		attacker->wexpMultiplier++;
-#else
-	attacker->wexpMultiplier++;
+#if (defined(SID_ShadowGiftPlus) && (COMMON_SKILL_VALID(SID_ShadowGiftPlus)))
+    if (BattleFastSkillTester(attacker, SID_ShadowGiftPlus))
+        if (GetItemType(GetUnitEquippedWeapon(GetUnit(attacker->unit.index))) == ITYPE_DARK)
+            if (GetUnit(attacker->unit.index)->ranks[ITYPE_DARK] == 0)
+                gainWEXP = false;
 #endif
+
+#if (defined(SID_ShadowGift) && (COMMON_SKILL_VALID(SID_ShadowGift)))
+    if (BattleFastSkillTester(attacker, SID_ShadowGift))
+        if (GetItemType(GetUnitEquippedWeapon(GetUnit(attacker->unit.index))) == ITYPE_DARK)
+            if (GetUnit(attacker->unit.index)->ranks[ITYPE_DARK] == 0)
+                gainWEXP = false;
+#endif
+
+#if (defined(SID_LightGiftPlus) && (COMMON_SKILL_VALID(SID_LightGiftPlus)))
+    if (BattleFastSkillTester(attacker, SID_LightGiftPlus))
+        if (GetItemType(GetUnitEquippedWeapon(GetUnit(attacker->unit.index))) == ITYPE_LIGHT)
+            if (GetUnit(attacker->unit.index)->ranks[ITYPE_LIGHT] == 0)
+                gainWEXP = false;
+#endif
+
+#if (defined(SID_LightGift) && (COMMON_SKILL_VALID(SID_LightGift)))
+    if (BattleFastSkillTester(attacker, SID_LightGift))
+        if (GetItemType(GetUnitEquippedWeapon(GetUnit(attacker->unit.index))) == ITYPE_LIGHT)
+            if (GetUnit(attacker->unit.index)->ranks[ITYPE_LIGHT] == 0)
+                gainWEXP = false;
+#endif
+
+#if (defined(SID_StormgiftPlus) && (COMMON_SKILL_VALID(SID_StormgiftPlus)))
+    if (BattleFastSkillTester(attacker, SID_StormgiftPlus))
+        if (GetItemType(GetUnitEquippedWeapon(GetUnit(attacker->unit.index))) == ITYPE_ANIMA)
+            if (GetUnit(attacker->unit.index)->ranks[ITYPE_ANIMA] == 0)
+                gainWEXP = false;
+#endif
+
+#if (defined(SID_Stormgift) && (COMMON_SKILL_VALID(SID_Stormgift)))
+    if (BattleFastSkillTester(attacker, SID_Stormgift))
+        if (GetItemType(GetUnitEquippedWeapon(GetUnit(attacker->unit.index))) == ITYPE_ANIMA)
+            if (GetUnit(attacker->unit.index)->ranks[ITYPE_ANIMA] == 0)
+                gainWEXP = false;
+#endif
+
+#if (defined(SID_BladegiftPlus) && (COMMON_SKILL_VALID(SID_BladegiftPlus)))
+    if (BattleFastSkillTester(attacker, SID_BladegiftPlus))
+        if (GetItemType(GetUnitEquippedWeapon(GetUnit(attacker->unit.index))) == ITYPE_SWORD)
+            if (GetUnit(attacker->unit.index)->ranks[ITYPE_SWORD] == 0)
+                gainWEXP = false;
+#endif
+
+#if (defined(SID_Bladegift) && (COMMON_SKILL_VALID(SID_Bladegisft)))
+    if (BattleFastSkillTester(attacker, SID_Bladegift))
+        if (GetItemType(GetUnitEquippedWeapon(GetUnit(attacker->unit.index))) == ITYPE_SWORD)
+            if (GetUnit(attacker->unit.index)->ranks[ITYPE_SWORD] == 0)
+                gainWEXP = false;
+#endif
+
+#if (defined(SID_PiercegiftPlus) && (COMMON_SKILL_VALID(SID_PiercegiftPlus)))
+    if (BattleFastSkillTester(attacker, SID_PiercegiftPlus))
+        if (GetItemType(GetUnitEquippedWeapon(GetUnit(attacker->unit.index))) == ITYPE_LANCE)
+            if (GetUnit(attacker->unit.index)->ranks[ITYPE_LANCE] == 0)
+                gainWEXP = false;
+#endif
+
+#if (defined(SID_Piercegift) && (COMMON_SKILL_VALID(SID_Piercegisft)))
+    if (BattleFastSkillTester(attacker, SID_Piercegift))
+        if (GetItemType(GetUnitEquippedWeapon(GetUnit(attacker->unit.index))) == ITYPE_LANCE)
+            if (GetUnit(attacker->unit.index)->ranks[ITYPE_LANCE] == 0)
+                gainWEXP = false;
+#endif
+
+#if (defined(SID_HackgiftPlus) && (COMMON_SKILL_VALID(SID_HackgiftPlus)))
+    if (BattleFastSkillTester(attacker, SID_HackgiftPlus))
+        if (GetItemType(GetUnitEquippedWeapon(GetUnit(attacker->unit.index))) == ITYPE_AXE)
+            if (GetUnit(attacker->unit.index)->ranks[ITYPE_AXE] == 0)
+                gainWEXP = false;
+#endif
+
+#if (defined(SID_Hackgift) && (COMMON_SKILL_VALID(SID_Hackgisft)))
+    if (BattleFastSkillTester(attacker, SID_Hackgift))
+        if (GetItemType(GetUnitEquippedWeapon(GetUnit(attacker->unit.index))) == ITYPE_AXE)
+            if (GetUnit(attacker->unit.index)->ranks[ITYPE_AXE] == 0)
+                gainWEXP = false;
+#endif
+
+#if (defined(SID_ArcgiftPlus) && (COMMON_SKILL_VALID(SID_ArcgiftPlus)))
+    if (BattleFastSkillTester(attacker, SID_ArcgiftPlus))
+        if (GetItemType(GetUnitEquippedWeapon(GetUnit(attacker->unit.index))) == ITYPE_BOW)
+            if (GetUnit(attacker->unit.index)->ranks[ITYPE_BOW] == 0)
+                gainWEXP = false;
+#endif
+
+#if (defined(SID_Arcgift) && (COMMON_SKILL_VALID(SID_Arcgift)))
+    if (BattleFastSkillTester(attacker, SID_Arcgift))
+        if (GetItemType(GetUnitEquippedWeapon(GetUnit(attacker->unit.index))) == ITYPE_BOW)
+            if (GetUnit(attacker->unit.index)->ranks[ITYPE_BOW] == 0)
+                gainWEXP = false;
+#endif
+
+    if (gainWEXP)
+    {
+#if (defined(SID_Discipline) && (COMMON_SKILL_VALID(SID_Discipline)))
+        if (BattleFastSkillTester(attacker, SID_Discipline))
+            attacker->wexpMultiplier += 2;
+        else
+            attacker->wexpMultiplier++;
+#else
+        attacker->wexpMultiplier++;
+#endif
+    }
 
 	if (!(gBattleHitIterator->attributes & BATTLE_HIT_ATTR_MISS)) {
 		if (CheckBattleHpHalve(attacker, defender)) {
@@ -182,6 +425,54 @@ void BattleGenerateHitEffects(struct BattleUnit* attacker, struct BattleUnit* de
 			}
 #endif
 
+#if defined(SID_DownWithArch) && (COMMON_SKILL_VALID(SID_DownWithArch))
+            if (BattleFastSkillTester(attacker, SID_DownWithArch))
+            {
+                char name[] = "Arch";
+                if (strcmp(GetStringFromIndex(GetUnit(defender->unit.index)->pCharacterData->nameTextId), name) == 0)
+                {
+                    RegisterActorEfxSkill(GetBattleHitRound(gBattleHitIterator), SID_DownWithArch);
+                    gBattleStats.damage = defender->unit.curHP;
+                    gBattleHitIterator->attributes |= BATTLE_HIT_ATTR_CRIT;
+                }
+            }
+#endif
+
+			bool absorb = false;
+
+/* Check if the enemy should die */
+#if (defined(SID_AbsorbMelee) && COMMON_SKILL_VALID(SID_AbsorbMelee))
+            if (BattleFastSkillTester(defender, SID_AbsorbMelee) && !IsMagicAttack(attacker) && !absorb)
+            {
+                absorb = true;
+                defender->unit.curHP += gBattleStats.damage;
+            }
+#endif
+
+#if (defined(SID_AbsorbMagic) && COMMON_SKILL_VALID(SID_AbsorbMagic))
+            if (BattleFastSkillTester(defender, SID_AbsorbMagic) && IsMagicAttack(attacker) && !absorb)
+            {
+                absorb = true;
+                defender->unit.curHP += gBattleStats.damage;
+            }
+#endif
+
+#if (defined(SID_AbsorbAlternation) && COMMON_SKILL_VALID(SID_AbsorbAlternation))
+            if (BattleFastSkillTester(defender, SID_AbsorbAlternation))
+            {
+                if (IsMagicAttack(attacker) && !absorb && PlayStExpa_CheckBit(PLAYSTEXPA_BIT_AbsorbAlternation_InForce))
+                {
+                    absorb = true;
+                    defender->unit.curHP += gBattleStats.damage;
+                }
+                else if (!IsMagicAttack(attacker) && !absorb && !PlayStExpa_CheckBit(PLAYSTEXPA_BIT_AbsorbAlternation_InForce))
+                {
+                    absorb = true;
+                    defender->unit.curHP += gBattleStats.damage;
+                }
+            }
+#endif
+
 #ifdef CONFIG_MP_SYSTEM
 #if defined(SID_DamageToMP) && (COMMON_SKILL_VALID(SID_DamageToMP))
 			if (BattleFastSkillTester(defender, SID_DamageToMP)) {
@@ -197,7 +488,7 @@ void BattleGenerateHitEffects(struct BattleUnit* attacker, struct BattleUnit* de
 #endif
 #endif
 
-			if (!divertDamageToMP)
+			if (!divertDamageToMP && !absorb)
 				defender->unit.curHP -= gBattleStats.damage;
 
 			// if (defender->unit.curHP < 0)
@@ -229,6 +520,47 @@ void BattleGenerateHitEffects(struct BattleUnit* attacker, struct BattleUnit* de
 	gBattleHitIterator->hpChange = gBattleStats.damage;
 #endif
 #endif
+
+    bool absorb = false;
+
+/* Check if to reduce or increase the enemy's HP after attacking */
+#if (defined(SID_AbsorbMelee) && COMMON_SKILL_VALID(SID_AbsorbMelee))
+    if (BattleFastSkillTester(defender, SID_AbsorbMelee) && !IsMagicAttack(attacker) && !absorb)
+    {
+        absorb = true;
+        gBattleHitIterator->hpChange = -gBattleStats.damage;
+    }
+#endif
+
+#if (defined(SID_AbsorbMagic) && COMMON_SKILL_VALID(SID_AbsorbMagic))
+    if (BattleFastSkillTester(defender, SID_AbsorbMagic) && IsMagicAttack(attacker) && !absorb)
+    {
+        absorb = true;
+        gBattleHitIterator->hpChange = -gBattleStats.damage;
+    }
+#endif
+
+
+#if (defined(SID_AbsorbAlternation) && COMMON_SKILL_VALID(SID_AbsorbAlternation))
+    if (BattleFastSkillTester(defender, SID_AbsorbAlternation))
+    {
+        if (IsMagicAttack(attacker) && !absorb && PlayStExpa_CheckBit(PLAYSTEXPA_BIT_AbsorbAlternation_InForce))
+        {
+            absorb = true;
+            gBattleHitIterator->hpChange = -gBattleStats.damage;
+        }
+        else if (!IsMagicAttack(attacker) && !absorb && !PlayStExpa_CheckBit(PLAYSTEXPA_BIT_AbsorbAlternation_InForce))
+        {
+            absorb = true;
+            gBattleHitIterator->hpChange = -gBattleStats.damage;
+        }
+    }
+#endif
+
+    if (!absorb)
+	{
+        gBattleHitIterator->hpChange = gBattleStats.damage;
+	}
 
 	BattleHit_ConsumeWeapon(attacker, defender);
 	BattleHit_ConsumeShield(attacker, defender);
@@ -281,6 +613,22 @@ bool BattleGenerateHit(struct BattleUnit* attacker, struct BattleUnit* defender)
 		gBattleHitIterator->info |= BATTLE_HIT_INFO_FINISHES;
 
 #if CHAX
+
+#if (defined(SID_Forcefield) && (COMMON_SKILL_VALID(SID_Forcefield)))
+        if (BattleFastSkillTester(defender, SID_Forcefield))
+        {
+            if(defender->unit.curHP == defender->unit.maxHP && gBattleStats.damage >= defender->unit.maxHP/2)
+            {
+                gBattleStats.damage = 0;
+                gBattleHitIterator->hpChange = 0;
+                defender->unit.curHP = defender->unit.maxHP;
+
+                gBattleHitIterator->info |= BATTLE_HIT_INFO_FINISHES;
+                gBattleHitIterator++;
+                return true;
+            }
+        }
+#endif
 		if (defender->unit.curHP == 0) {
 			if (CheckBattleInori(attacker, defender)) {
 				gBattleStats.damage = hp_pre - 1;
@@ -321,9 +669,22 @@ bool BattleGenerateHit(struct BattleUnit* attacker, struct BattleUnit* defender)
 			}
 #endif
 
+#if (defined(SID_Emulate) && (COMMON_SKILL_VALID(SID_Emulate)))
+            if (SkillTester(GetUnit(gBattleActor.unit.index), SID_Emulate))
+            {
+                if (gBattleActor.unit.curHP > GetUnit(gBattleActor.unit.index)->maxHP)
+                    gBattleActor.unit.curHP = GetUnit(gBattleActor.unit.index)->maxHP;
+            }
+#endif
+
 #if (defined(SID_Galeforce) && (COMMON_SKILL_VALID(SID_Galeforce)))
 			if (CheckBattleSkillActivate(&gBattleActor, &gBattleTarget, SID_Galeforce, gBattleActor.unit.skl))
 				gBattleActorGlobalFlag.skill_activated_galeforce = true;
+#endif
+
+#if (defined(SID_LeadByExample) && (COMMON_SKILL_VALID(SID_LeadByExample)))
+            if (CheckBattleSkillActivate(&gBattleActor, &gBattleTarget, SID_LeadByExample, 100))
+                gBattleActorGlobalFlag.skill_activated_lead_by_example = true;
 #endif
 
 #if (defined(SID_Pickup) && (COMMON_SKILL_VALID(SID_Pickup)))
@@ -332,6 +693,17 @@ bool BattleGenerateHit(struct BattleUnit* attacker, struct BattleUnit* defender)
 
 				unit_tar->state |= US_DROP_ITEM;
 			}
+#endif
+
+#if (defined(SID_Resurrection) && (COMMON_SKILL_VALID(SID_Resurrection)))
+            if (BattleFastSkillTester(&gBattleTarget, SID_Resurrection) && GetUnit(gBattleTarget.unit.index)->_u3A != UES_BIT_RESURRECTION_SKILL_USED)
+            {
+                gBattleTargetGlobalFlag.skill_activated_resurrection = true;
+                gBattleTarget.unit.curHP = 1;
+                gBattleHitIterator->info |= BATTLE_HIT_INFO_FINISHES;
+                gBattleHitIterator++;
+                return true;
+            }
 #endif
 
 #ifdef CONFIG_FORGING

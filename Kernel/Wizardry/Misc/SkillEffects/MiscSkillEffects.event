@@ -18,6 +18,8 @@
 #include "PostActionSkills/Pyrotechnics.lyn.event"
 #include "PostActionSkills/Caltrops.lyn.event"
 #include "PostActionSkills/EXPShare.lyn.event"
+#include "PostActionSkills/AngerPoint.lyn.event"
+#include "PostActionSkills/Debilitator.lyn.event"
 
 #include "MenuSkills/LynJump.event"
 #include "MenuSkills/Dance.lyn.event"

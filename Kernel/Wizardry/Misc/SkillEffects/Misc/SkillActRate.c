@@ -50,6 +50,11 @@ STATIC_DECLAR bool CheckSkillActivateExt(struct Unit *unit, int sid, int rate, b
 	}
 #endif
 
+#if (defined(SID_SereneGrace) && (COMMON_SKILL_VALID(SID_SereneGrace)))
+    if (tester(unit, SID_SereneGrace))
+        rate *= 2;
+#endif
+
 
 	LIMIT_AREA(rate, 0, 100);
 
