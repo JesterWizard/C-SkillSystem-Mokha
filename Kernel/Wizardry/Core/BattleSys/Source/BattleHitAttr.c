@@ -440,7 +440,7 @@ void BattleHit_InjectNegativeStatus(struct BattleUnit *attacker, struct BattleUn
 
 void BattleHit_ConsumeWeapon(struct BattleUnit *attacker, struct BattleUnit *defender)
 {
-	int target_weapon_cost;
+	FORCE_DECLARE int target_weapon_cost;
 	bool weapon_cost;
 
 	/**
@@ -480,7 +480,7 @@ void BattleHit_ConsumeWeapon(struct BattleUnit *attacker, struct BattleUnit *def
 #endif
 
 #if (defined(SID_Protean) && (COMMON_SKILL_VALID(SID_Protean)))
-    if (BattleSkillTester(attacker, SID_Protean))
+    if (BattleFastSkillTester(attacker, SID_Protean))
     {
         int target_weapon_cost = 2;
 		if (target_weapon_cost > 0) {

@@ -468,4 +468,22 @@ const struct CombatArtInfo gCombatArtInfos[0x100] = {
 		.battle_status.display_en_n = true,
 		.double_attack = COMBART_DOUBLE_ENABLED,
 	},
+    [CID_AstraStorm] = {
+        .name = MSG_SKILL_COMBAT_AstraStorm_NAME,
+        .desc = MSG_SKILL_COMBAT_AstraStorm_DESC,
+        .icon = GFX_CombatArtIcon_BowArtAtk,
+        .wtype = ITYPE_BOW,
+        .cost = 2,
+        .range_bonus = 10,
+        .quintuple_attack = COMBART_QUINTUPLE_ENABLED,
+    },
+    [CID_Practice] = {
+        .name = MSG_SKILL_COMBAT_Practice_NAME,
+        .desc = MSG_SKILL_COMBAT_Practice_DESC,
+        .icon = GFX_SkillIcon_WIP,
+        .wtype = CA_WTYPE_ANY,
+        .cost = 2,
+        .battle_status.display_en_n = true,
+        .double_attack = COMBART_DOUBLE_ENABLED,
+    },
 };

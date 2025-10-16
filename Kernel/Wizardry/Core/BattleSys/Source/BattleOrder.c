@@ -10,6 +10,7 @@
 #include "unit-expa.h"
 #include "combo-attack.h"
 #include "constants/skills.h"
+#include "combat-art.h"
 
 #define LOCAL_TRACE 0
 
@@ -49,6 +50,7 @@ bool CheckCanTwiceAttackOrder(struct BattleUnit *actor, struct BattleUnit *targe
 	FORCE_DECLARE bool followup_nullified_en = true;
 	FORCE_DECLARE bool ref_actor_hp_above_half  = ((actor->hpInitial  * 2) > actor->unit.maxHP);
 	FORCE_DECLARE bool ref_target_hp_above_half = ((target->hpInitial * 2) > target->unit.maxHP);
+	FORCE_DECLARE u8 cid;
 
 	if (&gBattleActor == actor) {
 		gBattleTemporaryFlag.act_force_twice_order = false;
@@ -686,6 +688,7 @@ int GetBattleUnitHitCount(struct BattleUnit *actor)
 										    ? &gBattleTarget
 										    : &gBattleActor;
 	int result = 1;
+	u8 cid;
 
 	if (BattleCheckBraveEffect(actor))
 		result = result + 1;
@@ -713,6 +716,14 @@ int GetBattleUnitHitCount(struct BattleUnit *actor)
 		result = result + SKILL_EFF0(SID_Astra);
 	}
 #endif
+
+    /* Check combat-art */
+    cid = GetCombatArtInForce(&actor->unit);
+    if (&gBattleActor == actor && COMBART_VALID(cid))
+    {
+        if (GetCombatArtInfo(cid)->quintuple_attack == COMBART_QUINTUPLE_ENABLED)
+            result = result + 4;
+    }
 
 #if defined(SID_Adept) && (COMMON_SKILL_VALID(SID_Adept))
 	if (BattleFastSkillTester(actor, SID_Adept) && actor->hpInitial == actor->unit.maxHP) {
