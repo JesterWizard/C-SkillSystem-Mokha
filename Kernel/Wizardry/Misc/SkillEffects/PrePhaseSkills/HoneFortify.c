@@ -27,6 +27,43 @@ bool PrePhaseFunc_HoneFortify(ProcPtr proc)
 		if (unit->state & (US_HIDDEN | US_DEAD | US_RESCUED | US_BIT16))
 			continue;
 
+#if defined(SID_HoneChaos) && (COMMON_SKILL_VALID(SID_HoneChaos))
+        if (SkillTester(unit, SID_HoneChaos))
+        {
+            int num = NextRN_N(8);
+
+            switch(num) {
+
+            case 0:
+                PowHone_eff = true;
+                break;
+            case 1:
+                MagHone_eff = true;
+                break;
+            case 2:
+                SklHone_eff = true;
+                break;
+            case 3:
+                SpdHone_eff = true;
+                break;
+            case 4:
+                LckHone_eff = true;
+                break;
+            case 5:
+                DefHone_eff = true;
+                break;
+            case 6:
+                ResHone_eff = true;
+                break;
+            case 7:
+                MovHone_eff = true;
+                break;
+            }
+
+            Hone_eff = true;
+        }
+#endif
+
 #if defined(SID_PowHone) && (COMMON_SKILL_VALID(SID_PowHone))
 		if (SkillTester(unit, SID_PowHone)) {
 			PowHone_eff = true;

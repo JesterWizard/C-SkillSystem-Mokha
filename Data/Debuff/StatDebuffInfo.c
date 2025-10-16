@@ -279,6 +279,54 @@ const struct DebuffInfo gStatDebuffInfos[UNIT_STAT_DEBUFF_MAX] = {
 		},
 	},
 
+    [UNIT_STAT_DEBUFF_SEAL_POW] = {
+        .positive_type = STATUS_DEBUFF_NEGATIVE,
+        .tick_type = STATUS_DEBUFF_TICK_ON_ENEMY,
+        .unit_status = {.pow = -6},
+    },
+
+    [UNIT_STAT_DEBUFF_SEAL_MAG] = {
+        .positive_type = STATUS_DEBUFF_NEGATIVE,
+        .tick_type = STATUS_DEBUFF_TICK_ON_ENEMY,
+        .unit_status = {.mag = -6},
+    },
+
+    [UNIT_STAT_DEBUFF_SEAL_SKL] = {
+        .positive_type = STATUS_DEBUFF_NEGATIVE,
+        .tick_type = STATUS_DEBUFF_TICK_ON_ENEMY,
+        .unit_status = {.skl = -6},
+    },
+
+    [UNIT_STAT_DEBUFF_SEAL_SPD] = {
+        .positive_type = STATUS_DEBUFF_NEGATIVE,
+        .tick_type = STATUS_DEBUFF_TICK_ON_ENEMY,
+        .unit_status = {.spd = -6},
+    },
+
+    [UNIT_STAT_DEBUFF_SEAL_LCK] = {
+        .positive_type = STATUS_DEBUFF_NEGATIVE,
+        .tick_type = STATUS_DEBUFF_TICK_ON_ENEMY,
+        .unit_status = {.lck = -6},
+    },
+
+    [UNIT_STAT_DEBUFF_SEAL_DEF] = {
+        .positive_type = STATUS_DEBUFF_NEGATIVE,
+        .tick_type = STATUS_DEBUFF_NO_TICK,
+        .unit_status = {.def = -6},
+    },
+
+    [UNIT_STAT_DEBUFF_SEAL_RES] = {
+        .positive_type = STATUS_DEBUFF_NEGATIVE,
+        .tick_type = STATUS_DEBUFF_TICK_ON_ENEMY,
+        .unit_status = {.res = -6},
+    },
+
+    [UNIT_STAT_DEBUFF_SEAL_MOV] = {
+        .positive_type = STATUS_DEBUFF_NEGATIVE,
+        .tick_type = STATUS_DEBUFF_TICK_ON_ENEMY,
+        .unit_status = {.mov = -6},
+    },
+
 	[UNIT_STAT_BUFF_JOB_HONE] = {
 		.positive_type = STATUS_DEBUFF_POSITIVE,
 		.tick_type = STATUS_DEBUFF_TICK_ON_ALLY,

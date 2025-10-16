@@ -12,6 +12,7 @@
 #include "PostActionSkills/Synchronize.lyn.event"
 #include "PostActionSkills/Clearance.lyn.event"
 #include "PostActionSkills/GetItem.lyn.event"
+#include "PostActionSkills/SealSkills.lyn.event"
 #include "PostActionSkills/Glorifier.lyn.event"
 #include "PostActionSkills/Shakedown.lyn.event"
 #include "PostActionSkills/EvasionLock.lyn.event"
