@@ -12,6 +12,11 @@
 #include "constants/texts.h"
 #include "action-expa.h"
 #include "item-sys.h"
+#include "player_interface.h"
+#include "soundroom.h"
+#include "bwl.h"
+#include "debuff.h"
+
 #include "jester_headers/event-call.h"
 #include "jester_headers/custom-structs.h"
 #include "jester_headers/custom-arrays.h"
@@ -20,11 +25,6 @@
 #ifdef CONFIG_FORGING
 #include "jester_headers/Forging.h"
 #endif
-
-#include "player_interface.h"
-#include "soundroom.h"
-#include "bwl.h"
-#include "debuff.h"
 
 typedef struct {
     /* 00 */ struct Font font;
@@ -530,7 +530,7 @@ void KillUnitOnCombatDeath(struct Unit* unitA, struct Unit* unitB) {
             if (GetConvoyItemCount() < sExpaConvoyItemAmount)
                 AddItemToConvoy(unitA->items[i]);
         }
-}
+    }
 #endif
 
     PidStatsRecordDefeatInfo(unitA->pCharacterData->number, unitB->pCharacterData->number, DEFEAT_CAUSE_COMBAT);
@@ -558,7 +558,7 @@ void KillUnitOnArenaDeathMaybe(struct Unit* unit) {
             if (GetConvoyItemCount() < sExpaConvoyItemAmount)
                 AddItemToConvoy(unit->items[i]);
         }
-}
+    }
 #endif
 
     UnitKill(unit);
@@ -759,14 +759,14 @@ LYN_REPLACE_CHECK(CallChapterWMIntroEvents);
 void CallChapterWMIntroEvents(ProcPtr proc)
 {
 
-// #ifdef CONFIG_ENTER_DISTRICT
-//     if (ChapterID[0] == 3)
-//     {
-//         CallEvent((const u16*)EventScrWM_Ch4_TRAVEL_TO_NODE, 0);
-//         StartWMFaceCtrl(proc);
-//         StartGmapMuEntry(NULL);
-//     }
-// #endif
+    // #ifdef CONFIG_ENTER_DISTRICT
+    //     if (ChapterID[0] == 3)
+    //     {
+    //         CallEvent((const u16*)EventScrWM_Ch4_TRAVEL_TO_NODE, 0);
+    //         StartWMFaceCtrl(proc);
+    //         StartGmapMuEntry(NULL);
+    //     }
+    // #endif
 
     if (Events_WM_ChapterIntro[GetROMChapterStruct(gPlaySt.chapterIndex)->gmapEventId] != NULL)
     {
@@ -1141,7 +1141,7 @@ void StoreNumberStringOrDashesToSmallBuffer(int n)
     else
     {
         StoreNumberStringToSmallBuffer(n);
-}
+    }
 #endif
 }
 
@@ -1185,7 +1185,7 @@ void UnitMapUiUpdate(struct PlayerInterfaceProc* proc, struct Unit* unit) {
             }
             else {
                 StoreNumberStringOrDashesToSmallBuffer(GetUnitCurrentHp(unit));
-        }
+            }
 #endif
 
             proc->hpCurHi = gNumberStr[6] - 0x30;
@@ -1199,7 +1199,7 @@ void UnitMapUiUpdate(struct PlayerInterfaceProc* proc, struct Unit* unit) {
             }
             else {
                 StoreNumberStringOrDashesToSmallBuffer(GetUnitMaxHp(unit));
-    }
+            }
 #endif
 
             proc->hpMaxHi = gNumberStr[6] - 0x30;
@@ -1208,7 +1208,7 @@ void UnitMapUiUpdate(struct PlayerInterfaceProc* proc, struct Unit* unit) {
             sub_808C360(proc, proc->statusTm, unit);
 
             BG_EnableSyncByMask(BG0_SYNC_BIT);
-}
+        }
     }
 
     if ((proc->hideContents == false) && ((frameCount & 64) == 0 || (unit->statusIndex == UNIT_STATUS_NONE))) {
@@ -2323,11 +2323,11 @@ void RefreshUnitsOnBmMap(void) {
 
                 if (unit->state & US_BIT9)
                     unit->state = (unit->state & ~US_BIT9) | US_BIT8;
-        }
+            }
 #endif
 
+        }
     }
-}
     else {
         // 2.2. Yes red phase
 
@@ -2804,27 +2804,27 @@ void GiveScroll(void)
     FORCE_DECLARE u16 skillId = gEventSlots[EVT_SLOT_3];
     u16 charId = gEventSlots[EVT_SLOT_4];
 
-    FORCE_DECLARE struct Unit * unit;
+    FORCE_DECLARE struct Unit* unit;
     unit = GetUnitFromCharId(charId);
 
 #ifdef CONFIG_ITEM_INDEX_SKILL_SCROLL_1
     for (int i = 0; i < 5; i++) {
-        if(unit->items[i] == ((skillId << 8) | CONFIG_ITEM_INDEX_SKILL_SCROLL_1))
+        if (unit->items[i] == ((skillId << 8) | CONFIG_ITEM_INDEX_SKILL_SCROLL_1))
         {
             unit->items[i] = (skillId << 8) | CONFIG_ITEM_INDEX_SKILL_SCROLL_1;
             break;
         }
-        else if(unit->items[i] == ((skillId << 8) | CONFIG_ITEM_INDEX_SKILL_SCROLL_2))
+        else if (unit->items[i] == ((skillId << 8) | CONFIG_ITEM_INDEX_SKILL_SCROLL_2))
         {
             unit->items[i] = (skillId << 8) | CONFIG_ITEM_INDEX_SKILL_SCROLL_2;
             break;
         }
-        else if(unit->items[i] == ((skillId << 8) | CONFIG_ITEM_INDEX_SKILL_SCROLL_3))
+        else if (unit->items[i] == ((skillId << 8) | CONFIG_ITEM_INDEX_SKILL_SCROLL_3))
         {
             unit->items[i] = (skillId << 8) | CONFIG_ITEM_INDEX_SKILL_SCROLL_3;
             break;
         }
-        else if(unit->items[i] == ((skillId << 8) | CONFIG_ITEM_INDEX_SKILL_SCROLL_4))
+        else if (unit->items[i] == ((skillId << 8) | CONFIG_ITEM_INDEX_SKILL_SCROLL_4))
         {
             unit->items[i] = (skillId << 8) | CONFIG_ITEM_INDEX_SKILL_SCROLL_4;
             break;
@@ -2835,22 +2835,22 @@ void GiveScroll(void)
     // items = GetConvoyItemArray();
 
     for (int i = 0; i < CONFIG_INSTALL_CONVOYEXPA_AMT; i++) {
-        if(unit->items[i] == ((skillId << 8) | CONFIG_ITEM_INDEX_SKILL_SCROLL_1))
+        if (unit->items[i] == ((skillId << 8) | CONFIG_ITEM_INDEX_SKILL_SCROLL_1))
         {
             unit->items[i] = (skillId << 8) | CONFIG_ITEM_INDEX_SKILL_SCROLL_1;
             break;
         }
-        else if(unit->items[i] == ((skillId << 8) | CONFIG_ITEM_INDEX_SKILL_SCROLL_2))
+        else if (unit->items[i] == ((skillId << 8) | CONFIG_ITEM_INDEX_SKILL_SCROLL_2))
         {
             unit->items[i] = (skillId << 8) | CONFIG_ITEM_INDEX_SKILL_SCROLL_2;
             break;
         }
-        else if(unit->items[i] == ((skillId << 8) | CONFIG_ITEM_INDEX_SKILL_SCROLL_3))
+        else if (unit->items[i] == ((skillId << 8) | CONFIG_ITEM_INDEX_SKILL_SCROLL_3))
         {
             unit->items[i] = (skillId << 8) | CONFIG_ITEM_INDEX_SKILL_SCROLL_3;
             break;
         }
-        else if(unit->items[i] == ((skillId << 8) | CONFIG_ITEM_INDEX_SKILL_SCROLL_4))
+        else if (unit->items[i] == ((skillId << 8) | CONFIG_ITEM_INDEX_SKILL_SCROLL_4))
         {
             unit->items[i] = (skillId << 8) | CONFIG_ITEM_INDEX_SKILL_SCROLL_4;
             break;
@@ -2860,14 +2860,14 @@ void GiveScroll(void)
 }
 
 LYN_REPLACE_CHECK(ItemGot_GotLeItem);
-void ItemGot_GotLeItem(struct GotItemPopupProc * proc)
+void ItemGot_GotLeItem(struct GotItemPopupProc* proc)
 {
     /* Stop gap measure to enable scrolls to have the right IDs
     ** They will return a short (maybe a word?) with the first half being the skill ID
     ** and the last part being the skill scroll ID, which is currently 0xBD.
     ** Check if the item we're giving is above the byte limit to determine that
     ** we're giving a scroll.
-    
+
     ** The limitation of this approach is that it locks us out of having other dynamically
     ** assigned effects and icons for other items in the future. It might be best to create
     ** another version of this function in that case
@@ -2880,7 +2880,7 @@ void ItemGot_GotLeItem(struct GotItemPopupProc * proc)
 
 //! FE8U = 0x080B9B38
 LYN_REPLACE_CHECK(WorldMap_CallIntroEvent);
-void WorldMap_CallIntroEvent(struct WorldMapMainProc * proc)
+void WorldMap_CallIntroEvent(struct WorldMapMainProc* proc)
 {
     GmMu_80BE108(proc->gm_mu, 0, 0);
 
@@ -2961,9 +2961,9 @@ u8 ItemSubMenu_IsEquipAvailable(const struct MenuItemDef* def, int number) {
 }
 
 LYN_REPLACE_CHECK(GetPickTrapType);
-int GetPickTrapType(struct Unit * unit)
+int GetPickTrapType(struct Unit* unit)
 {
-    struct Trap * trap;
+    struct Trap* trap;
 
     if ((trap = GetTrapAt(unit->xPos, unit->yPos)) == NULL)
         return TRAP_NONE;
@@ -2994,7 +2994,7 @@ int GetPickTrapType(struct Unit * unit)
                 return TRAP_MINE_ASSASSIN;
 
             return TRAP_NONE;
-        } 
+        }
         else if ((UNIT_CATTRIBUTES(unit) & CA_STEAL))
             return TRAP_NONE;
 
@@ -3007,26 +3007,95 @@ int GetPickTrapType(struct Unit * unit)
 LYN_REPLACE_CHECK(RefreshMinesOnBmMap);
 void RefreshMinesOnBmMap(void) {
     struct Trap* trap;
-    
+
     for (trap = GetTrap(0); trap->type != TRAP_NONE; ++trap) {
         switch (trap->type) {
 
         case TRAP_MINE:
 #if defined(SID_TrapBuster) && (COMMON_SKILL_VALID(SID_TrapBuster))
-        if (!SkillTester(gActiveUnit, SID_TrapBuster))
-        {
+            if (!SkillTester(gActiveUnit, SID_TrapBuster))
+            {
+                if (!gBmMapUnit[trap->yPos][trap->xPos])
+                    gBmMapHidden[trap->yPos][trap->xPos] |= HIDDEN_BIT_TRAP;
+            }
+#else
             if (!gBmMapUnit[trap->yPos][trap->xPos])
                 gBmMapHidden[trap->yPos][trap->xPos] |= HIDDEN_BIT_TRAP;
-        }
-#else
-        if (!gBmMapUnit[trap->yPos][trap->xPos])
-            gBmMapHidden[trap->yPos][trap->xPos] |= HIDDEN_BIT_TRAP;
 #endif
 
             break;
 
         } // switch (trap->type)
     }
+}
+
+LYN_REPLACE_CHECK(ProcMAExpBar_OnIncrement);
+void ProcMAExpBar_OnIncrement(struct MAExpBarProc* proc)
+{
+    // Check if we've reached target BEFORE incrementing
+    if (proc->expFrom == proc->expTo) {
+        Proc_Break(proc);
+        m4aSongNumStop(0x74);
+        return;
+    }
+
+    proc->expFrom++;
+
+    if (proc->expFrom >= 100)
+    {
+        proc->expFrom = 0;
+        proc->expTo -= 100;
+    }
+
+    DrawMAExpBar(6, 8, proc->expFrom);
+}
+
+LYN_REPLACE_CHECK(MapAnim_DisplayExpBar);
+void MapAnim_DisplayExpBar(ProcPtr proc)
+{
+    int actorNum = -1;
+    switch (gManimSt.actorCount) {
+    case 2:
+        if (gManimSt.actor[1].bu->expGain != 0)
+            actorNum = 1;
+        // fallthrough
+
+    case 1:
+        if (gManimSt.actor[0].bu->expGain != 0)
+            actorNum = 0;
+        break;
+    }
+
+    if (actorNum >= 0) {
+        struct MAExpBarProc* expProc = Proc_StartBlocking(ProcScr_MapAnimExpBar, proc);
+
+        expProc->expFrom = gManimSt.actor[actorNum].bu->expPrevious;
+        expProc->expTo = gManimSt.actor[actorNum].bu->expPrevious + gManimSt.actor[actorNum].bu->expGain;
+        expProc->actorId = actorNum;
+    }
+}
+
+LYN_REPLACE_CHECK(ProcMAExpBar_LevelUpIfPossible);
+void ProcMAExpBar_LevelUpIfPossible(struct MAExpBarProc* proc)
+{
+    // if (proc->expTo >= 100)
+    //     StartManimLevelUp(proc->actorId, (struct Proc*) proc);
+
+    int actorNum = -1;
+    switch (gManimSt.actorCount) {
+    case 2:
+        if (gManimSt.actor[1].bu->expGain != 0)
+            actorNum = 1;
+        // fallthrough
+
+    case 1:
+        if (gManimSt.actor[0].bu->expGain != 0)
+            actorNum = 0;
+        break;
+    }
+
+    if ((gManimSt.actor[actorNum].bu->expPrevious + gManimSt.actor[actorNum].bu->expGain) >= 100)
+        StartManimLevelUp(proc->actorId, (struct Proc*)proc);
 }
 
 void TransferStatsandExperience(void)
@@ -3078,13 +3147,13 @@ void AddExp_Event(int exp)
 }
 
 // use vanilla version so we don't lag by using hooked versions that accounts for pass etc
-s8 Vanilla_CanUnitCrossTerrain(struct Unit * unit, int terrain)
+s8 Vanilla_CanUnitCrossTerrain(struct Unit* unit, int terrain)
 {
-    const s8 * lookup = (s8 *)GetUnitMovementCost(unit);
+    const s8* lookup = (s8*)GetUnitMovementCost(unit);
     return (lookup[terrain] > 0) ? TRUE : FALSE;
 }
 
-bool Generic_CanUnitBeOnPos(struct Unit * unit, s8 x, s8 y, int x2, int y2)
+bool Generic_CanUnitBeOnPos(struct Unit* unit, s8 x, s8 y, int x2, int y2)
 {
     if (x < 0 || y < 0)
         return 0; // position out of bounds
@@ -3133,11 +3202,11 @@ bool weaponHasSpecialEffect(int weaponAttributes)
         return true;
     if (weaponAttributes & IA_UNBREAKABLE)
         return true;
-    
+
     return false;
 }
 
-int findMax(u8 *array, int size) {
+int findMax(u8* array, int size) {
     u8 max = 0;
     FORCE_DECLARE u8 array_position = 0;
 
@@ -3159,7 +3228,7 @@ u8 AttackCommandUsability(const struct MenuItemDef* def, int number) {
         return MENU_ENABLED;
 #endif
 
-/* These skills have the same effect here, but GridmasterAtk also prevents the unit from moving */
+    /* These skills have the same effect here, but GridmasterAtk also prevents the unit from moving */
 #if defined(SID_Warpath) && (COMMON_SKILL_VALID(SID_Warpath))
     if (SkillTester(gActiveUnit, SID_Warpath) && gActiveUnit->state & US_CANTOING)
         return MENU_ENABLED;
@@ -3200,7 +3269,7 @@ u8 AttackCommandUsability(const struct MenuItemDef* def, int number) {
     if (SkillTester(gActiveUnit, SID_UnarmedCombat))
     {
         MakeTargetListForWeapon(gActiveUnit, ITEM_SWORD_IRON);
-        if (GetSelectTargetCount() > 0) 
+        if (GetSelectTargetCount() > 0)
         {
             return MENU_ENABLED;
         }
@@ -3218,7 +3287,8 @@ int DisplayUnitStandingAttackRange(struct MenuProc* menu, struct MenuItemProc* m
 
     if (gActiveUnit->state & US_IN_BALLISTA) {
         MapAddInBoundedRange(gActiveUnit->xPos, gActiveUnit->yPos, 1, 10);
-    } else {
+    }
+    else {
         int reach = GetUnitWeaponReachBits(gActiveUnit, -1);
 
 #if defined(SID_UnarmedCombat) && (COMMON_SKILL_VALID(SID_UnarmedCombat))
@@ -3281,7 +3351,8 @@ u8 AttackMapSelect_SwitchIn(ProcPtr proc, struct SelectTarget* target) {
 
     if (gActionData.itemSlotIndex == BU_ISLOT_BALLISTA) {
         BattleGenerateBallistaSimulation(gActiveUnit, unit, gActiveUnit->xPos, gActiveUnit->yPos);
-    } else {
+    }
+    else {
         BattleGenerateSimulation(gActiveUnit, unit, -1, -1, gActionData.itemSlotIndex);
     }
 
@@ -3293,7 +3364,7 @@ u8 AttackMapSelect_SwitchIn(ProcPtr proc, struct SelectTarget* target) {
 extern struct ProcCmd CONST_DATA gProcScr_0859B630[];
 
 LYN_REPLACE_CHECK(AttackMapSelect_Cancel);
-u8 AttackMapSelect_Cancel(ProcPtr proc, struct SelectTarget * target) {
+u8 AttackMapSelect_Cancel(ProcPtr proc, struct SelectTarget* target) {
     if (EventEngineExists() == 1) {
         return 0;
     }
@@ -3301,7 +3372,7 @@ u8 AttackMapSelect_Cancel(ProcPtr proc, struct SelectTarget * target) {
 #if defined(SID_UnarmedCombat) && (COMMON_SKILL_VALID(SID_UnarmedCombat))
     if (SkillTester(gActiveUnit, SID_UnarmedCombat))
     {
-      return MENU_ACT_SKIPCURSOR | MENU_ACT_END | MENU_ACT_SND6B;      
+        return MENU_ACT_SKIPCURSOR | MENU_ACT_END | MENU_ACT_SND6B;
     }
 #endif
 

@@ -48,10 +48,10 @@ struct BattleUnit {
     /* 6A */ short battleEffectiveCritRate;
     /* 6C */ short battleSilencerRate;
 
-    /* 6E */ s8 expGain;
+    /* 6E */ u8 expGain;     // JESTER - Changed from s8 to u8 for SID_Prodigy
     /* 6F */ s8 statusOut;
     /* 70 */ s8 levelPrevious;
-    /* 71 */ s8 expPrevious;
+    /* 71 */ u8 expPrevious; // JESTER - Changed from s8 to u8 for SID_Prodigy
 
     /* 72 */ s8 hpInitial;
 
@@ -105,48 +105,48 @@ enum {
 
 struct BattleHit {
     /* 00:18 */ unsigned attributes : 19;
-    /* 19:23 */ unsigned info       : 5;
-    /* 24:31 */ signed   hpChange   : 8;
+    /* 19:23 */ unsigned info : 5;
+    /* 24:31 */ signed   hpChange : 8;
 };
 
 enum {
-    BATTLE_HIT_ATTR_CRIT      = (1 << 0),
-    BATTLE_HIT_ATTR_MISS      = (1 << 1),
-    BATTLE_HIT_ATTR_FOLLOWUP  = (1 << 2),
+    BATTLE_HIT_ATTR_CRIT = (1 << 0),
+    BATTLE_HIT_ATTR_MISS = (1 << 1),
+    BATTLE_HIT_ATTR_FOLLOWUP = (1 << 2),
     BATTLE_HIT_ATTR_RETALIATE = (1 << 3),
-    BATTLE_HIT_ATTR_BRAVE     = (1 << 4),
-    BATTLE_HIT_ATTR_5         = (1 << 5), // unused?
-    BATTLE_HIT_ATTR_POISON    = (1 << 6),
-    BATTLE_HIT_ATTR_DEVIL     = (1 << 7),
-    BATTLE_HIT_ATTR_HPSTEAL   = (1 << 8),
-    BATTLE_HIT_ATTR_HPHALVE   = (1 << 9),
-    BATTLE_HIT_ATTR_TATTACK   = (1 << 10), // triangle attack!
-    BATTLE_HIT_ATTR_SILENCER  = (1 << 11),
-    BATTLE_HIT_ATTR_12        = (1 << 12), // unused?
-    BATTLE_HIT_ATTR_PETRIFY   = (1 << 13),
-    BATTLE_HIT_ATTR_SURESHOT  = (1 << 14),
+    BATTLE_HIT_ATTR_BRAVE = (1 << 4),
+    BATTLE_HIT_ATTR_5 = (1 << 5), // unused?
+    BATTLE_HIT_ATTR_POISON = (1 << 6),
+    BATTLE_HIT_ATTR_DEVIL = (1 << 7),
+    BATTLE_HIT_ATTR_HPSTEAL = (1 << 8),
+    BATTLE_HIT_ATTR_HPHALVE = (1 << 9),
+    BATTLE_HIT_ATTR_TATTACK = (1 << 10), // triangle attack!
+    BATTLE_HIT_ATTR_SILENCER = (1 << 11),
+    BATTLE_HIT_ATTR_12 = (1 << 12), // unused?
+    BATTLE_HIT_ATTR_PETRIFY = (1 << 13),
+    BATTLE_HIT_ATTR_SURESHOT = (1 << 14),
     BATTLE_HIT_ATTR_GREATSHLD = (1 << 15),
-    BATTLE_HIT_ATTR_PIERCE    = (1 << 16),
-    BATTLE_HIT_ATTR_17        = (1 << 17), // unused?
-    BATTLE_HIT_ATTR_18        = (1 << 18), // unused?
+    BATTLE_HIT_ATTR_PIERCE = (1 << 16),
+    BATTLE_HIT_ATTR_17 = (1 << 17), // unused?
+    BATTLE_HIT_ATTR_18 = (1 << 18), // unused?
 };
 
 enum {
-    BATTLE_HIT_INFO_BEGIN        = (1 << 0),
-    BATTLE_HIT_INFO_FINISHES     = (1 << 1),
+    BATTLE_HIT_INFO_BEGIN = (1 << 0),
+    BATTLE_HIT_INFO_FINISHES = (1 << 1),
     BATTLE_HIT_INFO_KILLS_TARGET = (1 << 2),
-    BATTLE_HIT_INFO_RETALIATION  = (1 << 3),
-    BATTLE_HIT_INFO_END          = (1 << 4),
+    BATTLE_HIT_INFO_RETALIATION = (1 << 3),
+    BATTLE_HIT_INFO_END = (1 << 4),
 };
 
 enum {
     // Special item slot identifiers understood by SetBattleUnitWeapon and other functions
 
-    BU_ISLOT_AUTO           = -1,
-    BU_ISLOT_5              = UNIT_ITEM_COUNT + 0,
-    BU_ISLOT_ARENA_PLAYER   = UNIT_ITEM_COUNT + 1,
+    BU_ISLOT_AUTO = -1,
+    BU_ISLOT_5 = UNIT_ITEM_COUNT + 0,
+    BU_ISLOT_ARENA_PLAYER = UNIT_ITEM_COUNT + 1,
     BU_ISLOT_ARENA_OPPONENT = UNIT_ITEM_COUNT + 2,
-    BU_ISLOT_BALLISTA       = UNIT_ITEM_COUNT + 3,
+    BU_ISLOT_BALLISTA = UNIT_ITEM_COUNT + 3,
 };
 
 // Public objects

@@ -30,7 +30,7 @@ growth rates.[X]
 Mentorship[X]
 ## MSG_SKILL_Mentorship_DESC
 Mentorship:[N]
-Increase experience of this unit[N]
+Increase experience of this unit's[N]
 allies within 2 tiles by 1.2x.[X]
 
 ## MSG_SKILL_DarkHorse_NAME
@@ -110,12 +110,19 @@ People's Knight:[N]
 Gain +3% to all growths for[N]
 each support level this unit has.[X]
 
+## MSG_SKILL_StaffParagon_NAME
+Staff Paragon[X]
+## MSG_SKILL_StaffParagon_DESC
+Staff Paragon:[N]
+Gain +1 EXP for every 5 points[N]
+of excess healing.[X]
+
 ## MSG_SKILL_Pulse_NAME
 Pulse[X]
 ## MSG_SKILL_Pulse_DESC
 Pulse:[N]
-Gain a minmum of 10 EXP per[N]
-battle, regardless of outcome.[X]
+Gain 10 EXP per battle,[N]
+regardless of outcome.[X]
 
 ## MSG_SKILL_Carnage_NAME
 Carnage[X]

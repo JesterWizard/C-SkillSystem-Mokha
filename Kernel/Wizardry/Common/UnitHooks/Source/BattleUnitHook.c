@@ -92,6 +92,118 @@ STATIC_DECLAR void UpdateUnitFromBattleVanilla(struct Unit* unit, struct BattleU
 
 	tmp = GetBattleUnitUpdatedWeaponExp(bu);
 
+#if (defined(SID_ShadowGiftPlus) && (COMMON_SKILL_VALID(SID_ShadowGiftPlus)))
+	if (SkillTester(unit, SID_ShadowGiftPlus))
+		if (GetItemType(unit->items[0]) == ITYPE_DARK)
+			if (unit->ranks[ITYPE_DARK] == 0)
+				tmp = 0;
+#endif
+
+#if (defined(SID_ShadowGift) && (COMMON_SKILL_VALID(SID_ShadowGift)))
+	if (SkillTester(unit, SID_ShadowGift))
+		if (GetItemType(unit->items[0]) == ITYPE_DARK)
+			if (unit->ranks[ITYPE_DARK] == 0)
+				tmp = 0;
+#endif
+
+#if (defined(SID_LightGiftPlus) && (COMMON_SKILL_VALID(SID_LightGiftPlus)))
+	if (SkillTester(unit, SID_LightGiftPlus))
+		if (GetItemType(unit->items[0]) == ITYPE_LIGHT)
+			if (unit->ranks[ITYPE_LIGHT] == 0)
+				tmp = 0;
+#endif
+
+#if (defined(SID_LightGift) && (COMMON_SKILL_VALID(SID_LightGift)))
+	if (SkillTester(unit, SID_LightGift))
+		if (GetItemType(unit->items[0]) == ITYPE_LIGHT)
+			if (unit->ranks[ITYPE_LIGHT] == 0)
+				tmp = 0;
+#endif
+
+#if (defined(SID_StormgiftPlus) && (COMMON_SKILL_VALID(SID_StormgiftPlus)))
+	if (SkillTester(unit, SID_StormgiftPlus))
+		if (GetItemType(unit->items[0]) == ITYPE_ANIMA)
+			if (unit->ranks[ITYPE_ANIMA] == 0)
+				tmp = 0;
+#endif
+
+#if (defined(SID_Stormgift) && (COMMON_SKILL_VALID(SID_Stormgift)))
+	if (SkillTester(unit, SID_Stormgift))
+		if (GetItemType(unit->items[0]) == ITYPE_ANIMA)
+			if (unit->ranks[ITYPE_ANIMA] == 0)
+				tmp = 0;
+#endif
+
+#if (defined(SID_GracegiftPlus) && (COMMON_SKILL_VALID(SID_GracegiftPlus)))
+	if (SkillTester(unit, SID_GracegiftPlus))
+		if (GetItemType(unit->items[0]) == ITYPE_STAFF)
+			if (unit->ranks[ITYPE_STAFF] == 0)
+				tmp = 0;
+#endif
+
+#if (defined(SID_Gracegift) && (COMMON_SKILL_VALID(SID_Gracegift)))
+	if (SkillTester(unit, SID_Gracegift))
+		if (GetItemType(unit->items[0]) == ITYPE_STAFF)
+			if (unit->ranks[ITYPE_STAFF] == 0)
+				tmp = 0;
+#endif
+
+#if (defined(SID_BladegiftPlus) && (COMMON_SKILL_VALID(SID_BladegiftPlus)))
+	if (SkillTester(unit, SID_BladegiftPlus))
+		if (GetItemType(unit->items[0]) == ITYPE_SWORD)
+			if (unit->ranks[ITYPE_SWORD] == 0)
+				tmp = 0;
+#endif
+
+#if (defined(SID_Bladegift) && (COMMON_SKILL_VALID(SID_Bladegift)))
+	if (SkillTester(unit, SID_Bladegift))
+		if (GetItemType(unit->items[0]) == ITYPE_SWORD)
+			if (unit->ranks[ITYPE_SWORD] == 0)
+				tmp = 0;
+#endif
+
+#if (defined(SID_PiercegiftPlus) && (COMMON_SKILL_VALID(SID_PiercegiftPlus)))
+	if (SkillTester(unit, SID_PiercegiftPlus))
+		if (GetItemType(unit->items[0]) == ITYPE_LANCE)
+			if (unit->ranks[ITYPE_LANCE] == 0)
+				tmp = 0;
+#endif
+
+#if (defined(SID_Piercegift) && (COMMON_SKILL_VALID(SID_Piercegift)))
+	if (SkillTester(unit, SID_Piercegift))
+		if (GetItemType(unit->items[0]) == ITYPE_LANCE)
+			if (unit->ranks[ITYPE_LANCE] == 0)
+				tmp = 0;
+#endif
+
+#if (defined(SID_HackgiftPlus) && (COMMON_SKILL_VALID(SID_HackgiftPlus)))
+	if (SkillTester(unit, SID_HackgiftPlus))
+		if (GetItemType(unit->items[0]) == ITYPE_AXE)
+			if (unit->ranks[ITYPE_AXE] == 0)
+				tmp = 0;
+#endif
+
+#if (defined(SID_Hackgift) && (COMMON_SKILL_VALID(SID_Hackgift)))
+	if (SkillTester(unit, SID_Hackgift))
+		if (GetItemType(unit->items[0]) == ITYPE_AXE)
+			if (unit->ranks[ITYPE_AXE] == 0)
+				tmp = 0;
+#endif
+
+#if (defined(SID_ArcgiftPlus) && (COMMON_SKILL_VALID(SID_ArcgiftPlus)))
+	if (SkillTester(unit, SID_ArcgiftPlus))
+		if (GetItemType(unit->items[0]) == ITYPE_BOW)
+			if (unit->ranks[ITYPE_BOW] == 0)
+				tmp = 0;
+#endif
+
+#if (defined(SID_Arcgift) && (COMMON_SKILL_VALID(SID_Arcgift)))
+	if (SkillTester(unit, SID_Arcgift))
+		if (GetItemType(unit->items[0]) == ITYPE_BOW)
+			if (unit->ranks[ITYPE_BOW] == 0)
+				tmp = 0;
+#endif
+
 	if (tmp > 0)
 		UNIT_WRANK(unit, bu->weaponType) = tmp;
 
@@ -100,6 +212,7 @@ STATIC_DECLAR void UpdateUnitFromBattleVanilla(struct Unit* unit, struct BattleU
 
 	UnitRemoveInvalidItems(unit);
 
+	/* This returns nothing now that it's been zeroed out for more useful data in the BWL struct */
 	if (bu->expGain)
 		PidStatsAddExpGained(unit->pCharacterData->number, bu->expGain);
 }
@@ -128,45 +241,45 @@ void UpdateUnitFromBattle(struct Unit* unit, struct BattleUnit* bu)
 
 	UpdateUnitFromBattleVanilla(unit, bu);
 
-   /**
-     * I went and made a battle unit version of the set bit function to
-     * accomodate the fact that menu skills that use the attack functionality
-     * need to have their bits set after the battle is over to prevent situations
-     * where the user exits out of the forecast menu without attacking, and the bit is accidentally set
-     * We only want the bit set if the unit successfully executed an attack
-     */
+	/**
+	  * I went and made a battle unit version of the set bit function to
+	  * accomodate the fact that menu skills that use the attack functionality
+	  * need to have their bits set after the battle is over to prevent situations
+	  * where the user exits out of the forecast menu without attacking, and the bit is accidentally set
+	  * We only want the bit set if the unit successfully executed an attack
+	  */
 #if defined(SID_LoadstarRush) && (COMMON_SKILL_VALID(SID_LoadstarRush))
-    if (SkillTester(unit, SID_LoadstarRush) && gActionData.unk08 == SID_LoadstarRush && !CheckBitUES(unit, UES_BIT_LOADSTAR_RUSH_SKILL_USED))
-        SetBitUES_BU(bu, UES_BIT_LOADSTAR_RUSH_SKILL_USED);
+	if (SkillTester(unit, SID_LoadstarRush) && gActionData.unk08 == SID_LoadstarRush && !CheckBitUES(unit, UES_BIT_LOADSTAR_RUSH_SKILL_USED))
+		SetBitUES_BU(bu, UES_BIT_LOADSTAR_RUSH_SKILL_USED);
 #endif
 
 #if defined(SID_WyvernCrash) && (COMMON_SKILL_VALID(SID_WyvernCrash))
-    if (SkillTester(unit, SID_WyvernCrash) && gActionData.unk08 == SID_WyvernCrash && !CheckBitUES(unit, UES_BIT_WYVERN_CRASH_SKILL_USED))
-        SetBitUES_BU(bu, UES_BIT_WYVERN_CRASH_SKILL_USED);
+	if (SkillTester(unit, SID_WyvernCrash) && gActionData.unk08 == SID_WyvernCrash && !CheckBitUES(unit, UES_BIT_WYVERN_CRASH_SKILL_USED))
+		SetBitUES_BU(bu, UES_BIT_WYVERN_CRASH_SKILL_USED);
 #endif
 
 #if defined(SID_Capture) && (COMMON_SKILL_VALID(SID_Capture))
-    if (SkillTester(unit, SID_Capture) && gActionData.unk08 == SID_Capture && !CheckBitUES(unit, UES_BIT_CAPTURE_SKILL_USED))
-        SetBitUES_BU(bu, UES_BIT_CAPTURE_SKILL_USED);
+	if (SkillTester(unit, SID_Capture) && gActionData.unk08 == SID_Capture && !CheckBitUES(unit, UES_BIT_CAPTURE_SKILL_USED))
+		SetBitUES_BU(bu, UES_BIT_CAPTURE_SKILL_USED);
 #endif
 
 #if defined(SID_ResolvedHeart) && (COMMON_SKILL_VALID(SID_ResolvedHeart))
-    if (SkillTester(unit, SID_ResolvedHeart) && gActionData.unk08 == SID_ResolvedHeart && !CheckBitUES(unit, UES_BIT_RESOLVED_HEART_SKILL_USED))
-        SetBitUES_BU(bu, UES_BIT_RESOLVED_HEART_SKILL_USED);
+	if (SkillTester(unit, SID_ResolvedHeart) && gActionData.unk08 == SID_ResolvedHeart && !CheckBitUES(unit, UES_BIT_RESOLVED_HEART_SKILL_USED))
+		SetBitUES_BU(bu, UES_BIT_RESOLVED_HEART_SKILL_USED);
 #endif
 
 #if defined(SID_Bide) && (COMMON_SKILL_VALID(SID_Bide))
-    if (SkillTester(unit, SID_Bide) && gActionData.unk08 == SID_Bide && !CheckBitUES(unit, UES_BIT_BIDE_SKILL_USED))
-    {
-        SetBitUES_BU(bu, UES_BIT_BIDE_SKILL_USED);
-        gActionData.unk08 = 0; // Reset the action data to prevent the skill from being used again
-        unit->curHP = 1;
-    }
+	if (SkillTester(unit, SID_Bide) && gActionData.unk08 == SID_Bide && !CheckBitUES(unit, UES_BIT_BIDE_SKILL_USED))
+	{
+		SetBitUES_BU(bu, UES_BIT_BIDE_SKILL_USED);
+		gActionData.unk08 = 0; // Reset the action data to prevent the skill from being used again
+		unit->curHP = 1;
+	}
 #endif
 
 #if defined(SID_Thrust) && (COMMON_SKILL_VALID(SID_Thrust))
-    if (SkillTester(unit, SID_Thrust) && gActionData.unk08 == SID_Thrust && PlayStExpa_CheckBit(PLAYSTEXPA_BIT_Thrust_InForce) && !PlayStExpa_CheckBit(PLAYSTEXPA_BIT_Thrust_Used))
-        PlayStExpa_SetBit(PLAYSTEXPA_BIT_Thrust_Used);
+	if (SkillTester(unit, SID_Thrust) && gActionData.unk08 == SID_Thrust && PlayStExpa_CheckBit(PLAYSTEXPA_BIT_Thrust_InForce) && !PlayStExpa_CheckBit(PLAYSTEXPA_BIT_Thrust_Used))
+		PlayStExpa_SetBit(PLAYSTEXPA_BIT_Thrust_Used);
 #endif
 
 	UNIT_MAG(unit) += BU_CHG_MAG(bu);
@@ -245,104 +358,104 @@ void BattleGenerateRealInternal(struct Unit* actor, struct Unit* target) {
 LYN_REPLACE_CHECK(BattleApplyUnitUpdates);
 void BattleApplyUnitUpdates(void)
 {
-    struct Unit * actor = GetUnit(gBattleActor.unit.index);
-    struct Unit * target = GetUnit(gBattleTarget.unit.index);
+	struct Unit* actor = GetUnit(gBattleActor.unit.index);
+	struct Unit* target = GetUnit(gBattleTarget.unit.index);
 
-/**
- * We check the skill here to restore a mimic user's original weapon
- */
+	/**
+	 * We check the skill here to restore a mimic user's original weapon
+	 */
 #if (defined(SID_Mimic) && (COMMON_SKILL_VALID(SID_Mimic)))
-    if (SkillTester(target, SID_Mimic))
-        gBattleTarget.unit.items[gBattleTarget.weaponSlotIndex] = GetUnitEquippedWeapon(target);
-    else if (SkillTester(actor, SID_Mimic))
-        gBattleActor.unit.items[gBattleActor.weaponSlotIndex] = GetUnitEquippedWeapon(actor);
-    else
-    {
-        if (gBattleActor.canCounter)
-            gBattleActor.unit.items[gBattleActor.weaponSlotIndex] = gBattleActor.weapon;
+	if (SkillTester(target, SID_Mimic))
+		gBattleTarget.unit.items[gBattleTarget.weaponSlotIndex] = GetUnitEquippedWeapon(target);
+	else if (SkillTester(actor, SID_Mimic))
+		gBattleActor.unit.items[gBattleActor.weaponSlotIndex] = GetUnitEquippedWeapon(actor);
+	else
+	{
+		if (gBattleActor.canCounter)
+			gBattleActor.unit.items[gBattleActor.weaponSlotIndex] = gBattleActor.weapon;
 
-        if (gBattleTarget.canCounter)
-            gBattleTarget.unit.items[gBattleTarget.weaponSlotIndex] = gBattleTarget.weapon;
-    }
+		if (gBattleTarget.canCounter)
+			gBattleTarget.unit.items[gBattleTarget.weaponSlotIndex] = gBattleTarget.weapon;
+	}
 
 #else
-    if (gBattleActor.canCounter)
-        gBattleActor.unit.items[gBattleActor.weaponSlotIndex] = gBattleActor.weapon;
+	if (gBattleActor.canCounter)
+		gBattleActor.unit.items[gBattleActor.weaponSlotIndex] = gBattleActor.weapon;
 
-    if (gBattleTarget.canCounter)
-        gBattleTarget.unit.items[gBattleTarget.weaponSlotIndex] = gBattleTarget.weapon;
+	if (gBattleTarget.canCounter)
+		gBattleTarget.unit.items[gBattleTarget.weaponSlotIndex] = gBattleTarget.weapon;
 #endif
 
 #if (defined(SID_Offhand) && (COMMON_SKILL_VALID(SID_Offhand)))
-    if (SkillTester(actor, SID_Offhand))
-    {
-        /* Check if the unit has a second item */
-        if (GetItemIndex(target->items[1]) != 0)
-        {
-            u16 currentItem = GetUnitEquippedWeapon(target);
-            FORCE_DECLARE u8 currentIndex = 0;
+	if (SkillTester(actor, SID_Offhand))
+	{
+		/* Check if the unit has a second item */
+		if (GetItemIndex(target->items[1]) != 0)
+		{
+			u16 currentItem = GetUnitEquippedWeapon(target);
+			FORCE_DECLARE u8 currentIndex = 0;
 
-            for (int i = 0; i < 5; i++)
-            {
-                if (target->items[i] == currentItem)
-                    currentIndex = i;
-                else if (target->items[i] == 0)
-                    break;
-                else
-                {
-                    if (CanUnitUseWeapon(target, target->items[i]))
-                    {
-                        u16 newItem = target->items[i];
-                        u8 newIndex = i;
-                        
-                        gBattleTarget.unit.items[currentIndex] = newItem;
-                        gBattleTarget.unit.items[newIndex] = currentItem;
+			for (int i = 0; i < 5; i++)
+			{
+				if (target->items[i] == currentItem)
+					currentIndex = i;
+				else if (target->items[i] == 0)
+					break;
+				else
+				{
+					if (CanUnitUseWeapon(target, target->items[i]))
+					{
+						u16 newItem = target->items[i];
+						u8 newIndex = i;
 
-                        break;
-                    }
-                }
-            }
-        }
-    }
-    if (SkillTester(target, SID_Offhand))
-    {
-        /* Check if the unit has a second item */
-        if (GetItemIndex(actor->items[1]) != 0)
-        {
-            u16 currentItem = GetUnitEquippedWeapon(actor);
-            u8 currentIndex = 0;
+						gBattleTarget.unit.items[currentIndex] = newItem;
+						gBattleTarget.unit.items[newIndex] = currentItem;
 
-            for (int i = 0; i < 5; i++)
-            {
-                if (actor->items[i] == currentItem)
-                    currentIndex = i;
-                else if (actor->items[i] == 0)
-                    break;
-                else
-                {
-                    if (CanUnitUseWeapon(actor, actor->items[i]))
-                    {
-                        u16 newItem = actor->items[i];
-                        u8 newIndex = i;
-                        
-                        gBattleActor.unit.items[currentIndex] = newItem;
-                        gBattleActor.unit.items[newIndex] = currentItem;
+						break;
+					}
+				}
+			}
+		}
+	}
+	if (SkillTester(target, SID_Offhand))
+	{
+		/* Check if the unit has a second item */
+		if (GetItemIndex(actor->items[1]) != 0)
+		{
+			u16 currentItem = GetUnitEquippedWeapon(actor);
+			u8 currentIndex = 0;
 
-                        break;
-                    }
-                }
-            }
+			for (int i = 0; i < 5; i++)
+			{
+				if (actor->items[i] == currentItem)
+					currentIndex = i;
+				else if (actor->items[i] == 0)
+					break;
+				else
+				{
+					if (CanUnitUseWeapon(actor, actor->items[i]))
+					{
+						u16 newItem = actor->items[i];
+						u8 newIndex = i;
 
-            /* Something random to satisfy the -Werror-unused-but-set-variable */
-            currentIndex += 1;
-        }
-    }
+						gBattleActor.unit.items[currentIndex] = newItem;
+						gBattleActor.unit.items[newIndex] = currentItem;
+
+						break;
+					}
+				}
+			}
+
+			/* Something random to satisfy the -Werror-unused-but-set-variable */
+			currentIndex += 1;
+		}
+	}
 #endif
 
-    UpdateUnitFromBattle(actor, &gBattleActor);
+	UpdateUnitFromBattle(actor, &gBattleActor);
 
-    if (target)
-        UpdateUnitFromBattle(target, &gBattleTarget);
-    else
-        UpdateObstacleFromBattle(&gBattleTarget);
+	if (target)
+		UpdateUnitFromBattle(target, &gBattleTarget);
+	else
+		UpdateObstacleFromBattle(&gBattleTarget);
 }

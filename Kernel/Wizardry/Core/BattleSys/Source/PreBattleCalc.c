@@ -15,50 +15,50 @@
 
 #define LOCAL_TRACE 0
 
-typedef void (*PreBattleCalcFunc) (struct BattleUnit *buA, struct BattleUnit *buB);
-extern PreBattleCalcFunc const *const gpPreBattleCalcFuncs;
-void PreBattleCalcWeaponTriangle(struct BattleUnit *attacker, struct BattleUnit *defender);
+typedef void (*PreBattleCalcFunc) (struct BattleUnit* buA, struct BattleUnit* buB);
+extern PreBattleCalcFunc const* const gpPreBattleCalcFuncs;
+void PreBattleCalcWeaponTriangle(struct BattleUnit* attacker, struct BattleUnit* defender);
 
 LYN_REPLACE_CHECK(ComputeBattleUnitSpeed);
-void ComputeBattleUnitSpeed(struct BattleUnit *bu)
+void ComputeBattleUnitSpeed(struct BattleUnit* bu)
 {
 	// Make sure BattleUnit::battleAttack has been setup
 
-	int wt  = GetItemWeight(bu->weaponBefore);
+	int wt = GetItemWeight(bu->weaponBefore);
 	int con = bu->unit.conBonus;
 
 	con += k_udiv(bu->battleAttack * gpKernelBattleDesignerConfig->as_calc_atk_perc, 100);
 
 #ifdef CONFIG_S_RANK_NO_WEAPON_WEIGHT
-    int itemType = GetItemType(bu->weaponBefore);
+	int itemType = GetItemType(bu->weaponBefore);
 
-    if (GetUnit(bu->unit.index)->ranks[itemType] == WPN_EXP_S)
-        wt = 0;
-    else 
-        wt -= con;
+	if (GetUnit(bu->unit.index)->ranks[itemType] == WPN_EXP_S)
+		wt = 0;
+	else
+		wt -= con;
 #else
-    wt -= con;
+	wt -= con;
 #endif
 
 #if (defined(SID_GracefulWielder) && (COMMON_SKILL_VALID(SID_GracefulWielder)))
-        if (SkillTester(GetUnit(bu->unit.index), SID_GracefulWielder))
-        {
-            if (wt > 0)
-            {
-                int unitWeaponRank = bu->unit.ranks[GetItemType(bu->weapon)];
+	if (SkillTester(GetUnit(bu->unit.index), SID_GracefulWielder))
+	{
+		if (wt > 0)
+		{
+			int unitWeaponRank = bu->unit.ranks[GetItemType(bu->weapon)];
 
-                if (unitWeaponRank >= WPN_EXP_S)
-                    wt -= 5;
-                else if (unitWeaponRank >= WPN_EXP_A)
-                    wt -= 4;
-                else if (unitWeaponRank >= WPN_EXP_B)
-                    wt -= 3;
-                else if (unitWeaponRank >= WPN_EXP_C)
-                    wt -= 2;
-                else if (unitWeaponRank >= WPN_EXP_D)
-                	wt -= 1;
-            }
-        }
+			if (unitWeaponRank >= WPN_EXP_S)
+				wt -= 5;
+			else if (unitWeaponRank >= WPN_EXP_A)
+				wt -= 4;
+			else if (unitWeaponRank >= WPN_EXP_B)
+				wt -= 3;
+			else if (unitWeaponRank >= WPN_EXP_C)
+				wt -= 2;
+			else if (unitWeaponRank >= WPN_EXP_D)
+				wt -= 1;
+		}
+	}
 #endif
 
 	if (wt < 0)
@@ -71,7 +71,7 @@ void ComputeBattleUnitSpeed(struct BattleUnit *bu)
 }
 
 LYN_REPLACE_CHECK(ComputeBattleUnitAttack);
-void ComputeBattleUnitAttack(struct BattleUnit *attacker, struct BattleUnit *defender)
+void ComputeBattleUnitAttack(struct BattleUnit* attacker, struct BattleUnit* defender)
 {
 	int status;
 	bool effective = false;
@@ -82,14 +82,15 @@ void ComputeBattleUnitAttack(struct BattleUnit *attacker, struct BattleUnit *def
 	status = GetItemMight(attacker->weapon);
 
 #if defined(SID_GorillaTactics) && (COMMON_SKILL_VALID(SID_GorillaTactics))
-		if (CheckBitUES(GetUnit(attacker->unit.index), UES_BIT_GorillaTactics_USED))
-			status += GetItemMight(attacker->weapon) / 2;
+	if (BattleFastSkillTester(attacker, SID_GorillaTactics) && CheckBitUES(GetUnit(attacker->unit.index), UES_BIT_GorillaTactics_USED))
+		status += GetItemMight(attacker->weapon) / 2;
 #endif
 
 	if (IsItemEffectiveAgainst(attacker->weapon, &defender->unit)) {
 		effective = true;
 		effective_amplifier = CalcWeaponEffectivenessScale(attacker->weapon);
-	} else if (IsUnitEffectiveAgainst(&attacker->unit, &defender->unit)) {
+	}
+	else if (IsUnitEffectiveAgainst(&attacker->unit, &defender->unit)) {
 		effective = true;
 		effective_amplifier = 300;
 	}
@@ -112,45 +113,45 @@ void ComputeBattleUnitAttack(struct BattleUnit *attacker, struct BattleUnit *def
 	}
 
 #if (defined(SID_SwiftAttack) && (COMMON_SKILL_VALID(SID_SwiftAttack)))
-    if (BattleFastSkillTester(attacker, SID_SwiftAttack))
-        status = status + attacker->unit.spd;
-    else
-    {
-        if (IsMagicAttack(attacker))
-            status = status + UNIT_MAG(&attacker->unit);
-        else
-            status = status + attacker->unit.pow;
-    }
+	if (BattleFastSkillTester(attacker, SID_SwiftAttack))
+		status = status + attacker->unit.spd;
+	else
+	{
+		if (IsMagicAttack(attacker))
+			status = status + UNIT_MAG(&attacker->unit);
+		else
+			status = status + attacker->unit.pow;
+	}
 #else 
-    if (IsMagicAttack(attacker))
-        status = status + UNIT_MAG(&attacker->unit);
-    else
-        status = status + attacker->unit.pow;
+	if (IsMagicAttack(attacker))
+		status = status + UNIT_MAG(&attacker->unit);
+	else
+		status = status + attacker->unit.pow;
 #endif
 
 #if defined(SID_DualWieldPlus) && (COMMON_SKILL_VALID(SID_DualWieldPlus))
-    if (BattleFastSkillTester(attacker, SID_DualWieldPlus))
-    {
-        for (int i = 1; i < UNIT_MAX_INVENTORY; i++)
-        {
-            if (GetItemMight(attacker->unit.items[i]) > 0 && CanUnitUseWeapon(GetUnit(attacker->unit.index), attacker->unit.items[i]))
-            {
-                status += GetItemMight(attacker->unit.items[i]) / 2;
-                dualWieldPlus = true;
-            }
-        }
-    }
+	if (BattleFastSkillTester(attacker, SID_DualWieldPlus))
+	{
+		for (int i = 1; i < UNIT_MAX_INVENTORY; i++)
+		{
+			if (GetItemMight(attacker->unit.items[i]) > 0 && CanUnitUseWeapon(GetUnit(attacker->unit.index), attacker->unit.items[i]))
+			{
+				status += GetItemMight(attacker->unit.items[i]) / 2;
+				dualWieldPlus = true;
+			}
+		}
+	}
 #endif
 
 #if defined(SID_DualWield) && (COMMON_SKILL_VALID(SID_DualWield))
-    if (BattleFastSkillTester(attacker, SID_DualWield) && !dualWieldPlus)
-    {
-        for (int i = 1; i < UNIT_MAX_INVENTORY; i++)
-        {
-            if (GetItemMight(attacker->unit.items[i]) > 0 && CanUnitUseWeapon(GetUnit(attacker->unit.index), attacker->unit.items[i]))
-                status += GetItemMight(attacker->unit.items[i]) / 2;
-        }
-    }
+	if (BattleFastSkillTester(attacker, SID_DualWield) && !dualWieldPlus)
+	{
+		for (int i = 1; i < UNIT_MAX_INVENTORY; i++)
+		{
+			if (GetItemMight(attacker->unit.items[i]) > 0 && CanUnitUseWeapon(GetUnit(attacker->unit.index), attacker->unit.items[i]))
+				status += GetItemMight(attacker->unit.items[i]) / 2;
+		}
+	}
 #endif
 
 	if (IsMagicAttack(attacker))
@@ -162,7 +163,7 @@ void ComputeBattleUnitAttack(struct BattleUnit *attacker, struct BattleUnit *def
 }
 
 LYN_REPLACE_CHECK(ComputeBattleUnitDefense);
-void ComputeBattleUnitDefense(struct BattleUnit *attacker, struct BattleUnit *defender)
+void ComputeBattleUnitDefense(struct BattleUnit* attacker, struct BattleUnit* defender)
 {
 	int status, def, res;
 
@@ -188,7 +189,7 @@ void ComputeBattleUnitDefense(struct BattleUnit *attacker, struct BattleUnit *de
 	attacker->battleDefense = status;
 }
 
-void ComputeBattleUnitAvoidRate_Rework(struct BattleUnit *bu)
+void ComputeBattleUnitAvoidRate_Rework(struct BattleUnit* bu)
 {
 	int status;
 
@@ -216,7 +217,7 @@ void ComputeBattleUnitAvoidRate_Rework(struct BattleUnit *bu)
 }
 
 LYN_REPLACE_CHECK(ComputeBattleUnitCritRate);
-void ComputeBattleUnitCritRate(struct BattleUnit *bu)
+void ComputeBattleUnitCritRate(struct BattleUnit* bu)
 {
 	int status;
 	int jid = UNIT_CLASS_ID(&bu->unit);
@@ -251,7 +252,7 @@ void ComputeBattleUnitHitRate(struct BattleUnit* bu) {
 
 	status = bu->unit.skl * 2;
 
-    status += GetItemHit(bu->weapon);
+	status += GetItemHit(bu->weapon);
 	status += bu->unit.lck / 2;
 	status += bu->wTriangleHitBonus;
 
@@ -262,9 +263,9 @@ void ComputeBattleUnitHitRate(struct BattleUnit* bu) {
 	bu->battleHitRate = status;
 }
 
-STATIC_DECLAR void Local_PreBattleCalcInitExt(struct BattleUnit *attacker, struct BattleUnit *defender)
+STATIC_DECLAR void Local_PreBattleCalcInitExt(struct BattleUnit* attacker, struct BattleUnit* defender)
 {
-	struct BattleStatus *st;
+	struct BattleStatus* st;
 
 	ComputeBattleUnitDefense(attacker, defender);
 	ComputeBattleUnitAttack(attacker, defender);
@@ -296,14 +297,15 @@ STATIC_DECLAR void Local_PreBattleCalcInitExt(struct BattleUnit *attacker, struc
 		st->crit = attacker->battleCritRate;
 		st->dodge = attacker->battleDodgeRate;
 		st->silencer = attacker->battleSilencerRate;
-	} else {
+	}
+	else {
 		st->atk = st->def = st->as = st->hit = st->avo = st->crit = st->dodge = st->silencer = 0;
 	}
 
 	PreBattleCalcInit_BaseDamage(attacker, defender);
 }
 
-void PreBattleCalcInit(struct BattleUnit *attacker, struct BattleUnit *defender)
+void PreBattleCalcInit(struct BattleUnit* attacker, struct BattleUnit* defender)
 {
 	/* Only calc at once */
 	if (attacker == &gBattleActor) {
@@ -312,7 +314,7 @@ void PreBattleCalcInit(struct BattleUnit *attacker, struct BattleUnit *defender)
 	}
 }
 
-void PreBattleCalcEnd(struct BattleUnit *attacker, struct BattleUnit *defender)
+void PreBattleCalcEnd(struct BattleUnit* attacker, struct BattleUnit* defender)
 {
 	if (attacker->battleAttack < 0)
 		attacker->battleAttack = 0;
@@ -358,10 +360,10 @@ void PreBattleCalcEnd(struct BattleUnit *attacker, struct BattleUnit *defender)
 		attacker->battleSilencerRate = 0;
 }
 
-void PreBattleCalcDefenderSkills(struct BattleUnit *attacker, struct BattleUnit *defender)
+void PreBattleCalcDefenderSkills(struct BattleUnit* attacker, struct BattleUnit* defender)
 {
 	int _skill_list_cnt;
-	struct SkillList *list;
+	struct SkillList* list;
 
 	/**
 	 * Skip arena judgement
@@ -491,7 +493,7 @@ void PreBattleCalcDefenderSkills(struct BattleUnit *attacker, struct BattleUnit 
 		case SID_GuardBearing:
 			if (gBattleStats.config & BATTLE_CONFIG_SIMULATE) {
 				if (!AreUnitsAllied(defender->unit.index, gPlaySt.faction))
-						GetBaseDmg(attacker)->decrease += DAMAGE_DECREASE(SKILL_EFF0(SID_GuardBearing));
+					GetBaseDmg(attacker)->decrease += DAMAGE_DECREASE(SKILL_EFF0(SID_GuardBearing));
 			}
 			break;
 #endif
@@ -522,14 +524,14 @@ void PreBattleCalcDefenderSkills(struct BattleUnit *attacker, struct BattleUnit 
 	}
 }
 
-void PreBattleCalcAttackerSkills(struct BattleUnit *attacker, struct BattleUnit *defender)
+void PreBattleCalcAttackerSkills(struct BattleUnit* attacker, struct BattleUnit* defender)
 {
 	FORCE_DECLARE int tmp, i;
 	int _skill_list_cnt;
-	struct SkillList *list;
-	FORCE_DECLARE struct NewBwl * bwl = GetNewBwl(UNIT_CHAR_ID(GetUnit(attacker->unit.index)));
+	struct SkillList* list;
+	FORCE_DECLARE struct NewBwl* bwl = GetNewBwl(UNIT_CHAR_ID(GetUnit(attacker->unit.index)));
 	FORCE_DECLARE bool wrathPlusActivated = false;
-    FORCE_DECLARE int unitRank = 0;
+	FORCE_DECLARE int unitRank = 0;
 
 	/**
 	 * Skip arena judgement
@@ -556,7 +558,7 @@ void PreBattleCalcAttackerSkills(struct BattleUnit *attacker, struct BattleUnit 
 			break;
 #endif
 
-		/* Blow skills */
+			/* Blow skills */
 #if (defined(SID_BlowDarting) && (COMMON_SKILL_VALID(SID_BlowDarting)))
 		case SID_BlowDarting:
 			if (attacker == &gBattleActor)
@@ -625,7 +627,7 @@ void PreBattleCalcAttackerSkills(struct BattleUnit *attacker, struct BattleUnit 
 		case SID_ArcaneBlade:
 			if (attacker == &gBattleActor && gBattleStats.range == 1) {
 				attacker->battleCritRate += UNIT_MAG(&attacker->unit) / 2 + SKILL_EFF0(SID_ArcaneBlade);
-				attacker->battleHitRate  += UNIT_MAG(&attacker->unit) / 2 + SKILL_EFF0(SID_ArcaneBlade);
+				attacker->battleHitRate += UNIT_MAG(&attacker->unit) / 2 + SKILL_EFF0(SID_ArcaneBlade);
 			}
 			break;
 #endif
@@ -633,13 +635,13 @@ void PreBattleCalcAttackerSkills(struct BattleUnit *attacker, struct BattleUnit 
 #if (defined(SID_Prescience) && (COMMON_SKILL_VALID(SID_Prescience)))
 		case SID_Prescience:
 			if (attacker == &gBattleActor && gBattleStats.range == 1) {
-				attacker->battleHitRate   += SKILL_EFF0(SID_Prescience);
+				attacker->battleHitRate += SKILL_EFF0(SID_Prescience);
 				attacker->battleAvoidRate += SKILL_EFF1(SID_Prescience);
 			}
 			break;
 #endif
 
-		/* Stance skills */
+			/* Stance skills */
 #if (defined(SID_StanceBracing) && (COMMON_SKILL_VALID(SID_StanceBracing)))
 		case SID_StanceBracing:
 			if (attacker == &gBattleTarget)
@@ -668,7 +670,7 @@ void PreBattleCalcAttackerSkills(struct BattleUnit *attacker, struct BattleUnit 
 		case SID_StanceKestrel:
 			if (attacker == &gBattleTarget) {
 				attacker->battleAttack += SKILL_EFF0(SID_StanceKestrel);
-				attacker->battleSpeed  += SKILL_EFF1(SID_StanceKestrel);
+				attacker->battleSpeed += SKILL_EFF1(SID_StanceKestrel);
 			}
 			break;
 #endif
@@ -732,8 +734,8 @@ void PreBattleCalcAttackerSkills(struct BattleUnit *attacker, struct BattleUnit 
 #if (defined(SID_StanceSpectrum) && (COMMON_SKILL_VALID(SID_StanceSpectrum)))
 		case SID_StanceSpectrum:
 			if (attacker == &gBattleTarget) {
-				attacker->battleAttack  += SKILL_EFF0(SID_StanceSpectrum);
-				attacker->battleSpeed   += SKILL_EFF1(SID_StanceSpectrum);
+				attacker->battleAttack += SKILL_EFF0(SID_StanceSpectrum);
+				attacker->battleSpeed += SKILL_EFF1(SID_StanceSpectrum);
 				attacker->battleDefense += SKILL_EFF2(SID_StanceSpectrum);
 			}
 			break;
@@ -755,7 +757,7 @@ void PreBattleCalcAttackerSkills(struct BattleUnit *attacker, struct BattleUnit 
 			break;
 #endif
 
-		/* Misc */
+			/* Misc */
 #if (defined(SID_Lethality) && (COMMON_SKILL_VALID(SID_Lethality)))
 		case SID_Lethality:
 			attacker->battleSilencerRate += attacker->unit.skl;
@@ -780,7 +782,7 @@ void PreBattleCalcAttackerSkills(struct BattleUnit *attacker, struct BattleUnit 
 			break;
 #endif
 
-		/* wType related */
+			/* wType related */
 #if (defined(SID_CritSword) && (COMMON_SKILL_VALID(SID_CritSword)))
 		case SID_CritSword:
 			if (attacker->weaponType == ITYPE_SWORD)
@@ -898,9 +900,9 @@ void PreBattleCalcAttackerSkills(struct BattleUnit *attacker, struct BattleUnit 
 #if defined(SID_HolyAura) && (COMMON_SKILL_VALID(SID_HolyAura))
 		case SID_HolyAura:
 			if (attacker->weaponType == ITYPE_LIGHT) {
-				attacker->battleAttack	+= SKILL_EFF0(SID_HolyAura);
-				attacker->battleCritRate  += SKILL_EFF1(SID_HolyAura);
-				attacker->battleHitRate   += SKILL_EFF2(SID_HolyAura);
+				attacker->battleAttack += SKILL_EFF0(SID_HolyAura);
+				attacker->battleCritRate += SKILL_EFF1(SID_HolyAura);
+				attacker->battleHitRate += SKILL_EFF2(SID_HolyAura);
 				attacker->battleAvoidRate += SKILL_EFF3(SID_HolyAura);
 			}
 			break;
@@ -935,11 +937,11 @@ void PreBattleCalcAttackerSkills(struct BattleUnit *attacker, struct BattleUnit 
 #endif
 
 #if (defined(SID_Zen) && (COMMON_SKILL_VALID(SID_Zen)))
-        case SID_Zen:
-            if ((attacker->unit.maxHP - attacker->hpInitial) >= 4)
-                attacker->battleDefense += (attacker->unit.maxHP - attacker->hpInitial) / 4;
+		case SID_Zen:
+			if ((attacker->unit.maxHP - attacker->hpInitial) >= 4)
+				attacker->battleDefense += (attacker->unit.maxHP - attacker->hpInitial) / 4;
 
-            break;
+			break;
 #endif
 
 
@@ -966,7 +968,7 @@ void PreBattleCalcAttackerSkills(struct BattleUnit *attacker, struct BattleUnit 
 		case SID_BattleVeteran:
 			tmp = k_udiv(attacker->levelPrevious + GetUnitHiddenLevel(&attacker->unit), 10);
 			attacker->battleHitRate += SKILL_EFF0(SID_RuinedBlade) * tmp;
-			attacker->battleAttack  += SKILL_EFF1(SID_RuinedBlade) * tmp;
+			attacker->battleAttack += SKILL_EFF1(SID_RuinedBlade) * tmp;
 			break;
 #endif
 
@@ -982,7 +984,7 @@ void PreBattleCalcAttackerSkills(struct BattleUnit *attacker, struct BattleUnit 
 #if (defined(SID_Chivalry) && (COMMON_SKILL_VALID(SID_Chivalry)))
 		case SID_Chivalry:
 			if (defender->hpInitial == defender->unit.maxHP) {
-				attacker->battleAttack  += SKILL_EFF0(SID_Chivalry);
+				attacker->battleAttack += SKILL_EFF0(SID_Chivalry);
 				attacker->battleDefense += SKILL_EFF1(SID_Chivalry);
 			}
 			break;
@@ -1118,7 +1120,7 @@ void PreBattleCalcAttackerSkills(struct BattleUnit *attacker, struct BattleUnit 
 #if (defined(SID_OutdoorFighter) && (COMMON_SKILL_VALID(SID_OutdoorFighter)))
 		case SID_OutdoorFighter:
 			if (CheckOutdoorTerrain(attacker->terrainId)) {
-				attacker->battleHitRate   += SKILL_EFF0(SID_OutdoorFighter);
+				attacker->battleHitRate += SKILL_EFF0(SID_OutdoorFighter);
 				attacker->battleAvoidRate += SKILL_EFF1(SID_OutdoorFighter);
 			}
 			break;
@@ -1127,7 +1129,7 @@ void PreBattleCalcAttackerSkills(struct BattleUnit *attacker, struct BattleUnit 
 #if (defined(SID_KnightAspirant) && (COMMON_SKILL_VALID(SID_KnightAspirant)))
 		case SID_KnightAspirant:
 			if ((attacker->hpInitial * 4) > (attacker->unit.maxHP * 3)) {
-				attacker->battleAttack	+= SKILL_EFF0(SID_KnightAspirant);
+				attacker->battleAttack += SKILL_EFF0(SID_KnightAspirant);
 				attacker->battleAvoidRate += SKILL_EFF1(SID_KnightAspirant);
 			}
 			break;
@@ -1135,7 +1137,7 @@ void PreBattleCalcAttackerSkills(struct BattleUnit *attacker, struct BattleUnit 
 
 #if (defined(SID_Outrider) && (COMMON_SKILL_VALID(SID_Outrider)))
 		case SID_Outrider:
-			attacker->battleDefense  += gActionData.moveCount;
+			attacker->battleDefense += gActionData.moveCount;
 			attacker->battleCritRate += (gActionData.moveCount * 3);
 			break;
 #endif
@@ -1145,7 +1147,7 @@ void PreBattleCalcAttackerSkills(struct BattleUnit *attacker, struct BattleUnit 
 			tmp = attacker->unit.maxHP - attacker->hpInitial;
 			if (tmp > 0) {
 				tmp = k_udiv(tmp * 4, attacker->unit.maxHP);
-				attacker->battleAttack  += SKILL_EFF0(SID_SilentPride) * tmp;
+				attacker->battleAttack += SKILL_EFF0(SID_SilentPride) * tmp;
 				attacker->battleDefense += SKILL_EFF1(SID_SilentPride) * tmp;
 			}
 			break;
@@ -1202,7 +1204,7 @@ void PreBattleCalcAttackerSkills(struct BattleUnit *attacker, struct BattleUnit 
 #if defined(SID_Vanity) && (COMMON_SKILL_VALID(SID_Vanity))
 		case SID_Vanity:
 			if (gBattleStats.range == 2) {
-				attacker->battleAttack  += SKILL_EFF0(SID_Vanity);
+				attacker->battleAttack += SKILL_EFF0(SID_Vanity);
 				attacker->battleHitRate += SKILL_EFF1(SID_Vanity);
 			}
 			break;
@@ -1211,7 +1213,7 @@ void PreBattleCalcAttackerSkills(struct BattleUnit *attacker, struct BattleUnit 
 #if (defined(SID_EvenRhythm) && (COMMON_SKILL_VALID(SID_EvenRhythm)))
 		case SID_EvenRhythm:
 			if ((gPlaySt.chapterTurnNumber % 2) == 0) {
-				attacker->battleHitRate   += SKILL_EFF0(SID_EvenRhythm);
+				attacker->battleHitRate += SKILL_EFF0(SID_EvenRhythm);
 				attacker->battleAvoidRate += SKILL_EFF1(SID_EvenRhythm);
 			}
 			break;
@@ -1220,7 +1222,7 @@ void PreBattleCalcAttackerSkills(struct BattleUnit *attacker, struct BattleUnit 
 #if (defined(SID_OddRhythm) && (COMMON_SKILL_VALID(SID_OddRhythm)))
 		case SID_OddRhythm:
 			if ((gPlaySt.chapterTurnNumber % 2) == 1) {
-				attacker->battleHitRate   += SKILL_EFF0(SID_OddRhythm);
+				attacker->battleHitRate += SKILL_EFF0(SID_OddRhythm);
 				attacker->battleAvoidRate += SKILL_EFF1(SID_OddRhythm);
 			}
 			break;
@@ -1255,7 +1257,7 @@ void PreBattleCalcAttackerSkills(struct BattleUnit *attacker, struct BattleUnit 
 					int _x = attacker->unit.xPos + gVecs_3x3[i].x;
 					int _y = attacker->unit.yPos + gVecs_3x3[i].y;
 
-					struct Unit *unit_ally = GetUnitAtPosition(_x, _y);
+					struct Unit* unit_ally = GetUnitAtPosition(_x, _y);
 
 					if (!UNIT_IS_VALID(unit_ally))
 						continue;
@@ -1279,7 +1281,7 @@ void PreBattleCalcAttackerSkills(struct BattleUnit *attacker, struct BattleUnit 
 					int _x = attacker->unit.xPos + gVecs_3x3[i].x;
 					int _y = attacker->unit.yPos + gVecs_3x3[i].y;
 
-					struct Unit *unit_ally = GetUnitAtPosition(_x, _y);
+					struct Unit* unit_ally = GetUnitAtPosition(_x, _y);
 
 					if (!UNIT_IS_VALID(unit_ally))
 						continue;
@@ -1303,7 +1305,7 @@ void PreBattleCalcAttackerSkills(struct BattleUnit *attacker, struct BattleUnit 
 					int _x = attacker->unit.xPos + gVecs_3x3[i].x;
 					int _y = attacker->unit.yPos + gVecs_3x3[i].y;
 
-					struct Unit *unit_ally = GetUnitAtPosition(_x, _y);
+					struct Unit* unit_ally = GetUnitAtPosition(_x, _y);
 
 					if (!UNIT_IS_VALID(unit_ally))
 						continue;
@@ -1336,7 +1338,7 @@ void PreBattleCalcAttackerSkills(struct BattleUnit *attacker, struct BattleUnit 
 
 				int _x = attacker->unit.xPos + gVecs_1x1[i].x;
 				int _y = attacker->unit.yPos + gVecs_1x1[i].y;
-				struct Unit *_unit = GetUnitAtPosition(_x, _y);
+				struct Unit* _unit = GetUnitAtPosition(_x, _y);
 
 				if (!_unit)
 					continue;
@@ -1348,7 +1350,7 @@ void PreBattleCalcAttackerSkills(struct BattleUnit *attacker, struct BattleUnit 
 					int _x2 = _unit->xPos + gVecs_1x1[i].x;
 					int _y2 = _unit->yPos + gVecs_1x1[i].y;
 
-					struct Unit *_unit2 = GetUnitAtPosition(_x2, _y2);
+					struct Unit* _unit2 = GetUnitAtPosition(_x2, _y2);
 
 					if (!_unit2)
 						continue;
@@ -1363,7 +1365,7 @@ void PreBattleCalcAttackerSkills(struct BattleUnit *attacker, struct BattleUnit 
 				}
 			}
 
-L_SID_Admiration_done:
+		L_SID_Admiration_done:
 			if (tmp == 1)
 				attacker->battleDefense += 2;
 
@@ -1381,7 +1383,7 @@ L_SID_Admiration_done:
 				int _j;
 				int _x = attacker->unit.xPos + gVecs_1x1[i].x;
 				int _y = attacker->unit.yPos + gVecs_1x1[i].y;
-				struct Unit *_unit = GetUnitAtPosition(_x, _y);
+				struct Unit* _unit = GetUnitAtPosition(_x, _y);
 
 				if (!_unit)
 					continue;
@@ -1393,7 +1395,7 @@ L_SID_Admiration_done:
 					int _x2 = _unit->xPos + gVecs_1x1[i].x;
 					int _y2 = _unit->yPos + gVecs_1x1[i].y;
 
-					struct Unit *_unit2 = GetUnitAtPosition(_x2, _y2);
+					struct Unit* _unit2 = GetUnitAtPosition(_x2, _y2);
 
 					if (!_unit2)
 						continue;
@@ -1408,7 +1410,7 @@ L_SID_Admiration_done:
 				}
 			}
 
-L_FairyTaleFolk_done:
+		L_FairyTaleFolk_done:
 			if (tmp == 1)
 				attacker->battleAttack += 2;
 
@@ -1457,7 +1459,7 @@ L_FairyTaleFolk_done:
 #if (defined(SID_MageSlayer) && (COMMON_SKILL_VALID(SID_MageSlayer)))
 		case SID_MageSlayer:
 			if (defender->unit.ranks[ITYPE_ANIMA] != 0 || defender->unit.ranks[ITYPE_LIGHT] != 0 || defender->unit.ranks[ITYPE_DARK] != 0 || defender->unit.ranks[ITYPE_STAFF]) {
-				attacker->battleAttack  += SKILL_EFF0(SID_MageSlayer);
+				attacker->battleAttack += SKILL_EFF0(SID_MageSlayer);
 				attacker->battleCritRate += SKILL_EFF1(SID_MageSlayer);
 			}
 			break;
@@ -1562,7 +1564,7 @@ L_FairyTaleFolk_done:
 		case SID_LunarBrace:
 			if (&gBattleActor == attacker)
 				attacker->battleAttack +=
-					perc_of(BattleUnitOriginalStatus(defender)->def, SKILL_EFF0(SID_LunarBrace));
+				perc_of(BattleUnitOriginalStatus(defender)->def, SKILL_EFF0(SID_LunarBrace));
 			break;
 #endif
 
@@ -1585,10 +1587,11 @@ L_FairyTaleFolk_done:
 		case SID_LionFlame:
 			if (gBattleStats.range <= 1) {
 				attacker->battleCritRate += SKILL_EFF0(SID_LionFlame);
-				attacker->battleAttack   += SKILL_EFF1(SID_LionFlame);
-			} else {
+				attacker->battleAttack += SKILL_EFF1(SID_LionFlame);
+			}
+			else {
 				attacker->battleCritRate -= SKILL_EFF2(SID_LionFlame);
-				attacker->battleAttack   -= SKILL_EFF3(SID_LionFlame);
+				attacker->battleAttack -= SKILL_EFF3(SID_LionFlame);
 			}
 			break;
 #endif
@@ -1648,7 +1651,7 @@ L_FairyTaleFolk_done:
 			if ((BattleUnitOriginalStatus(attacker)->atk + BattleUnitOriginalStatus(attacker)->def) <
 				(BattleUnitOriginalStatus(defender)->atk + BattleUnitOriginalStatus(defender)->def)) {
 				attacker->battleAttack += SKILL_EFF0(SID_Stubborn);
-				attacker->battleSpeed  += SKILL_EFF1(SID_Stubborn);
+				attacker->battleSpeed += SKILL_EFF1(SID_Stubborn);
 			}
 			break;
 #endif
@@ -1666,444 +1669,444 @@ L_FairyTaleFolk_done:
 #endif
 
 #if (defined(SID_CriticalOverload) && (COMMON_SKILL_VALID(SID_CriticalOverload)))
-        case SID_CriticalOverload:
-            if (attacker->battleHitRate > 100)
-            {
-                int _crit_overflow = BattleUnitOriginalStatus(attacker)->hit - 100;
-                if (_crit_overflow > 0)
-                    attacker->battleCritRate += _crit_overflow / SKILL_EFF0(SID_CriticalOverload);
-            }
-            break;
+		case SID_CriticalOverload:
+			if (attacker->battleHitRate > 100)
+			{
+				int _crit_overflow = BattleUnitOriginalStatus(attacker)->hit - 100;
+				if (_crit_overflow > 0)
+					attacker->battleCritRate += _crit_overflow / SKILL_EFF0(SID_CriticalOverload);
+			}
+			break;
 #endif
 
 #if (defined(SID_Insomnia) && (COMMON_SKILL_VALID(SID_Insomnia)))
-        case SID_Insomnia:
-            if (GetUnitStatusIndex(GetUnit(attacker->unit.index)) == UNIT_STATUS_SLEEP)
-                SetUnitStatus(GetUnit(attacker->unit.index), UNIT_STATUS_NONE);
-            break;
+		case SID_Insomnia:
+			if (GetUnitStatusIndex(GetUnit(attacker->unit.index)) == UNIT_STATUS_SLEEP)
+				SetUnitStatus(GetUnit(attacker->unit.index), UNIT_STATUS_NONE);
+			break;
 #endif
 
 #if (defined(SID_GoodAsGold) && (COMMON_SKILL_VALID(SID_GoodAsGold)))
-        case SID_GoodAsGold:
-            for (int i = 0; i < 9; i++)
-            {
-                if (GetUnitStatusIndex(GetUnit(attacker->unit.index)) == debuffs[i])
-                {
-                    SetUnitStatus(GetUnit(attacker->unit.index), UNIT_STATUS_NONE);
-                    break;
-                }
-            }
-            break;
+		case SID_GoodAsGold:
+			for (int i = 0; i < 9; i++)
+			{
+				if (GetUnitStatusIndex(GetUnit(attacker->unit.index)) == debuffs[i])
+				{
+					SetUnitStatus(GetUnit(attacker->unit.index), UNIT_STATUS_NONE);
+					break;
+				}
+			}
+			break;
 #endif
 
 #if (defined(SID_Cultured) && (COMMON_SKILL_VALID(SID_Cultured)))
 #if (defined(SID_NiceThighs) && (COMMON_SKILL_VALID(SID_NiceThighs)))
-        case SID_Cultured:
-            if (BattleFastSkillTester(defender, SID_NiceThighs))
-                attacker->battleHitRate -= SKILL_EFF0(SID_Cultured);
-            break;
+		case SID_Cultured:
+			if (BattleFastSkillTester(defender, SID_NiceThighs))
+				attacker->battleHitRate -= SKILL_EFF0(SID_Cultured);
+			break;
 #endif
 #endif
 
 #if (defined(SID_Flank) && (COMMON_SKILL_VALID(SID_Flank)))
-        case SID_Flank:
-            if (gBattleStats.range == 1)
-            {
-                int activeX = attacker->unit.xPos;
-                int targetX = defender->unit.xPos;
-                int activeY = attacker->unit.yPos;
-                int targetY = defender->unit.yPos;
-                int dirX = activeX - targetX;
-                int dirY = activeY - targetY;
-                int deploymentID = attacker->unit.index;
-                int allyID = 0;
-                if ((dirX > 0) && (activeX > 1))
-                    allyID = gBmMapUnit[activeY][activeX - 2];
-                if (dirX < 0)
-                    allyID = gBmMapUnit[activeY][activeX + 2];
-                if ((dirY > 0) && (activeY > 1))
-                    allyID = gBmMapUnit[activeY - 2][activeX];
-                if (dirY < 0)
-                    allyID = gBmMapUnit[activeY + 2][activeX];
+		case SID_Flank:
+			if (gBattleStats.range == 1)
+			{
+				int activeX = attacker->unit.xPos;
+				int targetX = defender->unit.xPos;
+				int activeY = attacker->unit.yPos;
+				int targetY = defender->unit.yPos;
+				int dirX = activeX - targetX;
+				int dirY = activeY - targetY;
+				int deploymentID = attacker->unit.index;
+				int allyID = 0;
+				if ((dirX > 0) && (activeX > 1))
+					allyID = gBmMapUnit[activeY][activeX - 2];
+				if (dirX < 0)
+					allyID = gBmMapUnit[activeY][activeX + 2];
+				if ((dirY > 0) && (activeY > 1))
+					allyID = gBmMapUnit[activeY - 2][activeX];
+				if (dirY < 0)
+					allyID = gBmMapUnit[activeY + 2][activeX];
 
-                if ((allyID) && (AreUnitsAllied(deploymentID, allyID)))
-                {
-                    int dmg = attacker->battleAttack - defender->battleDefense;
-                    if (dmg < 0)
-                        dmg = 0;
-                    int addDmg = ((dmg) * (SKILL_EFF0(SID_Flank))) / 100;
-                    attacker->battleAttack += addDmg;
-                }
-            }
-            break;
+				if ((allyID) && (AreUnitsAllied(deploymentID, allyID)))
+				{
+					int dmg = attacker->battleAttack - defender->battleDefense;
+					if (dmg < 0)
+						dmg = 0;
+					int addDmg = ((dmg) * (SKILL_EFF0(SID_Flank))) / 100;
+					attacker->battleAttack += addDmg;
+				}
+			}
+			break;
 #endif
 
 #if (defined(SID_AdaptiveStance) && (COMMON_SKILL_VALID(SID_AdaptiveStance)))
-        case SID_AdaptiveStance:
-            int attackerRes = GetUnit(attacker->unit.index)->res;
-            int attackerDef = GetUnit(attacker->unit.index)->def;
+		case SID_AdaptiveStance:
+			int attackerRes = GetUnit(attacker->unit.index)->res;
+			int attackerDef = GetUnit(attacker->unit.index)->def;
 
-            attacker->battleDefense = (attackerRes >= attackerDef) ? attackerRes : attackerDef;
-            break;
+			attacker->battleDefense = (attackerRes >= attackerDef) ? attackerRes : attackerDef;
+			break;
 #endif
 
 #if (defined(SID_DemolitionExpert) && (COMMON_SKILL_VALID(SID_DemolitionExpert)))
-        case SID_DemolitionExpert:
-            if (defender->unit.pCharacterData == GetCharacterData(CHARACTER_WALL) || 
-                defender->unit.pCharacterData == GetCharacterData(CHARACTER_SNAG))
-                {
-                    attacker->battleAttack = defender->unit.maxHP;
-                }
-            break;
+		case SID_DemolitionExpert:
+			if (defender->unit.pCharacterData == GetCharacterData(CHARACTER_WALL) ||
+				defender->unit.pCharacterData == GetCharacterData(CHARACTER_SNAG))
+			{
+				attacker->battleAttack = defender->unit.maxHP;
+			}
+			break;
 #endif
 
 #if (defined(SID_BeginnersLuck) && (COMMON_SKILL_VALID(SID_BeginnersLuck)))
-        case SID_BeginnersLuck:
-            tmp = gPlaySt.chapterIndex > SKILL_EFF0(SID_BeginnersLuck)
-                      ? 0
-                      : SKILL_EFF0(SID_BeginnersLuck) - gPlaySt.chapterIndex;
+		case SID_BeginnersLuck:
+			tmp = gPlaySt.chapterIndex > SKILL_EFF0(SID_BeginnersLuck)
+				? 0
+				: SKILL_EFF0(SID_BeginnersLuck) - gPlaySt.chapterIndex;
 
-            attacker->battleHitRate += tmp;
-            attacker->battleAvoidRate += tmp;
-            break;
+			attacker->battleHitRate += tmp;
+			attacker->battleAvoidRate += tmp;
+			break;
 #endif
 
 #if (defined(SID_ExpertsExperience) && (COMMON_SKILL_VALID(SID_ExpertsExperience)))
-        case SID_ExpertsExperience:
-            tmp = SKILL_EFF0(SID_ExpertsExperience) + gPlaySt.chapterIndex;
+		case SID_ExpertsExperience:
+			tmp = SKILL_EFF0(SID_ExpertsExperience) + gPlaySt.chapterIndex;
 
-            attacker->battleHitRate += tmp;
-            attacker->battleAvoidRate += tmp;
-            break;
+			attacker->battleHitRate += tmp;
+			attacker->battleAvoidRate += tmp;
+			break;
 #endif
 
 #if (defined(SID_SwordProwess) && (COMMON_SKILL_VALID(SID_SwordProwess)))
-        case SID_SwordProwess:
-            unitRank = attacker->unit.ranks[ITYPE_SWORD];
-            if (unitRank >= WPN_EXP_D && unitRank < WPN_EXP_C)
-            {
-                attacker->battleHitRate += SKILL_EFF0(SID_SwordProwess);
-                attacker->battleAvoidRate += SKILL_EFF1(SID_SwordProwess);
-                attacker->battleDodgeRate += SKILL_EFF0(SID_SwordProwess);
-            }
-            else if (unitRank >= WPN_EXP_C && unitRank < WPN_EXP_B)
-            {
-                attacker->battleHitRate += SKILL_EFF2(SID_SwordProwess);
-                attacker->battleAvoidRate += SKILL_EFF3(SID_SwordProwess);
-                attacker->battleDodgeRate += SKILL_EFF2(SID_SwordProwess);
-            }
-            else if (unitRank >= WPN_EXP_B && unitRank < WPN_EXP_A)
-            {
-                attacker->battleHitRate += SKILL_EFF4(SID_SwordProwess);
-                attacker->battleAvoidRate += SKILL_EFF5(SID_SwordProwess);
-                attacker->battleDodgeRate += SKILL_EFF4(SID_SwordProwess);
-            }
-            else if (unitRank >= WPN_EXP_A && unitRank < WPN_EXP_S)
-            {
-                attacker->battleHitRate += SKILL_EFF6(SID_SwordProwess);
-                attacker->battleAvoidRate += SKILL_EFF7(SID_SwordProwess);
-                attacker->battleDodgeRate += SKILL_EFF6(SID_SwordProwess);
-            }
-            else if (unitRank >= WPN_EXP_S)
-            {
-                attacker->battleHitRate += SKILL_EFF8(SID_SwordProwess);
-                attacker->battleAvoidRate += SKILL_EFF9(SID_SwordProwess);
-                attacker->battleDodgeRate += SKILL_EFF8(SID_SwordProwess);
-            }
-            break;
+		case SID_SwordProwess:
+			unitRank = attacker->unit.ranks[ITYPE_SWORD];
+			if (unitRank >= WPN_EXP_D && unitRank < WPN_EXP_C)
+			{
+				attacker->battleHitRate += SKILL_EFF0(SID_SwordProwess);
+				attacker->battleAvoidRate += SKILL_EFF1(SID_SwordProwess);
+				attacker->battleDodgeRate += SKILL_EFF0(SID_SwordProwess);
+			}
+			else if (unitRank >= WPN_EXP_C && unitRank < WPN_EXP_B)
+			{
+				attacker->battleHitRate += SKILL_EFF2(SID_SwordProwess);
+				attacker->battleAvoidRate += SKILL_EFF3(SID_SwordProwess);
+				attacker->battleDodgeRate += SKILL_EFF2(SID_SwordProwess);
+			}
+			else if (unitRank >= WPN_EXP_B && unitRank < WPN_EXP_A)
+			{
+				attacker->battleHitRate += SKILL_EFF4(SID_SwordProwess);
+				attacker->battleAvoidRate += SKILL_EFF5(SID_SwordProwess);
+				attacker->battleDodgeRate += SKILL_EFF4(SID_SwordProwess);
+			}
+			else if (unitRank >= WPN_EXP_A && unitRank < WPN_EXP_S)
+			{
+				attacker->battleHitRate += SKILL_EFF6(SID_SwordProwess);
+				attacker->battleAvoidRate += SKILL_EFF7(SID_SwordProwess);
+				attacker->battleDodgeRate += SKILL_EFF6(SID_SwordProwess);
+			}
+			else if (unitRank >= WPN_EXP_S)
+			{
+				attacker->battleHitRate += SKILL_EFF8(SID_SwordProwess);
+				attacker->battleAvoidRate += SKILL_EFF9(SID_SwordProwess);
+				attacker->battleDodgeRate += SKILL_EFF8(SID_SwordProwess);
+			}
+			break;
 #endif
 
 #if (defined(SID_LanceProwess) && (COMMON_SKILL_VALID(SID_LanceProwess)))
-        case SID_LanceProwess:
-            unitRank = attacker->unit.ranks[ITYPE_LANCE];
-            if (unitRank >= WPN_EXP_D && unitRank < WPN_EXP_C)
-            {
-                attacker->battleHitRate += SKILL_EFF0(SID_LanceProwess);
-                attacker->battleAvoidRate += SKILL_EFF1(SID_LanceProwess);
-                attacker->battleDodgeRate += SKILL_EFF0(SID_LanceProwess);
-            }
-            else if (unitRank >= WPN_EXP_C && unitRank < WPN_EXP_B)
-            {
-                attacker->battleHitRate += SKILL_EFF2(SID_LanceProwess);
-                attacker->battleAvoidRate += SKILL_EFF3(SID_LanceProwess);
-                attacker->battleDodgeRate += SKILL_EFF2(SID_LanceProwess);
-            }
-            else if (unitRank >= WPN_EXP_B && unitRank < WPN_EXP_A)
-            {
-                attacker->battleHitRate += SKILL_EFF4(SID_LanceProwess);
-                attacker->battleAvoidRate += SKILL_EFF5(SID_LanceProwess);
-                attacker->battleDodgeRate += SKILL_EFF4(SID_LanceProwess);
-            }
-            else if (unitRank >= WPN_EXP_A && unitRank < WPN_EXP_S)
-            {
-                attacker->battleHitRate += SKILL_EFF6(SID_LanceProwess);
-                attacker->battleAvoidRate += SKILL_EFF7(SID_LanceProwess);
-                attacker->battleDodgeRate += SKILL_EFF6(SID_LanceProwess);
-            }
-            else if (unitRank >= WPN_EXP_S)
-            {
-                attacker->battleHitRate += SKILL_EFF8(SID_LanceProwess);
-                attacker->battleAvoidRate += SKILL_EFF9(SID_LanceProwess);
-                attacker->battleDodgeRate += SKILL_EFF8(SID_LanceProwess);
-            }
-            break;
+		case SID_LanceProwess:
+			unitRank = attacker->unit.ranks[ITYPE_LANCE];
+			if (unitRank >= WPN_EXP_D && unitRank < WPN_EXP_C)
+			{
+				attacker->battleHitRate += SKILL_EFF0(SID_LanceProwess);
+				attacker->battleAvoidRate += SKILL_EFF1(SID_LanceProwess);
+				attacker->battleDodgeRate += SKILL_EFF0(SID_LanceProwess);
+			}
+			else if (unitRank >= WPN_EXP_C && unitRank < WPN_EXP_B)
+			{
+				attacker->battleHitRate += SKILL_EFF2(SID_LanceProwess);
+				attacker->battleAvoidRate += SKILL_EFF3(SID_LanceProwess);
+				attacker->battleDodgeRate += SKILL_EFF2(SID_LanceProwess);
+			}
+			else if (unitRank >= WPN_EXP_B && unitRank < WPN_EXP_A)
+			{
+				attacker->battleHitRate += SKILL_EFF4(SID_LanceProwess);
+				attacker->battleAvoidRate += SKILL_EFF5(SID_LanceProwess);
+				attacker->battleDodgeRate += SKILL_EFF4(SID_LanceProwess);
+			}
+			else if (unitRank >= WPN_EXP_A && unitRank < WPN_EXP_S)
+			{
+				attacker->battleHitRate += SKILL_EFF6(SID_LanceProwess);
+				attacker->battleAvoidRate += SKILL_EFF7(SID_LanceProwess);
+				attacker->battleDodgeRate += SKILL_EFF6(SID_LanceProwess);
+			}
+			else if (unitRank >= WPN_EXP_S)
+			{
+				attacker->battleHitRate += SKILL_EFF8(SID_LanceProwess);
+				attacker->battleAvoidRate += SKILL_EFF9(SID_LanceProwess);
+				attacker->battleDodgeRate += SKILL_EFF8(SID_LanceProwess);
+			}
+			break;
 #endif
 
 #if (defined(SID_AxeProwess) && (COMMON_SKILL_VALID(SID_AxeProwess)))
-        case SID_AxeProwess:
-            unitRank = attacker->unit.ranks[ITYPE_AXE];
-            if (unitRank >= WPN_EXP_D && unitRank < WPN_EXP_C)
-            {
-                attacker->battleHitRate += SKILL_EFF0(SID_AxeProwess);
-                attacker->battleAvoidRate += SKILL_EFF1(SID_AxeProwess);
-                attacker->battleDodgeRate += SKILL_EFF0(SID_AxeProwess);
-            }
-            else if (unitRank >= WPN_EXP_C && unitRank < WPN_EXP_B)
-            {
-                attacker->battleHitRate += SKILL_EFF2(SID_AxeProwess);
-                attacker->battleAvoidRate += SKILL_EFF3(SID_AxeProwess);
-                attacker->battleDodgeRate += SKILL_EFF2(SID_AxeProwess);
-            }
-            else if (unitRank >= WPN_EXP_B && unitRank < WPN_EXP_A)
-            {
-                attacker->battleHitRate += SKILL_EFF4(SID_AxeProwess);
-                attacker->battleAvoidRate += SKILL_EFF5(SID_AxeProwess);
-                attacker->battleDodgeRate += SKILL_EFF4(SID_AxeProwess);
-            }
-            else if (unitRank >= WPN_EXP_A && unitRank < WPN_EXP_S)
-            {
-                attacker->battleHitRate += SKILL_EFF6(SID_AxeProwess);
-                attacker->battleAvoidRate += SKILL_EFF7(SID_AxeProwess);
-                attacker->battleDodgeRate += SKILL_EFF6(SID_AxeProwess);
-            }
-            else if (unitRank >= WPN_EXP_S)
-            {
-                attacker->battleHitRate += SKILL_EFF8(SID_AxeProwess);
-                attacker->battleAvoidRate += SKILL_EFF9(SID_AxeProwess);
-                attacker->battleDodgeRate += SKILL_EFF8(SID_AxeProwess);
-            }
-            break;
+		case SID_AxeProwess:
+			unitRank = attacker->unit.ranks[ITYPE_AXE];
+			if (unitRank >= WPN_EXP_D && unitRank < WPN_EXP_C)
+			{
+				attacker->battleHitRate += SKILL_EFF0(SID_AxeProwess);
+				attacker->battleAvoidRate += SKILL_EFF1(SID_AxeProwess);
+				attacker->battleDodgeRate += SKILL_EFF0(SID_AxeProwess);
+			}
+			else if (unitRank >= WPN_EXP_C && unitRank < WPN_EXP_B)
+			{
+				attacker->battleHitRate += SKILL_EFF2(SID_AxeProwess);
+				attacker->battleAvoidRate += SKILL_EFF3(SID_AxeProwess);
+				attacker->battleDodgeRate += SKILL_EFF2(SID_AxeProwess);
+			}
+			else if (unitRank >= WPN_EXP_B && unitRank < WPN_EXP_A)
+			{
+				attacker->battleHitRate += SKILL_EFF4(SID_AxeProwess);
+				attacker->battleAvoidRate += SKILL_EFF5(SID_AxeProwess);
+				attacker->battleDodgeRate += SKILL_EFF4(SID_AxeProwess);
+			}
+			else if (unitRank >= WPN_EXP_A && unitRank < WPN_EXP_S)
+			{
+				attacker->battleHitRate += SKILL_EFF6(SID_AxeProwess);
+				attacker->battleAvoidRate += SKILL_EFF7(SID_AxeProwess);
+				attacker->battleDodgeRate += SKILL_EFF6(SID_AxeProwess);
+			}
+			else if (unitRank >= WPN_EXP_S)
+			{
+				attacker->battleHitRate += SKILL_EFF8(SID_AxeProwess);
+				attacker->battleAvoidRate += SKILL_EFF9(SID_AxeProwess);
+				attacker->battleDodgeRate += SKILL_EFF8(SID_AxeProwess);
+			}
+			break;
 #endif
 
 #if (defined(SID_BowProwess) && (COMMON_SKILL_VALID(SID_BowProwess)))
-        case SID_BowProwess:
-            unitRank = attacker->unit.ranks[ITYPE_BOW];
-            if (unitRank >= WPN_EXP_D && unitRank < WPN_EXP_C)
-            {
-                attacker->battleHitRate += SKILL_EFF0(SID_BowProwess);
-                attacker->battleAvoidRate += SKILL_EFF1(SID_BowProwess);
-                attacker->battleDodgeRate += SKILL_EFF0(SID_BowProwess);
-            }
-            else if (unitRank >= WPN_EXP_C && unitRank < WPN_EXP_B)
-            {
-                attacker->battleHitRate += SKILL_EFF2(SID_BowProwess);
-                attacker->battleAvoidRate += SKILL_EFF3(SID_BowProwess);
-                attacker->battleDodgeRate += SKILL_EFF2(SID_BowProwess);
-            }
-            else if (unitRank >= WPN_EXP_B && unitRank < WPN_EXP_A)
-            {
-                attacker->battleHitRate += SKILL_EFF4(SID_BowProwess);
-                attacker->battleAvoidRate += SKILL_EFF5(SID_BowProwess);
-                attacker->battleDodgeRate += SKILL_EFF4(SID_BowProwess);
-            }
-            else if (unitRank >= WPN_EXP_A && unitRank < WPN_EXP_S)
-            {
-                attacker->battleHitRate += SKILL_EFF6(SID_BowProwess);
-                attacker->battleAvoidRate += SKILL_EFF7(SID_BowProwess);
-                attacker->battleDodgeRate += SKILL_EFF6(SID_BowProwess);
-            }
-            else if (unitRank >= WPN_EXP_S)
-            {
-                attacker->battleHitRate += SKILL_EFF8(SID_BowProwess);
-                attacker->battleAvoidRate += SKILL_EFF9(SID_BowProwess);
-                attacker->battleDodgeRate += SKILL_EFF8(SID_BowProwess);
-            }
-            break;
+		case SID_BowProwess:
+			unitRank = attacker->unit.ranks[ITYPE_BOW];
+			if (unitRank >= WPN_EXP_D && unitRank < WPN_EXP_C)
+			{
+				attacker->battleHitRate += SKILL_EFF0(SID_BowProwess);
+				attacker->battleAvoidRate += SKILL_EFF1(SID_BowProwess);
+				attacker->battleDodgeRate += SKILL_EFF0(SID_BowProwess);
+			}
+			else if (unitRank >= WPN_EXP_C && unitRank < WPN_EXP_B)
+			{
+				attacker->battleHitRate += SKILL_EFF2(SID_BowProwess);
+				attacker->battleAvoidRate += SKILL_EFF3(SID_BowProwess);
+				attacker->battleDodgeRate += SKILL_EFF2(SID_BowProwess);
+			}
+			else if (unitRank >= WPN_EXP_B && unitRank < WPN_EXP_A)
+			{
+				attacker->battleHitRate += SKILL_EFF4(SID_BowProwess);
+				attacker->battleAvoidRate += SKILL_EFF5(SID_BowProwess);
+				attacker->battleDodgeRate += SKILL_EFF4(SID_BowProwess);
+			}
+			else if (unitRank >= WPN_EXP_A && unitRank < WPN_EXP_S)
+			{
+				attacker->battleHitRate += SKILL_EFF6(SID_BowProwess);
+				attacker->battleAvoidRate += SKILL_EFF7(SID_BowProwess);
+				attacker->battleDodgeRate += SKILL_EFF6(SID_BowProwess);
+			}
+			else if (unitRank >= WPN_EXP_S)
+			{
+				attacker->battleHitRate += SKILL_EFF8(SID_BowProwess);
+				attacker->battleAvoidRate += SKILL_EFF9(SID_BowProwess);
+				attacker->battleDodgeRate += SKILL_EFF8(SID_BowProwess);
+			}
+			break;
 #endif
 
 #if (defined(SID_AnimaProwess) && (COMMON_SKILL_VALID(SID_AnimaProwess)))
-        case SID_AnimaProwess:
-            unitRank = attacker->unit.ranks[ITYPE_ANIMA];
-            if (unitRank >= WPN_EXP_D && unitRank < WPN_EXP_C)
-            {
-                attacker->battleHitRate += SKILL_EFF0(SID_AnimaProwess);
-                attacker->battleAvoidRate += SKILL_EFF1(SID_AnimaProwess);
-                attacker->battleDodgeRate += SKILL_EFF0(SID_AnimaProwess);
-            }
-            else if (unitRank >= WPN_EXP_C && unitRank < WPN_EXP_B)
-            {
-                attacker->battleHitRate += SKILL_EFF2(SID_AnimaProwess);
-                attacker->battleAvoidRate += SKILL_EFF3(SID_AnimaProwess);
-                attacker->battleDodgeRate += SKILL_EFF2(SID_AnimaProwess);
-            }
-            else if (unitRank >= WPN_EXP_B && unitRank < WPN_EXP_A)
-            {
-                attacker->battleHitRate += SKILL_EFF4(SID_AnimaProwess);
-                attacker->battleAvoidRate += SKILL_EFF5(SID_AnimaProwess);
-                attacker->battleDodgeRate += SKILL_EFF4(SID_AnimaProwess);
-            }
-            else if (unitRank >= WPN_EXP_A && unitRank < WPN_EXP_S)
-            {
-                attacker->battleHitRate += SKILL_EFF6(SID_AnimaProwess);
-                attacker->battleAvoidRate += SKILL_EFF7(SID_AnimaProwess);
-                attacker->battleDodgeRate += SKILL_EFF6(SID_AnimaProwess);
-            }
-            else if (unitRank >= WPN_EXP_S)
-            {
-                attacker->battleHitRate += SKILL_EFF8(SID_AnimaProwess);
-                attacker->battleAvoidRate += SKILL_EFF9(SID_AnimaProwess);
-                attacker->battleDodgeRate += SKILL_EFF8(SID_AnimaProwess);
-            }
-            break;
+		case SID_AnimaProwess:
+			unitRank = attacker->unit.ranks[ITYPE_ANIMA];
+			if (unitRank >= WPN_EXP_D && unitRank < WPN_EXP_C)
+			{
+				attacker->battleHitRate += SKILL_EFF0(SID_AnimaProwess);
+				attacker->battleAvoidRate += SKILL_EFF1(SID_AnimaProwess);
+				attacker->battleDodgeRate += SKILL_EFF0(SID_AnimaProwess);
+			}
+			else if (unitRank >= WPN_EXP_C && unitRank < WPN_EXP_B)
+			{
+				attacker->battleHitRate += SKILL_EFF2(SID_AnimaProwess);
+				attacker->battleAvoidRate += SKILL_EFF3(SID_AnimaProwess);
+				attacker->battleDodgeRate += SKILL_EFF2(SID_AnimaProwess);
+			}
+			else if (unitRank >= WPN_EXP_B && unitRank < WPN_EXP_A)
+			{
+				attacker->battleHitRate += SKILL_EFF4(SID_AnimaProwess);
+				attacker->battleAvoidRate += SKILL_EFF5(SID_AnimaProwess);
+				attacker->battleDodgeRate += SKILL_EFF4(SID_AnimaProwess);
+			}
+			else if (unitRank >= WPN_EXP_A && unitRank < WPN_EXP_S)
+			{
+				attacker->battleHitRate += SKILL_EFF6(SID_AnimaProwess);
+				attacker->battleAvoidRate += SKILL_EFF7(SID_AnimaProwess);
+				attacker->battleDodgeRate += SKILL_EFF6(SID_AnimaProwess);
+			}
+			else if (unitRank >= WPN_EXP_S)
+			{
+				attacker->battleHitRate += SKILL_EFF8(SID_AnimaProwess);
+				attacker->battleAvoidRate += SKILL_EFF9(SID_AnimaProwess);
+				attacker->battleDodgeRate += SKILL_EFF8(SID_AnimaProwess);
+			}
+			break;
 #endif
 
 #if (defined(SID_DarkProwess) && (COMMON_SKILL_VALID(SID_DarkProwess)))
-        case SID_DarkProwess:
-            unitRank = attacker->unit.ranks[ITYPE_DARK];
-            if (unitRank >= WPN_EXP_D && unitRank < WPN_EXP_C)
-            {
-                attacker->battleHitRate += SKILL_EFF0(SID_DarkProwess);
-                attacker->battleAvoidRate += SKILL_EFF1(SID_DarkProwess);
-                attacker->battleDodgeRate += SKILL_EFF0(SID_DarkProwess);
-            }
-            else if (unitRank >= WPN_EXP_C && unitRank < WPN_EXP_B)
-            {
-                attacker->battleHitRate += SKILL_EFF2(SID_DarkProwess);
-                attacker->battleAvoidRate += SKILL_EFF3(SID_DarkProwess);
-                attacker->battleDodgeRate += SKILL_EFF2(SID_DarkProwess);
-            }
-            else if (unitRank >= WPN_EXP_B && unitRank < WPN_EXP_A)
-            {
-                attacker->battleHitRate += SKILL_EFF4(SID_DarkProwess);
-                attacker->battleAvoidRate += SKILL_EFF5(SID_DarkProwess);
-                attacker->battleDodgeRate += SKILL_EFF4(SID_DarkProwess);
-            }
-            else if (unitRank >= WPN_EXP_A && unitRank < WPN_EXP_S)
-            {
-                attacker->battleHitRate += SKILL_EFF6(SID_DarkProwess);
-                attacker->battleAvoidRate += SKILL_EFF7(SID_DarkProwess);
-                attacker->battleDodgeRate += SKILL_EFF6(SID_DarkProwess);
-            }
-            else if (unitRank >= WPN_EXP_S)
-            {
-                attacker->battleHitRate += SKILL_EFF8(SID_DarkProwess);
-                attacker->battleAvoidRate += SKILL_EFF9(SID_DarkProwess);
-                attacker->battleDodgeRate += SKILL_EFF8(SID_DarkProwess);
-            }
-            break;
+		case SID_DarkProwess:
+			unitRank = attacker->unit.ranks[ITYPE_DARK];
+			if (unitRank >= WPN_EXP_D && unitRank < WPN_EXP_C)
+			{
+				attacker->battleHitRate += SKILL_EFF0(SID_DarkProwess);
+				attacker->battleAvoidRate += SKILL_EFF1(SID_DarkProwess);
+				attacker->battleDodgeRate += SKILL_EFF0(SID_DarkProwess);
+			}
+			else if (unitRank >= WPN_EXP_C && unitRank < WPN_EXP_B)
+			{
+				attacker->battleHitRate += SKILL_EFF2(SID_DarkProwess);
+				attacker->battleAvoidRate += SKILL_EFF3(SID_DarkProwess);
+				attacker->battleDodgeRate += SKILL_EFF2(SID_DarkProwess);
+			}
+			else if (unitRank >= WPN_EXP_B && unitRank < WPN_EXP_A)
+			{
+				attacker->battleHitRate += SKILL_EFF4(SID_DarkProwess);
+				attacker->battleAvoidRate += SKILL_EFF5(SID_DarkProwess);
+				attacker->battleDodgeRate += SKILL_EFF4(SID_DarkProwess);
+			}
+			else if (unitRank >= WPN_EXP_A && unitRank < WPN_EXP_S)
+			{
+				attacker->battleHitRate += SKILL_EFF6(SID_DarkProwess);
+				attacker->battleAvoidRate += SKILL_EFF7(SID_DarkProwess);
+				attacker->battleDodgeRate += SKILL_EFF6(SID_DarkProwess);
+			}
+			else if (unitRank >= WPN_EXP_S)
+			{
+				attacker->battleHitRate += SKILL_EFF8(SID_DarkProwess);
+				attacker->battleAvoidRate += SKILL_EFF9(SID_DarkProwess);
+				attacker->battleDodgeRate += SKILL_EFF8(SID_DarkProwess);
+			}
+			break;
 #endif
 
 #if (defined(SID_LightProwess) && (COMMON_SKILL_VALID(SID_LightProwess)))
-        case SID_LightProwess:
-            unitRank = attacker->unit.ranks[ITYPE_LIGHT];
-            if (unitRank >= WPN_EXP_D && unitRank < WPN_EXP_C)
-            {
-                attacker->battleHitRate += SKILL_EFF0(SID_LightProwess);
-                attacker->battleAvoidRate += SKILL_EFF1(SID_LightProwess);
-                attacker->battleDodgeRate += SKILL_EFF0(SID_LightProwess);
-            }
-            else if (unitRank >= WPN_EXP_C && unitRank < WPN_EXP_B)
-            {
-                attacker->battleHitRate += SKILL_EFF2(SID_LightProwess);
-                attacker->battleAvoidRate += SKILL_EFF3(SID_LightProwess);
-                attacker->battleDodgeRate += SKILL_EFF2(SID_LightProwess);
-            }
-            else if (unitRank >= WPN_EXP_B && unitRank < WPN_EXP_A)
-            {
-                attacker->battleHitRate += SKILL_EFF4(SID_LightProwess);
-                attacker->battleAvoidRate += SKILL_EFF5(SID_LightProwess);
-                attacker->battleDodgeRate += SKILL_EFF4(SID_LightProwess);
-            }
-            else if (unitRank >= WPN_EXP_A && unitRank < WPN_EXP_S)
-            {
-                attacker->battleHitRate += SKILL_EFF6(SID_LightProwess);
-                attacker->battleAvoidRate += SKILL_EFF7(SID_LightProwess);
-                attacker->battleDodgeRate += SKILL_EFF6(SID_LightProwess);
-            }
-            else if (unitRank >= WPN_EXP_S)
-            {
-                attacker->battleHitRate += SKILL_EFF8(SID_LightProwess);
-                attacker->battleAvoidRate += SKILL_EFF9(SID_LightProwess);
-                attacker->battleDodgeRate += SKILL_EFF8(SID_LightProwess);
-            }
-            break;
+		case SID_LightProwess:
+			unitRank = attacker->unit.ranks[ITYPE_LIGHT];
+			if (unitRank >= WPN_EXP_D && unitRank < WPN_EXP_C)
+			{
+				attacker->battleHitRate += SKILL_EFF0(SID_LightProwess);
+				attacker->battleAvoidRate += SKILL_EFF1(SID_LightProwess);
+				attacker->battleDodgeRate += SKILL_EFF0(SID_LightProwess);
+			}
+			else if (unitRank >= WPN_EXP_C && unitRank < WPN_EXP_B)
+			{
+				attacker->battleHitRate += SKILL_EFF2(SID_LightProwess);
+				attacker->battleAvoidRate += SKILL_EFF3(SID_LightProwess);
+				attacker->battleDodgeRate += SKILL_EFF2(SID_LightProwess);
+			}
+			else if (unitRank >= WPN_EXP_B && unitRank < WPN_EXP_A)
+			{
+				attacker->battleHitRate += SKILL_EFF4(SID_LightProwess);
+				attacker->battleAvoidRate += SKILL_EFF5(SID_LightProwess);
+				attacker->battleDodgeRate += SKILL_EFF4(SID_LightProwess);
+			}
+			else if (unitRank >= WPN_EXP_A && unitRank < WPN_EXP_S)
+			{
+				attacker->battleHitRate += SKILL_EFF6(SID_LightProwess);
+				attacker->battleAvoidRate += SKILL_EFF7(SID_LightProwess);
+				attacker->battleDodgeRate += SKILL_EFF6(SID_LightProwess);
+			}
+			else if (unitRank >= WPN_EXP_S)
+			{
+				attacker->battleHitRate += SKILL_EFF8(SID_LightProwess);
+				attacker->battleAvoidRate += SKILL_EFF9(SID_LightProwess);
+				attacker->battleDodgeRate += SKILL_EFF8(SID_LightProwess);
+			}
+			break;
 #endif
 
 #if (defined(SID_KillStreak) && (COMMON_SKILL_VALID(SID_KillStreak)) && defined(CONFIG_RESET_BWL_STATS_EACH_CHAPTER))
-        case SID_KillStreak:
-            attacker->battleCritRate += (bwl->winAmt * SKILL_EFF0(SID_KillStreak));
-            break;
+		case SID_KillStreak:
+			attacker->battleCritRate += (bwl->winAmt * SKILL_EFF0(SID_KillStreak));
+			break;
 #endif
 
 #if (defined(SID_HyperFocus) && (COMMON_SKILL_VALID(SID_HyperFocus)) && defined(CONFIG_RESET_BWL_STATS_EACH_CHAPTER))
-        case SID_HyperFocus:
-            attacker->battleHitRate += (bwl->battleAmt * SKILL_EFF0(SID_HyperFocus));
-            break;
+		case SID_HyperFocus:
+			attacker->battleHitRate += (bwl->battleAmt * SKILL_EFF0(SID_HyperFocus));
+			break;
 #endif
 
 #if (defined(SID_MountainMan) && (COMMON_SKILL_VALID(SID_MountainMan)))
-        case SID_MountainMan:
-            attacker->battleHitRate += attacker->terrainAvoid;
-            break;
+		case SID_MountainMan:
+			attacker->battleHitRate += attacker->terrainAvoid;
+			break;
 #endif
 
 #if (defined(SID_Emulate) && (COMMON_SKILL_VALID(SID_Emulate)))
-        case SID_Emulate:
-            attacker->hpInitial = defender->hpInitial;
-            attacker->unit.curHP = defender->unit.curHP;
-            attacker->unit.maxHP = defender->unit.maxHP;
-            break;
+		case SID_Emulate:
+			attacker->hpInitial = defender->hpInitial;
+			attacker->unit.curHP = defender->unit.curHP;
+			attacker->unit.maxHP = defender->unit.maxHP;
+			break;
 #endif
 
 #if (defined(SID_Capture) && (COMMON_SKILL_VALID(SID_Capture)))
-        case SID_Capture:
-            if (gActionData.unk08 == SID_Capture)
-            {
-                attacker->battleAttack -= Div(attacker->battleAttack * SKILL_EFF0(SID_Capture), 100);
-                attacker->battleHitRate -= Div(attacker->battleHitRate * SKILL_EFF0(SID_Capture), 100);
-                attacker->battleSpeed -= Div(attacker->battleSpeed * SKILL_EFF0(SID_Capture), 100);
-            }
-            break;
+		case SID_Capture:
+			if (gActionData.unk08 == SID_Capture)
+			{
+				attacker->battleAttack -= Div(attacker->battleAttack * SKILL_EFF0(SID_Capture), 100);
+				attacker->battleHitRate -= Div(attacker->battleHitRate * SKILL_EFF0(SID_Capture), 100);
+				attacker->battleSpeed -= Div(attacker->battleSpeed * SKILL_EFF0(SID_Capture), 100);
+			}
+			break;
 #endif
 
 #if (defined(SID_Geomancy) && (COMMON_SKILL_VALID(SID_Geomancy)))
-        case SID_Geomancy:
-            if (gActionData.unk08 == SID_Geomancy)
-            {
-                switch (gBmMapTerrain[attacker->unit.yPos][attacker->unit.xPos])
-                {
-                case TERRAIN_PLAINS:
-                    attacker->battleCritRate += 15;
-                    break;
-                case TERRAIN_MOUNTAIN:
-                case TERRAIN_PEAK:
-                    attacker->battleAttack += 5;
-                    break;
-                case TERRAIN_RIVER:
-                case TERRAIN_WATER:
-                case TERRAIN_SEA:
-                case TERRAIN_LAKE:
-                    attacker->battleAvoidRate += 20;
-                    break;
-                case TERRAIN_SAND:
-                    attacker->battleDodgeRate += 10;
-                    break;
-                default:
-                    break;
-                }
-            }
-            break;
+		case SID_Geomancy:
+			if (gActionData.unk08 == SID_Geomancy)
+			{
+				switch (gBmMapTerrain[attacker->unit.yPos][attacker->unit.xPos])
+				{
+				case TERRAIN_PLAINS:
+					attacker->battleCritRate += 15;
+					break;
+				case TERRAIN_MOUNTAIN:
+				case TERRAIN_PEAK:
+					attacker->battleAttack += 5;
+					break;
+				case TERRAIN_RIVER:
+				case TERRAIN_WATER:
+				case TERRAIN_SEA:
+				case TERRAIN_LAKE:
+					attacker->battleAvoidRate += 20;
+					break;
+				case TERRAIN_SAND:
+					attacker->battleDodgeRate += 10;
+					break;
+				default:
+					break;
+				}
+			}
+			break;
 #endif
 
 #if (defined(SID_Calibration) && (COMMON_SKILL_VALID(SID_Calibration)))
-        case SID_Calibration:
-            attacker->battleHitRate += GetItemMaxUses(GetUnitEquippedWeapon(GetUnit(attacker->unit.index))) - ITEM_USES(GetUnitEquippedWeapon(GetUnit(attacker->unit.index)));
-            break;
+		case SID_Calibration:
+			attacker->battleHitRate += GetItemMaxUses(GetUnitEquippedWeapon(GetUnit(attacker->unit.index))) - ITEM_USES(GetUnitEquippedWeapon(GetUnit(attacker->unit.index)));
+			break;
 #endif
 
 #if (defined(SID_Transpose) && (COMMON_SKILL_VALID(SID_Transpose)))
 		case SID_Transpose:
-            defender->battleAvoidRate -= defender->terrainAvoid * 2;
+			defender->battleAvoidRate -= defender->terrainAvoid * 2;
 			break;
 #endif
 
@@ -2118,10 +2121,10 @@ L_FairyTaleFolk_done:
 	}
 }
 
-void PreBattleCalcAuraEffect(struct BattleUnit *attacker, struct BattleUnit *defender)
+void PreBattleCalcAuraEffect(struct BattleUnit* attacker, struct BattleUnit* defender)
 {
 	u32 i, _x, _y;
-	struct Unit *unit;
+	struct Unit* unit;
 
 	int allies_gRange3_In3x3 = 0;
 	int allies_gRange2_In3x3 = 0;
@@ -2152,21 +2155,21 @@ void PreBattleCalcAuraEffect(struct BattleUnit *attacker, struct BattleUnit *def
 			if (gRange1_In3x3[i] == 1) {
 #if (defined(SID_DivinelyInspiring) && (COMMON_SKILL_VALID(SID_DivinelyInspiring)))
 				if (SkillTester(unit, SID_DivinelyInspiring)) {
-					attacker->battleAttack  += SKILL_EFF0(SID_DivinelyInspiring);
+					attacker->battleAttack += SKILL_EFF0(SID_DivinelyInspiring);
 					attacker->battleDefense += SKILL_EFF1(SID_DivinelyInspiring);
 				}
 #endif
 
 #if (defined(SID_LilysPoise) && (COMMON_SKILL_VALID(SID_LilysPoise)))
 				if (SkillTester(unit, SID_LilysPoise)) {
-					attacker->battleAttack  += SKILL_EFF0(SID_LilysPoise);
+					attacker->battleAttack += SKILL_EFF0(SID_LilysPoise);
 					attacker->battleDefense += SKILL_EFF1(SID_LilysPoise);
 				}
 #endif
 
 #if (defined(SID_BloodTide) && (COMMON_SKILL_VALID(SID_BloodTide)))
 				if (SkillTester(unit, SID_BloodTide)) {
-					attacker->battleAttack  += SKILL_EFF0(SID_BloodTide);
+					attacker->battleAttack += SKILL_EFF0(SID_BloodTide);
 					attacker->battleHitRate += SKILL_EFF1(SID_BloodTide);
 				}
 #endif
@@ -2174,7 +2177,7 @@ void PreBattleCalcAuraEffect(struct BattleUnit *attacker, struct BattleUnit *def
 #if (defined(SID_WhitePool) && (COMMON_SKILL_VALID(SID_WhitePool)))
 				if (SkillTester(unit, SID_WhitePool)) {
 					attacker->battleAttack += SKILL_EFF0(SID_WhitePool);
-					attacker->battleSpeed  += SKILL_EFF1(SID_WhitePool);
+					attacker->battleSpeed += SKILL_EFF1(SID_WhitePool);
 				}
 #endif
 
@@ -2186,14 +2189,14 @@ void PreBattleCalcAuraEffect(struct BattleUnit *attacker, struct BattleUnit *def
 #if (defined(SID_SpurStr) && (COMMON_SKILL_VALID(SID_SpurStr)))
 				if (SkillTester(unit, SID_SpurStr)) {
 					if (!IsMagicAttack(attacker))
-						attacker->battleAttack  += SKILL_EFF0(SID_SpurStr);
+						attacker->battleAttack += SKILL_EFF0(SID_SpurStr);
 				}
 #endif
 
 #if (defined(SID_SpurMag) && (COMMON_SKILL_VALID(SID_SpurMag)))
 				if (SkillTester(unit, SID_SpurMag)) {
 					if (IsMagicAttack(attacker))
-						attacker->battleAttack  += SKILL_EFF0(SID_SpurMag);
+						attacker->battleAttack += SKILL_EFF0(SID_SpurMag);
 				}
 #endif
 
@@ -2218,7 +2221,7 @@ void PreBattleCalcAuraEffect(struct BattleUnit *attacker, struct BattleUnit *def
 
 #if (defined(SID_Solidarity) && (COMMON_SKILL_VALID(SID_Solidarity)))
 				if (SkillTester(unit, SID_Solidarity)) {
-					attacker->battleCritRate  += SKILL_EFF0(SID_Solidarity);
+					attacker->battleCritRate += SKILL_EFF0(SID_Solidarity);
 					attacker->battleDodgeRate += SKILL_EFF1(SID_Solidarity);
 				}
 #endif
@@ -2227,20 +2230,20 @@ void PreBattleCalcAuraEffect(struct BattleUnit *attacker, struct BattleUnit *def
 			if (gRange2_In3x3[i] == 1) {
 #if (defined(SID_Charm) && (COMMON_SKILL_VALID(SID_Charm)))
 				if (SkillTester(unit, SID_Charm))
-					attacker->battleAttack  += SKILL_EFF0(SID_Charm);
+					attacker->battleAttack += SKILL_EFF0(SID_Charm);
 #endif
 
 #if (defined(SID_DriveStr) && (COMMON_SKILL_VALID(SID_DriveStr)))
 				if (SkillTester(unit, SID_DriveStr)) {
 					if (!IsMagicAttack(attacker))
-						attacker->battleAttack  += SKILL_EFF0(SID_DriveStr);
+						attacker->battleAttack += SKILL_EFF0(SID_DriveStr);
 				}
 #endif
 
 #if (defined(SID_DriveMag) && (COMMON_SKILL_VALID(SID_DriveMag)))
 				if (SkillTester(unit, SID_DriveMag)) {
 					if (IsMagicAttack(attacker))
-						attacker->battleAttack  += SKILL_EFF0(SID_DriveMag);
+						attacker->battleAttack += SKILL_EFF0(SID_DriveMag);
 				}
 #endif
 
@@ -2265,7 +2268,7 @@ void PreBattleCalcAuraEffect(struct BattleUnit *attacker, struct BattleUnit *def
 
 #if (defined(SID_Inspiration) && (COMMON_SKILL_VALID(SID_Inspiration)))
 				if (SkillTester(unit, SID_Inspiration)) {
-					attacker->battleAttack  += SKILL_EFF0(SID_Inspiration);
+					attacker->battleAttack += SKILL_EFF0(SID_Inspiration);
 					attacker->battleDefense += SKILL_EFF1(SID_Inspiration);
 				}
 #endif
@@ -2276,12 +2279,12 @@ void PreBattleCalcAuraEffect(struct BattleUnit *attacker, struct BattleUnit *def
 #endif
 
 #if (defined(SID_Gentilhomme) && (COMMON_SKILL_VALID(SID_Gentilhomme)))
-				if (SkillTester(unit, SID_Gentilhomme)  && (UNIT_CATTRIBUTES(&attacker->unit) && CA_FEMALE))
+				if (SkillTester(unit, SID_Gentilhomme) && (UNIT_CATTRIBUTES(&attacker->unit) && CA_FEMALE))
 					attacker->battleDefense += SKILL_EFF0(SID_Gentilhomme);
 #endif
 
 #if (defined(SID_Demoiselle) && (COMMON_SKILL_VALID(SID_Demoiselle)))
-				if (SkillTester(unit, SID_Demoiselle)  && !(UNIT_CATTRIBUTES(&attacker->unit) && CA_FEMALE))
+				if (SkillTester(unit, SID_Demoiselle) && !(UNIT_CATTRIBUTES(&attacker->unit) && CA_FEMALE))
 					attacker->battleDefense += SKILL_EFF0(SID_Demoiselle);
 #endif
 			}
@@ -2289,14 +2292,14 @@ void PreBattleCalcAuraEffect(struct BattleUnit *attacker, struct BattleUnit *def
 			/* Since we just calc in 3x3, so here is always true */
 #if (defined(SID_Bond) && (COMMON_SKILL_VALID(SID_Bond)))
 			if (SkillTester(unit, SID_Bond)) {
-				attacker->battleAttack  += SKILL_EFF0(SID_Bond);
+				attacker->battleAttack += SKILL_EFF0(SID_Bond);
 				attacker->battleHitRate += SKILL_EFF1(SID_Bond);
 			}
 #endif
 
 #if (defined(SID_Charisma) && (COMMON_SKILL_VALID(SID_Charisma)))
 			if (SkillTester(unit, SID_Charisma)) {
-				attacker->battleHitRate   += SKILL_EFF0(SID_Charisma);
+				attacker->battleHitRate += SKILL_EFF0(SID_Charisma);
 				attacker->battleAvoidRate += SKILL_EFF1(SID_Charisma);
 			}
 #endif
@@ -2312,7 +2315,8 @@ void PreBattleCalcAuraEffect(struct BattleUnit *attacker, struct BattleUnit *def
 
 			if (gRange1_In3x3[i])
 				allies_gRange1_In3x3++;
-		} else {
+		}
+		else {
 			if (gRange1_In3x3[i] == 1) {
 #if (defined(SID_Hex) && (COMMON_SKILL_VALID(SID_Hex)))
 				if (SkillTester(unit, SID_Hex))
@@ -2353,7 +2357,7 @@ void PreBattleCalcAuraEffect(struct BattleUnit *attacker, struct BattleUnit *def
 
 #if (defined(SID_Daunt) && (COMMON_SKILL_VALID(SID_Daunt)))
 			if (SkillTester(unit, SID_Daunt)) {
-				attacker->battleHitRate  -= SKILL_EFF0(SID_Daunt);
+				attacker->battleHitRate -= SKILL_EFF0(SID_Daunt);
 				attacker->battleCritRate -= SKILL_EFF1(SID_Daunt);
 			}
 #endif
@@ -2385,10 +2389,11 @@ void PreBattleCalcAuraEffect(struct BattleUnit *attacker, struct BattleUnit *def
 
 	if (allies_gRange3_In3x3 != 0) {
 		/* Todo */
-	} else {
+	}
+	else {
 #if (defined(SID_Tantivy) && (COMMON_SKILL_VALID(SID_Tantivy)))
 		if (BattleFastSkillTester(attacker, SID_Tantivy)) {
-			attacker->battleHitRate   += SKILL_EFF0(SID_Tantivy);
+			attacker->battleHitRate += SKILL_EFF0(SID_Tantivy);
 			attacker->battleAvoidRate += SKILL_EFF1(SID_Tantivy);
 		}
 #endif
@@ -2401,14 +2406,15 @@ void PreBattleCalcAuraEffect(struct BattleUnit *attacker, struct BattleUnit *def
 
 	if (enmies_gRange3_In3x3 != 0) {
 		/* Todo */
-	} else {
+	}
+	else {
 		/* Todo */
 	}
 
 	if (enmies_gRange2_In3x3 >= 2) {
 #if (defined(SID_Infiltrator) && (COMMON_SKILL_VALID(SID_Infiltrator)))
 		if (BattleFastSkillTester(attacker, SID_Infiltrator)) {
-			attacker->battleAttack  += SKILL_EFF0(SID_Infiltrator);
+			attacker->battleAttack += SKILL_EFF0(SID_Infiltrator);
 			attacker->battleHitRate += SKILL_EFF1(SID_Infiltrator);
 		}
 #endif
@@ -2434,7 +2440,8 @@ void PreBattleCalcAuraEffect(struct BattleUnit *attacker, struct BattleUnit *def
 		if (BattleFastSkillTester(attacker, SID_InnerFlame2))
 			attacker->battleAttack += SKILL_EFF0(SID_InnerFlame2);
 #endif
-	} else if (allies_gRange2_In3x3 >= 2) {
+	}
+	else if (allies_gRange2_In3x3 >= 2) {
 #if (defined(SID_LawsOfSacae) && (COMMON_SKILL_VALID(SID_LawsOfSacae)))
 		if (attacker == &gBattleTarget && BattleFastSkillTester(attacker, SID_LawsOfSacae)) {
 			if (!IsMagicAttack(attacker))
@@ -2486,7 +2493,7 @@ void PreBattleCalcAuraEffect(struct BattleUnit *attacker, struct BattleUnit *def
 	}
 }
 
-void PreBattleCalcSilencerRate(struct BattleUnit *attacker, struct BattleUnit *defender)
+void PreBattleCalcSilencerRate(struct BattleUnit* attacker, struct BattleUnit* defender)
 {
 	attacker->battleSilencerRate += gpSilencerBonus[UNIT_CLASS_ID(&attacker->unit)];
 
@@ -2494,12 +2501,12 @@ void PreBattleCalcSilencerRate(struct BattleUnit *attacker, struct BattleUnit *d
 		attacker->battleSilencerRate -= 25;
 }
 
-void PreBattleCalcPad(struct BattleUnit *attacker, struct BattleUnit *defender) {}
+void PreBattleCalcPad(struct BattleUnit* attacker, struct BattleUnit* defender) {}
 
 LYN_REPLACE_CHECK(ComputeBattleUnitStats);
-void ComputeBattleUnitStats(struct BattleUnit *attacker, struct BattleUnit *defender)
+void ComputeBattleUnitStats(struct BattleUnit* attacker, struct BattleUnit* defender)
 {
-	const PreBattleCalcFunc *it;
+	const PreBattleCalcFunc* it;
 
 	LTRACEF("Trace pre-battle: attacker=%p", attacker);
 

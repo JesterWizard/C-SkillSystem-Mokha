@@ -9,43 +9,43 @@
 #include "constants/skills.h"
 #include "mapanim.h"
 
-static bool IsStatUncapped(struct Unit *unit, int statIndex, int limitBreaker)
+static bool IsStatUncapped(struct Unit* unit, int statIndex, int limitBreaker)
 {
     switch (statIndex) {
-        case 0: // HP
-            return unit->maxHP < unit->pClassData->maxHP + limitBreaker;
-        case 1: // POW
-            return unit->pow < unit->pClassData->maxPow + limitBreaker;
-        case 2: // SKL
-            return unit->skl < unit->pClassData->maxSkl + limitBreaker;
-        case 3: // SPD
-            return unit->spd < unit->pClassData->maxSpd + limitBreaker;
-        case 4: // LCK
-            return unit->lck < (30 + limitBreaker);
-        case 5: // DEF
-            return unit->def < unit->pClassData->maxDef + limitBreaker;
-        case 6: // RES
-            return unit->res < unit->pClassData->maxRes + limitBreaker;
-        case 7: // MAG
-            return GetUnitMagic(unit) < GetUnitMaxMagic(unit) + limitBreaker;
-        default:
-            return false;
+    case 0: // HP
+        return unit->maxHP < unit->pClassData->maxHP + limitBreaker;
+    case 1: // POW
+        return unit->pow < unit->pClassData->maxPow + limitBreaker;
+    case 2: // SKL
+        return unit->skl < unit->pClassData->maxSkl + limitBreaker;
+    case 3: // SPD
+        return unit->spd < unit->pClassData->maxSpd + limitBreaker;
+    case 4: // LCK
+        return unit->lck < (30 + limitBreaker);
+    case 5: // DEF
+        return unit->def < unit->pClassData->maxDef + limitBreaker;
+    case 6: // RES
+        return unit->res < unit->pClassData->maxRes + limitBreaker;
+    case 7: // MAG
+        return GetUnitMagic(unit) < GetUnitMaxMagic(unit) + limitBreaker;
+    default:
+        return false;
     }
 }
 
 STATIC_DECLAR int GetStatIncreaseRandC(int growth)
 {
-	int result = 0;
+    int result = 0;
 
-	while (growth > 100) {
-		result++;
-		growth -= 100;
-	}
+    while (growth > 100) {
+        result++;
+        growth -= 100;
+    }
 
-	if (Roll1RandC(growth))
-		result++;
+    if (Roll1RandC(growth))
+        result++;
 
-	return result;
+    return result;
 }
 
 int GetStatIncrease_NEW(int growth, int expGained) {
@@ -72,13 +72,14 @@ int GetStatIncrease_NEW(int growth, int expGained) {
 
 STATIC_DECLAR int GetStatIncreaseFixed(int growth, int ref)
 {
-	return k_udiv(growth + k_umod(growth * ref, 100), 100);
+    return k_udiv(growth + k_umod(growth * ref, 100), 100);
 }
 
-STATIC_DECLAR void UnitLvup_Vanilla(struct BattleUnit *bu, int bonus)
+
+STATIC_DECLAR void UnitLvup_Vanilla(struct BattleUnit* bu, int bonus)
 {
     int expGained = bu->expPrevious + bu->expGain;
-    struct Unit * unit = GetUnit(bu->unit.index);
+    struct Unit* unit = GetUnit(bu->unit.index);
     int statCounter = 0;
     int limitBreaker = 0;
     FORCE_DECLARE bool tripleUpExecuted = false;
@@ -94,7 +95,7 @@ STATIC_DECLAR void UnitLvup_Vanilla(struct BattleUnit *bu, int bonus)
 #endif
 
     /* Create an array of stat pointers */
-    s8 * statChanges[] = { &bu->changeHP,  &bu->changePow, &bu->changeSkl, &bu->changeSpd,
+    s8* statChanges[] = { &bu->changeHP,  &bu->changePow, &bu->changeSkl, &bu->changeSpd,
                            &bu->changeLck, &bu->changeDef, &bu->changeRes, &BU_CHG_MAG(bu) };
 
     /*
@@ -110,7 +111,7 @@ STATIC_DECLAR void UnitLvup_Vanilla(struct BattleUnit *bu, int bonus)
         if (unit->maxHP < SKILL_EFF0(SID_OgreBody))
             *statChanges[0] = GetStatIncrease_NEW((GetUnitHpGrowth(unit) + bonus), expGained);
     }
-    else    
+    else
         if (unit->maxHP < unit->pClassData->maxHP + limitBreaker)
             *statChanges[0] = GetStatIncrease_NEW((GetUnitHpGrowth(unit) + bonus), expGained);
 #else
@@ -216,7 +217,7 @@ STATIC_DECLAR void UnitLvup_Vanilla(struct BattleUnit *bu, int bonus)
             // Set the upper limit of stats to increase (accounting for previous increases before this skill)
             while (statCounter < 2)
             {
-               // Count available uncapped stats that haven't increased yet
+                // Count available uncapped stats that haven't increased yet
                 int available = 0;
                 for (u8 i = 0; i < ARRAY_COUNT(statChanges); i++)
                 {
@@ -254,138 +255,153 @@ STATIC_DECLAR void UnitLvup_Vanilla(struct BattleUnit *bu, int bonus)
 #endif
 }
 
-STATIC_DECLAR void UnitLvup_RandC(struct BattleUnit *bu, int bonus)
+STATIC_DECLAR void UnitLvup_RandC(struct BattleUnit* bu, int bonus)
 {
-	struct Unit *unit = GetUnit(bu->unit.index);
+    struct Unit* unit = GetUnit(bu->unit.index);
 
-	bu->changeHP  = GetStatIncreaseRandC(GetUnitHpGrowth(unit)  + bonus);
-	bu->changePow = GetStatIncreaseRandC(GetUnitPowGrowth(unit) + bonus);
-	bu->changeSkl = GetStatIncreaseRandC(GetUnitSklGrowth(unit) + bonus);
-	bu->changeSpd = GetStatIncreaseRandC(GetUnitSpdGrowth(unit) + bonus);
-	bu->changeLck = GetStatIncreaseRandC(GetUnitLckGrowth(unit) + bonus);
-	bu->changeDef = GetStatIncreaseRandC(GetUnitDefGrowth(unit) + bonus);
-	bu->changeRes = GetStatIncreaseRandC(GetUnitResGrowth(unit) + bonus);
+    bu->changeHP = GetStatIncreaseRandC(GetUnitHpGrowth(unit) + bonus);
+    bu->changePow = GetStatIncreaseRandC(GetUnitPowGrowth(unit) + bonus);
+    bu->changeSkl = GetStatIncreaseRandC(GetUnitSklGrowth(unit) + bonus);
+    bu->changeSpd = GetStatIncreaseRandC(GetUnitSpdGrowth(unit) + bonus);
+    bu->changeLck = GetStatIncreaseRandC(GetUnitLckGrowth(unit) + bonus);
+    bu->changeDef = GetStatIncreaseRandC(GetUnitDefGrowth(unit) + bonus);
+    bu->changeRes = GetStatIncreaseRandC(GetUnitResGrowth(unit) + bonus);
 
-	BU_CHG_MAG(bu) = GetStatIncreaseRandC(GetUnitMagGrowth(unit) + bonus);
+    BU_CHG_MAG(bu) = GetStatIncreaseRandC(GetUnitMagGrowth(unit) + bonus);
 }
 
-STATIC_DECLAR void UnitLvup_Fixed(struct BattleUnit *bu, int bonus)
+STATIC_DECLAR void UnitLvup_Fixed(struct BattleUnit* bu, int bonus)
 {
-	struct Unit *unit = GetUnit(bu->unit.index);
+    struct Unit* unit = GetUnit(bu->unit.index);
 
-	int ref = unit->level - 1;
+    int ref = unit->level - 1;
 
-	if (CA_PROMOTED & UNIT_CATTRIBUTES(unit))
-		ref = ref + 19;
+    if (CA_PROMOTED & UNIT_CATTRIBUTES(unit))
+        ref = ref + 19;
 
-	bu->changeHP  = GetStatIncreaseFixed(GetUnitHpGrowth(unit)  + bonus, ref += 5);
-	bu->changePow = GetStatIncreaseFixed(GetUnitPowGrowth(unit) + bonus, ref += 5);
-	bu->changeSkl = GetStatIncreaseFixed(GetUnitSklGrowth(unit) + bonus, ref += 5);
-	bu->changeSpd = GetStatIncreaseFixed(GetUnitSpdGrowth(unit) + bonus, ref += 5);
-	bu->changeLck = GetStatIncreaseFixed(GetUnitLckGrowth(unit) + bonus, ref += 5);
-	bu->changeDef = GetStatIncreaseFixed(GetUnitDefGrowth(unit) + bonus, ref += 5);
-	bu->changeRes = GetStatIncreaseFixed(GetUnitResGrowth(unit) + bonus, ref += 5);
+    bu->changeHP = GetStatIncreaseFixed(GetUnitHpGrowth(unit) + bonus, ref += 5);
+    bu->changePow = GetStatIncreaseFixed(GetUnitPowGrowth(unit) + bonus, ref += 5);
+    bu->changeSkl = GetStatIncreaseFixed(GetUnitSklGrowth(unit) + bonus, ref += 5);
+    bu->changeSpd = GetStatIncreaseFixed(GetUnitSpdGrowth(unit) + bonus, ref += 5);
+    bu->changeLck = GetStatIncreaseFixed(GetUnitLckGrowth(unit) + bonus, ref += 5);
+    bu->changeDef = GetStatIncreaseFixed(GetUnitDefGrowth(unit) + bonus, ref += 5);
+    bu->changeRes = GetStatIncreaseFixed(GetUnitResGrowth(unit) + bonus, ref += 5);
 
-	BU_CHG_MAG(bu) = GetStatIncreaseFixed(GetUnitMagGrowth(unit) + bonus, ref += 5);
+    BU_CHG_MAG(bu) = GetStatIncreaseFixed(GetUnitMagGrowth(unit) + bonus, ref += 5);
 }
 
-STATIC_DECLAR void UnitLvup_100(struct BattleUnit *bu, int bonus)
+STATIC_DECLAR void UnitLvup_100(struct BattleUnit* bu, int bonus)
 {
-	bu->changeHP  = 1;
-	bu->changePow = 1;
-	bu->changeSkl = 1;
-	bu->changeSpd = 1;
-	bu->changeLck = 1;
-	bu->changeDef = 1;
-	bu->changeRes = 1;
-	BU_CHG_MAG(bu) = 1;
+    bu->changeHP = 1;
+    bu->changePow = 1;
+    bu->changeSkl = 1;
+    bu->changeSpd = 1;
+    bu->changeLck = 1;
+    bu->changeDef = 1;
+    bu->changeRes = 1;
+    BU_CHG_MAG(bu) = 1;
 }
 
-STATIC_DECLAR void UnitLvup_0(struct BattleUnit *bu, int bonus) {}
+STATIC_DECLAR void UnitLvup_0(struct BattleUnit* bu, int bonus) {}
 
-STATIC_DECLAR void UnitLvupCore(struct BattleUnit *bu, int bonus)
+STATIC_DECLAR void UnitLvupCore(struct BattleUnit* bu, int bonus)
 {
-	static void (*const funcs[])(struct BattleUnit *bu, int bonus) = {
-		[0] = UnitLvup_Vanilla,
-		[1] = UnitLvup_RandC,
-		[2] = UnitLvup_Fixed,
-		[3] = UnitLvup_100,
-		[4] = UnitLvup_0
-	};
+    static void (* const funcs[])(struct BattleUnit* bu, int bonus) = {
+        [0] = UnitLvup_Vanilla,
+        [1] = UnitLvup_RandC,
+        [2] = UnitLvup_Fixed,
+        [3] = UnitLvup_100,
+        [4] = UnitLvup_0
+    };
 
-	int mode, total_lvup, i, retry;
+    int mode, total_lvup, i, retry;
 
-	if (TUTORIAL_MODE())
-		mode = gpKernelDesigerConfig->lvup_mode_tutorial;
-	if (gPlaySt.config.controller || (gPlaySt.chapterStateBits & PLAY_FLAG_HARD))
-		mode = gpKernelDesigerConfig->lvup_mode_hard;
-	else
-		mode = gpKernelDesigerConfig->lvup_mode_normal;
+    if (TUTORIAL_MODE())
+        mode = gpKernelDesigerConfig->lvup_mode_tutorial;
+    if (gPlaySt.config.controller || (gPlaySt.chapterStateBits & PLAY_FLAG_HARD))
+        mode = gpKernelDesigerConfig->lvup_mode_hard;
+    else
+        mode = gpKernelDesigerConfig->lvup_mode_normal;
 
-	if (mode > 4)
-		mode = 0;
+    if (mode > 4)
+        mode = 0;
 
-	funcs[mode](bu, bonus);
+    funcs[mode](bu, bonus);
 
-	/**
-	 * Retry
-	 */
-	retry = gpKernelDesigerConfig->guaranteed_lvup ? 10 : 0;
+    /**
+     * Retry
+     */
+    retry = gpKernelDesigerConfig->guaranteed_lvup ? 10 : 0;
 
-	for (i = 0; i < retry; i++) {
-		total_lvup = bu->changeHP + bu->changePow + bu->changeSkl + bu->changeSpd +
-						bu->changeLck + bu->changeDef + bu->changeRes + BU_CHG_MAG(bu);
+    for (i = 0; i < retry; i++) {
+        total_lvup = bu->changeHP + bu->changePow + bu->changeSkl + bu->changeSpd +
+            bu->changeLck + bu->changeDef + bu->changeRes + BU_CHG_MAG(bu);
 
-		if (total_lvup != 0)
-			break;
+        if (total_lvup != 0)
+            break;
 
-		funcs[mode](bu, bonus + 10);
-	}
+        funcs[mode](bu, bonus + 10);
+    }
 }
 
 STATIC_DECLAR int get_metis_tome_growth_bonus(void)
 {
-	return MetisTomeGrowthBonus;
+    return MetisTomeGrowthBonus;
 }
 
-STATIC_DECLAR bool can_unit_gain_Level(struct Unit *unit)
+STATIC_DECLAR bool can_unit_gain_Level(struct Unit* unit)
 {
-	if (unit->level >= CHAX_MAX_LEVEL)
-		return false;
+    if (unit->level >= CHAX_MAX_LEVEL)
+        return false;
 
-	if ((unit->level + GetUnitHiddenLevel(unit)) >= CHAX_MAX_RECORD_LEVEL)
-		return false;
+    if ((unit->level + GetUnitHiddenLevel(unit)) >= CHAX_MAX_RECORD_LEVEL)
+        return false;
 
-	return true;
+    return true;
 }
 
 LYN_REPLACE_CHECK(CheckBattleUnitLevelUp);
-void CheckBattleUnitLevelUp(struct BattleUnit *bu)
+void CheckBattleUnitLevelUp(struct BattleUnit* bu)
 {
-	if (CanBattleUnitGainLevels(bu) && bu->unit.exp >= 100) {
-		int bonus = (bu->unit.state & US_GROWTH_BOOST) ? get_metis_tome_growth_bonus() : 0;
+    int totalExp = bu->expPrevious + bu->expGain;
 
-		bu->unit.exp -= 100;
-		bu->unit.level++;
+    if (CanBattleUnitGainLevels(bu) && totalExp >= 100)
+    {
+        int bonus = (bu->unit.state & US_GROWTH_BOOST) ? get_metis_tome_growth_bonus() : 0;
 
-		if (UNIT_CATTRIBUTES(&bu->unit) & CA_MAXLEVEL10) {
-			if (bu->unit.level == 10) {
-				bu->expGain -= bu->unit.exp;
-				bu->unit.exp = UNIT_EXP_DISABLED;
-			}
-		} else if (!can_unit_gain_Level(&bu->unit)) {
-			bu->expGain -= bu->unit.exp;
-			bu->unit.exp = UNIT_EXP_DISABLED;
-		}
+        while (CanBattleUnitGainLevels(bu) && totalExp >= 100)
+        {
+            totalExp -= 100;
+            bu->unit.level++;
 
-		TryAddSkillLvup(GetUnitFromCharIdAndFaction(UNIT_CHAR_ID(&bu->unit), FACTION_BLUE), bu->unit.level);
-		UnitLvupCore(bu, bonus);
+            if (totalExp < 100)
+                bu->unit.exp = totalExp;
+        }
 
-		CheckBattleUnitStatCaps(GetUnit(bu->unit.index), bu);
+        if (UNIT_CATTRIBUTES(&bu->unit) & CA_MAXLEVEL10)
+        {
+            if (bu->unit.level >= 10)
+            {
+                bu->expGain -= bu->unit.exp;
+                bu->unit.exp = UNIT_EXP_DISABLED;
+                bu->unit.level = 10;
+            }
+        }
+        else if (
+            UNIT_LEVEL_MAX_RE == bu->unit.level ||
+            UNIT_RECORDED_LEVEL_MAX == (bu->unit.level + GetUnitHiddenLevel(&bu->unit)))
+        {
+            bu->expGain -= bu->unit.exp;
+            bu->unit.exp = UNIT_EXP_DISABLED;
+            bu->unit.level = UNIT_LEVEL_MAX_RE;
+        }
+
+        TryAddSkillLvup(GetUnitFromCharIdAndFaction(UNIT_CHAR_ID(&bu->unit), FACTION_BLUE), bu->unit.level);
+        UnitLvupCore(bu, bonus);
 
 #ifdef CONFIG_RESTORE_HP_ON_LEVEL_UP
-    	gEventSlots[EVT_SLOT_7] = 410; /* 'Heal' expressed as a hexidecimal and then convert back into decimal and summed */
-		NoCashGBAPrintf("EVT SLOT 7 Value is: %d", gEventSlots[EVT_SLOT_7]);
+        gEventSlots[EVT_SLOT_7] = 410; /* 'Heal' expressed as a hexidecimal and then convert back into decimal and summed */
+        NoCashGBAPrintf("EVT SLOT 7 Value is: %d", gEventSlots[EVT_SLOT_7]);
 #endif
-	}
+    }
 }

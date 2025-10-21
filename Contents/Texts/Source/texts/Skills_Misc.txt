@@ -229,13 +229,6 @@ Velocity:[N]
 Gives the unit a 5% chance[N]
 of leveling MOV on level up.[X]
 
-## MSG_SKILL_StaffParagon_NAME
-Staff Paragon[X]
-## MSG_SKILL_StaffParagon_DESC
-Staff Paragon:[N]
-Gain +1 EXP for every 5 points[N]
-of excess healing.[X]
-
 ## MSG_SKILL_OgreBody_NAME
 Ogre Body[X]
 ## MSG_SKILL_OgreBody_DESC
