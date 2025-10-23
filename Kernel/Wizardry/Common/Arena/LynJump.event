@@ -1,0 +1,71 @@
+PUSH
+ORG $31b70
+ALIGN 4
+WORD $46C04778 $E59FC000 $E12FFF1C
+POIN ArenaGenerateBaseWeapons
+POP
+
+PUSH
+ORG $B59CC
+ALIGN 4
+WORD $46C04778 $E59FC000 $E12FFF1C
+POIN ArenaUi_WagerGoldDialogue
+POP
+
+PUSH
+ORG $B59EC
+ALIGN 4
+WORD $46C04778 $E59FC000 $E12FFF1C
+POIN ArenaUi_CheckConfirmation
+POP
+
+PUSH
+ORG $B5A38
+ALIGN 4
+WORD $46C04778 $E59FC000 $E12FFF1C
+POIN ArenaUi_ConfirmWager
+POP
+
+PUSH
+ORG $31A14
+ALIGN 4
+WORD $46C04778 $E59FC000 $E12FFF1C
+POIN ArenaGetPowerRanking
+POP
+
+// Turned off to allow ArenaFix.event to take effect
+// PUSH
+// ORG $31C10
+// ALIGN 4
+// WORD $46C04778 $E59FC000 $E12FFF1C
+// POIN ArenaAdjustOpponentDamage
+// POP
+
+PUSH
+ORG $31BC0
+ALIGN 4
+WORD $46C04778 $E59FC000 $E12FFF1C
+POIN ArenaGetUpgradedWeapon
+POP
+
+PUSH
+ORG $31D58
+ALIGN 4
+WORD $46C04778 $E59FC000 $E12FFF1C
+POIN ArenaAdjustOpponentPowerRanking
+POP
+
+// Turned off to allow ArenaFix.event to take effect
+// PUSH
+// ORG $31794
+// ALIGN 4
+// WORD $46C04778 $E59FC000 $E12FFF1C
+// POIN ArenaBeginInternal
+// POP
+
+PUSH
+ORG $31A84
+ALIGN 4
+WORD $46C04778 $E59FC000 $E12FFF1C
+POIN ArenaGenerateOpponentUnit
+POP

@@ -49,6 +49,15 @@ s8 ArenaIsUnitAllowed(struct Unit *);
 void ArenaSetFallbackWeaponForUnit(struct Unit * unit, u16 * pItem);
 void ArenaSetFallbackWeaponsMaybe(void);
 
+void StartArenaScreen(void);
+void StartArenaResultsScreen(void);
+void ArenaUi_WagerGoldDialogue(ProcPtr proc);
+void ArenaUi_CheckConfirmation(ProcPtr proc);
+void ArenaUi_ConfirmWager(ProcPtr proc);
+void StartArenaDialogue(int msgId, ProcPtr proc);
+void DrawArenaOpponentDetailsText(ProcPtr proc);
+
 extern struct ArenaData gArenaState;
+extern struct Unit gArenaOpponent;
 
 #endif // GUARD_BMARENA_H
