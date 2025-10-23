@@ -327,6 +327,7 @@ void BattleApplyItemExpGains(void)
     }
 }
 
+/* JESTER - Rewrote this to only work for player units to fix a bug where enemies could gain EXP */
 LYN_REPLACE_CHECK(BattleApplyExpGains);
 void BattleApplyExpGains(void)
 {
@@ -335,20 +336,20 @@ void BattleApplyExpGains(void)
     InitBattleUnit(&gBattleActor, GetUnit(CHARACTER_EIRIKA + 1));
 #endif
 
-
-    if ((UNIT_FACTION(&gBattleActor.unit) != FACTION_BLUE) || (UNIT_FACTION(&gBattleTarget.unit) != FACTION_BLUE)) {
-        if (!(gPlaySt.chapterStateBits & PLAY_FLAG_EXTRA_MAP)) {
-
+    // Only process EXP if this is not an extra map
+    if (!(gPlaySt.chapterStateBits & PLAY_FLAG_EXTRA_MAP))
+    {
+        // Apply EXP only if the unit belongs to the blue faction
+        if (UNIT_FACTION(GetUnit(gBattleActor.unit.index)) == FACTION_BLUE)
+        {
             gBattleActor.expGain = GetBattleUnitExpGainRework(&gBattleActor, &gBattleTarget);
-            gBattleTarget.expGain = GetBattleUnitExpGainRework(&gBattleTarget, &gBattleActor);
-
             gBattleActor.unit.exp += gBattleActor.expGain;
-            gBattleTarget.unit.exp += gBattleTarget.expGain;
 
 #if CHAX
             ResetPopupSkillStack();
 #endif
 
+            // Handle replicate status (copy EXP to original unit)
             if (GetUnitStatusIndex(GetUnit(gBattleActor.unit.index)) == NEW_UNIT_STATUS_REPLICATE)
             {
                 for (int i = FACTION_BLUE; i < FACTION_GREEN; i++)
@@ -358,7 +359,8 @@ void BattleApplyExpGains(void)
                     if (!UNIT_IS_VALID(unit))
                         continue;
 
-                    if (gBattleActor.unit.pCharacterData->number == unit->pCharacterData->number && GetUnitStatusIndex(unit) != NEW_UNIT_STATUS_REPLICATE)
+                    if (gBattleActor.unit.pCharacterData->number == unit->pCharacterData->number &&
+                        GetUnitStatusIndex(unit) != NEW_UNIT_STATUS_REPLICATE)
                     {
                         unit->exp += gBattleActor.expGain;
                         gBattleActor.unit.exp -= gBattleActor.expGain;
@@ -369,6 +371,13 @@ void BattleApplyExpGains(void)
             }
 
             CheckBattleUnitLevelUp(&gBattleActor);
+        }
+
+        // Apply EXP only if the target belongs to the blue faction
+        if (UNIT_FACTION(GetUnit(gBattleTarget.unit.index)) == FACTION_BLUE)
+        {
+            gBattleTarget.expGain = GetBattleUnitExpGainRework(&gBattleTarget, &gBattleActor);
+            gBattleTarget.unit.exp += gBattleTarget.expGain;
             CheckBattleUnitLevelUp(&gBattleTarget);
         }
     }

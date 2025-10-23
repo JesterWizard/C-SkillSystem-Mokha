@@ -250,6 +250,9 @@ STATIC_DECLAR void SetBattleUnitWeaponVanilla(struct BattleUnit *bu, int itemSlo
 
 STATIC_DECLAR void PostSetBattleUnitWeaponVanillaHook(struct BattleUnit *bu, int slot)
 {
+    FORCE_DECLARE int gBattleActorWeapon;
+    FORCE_DECLARE int gBattleTargetWeapon;
+
 	if (!(gBattleStats.config & BATTLE_CONFIG_BIT2)) {
 		if (!IsItemCoveringRangeRework(bu->weapon, gBattleStats.range, &bu->unit)) {
 			bu->weapon = 0;
@@ -262,6 +265,27 @@ STATIC_DECLAR void PostSetBattleUnitWeaponVanillaHook(struct BattleUnit *bu, int
 			bu->canCounter = false;
 			return;
 		}
+
+#if (defined(SID_Mimic) && (COMMON_SKILL_VALID(SID_Mimic)))
+        if (BattleFastSkillTester(bu, SID_Mimic))
+        {
+            gBattleTargetWeapon = GetUnitEquippedWeapon(GetUnit(gBattleTarget.unit.index));
+            gBattleActorWeapon = GetUnitEquippedWeapon(GetUnit(gBattleActor.unit.index));
+
+            if (bu == &gBattleActor)
+            {
+                bu->weapon = gBattleTargetWeapon;
+                bu->weaponBefore = gBattleTargetWeapon;
+                bu->weaponType = gBattleTargetWeapon;
+            }
+            else
+            {
+                bu->weapon = gBattleActorWeapon;
+                bu->weaponBefore = gBattleActorWeapon;
+                bu->weaponType = gBattleActorWeapon;
+            }
+        }
+#endif
 
 #if (defined(SID_Dazzle) && (COMMON_SKILL_VALID(SID_Dazzle)))
 		if (bu == &gBattleTarget && BattleFastSkillTester(&gBattleActor, SID_Dazzle)) {
@@ -279,17 +303,38 @@ STATIC_DECLAR void PostSetBattleUnitWeaponVanillaHook(struct BattleUnit *bu, int
 		}
 #endif
 
-		switch (GetUnitStatusIndex(&bu->unit)) {
-		case UNIT_STATUS_SLEEP:
-		case UNIT_STATUS_PETRIFY:
-		case UNIT_STATUS_13:
-			bu->weapon = 0;
-			bu->canCounter = false;
-			return;
+#if (defined(SID_Comatose) && (COMMON_SKILL_VALID(SID_Comatose)))
+        if (BattleFastSkillTester(bu, SID_Comatose))
+            return;
+        else
+        {
+            switch (GetUnitStatusIndex(&bu->unit))
+            {
+            case UNIT_STATUS_SLEEP:
+            case UNIT_STATUS_PETRIFY:
+            case UNIT_STATUS_13:
+                bu->weapon = 0;
+                bu->canCounter = false;
+                return;
 
-		default:
-			break;
-		};
+            default:
+                break;
+            };
+        }
+#else
+        switch (GetUnitStatusIndex(&bu->unit))
+        {
+        case UNIT_STATUS_SLEEP:
+        case UNIT_STATUS_PETRIFY:
+        case UNIT_STATUS_13:
+            bu->weapon = 0;
+            bu->canCounter = false;
+            return;
+
+        default:
+            break;
+        };
+#endif
 	}
 }
 
