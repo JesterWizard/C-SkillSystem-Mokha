@@ -1,5 +1,7 @@
 #include <common-chax.h>
 #include <battle-system.h>
+#include "skill-system.h"
+#include "constants/skills.h"
 
 LYN_REPLACE_CHECK(MapAnim_BeginRoundSpecificAnims);
 void MapAnim_BeginRoundSpecificAnims(ProcPtr proc)
@@ -25,8 +27,13 @@ void MapAnim_BeginRoundSpecificAnims(ProcPtr proc)
 
 	if (gManimSt.actor[0].unit->statusIndex == UNIT_STATUS_RECOVER)
 		RegisterMapHpChangeAnim(map_actor, -gManimSt.hitDamage);
-	else
-		RegisterMapHpChangeAnim(map_target, gManimSt.hitDamage);
+    else
+    {
+        if (gActionData.unk08 == SID_LiveToServe)
+            RegisterMapHpChangeAnim(map_actor, gManimSt.hitDamage);
+            
+        RegisterMapHpChangeAnim(map_target, gManimSt.hitDamage);
+    }
 
 #if CHAX
 	if (gManimSt.hitAttributes & BATTLE_HIT_ATTR_HPSTEAL)
