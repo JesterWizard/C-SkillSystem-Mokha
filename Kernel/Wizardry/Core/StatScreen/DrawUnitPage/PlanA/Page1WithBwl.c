@@ -278,6 +278,12 @@ FORCE_DECLARE static void DrawPage1LaguzBar(void)
 FORCE_DECLARE static void DrawPage1SightBar(void)
 {
     int amt = GetUnitFogViewRange(gStatScreen.unit);
+
+#if defined(SID_HazeHunter) && (COMMON_SKILL_VALID(SID_HazeHunter))
+    if (SkillTester(gStatScreen.unit, SID_HazeHunter))
+        amt += 5;
+#endif
+
     int max = 15;
     int textColor = (amt == max) ? TEXT_COLOR_SYSTEM_GREEN : TEXT_COLOR_SYSTEM_BLUE;
     

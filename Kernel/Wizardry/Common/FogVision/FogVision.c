@@ -1,8 +1,18 @@
 #include "common-chax.h"
+#include "stat-screen.h"
+#include "strmag.h"
+#include "bwl.h"
+#include "lvup.h"
+#include "debuff.h"
+#include "status-getter.h"
+#include "kernel-lib.h"
+#include "constants/texts.h"
+#include "skill-system.h"
+#include "constants/skills.h"
 
 LYN_REPLACE_CHECK(GetUnitFogViewRange);
-int GetUnitFogViewRange(struct Unit* unit) {
-
+int GetUnitFogViewRange(struct Unit * unit)
+{
     int result = gPlaySt.chapterVisionRange;
 
 #ifdef CONFIG_MODULAR_FOG_UNIT_SIGHT
@@ -64,6 +74,15 @@ int GetUnitFogViewRange(struct Unit* unit) {
     if (UNIT_CATTRIBUTES(unit) & CA_THIEF)
         result += 5;
 #endif
+
+/* 
+** JESTER - For no discernable reason the skill tester call freezes the game when viewing
+** a unit's stat screen, so I will have to move this call after GetUnitFogViewRange is called
+*/
+// #if defined(SID_HazeHunter) && (COMMON_SKILL_VALID(SID_HazeHunter))
+//     if (SkillTester(unit, SID_HazeHunter))
+//         result += 5;
+// #endif
 
     return result + unit->torchDuration;
 }

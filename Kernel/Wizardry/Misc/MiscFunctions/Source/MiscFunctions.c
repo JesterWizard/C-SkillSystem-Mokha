@@ -2280,9 +2280,16 @@ void RefreshUnitsOnBmMap(void) {
         // Put unit on unit map
         gBmMapUnit[unit->yPos][unit->xPos] = i;
 
+        FORCE_DECLARE int fogBoost = 0;
+
+#if defined(SID_HazeHunter) && (COMMON_SKILL_VALID(SID_HazeHunter))
+    if (SkillTester(unit, SID_HazeHunter))
+        fogBoost += 5;
+#endif
+
         // If fog is enabled, apply unit vision to fog map
         if (gPlaySt.chapterVisionRange)
-            MapAddInRange(unit->xPos, unit->yPos, GetUnitFogViewRange(unit), 1);
+            MapAddInRange(unit->xPos, unit->yPos, GetUnitFogViewRange(unit) + fogBoost, 1);
     }
 
     // 2. Red (& Purple) units

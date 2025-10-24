@@ -92,79 +92,79 @@ WORD $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 
 POIN CURRENTOFFSET+2860
 WORD $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0
 POIN CURRENTOFFSET-4516
-WORD $1380137F $3
+WORD $13821381 $3
 POIN Thrust_Usability
 WORD $0
 POIN Thrust_OnSelected
 WORD $0 $0 $0
 POIN CURRENTOFFSET-4552
-WORD $137E137D $3
+WORD $1380137F $3
 POIN SealedZone_Usability
 WORD $0
 POIN SealedZone_OnSelected
 WORD $0 $0 $0
 POIN CURRENTOFFSET-4588
-WORD $137C137B $3
+WORD $137E137D $3
 POIN Reinforce_Usability
 WORD $0
 POIN Reinforce_OnSelected
 WORD $0 $0 $0
 POIN CURRENTOFFSET-4624
-WORD $137A1379 $3
+WORD $137C137B $3
 POIN AcidicPlus_Usability
 WORD $0
 POIN AcidicPlus_OnSelected
 WORD $0 $0 $0
 POIN CURRENTOFFSET-4660
-WORD $13781377 $3
+WORD $137A1379 $3
 POIN Acidic_Usability
 WORD $0
 POIN Acidic_OnSelected
 WORD $0 $0 $0
 POIN CURRENTOFFSET-4696
-WORD $120011FF $3
+WORD $12021201 $3
 POIN ScrollScribePlus_Usability
 WORD $0
 POIN ScrollScribePlus_OnSelected
 WORD $0 $0 $0
 POIN CURRENTOFFSET-4732
-WORD $13761375 $3
+WORD $13781377 $3
 POIN Geomancy_Usability
 WORD $0
 POIN Geomancy_OnSelected
 WORD $0 $0 $0
 POIN CURRENTOFFSET-4768
-WORD $13741373 $3
+WORD $13761375 $3
 POIN CoinFlip_Usability
 WORD $0
 POIN CoinFlip_OnSelected
 WORD $0 $0 $0
 POIN CURRENTOFFSET-4804
-WORD $13721371 $3
+WORD $13741373 $3
 POIN Bide_Usability
 WORD $0
 POIN Bide_OnSelected
 WORD $0 $0 $0
 POIN CURRENTOFFSET-4840
-WORD $1370136F $3
+WORD $13721371 $3
 POIN Ballistary_Usability
 WORD $0
 POIN Ballistary_OnSelected
 WORD $0 $0 $0
 POIN CURRENTOFFSET-4876
-WORD $136E136D $3
+WORD $1370136F $3
 POIN ResolvedHeart_Usability
 WORD $0
 POIN ResolvedHeart_OnSelected
 WORD $0 $0 $0
 POIN CURRENTOFFSET-4912
-WORD $136C136B $3
+WORD $136E136D $3
 POIN Reinforcements_Usability
 WORD $0
 POIN Reinforcements_OnSelected
 WORD $0 $0 $0
 POIN CURRENTOFFSET-4948
-WORD $136A1369 $3
+WORD $136C136B $3
 POIN Kamikaze_Usability
 WORD $0
 POIN Kamikaze_OnSelected
@@ -172,89 +172,89 @@ WORD $0
 POIN Kamikaze_Hover
 POIN Kamikaze_Unhover
 POIN CURRENTOFFSET-4984
-WORD $13681367 $3
+WORD $136A1369 $3
 POIN PersuadePlus_Usability
 WORD $0
 POIN PersuadePlus_OnSelected
 WORD $0 $0 $0
 POIN CURRENTOFFSET-5020
-WORD $13661365 $3
+WORD $13681367 $3
 POIN Persuade_Usability
 WORD $0
 POIN Persuade_OnSelected
 WORD $0 $0 $0
 POIN CURRENTOFFSET-5056
-WORD $13641363 $3
+WORD $13661365 $3
 POIN ShufflePlus_Usability
 WORD $0
 POIN ShufflePlus_OnSelected
 WORD $0 $0 $0
 POIN CURRENTOFFSET-5092
-WORD $13621361 $3
+WORD $13641363 $3
 POIN Shuffle_Usability
 WORD $0
 POIN Shuffle_OnSelected
 WORD $0 $0 $0
 POIN CURRENTOFFSET-5128
-WORD $1360135F $3
+WORD $13621361 $3
 POIN SkillSwap_Usability
 WORD $0
 POIN SkillSwap_OnSelected
 WORD $0 $0 $0
 POIN CURRENTOFFSET-5160
-WORD $135E135D $3
+WORD $1360135F $3
 POIN Hide_Usability
 WORD $0
 POIN Hide_OnSelected
 WORD $0 $0 $0
 POIN CURRENTOFFSET-5196
-WORD $135C135B $3
+WORD $135E135D $3
 POIN GrimReaper_Usability
 WORD $0
 POIN GrimReaper_OnSelected
 WORD $0 $0 $0
 POIN CURRENTOFFSET-5232
-WORD $135A1359 $3
+WORD $135C135B $3
 POIN LethalityPlus_Usability
 WORD $0
 POIN LethalityPlus_OnSelected
 WORD $0 $0 $0
 POIN CURRENTOFFSET-5252
-WORD $13581357 $3 $80243D9 $0
+WORD $135A1359 $3 $80243D9 $0
 POIN SummonPlusCommandEffect
 WORD $0 $0 $0
 POIN CURRENTOFFSET-5304
-WORD $13561355 $3
+WORD $13581357 $3
 POIN Switcher_Usability
 WORD $0
 POIN Switcher_OnSelected
 WORD $0 $0 $0
 POIN CURRENTOFFSET-5340
-WORD $13541353 $3
+WORD $13561355 $3
 POIN Sellsword_Usability
 WORD $0
 POIN Sellsword_OnSelected
 WORD $0 $0 $0
 POIN CURRENTOFFSET-5376
-WORD $13521351 $3
+WORD $13541353 $3
 POIN WyvernCrash_Usability
 WORD $0
 POIN WyvernCrash_OnSelected
 WORD $0 $0 $0
 POIN CURRENTOFFSET-5412
-WORD $1350134F $3
+WORD $13521351 $3
 POIN LoadstarRush_Usability
 WORD $0
 POIN LoadstarRush_OnSelected
 WORD $0 $0 $0
 POIN CURRENTOFFSET-5448
-WORD $134B134A $3
+WORD $134D134C $3
 POIN DeathBlight_Usability
 WORD $0
 POIN DeathBlight_OnSelected
 WORD $0 $0 $0
 POIN CURRENTOFFSET-5484
-WORD $13491348 $3
+WORD $134B134A $3
 POIN ShadowFlash_Usability
 WORD $0
 POIN ShadowFlash_OnSelected
@@ -262,121 +262,121 @@ WORD $0
 POIN ShadowFlash_Hover
 POIN ShadowFlash_Unhover
 POIN CURRENTOFFSET-5524
-WORD $13471346 $3
+WORD $13491348 $3
 POIN AssignDecoy_Usability
 WORD $0
 POIN AssignDecoy_OnSelected
 WORD $0 $0 $0
 POIN CURRENTOFFSET-5560
-WORD $13451344 $3
+WORD $13471346 $3
 POIN Arise_Usability
 WORD $0
 POIN Arise_OnSelected
 WORD $0 $0 $0
 POIN CURRENTOFFSET-5596
-WORD $13431342 $3
+WORD $13451344 $3
 POIN Entrepreneur_Usability
 WORD $0
 POIN Entrepreneur_OnSelected
 WORD $0 $0 $0
 POIN CURRENTOFFSET-5632
-WORD $13411340 $3
+WORD $13431342 $3
 POIN Dismount_Usability
 WORD $0
 POIN Dismount_OnSelected
 WORD $0 $0 $0
 POIN CURRENTOFFSET-5668
-WORD $133F133E $3
+WORD $13411340 $3
 POIN Doppleganger_Usability
 WORD $0
 POIN Doppleganger_OnSelected
 WORD $0 $0 $0
 POIN CURRENTOFFSET-5704
-WORD $133D133C $3
+WORD $133F133E $3
 POIN Capture_Usability
 WORD $0
 POIN Capture_OnSelected
 WORD $0 $0 $0
 POIN CURRENTOFFSET-5740
-WORD $133B133A $3
+WORD $133D133C $3
 POIN Sacrifice_Usability
 WORD $0
 POIN Sacrifice_OnSelected
 WORD $0 $0 $0
 POIN CURRENTOFFSET-5776
-WORD $13391338 $3
+WORD $133B133A $3
 POIN ReciprocalAid_Usability
 WORD $0
 POIN ReciprocalAid_OnSelected
 WORD $0 $0 $0
 POIN CURRENTOFFSET-5812
-WORD $13371336 $3
+WORD $13391338 $3
 POIN ArdentSacrifice_Usability
 WORD $0
 POIN ArdentSacrifice_OnSelected
 WORD $0 $0 $0
 POIN CURRENTOFFSET-5848
-WORD $13331332 $3
+WORD $13351334 $3
 POIN Smite_Usability
 WORD $0
 POIN Smite_OnSelected
 WORD $0 $0 $0
 POIN CURRENTOFFSET-5884
-WORD $13311330 $3
+WORD $13331332 $3
 POIN Shove_Usability
 WORD $0
 POIN Shove_OnSelected
 WORD $0 $0 $0
 POIN CURRENTOFFSET-5920
-WORD $132F132E $3
+WORD $13311330 $3
 POIN Reposition_Usability
 WORD $0
 POIN Reposition_OnSelected
 WORD $0 $0 $0
 POIN CURRENTOFFSET-5956
-WORD $132D132C $3
+WORD $132F132E $3
 POIN Pivot_Usability
 WORD $0
 POIN Pivot_OnSelected
 WORD $0 $0 $0
 POIN CURRENTOFFSET-5992
-WORD $132B132A $3
+WORD $132D132C $3
 POIN DrawBack_Usability
 WORD $0
 POIN DrawBack_OnSelected
 WORD $0 $0 $0
 POIN CURRENTOFFSET-6028
-WORD $13291328 $3
+WORD $132B132A $3
 POIN Transform_Usability
 WORD $0
 POIN Transform_OnSelected
 WORD $0 $0 $0
 POIN CURRENTOFFSET-6032
-WORD $13251324 $3
+WORD $13271326 $3
 POIN Swap_Usability
 WORD $0
 POIN Swap_OnSelected
 WORD $0 $0 $0
 POIN CURRENTOFFSET-6056
-WORD $13981397 $3
+WORD $139A1399 $3
 POIN GraceOfWater_Usability
 WORD $0
 POIN GraceOfWater_OnSelected
 WORD $0 $0 $0
 POIN CURRENTOFFSET-6092
-WORD $13961395 $3
+WORD $13981397 $3
 POIN GraceOfFire_Usability
 WORD $0
 POIN GraceOfFire_OnSelected
 WORD $0 $0 $0
 POIN CURRENTOFFSET-6172
-WORD $13941393 $3
+WORD $13961395 $3
 POIN GorillaTactics_Usability
 WORD $0
 POIN GorillaTactics_OnSelected
 WORD $0 $0 $0
 POIN CURRENTOFFSET-6208
-WORD $13921391 $3
+WORD $13941393 $3
 POIN FocusEnergy_Usability
 WORD $0
 POIN FocusEnergy_OnSelected
@@ -384,7 +384,7 @@ WORD $0
 POIN FocusEnergy_Hover
 POIN FocusEnergy_Unhover
 POIN CURRENTOFFSET-6244
-WORD $1390138F $3
+WORD $13921391 $3
 POIN SpellBlade_Usability
 WORD $0
 POIN SpellBlade_OnSelected
@@ -392,67 +392,67 @@ WORD $0
 POIN SpellBlade_Hover
 POIN SpellBlade_Unhover
 POIN CURRENTOFFSET-6280
-WORD $138E138D $3
+WORD $1390138F $3
 POIN Reroll_Usability
 WORD $0
 POIN Reroll_OnSelected
 WORD $0 $0 $0
 POIN CURRENTOFFSET-6316
-WORD $138C138B $3
+WORD $138E138D $3
 POIN Duplicate_Usability
 WORD $0
 POIN Duplicate_OnSelected
 WORD $0 $0 $0
 POIN CURRENTOFFSET-6352
-WORD $13351334 $3
+WORD $13371336 $3
 POIN StealPlus_Usability
 WORD $0
 POIN StealPlus_Effect
 WORD $0 $0 $0
 POIN CURRENTOFFSET-6368
-WORD $138A1389 $3
+WORD $138C138B $3
 POIN Fogger_Usability
 WORD $0
 POIN Fogger_OnSelected
 WORD $0 $0 $0
 POIN CURRENTOFFSET-6404
-WORD $13881387 $3
+WORD $138A1389 $3
 POIN BravelyDefault_Usability
 WORD $0
 POIN BravelyDefault_OnSelected
 WORD $0 $0 $0
 POIN CURRENTOFFSET-6440
-WORD $13861385 $3
+WORD $13881387 $3
 POIN MasterForge_Usability
 WORD $0
 POIN MasterForge_OnSelected
 WORD $0 $0 $0
 POIN CURRENTOFFSET-6476
-WORD $13841383 $3
+WORD $13861385 $3
 POIN Replicate_Usability
 WORD $0
 POIN Replicate_OnSelected
 WORD $0 $0 $0
 POIN CURRENTOFFSET-6488
-WORD $134D134C $3
+WORD $134F134E $3
 POIN DivineReprieve_Usability
 WORD $0
 POIN DivineReprieve_OnSelected
 WORD $0 $0 $0
 POIN CURRENTOFFSET-6504
-WORD $13231322 $3
+WORD $13251324 $3
 POIN Blacksmith_Usability
 WORD $0
 POIN Blacksmith_OnSelected
 WORD $0 $0 $0
 POIN CURRENTOFFSET-6524
-WORD $13211320 $3
+WORD $13231322 $3
 POIN Swarp_Usability
 WORD $0
 POIN Swarp_OnSelected
 WORD $0 $0 $0
 POIN CURRENTOFFSET-6544
-WORD $131F131E $3
+WORD $13211320 $3
 POIN Stride_Usability
 WORD $0
 POIN Stride_OnSelected
@@ -460,7 +460,7 @@ WORD $0
 POIN Stride_Hover
 POIN Stride_Unhover
 POIN CURRENTOFFSET-6568
-WORD $131D131C $3
+WORD $131F131E $3
 POIN GoddessDance_Usability
 WORD $0
 POIN GoddessDance_OnSelected
@@ -468,7 +468,7 @@ WORD $0
 POIN GoddessDance_Hover
 POIN GoddessDance_Unhover
 POIN CURRENTOFFSET-6584
-WORD $131B131A $3
+WORD $131D131C $3
 POIN Rally_Usability
 WORD $0
 POIN Rally_OnSelected
@@ -476,7 +476,7 @@ WORD $0
 POIN Rally_Hover
 POIN Rally_Unhover
 POIN CURRENTOFFSET-6588
-WORD $13191318 $3
+WORD $131B131A $3
 POIN Rally_Usability
 WORD $0
 POIN Rally_OnSelected
@@ -484,7 +484,7 @@ WORD $0
 POIN Rally_Hover
 POIN Rally_Unhover
 POIN CURRENTOFFSET-6600
-WORD $13171316 $3
+WORD $13191318 $3
 POIN Rally_Usability
 WORD $0
 POIN Rally_OnSelected
@@ -492,7 +492,7 @@ WORD $0
 POIN Rally_Hover
 POIN Rally_Unhover
 POIN CURRENTOFFSET-6608
-WORD $13151314 $3
+WORD $13171316 $3
 POIN Rally_Usability
 WORD $0
 POIN Rally_OnSelected
@@ -500,7 +500,7 @@ WORD $0
 POIN Rally_Hover
 POIN Rally_Unhover
 POIN CURRENTOFFSET-6620
-WORD $13131312 $3
+WORD $13151314 $3
 POIN Rally_Usability
 WORD $0
 POIN Rally_OnSelected
@@ -508,7 +508,7 @@ WORD $0
 POIN Rally_Hover
 POIN Rally_Unhover
 POIN CURRENTOFFSET-6636
-WORD $13111310 $3
+WORD $13131312 $3
 POIN Rally_Usability
 WORD $0
 POIN Rally_OnSelected
@@ -516,7 +516,7 @@ WORD $0
 POIN Rally_Hover
 POIN Rally_Unhover
 POIN CURRENTOFFSET-6648
-WORD $130F130E $3
+WORD $13111310 $3
 POIN Rally_Usability
 WORD $0
 POIN Rally_OnSelected
@@ -524,7 +524,7 @@ WORD $0
 POIN Rally_Hover
 POIN Rally_Unhover
 POIN CURRENTOFFSET-6656
-WORD $130D130C $3
+WORD $130F130E $3
 POIN Rally_Usability
 WORD $0
 POIN Rally_OnSelected
@@ -532,7 +532,7 @@ WORD $0
 POIN Rally_Hover
 POIN Rally_Unhover
 POIN CURRENTOFFSET-6676
-WORD $130B130A $3
+WORD $130D130C $3
 POIN Rally_Usability
 WORD $0
 POIN Rally_OnSelected
@@ -540,25 +540,25 @@ WORD $0
 POIN Rally_Hover
 POIN Rally_Unhover
 POIN CURRENTOFFSET-6692
-WORD $13091308 $3
+WORD $130B130A $3
 POIN Mine_Usability
 WORD $0
 POIN Mine_OnSelected
 WORD $0 $0 $0
 POIN CURRENTOFFSET-7068
-WORD $13071306 $3
+WORD $13091308 $3
 POIN LightRune_Usability
 WORD $0
 POIN LightRune_OnSelected
 WORD $0 $0 $0
 POIN CURRENTOFFSET-6752
-WORD $13050000 $3
+WORD $13070000 $3
 POIN Teleportation_Usability
 WORD $0
 POIN Teleportation_OnSelected
 WORD $0 $0 $0
 POIN CURRENTOFFSET-6776
-WORD $13031302 $3
+WORD $13051304 $3
 POIN HealingFocus_Usability
 WORD $0
 POIN HealingFocus_OnSelected
