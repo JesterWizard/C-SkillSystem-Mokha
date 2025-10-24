@@ -519,6 +519,30 @@ void KillUnitOnCombatDeath(struct Unit* unitA, struct Unit* unitB) {
         return;
     }
 
+#if (defined(SID_Capture) && (COMMON_SKILL_VALID(SID_Capture)))
+    if (SkillTester(unitB, SID_Capture) && CheckBitUES(unitB, UES_BIT_CAPTURE_SKILL_USED))
+    {
+        UnitRescue(unitB, unitA);
+        HideUnitSprite(unitA);
+        ClearBitUES(unitB, UES_BIT_CAPTURE_SKILL_USED);
+        return;
+    }
+#endif
+
+/* Can still be viewed in the stat screen, but eh it's fine. */
+#if defined(SID_Casual) && (COMMON_SKILL_VALID(SID_Casual))
+    if (SkillTester(unitA, SID_Casual))
+    {
+        unitA->state |= US_HIDDEN;
+        return;
+    }
+#endif
+
+#if defined(SID_DestinyBond) && (COMMON_SKILL_VALID(SID_DestinyBond))
+    if (SkillTester(unitA, SID_DestinyBond))
+        UnitKill(unitB);
+#endif
+
 #ifdef CONFIG_SEND_INVENTORY_ON_DEATH
     if (UNIT_FACTION(unitA) == FACTION_BLUE)
     {
