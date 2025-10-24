@@ -196,14 +196,14 @@ Allow allied units adjacent to[N]
 enemies to attack in a chain.[X]
 
 ## MSG_SKILL_DragonWrath_DESC
-Dragon Wrath:[N]
+Dragon Wrath[N]
 ## MSG_SKILL_DragonWrath_NAME
 Dragon Wrath:[N]
 Attack twice if defending if[N]
 you have > 50% HP remaining.[X]
 
 ## MSG_SKILL_BrashAssault_NAME
-Brash Assault:[N]
+Brash Assault[N]
 ## MSG_SKILL_BrashAssault_DESC
 Brash Assault:[N]
 Attack twice if the foe[N]
