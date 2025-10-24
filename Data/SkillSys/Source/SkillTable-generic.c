@@ -14,11 +14,11 @@ const struct SkillPreloadPConf gSkillPreloadPData[0x100] = {
     }},
     // 02
     [CHARACTER_SETH] = {{
-            // [0] = SID_Replicate,
-            // [1] = SID_Blacksmith,
-            // [2] = SID_Sol,
-            // [3] = SID_Adept,
-            // [4] = SID_Acrobat
+        [0] = SID_Pathfinder,
+        // [1] = SID_Blacksmith,
+        // [2] = SID_Sol,
+        // [3] = SID_Adept,
+        // [4] = SID_Acrobat
         }},
 
         // // 03
