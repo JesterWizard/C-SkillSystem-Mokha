@@ -1,6 +1,8 @@
 #include "common-chax.h"
 #include "stat-screen.h"
 #include "lvup.h"
+#include "skill-system.h"
+#include "constants/skills.h"
 
 STATIC_DECLAR void DisplayHpStr(void)
 {
@@ -198,11 +200,37 @@ STATIC_DECLAR void DisplayLeftPanelHp(void)
 	DisplayHpBmValue();
 }
 
+static char * fe8_characters[62] = {
+    // Main Story Characters
+    "Eirika", "Seth", "Franz", "Gilliam", "Moulder", "Vanessa", "Ross", "Garcia",
+    "Neimi", "Colm", "Lute", "Artur", "Natasha", "Joshua", "Ephraim", "Forde",
+    "Kyle", "Tana", "Amelia", "Duessel", "Cormag", "L'Arachel", "Dozla", "Ewan",
+    "Marisa", "Tethys", "Gerik", "Rennac", "Saleh", "Knoll", "Innes", "Myrrh", "Syrene",
+
+    // Bosses
+    "O'Neill", "Berguet", "Bones", "Bazba", "Saar", "Novala", "Murray", "Tirado",
+    "Binks", "Pablo", "Aias", "Carlyle", "Gheb", "Beran", "Zonta", "Vigarde",
+    
+    //Extras
+    "Mansel", "Klimt", "Dara",
+
+    // Post-Game Unlockable Characters
+    "Caellach", "Orson", "Riev", "Ismaire", "Selena", "Hayden", "Glen", "Valter",
+    "Fado", "Lyon"
+};
+
 LYN_REPLACE_CHECK(DisplayLeftPanel);
 void DisplayLeftPanel(void)
 {
-	const char *namestr = GetStringFromIndex(UNIT_NAME_ID(gStatScreen.unit));
-	unsigned int namexoff = GetStringTextCenteredPos(0x30, namestr);
+    int unitNameIndex = UNIT_NAME_ID(gStatScreen.unit);
+    char * namestr = GetStringFromIndex(unitNameIndex);
+
+#if (defined(SID_IdentityProblems) && (COMMON_SKILL_VALID(SID_IdentityProblems)))
+    if (SkillTester(gStatScreen.unit, SID_IdentityProblems))
+        namestr = fe8_characters[NextRN_N(sizeof(fe8_characters) / sizeof((fe8_characters)[0]))];
+#endif
+
+    unsigned namexoff = GetStringTextCenteredPos(0x30, (const char*)namestr);
 
 	InstallExpandedTextPal();
 	BG_Fill(gBG0TilemapBuffer, 0);
