@@ -1,5 +1,6 @@
 #include "common-chax.h"
 #include "kernel-lib.h"
+#include "skill-system.h"
 #include "constants/skills.h"
 #include "mu.h"
 #include "debuff.h"
@@ -44,6 +45,11 @@ void ResetAllPlayerUnitState(void)
 LYN_REPLACE_CHECK(ChapterChangeUnitCleanup);
 void ChapterChangeUnitCleanup(void)
 {
+
+#if defined(SID_HedgeFund) && (COMMON_SKILL_VALID(SID_HedgeFund))
+    bool hedgeFundActivated = false;
+#endif
+
 	// Clear phantoms
 	FOR_UNITS_VALID_FACTION(FACTION_BLUE, unit, {
 		if (UNIT_IS_PHANTOM(unit))
@@ -91,6 +97,22 @@ void ChapterChangeUnitCleanup(void)
 			(*it)(unit);
 #endif
 
+        /* Reset the transformed state of any units with the skill */
+#if defined(SID_Transform) && (COMMON_SKILL_VALID(SID_Transform))
+        if (SkillTester(unit, SID_Transform))
+        {
+            for (int i = 0; i < transformationListSize; i++)
+            {
+                if (unit->pClassData->number == transformationPairs[i][1])
+                {
+                    unit->pClassData = GetClassData(transformationPairs[i][0]);
+                    ClearUnitStatDebuff(unit, UNIT_STAT_BUFF_TRANSFORM);
+                    break;
+                }
+            }
+        }
+#endif
+
 #ifdef CONFIG_LAGUZ_BARS
         for (int i = 0; i < laguzListSize; i++)
         {
@@ -122,6 +144,54 @@ void ChapterChangeUnitCleanup(void)
 #ifdef CONFIG_MP_SYSTEM
 		if (bwl != NULL)
 			bwl->currentMP = 0;
+#endif
+
+        /* Reset the doppleganger state of any units with the skill */
+#if defined(SID_Doppleganger) && (COMMON_SKILL_VALID(SID_Doppleganger))
+        if (SkillTester(unit, SID_Doppleganger))
+        {
+            for (int i = 0; i < dopplegangerListSize; i++)
+            {
+                if (unit->pCharacterData->number == dopplegangerPairs[i][0])
+                {
+                    unit->pClassData = GetClassData(dopplegangerPairs[i][1]);
+                    break;
+                }
+            }
+        }
+#endif
+
+        /* Reset the class of any dismounted unit */
+#if defined(SID_Dismount) && (COMMON_SKILL_VALID(SID_Dismount))
+        if (SkillTester(unit, SID_Dismount))
+        {
+            for (int i = 0; i < dismountListSize; i++)
+            {
+                if (unit->pClassData->number == dismountPairs[i][1])
+                {
+                    unit->pClassData = GetClassData(dismountPairs[i][0]);
+                    break;
+                }
+            }
+        }
+#endif
+
+        /* Boost HP of unit by 1 */
+#if defined(SID_Survivor) && (COMMON_SKILL_VALID(SID_Survivor))
+        if (SkillTester(unit, SID_Survivor))
+            unit->maxHP += 1;
+#endif
+
+        /* Boost gold of party by 10%, doesn't stack */
+#if defined(SID_HedgeFund) && (COMMON_SKILL_VALID(SID_HedgeFund))
+        if (!hedgeFundActivated)
+        {
+            if (SkillTester(unit, SID_HedgeFund))
+            {
+                hedgeFundActivated = true;
+                gPlaySt.partyGoldAmount += gPlaySt.partyGoldAmount / SKILL_EFF0(SID_HedgeFund);
+            }
+        }
 #endif
 	})
 
