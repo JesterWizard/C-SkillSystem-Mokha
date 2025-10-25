@@ -3760,3 +3760,21 @@ void GenerateGasTrapTargets(int x, int y, int damage, int facing)
         }
     }
 }
+
+LYN_REPLACE_CHECK(UnitRescue);
+void UnitRescue(struct Unit* actor, struct Unit* target) {
+
+#if defined(SID_DangerRanger) && (COMMON_SKILL_VALID(SID_DangerRanger))
+    if (SkillTester(actor, SID_DangerRanger))
+        gActionDataExpa.refrain_action = true;
+#endif
+
+    actor->state  |= US_RESCUING;
+    target->state |= US_RESCUED | US_HIDDEN;
+
+    actor->rescue = target->index;
+    target->rescue = actor->index;
+
+    target->xPos = actor->xPos;
+    target->yPos = actor->yPos;
+}
