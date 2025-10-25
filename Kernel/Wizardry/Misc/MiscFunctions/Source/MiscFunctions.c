@@ -16,6 +16,7 @@
 #include "soundroom.h"
 #include "bwl.h"
 #include "debuff.h"
+#include "traps.h"
 
 #include "jester_headers/event-call.h"
 #include "jester_headers/custom-structs.h"
@@ -3668,4 +3669,94 @@ void BeginUnitPoisonDamageAnim(struct Unit * unit, int damage)
     RenderMapForFogFadeIfUnitDied(unit);
 
     return;
+}
+
+LYN_REPLACE_CHECK(GenerateFireTileTrapTargets);
+void GenerateFireTileTrapTargets(int x, int y, int damage)
+{
+    FORCE_DECLARE bool dontAddTarget = false;
+
+#if (defined(SID_Absolve) && (COMMON_SKILL_VALID(SID_Absolve)))
+    if (SkillTester(GetUnit(gBmMapUnit[y][x]), SID_Absolve))
+        dontAddTarget = true;
+#endif
+
+    if (!dontAddTarget)
+        AddTarget(x, y, gBmMapUnit[y][x], damage);
+}
+
+LYN_REPLACE_CHECK(GenerateArrowTrapTargets);
+void GenerateArrowTrapTargets(int x, int y, int damage)
+{
+    FORCE_DECLARE bool dontAddTarget = false;
+    int iy;
+
+    for (iy = 0; iy < gBmMapSize.y; ++iy)
+    {
+        if (gBmMapUnit[iy][x])
+        {
+#if (defined(SID_Absolve) && (COMMON_SKILL_VALID(SID_Absolve)))
+            if (SkillTester(GetUnit(gBmMapUnit[iy][x]), SID_Absolve))
+                dontAddTarget = true;
+#endif
+            if (!dontAddTarget)
+                AddTarget(x, iy, gBmMapUnit[iy][x], damage);
+        }
+    }
+}
+
+LYN_REPLACE_CHECK(GenerateGasTrapTargets);
+void GenerateGasTrapTargets(int x, int y, int damage, int facing)
+{
+    FORCE_DECLARE bool dontAddTarget = false;
+
+    int i;
+
+    int xInc = 0;
+    int yInc = 0;
+
+    switch (facing)
+    {
+
+        case FACING_UP:
+            xInc = 0;
+            yInc = -1;
+
+            break;
+
+        case FACING_DOWN:
+            xInc = 0;
+            yInc = +1;
+
+            break;
+
+        case FACING_LEFT:
+            xInc = -1;
+            yInc = 0;
+
+            break;
+
+        case FACING_RIGHT:
+            xInc = +1;
+            yInc = 0;
+
+            break;
+
+    } // switch (facing)
+
+    for (i = 2; i >= 0; --i)
+    {
+        x += xInc;
+        y += yInc;
+
+        if (gBmMapUnit[y][x])
+        {
+#if (defined(SID_Absolve) && (COMMON_SKILL_VALID(SID_Absolve)))
+            if (SkillTester(GetUnit(gBmMapUnit[y][x]), SID_Absolve))
+                dontAddTarget = true;
+#endif
+            if (!dontAddTarget)
+                AddTarget(x, y, gBmMapUnit[y][x], damage);
+        }
+    }
 }
