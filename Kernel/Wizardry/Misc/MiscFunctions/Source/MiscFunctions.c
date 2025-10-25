@@ -3631,3 +3631,41 @@ int EvCheck0A_SHOP(struct EventInfo * info)
 
     return 0;
 }
+
+LYN_REPLACE_CHECK(BeginUnitPoisonDamageAnim);
+void BeginUnitPoisonDamageAnim(struct Unit * unit, int damage)
+{
+
+#if (defined(SID_PoisonHeal) && COMMON_SKILL_VALID(SID_PoisonHeal))
+    if (SkillTester(&gBattleActor.unit, SID_PoisonHeal))
+    {
+        BeginUnitHealAnim(&gBattleActor.unit, damage);
+        AddUnitHp(&gBattleActor.unit, damage * 2); // A quick fix for poison damage applying, double the damage and heal it
+        return;
+    }
+#endif
+
+    BattleInitItemEffect(unit, -1);
+
+    AddUnitHp(&gBattleActor.unit, -damage);
+
+    // if (gBattleActor.unit.curHP < 0)
+    // {
+    //     gBattleActor.unit.curHP = 0;
+    // }
+
+    gBattleHitIterator->hpChange = gBattleActor.hpInitial - gBattleActor.unit.curHP;
+
+    if (gBattleActor.unit.curHP == 0)
+    {
+        gBattleHitIterator->info |= BATTLE_HIT_INFO_FINISHES;
+    }
+
+    BattleHitTerminate();
+
+    BeginMapAnimForPoisonDmg();
+
+    RenderMapForFogFadeIfUnitDied(unit);
+
+    return;
+}
