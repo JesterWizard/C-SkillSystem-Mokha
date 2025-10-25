@@ -4,6 +4,7 @@
 #include "skill-system.h"
 #include "constants/skills.h"
 #include "strmag.h"
+#include "jester_headers/custom-functions.h"
 
 extern int (*gpExternalPrePhaseHealCalc)(int cur, struct Unit *unit);
 

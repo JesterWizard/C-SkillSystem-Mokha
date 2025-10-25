@@ -14,7 +14,7 @@ const struct SkillPreloadPConf gSkillPreloadPData[0x100] = {
         [1] = SID_Armsthrift,
         [2] = SID_MountainClimber,
         [3] = SID_Renewal,
-        [4] = SID_TowerShield
+        [4] = SID_ShotputPlus
     }},
     // 02
     [CHARACTER_SETH] = {{

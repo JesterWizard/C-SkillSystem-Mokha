@@ -133,6 +133,9 @@ const u16 gSkillUpgradePlusLookup[MAX_SKILL_NUM + 1] = {
     #if defined(SID_Mercy) && defined(SID_MercyPlus)
         [SID_MercyPlus] = SID_Mercy,
     #endif
+    #if defined(SID_Shotput) && defined(SID_ShotputPlus)
+        [SID_ShotputPlus] = SID_Shotput,
+    #endif
 };
 
 const u16 gSkillUpgradeBaseLookup[MAX_SKILL_NUM + 1] = {
@@ -240,6 +243,9 @@ const u16 gSkillUpgradeBaseLookup[MAX_SKILL_NUM + 1] = {
     #endif
     #if defined(SID_Mercy) && defined(SID_MercyPlus)
         [SID_Mercy] = SID_MercyPlus,
+    #endif
+    #if defined(SID_Shotput) && defined(SID_ShotputPlus)
+        [SID_Shotput] = SID_ShotputPlus,
     #endif
 };
 
