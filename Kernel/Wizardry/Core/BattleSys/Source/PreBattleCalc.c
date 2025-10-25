@@ -307,6 +307,23 @@ STATIC_DECLAR void Local_PreBattleCalcInitExt(struct BattleUnit* attacker, struc
 
 void PreBattleCalcInit(struct BattleUnit* attacker, struct BattleUnit* defender)
 {
+
+#if (defined(SID_Trace) && COMMON_SKILL_VALID(SID_Trace))
+    if (BattleFastSkillTester(attacker, SID_Trace))
+    {
+        struct SkillList * attackerList =  GetUnitSkillList(&attacker->unit);
+        struct SkillList * defenderList =  GetUnitSkillList(&defender->unit);
+        
+        u16 defenderFirstSkill = defenderList->sid[0];
+
+        for (int i = 0; i < attackerList->amt; i++)
+        {
+            if (attackerList->sid[i] == SID_Trace)
+                attackerList->sid[i] = defenderFirstSkill; 
+        }
+    }
+#endif
+
 	/* Only calc at once */
 	if (attacker == &gBattleActor) {
 		Local_PreBattleCalcInitExt(attacker, defender);
