@@ -7,6 +7,8 @@
 #include "battle-system.h"
 #include "kernel-lib.h"
 #include "constants/texts.h"
+#include "skill-system.h"
+#include "constants/skills.h"
 
 static void DrawPage1TextCommon(void)
 {
@@ -116,49 +118,61 @@ static void DrawPage1TextCommon(void)
 
 static void DrawPage1ValueReal(void)
 {
-	struct Unit *unit = gStatScreen.unit;
+    struct Unit * unit = gStatScreen.unit;
 
-	DrawStatWithBarRework(0, 0x5, 0x1,
-					gUiTmScratchA, gUiTmScratchC,
-					unit->pow,
-					GetUnitPower(unit),
-					GetUnitMaxStatusPow(unit));
+    int limitBreaker = 0;
 
-	DrawStatWithBarRework(1, 0x5, 0x3,
-					gUiTmScratchA, gUiTmScratchC,
-					UNIT_MAG(unit),
-					GetUnitMagic(unit),
-					GetUnitMaxStatusMag(unit));
+#if defined(SID_LimitBreaker) && (COMMON_SKILL_VALID(SID_LimitBreaker))
+    if (SkillTester(unit, SID_LimitBreaker))
+        limitBreaker = SKILL_EFF0(SID_LimitBreaker);
+#endif
 
-	DrawStatWithBarRework(2, 0x5, 0x5,
-					gUiTmScratchA, gUiTmScratchC,
-					unit->skl,
-					GetUnitSkill(unit),
-					GetUnitMaxStatusSkl(unit));
+#if defined(SID_LimitBreakerPlus) && (COMMON_SKILL_VALID(SID_LimitBreakerPlus))
+    if (SkillTester(unit, SID_LimitBreakerPlus))
+        limitBreaker = SKILL_EFF0(SID_LimitBreakerPlus);
+#endif
 
-	DrawStatWithBarRework(3, 0x5, 0x7,
-					gUiTmScratchA, gUiTmScratchC,
-					unit->spd,
-					GetUnitSpeed(unit),
-					GetUnitMaxStatusSpd(unit));
+    DrawStatWithBarRework(0, 0x5, 0x1,
+                    gUiTmScratchA, gUiTmScratchC,
+                    unit->pow,
+                    GetUnitPower(unit),
+                    UNIT_POW_MAX(unit) + limitBreaker);
 
-	DrawStatWithBarRework(4, 0x5, 0x9,
-					gUiTmScratchA, gUiTmScratchC,
-					unit->lck,
-					GetUnitLuck(unit),
-					GetUnitMaxStatusLck(unit));
+    DrawStatWithBarRework(1, 0x5, 0x3,
+                    gUiTmScratchA, gUiTmScratchC,
+                    UNIT_MAG(unit),
+                    GetUnitMagic(unit),
+                    GetUnitMaxMagic(unit) + limitBreaker);
 
-	DrawStatWithBarRework(5, 0x5, 0xB,
-					gUiTmScratchA, gUiTmScratchC,
-					unit->def,
-					GetUnitDefense(unit),
-					GetUnitMaxStatusDef(unit));
+    DrawStatWithBarRework(2, 0x5, 0x5,
+                    gUiTmScratchA, gUiTmScratchC,
+                    unit->skl,
+                    GetUnitSkill(unit),
+                    UNIT_SKL_MAX(unit) + limitBreaker);
 
-	DrawStatWithBarRework(6, 0x5, 0xD,
-					gUiTmScratchA, gUiTmScratchC,
-					unit->res,
-					GetUnitResistance(unit),
-					GetUnitMaxStatusRes(unit));
+    DrawStatWithBarRework(3, 0x5, 0x7,
+                    gUiTmScratchA, gUiTmScratchC,
+                    unit->spd,
+                    GetUnitSpeed(unit),
+                    UNIT_SPD_MAX(unit) + limitBreaker);
+
+    DrawStatWithBarRework(4, 0x5, 0x9,
+                    gUiTmScratchA, gUiTmScratchC,
+                    unit->lck,
+                    GetUnitLuck(unit),
+                    UNIT_LCK_MAX(unit) + limitBreaker);
+
+    DrawStatWithBarRework(5, 0x5, 0xB,
+                    gUiTmScratchA, gUiTmScratchC,
+                    unit->def,
+                    GetUnitDefense(unit),
+                    UNIT_DEF_MAX(unit) + limitBreaker);
+
+    DrawStatWithBarRework(6, 0x5, 0xD,
+                    gUiTmScratchA, gUiTmScratchC,
+                    unit->res,
+                    GetUnitResistance(unit),
+                    UNIT_RES_MAX(unit) + limitBreaker);
 }
 
 static void DrawPage1ValueCommon(void)

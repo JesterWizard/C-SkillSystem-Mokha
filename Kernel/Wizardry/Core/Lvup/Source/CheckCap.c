@@ -211,7 +211,19 @@ void _UnitCheckStatCaps(struct Unit *unit)
 {
 	UnitCheckStatCapsVanilla(unit);
 
+    int limitBreaker = 0;
+
+#if defined(SID_LimitBreakerPlus) && (COMMON_SKILL_VALID(SID_LimitBreakerPlus))
+    if (SkillTester(unit, SID_LimitBreakerPlus))
+        limitBreaker = SKILL_EFF0(SID_LimitBreakerPlus);
+#endif
+
+#if defined(SID_LimitBreaker) && (COMMON_SKILL_VALID(SID_LimitBreaker))
+    if (SkillTester(unit, SID_LimitBreaker) && limitBreaker == 0)
+        limitBreaker = SKILL_EFF0(SID_LimitBreaker);
+#endif
+
 	/* Hooks */
-	if (UNIT_MAG(unit) > GetUnitMaxStatusMag(unit))
-		UNIT_MAG(unit) = GetUnitMaxStatusMag(unit);
+	if (UNIT_MAG(unit) > GetUnitMaxStatusMag(unit) + limitBreaker)
+		UNIT_MAG(unit) = GetUnitMaxStatusMag(unit) + limitBreaker;
 }

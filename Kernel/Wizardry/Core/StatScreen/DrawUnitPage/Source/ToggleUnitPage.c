@@ -136,56 +136,68 @@ STATIC_DECLAR void ToggleUnitPageGrowth(void)
 
 STATIC_DECLAR void ToggleUnitPageBm(void)
 {
-	struct Unit *unit = gStatScreen.unit;
+	 struct Unit *unit = gStatScreen.unit;
 
-	DrawStatWithBarRework(0, 0x5, 0x1,
-					gBG0TilemapBuffer + TILEMAP_INDEX(12, 2),
-					gBG2TilemapBuffer + TILEMAP_INDEX(12, 2),
-					unit->pow,
-					GetUnitPower(unit),
-					GetUnitMaxStatusPow(unit));
+    int limitBreaker = 0;
 
-	DrawStatWithBarRework(1, 0x5, 0x3,
-					gBG0TilemapBuffer + TILEMAP_INDEX(12, 2),
-					gBG2TilemapBuffer + TILEMAP_INDEX(12, 2),
-					UNIT_MAG(unit),
-					GetUnitMagic(unit),
-					GetUnitMaxStatusMag(unit));
+#if defined(SID_LimitBreaker) && (COMMON_SKILL_VALID(SID_LimitBreaker))
+    if (SkillTester(unit, SID_LimitBreaker))
+        limitBreaker = SKILL_EFF0(SID_LimitBreaker);
+#endif
 
-	DrawStatWithBarRework(2, 0x5, 0x5,
-					gBG0TilemapBuffer + TILEMAP_INDEX(12, 2),
-					gBG2TilemapBuffer + TILEMAP_INDEX(12, 2),
-					unit->skl,
-					GetUnitSkill(unit),
-					GetUnitMaxStatusSkl(unit));
+#if defined(SID_LimitBreakerPlus) && (COMMON_SKILL_VALID(SID_LimitBreakerPlus))
+    if (SkillTester(unit, SID_LimitBreakerPlus))
+        limitBreaker = SKILL_EFF0(SID_LimitBreakerPlus);
+#endif
 
-	DrawStatWithBarRework(3, 0x5, 0x7,
-					gBG0TilemapBuffer + TILEMAP_INDEX(12, 2),
-					gBG2TilemapBuffer + TILEMAP_INDEX(12, 2),
-					unit->spd,
-					GetUnitSpeed(unit),
-					GetUnitMaxStatusSpd(unit));
+    DrawStatWithBarRework(0, 0x5, 0x1,
+                          gBG0TilemapBuffer + TILEMAP_INDEX(12, 2),
+                          gBG2TilemapBuffer + TILEMAP_INDEX(12, 2),
+                          unit->pow,
+                          GetUnitPower(unit),
+                          UNIT_POW_MAX(unit) + limitBreaker);
 
-	DrawStatWithBarRework(4, 0x5, 0x9,
-					gBG0TilemapBuffer + TILEMAP_INDEX(12, 2),
-					gBG2TilemapBuffer + TILEMAP_INDEX(12, 2),
-					unit->lck,
-					GetUnitLuck(unit),
-					GetUnitMaxStatusLck(unit));
+    DrawStatWithBarRework(1, 0x5, 0x3,
+                          gBG0TilemapBuffer + TILEMAP_INDEX(12, 2),
+                          gBG2TilemapBuffer + TILEMAP_INDEX(12, 2),
+                          UNIT_MAG(unit),
+                          GetUnitMagic(unit),
+                          GetUnitMaxMagic(unit) + limitBreaker);
 
-	DrawStatWithBarRework(5, 0x5, 0xB,
-					gBG0TilemapBuffer + TILEMAP_INDEX(12, 2),
-					gBG2TilemapBuffer + TILEMAP_INDEX(12, 2),
-					unit->def,
-					GetUnitDefense(unit),
-					GetUnitMaxStatusDef(unit));
+    DrawStatWithBarRework(2, 0x5, 0x5,
+                          gBG0TilemapBuffer + TILEMAP_INDEX(12, 2),
+                          gBG2TilemapBuffer + TILEMAP_INDEX(12, 2),
+                          unit->skl,
+                          GetUnitSkill(unit),
+                          UNIT_SKL_MAX(unit) + limitBreaker);
 
-	DrawStatWithBarRework(6, 0x5, 0xD,
-					gBG0TilemapBuffer + TILEMAP_INDEX(12, 2),
-					gBG2TilemapBuffer + TILEMAP_INDEX(12, 2),
-					unit->res,
-					GetUnitResistance(unit),
-					GetUnitMaxStatusRes(unit));
+    DrawStatWithBarRework(3, 0x5, 0x7,
+                          gBG0TilemapBuffer + TILEMAP_INDEX(12, 2),
+                          gBG2TilemapBuffer + TILEMAP_INDEX(12, 2),
+                          unit->spd,
+                          GetUnitSpeed(unit),
+                          UNIT_SPD_MAX(unit) + limitBreaker);
+
+    DrawStatWithBarRework(4, 0x5, 0x9,
+                          gBG0TilemapBuffer + TILEMAP_INDEX(12, 2),
+                          gBG2TilemapBuffer + TILEMAP_INDEX(12, 2),
+                          unit->lck,
+                          GetUnitLuck(unit),
+                          UNIT_LCK_MAX(unit) + limitBreaker);
+
+    DrawStatWithBarRework(5, 0x5, 0xB,
+                          gBG0TilemapBuffer + TILEMAP_INDEX(12, 2),
+                          gBG2TilemapBuffer + TILEMAP_INDEX(12, 2),
+                          unit->def,
+                          GetUnitDefense(unit),
+                          UNIT_DEF_MAX(unit) + limitBreaker);
+
+    DrawStatWithBarRework(6, 0x5, 0xD,
+                          gBG0TilemapBuffer + TILEMAP_INDEX(12, 2),
+                          gBG2TilemapBuffer + TILEMAP_INDEX(12, 2),
+                          unit->res,
+                          GetUnitResistance(unit),
+                          UNIT_RES_MAX(unit) + limitBreaker);
 }
 
 
