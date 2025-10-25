@@ -263,6 +263,35 @@ void ComputeBattleUnitHitRate(struct BattleUnit* bu) {
 	bu->battleHitRate = status;
 }
 
+LYN_REPLACE_CHECK(ComputeBattleUnitSupportBonuses);
+void ComputeBattleUnitSupportBonuses(struct BattleUnit* attacker, struct BattleUnit* defender) {
+    if (!(gBattleStats.config & BATTLE_CONFIG_ARENA) || gPlaySt.chapterWeatherId) {
+        struct SupportBonuses tmpBonuses;
+
+        GetUnitSupportBonuses(&attacker->unit, &tmpBonuses);
+
+#if (defined(SID_Extrovert) && COMMON_SKILL_VALID(SID_Extrovert))
+    if (BattleFastSkillTester(attacker, SID_Extrovert))
+    {
+        tmpBonuses.bonusAttack *= 2;
+        tmpBonuses.bonusDefense *= 2;
+        tmpBonuses.bonusHit *= 2;
+        tmpBonuses.bonusAvoid *= 2;
+        tmpBonuses.bonusCrit *= 2;
+        tmpBonuses.bonusDodge *= 2;
+    }
+
+#endif
+
+        attacker->battleAttack    += tmpBonuses.bonusAttack;
+        attacker->battleDefense   += tmpBonuses.bonusDefense;
+        attacker->battleHitRate   += tmpBonuses.bonusHit;
+        attacker->battleAvoidRate += tmpBonuses.bonusAvoid;
+        attacker->battleCritRate  += tmpBonuses.bonusCrit;
+        attacker->battleDodgeRate += tmpBonuses.bonusDodge;
+    }
+}
+
 STATIC_DECLAR void Local_PreBattleCalcInitExt(struct BattleUnit* attacker, struct BattleUnit* defender)
 {
 	struct BattleStatus* st;
