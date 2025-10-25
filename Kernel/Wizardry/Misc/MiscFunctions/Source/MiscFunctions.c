@@ -3932,3 +3932,32 @@ bool SkillTesterPlus(struct Unit *unit, u16 sid)
     const u16 base = (sid <= MAX_SKILL_NUM) ? gSkillUpgradePlusLookup[sid] : 0;
     return base ? SkillTester(unit, base) : false;
 }
+
+LYN_REPLACE_CHECK(UnitUpdateUsedItem);
+void UnitUpdateUsedItem(struct Unit * unit, int itemSlot)
+{
+
+    /**
+     * If the item is a scroll, we need to check for the scroll savant skill.
+     * If the unit has the skill, then we skip the check to reduce item uses.
+     */
+    switch (GetItemIndex(unit->items[itemSlot]))
+    {
+        case CONFIG_ITEM_INDEX_SKILL_SCROLL_1:
+        case CONFIG_ITEM_INDEX_SKILL_SCROLL_2:
+        case CONFIG_ITEM_INDEX_SKILL_SCROLL_3:
+        case CONFIG_ITEM_INDEX_SKILL_SCROLL_4:
+#if defined(SID_ScrollSavant) && (COMMON_SKILL_VALID(SID_ScrollSavant))
+            if (SkillTester(unit, SID_ScrollSavant))
+                return;
+#endif
+        default:
+            break;
+    }
+
+    if (unit->items[itemSlot])
+    {
+        unit->items[itemSlot] = GetItemAfterUse(unit->items[itemSlot]);
+        UnitRemoveInvalidItems(unit);
+    }
+}
