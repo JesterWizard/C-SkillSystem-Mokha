@@ -10,7 +10,7 @@
 const struct SkillPreloadPConf gSkillPreloadPData[0x100] = {
     // 01
     [CHARACTER_EIRIKA] = {{
-        [0] = SID_Survivor,
+        [0] = SID_Mercurious,
     }},
     // 02
     [CHARACTER_SETH] = {{

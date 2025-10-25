@@ -148,7 +148,7 @@ STATIC_DECLAR void UnitLvup_Vanilla(struct BattleUnit* bu, int bonus)
 #endif
 
 #if (defined(SID_FaustianBargain) && (COMMON_SKILL_VALID(SID_FaustianBargain)))
-    if (BattleFastSkillTester(bu, SID_FaustianBargain))
+    if (SkillTester(unit, SID_FaustianBargain))
     {
         *statChanges[0] -= 1;
         const int rand_stat_index = k_umod(NextRN_100(), 6) + 1;
@@ -157,7 +157,7 @@ STATIC_DECLAR void UnitLvup_Vanilla(struct BattleUnit* bu, int bonus)
 #endif
 
 #if (defined(SID_TripleUp) && (COMMON_SKILL_VALID(SID_TripleUp)))
-    if (BattleFastSkillTester(bu, SID_TripleUp))
+    if (SkillTester(unit, SID_TripleUp))
     {
         // Check if any values are greater than 0
         int anyStatIncrease = 0; // Flag to track if there's any stats to increase
@@ -199,7 +199,7 @@ STATIC_DECLAR void UnitLvup_Vanilla(struct BattleUnit* bu, int bonus)
 #endif
 
 #if (defined(SID_DoubleUp) && (COMMON_SKILL_VALID(SID_DoubleUp)))
-    if (BattleFastSkillTester(bu, SID_DoubleUp) && !tripleUpExecuted)
+    if (SkillTester(unit, SID_DoubleUp) && !tripleUpExecuted)
     {
         // Check if any values are greater than 0
         int anyStatIncrease = 0; // Flag to track if there's any stat greater than 0
@@ -240,13 +240,13 @@ STATIC_DECLAR void UnitLvup_Vanilla(struct BattleUnit* bu, int bonus)
 #endif
 
 #if (defined(SID_Mercurious) && (COMMON_SKILL_VALID(SID_Mercurious)))
-    if (BattleFastSkillTester(bu, SID_Mercurious) && Roll1RN(SKILL_EFF0(SID_Mercurious)))
+    if (SkillTester(unit, SID_Mercurious) && Roll1RN(SKILL_EFF0(SID_Mercurious)))
         for (u8 i = 0; i < ARRAY_COUNT(statChanges); i++)
             *statChanges[i] *= SKILL_EFF1(SID_Mercurious);
 #endif
 
 #if (defined(SID_Velocity) && (COMMON_SKILL_VALID(SID_Velocity)))
-    if (BattleFastSkillTester(bu, SID_Velocity) && Roll1RN(SKILL_EFF0(SID_Velocity)))
+    if (SkillTester(unit, SID_Velocity) && Roll1RN(SKILL_EFF0(SID_Velocity)))
         GetUnit(bu->unit.index)->movBonus += 1;
 #endif
 
