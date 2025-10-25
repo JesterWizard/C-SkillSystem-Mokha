@@ -268,3 +268,138 @@ void ExecFortify(ProcPtr proc)
 	BattleApplyItemEffect(proc);
 	BeginBattleAnimations();
 }
+
+LYN_REPLACE_CHECK(ExecStatusStaff);
+void ExecStatusStaff(ProcPtr proc) {
+    int accuracy = 0;
+
+    BattleInitItemEffect(GetUnit(gActionData.subjectIndex),
+        gActionData.itemSlotIndex);
+
+    BattleInitItemEffectTarget(GetUnit(gActionData.targetIndex));
+
+#if defined(SID_NinthCircle) && (COMMON_SKILL_VALID(SID_NinthCircle))
+    if (SkillTester(gActiveUnit, SID_NinthCircle))
+    {
+        MakeTargetListForRangedStatusStaves(gActiveUnit);
+        int targetCount = GetSelectTargetCount();
+
+        for (int i = 0; i < targetCount; i++)
+        {
+            struct Unit* target = GetUnit(GetTarget(i)->uid);
+
+        #ifdef CONFIG_CUSTOM_STAFF_ACCURACY
+            accuracy = CONFIG_CUSTOM_STAFF_ACCURACY;
+        #else
+            accuracy = GetOffensiveStaffAccuracy(
+                GetUnit(gActionData.subjectIndex),
+                GetUnit(gActionData.targetIndex)
+            );
+        #endif
+            gBattleActor.battleEffectiveHitRate = accuracy;
+
+            if (Roll1RN(accuracy)) {
+                switch (GetItemIndex(gBattleActor.weaponBefore)) {
+                case ITEM_STAFF_BERSERK:
+                    SetUnitStatus(target, UNIT_STATUS_BERSERK);
+                    break;
+                case ITEM_STAFF_SILENCE:
+                    SetUnitStatus(target, UNIT_STATUS_SILENCED);
+                    break;
+                case ITEM_STAFF_SLEEP:
+                    SetUnitStatus(target, UNIT_STATUS_SLEEP);
+                    break;
+                }
+            }
+        }
+    }
+    else
+    {
+        if (!Roll1RN(accuracy)) {
+            gBattleHitIterator->attributes |= BATTLE_HIT_ATTR_MISS;
+        } else {
+            switch (GetItemIndex(gBattleActor.weaponBefore)) {
+                case ITEM_STAFF_BERSERK:
+                    gBattleTarget.statusOut = UNIT_STATUS_BERSERK;
+                    break;
+                case ITEM_STAFF_SILENCE:
+                    gBattleTarget.statusOut = UNIT_STATUS_SILENCED;
+                    break;
+                case ITEM_STAFF_SLEEP:
+                    gBattleTarget.statusOut = UNIT_STATUS_SLEEP;
+                    break;
+                case ITEM_MONSTER_STONE:
+                    switch (gPlaySt.faction) {
+                        case FACTION_BLUE:
+                            if (UNIT_FACTION(&gBattleTarget.unit) == FACTION_BLUE) {
+                                gBattleTarget.statusOut = UNIT_STATUS_13;
+                            } else {
+                                gBattleTarget.statusOut = UNIT_STATUS_PETRIFY;
+                            }
+                            break;
+                        case FACTION_RED:
+                            if (UNIT_FACTION(&gBattleTarget.unit) == FACTION_RED) {
+                                gBattleTarget.statusOut = UNIT_STATUS_13;
+                            } else {
+                                gBattleTarget.statusOut = UNIT_STATUS_PETRIFY;
+                            }
+                            break;
+                        case FACTION_GREEN:
+                            if (UNIT_FACTION(&gBattleTarget.unit) == FACTION_GREEN) {
+                                gBattleTarget.statusOut = UNIT_STATUS_13;
+                            } else {
+                                gBattleTarget.statusOut = UNIT_STATUS_PETRIFY;
+                            }
+                            break;
+                    }
+                    break;
+            }
+        }
+    }
+#else
+    if (!Roll1RN(accuracy)) {
+        gBattleHitIterator->attributes |= BATTLE_HIT_ATTR_MISS;
+    } else {
+        switch (GetItemIndex(gBattleActor.weaponBefore)) {
+            case ITEM_STAFF_BERSERK:
+                gBattleTarget.statusOut = UNIT_STATUS_BERSERK;
+                break;
+            case ITEM_STAFF_SILENCE:
+                gBattleTarget.statusOut = UNIT_STATUS_SILENCED;
+                break;
+            case ITEM_STAFF_SLEEP:
+                gBattleTarget.statusOut = UNIT_STATUS_SLEEP;
+                break;
+            case ITEM_MONSTER_STONE:
+                switch (gPlaySt.faction) {
+                    case FACTION_BLUE:
+                        if (UNIT_FACTION(&gBattleTarget.unit) == FACTION_BLUE) {
+                            gBattleTarget.statusOut = UNIT_STATUS_13;
+                        } else {
+                            gBattleTarget.statusOut = UNIT_STATUS_PETRIFY;
+                        }
+                        break;
+                    case FACTION_RED:
+                        if (UNIT_FACTION(&gBattleTarget.unit) == FACTION_RED) {
+                            gBattleTarget.statusOut = UNIT_STATUS_13;
+                        } else {
+                            gBattleTarget.statusOut = UNIT_STATUS_PETRIFY;
+                        }
+                        break;
+                    case FACTION_GREEN:
+                        if (UNIT_FACTION(&gBattleTarget.unit) == FACTION_GREEN) {
+                            gBattleTarget.statusOut = UNIT_STATUS_13;
+                        } else {
+                            gBattleTarget.statusOut = UNIT_STATUS_PETRIFY;
+                        }
+                        break;
+                }
+                break;
+        }
+    }
+#endif
+    BattleApplyItemEffect(proc);
+    BeginBattleAnimations();
+
+    return;
+}
