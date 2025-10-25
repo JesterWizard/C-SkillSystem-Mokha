@@ -5,6 +5,7 @@
 #include "kernel-lib.h"
 #include "skill-system.h"
 #include "constants/skills.h"
+#include "jester_headers/custom-functions.h"
 
 static void _growth_disp(int x, int y, int growth)
 {
@@ -146,7 +147,7 @@ STATIC_DECLAR void ToggleUnitPageBm(void)
 #endif
 
 #if defined(SID_LimitBreakerPlus) && (COMMON_SKILL_VALID(SID_LimitBreakerPlus))
-    if (SkillTester(unit, SID_LimitBreakerPlus))
+    if (SkillTesterPlus(unit, SID_LimitBreakerPlus))
         limitBreaker = SKILL_EFF0(SID_LimitBreakerPlus);
 #endif
 

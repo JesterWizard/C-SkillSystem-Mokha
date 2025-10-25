@@ -4,6 +4,7 @@
 #include "constants/skills.h"
 #include "bwl.h"
 #include "unit-expa.h"
+#include "jester_headers/custom-functions.h"
 
 int _GetUnitSpeed(struct Unit *unit)
 {
@@ -86,7 +87,7 @@ int SpdGetterSkills(int status, struct Unit *unit)
 #endif
 
 #if defined(SID_FuryPlus) && (COMMON_SKILL_VALID(SID_FuryPlus))
-	if (SkillTester(unit, SID_FuryPlus))
+	if (SkillTesterPlus(unit, SID_FuryPlus))
 		status += SKILL_EFF0(SID_FuryPlus);
 #endif
 
@@ -96,7 +97,7 @@ int SpdGetterSkills(int status, struct Unit *unit)
 #endif
 
 #if defined(SID_RuinedBladePlus) && (COMMON_SKILL_VALID(SID_RuinedBladePlus))
-	if (SkillTester(unit, SID_RuinedBladePlus))
+	if (SkillTesterPlus(unit, SID_RuinedBladePlus))
 		status += SKILL_EFF0(SID_RuinedBladePlus);
 #endif
 

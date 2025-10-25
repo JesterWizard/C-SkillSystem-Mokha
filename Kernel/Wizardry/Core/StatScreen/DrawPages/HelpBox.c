@@ -5,6 +5,7 @@
 #include "savemenu.h"
 #include "uichapterstatus.h"
 #include "unitlistscreen.h"
+#include "constants/skills.h"
 
 LYN_REPLACE_CHECK(StartStatScreenHelp);
 void StartStatScreenHelp(int pageid, struct Proc *proc)

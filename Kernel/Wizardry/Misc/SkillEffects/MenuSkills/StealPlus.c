@@ -4,6 +4,7 @@
 #include "constants/skills.h"
 #include "constants/texts.h"
 #include "jester_headers/Forging.h"
+#include "jester_headers/custom-functions.h"
 
 extern u16 gUnknown_085A0D4C[];
 
@@ -110,7 +111,7 @@ u8 StealItemMenuCommand_Usability(const struct MenuItemDef *def, int number)
     }
 
 #if defined(SID_StealPlus) && (COMMON_SKILL_VALID(SID_StealPlus))
-    if (SkillTester(gActiveUnit, SID_StealPlus))
+    if (SkillTesterPlus(gActiveUnit, SID_StealPlus))
     {
         if (_GetUnitCon(gActiveUnit) > GetItemWeight(GetUnit(gActionData.targetIndex)->items[number]) && number != 0)
             return MENU_ENABLED;
@@ -127,7 +128,7 @@ int StealItemMenuCommand_Draw(struct MenuProc *menu, struct MenuItemProc *menuIt
     s8 isStealable = IsItemStealable(item);
 
 #if defined(SID_StealPlus) && (COMMON_SKILL_VALID(SID_StealPlus))
-    if (SkillTester(gActiveUnit, SID_StealPlus) && isStealable)
+    if (SkillTesterPlus(gActiveUnit, SID_StealPlus) && isStealable)
     {
         if (_GetUnitCon(gActiveUnit) > GetItemWeight(item) && menuItem->itemNumber != 0)
         {
@@ -165,7 +166,7 @@ s8 IsItemStealable(int item) {
 #endif
 
 #if defined(SID_StealPlus) && (COMMON_SKILL_VALID(SID_StealPlus))
-    if (SkillTester(gActiveUnit, SID_StealPlus))
+    if (SkillTesterPlus(gActiveUnit, SID_StealPlus))
 	{
         stealable = (GetItemType(item) == ITYPE_ITEM  || 
         GetItemType(item) == ITYPE_ANIMA ||
@@ -229,7 +230,7 @@ void AddAsTarget_IfCanStealFrom(struct Unit* unit) {
         }
 
 #if defined(SID_StealPlus) && (COMMON_SKILL_VALID(SID_StealPlus))
-        if (SkillTester(gActiveUnit, SID_StealPlus)) 
+        if (SkillTesterPlus(gActiveUnit, SID_StealPlus)) 
         {
             if (GetUnitEquippedWeaponSlot(unit) == i) {
                 continue;

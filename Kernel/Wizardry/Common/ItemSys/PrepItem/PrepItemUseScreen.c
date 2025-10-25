@@ -5,6 +5,7 @@
 #include "skill-system.h"
 #include "constants/skills.h"
 #include "kernel-lib.h"
+#include "jester_headers/custom-functions.h"
 
 #define LOCAL_TRACE 0
 
@@ -117,7 +118,7 @@ void DrawPrepScreenItemUseStatBars(struct Unit * unit, int mask)
 #endif
 
 #if defined(SID_LimitBreakerPlus) && (COMMON_SKILL_VALID(SID_LimitBreakerPlus))
-    if (SkillTester(unit, SID_LimitBreakerPlus))
+    if (SkillTesterPlus(unit, SID_LimitBreakerPlus))
         limitBreaker = SKILL_EFF0(SID_LimitBreakerPlus);
 #endif
 

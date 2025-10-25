@@ -4,6 +4,7 @@
 #include "bwl.h"
 #include "skill-system.h"
 #include "constants/skills.h"
+#include "jester_headers/custom-functions.h"
 
 STATIC_DECLAR NOINLINE void ApplyUnitPromotionVanilla(struct Unit *unit, u8 classId, int bonusCaps)
 {
@@ -85,7 +86,7 @@ void GenerateBattleUnitStatGainsComparativelyVanilla(struct BattleUnit *bu, stru
 #endif
 
 #if defined(SID_LimitBreakerPlus) && (COMMON_SKILL_VALID(SID_LimitBreakerPlus))
-        if (SkillTester(unit, SID_LimitBreakerPlus))
+        if (SkillTesterPlus(unit, SID_LimitBreakerPlus))
             bonusCaps = SKILL_EFF0(SID_LimitBreakerPlus);
 #endif
 
@@ -117,7 +118,7 @@ void ApplyUnitPromotion(struct Unit *unit, u8 jid)
 #endif
 
 #if defined(SID_LimitBreakerPlus) && (COMMON_SKILL_VALID(SID_LimitBreakerPlus))
-    if (SkillTester(unit, SID_LimitBreakerPlus))
+    if (SkillTesterPlus(unit, SID_LimitBreakerPlus))
         bonusCaps = SKILL_EFF0(SID_LimitBreakerPlus);
 #endif
 

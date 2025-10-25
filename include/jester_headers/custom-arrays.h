@@ -35,3 +35,10 @@ extern const struct MpSystemPInfoConfig gMpSystemPInfoConfigList[];
 
     int GetBiorhythmBonus(struct BattleUnit* bu, int turnCounter);
 #endif
+
+#ifndef MAX_SKILL_NUM
+#define MAX_SKILL_NUM 0x3FF
+#endif
+
+extern const u16 gSkillUpgradePlusLookup[MAX_SKILL_NUM + 1]; 
+extern const u16 gSkillUpgradeBaseLookup[MAX_SKILL_NUM + 1]; 

@@ -6,6 +6,7 @@
 #include "kernel-lib.h"
 #include "debuff.h"
 #include "jester_headers/class-pairs.h"
+#include "jester_headers/custom-functions.h"
 #include "status-getter.h"
 
 STATIC_DECLAR void CheckBattleUnitStatCapsVanilla(struct Unit *unit, struct BattleUnit *bu)
@@ -26,7 +27,7 @@ STATIC_DECLAR void CheckBattleUnitStatCapsVanilla(struct Unit *unit, struct Batt
 #endif
 
 #if defined(SID_LimitBreakerPlus) && (COMMON_SKILL_VALID(SID_LimitBreakerPlus))
-    if (SkillTester(unit, SID_LimitBreakerPlus))
+    if (SkillTesterPlus(unit, SID_LimitBreakerPlus))
         limitBreaker = SKILL_EFF0(SID_LimitBreakerPlus);
 #endif
 
@@ -106,14 +107,14 @@ STATIC_DECLAR void UnitCheckStatCapsVanilla(struct Unit *unit)
     int UNIT_CON_BASE = UNIT_CON_BASE(unit);
     int UNIT_MOV_BASE = UNIT_MOV_BASE(unit);
 
-#if defined(SID_LimitBreakerPlus) && (COMMON_SKILL_VALID(SID_LimitBreakerPlus))
-    if (SkillTester(unit, SID_LimitBreakerPlus))
-        limitBreaker = SKILL_EFF0(SID_LimitBreakerPlus);
-#endif
-
 #if defined(SID_LimitBreaker) && (COMMON_SKILL_VALID(SID_LimitBreaker))
     if (SkillTester(unit, SID_LimitBreaker) && limitBreaker == 0)
         limitBreaker = SKILL_EFF0(SID_LimitBreaker);
+#endif
+
+#if defined(SID_LimitBreakerPlus) && (COMMON_SKILL_VALID(SID_LimitBreakerPlus))
+    if (SkillTesterPlus(unit, SID_LimitBreakerPlus))
+        limitBreaker = SKILL_EFF0(SID_LimitBreakerPlus);
 #endif
 
 #if defined(SID_OgreBody) && (COMMON_SKILL_VALID(SID_OgreBody))
@@ -203,14 +204,14 @@ void _UnitCheckStatCaps(struct Unit *unit)
 
     int limitBreaker = 0;
 
-#if defined(SID_LimitBreakerPlus) && (COMMON_SKILL_VALID(SID_LimitBreakerPlus))
-    if (SkillTester(unit, SID_LimitBreakerPlus))
-        limitBreaker = SKILL_EFF0(SID_LimitBreakerPlus);
-#endif
-
 #if defined(SID_LimitBreaker) && (COMMON_SKILL_VALID(SID_LimitBreaker))
     if (SkillTester(unit, SID_LimitBreaker) && limitBreaker == 0)
         limitBreaker = SKILL_EFF0(SID_LimitBreaker);
+#endif
+
+#if defined(SID_LimitBreakerPlus) && (COMMON_SKILL_VALID(SID_LimitBreakerPlus))
+    if (SkillTesterPlus(unit, SID_LimitBreakerPlus))
+        limitBreaker = SKILL_EFF0(SID_LimitBreakerPlus);
 #endif
 
 	/* Hooks */

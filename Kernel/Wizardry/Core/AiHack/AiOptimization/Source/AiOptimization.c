@@ -7,6 +7,7 @@
 #include "weapon-range.h"
 #include "status-getter.h"
 #include "gaiden-magic.h"
+#include "jester_headers/custom-functions.h"
 
 extern void CpDecide_Main(ProcPtr proc);
 extern void DecideHealOrEscape(void);
@@ -309,7 +310,7 @@ s8 AiAttemptOffensiveAction(s8 (*isEnemy)(struct Unit *unit))
 #endif
 
 #if defined(SID_ShadePlus) && (COMMON_SKILL_VALID(SID_ShadePlus))
-			if (SkillTester(unit, SID_ShadePlus))
+			if (SkillTesterPlus(unit, SID_ShadePlus))
 				continue;
 #endif
 

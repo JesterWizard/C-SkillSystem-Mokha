@@ -79,7 +79,7 @@ static void TryAddUnitToTargetList(struct Unit* unit) {
     }
 
 #if defined(SID_AcidicPlus) && (COMMON_SKILL_VALID(SID_AcidicPlus))
-    if (SkillTester(gActiveUnit, SID_AcidicPlus) && gActionData.unk08 == SID_AcidicPlus)
+    if (SkillTesterPlus(gActiveUnit, SID_AcidicPlus) && gActionData.unk08 == SID_AcidicPlus)
     { 
         if (UNIT_FACTION(gSubjectUnit) != UNIT_FACTION(unit))
             AddTarget(unit->xPos, unit->yPos, unit->index, 0);
@@ -284,7 +284,7 @@ u8 ItemSubMenu_UseItem(struct MenuProc* menu, struct MenuItemProc* menuItem) {
     ClearBg0Bg1();
 
 #if defined(SID_AcidicPlus) && (COMMON_SKILL_VALID(SID_AcidicPlus))
-    if (SkillTester(gActiveUnit, SID_AcidicPlus) && gActionData.unk08 == SID_AcidicPlus)
+    if (SkillTesterPlus(gActiveUnit, SID_AcidicPlus) && gActionData.unk08 == SID_AcidicPlus)
     { 
         u8 minRange = 0;
         u8 maxRange = 3;
@@ -382,7 +382,7 @@ s8 CanUnitUseHealItem(struct Unit* unit)
 {
 
 #if defined(SID_AcidicPlus) && (COMMON_SKILL_VALID(SID_AcidicPlus))
-    if (SkillTester(gActiveUnit, SID_AcidicPlus) && gActionData.unk08 == SID_AcidicPlus)
+    if (SkillTesterPlus(gActiveUnit, SID_AcidicPlus) && gActionData.unk08 == SID_AcidicPlus)
     {
         for (int i = 0; i < ARRAY_COUNT_RANGE3x3; i++)
         {

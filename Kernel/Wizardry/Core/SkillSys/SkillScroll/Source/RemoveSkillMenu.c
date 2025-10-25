@@ -5,6 +5,7 @@
 #include "constants/texts.h"
 #include "constants/skills.h"
 #include "rn.h"
+#include "jester_headers/custom-functions.h"
 
 STATIC_DECLAR const struct MenuItemDef RemoveSkillMenuItems[];
 STATIC_DECLAR const struct MenuItemDef PredationSkillMenuItems[];
@@ -227,7 +228,7 @@ STATIC_DECLAR int RemoveSkillMenu_OnDraw(struct MenuProc * menu, struct MenuItem
     {
         struct Unit * targetUnit = GetUnit(gBattleTarget.unit.index);
 #if defined(SID_PredationPlus) && (COMMON_SKILL_VALID(SID_PredationPlus))
-        if (SkillTester(gActiveUnit, SID_PredationPlus) && gBattleActorGlobalFlag.enemy_defeated)
+        if (SkillTesterPlus(gActiveUnit, SID_PredationPlus) && gBattleActorGlobalFlag.enemy_defeated)
         {
             sid = GET_SKILL(targetUnit, gActionData.unk0A);
         }
@@ -398,7 +399,7 @@ STATIC_DECLAR u8 RemoveSkillMenu_OnSelected(struct MenuProc * menu, struct MenuI
     gEventSlots[EVT_SLOT_7] = 0xFFFF;
 
 #if defined(SID_PredationPlus) && (COMMON_SKILL_VALID(SID_PredationPlus))
-    if (SkillTester(gActiveUnit, SID_PredationPlus) && gBattleActorGlobalFlag.enemy_defeated)
+    if (SkillTesterPlus(gActiveUnit, SID_PredationPlus) && gBattleActorGlobalFlag.enemy_defeated)
     {
         PredationPlusSkillRemove();
         return MENU_ACT_SKIPCURSOR | MENU_ACT_END | MENU_ACT_SND6A | MENU_ACT_CLEAR;

@@ -6,6 +6,7 @@
 #include "constants/skills.h"
 #include "debuff.h"
 #include "unit-expa.h"
+#include "jester_headers/custom-functions.h"
 
 STATIC_DECLAR bool CheckBeastNullEffective(struct Unit* unit)
 {
@@ -64,7 +65,7 @@ bool IsItemEffectiveAgainst(u16 item, struct Unit* unit)
 #if defined(SID_DualWieldPlus) && (COMMON_SKILL_VALID(SID_DualWieldPlus))
         // We have to make the skill holder unit the opposite of whichever side "unit" is on
         struct Unit * skillHolderUnit = (unit == GetUnit(gBattleActor.unit.index)) ? GetUnit(gBattleTarget.unit.index) : GetUnit(gBattleActor.unit.index);
-        if (SkillTester(skillHolderUnit, SID_DualWieldPlus))
+        if (SkillTesterPlus(skillHolderUnit, SID_DualWieldPlus))
         {
             for (int i = 1; i < UNIT_MAX_INVENTORY; i++)
             {

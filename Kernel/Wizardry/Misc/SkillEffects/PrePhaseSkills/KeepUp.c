@@ -3,6 +3,7 @@
 #include "kernel-lib.h"
 #include "skill-system.h"
 #include "constants/skills.h"
+#include "jester_headers/custom-functions.h"
 
 static void _SetKeepUpStatDebuff(struct Unit *unit)
 {
@@ -47,7 +48,7 @@ bool PrePhase_TickKeepUpSkillStatus(ProcPtr proc)
 #endif
 				||
 #if (defined(SID_CantoPlus) && (COMMON_SKILL_VALID(SID_CantoPlus)))
-				(SkillTester(unit_ally, SID_CantoPlus) && keep_up)
+				(SkillTesterPlus(unit_ally, SID_CantoPlus) && keep_up)
 #else
 				false
 #endif

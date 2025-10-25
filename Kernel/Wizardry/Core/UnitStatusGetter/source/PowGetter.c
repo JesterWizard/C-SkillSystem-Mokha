@@ -4,6 +4,7 @@
 #include "constants/skills.h"
 #include "bwl.h"
 #include "unit-expa.h"
+#include "jester_headers/custom-functions.h"
 
 int _GetUnitPower(struct Unit *unit)
 {
@@ -70,7 +71,7 @@ int PowGetterSkills(int status, struct Unit *unit)
 #endif
 
 #if defined(SID_FuryPlus) && (COMMON_SKILL_VALID(SID_FuryPlus))
-	if (SkillTester(unit, SID_FuryPlus))
+	if (SkillTesterPlus(unit, SID_FuryPlus))
 		status += SKILL_EFF0(SID_FuryPlus);
 #endif
 
@@ -90,7 +91,7 @@ int PowGetterSkills(int status, struct Unit *unit)
 #endif
 
 #if defined(SID_HeavyBladePlus) && (COMMON_SKILL_VALID(SID_HeavyBladePlus))
-	if (SkillTester(unit, SID_HeavyBladePlus))
+	if (SkillTesterPlus(unit, SID_HeavyBladePlus))
 		status += SKILL_EFF0(SID_HeavyBladePlus);
 #endif
 
@@ -170,7 +171,7 @@ int PowGetterSkills(int status, struct Unit *unit)
 #endif
 
 #if (defined(SID_HugePowerPlus) && (COMMON_SKILL_VALID(SID_HugePowerPlus)))
-    if (SkillTester(unit, SID_HugePowerPlus))
+    if (SkillTesterPlus(unit, SID_HugePowerPlus))
     {
         status += unit->pow / 2;
         hugePowerPlus = true;

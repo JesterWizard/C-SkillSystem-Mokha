@@ -4,6 +4,7 @@
 #include "constants/skills.h"
 #include "bwl.h"
 #include "unit-expa.h"
+#include "jester_headers/custom-functions.h"
 
 int _GetUnitSkill(struct Unit *unit)
 {
@@ -86,7 +87,7 @@ int SklGetterSkills(int status, struct Unit *unit)
 #endif
 
 #if defined(SID_FuryPlus) && (COMMON_SKILL_VALID(SID_FuryPlus))
-	if (SkillTester(unit, SID_FuryPlus))
+	if (SkillTesterPlus(unit, SID_FuryPlus))
 		status += SKILL_EFF0(SID_FuryPlus);
 #endif
 

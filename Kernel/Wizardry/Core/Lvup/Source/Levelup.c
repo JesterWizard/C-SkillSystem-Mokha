@@ -90,7 +90,7 @@ STATIC_DECLAR void UnitLvup_Vanilla(struct BattleUnit* bu, int bonus)
 #endif
 
 #if defined(SID_LimitBreakerPlus) && (COMMON_SKILL_VALID(SID_LimitBreakerPlus))
-    if (SkillTester(unit, SID_LimitBreakerPlus))
+    if (SkillTesterPlus(unit, SID_LimitBreakerPlus))
         limitBreaker = SKILL_EFF0(SID_LimitBreakerPlus);
 #endif
 

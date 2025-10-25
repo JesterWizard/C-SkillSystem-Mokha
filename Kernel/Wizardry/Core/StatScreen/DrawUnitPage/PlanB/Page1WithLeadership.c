@@ -9,6 +9,7 @@
 #include "constants/texts.h"
 #include "skill-system.h"
 #include "constants/skills.h"
+#include "jester_headers/custom-functions.h"
 
 static void DrawPage1TextCommon(void)
 {
@@ -128,7 +129,7 @@ static void DrawPage1ValueReal(void)
 #endif
 
 #if defined(SID_LimitBreakerPlus) && (COMMON_SKILL_VALID(SID_LimitBreakerPlus))
-    if (SkillTester(unit, SID_LimitBreakerPlus))
+    if (SkillTesterPlus(unit, SID_LimitBreakerPlus))
         limitBreaker = SKILL_EFF0(SID_LimitBreakerPlus);
 #endif
 

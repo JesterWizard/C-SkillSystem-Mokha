@@ -10,6 +10,7 @@
 #include "unit-expa.h"
 #include "playst-expa.h"
 #include "jester_headers/custom-arrays.h"
+#include "jester_headers/custom-functions.h"
 
 typedef int (*BattleToUnitFunc_t)(struct BattleUnit* bu, struct Unit* unit);
 // extern const BattleToUnitFunc_t gExternalBattleToUnitHook[];
@@ -93,7 +94,7 @@ STATIC_DECLAR void UpdateUnitFromBattleVanilla(struct Unit* unit, struct BattleU
 	tmp = GetBattleUnitUpdatedWeaponExp(bu);
 
 #if (defined(SID_ShadowGiftPlus) && (COMMON_SKILL_VALID(SID_ShadowGiftPlus)))
-	if (SkillTester(unit, SID_ShadowGiftPlus))
+	if (SkillTesterPlus(unit, SID_ShadowGiftPlus))
 		if (GetItemType(unit->items[0]) == ITYPE_DARK)
 			if (unit->ranks[ITYPE_DARK] == 0)
 				tmp = 0;
@@ -107,7 +108,7 @@ STATIC_DECLAR void UpdateUnitFromBattleVanilla(struct Unit* unit, struct BattleU
 #endif
 
 #if (defined(SID_LightGiftPlus) && (COMMON_SKILL_VALID(SID_LightGiftPlus)))
-	if (SkillTester(unit, SID_LightGiftPlus))
+	if (SkillTesterPlus(unit, SID_LightGiftPlus))
 		if (GetItemType(unit->items[0]) == ITYPE_LIGHT)
 			if (unit->ranks[ITYPE_LIGHT] == 0)
 				tmp = 0;
@@ -121,7 +122,7 @@ STATIC_DECLAR void UpdateUnitFromBattleVanilla(struct Unit* unit, struct BattleU
 #endif
 
 #if (defined(SID_StormgiftPlus) && (COMMON_SKILL_VALID(SID_StormgiftPlus)))
-	if (SkillTester(unit, SID_StormgiftPlus))
+	if (SkillTesterPlus(unit, SID_StormgiftPlus))
 		if (GetItemType(unit->items[0]) == ITYPE_ANIMA)
 			if (unit->ranks[ITYPE_ANIMA] == 0)
 				tmp = 0;
@@ -135,7 +136,7 @@ STATIC_DECLAR void UpdateUnitFromBattleVanilla(struct Unit* unit, struct BattleU
 #endif
 
 #if (defined(SID_GracegiftPlus) && (COMMON_SKILL_VALID(SID_GracegiftPlus)))
-	if (SkillTester(unit, SID_GracegiftPlus))
+	if (SkillTesterPlus(unit, SID_GracegiftPlus))
 		if (GetItemType(unit->items[0]) == ITYPE_STAFF)
 			if (unit->ranks[ITYPE_STAFF] == 0)
 				tmp = 0;
@@ -149,7 +150,7 @@ STATIC_DECLAR void UpdateUnitFromBattleVanilla(struct Unit* unit, struct BattleU
 #endif
 
 #if (defined(SID_BladegiftPlus) && (COMMON_SKILL_VALID(SID_BladegiftPlus)))
-	if (SkillTester(unit, SID_BladegiftPlus))
+	if (SkillTesterPlus(unit, SID_BladegiftPlus))
 		if (GetItemType(unit->items[0]) == ITYPE_SWORD)
 			if (unit->ranks[ITYPE_SWORD] == 0)
 				tmp = 0;
@@ -163,7 +164,7 @@ STATIC_DECLAR void UpdateUnitFromBattleVanilla(struct Unit* unit, struct BattleU
 #endif
 
 #if (defined(SID_PiercegiftPlus) && (COMMON_SKILL_VALID(SID_PiercegiftPlus)))
-	if (SkillTester(unit, SID_PiercegiftPlus))
+	if (SkillTesterPlus(unit, SID_PiercegiftPlus))
 		if (GetItemType(unit->items[0]) == ITYPE_LANCE)
 			if (unit->ranks[ITYPE_LANCE] == 0)
 				tmp = 0;
@@ -177,7 +178,7 @@ STATIC_DECLAR void UpdateUnitFromBattleVanilla(struct Unit* unit, struct BattleU
 #endif
 
 #if (defined(SID_HackgiftPlus) && (COMMON_SKILL_VALID(SID_HackgiftPlus)))
-	if (SkillTester(unit, SID_HackgiftPlus))
+	if (SkillTesterPlus(unit, SID_HackgiftPlus))
 		if (GetItemType(unit->items[0]) == ITYPE_AXE)
 			if (unit->ranks[ITYPE_AXE] == 0)
 				tmp = 0;
@@ -191,7 +192,7 @@ STATIC_DECLAR void UpdateUnitFromBattleVanilla(struct Unit* unit, struct BattleU
 #endif
 
 #if (defined(SID_ArcgiftPlus) && (COMMON_SKILL_VALID(SID_ArcgiftPlus)))
-	if (SkillTester(unit, SID_ArcgiftPlus))
+	if (SkillTesterPlus(unit, SID_ArcgiftPlus))
 		if (GetItemType(unit->items[0]) == ITYPE_BOW)
 			if (unit->ranks[ITYPE_BOW] == 0)
 				tmp = 0;

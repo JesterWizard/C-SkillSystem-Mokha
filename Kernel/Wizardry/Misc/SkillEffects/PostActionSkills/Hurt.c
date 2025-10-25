@@ -4,6 +4,7 @@
 #include "map-anims.h"
 #include "battle-system.h"
 #include "constants/skills.h"
+#include "jester_headers/custom-functions.h"
 
 bool PostActionBattleActorHurt(ProcPtr parent)
 {

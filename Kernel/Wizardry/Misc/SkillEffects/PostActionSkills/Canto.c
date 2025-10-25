@@ -17,7 +17,7 @@ STATIC_DECLAR bool CheckCanto(void)
         return false;
 
 #if defined(SID_CantoPlus) && (COMMON_SKILL_VALID(SID_CantoPlus))
-    cantop = SkillTester(gActiveUnit, SID_CantoPlus);
+    cantop = SkillTesterPlus(gActiveUnit, SID_CantoPlus);
 #else
     cantop = false;
 #endif

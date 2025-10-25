@@ -6,6 +6,7 @@
 #include "kernel-lib.h"
 #include "gaiden-magic.h"
 #include "constants/skills.h"
+#include "jester_headers/custom-functions.h"
 
 LYN_REPLACE_CHECK(AiReachesByBirdsEyeDistance);
 bool AiReachesByBirdsEyeDistance(struct Unit *unit, struct Unit *other, u16 item)
@@ -639,7 +640,7 @@ void SetWorkingMoveCosts(const s8 mct[])
 #endif
 
 #if (defined(SID_WaterWalkingPlus) && COMMON_SKILL_VALID(SID_WaterWalkingPlus))
-    if (SkillTester(gActiveUnit, SID_WaterWalkingPlus))
+    if (SkillTesterPlus(gActiveUnit, SID_WaterWalkingPlus))
     {
         APPLY_COST_IF_LOWER(TERRAIN_WATER, 1);
         APPLY_COST_IF_LOWER(TERRAIN_RIVER, 1);
@@ -659,7 +660,7 @@ void SetWorkingMoveCosts(const s8 mct[])
 #endif
 
 #if (defined(SID_MountainClimberPlus) && COMMON_SKILL_VALID(SID_MountainClimberPlus))
-    if (SkillTester(gActiveUnit, SID_MountainClimberPlus))
+    if (SkillTesterPlus(gActiveUnit, SID_MountainClimberPlus))
     {
         APPLY_COST_IF_LOWER(TERRAIN_MOUNTAIN, 1);
         APPLY_COST_IF_LOWER(TERRAIN_PEAK,     1);

@@ -3778,3 +3778,139 @@ void UnitRescue(struct Unit* actor, struct Unit* target) {
     target->xPos = actor->xPos;
     target->yPos = actor->yPos;
 }
+
+LYN_REPLACE_CHECK(HasBattleUnitGainedWeaponLevel);
+s8 HasBattleUnitGainedWeaponLevel(struct BattleUnit * bu)
+{
+
+#if (defined(SID_ShadowGiftPlus) && (COMMON_SKILL_VALID(SID_ShadowGiftPlus)))
+    if (BattleFastSkillTester(bu, SID_ShadowGiftPlus))
+        if (GetItemType(GetUnit(bu->unit.index)->items[0]) == ITYPE_DARK)
+            if (GetUnit(bu->unit.index)->ranks[ITYPE_DARK] == 0)
+                return false;
+#endif
+
+#if (defined(SID_ShadowGift) && (COMMON_SKILL_VALID(SID_ShadowGift)))
+    if (BattleFastSkillTester(bu, SID_ShadowGift))
+        if (GetItemType(GetUnit(bu->unit.index)->items[0]) == ITYPE_DARK)
+            if (GetUnit(bu->unit.index)->ranks[ITYPE_DARK] == 0)
+                return false;
+#endif
+
+#if (defined(SID_LightGiftPlus) && (COMMON_SKILL_VALID(SID_LightGiftPlus)))
+    if (BattleFastSkillTester(bu, SID_LightGiftPlus))
+        if (GetItemType(GetUnit(bu->unit.index)->items[0]) == ITYPE_LIGHT)
+            if (GetUnit(bu->unit.index)->ranks[ITYPE_LIGHT] == 0)
+                return false;
+#endif
+
+#if (defined(SID_StormgiftPlus) && (COMMON_SKILL_VALID(SID_StormgiftPlus)))
+    if (BattleFastSkillTester(bu, SID_StormgiftPlus))
+        if (GetItemType(GetUnit(bu->unit.index)->items[0]) == ITYPE_ANIMA)
+            if (GetUnit(bu->unit.index)->ranks[ITYPE_ANIMA] == 0)
+                return false;
+#endif
+
+#if (defined(SID_Stormgift) && (COMMON_SKILL_VALID(SID_Stormgift)))
+    if (BattleFastSkillTester(bu, SID_Stormgift))
+        if (GetItemType(GetUnit(bu->unit.index)->items[0]) == ITYPE_ANIMA)
+            if (GetUnit(bu->unit.index)->ranks[ITYPE_ANIMA] == 0)
+                return false;
+#endif
+
+#if (defined(SID_Gracegift) && (COMMON_SKILL_VALID(SID_Gracegift)))
+    if (BattleFastSkillTester(bu, SID_Gracegift))
+        if (GetItemType(GetUnit(bu->unit.index)->items[0]) == ITYPE_STAFF)
+            if (GetUnit(bu->unit.index)->ranks[ITYPE_STAFF] == 0)
+                return false;
+#endif
+
+#if (defined(SID_GracegiftPlus) && (COMMON_SKILL_VALID(SID_GracegiftPlus)))
+    if (BattleFastSkillTester(bu, SID_GracegiftPlus))
+        if (GetItemType(GetUnit(bu->unit.index)->items[0]) == ITYPE_STAFF)
+            if (GetUnit(bu->unit.index)->ranks[ITYPE_STAFF] == 0)
+                return false;
+#endif
+
+#if (defined(SID_Gracegift) && (COMMON_SKILL_VALID(SID_Gracegift)))
+    if (BattleFastSkillTester(bu, SID_Gracegift))
+        if (GetItemType(GetUnit(bu->unit.index)->items[0]) == ITYPE_STAFF)
+            if (GetUnit(bu->unit.index)->ranks[ITYPE_STAFF] == 0)
+                return false;
+#endif
+
+#if (defined(SID_BladegiftPlus) && (COMMON_SKILL_VALID(SID_BladegiftPlus)))
+    if (BattleFastSkillTester(bu, SID_BladegiftPlus))
+        if (GetItemType(GetUnit(bu->unit.index)->items[0]) == ITYPE_SWORD)
+            if (GetUnit(bu->unit.index)->ranks[ITYPE_SWORD] == 0)
+                return false;
+#endif
+
+#if (defined(SID_Bladegift) && (COMMON_SKILL_VALID(SID_Bladegift)))
+    if (BattleFastSkillTester(bu, SID_Bladegift))
+        if (GetItemType(GetUnit(bu->unit.index)->items[0]) == ITYPE_SWORD)
+            if (GetUnit(bu->unit.index)->ranks[ITYPE_SWORD] == 0)
+                return false;
+#endif
+
+#if (defined(SID_PiercegiftPlus) && (COMMON_SKILL_VALID(SID_PiercegiftPlus)))
+    if (BattleFastSkillTester(bu, SID_PiercegiftPlus))
+        if (GetItemType(GetUnit(bu->unit.index)->items[0]) == ITYPE_LANCE)
+            if (GetUnit(bu->unit.index)->ranks[ITYPE_LANCE] == 0)
+                return false;
+#endif
+
+#if (defined(SID_Piercegift) && (COMMON_SKILL_VALID(SID_Piercegift)))
+    if (BattleFastSkillTester(bu, SID_Piercegift))
+        if (GetItemType(GetUnit(bu->unit.index)->items[0]) == ITYPE_LANCE)
+            if (GetUnit(bu->unit.index)->ranks[ITYPE_LANCE] == 0)
+                return false;
+#endif
+
+#if (defined(SID_HackgiftPlus) && (COMMON_SKILL_VALID(SID_HackgiftPlus)))
+    if (BattleFastSkillTester(bu, SID_HackgiftPlus))
+        if (GetItemType(GetUnit(bu->unit.index)->items[0]) == ITYPE_AXE)
+            if (GetUnit(bu->unit.index)->ranks[ITYPE_AXE] == 0)
+                return false;
+#endif
+
+#if (defined(SID_Hackgift) && (COMMON_SKILL_VALID(SID_Hackgift)))
+    if (BattleFastSkillTester(bu, SID_Hackgift))
+        if (GetItemType(GetUnit(bu->unit.index)->items[0]) == ITYPE_AXE)
+            if (GetUnit(bu->unit.index)->ranks[ITYPE_AXE] == 0)
+                return false;
+#endif
+
+#if (defined(SID_ArcgiftPlus) && (COMMON_SKILL_VALID(SID_ArcgiftPlus)))
+    if (BattleFastSkillTester(bu, SID_ArcgiftPlus))
+        if (GetItemType(GetUnit(bu->unit.index)->items[0]) == ITYPE_BOW)
+            if (GetUnit(bu->unit.index)->ranks[ITYPE_BOW] == 0)
+                return false;
+#endif
+
+#if (defined(SID_Arcgift) && (COMMON_SKILL_VALID(SID_Arcgift)))
+    if (BattleFastSkillTester(bu, SID_Arcgift))
+        if (GetItemType(GetUnit(bu->unit.index)->items[0]) == ITYPE_BOW)
+            if (GetUnit(bu->unit.index)->ranks[ITYPE_BOW] == 0)
+                return false;
+#endif
+
+    int oldWexp = bu->unit.ranks[bu->weaponType];
+    int newWexp = GetBattleUnitUpdatedWeaponExp(bu);
+
+    if (newWexp < 0)
+        return FALSE;
+
+    return GetWeaponLevelFromExp(oldWexp) != GetWeaponLevelFromExp(newWexp);
+}
+
+/* JESTER - This exists for SID_Upgrade for skills that use the regular SkillTester check */
+bool SkillTesterPlus(struct Unit *unit, u16 sid)
+{
+    if (SkillTester(unit, sid))
+        return true;
+
+    // O(1) lookup for base skill
+    const u16 base = (sid <= MAX_SKILL_NUM) ? gSkillUpgradePlusLookup[sid] : 0;
+    return base ? SkillTester(unit, base) : false;
+}
