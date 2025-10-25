@@ -6,7 +6,7 @@
 
 int GetUnitMaxStatusHp(struct Unit *unit)
 {
-	int status = KUNIT_MHP_MAX(unit);
+	int status = UNIT_MHP_MAX(unit);
 	u8 pid = UNIT_CHAR_ID(unit);
 
 	status += gpUnitMaxStatusConfigTable[pid].hp;

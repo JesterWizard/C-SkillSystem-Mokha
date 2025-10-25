@@ -64,13 +64,8 @@ STATIC_DECLAR void CheckBattleUnitStatCapsVanilla(struct Unit *unit, struct Batt
     }
 #endif
 
-#ifdef CONFIG_UNLOCK_ALLY_MHP_LIMIT
-    if (unit->maxHP + bu->changeHP > KUNIT_MHP_MAX(unit) + limitBreaker)
-        bu->changeHP = (KUNIT_MHP_MAX(unit) + limitBreaker) - unit->maxHP;
-#else
     if (unit->maxHP + bu->changeHP > UNIT_MHP_MAX(unit) + limitBreaker)
         bu->changeHP = (UNIT_MHP_MAX(unit) + limitBreaker) - unit->maxHP;
-#endif
 
     if ((unit->pow + bu->changePow) > UNIT_POW_MAX + limitBreaker)
         bu->changePow = (UNIT_POW_MAX  + limitBreaker) - unit->pow;
@@ -134,13 +129,8 @@ STATIC_DECLAR void UnitCheckStatCapsVanilla(struct Unit *unit)
     }
 #endif
 
-#ifdef CONFIG_UNLOCK_ALLY_MHP_LIMIT
-    if (unit->maxHP > KUNIT_MHP_MAX(unit) + limitBreaker)
-        unit->maxHP = KUNIT_MHP_MAX(unit);
-#else
     if (unit->maxHP > UNIT_MHP_MAX(unit) + limitBreaker)
-        unit->maxHP = UNIT_MHP_MAX(unit) + limitBreaker;
-#endif
+        unit->maxHP = UNIT_MHP_MAX(unit);
 
 #if defined(SID_Dismount) && (COMMON_SKILL_VALID(SID_Dismount))
     if (SkillTester(unit, SID_Dismount) && GetUnitStatusIndex(unit) == NEW_UNIT_STATUS_DISMOUNT)

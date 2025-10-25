@@ -41,18 +41,18 @@ int ConGetter(struct Unit *unit);
 int MovGetter(struct Unit *unit);
 
 /* Port for FEB patch: SetHPClassLimit */
-extern const u8 pr_SetHPClassLimitJudgement[];
-#define CheckUnlockAllyMhpLimit() \
-( \
-	pr_SetHPClassLimitJudgement[0] == 0x00 && \
-	pr_SetHPClassLimitJudgement[1] == 0x4A && \
-	pr_SetHPClassLimitJudgement[2] == 0x97 && \
-	pr_SetHPClassLimitJudgement[3] == 0x46 \
-)
-#define KUNIT_MHP_MAX(unit) \
-	(CheckUnlockAllyMhpLimit() \
-	    ? unit->pClassData->maxHP \
-	    : UNIT_MHP_MAX(unit))
+// extern const u8 pr_SetHPClassLimitJudgement[];
+// #define CheckUnlockAllyMhpLimit()
+// (
+// 	pr_SetHPClassLimitJudgement[0] == 0x00 &&
+// 	pr_SetHPClassLimitJudgement[1] == 0x4A &&
+// 	pr_SetHPClassLimitJudgement[2] == 0x97 &&
+// 	pr_SetHPClassLimitJudgement[3] == 0x46
+// )
+// #define KUNIT_MHP_MAX(unit)
+// 	(CheckUnlockAllyMhpLimit()
+// 	    ? unit->pClassData->maxHP
+// 	    : UNIT_MHP_MAX(unit))
 
 struct UnitMaxStatusConfig {
 	s8 hp, mag, pow, skl, spd, def, res, lck, con, mov;
