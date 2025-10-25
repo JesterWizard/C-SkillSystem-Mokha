@@ -247,7 +247,44 @@ int BattleHit_CalcDamage(struct BattleUnit* attacker, struct BattleUnit* defende
 
 #if defined(SID_RampUp) && (COMMON_SKILL_VALID(SID_RampUp))
     if (BattleFastSkillTester(attacker, SID_RampUp) && gDmg.crit_atk)
-        base_damage*= 2;
+        base_damage *= 2;
+#endif
+
+bool rampartPlus_activated = false;
+
+#if defined(SID_RampartPlus) && (COMMON_SKILL_VALID(SID_RampartPlus))
+    if (BattleFastSkillTester(defender, SID_RampartPlus))
+    {
+        if (!AreUnitsAllied(defender->unit.index, gPlaySt.faction) && act_flags->round_cnt_hit == 1)
+        {
+            RegisterTargetEfxSkill(GetBattleHitRound(gBattleHitIterator), SID_RampartPlus);
+            gDmg.decrease += DAMAGE_DECREASE(SKILL_EFF0(SID_RampartPlus));
+            rampartPlus_activated = true;
+        }
+    }
+#endif
+
+#if defined(SID_Rampart) && (COMMON_SKILL_VALID(SID_Rampart))
+    if (BattleFastSkillTester(defender, SID_Rampart) && !rampartPlus_activated)
+    {
+        if (!AreUnitsAllied(defender->unit.index, gPlaySt.faction) && act_flags->round_cnt_hit == 1)
+        {
+            RegisterTargetEfxSkill(GetBattleHitRound(gBattleHitIterator), SID_Rampart);
+            gDmg.decrease += DAMAGE_DECREASE(SKILL_EFF0(SID_Rampart));
+        }
+    }
+#endif
+
+#if defined(SID_Protect) && (COMMON_SKILL_VALID(SID_Protect))
+    if (BattleFastSkillTester(defender, SID_Protect) && !CheckBitUES(GetUnit(defender->unit.index), UES_BIT_PROTECT_SKILL_USED))
+    {
+        if (!AreUnitsAllied(defender->unit.index, gPlaySt.faction) && act_flags->round_cnt_hit == 1)
+        {
+            RegisterTargetEfxSkill(GetBattleHitRound(gBattleHitIterator), SID_Protect);
+            base_damage = 0;
+            SetBitUES(GetUnit(defender->unit.index), UES_BIT_PROTECT_SKILL_USED);
+        }
+    }
 #endif
 
 	if (base_damage <= 0)
