@@ -633,7 +633,7 @@ void SetWorkingMoveCosts(const s8 mct[])
     {
         for (i = 0; i < TERRAIN_COUNT; ++i)
         {
-            if (gWorkingTerrainMoveCosts[i] > 1)
+            if (mct[i] > 1)
                 gWorkingTerrainMoveCosts[i] = 1;
         }
     }
