@@ -219,7 +219,8 @@ upon defeat.[X]
 ## MSG_SKILL_MendArms_NAME
 Mend Arms[X]
 ## MSG_SKILL_MendArms_DESC
-Mend Arms: Restore 1 use to every[N]
+Mend Arms:[N]
+Restore 1 use to every[N]
 weapon the unit can use when[N]
 defeating a full HP enemy[X]
 
