@@ -50,6 +50,17 @@ bool PostActionGetItem(ProcPtr parent)
 				return true;
 			}
 #endif
+
+#if defined(SID_MakeAKilling) && (COMMON_SKILL_VALID(SID_MakeAKilling))
+			if (SkillListTester(unit, SID_MakeAKilling) && gBattleActorGlobalFlag.enemy_defeated)
+			{
+				if (Roll1RN(unit->lck))
+				{
+					NewPopup_GoldGot(parent, unit, SKILL_EFF0(SID_MakeAKilling) * 100);
+					return true;
+				}
+			}
+#endif
 		}
 		break;
 
