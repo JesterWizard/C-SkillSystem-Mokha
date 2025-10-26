@@ -3269,65 +3269,72 @@ int findMax(u8* array, int size) {
     return array_position;
 }
 
-LYN_REPLACE_CHECK(AttackCommandUsability);
-u8 AttackCommandUsability(const struct MenuItemDef* def, int number) {
-    int i;
-
-#if defined(SID_GridMasterPlus) && (COMMON_SKILL_VALID(SID_GridMasterPlus))
-    if (SkillTesterPlus(gActiveUnit, SID_GridMasterPlus) && gActiveUnit->state & US_CANTOING)
-        return MENU_ENABLED;
-#endif
-
-    /* These skills have the same effect here, but GridMasterPlus also prevents the unit from moving */
-#if defined(SID_Warpath) && (COMMON_SKILL_VALID(SID_Warpath))
-    if (SkillTester(gActiveUnit, SID_Warpath) && gActiveUnit->state & US_CANTOING)
-        return MENU_ENABLED;
-#endif   
-
-    if (gActiveUnit->state & US_HAS_MOVED) {
-        return MENU_NOTSHOWN;
-    }
-
-    if (gActiveUnit->state & US_IN_BALLISTA) {
-        return MENU_NOTSHOWN;
-    }
-
-    for (i = 0; i < UNIT_ITEM_COUNT; i++) {
-        int item = gActiveUnit->items[i];
-
-        if (item == 0) {
-            break;
-        }
-
-        if (!(GetItemAttributes(item) & IA_WEAPON)) {
-            continue;
-        }
-
-        if (!CanUnitUseWeaponNow(gActiveUnit, item)) {
-            continue;
-        }
-
-        MakeTargetListForWeapon(gActiveUnit, item);
-        if (GetSelectTargetCount() == 0) {
-            continue;
-        }
-
-        return MENU_ENABLED;
-    }
-
-#if (defined(SID_UnarmedCombat) && (COMMON_SKILL_VALID(SID_UnarmedCombat)))
-    if (SkillTester(gActiveUnit, SID_UnarmedCombat))
+static inline u8 CanUnitAttackNow(struct Unit* unit, bool ignoreCanto)
+{
+    // If not ignoring canto, skip if unit can’t act
+    if (!ignoreCanto)
     {
-        MakeTargetListForWeapon(gActiveUnit, ITEM_SWORD_IRON);
+        if (unit->state & (US_HAS_MOVED | US_IN_BALLISTA))
+            return MENU_NOTSHOWN;
+
+        if (unit->state & US_CANTOING)
+            return MENU_NOTSHOWN;
+    }
+
+    // Check all weapons in inventory
+    for (int i = 0; i < UNIT_ITEM_COUNT; i++)
+    {
+        int item = unit->items[i];
+        if (item == 0)
+            break;
+
+        if (!(GetItemAttributes(item) & IA_WEAPON))
+            continue;
+
+        if (!CanUnitUseWeaponNow(unit, item))
+            continue;
+
+        MakeTargetListForWeapon(unit, item);
+        if (GetSelectTargetCount() == 0)
+            continue;
+
+        return MENU_ENABLED;
+    }
+
+#if defined(SID_UnarmedCombat) && (COMMON_SKILL_VALID(SID_UnarmedCombat))
+    // Unarmed combat fallback
+    if (SkillTester(unit, SID_UnarmedCombat))
+    {
+        MakeTargetListForWeapon(unit, ITEM_SWORD_IRON);
         if (GetSelectTargetCount() > 0)
-        {
             return MENU_ENABLED;
-        }
     }
 #endif
 
     return MENU_NOTSHOWN;
+}
 
+/*
+** JESTER - I've rewritten the logic for this function and extracted it into a helper
+** function, so that the SID_Warpath check doesn't duplicate the item looping code
+*/
+LYN_REPLACE_CHECK(AttackCommandUsability);
+u8 AttackCommandUsability(const struct MenuItemDef* def, int number)
+{
+    struct Unit* unit = gActiveUnit;
+
+#if defined(SID_GridMasterPlus) && (COMMON_SKILL_VALID(SID_GridMasterPlus))
+    if (SkillTesterPlus(unit, SID_GridMasterPlus) && (unit->state & US_CANTOING))
+        return MENU_ENABLED;
+#endif
+
+#if defined(SID_Warpath) && (COMMON_SKILL_VALID(SID_Warpath))
+    if (SkillTester(unit, SID_Warpath) && (unit->state & US_CANTOING))
+        return CanUnitAttackNow(unit, true);
+#endif
+
+    // Default: respect canto/movement restrictions
+    return CanUnitAttackNow(unit, false);
 }
 
 LYN_REPLACE_CHECK(DisplayUnitStandingAttackRange);
