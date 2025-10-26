@@ -27,6 +27,7 @@ gPostActionFuncs:
     POIN PostActionMendArms
     POIN PostActionGuerillaTactics
     POIN PostActionScavenger
+    POIN PostActionPredation
     POIN PostActionSealSkills
     POIN ResetComboAtkList
 

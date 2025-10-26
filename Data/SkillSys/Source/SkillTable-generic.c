@@ -10,12 +10,11 @@
 const struct SkillPreloadPConf gSkillPreloadPData[0x100] = {
     // 01
     [CHARACTER_EIRIKA] = {{
-        [0] = SID_Scavenger
+        [0] = SID_Predation
     }},
     // 02
     [CHARACTER_SETH] = {{
-        [0] = SID_Canter,
-        [1] = SID_Canto
+        [0] = SID_PredationPlus,
         // [1] = SID_Blacksmith,
         // [2] = SID_Sol,
         // [3] = SID_Adept,
@@ -404,6 +403,10 @@ const struct SkillPreloadPConf gSkillPreloadPData[0x100] = {
        [CHARACTER_ONEILL] = {
            .skills = {
                [0] = SID_Blight,
+               [1] = SID_RallyDefense,
+               [2] = SID_RallyLuck,
+               [3] = SID_RallyResistance,
+               [4] = SID_RallySkill
            },
        },
        // // 69

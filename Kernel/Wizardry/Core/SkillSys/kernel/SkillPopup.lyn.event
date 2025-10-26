@@ -33,4 +33,4 @@ ALIGN 4
 PUSH
 ORG CURRENTOFFSET+$0;PopupScr_LearnSkill:
 POP
-WORD $C $5A $6 $1 $D $0 $1 $1 $8 $0 $E $0 $6 $1 $8 $0 $6 $D79 $0 $0
+WORD $C $5A $8 $0 $6 $D7A $8 $3 $4 $0 $1 $1 $9 $0 $8 $0 $1 $1 $0 $0

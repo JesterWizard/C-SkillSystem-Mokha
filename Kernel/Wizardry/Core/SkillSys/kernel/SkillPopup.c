@@ -75,15 +75,29 @@ bool PopR_SetupLearnSkill(void)
 	return false;
 }
 
-const struct PopupInstruction PopupScr_LearnSkill[] = {
-	POPUP_SOUND(0x5A),
-	POPUP_MSG(MSG_0001),
-	CHAX_POPUP_SKILL_ICON,
-	POPUP_SPACE(1),
-	POPUP_COLOR(TEXT_COLOR_SYSTEM_WHITE), // sad, we cannot change color in ekrpopup
-	CHAX_POPUP_SKILL_NAME,
-	POPUP_MSG(MSG_0001),
-	POPUP_COLOR(TEXT_COLOR_SYSTEM_WHITE),
-	POPUP_MSG(MSG_PopupSkillLearned),
-	POPUP_END
+struct PopupInstruction const PopupScr_LearnSkill[] = {
+    POPUP_SOUND(0x5A),
+    POPUP_COLOR(TEXT_COLOR_SYSTEM_WHITE),
+    POPUP_MSG(MSG_Learned),
+    POPUP_COLOR(TEXT_COLOR_SYSTEM_GOLD),
+    POPUP_ITEM_STR,
+    POPUP_SPACE(1),
+    POPUP_ITEM_ICON,
+    POPUP_COLOR(TEXT_COLOR_SYSTEM_WHITE),
+    POPUP_SPACE(1),
+    POPUP_END
 };
+
+/* JESTER - This newwer popup event doesn't work, causing crashes. So we'll revert to the old one above */
+// const struct PopupInstruction PopupScr_LearnSkill[] = {
+// 	POPUP_SOUND(0x5A),
+// 	POPUP_MSG(MSG_0001),
+// 	CHAX_POPUP_SKILL_ICON,
+// 	POPUP_SPACE(1),
+// 	POPUP_COLOR(TEXT_COLOR_SYSTEM_WHITE), // sad, we cannot change color in ekrpopup
+// 	CHAX_POPUP_SKILL_NAME,
+// 	POPUP_MSG(MSG_0001),
+// 	POPUP_COLOR(TEXT_COLOR_SYSTEM_WHITE),
+// 	POPUP_MSG(MSG_PopupSkillLearned),
+// 	POPUP_END
+// };

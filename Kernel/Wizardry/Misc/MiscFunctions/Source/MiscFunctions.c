@@ -3935,6 +3935,10 @@ bool SkillTesterPlus(struct Unit *unit, u16 sid)
     if (SkillTester(unit, sid))
         return true;
 
+    /* If the unit doesn't have upgrade we won't look for the plus version of the skill */
+    if (!SkillTester(unit, SID_Upgrade))
+        return false;
+
     // O(1) lookup for base skill
     const u16 base = (sid <= MAX_SKILL_NUM) ? gSkillUpgradePlusLookup[sid] : 0;
     return base ? SkillTester(unit, base) : false;

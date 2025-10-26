@@ -41,6 +41,7 @@ void SetGameOptions_Chapter0()
     // bwl_eirika->currentMP += 10;
     // bwl_eirika->maxMP = 30;
     // bwl_seth->maxMP = 20;
+    unit_eirika->pow = 20;
 
 
     // unit_eirika->ranks[ITYPE_STAFF] = WPN_EXP_A;

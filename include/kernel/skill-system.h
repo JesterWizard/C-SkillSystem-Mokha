@@ -359,6 +359,13 @@ void EMS_SaveSkillDbgList(u8* dst, const u32 size);
 void EMS_LoadSkillDbgList(u8* src, const u32 size);
 void AppendSkillListViaDebugList(struct Unit* unit, struct SkillList* list, u16* ref);
 
+extern const struct MenuDef RemoveSkillMenuDef;
+extern const struct MenuDef PredationSkillMenuDef;
+extern const struct MenuDef ScrollScribeMenuDef;
+extern const struct ProcCmd ProcScr_SkillScrollUseSoftLock[];
+extern const struct ProcCmd ProcScr_PredationSoftLock[];
+extern const struct ProcCmd ProcScr_PredationPlusSoftLock[];
+
 /**
  * Miscs
  */
@@ -407,6 +414,7 @@ int PoprGetLen_SkillName(struct PopupProc* proc, const struct PopupInstruction* 
 void PoprDisp_SkillName(struct Text* text, const struct PopupInstruction* inst);
 bool PopR_SetupLearnSkill(void);
 extern const struct PopupInstruction PopupScr_LearnSkill[];
+extern const struct PopupInstruction PopupScr_ObtainedSkill[];
 
 /**
  * External MiscSkillEffects

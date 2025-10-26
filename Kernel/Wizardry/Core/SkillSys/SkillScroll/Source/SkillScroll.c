@@ -110,7 +110,7 @@ int GetSkillScrollItemIconId(int item)
 }
 
 /* Item use */
-STATIC_DECLAR void call_remove_skill_menu(void)
+static void call_remove_skill_menu(void)
 {
 	StartSubtitleHelp(
 		StartOrphanMenu(&RemoveSkillMenuDef),
@@ -118,11 +118,37 @@ STATIC_DECLAR void call_remove_skill_menu(void)
 	);
 }
 
-STATIC_DECLAR const struct ProcCmd ProcScr_SkillScrollUseSoftLock[] = {
-	PROC_YIELD,
-	PROC_CALL(call_remove_skill_menu),
-	PROC_END
+static void call_predation_skill_menu(void)
+{
+    StartSubtitleHelp(
+        StartOrphanMenu(&PredationSkillMenuDef),
+        GetStringFromIndex(MSG_PredationSkillChoice)
+    );
+}
+
+
+/* After the skill menu is called, this proc ends and what it was blocking resumes */
+
+const struct ProcCmd ProcScr_SkillScrollUseSoftLock[] = {
+    PROC_YIELD,
+    PROC_CALL(call_remove_skill_menu),
+    PROC_END
 };
+
+const struct ProcCmd ProcScr_PredationSoftLock[] = {
+    PROC_YIELD,
+    PROC_SLEEP(150), /* When predation is active, sleep the thread so the learned skill can be shown in a popup */
+    PROC_CALL(call_remove_skill_menu),
+    PROC_END
+};
+
+const struct ProcCmd ProcScr_PredationPlusSoftLock[] = {
+    PROC_YIELD,
+    // PROC_SLEEP(150), /* When predation is active, sleep the thread so the learned skill can be shown in a popup */
+    PROC_CALL(call_predation_skill_menu),
+    PROC_END
+};
+
 
 /**
  * BLOCK USAGE OF SCROLL IF UNIT WOULD BE ABOVE CAPACITY LIMIT AFTER APPLYING IT

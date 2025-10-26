@@ -338,11 +338,12 @@ STATIC_DECLAR void PredationTryAddSkill()
 {
     struct Unit * targetUnit = GetUnit(gBattleTarget.unit.index);
 
-    AddSkill(gActiveUnit, GET_SKILL(targetUnit, 0));
+    AddSkill(gActiveUnit, GET_SKILL(targetUnit, gActionData.unk0A));
     
     // Build popup item with the full 10-bit skill ID.
-    SetPopupItem((GET_SKILL(gActiveUnit, gActionData.unk08) << 8) | 
-                 GET_SKILL_SCROLL_INDEX(GET_SKILL(gActiveUnit, gActionData.unk08)));
+    SetPopupItem((GET_SKILL(targetUnit, gActionData.unk0A) << 8) | GET_SKILL_SCROLL_INDEX(GET_SKILL(targetUnit, gActionData.unk0A)));
+
+    NewPopup_Simple(PopupScr_LearnSkill, 0x5A, 0, Proc_Find(gProcScr_PlayerPhase));
 }
 
 struct PopupInstruction const PopupScr_GotScroll[] = {
