@@ -22,6 +22,7 @@
 #include "PostActionSkills/AngerPoint.lyn.event"
 #include "PostActionSkills/Debilitator.lyn.event"
 #include "PostActionSkills/NecroCopy.lyn.event"
+#include "PostActionSkills/Resurrection.lyn.event"
 
 #include "MenuSkills/LynJump.event"
 #include "MenuSkills/Dance.lyn.event"

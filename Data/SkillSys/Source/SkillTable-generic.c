@@ -403,7 +403,7 @@ const struct SkillPreloadPConf gSkillPreloadPData[0x100] = {
        // // 68
        [CHARACTER_ONEILL] = {
            .skills = {
-               [0] = SID_Blight,
+               [0] = SID_Resurrection,
            },
        },
        // // 69

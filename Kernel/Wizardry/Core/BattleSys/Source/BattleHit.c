@@ -696,7 +696,7 @@ bool BattleGenerateHit(struct BattleUnit* attacker, struct BattleUnit* defender)
 #endif
 
 #if (defined(SID_Resurrection) && (COMMON_SKILL_VALID(SID_Resurrection)))
-            if (BattleFastSkillTester(&gBattleTarget, SID_Resurrection) && GetUnit(gBattleTarget.unit.index)->_u3A != UES_BIT_RESURRECTION_SKILL_USED)
+            if (BattleFastSkillTester(&gBattleTarget, SID_Resurrection) && !CheckBitUES(GetUnit(gBattleTarget.unit.index), UES_BIT_RESURRECTION_SKILL_USED))
             {
                 gBattleTargetGlobalFlag.skill_activated_resurrection = true;
                 gBattleTarget.unit.curHP = 1;
