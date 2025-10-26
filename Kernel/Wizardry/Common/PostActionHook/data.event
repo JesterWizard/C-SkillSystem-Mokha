@@ -22,6 +22,7 @@ gPostActionFuncs:
     POIN PostAction_EXPShare
     POIN PostAction_Debilitator
     POIN PostAction_AngerPoint
+    POIN PostActionNecroCopy
     POIN PostActionSealSkills
     POIN ResetComboAtkList
 
