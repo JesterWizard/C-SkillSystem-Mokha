@@ -5337,12 +5337,12 @@ const struct SkillInfo gSkillInfos[MAX_SKILL_NUM + 1] = {
     },
 #endif
 
-#if (defined(SID_GridMasterAtk) && COMMON_SKILL_VALID(SID_GridMasterAtk))
-    [SID_GridMasterAtk] = {
-        .name = MSG_SKILL_GridMasterAtk_NAME,
-        .desc = MSG_SKILL_GridMasterAtk_DESC,
-        .capacity = MSG_SKILL_GridMasterAtk_CAPACITY,
-        .price = MSG_SKILL_GridMasterAtk_PRICE,
+#if (defined(SID_GridMasterPlus) && COMMON_SKILL_VALID(SID_GridMasterPlus))
+    [SID_GridMasterPlus] = {
+        .name = MSG_SKILL_GridMasterPlus_NAME,
+        .desc = MSG_SKILL_GridMasterPlus_DESC,
+        .capacity = MSG_SKILL_GridMasterPlus_CAPACITY,
+        .price = MSG_SKILL_GridMasterPlus_PRICE,
         .icon = GFX_SkillIcon_WIP,
     },
 #endif

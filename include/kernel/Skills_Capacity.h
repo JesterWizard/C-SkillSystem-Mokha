@@ -529,7 +529,7 @@
 #define MSG_SKILL_FreeSpirit_CAPACITY 1
 #define MSG_SKILL_ArmsthriftPlus_CAPACITY 1
 #define MSG_SKILL_GridMaster_CAPACITY 1
-#define MSG_SKILL_GridMasterAtk_CAPACITY 1
+#define MSG_SKILL_GridMasterPlus_CAPACITY 1
 #define MSG_SKILL_Swap_CAPACITY 1
 #define MSG_SKILL_VigorDance_CAPACITY 1
 #define MSG_SKILL_MagicSeal_CAPACITY 1

@@ -99,8 +99,8 @@ bool TryMakeCantoUnit(ProcPtr proc)
     if (gActionData.unitActionType == UNIT_ACTION_WAIT)
         return false;
 
-#if defined(SID_GridMasterAtk) && (COMMON_SKILL_VALID(SID_GridMasterAtk))
-    if (SkillTester(gActiveUnit, SID_GridMasterAtk))
+#if defined(SID_GridMasterPlus) && (COMMON_SKILL_VALID(SID_GridMasterPlus))
+    if (SkillTesterPlus(gActiveUnit, SID_GridMasterPlus))
     {
         if(gActionData.unitActionType == UNIT_ACTION_COMBAT)
             return false;

@@ -3273,12 +3273,12 @@ LYN_REPLACE_CHECK(AttackCommandUsability);
 u8 AttackCommandUsability(const struct MenuItemDef* def, int number) {
     int i;
 
-#if defined(SID_GridMasterAtk) && (COMMON_SKILL_VALID(SID_GridMasterAtk))
-    if (SkillTester(gActiveUnit, SID_GridMasterAtk) && gActiveUnit->state & US_CANTOING)
+#if defined(SID_GridMasterPlus) && (COMMON_SKILL_VALID(SID_GridMasterPlus))
+    if (SkillTesterPlus(gActiveUnit, SID_GridMasterPlus) && gActiveUnit->state & US_CANTOING)
         return MENU_ENABLED;
 #endif
 
-    /* These skills have the same effect here, but GridmasterAtk also prevents the unit from moving */
+    /* These skills have the same effect here, but GridMasterPlus also prevents the unit from moving */
 #if defined(SID_Warpath) && (COMMON_SKILL_VALID(SID_Warpath))
     if (SkillTester(gActiveUnit, SID_Warpath) && gActiveUnit->state & US_CANTOING)
         return MENU_ENABLED;

@@ -321,7 +321,7 @@
 // SID_GoldDigger
 // SID_LeadByExample
 // SID_GridMaster
-// SID_GridMasterAtk
+// SID_GridMasterPlus
 // SID_DestinyBond
 // SID_BoundlessVitality
 // SID_Synchronize

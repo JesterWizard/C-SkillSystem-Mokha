@@ -529,7 +529,7 @@
 #define MSG_SKILL_FreeSpirit_PRICE 1000
 #define MSG_SKILL_ArmsthriftPlus_PRICE 1000
 #define MSG_SKILL_GridMaster_PRICE 1000
-#define MSG_SKILL_GridMasterAtk_PRICE 1000
+#define MSG_SKILL_GridMasterPlus_PRICE 1000
 #define MSG_SKILL_Swap_PRICE 1000
 #define MSG_SKILL_VigorDance_PRICE 1000
 #define MSG_SKILL_MagicSeal_PRICE 1000

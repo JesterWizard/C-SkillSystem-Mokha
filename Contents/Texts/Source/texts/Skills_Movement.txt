@@ -1,114 +1,114 @@
 ## MSG_SKILL_Pass_NAME
 Pass[X]
 ## MSG_SKILL_Pass_DESC
-Pass:[NL]
-If HP more than 25% unit can[NL]
+Pass:[N]
+If HP more than 25% unit can[N]
 move through foes' spaces.[X]
 
 ## MSG_SKILL_Obstruct_NAME
 Obstruct[X]
 ## MSG_SKILL_Obstruct_DESC
-Obstruct: If HP more than 50%,[NL]
-foes cannot move through adjacent[NL]
+Obstruct: If HP more than 50%,[N]
+foes cannot move through adjacent[N]
 to unit. (Null on Pass skill).[X]
 
 ## MSG_SKILL_Guidance_NAME
 Guidance[X]
 ## MSG_SKILL_Guidance_DESC
-Guidance:[NL]
-Provide 2 additional movement[NL]
+Guidance:[N]
+Provide 2 additional movement[N]
 for non-flier allies[X]
 
 ## MSG_SKILL_FlierGuidance_NAME
 Flier Guidance[X]
 ## MSG_SKILL_FlierGuidance_DESC
-Flier Guidance:[NL]
-Provide 3 additional movement[NL]
+Flier Guidance:[N]
+Provide 3 additional movement[N]
 for flier allies[X]
 
 ## MSG_SKILL_SoaringGuidance_NAME
 Soaring Guidance[X]
 ## MSG_SKILL_SoaringGuidance_DESC
-Soaring Guidance:[NL]
-Provide 1 additional movement[NL]
+Soaring Guidance:[N]
+Provide 1 additional movement[N]
 for allies[X]
 
 ## MSG_SKILL_Aerobatics_NAME
 Aerobatics[X]
 ## MSG_SKILL_Aerobatics_DESC
-Aerobatics:[NL]
-Non-flier allies can provides 2[NL]
+Aerobatics:[N]
+Non-flier allies can provides 2[N]
 additional movement for the unit[X]
 
 ## MSG_SKILL_FlierFormation_NAME
 Flier Formation[X]
 ## MSG_SKILL_FlierFormation_DESC
-Flier Formation:[NL]
-Flier allies can provides 3[NL]
+Flier Formation:[N]
+Flier allies can provides 3[N]
 additional movement for the unit[X]
 
 ## MSG_SKILL_SoaringWings_NAME
 Soaring Wings[X]
 ## MSG_SKILL_SoaringWings_DESC
-Soaring Wings:[NL]
-Adjacent allies provide +1[NL]
+Soaring Wings:[N]
+Adjacent allies provide +1[N]
 movement for this unit.[X]
 
 ## MSG_SKILL_DetailedReport_NAME
 Detailed Report[X]
 ## MSG_SKILL_DetailedReport_DESC
-Detailed Report:[NL]
-If HP > 50%, ranged foes cannot[NL]
+Detailed Report:[N]
+If HP > 50%, ranged foes cannot[N]
 move throgh 2x2 spaces adjacent.[X]
 
 ## MSG_SKILL_GridMaster_NAME
 Grid Master[X]
 ## MSG_SKILL_GridMaster_DESC
-Grid Master:[NL]
-Menu movement skills do not[NL]
+Grid Master:[N]
+Menu movement skills do not[N]
 end this unit's turn.[X]
+
+## MSG_SKILL_GridMasterPlus_NAME
+Grid Master+[X]
+## MSG_SKILL_GridMasterPlus_DESC
+Grid Master+:[N]
+Unit can still attack after[N]
+using menu movement skills.[X]
 
 ## MSG_SKILL_Acrobat_NAME
 Acrobat[X]
 ## MSG_SKILL_Acrobat_DESC
-Acrobat:[NL]
-All traversable terrain for[NL]
+Acrobat:[N]
+All traversable terrain for[N]
 this unit costs 1 movement.[X]
 
 ## MSG_SKILL_WaterWalking_NAME
 Water Walking[X]
 ## MSG_SKILL_WaterWalking_DESC
-Water Walking:[NL]
-Allows the unit to[NL]
+Water Walking:[N]
+Allows the unit to[N]
 walk on water tiles.[X]
 
 ## MSG_SKILL_WaterWalkingPlus_NAME
 Water Walking+[X]
 ## MSG_SKILL_WaterWalkingPlus_DESC
-Water Walking+:[NL]
-Allows the unit to walk on water[NL]
+Water Walking+:[N]
+Allows the unit to walk on water[N]
 tiles with no move penalty.[X]
 
 ## MSG_SKILL_MountainClimber_NAME
 Mountain Climber[X]
 ## MSG_SKILL_MountainClimber_DESC
-Mountain Climber:[NL]
-Allows the unit to[NL]
+Mountain Climber:[N]
+Allows the unit to[N]
 walk on mountain tiles.[X]
 
 ## MSG_SKILL_MountainClimberPlus_NAME
 Mountain Climber+[X]
 ## MSG_SKILL_MountainClimberPlus_DESC
-Mountain Climber+:[NL]
-Allows the unit to walk on mountain[NL]
+Mountain Climber+:[N]
+Allows the unit to walk on mountain[N]
 tiles with no move penalty.[X]
-
-## MSG_SKILL_GridMasterAtk_NAME
-Grid Master Attack[X]
-## MSG_SKILL_GridMasterAtk_DESC
-Grid Master Attack:[NL]
-Unit can still attack after[N]
-using menu movement skills.[A][X]
 
 ## MSG_SKILL_PhaseShift_NAME
 Phase Shift[X]
