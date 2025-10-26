@@ -51,9 +51,9 @@ in 2 tiles heal for 20% their max HP.[X]
 Thunder Storm[X]
 ## MSG_SKILL_Thunderstorm_DESC
 Thunder Storm:[N]
-Call thunder-storm with AOE (2x2)[N]
-damage on enemy when attacking[N]
-from a 3 tile or greater range.[X]
+Calls a Thunder-Storm AOE in a[N]
+2x2 range to damage enemies when[N]
+attacking from 3+ tiles away.[X]
 
 ## MSG_SKILL_PosReturn_NAME
 Position Return[X]
@@ -115,7 +115,8 @@ HP in damage, after combat.[X]
 Clearance[X]
 ## MSG_SKILL_Clearance_DESC
 Clearance:[N]
-Clear own negative status after combat[X]
+Clears the unit's own negative[N]
+status after combat[X]
 
 ## MSG_SKILL_Despoil_NAME
 Despoil[X]
