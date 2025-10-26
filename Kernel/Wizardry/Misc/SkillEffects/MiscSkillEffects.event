@@ -24,6 +24,7 @@
 #include "PostActionSkills/NecroCopy.lyn.event"
 #include "PostActionSkills/Resurrection.lyn.event"
 #include "PostActionSkills/MendArms.lyn.event"
+#include "PostActionSkills/GuerillaTactics.lyn.event"
 
 #include "MenuSkills/LynJump.event"
 #include "MenuSkills/Dance.lyn.event"
