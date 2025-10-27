@@ -27,6 +27,7 @@
 #include "PostActionSkills/GuerillaTactics.lyn.event"
 #include "PostActionSkills/Scavenger.lyn.event"
 #include "PostActionSkills/Predation.lyn.event"
+#include "PostActionSkills/ShadowStep.lyn.event"
 
 #include "MenuSkills/LynJump.event"
 #include "MenuSkills/Dance.lyn.event"
