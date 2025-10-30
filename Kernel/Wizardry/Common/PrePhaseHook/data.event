@@ -26,8 +26,8 @@ gPrePhaseFuncs:
     POIN PrePhsae_ExecYuneWhisperSkills
     POIN PrePhaseFunc_WitchsBrew
     POIN PrePhase_BlacksmithPlus
-
     POIN PrePhase_HurtAmount
+    POIN PrePhase_Truant
 
     // End
     POIN CallExternalPrePhaseHook
