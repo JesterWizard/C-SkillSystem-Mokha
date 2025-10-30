@@ -83,9 +83,35 @@ bool ChapterInit_SetInitiativeStatus(ProcPtr proc)
 
 bool PrePhase_TickInitativeSkillStatus(ProcPtr proc)
 {
+	int i;
+    bool eternalVanity = false;
+
 	if (gPlaySt.chapterTurnNumber >= 2 && gPlaySt.faction == FACTION_BLUE) {
 		FOR_UNITS_ONMAP_ALL(unit, {
-			_ClearInitiativeStatDebuf(unit);
+            if (!UNIT_IS_VALID(unit))
+                continue;
+                                
+#if (defined(SID_EternalVanity) && COMMON_SKILL_VALID(SID_EternalVanity))
+            if (SkillTester(unit, SID_EternalVanity))
+                eternalVanity = true;
+#endif
+            if (!eternalVanity)
+                _ClearInitiativeStatDebuf(unit);
+        }
+
+        for (i = FACTION_RED + 1; i < FACTION_RED + 1 + CONFIG_UNIT_AMT_ENEMY; i++)
+        {
+            unit = GetUnit(i);
+            if (!UNIT_IS_VALID(unit))
+                continue;
+
+#if (defined(SID_EternalVanity) && COMMON_SKILL_VALID(SID_EternalVanity))
+            if (SkillTester(unit, SID_EternalVanity))
+                eternalVanity = true;
+#endif
+
+            if (!eternalVanity)
+                _ClearInitiativeStatDebuf(unit);
 		})
 	}
 	return false;
