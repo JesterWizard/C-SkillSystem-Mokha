@@ -10,9 +10,13 @@
  */
 int _GetUnitCon(struct Unit *unit)
 {
-	int status = UNIT_CON(unit);
+    const StatusGetterFunc_t * it;
+    int status = UNIT_CON(unit);
 
-	return status;
+    for (it = gpConGetters; *it; it++)
+        status = (*it)(status, unit);
+
+    return status;
 }
 
 int ConGetterSkills(int status, struct Unit * unit)
