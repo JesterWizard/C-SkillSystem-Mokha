@@ -5,6 +5,7 @@
 #include "constants/skills.h"
 #include "bwl.h"
 #include "unit-expa.h"
+#include "debuff.h"
 #include "jester_headers/custom-functions.h"
 
 int _GetUnitMagic(struct Unit *unit)
@@ -208,12 +209,18 @@ int MagPsychUpCheck(int status, struct Unit *unit)
 #if (defined(SID_PsychUp) && (COMMON_SKILL_VALID(SID_PsychUp)))
     if (unit == GetUnit(gBattleActor.unit.index) && SkillTester(unit, SID_PsychUp))
     {
-        stolen_status = MagGetterSkills(0, GetUnit(gBattleTarget.unit.index));
+        stolen_status = MagGetterWeaponBonus(0, GetUnit(gBattleTarget.unit.index)) + 
+                        MagGetterSkills(0, GetUnit(gBattleTarget.unit.index)) +
+                        GetStatDebuffMsgBuf(GetUnit(gBattleTarget.unit.index))->mag;
+
         return status + stolen_status;
     }
     else if (unit == GetUnit(gBattleTarget.unit.index) && SkillTester(unit, SID_PsychUp))
     {
-        stolen_status = MagGetterSkills(0, GetUnit(gBattleActor.unit.index));
+        stolen_status = MagGetterWeaponBonus(0, GetUnit(gBattleTarget.unit.index)) + 
+                        MagGetterSkills(0, GetUnit(gBattleTarget.unit.index)) +
+                        GetStatDebuffMsgBuf(GetUnit(gBattleTarget.unit.index))->mag;
+
         return status + stolen_status;
     }
 #endif

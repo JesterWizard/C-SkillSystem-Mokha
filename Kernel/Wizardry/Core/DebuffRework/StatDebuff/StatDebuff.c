@@ -337,7 +337,7 @@ STATIC_DECLAR struct StatDebuffMsgBuf *GetExistingStatDebuffMsgBuf(struct Unit *
 	return NULL;
 }
 
-STATIC_DECLAR struct StatDebuffMsgBuf *GetStatDebuffMsgBuf(struct Unit *unit)
+struct StatDebuffMsgBuf *GetStatDebuffMsgBuf(struct Unit *unit)
 {
 	struct StatDebuffMsgBuf *buf = GetExistingStatDebuffMsgBuf(unit);
 
@@ -382,7 +382,7 @@ int PowGetterStatDebuff(int status, struct Unit *unit)
             return status - GetStatDebuffMsgBuf(unit)->pow;
 #endif
 
-    return status + GetStatDebuffMsgBuf(unit)->pow * unit->counters;
+    return status + GetStatDebuffMsgBuf(unit)->pow;
 }
 
 int MagGetterStatDebuff(int status, struct Unit *unit)
@@ -398,7 +398,7 @@ int MagGetterStatDebuff(int status, struct Unit *unit)
         if (GetStatDebuffMsgBuf(unit)->mag < 0)
             return status - GetStatDebuffMsgBuf(unit)->mag;
 #endif
-    return status + GetStatDebuffMsgBuf(unit)->mag * unit->counters;
+    return status + GetStatDebuffMsgBuf(unit)->mag;
 }
 
 int SklGetterStatDebuff(int status, struct Unit *unit)
@@ -414,7 +414,7 @@ int SklGetterStatDebuff(int status, struct Unit *unit)
         if (GetStatDebuffMsgBuf(unit)->skl < 0)
             return status - GetStatDebuffMsgBuf(unit)->skl;
 #endif
-    return status + GetStatDebuffMsgBuf(unit)->skl * unit->counters;
+    return status + GetStatDebuffMsgBuf(unit)->skl;
 }
 
 int SpdGetterStatDebuff(int status, struct Unit *unit)
@@ -430,7 +430,7 @@ int SpdGetterStatDebuff(int status, struct Unit *unit)
         if (GetStatDebuffMsgBuf(unit)->spd < 0)
             return status - GetStatDebuffMsgBuf(unit)->spd;
 #endif
-    return status + GetStatDebuffMsgBuf(unit)->spd * unit->counters;
+    return status + GetStatDebuffMsgBuf(unit)->spd;
 }
 
 int DefGetterStatDebuff(int status, struct Unit *unit)
@@ -446,7 +446,7 @@ int DefGetterStatDebuff(int status, struct Unit *unit)
         if (GetStatDebuffMsgBuf(unit)->def < 0)
             return status - GetStatDebuffMsgBuf(unit)->def;
 #endif
-    return status + GetStatDebuffMsgBuf(unit)->def * unit->counters;
+    return status + GetStatDebuffMsgBuf(unit)->def;
 }
 
 int ResGetterStatDebuff(int status, struct Unit *unit)
@@ -462,7 +462,7 @@ int ResGetterStatDebuff(int status, struct Unit *unit)
         if (GetStatDebuffMsgBuf(unit)->res < 0)
             return status - GetStatDebuffMsgBuf(unit)->res;
 #endif
-    return status + GetStatDebuffMsgBuf(unit)->res * unit->counters;
+    return status + GetStatDebuffMsgBuf(unit)->res;
 }
 
 int LckGetterStatDebuff(int status, struct Unit *unit)
@@ -478,7 +478,7 @@ int LckGetterStatDebuff(int status, struct Unit *unit)
         if (GetStatDebuffMsgBuf(unit)->lck < 0)
             return status - GetStatDebuffMsgBuf(unit)->lck;
 #endif
-    return status + GetStatDebuffMsgBuf(unit)->lck * unit->counters;
+    return status + GetStatDebuffMsgBuf(unit)->lck;
 }
 
 int MovGetterStatDebuff(int status, struct Unit *unit)
@@ -492,7 +492,7 @@ int MovGetterStatDebuff(int status, struct Unit *unit)
 #if (defined(SID_Contrary) && (COMMON_SKILL_VALID(SID_Contrary)))
     if (SkillTester(unit, SID_Contrary))
         if (GetStatDebuffMsgBuf(unit)->mov < 0)
-            return status - GetStatDebuffMsgBuf(unit)->mov * unit->counters;
+            return status - GetStatDebuffMsgBuf(unit)->mov;
 #endif
 
 #if defined(SID_ArenaTrap) && (COMMON_SKILL_VALID(SID_ArenaTrap))
@@ -541,7 +541,7 @@ int HpGetterStatDebuff(int status, struct Unit *unit)
             return status - GetStatDebuffMsgBuf(unit)->maxHP;
 #endif
 
-    return status + GetStatDebuffMsgBuf(unit)->maxHP * unit->counters;
+    return status + GetStatDebuffMsgBuf(unit)->maxHP;
 }
 
 void ResetStatDeuffBuf(void)

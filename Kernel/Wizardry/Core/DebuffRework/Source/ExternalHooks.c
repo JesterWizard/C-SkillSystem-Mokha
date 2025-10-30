@@ -101,6 +101,7 @@ int DefGetterDebuff(int status, struct Unit *unit)
         if (gpDebuffInfos[GetUnitStatusIndex(unit)].unit_status.def < 0)
             return status;
 #endif
+
     return status + gpDebuffInfos[GetUnitStatusIndex(unit)].unit_status.def;
 }
 

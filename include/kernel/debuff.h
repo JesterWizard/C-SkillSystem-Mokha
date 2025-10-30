@@ -328,7 +328,7 @@ extern struct StatDebuffStatus* const* const gpStatDebuffStatusPool;
 
 struct StatDebuffStatus* GetUnitStatDebuffStatus(struct Unit* unit);
 
-#define STAT_DEBUFF_MSG_BUF_AMT 7
+#define STAT_DEBUFF_MSG_BUF_AMT 9
 #define STAT_DEBUFF_MSG_BUF_NEXT(idx) (((idx) - 1) & 3)
 
 struct StatDebuffMsgBuf { // To expand go to _kernel_malloc sStatDebuffMsgBuf in config-memmap.s
@@ -372,3 +372,5 @@ bool UnitHasNegativeStatus(struct Unit* unit);
 bool UnitHasPositiveStatus(struct Unit* unit);
 void RemoveUnitNegativeStatus(struct Unit* unit);
 void RemoveUnitPositiveStatus(struct Unit* unit);
+
+struct StatDebuffMsgBuf *GetStatDebuffMsgBuf(struct Unit *unit);

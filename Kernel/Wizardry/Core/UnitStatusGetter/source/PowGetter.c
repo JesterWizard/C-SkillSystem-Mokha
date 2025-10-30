@@ -4,6 +4,7 @@
 #include "constants/skills.h"
 #include "bwl.h"
 #include "unit-expa.h"
+#include "debuff.h"
 #include "jester_headers/custom-functions.h"
 
 int _GetUnitPower(struct Unit *unit)
@@ -245,14 +246,18 @@ int PowPsychUpCheck(int status, struct Unit * unit)
 #if (defined(SID_PsychUp) && (COMMON_SKILL_VALID(SID_PsychUp)))
     if (unit == GetUnit(gBattleActor.unit.index) && SkillTester(unit, SID_PsychUp))
     {
-        stolen_status = PowGetterWeaponBonus(0, GetUnit(gBattleTarget.unit.index)) +
-            PowGetterSkills(0, GetUnit(gBattleTarget.unit.index));
+        stolen_status = PowGetterWeaponBonus(0, GetUnit(gBattleTarget.unit.index)) + 
+                        PowGetterSkills(0, GetUnit(gBattleTarget.unit.index)) +
+                        GetStatDebuffMsgBuf(GetUnit(gBattleTarget.unit.index))->pow;
+
         return status + stolen_status;
     }
     else if (unit == GetUnit(gBattleTarget.unit.index) && SkillTester(unit, SID_PsychUp))
     {
-        stolen_status = PowGetterWeaponBonus(0, GetUnit(gBattleActor.unit.index)) +
-            PowGetterSkills(0, GetUnit(gBattleActor.unit.index));
+        stolen_status = PowGetterWeaponBonus(0, GetUnit(gBattleTarget.unit.index)) + 
+                        PowGetterSkills(0, GetUnit(gBattleTarget.unit.index)) +
+                        GetStatDebuffMsgBuf(GetUnit(gBattleTarget.unit.index))->pow;
+
         return status + stolen_status;
     }
 #endif
