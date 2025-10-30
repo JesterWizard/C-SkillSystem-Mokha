@@ -78,7 +78,7 @@ _kernel_malloc sStatDebuffStatusAlly, 51 * 16
 _kernel_malloc sStatDebuffStatusEnemy, 51 * 16
 _kernel_malloc sStatDebuffStatusNpc, 8 * 16
 _kernel_malloc sStatDebuffStatusBattleUnit, 2 * 16
-_kernel_malloc sStatDebuffMsgBuf, 0x2C * 7
+_kernel_malloc sStatDebuffMsgBuf, 0x2C * 9 // JESTER - Expanded from 7 to 9 to account for curHP and maxHP
 _kernel_malloc sExpaConvoyItemCount, 4
 _kernel_malloc sExpaConvoyItemArray, 2 * 300
 _kernel_malloc sGaidenMagicListObj, 0x24

@@ -331,11 +331,11 @@ struct StatDebuffStatus* GetUnitStatDebuffStatus(struct Unit* unit);
 #define STAT_DEBUFF_MSG_BUF_AMT 7
 #define STAT_DEBUFF_MSG_BUF_NEXT(idx) (((idx) - 1) & 3)
 
-struct StatDebuffMsgBuf {
+struct StatDebuffMsgBuf { // To expand go to _kernel_malloc sStatDebuffMsgBuf in config-memmap.s
     u32 bitfile[4];
     u32 special_mask;
     s8 uid;
-    s16 pow, mag, skl, spd, def, res, lck, mov;
+    s16 pow, mag, skl, spd, def, res, lck, mov, curHP, maxHP;
 };
 extern struct StatDebuffMsgBuf sStatDebuffMsgBuf[STAT_DEBUFF_MSG_BUF_AMT];
 extern u8 sStatDebuffMsgBufNext;
