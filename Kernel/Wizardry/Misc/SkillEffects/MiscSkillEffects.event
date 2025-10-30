@@ -134,6 +134,7 @@
 #include "PrePhaseSkills/ChillSkills.lyn.event"
 #include "PrePhaseSkills/WitchsBrew.lyn.event"
 #include "PrePhaseSkills/PrePhaseHurt.lyn.event"
+#include "PrePhaseSkills/BlacksmithPlus.lyn.event"
 #ifdef CONFIG_LAGUZ_BARS
 #include "PrePhaseSkills/PrePhase_LaguzBars.lyn.event"
 #endif
