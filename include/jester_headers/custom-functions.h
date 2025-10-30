@@ -126,3 +126,4 @@ int findMax(u8 *array, int size);  // find max value in array and return index
 
 int RandSkill(int id, struct Unit * unit);
 extern bool SkillTesterPlus(struct Unit *unit, u16 sid);
+extern bool isMonsterClass(int classId);

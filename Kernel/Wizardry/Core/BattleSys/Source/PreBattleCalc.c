@@ -12,6 +12,7 @@
 #include "constants/skills.h"
 #include "unit-expa.h"
 #include "jester_headers/custom-arrays.h"
+#include "jester_headers/custom-functions.h"
 
 #define LOCAL_TRACE 0
 
@@ -2357,6 +2358,44 @@ void PreBattleCalcAuraEffect(struct BattleUnit* attacker, struct BattleUnit* def
 				attacker->battleHitRate += SKILL_EFF0(SID_Charisma);
 				attacker->battleAvoidRate += SKILL_EFF1(SID_Charisma);
 			}
+#endif
+
+#if (defined(SID_ForeignPrincess) && (COMMON_SKILL_VALID(SID_ForeignPrincess)))
+            if (SkillTester(unit, SID_ForeignPrincess) && CA_FEMALE)
+            {
+                attacker->battleAttack += SKILL_EFF0(SID_ForeignPrincess);
+                attacker->battleDefense += SKILL_EFF0(SID_ForeignPrincess);
+            }
+#endif
+
+#if (defined(SID_NiceThighs) && (COMMON_SKILL_VALID(SID_NiceThighs)))
+            if (SkillTester(unit, SID_NiceThighs))
+            {
+#if (defined(SID_Thighdeology) && (COMMON_SKILL_VALID(SID_Thighdeology)))
+                if (SkillTester(GetUnit(attacker->unit.index), SID_Thighdeology))
+                {
+                    attacker->battleAttack += SKILL_EFF0(SID_Thighdeology);
+                    attacker->battleHitRate += SKILL_EFF1(SID_Thighdeology);
+                }
+#endif
+
+#if (defined(SID_ThotSlayer) && (COMMON_SKILL_VALID(SID_ThotSlayer)))
+                if (SkillTester(GetUnit(attacker->unit.index), SID_ThotSlayer))
+                    attacker->battleCritRate += SKILL_EFF0(SID_ThotSlayer);
+#endif
+            }
+#endif
+
+#if (defined(SID_MarkOfTheBeast) && (COMMON_SKILL_VALID(SID_MarkOfTheBeast)))
+        if (SkillTester(unit, SID_MarkOfTheBeast) && isMonsterClass(attacker->unit.pClassData->number))
+        {
+            attacker->battleAttack += SKILL_EFF0(SID_MarkOfTheBeast);
+            attacker->battleDefense += SKILL_EFF0(SID_MarkOfTheBeast);
+            attacker->battleCritRate += SKILL_EFF0(SID_MarkOfTheBeast);
+            attacker->battleSpeed += SKILL_EFF0(SID_MarkOfTheBeast);
+            attacker->battleAvoidRate += SKILL_EFF0(SID_MarkOfTheBeast);
+            attacker->battleDodgeRate += SKILL_EFF0(SID_MarkOfTheBeast);
+        }
 #endif
 
 			/* Since we just calc in 3x3, so here is always true */
