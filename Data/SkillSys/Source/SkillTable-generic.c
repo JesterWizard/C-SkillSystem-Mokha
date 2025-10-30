@@ -10,8 +10,7 @@
 const struct SkillPreloadPConf gSkillPreloadPData[0x100] = {
     // 01
     [CHARACTER_EIRIKA] = {{
-        [0] = SID_InitSpectrum,
-        [1] = SID_EternalVanity
+        [0] = SID_SelfHealing
     }},
     // 02
     [CHARACTER_SETH] = {{
