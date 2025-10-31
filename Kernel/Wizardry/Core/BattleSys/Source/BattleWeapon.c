@@ -57,6 +57,11 @@ int GetItemFromSlot(struct Unit *unit, int slot)
 LYN_REPLACE_CHECK(GetUnitEquippedWeaponSlot);
 int GetUnitEquippedWeaponSlot(struct Unit *unit)
 {
+    if (GetUnitStatusIndex(unit) == NEW_UNIT_STATUS_BREAK)
+	{
+        return -1;
+	}
+	
 	int i;
 
 	for (i = 0; i < UNIT_ITEM_COUNT; ++i)
@@ -123,6 +128,11 @@ s8 CanUnitUseStaff(struct Unit* unit, int item) {
 LYN_REPLACE_CHECK(GetUnitEquippedWeapon);
 u16 GetUnitEquippedWeapon(struct Unit *unit)
 {
+    if (GetUnitStatusIndex(unit) == NEW_UNIT_STATUS_BREAK)
+	{
+        return 0;
+	}
+
 	return GetItemFromSlot(unit, GetUnitEquippedWeaponSlot(unit));
 }
 

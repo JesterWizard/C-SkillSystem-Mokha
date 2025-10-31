@@ -610,6 +610,33 @@ bool BattleGenerateHit(struct BattleUnit* attacker, struct BattleUnit* defender)
 		attacker->wexpMultiplier++;
 #endif
 
+/* 
+** Set the ballista byte in the unit's unit struct to the chapter number they died on  to check when using arise 
+** Since we're only concerned with player units using his skill, we can use an AI byte to check if they've already been revived
+** EDIT: May need to revisit this as I think ai bytes get refreshed even in player structs
+*/
+#if (defined(SID_Arise) && (COMMON_SKILL_VALID(SID_Arise)))
+    if (BattleFastSkillTester(attacker, SID_Arise))
+    {
+        if (GetUnit(attacker->unit.index)->ai1 != 0xFF)
+            if (attacker->unit.curHP == 0)
+            {
+                GetUnit(attacker->unit.index)->ai1 = 0xFF;
+                GetUnit(attacker->unit.index)->ballistaIndex = gPlaySt.chapterIndex;
+            }
+
+    }
+    if (BattleFastSkillTester(defender, SID_Arise))
+    {
+        if (GetUnit(defender->unit.index)->ai1 != 0xFF)
+            if (defender->unit.curHP == 0)
+            {
+                GetUnit(attacker->unit.index)->ai1 = 0xFF;
+                GetUnit(defender->unit.index)->ballistaIndex = gPlaySt.chapterIndex;
+            }
+    }
+#endif
+
 		gBattleHitIterator->info |= BATTLE_HIT_INFO_FINISHES;
 
 #if CHAX
@@ -733,6 +760,14 @@ bool BattleGenerateHit(struct BattleUnit* attacker, struct BattleUnit* defender)
 
 			gBattleHitIterator->info |= BATTLE_HIT_INFO_KILLS_TARGET;
 		}
+        else if (
+            defender->statusOut == UNIT_STATUS_PETRIFY || defender->statusOut == UNIT_STATUS_13 ||
+            defender->statusOut == UNIT_STATUS_SLEEP || (GetUnitStatusIndex(GetUnit(defender->unit.index)) == NEW_UNIT_STATUS_BREAK && defender->canCounter == true))
+        {
+            gBattleHitIterator->info |= BATTLE_HIT_INFO_FINISHES;
+            gBattleHitIterator++;
+            return true;
+        }
 
 		gBattleHitIterator++;
 		return true;
