@@ -456,7 +456,10 @@ void ExecBarrierStaff(ProcPtr proc) {
                 continue;
     
             if (AreUnitsAllied(gActiveUnit->index, unit_adjacent->index) && GetUnit(unit_adjacent->index) != unit_tar)
-                unit_adjacent->barrierDuration = 7;
+			{
+                unit_adjacent->boostType = unit_tar->boostType;
+				unit_adjacent->barrierDuration = 7;
+			}
         }
     }
 #endif
