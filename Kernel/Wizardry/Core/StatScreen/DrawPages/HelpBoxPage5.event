@@ -11,8 +11,10 @@
     #define _HbRedirect_SSItem 0x88b41
 
 ALIGN 4
+#ifdef CONFIG_MP_SYSTEM
 RTextPageMagic:
     POIN Rtext_Page5_Magic
+#endif
 
 Rtext_Page5_Magic:
 Rtext_Page5_White_Magic_Title:

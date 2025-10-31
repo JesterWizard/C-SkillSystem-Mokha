@@ -12,6 +12,10 @@ extern _DECL_INFO *const RTextPageSupport;
 	extern _DECL_INFO *const RTextPageMagic;
 #endif
 
+#ifdef CONFIG_STAT_PAGE_PERSONAL_INFO
+	extern _DECL_INFO *const RTextPagePersonalData;
+#endif
+
 extern struct {
 	u8 talkee;
 	u8 unitpage_max;

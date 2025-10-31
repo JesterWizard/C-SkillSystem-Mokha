@@ -1,0 +1,30 @@
+#ifndef _RMenu_Defined
+    #define _RMenu_Defined
+    #define _RMenu(up,down,left,right,xcoord,ycoord,TID) "POIN up down left right;BYTE xcoord ycoord; SHORT TID; WORD 0 0;"
+    #define _RMenu(up,down,left,right,xcoord,ycoord,TID,Getter) "POIN up down left right; BYTE xcoord ycoord; SHORT TID; POIN 0 Getter|1"
+    #define _RMenu(up,down,left,right,xcoord,ycoord,SlotID,Looper,Getter) "POIN up down left right; BYTE xcoord ycoord; SHORT SlotID; POIN Looper|1 Getter|1"
+    #define _NameDescGetter 0x88bd5
+    #define _ClassDescGetter 0x88c01
+#endif /* _RMenu_Defined */
+
+ALIGN 4
+#ifdef CONFIG_STAT_PAGE_PERSONAL_INFO
+RTextPagePersonalData:
+    POIN Rtext_Page6_Name
+#endif
+
+/* Left */
+Rtext_Page6_Name:
+    _RMenu(Rtext_Page6_Hp, Rtext_Page6_Class, Rtext_Page6_Name, Rtext_Page6_Name, 0x18, 0x50, 0x0, _NameDescGetter)
+
+Rtext_Page6_Class:
+    _RMenu(Rtext_Page6_Name, Rtext_Page6_Level, Rtext_Page6_Class, Rtext_Page6_Class, 0x6, 0x68, 0x6E8, _ClassDescGetter)
+
+Rtext_Page6_Level:
+    _RMenu(Rtext_Page6_Class, Rtext_Page6_Hp, Rtext_Page6_Level, Rtext_Page6_Level, 0x6, 0x78, 0x542)
+
+Rtext_Page6_Exp:
+    _RMenu(Rtext_Page6_Class, Rtext_Page6_Hp, Rtext_Page6_Exp, Rtext_Page6_Exp, 0x26, 0x78, 0x543)
+
+Rtext_Page6_Hp:
+    _RMenu(Rtext_Page6_Level, Rtext_Page6_Name, Rtext_Page6_Hp, Rtext_Page6_Hp, 0x6, 0x88, 0x544)

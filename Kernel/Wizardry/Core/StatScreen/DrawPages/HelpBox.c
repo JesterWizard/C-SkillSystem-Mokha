@@ -35,6 +35,11 @@ void StartStatScreenHelp(int pageid, struct Proc *proc)
             gStatScreen.help = RTextPageMagic;
             break;
 #endif
+#ifdef CONFIG_STAT_PAGE_PERSONAL_INFO
+        case 5:
+            gStatScreen.help = RTextPagePersonalData;
+            break;
+#endif
 		} // switch (pageid)
 	}
 	StartMovingHelpBox(gStatScreen.help, proc);

@@ -81,11 +81,6 @@ void StatScreen_Display(struct Proc* proc)
     /* JESTER - 3 is the original page amount, the +1 is for the supports page */
     int pageAmt = 3 + 1;
 
-    int fid = GetUnitPortraitId(gStatScreen.unit);
-
-    if (gStatScreen.unit->state & US_BIT23)
-        fid++;
-
 #ifdef CONFIG_MP_SYSTEM
     pageAmt += 1;
 #endif
@@ -93,6 +88,11 @@ void StatScreen_Display(struct Proc* proc)
 #ifdef CONFIG_STAT_PAGE_PERSONAL_INFO
     pageAmt += 1;
 #endif
+
+    int fid = GetUnitPortraitId(gStatScreen.unit);
+
+    if (gStatScreen.unit->state & US_BIT23)
+        fid++;
 
     // Set page amount (in FE6, this was dependant on whether this is ally or enemy)
     gStatScreen.pageAmt = pageAmt;
