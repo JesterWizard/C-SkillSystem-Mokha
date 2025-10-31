@@ -1455,4 +1455,9 @@ const struct SkillExtraInfo gSkillExtraInfo[MAX_SKILL_NUM + 1] = {
 #if (defined(SID_HeavyMetal) && COMMON_SKILL_VALID(SID_HeavyMetal))
     [SID_HeavyMetal] = {{5}},
 #endif
+
+#if (defined(SID_Thrust) && COMMON_SKILL_VALID(SID_Thrust))
+    [SID_Thrust] = {{10}},
+#endif
+
 };

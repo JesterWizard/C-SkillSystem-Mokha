@@ -4079,3 +4079,64 @@ bool isMonsterClass(int classId) {
     }
     return false;
 }
+
+LYN_REPLACE_CHECK(BattleInitTargetCanCounter);
+void BattleInitTargetCanCounter(void)
+{
+
+    // Target cannot counter if it is a gorgon egg
+    if (UNIT_IS_GORGON_EGG(&gBattleTarget.unit))
+    {
+        gBattleTarget.weapon = 0;
+        gBattleTarget.canCounter = FALSE;
+    }
+
+    // Target cannot counter if either units are using "uncounterable" weapons
+#if defined(SID_Counterattack) && (COMMON_SKILL_VALID(SID_Counterattack))
+    if (!SkillTester(&gBattleTarget.unit, SID_Counterattack))
+    {
+        if ((gBattleActor.weaponAttributes | gBattleTarget.weaponAttributes) & IA_UNCOUNTERABLE)
+        {
+            gBattleTarget.weapon = 0;
+            gBattleTarget.canCounter = FALSE;
+        }
+    }
+#else
+    if ((gBattleActor.weaponAttributes | gBattleTarget.weaponAttributes) & IA_UNCOUNTERABLE)
+    {
+        gBattleTarget.weapon = 0;
+        gBattleTarget.canCounter = FALSE;
+    }
+    else
+    {
+#if defined(SID_DualWieldPlus) && (COMMON_SKILL_VALID(SID_DualWieldPlus))
+        if (SkillTester(GetUnit(gBattleActor.unit.index), SID_DualWieldPlus))
+        {
+            for (int i = 1; i < UNIT_MAX_INVENTORY; i++)
+            {
+                if (GetItemMight(gBattleActor.unit.items[i]) > 0 &&
+                    CanUnitUseWeapon(GetUnit(gBattleActor.unit.index), gBattleActor.unit.items[i]))
+                {
+                    if (GetItemAttributes(gBattleActor.unit.items[i]) & IA_UNCOUNTERABLE)
+                    {
+                        gBattleTarget.weapon = 0;
+                        gBattleTarget.canCounter = FALSE;
+                        break;
+                    }
+                }
+            }
+        }
+#endif
+    }
+#endif
+
+    // Target cannot counter if a berserked player unit is attacking another player unit
+    if (gBattleActor.unit.statusIndex == UNIT_STATUS_BERSERK)
+    {
+        if ((UNIT_FACTION(&gBattleActor.unit) == FACTION_BLUE) && (UNIT_FACTION(&gBattleTarget.unit) == FACTION_BLUE))
+        {
+            gBattleTarget.weapon = 0;
+            gBattleTarget.canCounter = FALSE;
+        }
+    }
+}

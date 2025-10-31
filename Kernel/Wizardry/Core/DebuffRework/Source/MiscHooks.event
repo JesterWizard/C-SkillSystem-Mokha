@@ -47,9 +47,10 @@ PUSH
     // BYTE 0x3F
     // PROTECT $2B600 $2B83C
 
-    ORG $2C88C // BattleInitTargetCanCounter
-    BYTE 0x3F
-    PROTECT $2C844 $2C8C4
+    /* JESTER - Needed for LynJump of function */
+    // ORG $2C88C // BattleInitTargetCanCounter
+    // BYTE 0x3F
+    // PROTECT $2C844 $2C8C4
 
     ORG $2D046 // BattleUnwindScripted
     BYTE 0x3F
