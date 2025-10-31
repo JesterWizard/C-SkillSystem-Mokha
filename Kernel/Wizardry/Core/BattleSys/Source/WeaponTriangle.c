@@ -10,31 +10,31 @@
 
 STATIC_DECLAR bool WtaHandler_Skill(struct BattleUnit *attacker, struct BattleUnit *defender, struct WtaStatus *status)
 {
-	const struct WeaponTriangleConf *it;
+    const struct WeaponTriangleConf *it;
+    for (it = gpWeaponTriangleConfs; it->wtype_a != it->wtype_b; it++) {
+        if (it->wtype_a == attacker->weaponType && it->wtype_b == defender->weaponType) {
+            if (it->sid == 0 || BattleFastSkillTester(attacker, it->sid)) {
+                if (it->is_buff) {
+                    status->bonus.atk += it->bonus_atk;
+                    status->bonus.def += it->bonus_def;
+                    status->bonus.hit += it->bonus_hit;
+                    status->bonus.avo += it->bonus_avoid;
+                    status->bonus.crt += it->bonus_crit;
+                    status->bonus.sil += it->bonus_silencer;
+                } else {
+                    status->minus.atk += it->bonus_atk;
+                    status->minus.def += it->bonus_def;
+                    status->minus.hit += it->bonus_hit;
+                    status->minus.avo += it->bonus_avoid;
+                    status->minus.crt += it->bonus_crit;
+                    status->minus.sil += it->bonus_silencer;
+                }
+                return true;
+            }
+        }
+    }
 
-	for (it = gpWeaponTriangleConfs; it->wtype_a != it->wtype_b; it++) {
-		if (it->wtype_a == attacker->weaponType && it->wtype_b == defender->weaponType) {
-			if (it->sid == 0 || BattleFastSkillTester(attacker, it->sid)) {
-				if (it->is_buff) {
-					status->bonus.atk += it->bonus_atk;
-					status->bonus.def += it->bonus_def;
-					status->bonus.hit += it->bonus_hit;
-					status->bonus.avo += it->bonus_avoid;
-					status->bonus.crt += it->bonus_crit;
-					status->bonus.sil += it->bonus_silencer;
-				} else {
-					status->minus.atk += it->bonus_atk;
-					status->minus.def += it->bonus_def;
-					status->minus.hit += it->bonus_hit;
-					status->minus.avo += it->bonus_avoid;
-					status->minus.crt += it->bonus_crit;
-					status->minus.sil += it->bonus_silencer;
-				}
-				return true;
-			}
-		}
-	}
-	return false;
+    return false;
 }
 
 STATIC_DECLAR bool WtaHandler_Weapon(struct BattleUnit *attacker, struct BattleUnit *defender, struct WtaStatus *status)
@@ -82,6 +82,25 @@ STATIC_DECLAR bool WtaHandler_Vanilla(struct BattleUnit *attacker, struct Battle
 	return false;
 }
 
+STATIC_DECLAR bool WtaHandler_Onimaru(struct BattleUnit *attacker, struct BattleUnit *defender, struct WtaStatus *status)
+{
+    // Check if attacker has Onimaru skill
+    #if (defined(SID_Onimaru) && (COMMON_SKILL_VALID(SID_Onimaru)))
+    if (BattleFastSkillTester(attacker, SID_Onimaru)) {
+        // Apply positive WTA effects
+        status->bonus.atk += 1;
+        status->bonus.hit += 15;
+        
+        // Force positive UI display
+        attacker->wTriangleHitBonus = 5;
+        attacker->wTriangleDmgBonus = 5;
+        
+        return true;
+    }
+    #endif
+    return false;
+}
+
 STATIC_DECLAR void WtaHandler(void)
 {
 	_maybe_unused bool handled = false;
@@ -91,20 +110,24 @@ STATIC_DECLAR void WtaHandler(void)
 	/**
 	 * Attacker
 	 */
-	handled = WtaHandler_Skill(attacker, defender, &gWtaStatus_act);
-	if (!handled || ENABLE_ALL_WTA_HANDLER)
-		handled = WtaHandler_Weapon(attacker, defender, &gWtaStatus_act);
-	if (!handled || ENABLE_ALL_WTA_HANDLER)
-		handled = WtaHandler_Vanilla(attacker, defender, &gWtaStatus_act);
+	handled = WtaHandler_Onimaru(attacker, defender, &gWtaStatus_act);
+    if (!handled || ENABLE_ALL_WTA_HANDLER)
+        handled = WtaHandler_Skill(attacker, defender, &gWtaStatus_act);
+    if (!handled || ENABLE_ALL_WTA_HANDLER)
+        handled = WtaHandler_Weapon(attacker, defender, &gWtaStatus_act);
+    if (!handled || ENABLE_ALL_WTA_HANDLER)
+        handled = WtaHandler_Vanilla(attacker, defender, &gWtaStatus_act);
 
 	/**
 	 * Defender
 	 */
-	handled = WtaHandler_Skill(defender, attacker, &gWtaStatus_tar);
-	if (!handled || ENABLE_ALL_WTA_HANDLER)
-		handled = WtaHandler_Weapon(defender, attacker, &gWtaStatus_tar);
-	if (!handled || ENABLE_ALL_WTA_HANDLER)
-		handled = WtaHandler_Vanilla(defender, attacker, &gWtaStatus_tar);
+    handled = WtaHandler_Onimaru(defender, attacker, &gWtaStatus_tar);
+    if (!handled || ENABLE_ALL_WTA_HANDLER)
+        handled = WtaHandler_Skill(defender, attacker, &gWtaStatus_tar);
+    if (!handled || ENABLE_ALL_WTA_HANDLER)
+        handled = WtaHandler_Weapon(defender, attacker, &gWtaStatus_tar);
+    if (!handled || ENABLE_ALL_WTA_HANDLER)
+        handled = WtaHandler_Vanilla(defender, attacker, &gWtaStatus_tar);
 }
 
 void PreBattleGenerate_SetupWtaStatus(void)

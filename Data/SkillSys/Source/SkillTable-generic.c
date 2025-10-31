@@ -10,7 +10,7 @@
 const struct SkillPreloadPConf gSkillPreloadPData[0x100] = {
     // 01
     [CHARACTER_EIRIKA] = {{
-        [0] = SID_ExplosiveHeal
+        [0] = SID_Onimaru
     }},
     // 02
     [CHARACTER_SETH] = {{
