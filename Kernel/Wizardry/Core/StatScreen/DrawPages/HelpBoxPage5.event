@@ -8,6 +8,7 @@
 #endif /* _RMenu_Defined */
 
     #define _ItemGetter 0x88a01
+    #define _HbRedirect_SSItem 0x88b41
 
 ALIGN 4
 RTextPageMagic:
@@ -18,37 +19,37 @@ Rtext_Page5_White_Magic_Title:
     _RMenu(Rtext_Page5_White_Magic_5, Rtext_Page5_White_Magic_1, Rtext_Page5_Name, Rtext_Page5_Black_Magic_Title, 0x66, 0x18, MSG_STAT_SCREEN_WHITE_MAGIC_DESC)
 
 Rtext_Page5_White_Magic_1:
-    _RMenu(Rtext_Page5_White_Magic_Title, Rtext_Page5_White_Magic_2, Rtext_Page5_Name, Rtext_Page5_Black_Magic_1, 0x66, 0x28, 0x0, _ItemGetter)
+    _RMenu(Rtext_Page5_White_Magic_Title, Rtext_Page5_White_Magic_2, Rtext_Page5_Name, Rtext_Page5_Black_Magic_1, 0x66, 0x28, 0x0, _HbRedirect_SSItem, _ItemGetter)
 
 Rtext_Page5_White_Magic_2:
-    _RMenu(Rtext_Page5_White_Magic_1, Rtext_Page5_White_Magic_3, Rtext_Page5_Name, Rtext_Page5_Black_Magic_2, 0x66, 0x38, 0x0, _ItemGetter)
+    _RMenu(Rtext_Page5_White_Magic_1, Rtext_Page5_White_Magic_3, Rtext_Page5_Name, Rtext_Page5_Black_Magic_2, 0x66, 0x38, 0x0, _HbRedirect_SSItem, _ItemGetter)
 
 Rtext_Page5_White_Magic_3:
-    _RMenu(Rtext_Page5_White_Magic_2, Rtext_Page5_White_Magic_4, Rtext_Page5_Name, Rtext_Page5_Black_Magic_3, 0x66, 0x48, 0x0, _ItemGetter)
+    _RMenu(Rtext_Page5_White_Magic_2, Rtext_Page5_White_Magic_4, Rtext_Page5_Name, Rtext_Page5_Black_Magic_3, 0x66, 0x48, 0x0, _HbRedirect_SSItem, _ItemGetter)
 
 Rtext_Page5_White_Magic_4:
-    _RMenu(Rtext_Page5_White_Magic_3, Rtext_Page5_White_Magic_5, Rtext_Page5_Name, Rtext_Page5_Black_Magic_4, 0x66, 0x58, 0x0, _ItemGetter)
+    _RMenu(Rtext_Page5_White_Magic_3, Rtext_Page5_White_Magic_5, Rtext_Page5_Name, Rtext_Page5_Black_Magic_4, 0x66, 0x58, 0x0, _HbRedirect_SSItem, _ItemGetter)
 
 Rtext_Page5_White_Magic_5:
-    _RMenu(Rtext_Page5_White_Magic_4, Rtext_Page5_White_Magic_Title, Rtext_Page5_Class, Rtext_Page5_Black_Magic_5, 0x66, 0x68, 0x0, _ItemGetter)
+    _RMenu(Rtext_Page5_White_Magic_4, Rtext_Page5_White_Magic_Title, Rtext_Page5_Class, Rtext_Page5_Black_Magic_5, 0x66, 0x68, 0x0, _HbRedirect_SSItem, _ItemGetter)
 
 Rtext_Page5_Black_Magic_Title:
     _RMenu(Rtext_Page5_Black_Magic_5, Rtext_Page5_Black_Magic_1, Rtext_Page5_White_Magic_Title, Rtext_Page5_Name, 0xA6, 0x18, MSG_STAT_SCREEN_BLACK_MAGIC_DESC)
 
 Rtext_Page5_Black_Magic_1:
-    _RMenu(Rtext_Page5_Black_Magic_Title, Rtext_Page5_Black_Magic_2, Rtext_Page5_White_Magic_1, Rtext_Page5_Name, 0xA6, 0x28, 0x0, _ItemGetter)
+    _RMenu(Rtext_Page5_Black_Magic_Title, Rtext_Page5_Black_Magic_2, Rtext_Page5_White_Magic_1, Rtext_Page5_Name, 0xA6, 0x28, 0x0, _HbRedirect_SSItem, _ItemGetter)
 
 Rtext_Page5_Black_Magic_2:
-    _RMenu(Rtext_Page5_Black_Magic_1, Rtext_Page5_Black_Magic_3, Rtext_Page5_White_Magic_2, Rtext_Page5_Name, 0xA6, 0x38, 0x0, _ItemGetter)
+    _RMenu(Rtext_Page5_Black_Magic_1, Rtext_Page5_Black_Magic_3, Rtext_Page5_White_Magic_2, Rtext_Page5_Name, 0xA6, 0x38, 0x0, _HbRedirect_SSItem, _ItemGetter)
 
 Rtext_Page5_Black_Magic_3:
-    _RMenu(Rtext_Page5_Black_Magic_2, Rtext_Page5_Black_Magic_4, Rtext_Page5_White_Magic_3, Rtext_Page5_Name, 0xA6, 0x48, 0x0, _ItemGetter)
+    _RMenu(Rtext_Page5_Black_Magic_2, Rtext_Page5_Black_Magic_4, Rtext_Page5_White_Magic_3, Rtext_Page5_Name, 0xA6, 0x48, 0x0, _HbRedirect_SSItem, _ItemGetter)
 
 Rtext_Page5_Black_Magic_4:
-    _RMenu(Rtext_Page5_Black_Magic_3, Rtext_Page5_Black_Magic_5, Rtext_Page5_White_Magic_4, Rtext_Page5_Name, 0xA6, 0x58, 0x0, _ItemGetter)
+    _RMenu(Rtext_Page5_Black_Magic_3, Rtext_Page5_Black_Magic_5, Rtext_Page5_White_Magic_4, Rtext_Page5_Name, 0xA6, 0x58, 0x0, _HbRedirect_SSItem, _ItemGetter)
 
 Rtext_Page5_Black_Magic_5:
-    _RMenu(Rtext_Page5_Black_Magic_4, Rtext_Page5_Black_Magic_Title, Rtext_Page5_White_Magic_5, Rtext_Page5_Name, 0xA6, 0x68, 0x0, _ItemGetter)
+    _RMenu(Rtext_Page5_Black_Magic_4, Rtext_Page5_Black_Magic_Title, Rtext_Page5_White_Magic_5, Rtext_Page5_Name, 0xA6, 0x68, 0x0, _HbRedirect_SSItem, _ItemGetter)
 
 /* Left */
 Rtext_Page5_Name:

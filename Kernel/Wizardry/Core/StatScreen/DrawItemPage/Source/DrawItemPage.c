@@ -300,6 +300,44 @@ void HbRedirect_SSItem(struct HelpBoxProc *proc)
 		else if (proc->moveKey == DPAD_DOWN)
 			TryRelocateHbDown(proc);
 	}
+
+	/* JESTER - A little something to turn off the RText box when moving up and down to empty positions in the Gaiden Magic list */
+#ifdef CONFIG_USE_GAIDEN_MAGIC
+	if (gpKernelDesigerConfig->gaiden_magic_en)
+	{
+		struct GaidenMagicList *list_gaiden = GetGaidenMagicList(gStatScreen.unit);
+		if (list_gaiden->wmags[proc->info->mid] == ITEM_NONE) 
+		{
+
+			for (int i = 0; i < 5; ++i)
+			{
+				if (proc->info->xDisplay == 102 && proc->info->yDisplay == (40 + i * 16))
+				{
+					if (proc->moveKey == DPAD_DOWN || proc->moveKey == DPAD_UP)
+					{
+						gKeyStatusPtr->newKeys = B_BUTTON;
+					}
+					break; // Exit the loop once a match is found
+				}
+			}
+		}
+		if (list_gaiden->bmags[proc->info->mid] == ITEM_NONE) 
+		{
+
+			for (int i = 0; i < 5; ++i)
+			{
+				if (proc->info->xDisplay == 166 && proc->info->yDisplay == (40 + i * 16))
+				{
+					if (proc->moveKey == DPAD_DOWN || proc->moveKey == DPAD_UP)
+					{
+						gKeyStatusPtr->newKeys = B_BUTTON;
+					}
+					break; // Exit the loop once a match is found
+				}
+			}
+		}
+	}
+#endif
 }
 
 LYN_REPLACE_CHECK(HbPopulate_SSItem);
@@ -318,7 +356,7 @@ void HbPopulate_SSItem(struct HelpBoxProc *proc)
 
 		/* 
 		** This only works alongside the normal item page because every 
-		** gaiden magic starts at unique coordinates
+		** gaiden magic entry displays at unique coordinates
 		*/
 
 		/* White magic */
