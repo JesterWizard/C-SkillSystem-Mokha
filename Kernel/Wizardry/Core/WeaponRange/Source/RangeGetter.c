@@ -63,6 +63,13 @@ int WeaponRangeGetterSkills(int range, struct Unit *unit, u16 item)
 #endif
 		break;
 
+    case ITYPE_SWORD:
+#if defined(SID_SwordSaint) && (COMMON_SKILL_VALID(SID_SwordSaint))
+        if (SkillTester(unit, SID_SwordSaint) && range < 2)
+            range = range + 1;
+#endif
+        break;
+
 	case ITYPE_BOW:
 #if defined(SID_BowRangePlus1) && (COMMON_SKILL_VALID(SID_BowRangePlus1))
 		if (SkillTester(unit, SID_BowRangePlus1))
