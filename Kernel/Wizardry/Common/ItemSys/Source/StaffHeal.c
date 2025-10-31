@@ -115,6 +115,7 @@ void ExecStandardHeal(ProcPtr proc)
             int _y = gActiveUnit->yPos + gVecs_1x1[i].y;
     
             struct Unit * unit_adjacent = GetUnitAtPosition(_x, _y);
+
             if (!UNIT_IS_VALID(unit_adjacent))
                 continue;
     
@@ -123,8 +124,8 @@ void ExecStandardHeal(ProcPtr proc)
     
             if (AreUnitsAllied(gActiveUnit->index, unit_adjacent->index) && GetUnit(unit_adjacent->index) != unit_tar)
             {
-                int amound_real = HealAmountGetter(amount, unit_act, unit_adjacent);
-                AddUnitHp(GetUnit(GetTarget(i)->uid), amound_real);
+                int amount_real = HealAmountGetter(amount, unit_act, unit_adjacent);
+                AddUnitHp(unit_adjacent, amount_real);
             }
         }
     }
