@@ -113,21 +113,14 @@ void ComputeBattleUnitAttack(struct BattleUnit* attacker, struct BattleUnit* def
 		status = k_udiv(status * effective_amplifier * 0x100, 100 * effective_reduce);
 	}
 
+	bool nonStrMagStatBase = false;
+
 #if (defined(SID_SwiftAttack) && (COMMON_SKILL_VALID(SID_SwiftAttack)))
 	if (BattleFastSkillTester(attacker, SID_SwiftAttack))
-		status = status + attacker->unit.spd;
-	else
 	{
-		if (IsMagicAttack(attacker))
-			status = status + UNIT_MAG(&attacker->unit);
-		else
-			status = status + attacker->unit.pow;
+		nonStrMagStatBase = true;
+		status = status + attacker->unit.spd;
 	}
-#else 
-	if (IsMagicAttack(attacker))
-		status = status + UNIT_MAG(&attacker->unit);
-	else
-		status = status + attacker->unit.pow;
 #endif
 
 #if defined(SID_DualWieldPlus) && (COMMON_SKILL_VALID(SID_DualWieldPlus))
@@ -155,10 +148,13 @@ void ComputeBattleUnitAttack(struct BattleUnit* attacker, struct BattleUnit* def
 	}
 #endif
 
-	if (IsMagicAttack(attacker))
-		status = status + UNIT_MAG(&attacker->unit);
-	else
-		status = status + attacker->unit.pow;
+	if (!nonStrMagStatBase)
+	{
+		if (IsMagicAttack(attacker))
+			status = status + UNIT_MAG(&attacker->unit);
+		else
+			status = status + attacker->unit.pow;
+	}
 
 	attacker->battleAttack = status;
 }
