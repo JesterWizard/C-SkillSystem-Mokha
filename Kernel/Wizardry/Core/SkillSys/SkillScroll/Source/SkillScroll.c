@@ -42,6 +42,7 @@ bool IsSkillScrollItem(int item)
 
 char * GetSkillScrollItemName(int item)
 {
+
 #ifdef CONFIG_ITEM_INDEX_SKILL_SCROLL_1
     if (ITEM_INDEX(item) == CONFIG_ITEM_INDEX_SKILL_SCROLL_1)
         return GetSkillNameStr(ITEM_USES(item));

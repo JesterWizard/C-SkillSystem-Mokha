@@ -91,6 +91,7 @@ char *GetSkillNameStrFormDesc(const u16 sid)
 
 char *GetSkillNameStr(const u16 sid)
 {
+
 	char *str;
 	u16 msg = GetSkillNameMsg(sid);
 

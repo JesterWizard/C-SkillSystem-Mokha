@@ -338,6 +338,8 @@ int GetSkillScrollItemIconId(int item);
 
 extern const struct MenuDef RemoveSkillMenuDef;
 
+extern bool TryGetSkillScrollSid(int item, int *outSid);
+
 /**
  * Skill debug list
  */

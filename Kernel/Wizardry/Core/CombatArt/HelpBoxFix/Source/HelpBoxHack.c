@@ -5,6 +5,7 @@
 #include "savemenu.h"
 #include "uichapterstatus.h"
 #include "unitlistscreen.h"
+#include "skill-system.h"
 
 LYN_REPLACE_CHECK(HbMoveCtrl_OnIdle);
 void HbMoveCtrl_OnIdle(struct HelpBoxProc *proc)
@@ -92,28 +93,62 @@ void sub_808A200(const struct HelpBoxInfo *info)
 	sub_808A200_vanilla(info);
 }
 
+bool TryGetSkillScrollSid(int item, int *outSid)
+{
+    static const struct {
+        int itemIndex;
+        int sidOffset;
+    } skillScrollMap[] = {
+    #ifdef CONFIG_ITEM_INDEX_SKILL_SCROLL_1
+        { CONFIG_ITEM_INDEX_SKILL_SCROLL_1, 0x000 },
+    #endif
+    #ifdef CONFIG_ITEM_INDEX_SKILL_SCROLL_2
+        { CONFIG_ITEM_INDEX_SKILL_SCROLL_2, 0x0FF },
+    #endif
+    #ifdef CONFIG_ITEM_INDEX_SKILL_SCROLL_3
+        { CONFIG_ITEM_INDEX_SKILL_SCROLL_3, 0x1FF },
+    #endif
+    #ifdef CONFIG_ITEM_INDEX_SKILL_SCROLL_4
+        { CONFIG_ITEM_INDEX_SKILL_SCROLL_4, 0x2FF },
+    #endif
+    };
+
+    for (unsigned i = 0; i < ARRAY_COUNT(skillScrollMap); i++)
+    {
+        if (ITEM_INDEX(item) == skillScrollMap[i].itemIndex)
+        {
+            *outSid = ITEM_USES(item) + skillScrollMap[i].sidOffset;
+            return true;
+        }
+    }
+
+    return false;
+}
+
 LYN_REPLACE_CHECK(HelpBoxSetupstringLines);
 void HelpBoxSetupstringLines(struct ProcHelpBoxIntro *proc)
 {
-	int item = proc->item;
+    FORCE_DECLARE u8 capacity = 0;
+    FORCE_DECLARE bool skillScrollItem = false;
+    FORCE_DECLARE int sid;
 
 	SetTextFont(&gHelpBoxSt.font);
 	SetTextFontGlyphs(0);
 
 	if (sHelpBoxType == 0) {
 		/* Vanilla */
-		switch (GetHelpBoxItemInfoKind(item)) {
+		switch (GetHelpBoxItemInfoKind(proc->item)) {
 		case HB_EXTINFO_NONE:
 			proc->pretext_lines = 0;
 			break;
 
 		case HB_EXTINFO_WEAPON:
-			DrawHelpBoxWeaponLabels(item);
+			DrawHelpBoxWeaponLabels(proc->item);
 			proc->pretext_lines = 2;
 			break;
 
 		case HB_EXTINFO_STAFF:
-			DrawHelpBoxStaffLabels(item);
+			DrawHelpBoxStaffLabels(proc->item);
 			proc->pretext_lines = 1;
 			break;
 
@@ -145,20 +180,29 @@ void HelpBoxSetupstringLines(struct ProcHelpBoxIntro *proc)
 	}
 
 #ifdef CONFIG_TELLIUS_CAPACITY_SYSTEM
-    struct SkillList * list = GetUnitSkillList(gStatScreen.unit);
-    FORCE_DECLARE u8 capacity = 0;
+{
+    int sid;
+    if (TryGetSkillScrollSid(proc->item, &sid))
+    {
+        u8 capacity = GetSkillCapacity(sid);
+        proc->pretext_lines = 1;
+        Text_InsertDrawString(&gHelpBoxSt.text[0], 0, TEXT_COLOR_47CF, "Capacity:");
+        Text_InsertDrawNumberOrBlank(&gHelpBoxSt.text[0], 50, TEXT_COLOR_456F, capacity);
+    }
 
+    struct SkillList * list = GetUnitSkillList(gStatScreen.unit);
     for (int i = 0; i < list->amt; i++)
     {
         if (GetSkillDescMsg(list->sid[i]) == proc->msg)
         {
-            capacity = GetSkillCapacity(list->sid[i]);
+            u8 capacity = GetSkillCapacity(list->sid[i]);
             proc->pretext_lines = 1;
             Text_InsertDrawString(&gHelpBoxSt.text[0], 0, TEXT_COLOR_47CF, "Capacity:");
             Text_InsertDrawNumberOrBlank(&gHelpBoxSt.text[0], 50, TEXT_COLOR_456F, capacity);
             break;
         }
     }
+}
 #endif
 
 	SetTextFont(0);
@@ -295,6 +339,11 @@ void ApplyHelpBoxContentSize(struct HelpBoxProc *proc, int width, int height)
 
 // Add an extra line of height to the texbox to account for the capacity text
 #ifdef CONFIG_TELLIUS_CAPACITY_SYSTEM
+
+    int sid;
+    if (TryGetSkillScrollSid(proc->item, &sid))
+        height += 0x10;
+
     struct SkillList * list = GetUnitSkillList(gStatScreen.unit);
 
     for (int i = 0; i < list->amt; i++)
