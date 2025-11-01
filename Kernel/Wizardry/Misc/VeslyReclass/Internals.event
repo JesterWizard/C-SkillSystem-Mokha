@@ -91,7 +91,7 @@ HeartSealSilverIcon:
 #define StartPrepScreenPromotion 0x80cc990+1
 #define PrepItemUse_ResetBgmAfterPromo 0x809cc9c+1
 #define PrepItemUse_PostPromotion 0x809cc60+1
-#define PrepItemUse_InitDisplay 0x809c4e4+1
+// #define PrepItemUse_InitDisplay 0x809c4e4+1
 #define NewFadeIn 0x80ae2d0+1
 #define FadeInExists 0x80ae2a0+1
 #define MusicProc4Exists 0x8002a6c+1

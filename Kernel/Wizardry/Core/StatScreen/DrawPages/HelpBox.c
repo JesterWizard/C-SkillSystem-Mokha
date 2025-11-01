@@ -6,6 +6,7 @@
 #include "uichapterstatus.h"
 #include "unitlistscreen.h"
 #include "constants/skills.h"
+#include "item-sys.h"
 
 LYN_REPLACE_CHECK(StartStatScreenHelp);
 void StartStatScreenHelp(int pageid, struct Proc *proc)
@@ -92,10 +93,10 @@ void LoadHelpBoxGfx(void * vram, int palId)
     InitSpriteText(&gHelpBoxSt.text[1]);
     InitSpriteText(&gHelpBoxSt.text[2]);
 
-    /* Only provide the extra text box tiles if we're not in the save menu or chapter status screens */
+    /* Don't provide the extra text box tiles if we're using any of the procs in this list */
 #ifdef CONFIG_VESLY_EXTENDED_ITEM_DESCRIPTIONS
 
-    const struct ProcCmd * procExceptionsList[9] = 
+    const struct ProcCmd * procExceptionsList[14] = 
     {
         ProcScr_SaveMenu,
         gProcScr_SaveMenuPostChapter,
@@ -106,6 +107,11 @@ void LoadHelpBoxGfx(void * vram, int palId)
         ProcScr_UnitListScreen_PrepMenu,
         ProcScr_UnitListScreen_SoloAnim,
         ProcScr_UnitListScreen_WorldMap,
+        ProcScr_PrepUnitScreen,
+        ProcScr_PrepItemUseScreen,
+        gProcScr_DrawPrepFundsSprite,
+        gProcScr_PrepWMShopSell,
+        ProcScr_SlidingWallBg
         // PrepScreenProc_MapIdle,
     };
 
