@@ -566,8 +566,8 @@ target, apply the rally to this unit.[X]
 Mimicry[X]
 ## MSG_SKILL_Mimicry_DESC
 Mimicry:[N]
-If a rally target, apply the[N]
-rally to the user as well.[X]
+If this unit is a rally target,[N]
+apply the rally to the user as well.[X]
 
 ## MSG_SKILL_EternalVanity_NAME
 Eternal Vanity[X]
