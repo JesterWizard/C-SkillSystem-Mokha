@@ -110,9 +110,9 @@ _kernel_malloc ChapterID, 0x8
 /**
  * Free space allocated from icon display
  */
-_kernel_malloc3 gBattleHitArrayRe, 4 * 0x21
-_kernel_malloc3 gExtBattleHitArray, 4 * 0x21
-_kernel_malloc3 gAnimRoundDataRe, 2 * 0x21 + 2
+_kernel_malloc3 gBattleHitArrayRe, 4 * 0x41
+_kernel_malloc3 gExtBattleHitArray, 4 * 0x41
+_kernel_malloc3 gAnimRoundDataRe, 2 * 0x41 + 2
 _kernel_malloc3 gEfxHpLutRe, 2 * 0x61 + 2
 
 /**
