@@ -12,6 +12,16 @@ void PutUnitSpriteIconsOam(void)
 	int i;
 	bool icon_blinking;
 
+	/* Cache talkee id once to avoid repeated expensive GetTalkee() calls inside the loop */
+#ifdef CONFIG_DISPLAY_TALK_ICON
+	int cached_talkee_id = 0;
+	bool have_cached_talkee = false;
+	if (gBmSt.gameStateBits & BM_FLAG_1) {
+		cached_talkee_id = GetTalkee(gActiveUnit);
+		have_cached_talkee = true;
+	}
+#endif
+
 	if (CheckFlag(0x84) != 0)
 		return;
 
@@ -40,34 +50,33 @@ void PutUnitSpriteIconsOam(void)
 			continue;
 
 #if defined(SID_MineDetector) && (COMMON_SKILL_VALID(SID_MineDetector))
-    if (SkillTester(gActiveUnit, SID_MineDetector) && gBmSt.gameStateBits & BM_FLAG_1)
-	{
-		struct Trap* trap;
-
-        for (int i = 0; i < ARRAY_COUNT_RANGE5x5; i++) 
+		if (SkillTester(gActiveUnit, SID_MineDetector) && gBmSt.gameStateBits & BM_FLAG_1)
 		{
-			int _x = gActiveUnit->xPos + gVecs_5x5[i].x;
-			int _y = gActiveUnit->yPos + gVecs_5x5[i].y;
+			struct Trap* trap;
 
-			trap = GetTrapAt(_x, _y);
-
-			if (trap->type == TRAP_MINE)
+			for (int i = 0; i < ARRAY_COUNT_RANGE5x5; i++) 
 			{
-				MapTaskVec.x = _x  * 16 - gBmSt.camera.x;
-				MapTaskVec.y = _y  * 16 - gBmSt.camera.y;
-				MapTaskPutOamHi(MTSKCONF_WARNING, OAM2_PAL(0) + OAM2_LAYER(2) + OAM2_CHR(0xEE0 / 0x20));	
+				int _x = gActiveUnit->xPos + gVecs_5x5[i].x;
+				int _y = gActiveUnit->yPos + gVecs_5x5[i].y;
+
+				trap = GetTrapAt(_x, _y);
+
+				if (trap->type == TRAP_MINE)
+				{
+					MapTaskVec.x = _x  * 16 - gBmSt.camera.x;
+					MapTaskVec.y = _y  * 16 - gBmSt.camera.y;
+					MapTaskPutOamHi(MTSKCONF_WARNING, OAM2_PAL(0) + OAM2_LAYER(2) + OAM2_CHR(0xEE0 / 0x20));	
+				}
 			}
 		}
-	}
 #endif
 
 		MapTaskVec.x = ix;
 		MapTaskVec.y = iy;
 
 #ifdef CONFIG_DISPLAY_TALK_ICON
-		if (gBmSt.gameStateBits & BM_FLAG_1) {
-			if (GetTalkee(gActiveUnit) == UNIT_CHAR_ID(unit))
-   				MapTaskPutOamHi(MTSKCONF_TALK, OAM2_PAL(0) + OAM2_LAYER(2) + OAM2_CHR(0xE00 / 0x20));	
+		if (have_cached_talkee && cached_talkee_id == UNIT_CHAR_ID(unit)) {
+			MapTaskPutOamHi(MTSKCONF_TALK, OAM2_PAL(0) + OAM2_LAYER(2) + OAM2_CHR(0xE00 / 0x20));
 		}
 #endif
 
