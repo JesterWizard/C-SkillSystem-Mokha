@@ -63,29 +63,32 @@ u8 ArdentSacrifice_OnSelected(struct MenuProc * menu, struct MenuItemProc * item
     return MENU_ACT_SKIPCURSOR | MENU_ACT_END | MENU_ACT_SND6A;
 }
 
-static void ActionArdentSacrifice_CallBack1(ProcPtr proc)
+static void callback_anim(ProcPtr proc)
 {
-    struct MuProc * mu;
-    struct Unit * target = GetUnit(gActionData.targetIndex);
+    PlaySoundEffect(0x269);
+    Proc_StartBlocking(ProcScr_DanceringAnim, proc);
 
-    mu = GetUnitMu(target);
-    if (!mu)
-        mu = StartMu(target);
-
-    FreezeSpriteAnim(mu->sprite_anim);
-    SetMuDefaultFacing(mu);
-    SetDefaultColorEffects();
-
-    NewSkillMapAnimMini(gActiveUnit->xPos, gActiveUnit->yPos, SID_ArdentSacrifice, proc);
+    BG_SetPosition(
+        BG_0,
+        -SCREEN_TILE_IX(gActiveUnit->xPos - 1),
+        -SCREEN_TILE_IX(gActiveUnit->yPos - 2));
 }
+
+static void callback_exec(ProcPtr proc)
+{
+    CallMapAnim_Heal(proc, GetUnit(gActionData.targetIndex), SKILL_EFF0(SID_ArdentSacrifice));
+
+    /* Can't seem to run this and the heal anim together without crashing, so we'll just do a silent HP reduction instead */
+   // CallMapAnim_HurtExt(proc, gActiveUnit, SKILL_EFF0(SID_ArdentSacrifice), NULL, NULL);
+
+    gActiveUnit->curHP -= SKILL_EFF0(SID_ArdentSacrifice);
+}
+
 
 bool Action_ArdentSacrifice(ProcPtr parent)
 {
-    CallMapAnim_HealExt(
-        parent, GetUnit(gActionData.targetIndex), SKILL_EFF0(SID_ArdentSacrifice), ActionArdentSacrifice_CallBack1,
-        NULL);
 
-    CallMapAnim_HurtExt(parent, gActiveUnit, SKILL_EFF0(SID_ArdentSacrifice), NULL, NULL);
+    NewMuSkillAnimOnActiveUnit(gActionData.unk08, callback_anim, callback_exec);
     return true;
 }
 #endif
