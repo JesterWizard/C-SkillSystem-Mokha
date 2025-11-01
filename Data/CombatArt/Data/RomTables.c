@@ -45,7 +45,6 @@ const struct CombatArtRomTable gCombatArtRomJTable[0x100] = {
 
 const struct CombatArtRomTable gCombatArtDefaultTable = {
 	.cid_sword = {
-		[WPN_LEVEL_E] = CID_Practice,
 		[WPN_LEVEL_D] = CID_WrathStrike,
 		[WPN_LEVEL_C] = CID_Soulblade,
 		[WPN_LEVEL_B] = CID_FoudroyantStrike,

@@ -243,6 +243,18 @@ bool CheckCanTwiceAttackOrder(struct BattleUnit *actor, struct BattleUnit *targe
 		}
 #endif
 
+#if defined(SID_RapidFighter) && (COMMON_SKILL_VALID(SID_RapidFighter))
+        if (BattleFastSkillTester(actor, SID_RapidFighter))
+        {
+			if (gPlaySt.faction != UNIT_FACTION(GetUnit(actor->unit.index)))
+			{
+				gBattleTemporaryFlag.act_force_twice_order = true;
+				RegisterBattleOrderSkill(SID_RapidFighter, BORDER_ACT_TWICE);
+				return false;
+			}
+        }
+#endif
+
 	} else if (&gBattleTarget == actor) {
 #if defined(SID_TrickRoom) && (COMMON_SKILL_VALID(SID_TrickRoom))
 		if (BattleFastSkillTester(actor, SID_TrickRoom))
@@ -332,6 +344,19 @@ bool CheckCanTwiceAttackOrder(struct BattleUnit *actor, struct BattleUnit *targe
 			}
 		}
 #endif
+
+#if defined(SID_RapidFighter) && (COMMON_SKILL_VALID(SID_RapidFighter))
+        if (BattleFastSkillTester(actor, SID_RapidFighter))
+		{
+			if (gPlaySt.faction != UNIT_FACTION(GetUnit(actor->unit.index)))
+			{
+				gBattleTemporaryFlag.tar_force_twice_order = true;
+				RegisterBattleOrderSkill(SID_RapidFighter, BORDER_TAR_TWICE);
+				return false;
+			}
+        }
+#endif
+
 	}
 
 	/* Basic judgement */
