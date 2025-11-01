@@ -65,7 +65,7 @@ extern struct WtaStatus gWtaStatus_act, gWtaStatus_tar;
 void PreBattleGenerate_SetupWtaStatus(void);
 
 /* Battle hit expansion */
-#define NEW_BATTLE_HIT_MAX 0x40 /* This should align to gAnimRoundData */
+#define NEW_BATTLE_HIT_MAX 0x20 /* This should align to gAnimRoundData */
 extern struct BattleHit gBattleHitArrayRe[NEW_BATTLE_HIT_MAX];
 extern u16 gAnimRoundDataRe[NEW_BATTLE_HIT_MAX];
 extern u16 gEfxHpLutRe[NEW_BATTLE_HIT_MAX * 3];
