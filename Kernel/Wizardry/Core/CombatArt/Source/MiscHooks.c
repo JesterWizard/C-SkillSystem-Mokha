@@ -186,6 +186,11 @@ void PreBattleCalcCombatArt(struct BattleUnit *bu, struct BattleUnit *defender)
 			bu->battleAttack += tmp2;
 #endif
 		break;
+
+	case CID_Practice:
+		bu->battleAttack += bu->battleAttack / 2;
+		break;
+
 	};
 }
 
