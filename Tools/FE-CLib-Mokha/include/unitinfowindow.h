@@ -6,7 +6,7 @@ struct UnitInfoWindowProc* NewUnitInfoWindow(ProcPtr parent);
 // ??? UnitInfoWindow_PositionUnitName(???);
 struct UnitInfoWindowProc *UnitInfoWindow_DrawBase(struct UnitInfoWindowProc *proc, struct Unit *unit, int x, int y, int width, int lines);
 int GetUnitInfoWindowX(struct Unit *unit, int width);
-// ??? DrawUnitHpText(???);
+void DrawUnitHpText(struct Text* text, struct Unit* unit);
 void DrawUnitConText(struct Text* text, struct Unit* unit);
 void DrawUnitAidText(struct Text* text, struct Unit* unit);
 void PutUnitAidIconForTextAt(struct Unit* unit, int x, int y);

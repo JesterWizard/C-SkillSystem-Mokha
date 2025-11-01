@@ -9,6 +9,7 @@
 #include "debuff.h"
 #include "bmunit.h"
 #include "lvup.h"
+#include "constants/texts.h"
 #include "jester_headers/custom-functions.h"
 
 typedef int (*HealAmountGetterFunc_t)(int old, struct Unit *actor, struct Unit *target);
@@ -48,23 +49,6 @@ void ExecStandardHeal(ProcPtr proc)
 
 	BattleInitItemEffectTarget(unit_tar);
 
-/* Having crashing issues with the switch case for making this work on staves only */
-#if defined(SID_WhiteMage) && (COMMON_SKILL_VALID(SID_WhiteMage))
-    if (SkillTester(unit_act, SID_WhiteMage))
-    {
-        amount += amount / 2;
-        // switch (unit_act->items[gActionData.itemSlotIndex])
-        // {
-        // case ITEM_STAFF_HEAL:
-        // case ITEM_STAFF_MEND:
-        // case ITEM_STAFF_PHYSIC:
-        // case ITEM_STAFF_FORTIFY:
-        //     amount += amount / 2;
-        //     break;
-        // }
-    }
-#endif
-
 	amount = GetUnitItemHealAmount(
 		unit_act,
 		GetItemFromSlot(unit_act, gActionData.itemSlotIndex)
@@ -74,7 +58,25 @@ void ExecStandardHeal(ProcPtr proc)
 	amount = HealAmountGetter(amount, unit_act, unit_tar);
 #endif
 
-	/* Judge on actor range 3x3 */
+#if defined(SID_WhiteMage) && (COMMON_SKILL_VALID(SID_WhiteMage))
+    if (SkillTester(unit_act, SID_WhiteMage))
+    {
+        switch (GetItemIndex(unit_act->items[gActionData.itemSlotIndex]))
+        {
+        case ITEM_STAFF_HEAL:
+        case ITEM_STAFF_MEND:
+        case ITEM_STAFF_PHYSIC:
+        case ITEM_STAFF_FORTIFY:
+            amount += amount / 2;
+            break;
+        default:
+            break;
+        }
+
+    }
+#endif
+
+#if (defined(SID_Blight) && COMMON_SKILL_VALID(SID_Blight))
 	for (int i = 0; i < ARRAY_COUNT_RANGE3x3; i++) {
 		int _x = unit_act->xPos + gVecs_3x3[i].x;
 		int _y = unit_act->yPos + gVecs_3x3[i].y;
@@ -87,14 +89,13 @@ void ExecStandardHeal(ProcPtr proc)
 		if (AreUnitsAllied(unit_act->index, unit_target->index))
 			continue;
 		
-#if (defined(SID_Blight) && COMMON_SKILL_VALID(SID_Blight))
-			if (SkillTester(unit_target, SID_Blight)) {
-				amount *= -1;
-			}
-#endif
-		
+        if (SkillTester(unit_target, SID_Blight)) {
+            amount *= -1;
+        }
+
 		break;
 	}
+#endif
 
 /* Don't let the target be killed */
 #if defined(SID_CursedHeal) && (COMMON_SKILL_VALID(SID_CursedHeal))
@@ -401,6 +402,65 @@ void ExecStatusStaff(ProcPtr proc) {
 #endif
     BattleApplyItemEffect(proc);
     BeginBattleAnimations();
+
+    return;
+}
+
+//! FE8U = 0x080349FC
+LYN_REPLACE_CHECK(DrawUnitHpText);
+void DrawUnitHpText(struct Text* text, struct Unit* unit) {
+    ClearText(text);
+
+    Text_InsertDrawString(text, 0, 3, GetStringFromIndex(0x4E9)); // TODO: msgid "HP"
+
+#ifdef CONFIG_SHOW_HEAL_AMOUNT
+    int healedHP = GetUnitCurrentHp(unit) + GetUnitItemHealAmount(gSubjectUnit, gSubjectUnit->items[gActionData.itemSlotIndex]);
+    int colorId = TEXT_COLOR_SYSTEM_BLUE;
+
+    /* Boost the healed HP amount in the preview window by 50% */
+#if (defined(SID_WhiteMage) && (COMMON_SKILL_VALID(SID_WhiteMage)))
+    if (SkillTester(gActiveUnit, SID_WhiteMage))
+            healedHP += GetUnitItemHealAmount(gSubjectUnit, gSubjectUnit->items[gActionData.itemSlotIndex]) / 2;
+#endif
+
+    if (healedHP > GetUnitMaxHp(unit))
+    {
+        healedHP = GetUnitMaxHp(unit);
+        colorId = TEXT_COLOR_SYSTEM_GREEN;
+    }
+
+    Text_InsertDrawString(text, 36, 3, GetStringFromIndex(Arrow_ID)); // TODO: msgid "/[.]"
+    Text_InsertDrawNumberOrBlank(text, 26, 2, GetUnitCurrentHp(unit));
+    Text_InsertDrawNumberOrBlank(text, 55, colorId, healedHP);
+#else
+    Text_InsertDrawString(text, 40, 3, GetStringFromIndex(0x539)); // TODO: msgid "/[.]"
+    Text_InsertDrawNumberOrBlank(text, 32, 2, GetUnitCurrentHp(unit));
+    Text_InsertDrawNumberOrBlank(text, 56, 2, GetUnitMaxHp(unit));
+#endif
+
+    return;
+}
+
+//! FE8U = 0x08034F9C
+LYN_REPLACE_CHECK(StartUnitHpInfoWindow);
+void StartUnitHpInfoWindow(ProcPtr parent) {
+    struct UnitInfoWindowProc* proc = NewUnitInfoWindow(parent);
+    InitTextDb(proc->lines + 0, 8);
+
+    return;
+}
+
+//! FE8U = 0x08034FB0
+LYN_REPLACE_CHECK(RefreshUnitHpInfoWindow);
+void RefreshUnitHpInfoWindow(struct Unit* unit) {
+
+    int y = 0;
+    int x = GetUnitInfoWindowX(unit, 10);
+
+    struct UnitInfoWindowProc* proc = UnitInfoWindow_DrawBase(0, unit, x, 0, 10, 1);
+
+    DrawUnitHpText(proc->lines + 0, unit);
+    PutText(proc->lines + 0, gBG0TilemapBuffer + TILEMAP_INDEX(x + 1, y + 3));
 
     return;
 }
