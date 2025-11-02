@@ -582,17 +582,23 @@ void BattleUnwind(void)
 				continue;
 
 #ifdef CONFIG_USE_COMBO_ATTACK
-			/* Combo-attack first */
-			if (!combo_atk_done) {
-				combo_atk_done = true;
-				ret = BattleComboGenerateHits();
-				if (ret)
-					break;
+        #if (defined(SID_ChainAttack) && COMMON_SKILL_VALID(SID_ChainAttack))
+            if (BattleSkillTester(&gBattleActor, SID_ChainAttack) || BattleSkillTester(&gBattleTarget, SID_ChainAttack))
+            {
+                /* Combo-attack first */
+                if (!combo_atk_done)
+                {
+                    combo_atk_done = true;
+                    ret = BattleComboGenerateHits();
+                    if (ret)
+                        break;
 
-				/* Reload battle-hit */
-				old = gBattleHitIterator;
-				LTRACEF("Combo end at round %d", GetBattleHitRound(old));
-			}
+                    /* Reload battle-hit */
+                    old = gBattleHitIterator;
+                    LTRACEF("Combo end at round round %d", GetBattleHitRound(old));
+                }
+            }
+        #endif
 #endif
 			ret = BattleGenerateRoundHits(&gBattleActor, &gBattleTarget);
 			actor_count++;
