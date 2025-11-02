@@ -7,7 +7,7 @@
 #include "tileAnimPLIST.event"
 #include "eventPLIST.event"
 
-#define EventPointerTable(PLISTid, eventLabel) "PUSH; ORG eventPLIST+PLISTid*4; POIN eventLabel; PROTECT eventPLIST+PLISTid*4 eventPLIST+PLISTid*4+3; POP"
+// #define EventPointerTable(PLISTid, eventLabel) "PUSH; ORG eventPLIST+PLISTid*4; POIN eventLabel; PROTECT eventPLIST+PLISTid*4 eventPLIST+PLISTid*4+3; POP"
 
 PUSH
 

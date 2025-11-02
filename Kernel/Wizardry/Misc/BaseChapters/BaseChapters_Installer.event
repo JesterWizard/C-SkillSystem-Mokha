@@ -11,7 +11,7 @@
 // Parameters, change these to fit your project.
   // WLC_baseChapterIDStart indicates the first chapterID which will be used for a base chapter.
   // The following 0x1C chapterIDs will also be reserverd as base chapters.
-  #define WLC_baseChapterIDStart 0x02 // JESTER - Originally 0x4F
+  #define WLC_baseChapterIDStart 0x4F // JESTER - Originally 0x4F
 
 // Includes
 // #include "text/AntiHuffman.event"         // Remove if you are already including essential fixes.
