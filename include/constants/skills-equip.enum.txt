@@ -570,7 +570,7 @@ SID_Multiscale
 SID_Enrage
 SID_Petrify
 SID_PoisonPoint
-SID_Accost
+// SID_Accost
 SID_DownWithArch
 SID_MagicBounce
 SID_EffectSpore
@@ -602,7 +602,7 @@ SID_Toxic
 SID_GrazingBlow
 SID_AbsorbMelee
 SID_AbsorbMagic
-SID_Duel
+// SID_Duel
 SID_Offhand
 SID_ShedSkin
 SID_HoldOut

@@ -136,9 +136,6 @@ const u16 gSkillUpgradePlusLookup[MAX_SKILL_NUM + 1] = {
     #if defined(SID_Shotput) && defined(SID_ShotputPlus)
         [SID_ShotputPlus] = SID_Shotput,
     #endif
-    #if defined(SID_Alacrity) && defined(SID_AlacrityPlus)
-        [SID_AlacrityPlus] = SID_Alacrity,
-    #endif
 };
 
 const u16 gSkillUpgradeBaseLookup[MAX_SKILL_NUM + 1] = {

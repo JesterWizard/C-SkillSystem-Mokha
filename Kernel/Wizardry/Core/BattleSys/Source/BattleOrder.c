@@ -583,7 +583,7 @@ void BattleUnwind(void)
 
 #ifdef CONFIG_USE_COMBO_ATTACK
         #if (defined(SID_ChainAttack) && COMMON_SKILL_VALID(SID_ChainAttack))
-            if (BattleSkillTester(&gBattleActor, SID_ChainAttack) || BattleSkillTester(&gBattleTarget, SID_ChainAttack))
+            if (BattleFastSkillTester(&gBattleActor, SID_ChainAttack) || BattleFastSkillTester(&gBattleTarget, SID_ChainAttack))
             {
                 /* Combo-attack first */
                 if (!combo_atk_done)

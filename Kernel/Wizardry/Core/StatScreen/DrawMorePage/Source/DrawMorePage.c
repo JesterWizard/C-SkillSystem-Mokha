@@ -13,6 +13,7 @@ void DisplayPageNameSprite(int pageid)
 		111 + gStatScreen.xDispOff, 1 + gStatScreen.yDispOff,
 		sSprite_PageNameBack, TILEREF(0x293, 4) + 0xC00);
 
+    /* Display stat screen title */
 	PutSprite(4,
 		114 + gStatScreen.xDispOff, 0 + gStatScreen.yDispOff,
 		gpSprites_PageNameRework[pageid],
@@ -98,14 +99,12 @@ void StatScreen_Display(struct Proc* proc)
     gStatScreen.pageAmt = pageAmt;
 
     // Init text and icons
-
     ResetText();
     ResetIconGraphics_();
 
     InitTexts();
 
     // Display portrait
-
     PutFace80x72(proc, gBG2TilemapBuffer + TILEMAP_INDEX(1, 1), fid,
         0x4E0, STATSCREEN_BGPAL_FACE);
 
@@ -115,20 +114,73 @@ void StatScreen_Display(struct Proc* proc)
         ApplyPalette(gUnknown_08A01F04, STATSCREEN_BGPAL_2);
 
     // Display Map Sprite
-
     EndAllMus();
     gStatScreen.mu = StartUiMu(gStatScreen.unit, 80, 138);
 
     // Draw left panel labels and info
-
     DisplayLeftPanel();
 
     // Draw page content
-
     DisplayPage(gStatScreen.page);
 
     TileMap_CopyRect(gUiTmScratchA, gBG0TilemapBuffer + TILEMAP_INDEX(12, 2), 18, 18);
     TileMap_CopyRect(gUiTmScratchC, gBG2TilemapBuffer + TILEMAP_INDEX(12, 2), 18, 18);
 
     BG_EnableSyncByMask(BG0_SYNC_BIT | BG1_SYNC_BIT | BG2_SYNC_BIT);
+}
+
+enum
+{
+    // Magical constants
+
+    // Neutral left arrow position
+    PAGENUM_LEFTARROW_X = 103,
+    PAGENUM_LEFTARROW_Y = 3,
+
+    // Neutral right arrow position
+    PAGENUM_RIGHTARROW_X = 217,
+    PAGENUM_RIGHTARROW_Y = 3,
+
+    // initial arrow offset on select
+    PAGENUM_SELECT_XOFF = 6,
+
+    // arrow animation speeds
+    PAGENUM_ANIMSPEED = 4,
+    PAGENUM_SELECT_ANIMSPEED = 31,
+
+    PAGENUM_DISPLAY_X = 215,
+    PAGENUM_DISPLAY_Y = 17,
+
+    // name animation scaling time
+    PAGENAME_SCALE_TIME = 6,
+};
+
+LYN_REPLACE_CHECK(PageNumCtrl_UpdatePageNum);
+void PageNumCtrl_UpdatePageNum(struct StatScreenPageNameProc* proc)
+{
+    int chr = 0x289;
+
+    /* JESTER - A little something to account for page numbers greater than the standard 5 */
+    int shift = 0;
+
+    if (gStatScreen.pageAmt > 5)
+        shift = gStatScreen.pageAmt - 5;
+
+    // page amt
+    PutSprite(2,
+        gStatScreen.xDispOff + PAGENUM_DISPLAY_X + 13,
+        gStatScreen.yDispOff + PAGENUM_DISPLAY_Y,
+        gObject_8x8, TILEREF(chr, STATSCREEN_OBJPAL_4) + OAM2_LAYER(3) + gStatScreen.pageAmt - shift);
+
+    // '/'
+    PutSprite(2,
+        gStatScreen.xDispOff + PAGENUM_DISPLAY_X + 7,
+        gStatScreen.yDispOff + PAGENUM_DISPLAY_Y,
+        gObject_8x8, TILEREF(chr, STATSCREEN_OBJPAL_4) + OAM2_LAYER(3) - shift);
+
+    // page num
+    PutSprite(2,
+        gStatScreen.xDispOff + PAGENUM_DISPLAY_X,
+        gStatScreen.yDispOff + PAGENUM_DISPLAY_Y,
+        gObject_8x8, TILEREF(chr, STATSCREEN_OBJPAL_4) + OAM2_LAYER(3) + gStatScreen.page + 1 - shift);
 }
