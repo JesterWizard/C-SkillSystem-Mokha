@@ -401,6 +401,30 @@ STATIC_DECLAR bool CheckDesperationOrder(void)
 	}
 #endif
 
+#if defined(SID_AlacrityPlus) && (COMMON_SKILL_VALID(SID_AlacrityPlus))
+    if (BattleFastSkillTester(&gBattleActor, SID_AlacrityPlus))
+    {
+        if ((gBattleActor.battleSpeed - 5) >= gBattleTarget.battleSpeed)
+        {
+            gBattleTemporaryFlag.desperation_order = true;
+            RegisterBattleOrderSkill(SID_AlacrityPlus, BORDER_DESPERATION);
+            return true;
+        }
+    }
+#endif
+
+#if defined(SID_Alacrity) && (COMMON_SKILL_VALID(SID_Alacrity))
+    if (BattleFastSkillTester(&gBattleActor, SID_Alacrity))
+    {
+        if ((gBattleActor.battleSpeed - 9) >= gBattleTarget.battleSpeed)
+        {
+            gBattleTemporaryFlag.desperation_order = true;
+            RegisterBattleOrderSkill(SID_Alacrity, BORDER_DESPERATION);
+            return true;
+        }
+    }
+#endif
+
 #if defined(SID_YngviAscendant) && (COMMON_SKILL_VALID(SID_YngviAscendant))
 	if (BattleFastSkillTester(&gBattleActor, SID_YngviAscendant)) {
 		gBattleTemporaryFlag.desperation_order = true;
