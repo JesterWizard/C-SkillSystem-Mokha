@@ -62,15 +62,13 @@ PUSH
     PROTECT $16574 $16750
 */
 
-    /* JESTER - Needed for LynJump of function */
-    // ORG $167CA // CanUnitUseStaff
-    // BYTE 0x3F
-    // PROTECT $167A4 $16800
+    ORG $167CA // CanUnitUseStaff
+    BYTE 0x3F
+    PROTECT $167A4 $16800
 
-    /* JESTER Needed for LynJump of function */
-    // ORG $16F32 // IsItemDisplayUsable
-    // BYTE 0x3F
-    // PROTECT $16EE4 $16F7C
+    ORG $16F32 // IsItemDisplayUsable
+    BYTE 0x3F
+    PROTECT $16EE4 $16F7C
 
     ORG $290EA // CanUnitUseAntitoxinItem
     BYTE 0x3F
@@ -97,10 +95,9 @@ PUSH
     /* JESTER - Needed to turn off to hook TruAddUnitToTradeTargetList */
     // PROTECT $2521C $252D0
 
-    /* JESTER - Needed for LynJump of function */
-    // ORG $25378 // TryAddUnitToRescueTargetList
-    // BYTE 0x3F
-    // PROTECT $25344 $253B4
+    ORG $25378 // TryAddUnitToRescueTargetList
+    BYTE 0x3F
+    PROTECT $25344 $253B4
 
     ORG $25540 // TryAddUnitToGiveTargetList
     BYTE 0x3F
@@ -140,20 +137,17 @@ PUSH
     BYTE 0x3F
     PROTECT $25F98 $25FE8
 
-     /* JESTER - Needed for LynJump of function */
-    // ORG $26122 // TryAddUnitToSilenceTargetList
-    // BYTE 0x3F
-    // PROTECT $26100 $2614C
+    ORG $26122 // TryAddUnitToSilenceTargetList
+    BYTE 0x3F
+    PROTECT $26100 $2614C
 
-     /* JESTER - Needed for LynJump of function */
-    // ORG $2616E // TryAddUnitToSleepTargetList
-    // BYTE 0x3F
-    // PROTECT $2614C $26198
+    ORG $2616E // TryAddUnitToSleepTargetList
+    BYTE 0x3F
+    PROTECT $2614C $26198
 
-     /* JESTER - Needed for LynJump of function */
-    // ORG $261BA // TryAddUnitToBerserkTargetList
-    // BYTE 0x3F
-    // PROTECT $26198 $261E4
+    ORG $261BA // TryAddUnitToBerserkTargetList
+    BYTE 0x3F
+    PROTECT $26198 $261E4
 
     ORG $263DE // MakeTargetListForLatona
     BYTE 0x3F

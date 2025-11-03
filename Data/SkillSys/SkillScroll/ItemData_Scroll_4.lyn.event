@@ -2,4 +2,8 @@ ALIGN 4
 PUSH
 ORG CURRENTOFFSET+$0;ItemData_SkillScroll_4:
 POP
+<<<<<<< HEAD
 WORD $D700D70 $9CA0D72 $0 $0 $0 $1 $1F401100 $430000 $0
+=======
+WORD $D700D70 $9CA0D72 $0 $0 $0 $1 $1F401100 $380000 $0
+>>>>>>> parent of 590863f3d (Custom boost staves added to new item struct)

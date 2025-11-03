@@ -331,6 +331,7 @@ int ApplyStatBoostItem(struct Unit *unit, int slot)
 	return 0;
 #endif
 }
+<<<<<<< HEAD
 
 LYN_REPLACE_CHECK(DoUseBarrierStaff);
 void DoUseBarrierStaff(struct Unit* unit)
@@ -544,3 +545,5 @@ void ExecCustomStaves(ProcPtr proc) {
     
     return;
 }
+=======
+>>>>>>> parent of 590863f3d (Custom boost staves added to new item struct)

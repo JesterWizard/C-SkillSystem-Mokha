@@ -53,8 +53,11 @@ ALIGN 4
 #include "Common/PlayStExpa/PlayStExpa.event"
 #include "Common/FebCompat/FebCompat.event"
 #include "Common/ExtrasMenu/ExtrasMenu_Installer.event"
+<<<<<<< HEAD
 #include "Common/UnitTarget/UnitTarget.event"
 #include "Common/UnitSelection/UnitSelection.event"
+=======
+>>>>>>> parent of 590863f3d (Custom boost staves added to new item struct)
 
 #ifdef CONFIG_MULTIPLE_DEATH_QUOTES
 #include "Common/Quotes/Quotes.event"

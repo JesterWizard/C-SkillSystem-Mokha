@@ -17,10 +17,10 @@
 
 /**
  * Originally 0x785A8 
- * JESTER - This should be roughly enough if you zero out all text strings that belong
+ * JESTER - This should be roughly enough if zero out all text strings that belong
  * to the vanilla game, I have extended it because I'm making a rewrite of the vanilla game
  * Do be aware that by default, if you use too much space for text, you will overwrite the limits 
- * of FreeSpace_Common and corrupt battle animations. Which is why I have used FreeSpace_DEMO instead,
+ * of FreeSpace_Common and corrupt battle animation. Which is why I have used FreeSpace_DEMO instead
  * but for most games the default location is enough
  */
 #define KernelSpace_TextSize 0xC85A8 

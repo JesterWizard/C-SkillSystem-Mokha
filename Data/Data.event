@@ -29,7 +29,6 @@
 #include "Misc/FarAttackAnimItem.lyn.event"
 #include "Misc/IconTable.lyn.event"
 #include "MpSystem/MpSystem.lyn.event"
-#include "CustomItems/CustomItems.event"
 
 #include "ClassData/ClassData.lyn.event"
 

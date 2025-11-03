@@ -23,6 +23,7 @@ enum chax_ierevamp_use_effects {
 	IER_STAFF_REPAIR,
 	IER_STAFF_UNLOCK,
 	IER_STAFF_BARRIER,
+<<<<<<< HEAD
 	
 #ifdef CONFIG_ITEM_INDEX_FORCE_STAFF
     IER_STAFF_FORCE,
@@ -52,6 +53,8 @@ enum chax_ierevamp_use_effects {
     IER_STAFF_REWARP,
 #endif
 
+=======
+>>>>>>> parent of 590863f3d (Custom boost staves added to new item struct)
 
 	/**
 	 * Boosters
@@ -232,10 +235,13 @@ IER_DECLEARE_Usability(IER_Usability_DanceRing);
 IER_DECLEARE_Usability(IER_Usability_MetisStone);
 IER_DECLEARE_Usability(IER_Usability_JunaFruit);
 IER_DECLEARE_Usability(IER_Usability_NightMare);
+<<<<<<< HEAD
 IER_DECLEARE_Usability(IER_Usability_Slow);
 IER_DECLEARE_Usability(IER_Usability_Forge);
 IER_DECLEARE_Usability(IER_Usability_Rewarp);
 
+=======
+>>>>>>> parent of 590863f3d (Custom boost staves added to new item struct)
 IER_DECLEARE_Effect(IER_Effect_AdjacentHeal);
 IER_DECLEARE_Effect(IER_Effect_RangedHeal);
 IER_DECLEARE_Effect(IER_Effect_RescueStaff);
@@ -252,10 +258,13 @@ IER_DECLEARE_Effect(IER_Effect_Mine);
 IER_DECLEARE_Effect(IER_Effect_LightRune);
 IER_DECLEARE_Effect(IER_Effect_Torch);
 IER_DECLEARE_Effect(IER_Effect_SpeicalDance);
+<<<<<<< HEAD
 IER_DECLEARE_Effect(IER_Effect_Slow);
 IER_DECLEARE_Effect(IER_Effect_Forge);
 IER_DECLEARE_Effect(IER_Effect_Rewarp);
 
+=======
+>>>>>>> parent of 590863f3d (Custom boost staves added to new item struct)
 IER_DECLEARE_Action(IER_Action_StandardHeal);
 IER_DECLEARE_Action(IER_Action_StatusStaff);
 IER_DECLEARE_Action(IER_Action_NightMare);
@@ -280,9 +289,12 @@ IER_DECLEARE_Action(IER_Action_LightRune);
 IER_DECLEARE_Action(IER_Action_TorchStaff);
 IER_DECLEARE_Action(IER_Action_DanceRing);
 IER_DECLEARE_Action(IER_Action_JunaFruitItem);
+<<<<<<< HEAD
 IER_DECLEARE_Action(IER_Action_CustomStaves);
 IER_DECLEARE_Action(IER_Action_Rewarp);
 
+=======
+>>>>>>> parent of 590863f3d (Custom boost staves added to new item struct)
 IER_DECLEARE_PrepEffect(IER_PrepEffect_StatBooster);
 IER_DECLEARE_PrepEffect(IER_PrepEffect_Promotion);
 IER_DECLEARE_PrepEffect(IER_PrepEffect_JunaFruit);

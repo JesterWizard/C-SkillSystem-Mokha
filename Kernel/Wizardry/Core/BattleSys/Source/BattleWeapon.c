@@ -84,6 +84,7 @@ int GetUnitEquippedWeaponSlot(struct Unit *unit)
 	return -1;
 }
 
+<<<<<<< HEAD
 LYN_REPLACE_CHECK(CanUnitUseStaff);
 s8 CanUnitUseStaff(struct Unit* unit, int item) {
     if (item == 0)
@@ -125,6 +126,8 @@ s8 CanUnitUseStaff(struct Unit* unit, int item) {
     }
 }
 
+=======
+>>>>>>> parent of 590863f3d (Custom boost staves added to new item struct)
 LYN_REPLACE_CHECK(GetUnitEquippedWeapon);
 u16 GetUnitEquippedWeapon(struct Unit *unit)
 {

@@ -519,7 +519,7 @@ int MakeNewItem(int item)
 	int iid = ITEM_INDEX(item);
 
 	if (iid == CONFIG_ITEM_INDEX_SKILL_SCROLL_FEB) {
-		iid = CONFIG_ITEM_INDEX_SKILL_SCROLL_1;
+		iid = CONFIG_ITEM_INDEX_SKILL_SCROLL;
 
 		item = iid | (ITEM_USES(item) << 8);
 	}
@@ -556,7 +556,7 @@ char *GetItemName(int item)
 LYN_REPLACE_CHECK(GetItemData);
 const struct ItemData * GetItemData(int itemIndex) 
 {
-    return gItemData_New + itemIndex;
+    return gItemData + itemIndex;
 }
 
 LYN_REPLACE_CHECK(GetItemAttributes);
@@ -1070,6 +1070,7 @@ void PrepUnit_DrawUnitItems(struct Unit *unit)
     }
 
     BG_EnableSyncByMask(BG0_SYNC_BIT);
+<<<<<<< HEAD
 }
 
 LYN_REPLACE_CHECK(IsItemDisplayUsable);
@@ -1101,4 +1102,6 @@ s8 IsItemDisplayUsable(struct Unit* unit, int item) {
 LYN_REPLACE_CHECK(GetItemMaxRange);
 int GetItemMaxRange(int item) {
     return GetItemData(ITEM_INDEX(item))->encodedRange & 0xF;
+=======
+>>>>>>> parent of 590863f3d (Custom boost staves added to new item struct)
 }

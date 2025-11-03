@@ -8,54 +8,84 @@ gHpGetters:
     MSG_END
 
 gPowGetters:
+<<<<<<< HEAD
     POIN PowGetterWeaponBonus PowGetterSkills PowPsychUpCheck PowGetterDebuff
     POIN PowGetterStaffBoost
+=======
+    POIN PowGetterWeaponBonus PowGetterSkills PowGetterDebuff
+>>>>>>> parent of 590863f3d (Custom boost staves added to new item struct)
     POIN PowGetterStatDebuff PowGetterShield
     POIN StatusGetterCheckCpas
     MSG_END
 
 gMagGetters:
+<<<<<<< HEAD
     POIN MagGetterSkills MagPsychUpCheck MagGetterDebuff
     POIN MagGetterStaffBoost
+=======
+    POIN MagGetterSkills MagGetterDebuff
+>>>>>>> parent of 590863f3d (Custom boost staves added to new item struct)
     POIN MagGetterWeaponBonus
     POIN MagGetterStatDebuff MagGetterShield
     POIN StatusGetterCheckCpas
     MSG_END
 
 gSklGetters:
+<<<<<<< HEAD
     POIN SklGetterWeaponBonus SklGetterSkills SklPsychUpCheck SklGetterDebuff
     POIN SklGetterStaffBoost
+=======
+    POIN SklGetterWeaponBonus SklGetterSkills SklGetterDebuff
+>>>>>>> parent of 590863f3d (Custom boost staves added to new item struct)
     POIN SklGetterStatDebuff SklGetterShield
     POIN StatusGetterCheckCpas
     MSG_END
 
 gSpdGetters:
+<<<<<<< HEAD
     POIN SpdGetterWeaponBonus SpdGetterSkills SpdPsychUpCheck SpdGetterDebuff
     POIN SpdGetterStaffBoost
+=======
+    POIN SpdGetterWeaponBonus SpdGetterSkills SpdGetterDebuff
+    POIN SpdGetterLegendSkills
+>>>>>>> parent of 590863f3d (Custom boost staves added to new item struct)
     POIN SpdGetterStatDebuff SpdGetterShield
     POIN StatusGetterCheckCpas
     MSG_END
 
 gLckGetters:
+<<<<<<< HEAD
     POIN LckGetterWeaponBonus LckGetterSkills LckPsychUpCheck LckGetterDebuff
     POIN LckGetterStaffBoost
+=======
+    POIN LckGetterWeaponBonus LckGetterSkills LckGetterDebuff
+>>>>>>> parent of 590863f3d (Custom boost staves added to new item struct)
     POIN LckGetterStatDebuff LckGetterShield
     POIN StatusGetterCheckCpas
     MSG_END
 
 gDefGetters:
+<<<<<<< HEAD
     POIN DefGetterWeaponBonus DefGetterSkills DefPsychUpCheck DefGetterDebuff
     POIN DefGetterStaffBoost
+=======
+    POIN DefGetterWeaponBonus DefGetterSkills DefGetterDebuff
+    POIN DefGetterLegendSkills
+>>>>>>> parent of 590863f3d (Custom boost staves added to new item struct)
     POIN DefGetterStatDebuff DefGetterShield
     POIN StatusGetterCheckCpas
     MSG_END
 
 gResGetters:
+<<<<<<< HEAD
     POIN ResGetterWeaponBonus ResGetterSkills ResPsychUpCheck ResGetterDebuff
     POIN ResGetterStaffBoost
 #ifndef CONFIG_MULTIPLE_BOOST_STAVES
+=======
+    POIN ResGetterWeaponBonus ResGetterSkills ResGetterDebuff
+    POIN ResGetterLegendSkills
+>>>>>>> parent of 590863f3d (Custom boost staves added to new item struct)
     POIN ResGetterPureWater
-#endif
     POIN ResGetterStatDebuff ResGetterShield
     POIN StatusGetterCheckCpas
     MSG_END

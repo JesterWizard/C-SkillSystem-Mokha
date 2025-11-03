@@ -58,6 +58,7 @@ ALIGN 4
 WORD $46C04778 $E59FC000 $E12FFF1C
 POIN ApplyStatBoostItem
 POP
+<<<<<<< HEAD
 
 PUSH
 ORG $29C34
@@ -86,3 +87,5 @@ ALIGN 4
 WORD $46C04778 $E59FC000 $E12FFF1C
 POIN ExecMine
 POP
+=======
+>>>>>>> parent of 590863f3d (Custom boost staves added to new item struct)

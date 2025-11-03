@@ -29,7 +29,6 @@ bool CanUnitUseItem(struct Unit* unit, int item)
 		return false;
 
 	revamp = GetIERevamp(item);
-
 	if (revamp && revamp->usability)
 		return revamp->usability(unit, item);
 

@@ -213,11 +213,11 @@ int ResGetterSkills(int status, struct Unit *unit)
 	return status;
 }
 
-#ifndef CONFIG_MULTIPLE_BOOST_STAVES
 int ResGetterPureWater(int status, struct Unit *unit)
 {
 	return status + unit->barrierDuration;
 }
+<<<<<<< HEAD
 #endif
 
 int ResPsychUpCheck(int status, struct Unit *unit)
@@ -253,3 +253,5 @@ int ResGetterStaffBoost(int status, struct Unit *unit)
 
     return status;
 }
+=======
+>>>>>>> parent of 590863f3d (Custom boost staves added to new item struct)

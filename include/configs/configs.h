@@ -249,14 +249,13 @@
 #define CONFIG_UNIT_ACTION_EXPA_GaidenMagicCombat 0x24
 #define CONFIG_UNIT_ACTION_EXPA_GaidenMagicStaff 0x25
 
-#define CONFIG_MULTIPLE_BOOST_STAVES
-
 /**
  * Icon config
  */
 #define CONFIG_PR_ITEM_ICON  0x5926F4
 #define CONFIG_ICON_INDEX_MAG_BOOSTER 0xCA
 #define CONFIG_ICON_INDEX_STAR 0xCB
+<<<<<<< HEAD
 #define CONFIG_ICON_INDEX_SKILL_STEALER 0xCC
 #define CONFIG_ICON_INDEX_ARMS_SCROLL 0xCD
 
@@ -274,6 +273,8 @@
 #define CONFIG_ICON_INDEX_SLOW_STAFF 0x78 // Originally Echesacks
 #define CONFIG_ICON_INDEX_FORGE_STAFF 0xAB // Originally a musical note, for play?
 #define CONFIG_ICON_INDEX_REWARP_STAFF 0xAC // Originally a musical note, for play?
+=======
+>>>>>>> parent of 590863f3d (Custom boost staves added to new item struct)
 
 /**
 * Item config
@@ -283,6 +284,7 @@
 // #define CONFIG_ITEM_INDEX_SKILL_SCROLL 0xBD
 #define CONFIG_ITEM_INDEX_SKILL_SCROLL_FEB 0xFF
 
+<<<<<<< HEAD
 #define CONFIG_ITEM_INDEX_SKILL_STEALER 0xBE
 #define CONFIG_ITEM_INDEX_ARMS_SCROLL 0xCE
 
@@ -306,6 +308,8 @@
 #endif
 
 
+=======
+>>>>>>> parent of 590863f3d (Custom boost staves added to new item struct)
 /**
  * Unit amount, since it is hard to modify, it is recommanded not change this value
  */

@@ -201,6 +201,7 @@ int MagGetterSkills(int status, struct Unit *unit)
 
 	return status;
 }
+<<<<<<< HEAD
 
 int MagPsychUpCheck(int status, struct Unit *unit)
 {
@@ -235,3 +236,5 @@ int MagGetterStaffBoost(int status, struct Unit *unit)
 
     return status;
 }
+=======
+>>>>>>> parent of 590863f3d (Custom boost staves added to new item struct)

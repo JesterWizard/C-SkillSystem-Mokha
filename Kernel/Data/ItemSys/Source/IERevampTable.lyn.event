@@ -78,6 +78,7 @@ WORD $0
 POIN IER_Effect_Barrier
 POIN IER_Action_BarrierStaff
 WORD $0
+<<<<<<< HEAD
 POIN IER_Usability_Barrier
 WORD $0
 POIN IER_Effect_Barrier
@@ -123,6 +124,8 @@ WORD $0
 POIN IER_Effect_Rewarp
 POIN IER_Action_Rewarp
 WORD $0
+=======
+>>>>>>> parent of 590863f3d (Custom boost staves added to new item struct)
 POIN IER_Usability_Booster
 POIN IER_Usability_Booster
 WORD $0
@@ -314,6 +317,7 @@ POIN IER_PrepEffect_SkillScroll
 POIN IER_Usability_NightMare
 WORD $0 $0
 POIN IER_Action_NightMare
+<<<<<<< HEAD
 WORD $0
 POIN IER_Usability_ArmsScroll
 POIN IER_PrepUsability_ArmsScroll
@@ -321,3 +325,6 @@ WORD $0
 POIN IER_ActionEffect_ArmsScroll
 POIN IER_PrepEffect_ArmsScroll
 WORD $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0
+=======
+WORD $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0
+>>>>>>> parent of 590863f3d (Custom boost staves added to new item struct)

@@ -175,6 +175,7 @@ int LckGetterSkills(int status, struct Unit *unit)
 
 	return status;
 }
+<<<<<<< HEAD
 
 int LckPsychUpCheck(int status, struct Unit *unit)
 {
@@ -209,3 +210,5 @@ int LckGetterStaffBoost(int status, struct Unit *unit)
 
     return status;
 }
+=======
+>>>>>>> parent of 590863f3d (Custom boost staves added to new item struct)
