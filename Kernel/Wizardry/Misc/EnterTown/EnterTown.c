@@ -4,14 +4,25 @@
 
 extern u8 ChapterID[1];
 
-/* JESTER - This originally had an int type so I made a new with which is void */
+const char EnterTownNodes[] = {
+    0x50, 0x51, 0x52, 0x53, 0x55, 0x02, 0x02, 0x02,
+    0x02, 0x02, 0x02, 0x02, 0x02, 0x02, 0x02, 0x02,
+    0x02, 0x02, 0x02, 0x02, 0x02, 0x02, 0x02, 0x02,
+    0x02, 0x02, 0x02, 0x02, 0x02, 0x02, 0x02, 0x02,
+    0x02, 0x02, 0x02, 0x02, 0x02, 0x02, 0x02, 0x02,
+    0x02, 0x02, 0x02, 0x02, 0x02, 0x02, 0x02, 0x02,
+    0x02, 0x02, 0x02, 0x02, 0x02, 0x02, 0x02, 0x02,
+    0x02, 0x02
+};
+
+/* JESTER - This originally had an int type so I made a new function which is void to make it compile */
 //! FE8U = 0x080BC634
 static void WMNodeMenu_OnInit_VOID(struct MenuProc * menu)
 {
     BG_EnableSyncByMask(BG0_SYNC_BIT);
 }
 
-/* JESTER - This originally had an int type so I made a new with which is void */
+/* JESTER - This originally had an int type so I made a new function which is void to make it compile */
 //! FE8U = 0x080BC644
 static void WMNodeMenu_OnEnd_VOID(struct MenuProc * menu)
 {
@@ -78,22 +89,27 @@ u8 WMMenu_IsSecretShopAvailable(const struct MenuItemDef * def, int number)
 
 static u8 WMMenu_IsDistrictAvailable(const struct MenuItemDef * def, int number)
 {
-    if (gGMData.nodes[gGMData.units[0].location].state & 2)
-    {
-        return MENU_NOTSHOWN;
-    }
+    // if (gGMData.nodes[gGMData.units[0].location].state & 2)
+    // {
+    //     return MENU_NOTSHOWN;
+    // }
 
-    if ((gGMData.units[0].location[gWMNodeData].armory[0]) == 0)
-    {
-        return MENU_NOTSHOWN;
-    }
+    // if ((gGMData.units[0].location[gWMNodeData].armory[0]) == 0)
+    // {
+    //     return MENU_NOTSHOWN;
+    // }
 
     return MENU_ENABLED;
 }
 
 static u8 WMMenu_OnDistrictSelected(struct MenuProc * menuProc, struct MenuItemProc * menuItemProc)
 {
-    ChapterID[0] = 0x39;
+    // write the chapter id into WRAM so the ASM loader will use it
+    *(volatile u8*)0x03005268 = EnterTownNodes[gGMData.units[0].location-1];
+
+    // set the "reload" flag the map reloader checks (non-zero enables special load)
+    *(volatile u8*)0x03005266 = 0x01;
+    //ChapterID[0] = 0x5;
     gGMData.unk_cd = menuProc->itemCurrent;
     Proc_Goto(GM_MAIN, 15);
     return MENU_ACT_SKIPCURSOR | MENU_ACT_END | MENU_ACT_SND6A | MENU_ACT_CLEAR;
@@ -227,4 +243,12 @@ struct MenuProc * StartWMNodeMenu(struct WorldMapMainProc * parent)
     }
 
     return menuProc;
+}
+
+LYN_REPLACE_CHECK(GetROMChapterStruct);
+const struct ROMChapterData* GetROMChapterStruct(unsigned chIndex) {
+    if (chIndex == 0x7F)
+        return gExtraMapInfo->chapter_info;
+
+    return gChapterDataTable + chIndex;
 }

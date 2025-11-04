@@ -17,7 +17,7 @@
  * If you're planning to develop a new game instead of making minor
  * changes on vanilla, it is recommanded to uncomment this config to save space.
  */
- // #define CONFIG_CROP_VANILLA_MSG
+#define CONFIG_CROP_VANILLA_MSG
 
  /* CommonProtection.event */
 #define CONFIG_COMMON_PROTECTION_ENBALED
@@ -73,7 +73,7 @@
  *      - StartBattleAnimHitEffect
  *      - NewEfxHpBar
  */
-#define CONFIG_FAKE_OLD_ANIMNUMBER_PATCH
+// #define CONFIG_FAKE_OLD_ANIMNUMBER_PATCH
 
 /**
  * Auto detect on EfxResire weapon judgement
@@ -347,7 +347,7 @@
 #define CONFIG_LIMITED_SHOP_STOCK
 // #define CONFIG_DENY_STAT_SCREEN
 #define CONFIG_CHAPTER_NAMES
-#define CONFIG_PREPS_AUGURY
+// #define CONFIG_PREPS_AUGURY
 // #define CONFIG_ARENA_LIMITS
 #define CONFIG_QUINTESSANCE_EFFECT
 #define CONFIG_TURN_ON_ALL_SKILLS
@@ -415,11 +415,11 @@
 #define CONFIG_TELLIUS_CAPACITY_BASE 50
 #define CONFIG_TELLIUS_CAPACITY_PROMOTED 25
 // #define CONFIG_LAGUZ_BARS
-#define CONFIG_FORGING
+// #define CONFIG_FORGING
 // #ifdef CONFIG_FORGING
 // 	#define CONFIG_FE4_CRIT_BONUS_ON_KILL
 // #endif
-#define CONFIG_CUSTOM_SUPPORT_CONVOS
+// #define CONFIG_CUSTOM_SUPPORT_CONVOS
 
 #define CONFIG_MP_SYSTEM
 #define CONFIG_MODULAR_FOG_UNIT_SIGHT
@@ -437,13 +437,13 @@
 
 // #define CONFIG_MOKHA_AOE // This only adds one command rather than letting you define them, turn of Vesly's AOE if using this
 
-// #define CONFIG_BASE_CHAPTERS // Compiles but otherwise not operational
+// #define CONFIG_BASE_CHAPTERS // Compiles but otherwise not operational. It comes with the valuable PLIST split but overwrites my custom chapters
 
 // #define CONFIG_LIGHTS_OUT_GAME
 
 // #define CONFIG_2RN_GROWTHS
 
-// #define CONFIG_ENTER_DISTRICT // Not yet finished
+// #define CONFIG_ENTER_DISTRICT // Not yet finished, I also might not need it if I get base chapters working
 
 #define CONFIG_STAT_PAGE_PERSONAL_INFO
 

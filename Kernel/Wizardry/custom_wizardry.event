@@ -1,0 +1,143 @@
+#ifdef CONFIG_FE8_REWRITE
+    #include "../../Data/FE8_Rewritten_Terper/FE8Rewrite_Installer.event"
+#endif
+
+#ifdef CONFIG_MULTIPLE_DEATH_QUOTES
+    #include "Common/Quotes/Quotes.event"
+#endif
+
+#ifdef CONFIG_GAMEOVER_QUOTES
+    #include "Common/GameOver/GameOver.event"
+#endif
+
+#ifdef CONFIG_CUSTOM_SUPPORT_CONVOS
+    #include "Common/Supports/Supports_Installer.event"
+#endif
+
+#ifdef CONFIG_VESLY_DEBUGGER
+    #include "Misc/VeslyDebugger/VeslyDebugger_Installer.event"
+#endif
+
+#ifdef CONFIG_VESLY_DANGER_BONES
+    #include "Misc/VeslyDangerBones/VeslyDangerBones_Installer.event"
+#endif
+
+#ifdef CONFIG_VESLY_SUPPORT_POST_BATTLE
+    #include "Misc/VeslySupportPostBattle/VeslySupportPostBattle_Installer.event"
+#endif
+
+#ifdef CONFIG_VESLY_ANIMS_FAST_FORWARD
+    #include "Misc/VeslyAnimsFastForward/VeslyAnimsFastForward_Installer.event"
+#endif
+
+#ifdef CONFIG_VESLY_DRAW_ANIMATIONS
+    #include "Misc/VeslyDrawAnimations/VeslyDrawAnimations_Installer.event"
+#endif
+
+#ifdef CONFIG_VESLY_RECLASS
+    #include "Misc/VeslyReclass/VeslyReclass_Installer.event"
+#endif
+
+#ifdef CONFIG_VESLY_UI
+    #include "Misc/VeslyUI/VeslyUI_Installer.event"
+#endif
+
+#ifdef CONFIG_VESLY_EXTENDED_ITEM_DESCRIPTIONS
+    #include "Misc/VeslyExtendedItemDescriptions/VeslyExtendedItemDescriptions_Installer.event"
+#endif
+
+#ifdef CONFIG_STAT_SCREEN_ALLEGIANCE_COLORS
+    #include "Misc/StatScreenAllegianceColors/StatScreenAllegianceColors_Installer.event"
+#endif
+
+#ifdef CONFIG_CASUAL_MODE
+    #include "Misc/CasualMode/CasualMode_Installer.event"
+#endif
+
+#ifdef CONFIG_RES_TERRAIN_WINDOW
+    #include "Misc/ResTerrainWindow/ResTerrainWindow_Installer.event"
+#endif
+
+#ifdef CONFIG_MODULAR_MINIMUG_BOX
+    #include "Misc/ModularMinimugBox/ModuleInstallers.event"
+#endif
+
+#ifdef CONFIG_INSTANT_LEVEL_UP
+    #include "Misc/InstantLevelUp/InstantLevelUp_Installer.event"
+#endif
+
+#ifdef CONFIG_MIRROR_MAP_SPRITES
+    #include "Misc/MirrorMapSprites/MirrorMapSprites_Installer.event"
+#endif
+
+#ifdef CONFIG_TEXT_ENGINE_REWORK
+    #include "Misc/TextEngineRework/TextEngineRework_Installer.event"
+#endif
+
+#ifdef CONFIG_SHOW_CGs_LIKE_FE7
+    #include "Misc/ShowCGsLikeFE7/ShowCGsLikeFE7_Installer.event"
+#endif
+
+#ifdef CONFIG_LIMITED_SHOP_STOCK
+    #include "Misc/LimitedShopStock/LimitedShopStock_Installer.event"
+#endif
+
+#ifdef CONFIG_CHAPTER_NAMES
+    #include "Misc/ChapterNames/ChapterNames_Installer.event"
+#endif
+
+#ifdef CONFIG_PREPS_AUGURY
+    #include "Misc/Augury/Augury_Installer.event"
+#endif
+
+#ifdef CONFIG_ARENA_LIMITS
+    #include "Misc/ArenaLimits/ArenaLimits_Installer.event"
+#endif
+
+#ifdef CONFIG_QUINTESSANCE_EFFECT
+    #include "Misc/QuintessanceEffect/QuintessanceEffect_Installer.event"
+#endif
+
+#ifdef CONFIG_CUSTOM_GUIDE
+    #include "Common/Guide/GuideTable.event"
+#endif
+
+#ifdef CONFIG_VESLY_CREDITS_SEQUENCE
+    #include "Misc/VeslyCredits/VeslyCredits_Installer.event"
+#endif
+
+#ifdef CONFIG_FORGING
+    #include "Misc/Forging/Forging_Installer.event"
+#endif
+
+#ifdef CONFIG_VESLY_NOTIFICATION_SYSTEM
+    #include "Misc/VeslyNotificationWindow/VeslyNotificationWindow_Installer.event"
+#endif
+
+#ifdef CONFIG_VESLY_AOE
+    #include "Misc/VeslyAOE/AOE_Installer.event"
+#endif
+
+#ifdef CONFIG_FREE_MOVEMENT
+    #include "Misc/FreeMovement/FreeMovement_Installer.event"
+#endif
+
+#ifdef CONFIG_BIORHYTHM
+    #include "Misc/Biorhythm/Biorhythm_Installer.event"
+#endif
+
+#ifdef CONFIG_MOKHA_AOE
+    #include "Misc/MokhaAOE/MokhaAOE_Installer.event"
+#endif
+
+#ifdef CONFIG_BASE_CHAPTERS
+    #include "Misc/BaseChapters/BaseChapters_Installer.event"
+#endif
+
+#ifdef CONFIG_LIGHTS_OUT_GAME
+    #include "Misc/LightsOutPuzzle/LightsOutPuzzle_Installer.event"
+#endif
+
+#ifdef CONFIG_ENTER_DISTRICT
+    #include "Misc/EnterTown/EnterTown_Installer.event"
+#endif

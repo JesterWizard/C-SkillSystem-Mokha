@@ -1,3 +1,7 @@
+Enter Town ASM (or any chapter by technicality) V.1.1
+
+Simple, adds a script to have the player to enter towns (and by that I mean chapter) and explore and return seamlessly to the world map
+
 There are multiple parts to this and the way I had it originally was confusing so I going to adress that and make this easier to work with. Also this is made with FEBuilder in mind.
 There are 2 folders here, one for the event and one for the ASM's that need to be installed seperatly.
 1. Install the event normally, I rememberd the .dmp's this time.

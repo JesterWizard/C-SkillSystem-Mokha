@@ -258,7 +258,7 @@ extern const struct FaceVramEntry gFaceConfig_PrepItemUseScreen[4];
 // extern ??? gUnknown_08205F28
 // extern ??? gUnknown_08205F7C
 
-// extern ??? gUnknown_08206450
+extern const u8 gUnknown_08206450[2][0x1d];
 // extern ??? gUnknown_08206498
 
 // extern ??? gUnknown_08206868

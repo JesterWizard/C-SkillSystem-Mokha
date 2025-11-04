@@ -10,31 +10,31 @@
 {
 
 __TEXTPROCESSD4C:
-#incbin ".TextEntries\TextBuildfileLoremIpsum.fetxt.dmp"
+#incbin ".TextEntries/TextBuildfileLoremIpsum.fetxt.dmp"
 setText($D4C, __TEXTPROCESSD4C)
 
 __TEXTPROCESSD4D:
-#incbin ".TextEntries\TextBuildfileWLC_menuCommandText.fetxt.dmp"
+#incbin ".TextEntries/TextBuildfileWLC_menuCommandText.fetxt.dmp"
 setText($D4D, __TEXTPROCESSD4D)
 
 __TEXTPROCESSD4E:
-#incbin ".TextEntries\TextBuildfileWLC_menuHelpText.fetxt.dmp"
+#incbin ".TextEntries/TextBuildfileWLC_menuHelpText.fetxt.dmp"
 setText($D4E, __TEXTPROCESSD4E)
 
 __TEXTPROCESSD4F:
-#incbin ".TextEntries\TextBuildfileFMU_exitMenuCommandText.fetxt.dmp"
+#incbin ".TextEntries/TextBuildfileFMU_exitMenuCommandText.fetxt.dmp"
 setText($D4F, __TEXTPROCESSD4F)
 
 __TEXTPROCESSD50:
-#incbin ".TextEntries\TextBuildfileFMU_exitMenuHelpText.fetxt.dmp"
+#incbin ".TextEntries/TextBuildfileFMU_exitMenuHelpText.fetxt.dmp"
 setText($D50, __TEXTPROCESSD50)
 
 __TEXTPROCESSD51:
-#incbin ".TextEntries\TextBuildfilebaseConvoGarciaCh2.fetxt.dmp"
+#incbin ".TextEntries/TextBuildfilebaseConvoGarciaCh2.fetxt.dmp"
 setText($D51, __TEXTPROCESSD51)
 
 __TEXTPROCESSD52:
-#incbin ".TextEntries\TextBuildfilebaseConvoLarachelCh2.fetxt.dmp"
+#incbin ".TextEntries/TextBuildfilebaseConvoLarachelCh2.fetxt.dmp"
 setText($D52, __TEXTPROCESSD52)
 
 }

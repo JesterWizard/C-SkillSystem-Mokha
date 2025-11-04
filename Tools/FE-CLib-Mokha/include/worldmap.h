@@ -1383,6 +1383,7 @@ extern struct ProcCmd ProcScr_GmNodeIconDisplay[];
 // extern ??? gMenu_WMGeneralMenu
 // extern ??? gMenuRect_WMGeneralMenuRect
 // extern ??? gMenu_WMNodeMenu
+extern struct MenuDef gMenu_WMNodeMenu;
 extern struct MenuRect gMenuRect_WMNodeMenuRectA;
 extern struct MenuRect gMenuRect_WMNodeMenuRectB;
 // extern ??? gUnknown_08A3E22C

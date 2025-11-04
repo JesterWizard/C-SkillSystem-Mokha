@@ -22,6 +22,7 @@ Loop1:
   and   r7, r1
   ldr   r3, [r2, r6]
   orr   r3, r7
+  mov   r3, #1
   str   r3, [r2, r6]
   lsr   r0, #0x1
   add   r6, #0x4
@@ -34,7 +35,7 @@ lsr   r0, #0x6
 Loop2:
   mov   r7, r0
   and   r7, r1
-  ldr   r3, [r2, r6]
+  ldr   r3, [r2, r6] // If 1, show map node, if 0 do not
   orr   r3, r7
   str   r3, [r2, r6]
   lsr   r0, #0x1
