@@ -113,22 +113,22 @@ void PutUnitSpriteIconsOam(void)
 				else {
 					switch (info->positive_type) {
 					case STATUS_DEBUFF_NEGATIVE:
-						MapTaskPutOamHi(MTSKCONF_COMM_DEBUFF, OAM2_LAYER(2));
+						MapTaskPutOamHi(MTSKCONF_COMM_DEBUFF, OAM2_LAYER(2) + OAM2_CHR(0x980 / 0x20));
 						break;
 
 					case STATUS_DEBUFF_POSITIVE:
-						MapTaskPutOamHi(MTSKCONF_COMM_BUFF, OAM2_LAYER(2));
+						MapTaskPutOamHi(MTSKCONF_COMM_BUFF, OAM2_LAYER(2) + OAM2_CHR(0xD80 / 0x20));
 						break;
 					}
 				}
 			} else {
 				switch (SimulateStatDebuffPositiveType(unit)) {
 				case STATUS_DEBUFF_NEGATIVE:
-					MapTaskPutOamHi(MTSKCONF_COMM_DEBUFF, OAM2_LAYER(2));
+					MapTaskPutOamHi(MTSKCONF_COMM_DEBUFF, OAM2_LAYER(2) + OAM2_CHR(0x980 / 0x20));
 					break;
 
 				case STATUS_DEBUFF_POSITIVE:
-					MapTaskPutOamHi(MTSKCONF_COMM_BUFF, OAM2_LAYER(2));
+					MapTaskPutOamHi(MTSKCONF_COMM_BUFF, OAM2_LAYER(2) + OAM2_CHR(0xD80 / 0x20));
 					break;
 				}
 			}

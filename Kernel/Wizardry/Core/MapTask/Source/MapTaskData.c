@@ -3,8 +3,8 @@
 
 const struct MapTaskConf gMapTaskConfs[] = {
 	[MTSKCONF_HPBAR]        = {  0,  9, gObject_16x8 },
-	[MTSKCONF_COMM_BUFF]    = { -1,  0, sSprite_SysUpArrowA },
-	[MTSKCONF_COMM_DEBUFF]  = { -1,  0, sSprite_SysDownArrowA },
+	[MTSKCONF_COMM_BUFF]    = { -1,  8, gObject_8x8 },
+	[MTSKCONF_COMM_DEBUFF]  = { -1,  8, gObject_8x8 },
 	[MTSKCONF_RESCUING]     = {  9,  7, gObject_8x8 },
 	[MTSKCONF_BOSS]         = {  9,  7, gObject_8x8 },
 	[MTSKCONF_PROTECTION]   = {  9,  7, gObject_8x8 },
