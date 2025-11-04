@@ -155,7 +155,7 @@ void PutUnitSpriteIconsOam(void)
 
 #ifdef CONFIG_DISPLAY_DROPPABLE_ITEM_ICON
 			if (unit->state & US_DROP_ITEM)
-   				MapTaskPutOamHi(MTSKCONF_DROP_ITEM, OAM2_PAL(0) + OAM2_LAYER(2) + OAM2_CHR(0xD20 / 0x20));	
+   				MapTaskPutOamHi(MTSKCONF_DROP_ITEM, OAM2_PAL(0) + OAM2_LAYER(2) + OAM2_CHR(0xC80 / 0x20));	
 #endif
 		}
 	}
