@@ -8,7 +8,8 @@ const struct MapTaskConf gMapTaskConfs[] = {
 	[MTSKCONF_RESCUING]     = {  9,  7, gObject_8x8 },
 	[MTSKCONF_BOSS]         = {  9,  7, gObject_8x8 },
 	[MTSKCONF_PROTECTION]   = {  9,  7, gObject_8x8 },
-	[MTSKCONF_TALK]   		= {  -6,  -4, gObject_16x8 },
+	[MTSKCONF_TALK_1]   	= {  -6, -14, gObject_32x8 },
+	[MTSKCONF_TALK_2]   	= {  -6, -6, gObject_32x8 },
 	[MTSKCONF_DROP_ITEM]	= {  9, 7, gObject_8x8 },
 	[MTSKCONF_WARNING]		= {  3, 2, gObject_8x8 },
 };

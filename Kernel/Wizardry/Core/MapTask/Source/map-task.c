@@ -76,7 +76,8 @@ void PutUnitSpriteIconsOam(void)
 
 #ifdef CONFIG_DISPLAY_TALK_ICON
 		if (have_cached_talkee && cached_talkee_id == UNIT_CHAR_ID(unit)) {
-			MapTaskPutOamHi(MTSKCONF_TALK, OAM2_PAL(0) + OAM2_LAYER(2) + OAM2_CHR(0xE00 / 0x20));
+			MapTaskPutOamHi(MTSKCONF_TALK_1, OAM2_PAL(0) + OAM2_LAYER(2) + OAM2_CHR(0x9C0 / 0x20));
+			MapTaskPutOamHi(MTSKCONF_TALK_2, OAM2_PAL(0) + OAM2_LAYER(2) + OAM2_CHR(0xDC0 / 0x20));
 		}
 #endif
 
