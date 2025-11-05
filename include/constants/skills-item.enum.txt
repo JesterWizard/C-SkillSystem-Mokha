@@ -363,6 +363,7 @@
 // SID_Samaritan
 // SID_Turret
 // SID_QuickSalve
+// SID_Ripple
 
 //////// AURA SKILLS
 // SID_Anathema

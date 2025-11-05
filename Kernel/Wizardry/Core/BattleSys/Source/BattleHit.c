@@ -733,6 +733,14 @@ bool BattleGenerateHit(struct BattleUnit* attacker, struct BattleUnit* defender)
             }
 #endif
 
+#if (defined(SID_Ripple) && (COMMON_SKILL_VALID(SID_Ripple)))
+			if (BattleFastSkillTester(&gBattleActor, SID_Ripple))
+            {
+                if (gBattleTarget.hpInitial <= (gBattleTarget.unit.maxHP / 4))
+				    PlayStExpa_SetBit(PLAYSTEXPA_BIT_Ripple_Used);
+            }
+#endif
+
 #ifdef CONFIG_FORGING
 #ifdef CONFIG_FE4_CRIT_BONUS_ON_KILL
 			u16 item = GetUnitEquippedWeapon(GetUnit(gBattleActor.unit.index));

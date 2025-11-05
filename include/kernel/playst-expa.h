@@ -23,6 +23,7 @@ enum play_st_expa_bits {
 	PLAYSTEXPA_BIT_Thrust_InForce,
 	PLAYSTEXPA_BIT_Thrust_Used, 
 	PLAYSTEXPA_BIT_DoubleTime_Used, // Again, we'll undo this once it's used
+	PLAYSTEXPA_BIT_Ripple_Used, // Again we'll undo this once it's used
 
 	/* MAX */
 	PLAYSTEXPA_BIT_USED,

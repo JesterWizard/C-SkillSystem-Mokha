@@ -8699,4 +8699,14 @@ const struct SkillInfo gSkillInfos[MAX_SKILL_NUM + 1] = {
     },
 #endif
 
+#if (defined(SID_Ripple) && COMMON_SKILL_VALID(SID_Ripple))
+    [SID_Ripple] = {
+        .name = MSG_SKILL_Ripple_NAME,
+        .desc = MSG_SKILL_Ripple_DESC,
+        .capacity = MSG_SKILL_Ripple_CAPACITY,
+        .price = MSG_SKILL_Ripple_PRICE,
+        .icon = GFX_SkillIcon_WIP,
+    },
+#endif
+
 };

@@ -373,3 +373,11 @@ Undying:[N]
 Unit can revive multiple times[N]
 to full health while it is[N]
 the first turn.[X]
+
+## MSG_SKILL_Ripple_NAME
+Ripple[X]
+## MSG_SKILL_Ripple_DESC
+Ripple:[N]
+Grants a new action for each[N]
+enemy unit killed where <= 25%[N]
+of their max HP.[X]

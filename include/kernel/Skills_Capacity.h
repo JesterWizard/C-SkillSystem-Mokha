@@ -868,3 +868,4 @@
 #define MSG_SKILL_DoubleTime_CAPACITY 1
 #define MSG_SKILL_HighGrace_CAPACITY 1
 #define MSG_SKILL_Hasty_CAPACITY 1
+#define MSG_SKILL_Ripple_CAPACITY 1
