@@ -371,6 +371,17 @@ enum {
     NOFADE \
     ENDA
 
+#define BREAKSTONE_CHOSEN_UNIT \
+    SVAL(EVT_SLOT_9, 99) \
+    STARTFADE \
+    EvtColorFadeSetup(0x0, 0x20, 8, 128, 128, 128) \
+    STAL(30) \
+    BREAKSTONE(EVT_SLOT_2) \
+    EvtColorFadeSetup(0x0, 0x20, 4, 256, 256, 256) \
+    NOFADE \
+    ENDA
+
+
 #define WARP_CHARACTER_TO_COORDINATES(characterID, x, y) \
     SVAL(EVT_SLOT_2, characterID) \
     MOVE_CLOSEST(0xffff, CHAR_EVT_SLOT2, x, y) \

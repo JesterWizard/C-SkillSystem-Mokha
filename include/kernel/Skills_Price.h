@@ -864,3 +864,4 @@
 #define MSG_SKILL_GraceOfFire_PRICE 1000
 #define MSG_SKILL_GraceOfWater_PRICE 1000
 #define MSG_SKILL_WitchsBrew_PRICE 1000
+#define MSG_SKILL_Undying_PRICE 1000

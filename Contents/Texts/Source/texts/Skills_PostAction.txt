@@ -365,3 +365,11 @@ EXP Share[X]
 EXP Share:[N]
 Gain 10 EXP when an ally[N]
 within 2 tiles battles.[X]
+
+## MSG_SKILL_Undying_NAME
+Undying[X]
+## MSG_SKILL_Undying_DESC
+Undying:[N]
+Unit can revive multiple times[N]
+to full health while it is[N]
+the first turn.[X]

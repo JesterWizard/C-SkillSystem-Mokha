@@ -864,3 +864,4 @@
 #define MSG_SKILL_GraceOfFire_CAPACITY 1
 #define MSG_SKILL_GraceOfWater_CAPACITY 1
 #define MSG_SKILL_WitchsBrew_CAPACITY 1
+#define MSG_SKILL_Undying_CAPACITY 1

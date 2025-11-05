@@ -8659,4 +8659,14 @@ const struct SkillInfo gSkillInfos[MAX_SKILL_NUM + 1] = {
     },
 #endif
 
+#if (defined(SID_Undying) && COMMON_SKILL_VALID(SID_Undying))
+    [SID_Undying] = {
+        .name = MSG_SKILL_Undying_NAME,
+        .desc = MSG_SKILL_Undying_DESC,
+        .capacity = MSG_SKILL_Undying_CAPACITY,
+        .price = MSG_SKILL_Undying_PRICE,
+        .icon = GFX_SkillIcon_WIP,
+    },
+#endif
+
 };

@@ -30,6 +30,7 @@ gPostActionFuncs:
     POIN PostActionPredation
     POIN PostActionShadowStep
     POIN PostActionSealSkills
+    POIN PostActionUndying
     POIN ResetComboAtkList
 
     //End

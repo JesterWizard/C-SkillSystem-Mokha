@@ -865,6 +865,7 @@ SID_HalfMP
 SID_TurboMP
 SID_DilligentMind
 SID_MineDetector
+SID_Undying
 
 //////// COMBAT ARTS
 // SID_COMBAT_Grounder

@@ -753,9 +753,7 @@ bool BattleGenerateHit(struct BattleUnit* attacker, struct BattleUnit* defender)
 				bwl->currentMP += gMpSystemPInfoConfigList[UNIT_CHAR_ID(GetUnit(gBattleActor.unit.index))].killGeneration;
 				if (bwl->currentMP > gMpSystemPInfoConfigList[UNIT_CHAR_ID(GetUnit(gBattleActor.unit.index))].maxMP)
 					bwl->currentMP = gMpSystemPInfoConfigList[UNIT_CHAR_ID(GetUnit(gBattleActor.unit.index))].maxMP;
-			}
-
-			
+			}	
 #endif
 
 			gBattleHitIterator->info |= BATTLE_HIT_INFO_KILLS_TARGET;
