@@ -199,7 +199,7 @@ const int statScreenDenyClasses[] = {
     CLASS_GORGONEGG2, 
 };
 
-const int minions[10][2] = {
+const int minions[10][3] = {
     { CLASS_ELDER_BAEL, CLASS_BAEL, ITEM_MONSTER_SHARPCLAW },
     { CLASS_ARCH_MOGALL, CLASS_MOGALL, ITEM_MONSTER_CRIMSON_EYE },
     { CLASS_MAELDUIN, CLASS_TARVOS, ITEM_AXE_KILLER },
