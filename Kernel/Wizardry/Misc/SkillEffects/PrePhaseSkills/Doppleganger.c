@@ -23,7 +23,7 @@ bool PrePhase_TickDopplegangerSkillStatus(ProcPtr proc)
 
         if (SkillTester(unit, SID_Doppleganger))
         {
-            for (int i = 0; i < dopplegangerListSize; i++)
+            for (int i = 0; i < ARRAY_COUNT(dopplegangerPairs); i++)
             {
                 if (unit->pCharacterData->number == dopplegangerPairs[i][0])
                 {

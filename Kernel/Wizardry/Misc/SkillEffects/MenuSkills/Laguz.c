@@ -52,7 +52,7 @@ u8 Transform_Laguz_Effect(struct MenuProc * menu, struct MenuItemProc * item)
     FORCE_DECLARE struct NewBwl * bwl;
     bwl = GetNewBwl(UNIT_CHAR_ID(gActiveUnit));
 
-    for (int i = 0; i < laguzListSize; i++)
+    for (int i = 0; i < ARRAY_COUNT(laguzPairs); i++)
     {
 
         if (gActiveUnit->pClassData->number == laguzPairs[i][0])

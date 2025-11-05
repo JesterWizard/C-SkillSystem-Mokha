@@ -29,6 +29,7 @@
 #include "PostActionSkills/Predation.lyn.event"
 #include "PostActionSkills/ShadowStep.lyn.event"
 #include "PostActionSkills/Undying.lyn.event"
+#include "PostActionSkills/Minions.lyn.event"
 
 #include "MenuSkills/LynJump.event"
 #include "MenuSkills/Dance.lyn.event"

@@ -85,8 +85,6 @@ const int transformationPairs[77][2] = {
     { CLASS_PIRATE, CLASS_TARVOS },
 };
 
-const int transformationListSize = sizeof(transformationPairs) / sizeof(transformationPairs[0]);
-
 const int dismountPairs[14][2] = {
     { CLASS_EIRIKA_MASTER_LORD, CLASS_EIRIKA_LORD },
     { CLASS_EPHRAIM_MASTER_LORD, CLASS_EPHRAIM_LORD },
@@ -104,13 +102,9 @@ const int dismountPairs[14][2] = {
     { CLASS_WYVERN_LORD_F, CLASS_SOLDIER },
 };
 
-const int dismountListSize = sizeof(dismountPairs) / sizeof(dismountPairs[0]);
-
 const int dopplegangerPairs[1][2] = {
     { CHARACTER_EIRIKA, CLASS_EIRIKA_LORD },
 };
-
-const int dopplegangerListSize = sizeof(dopplegangerPairs) / sizeof(dopplegangerPairs[0]);
 
 const int laguzPairs[77][2] = {
     { CLASS_EIRIKA_LORD, CLASS_BONEWALKER},
@@ -192,8 +186,6 @@ const int laguzPairs[77][2] = {
     { CLASS_PIRATE, CLASS_TARVOS },
 };
 
-const int laguzListSize = sizeof(laguzPairs) / sizeof(laguzPairs[0]);
-
 const int gNewSummonConfig[5][2] = {
     { CHARACTER_EWAN, CHARACTER_MONSTER_BD, },
     { CHARACTER_KNOLL, CHARACTER_MONSTER_BD },
@@ -202,12 +194,20 @@ const int gNewSummonConfig[5][2] = {
     { CHARACTER_SETH, CHARACTER_MONSTER_BD},
 };
 
-const int summonArraySize = sizeof(gNewSummonConfig) / sizeof(gNewSummonConfig[0]);
-
 const int statScreenDenyClasses[] = {
     CLASS_GORGONEGG, 
     CLASS_GORGONEGG2, 
-    CLASS_FIGHTER
 };
 
-const int sizeOfDenyClasses = sizeof(statScreenDenyClasses) / sizeof(statScreenDenyClasses[0]);
+const int minions[10][2] = {
+    { CLASS_ELDER_BAEL, CLASS_BAEL, ITEM_MONSTER_SHARPCLAW },
+    { CLASS_ARCH_MOGALL, CLASS_MOGALL, ITEM_MONSTER_CRIMSON_EYE },
+    { CLASS_MAELDUIN, CLASS_TARVOS, ITEM_AXE_KILLER },
+    { CLASS_WIGHT, CLASS_BONEWALKER, ITEM_BOW_KILLER },
+    { CLASS_WIGHT_BOW, CLASS_BONEWALKER_BOW, ITEM_BOW_KILLER },
+    { CLASS_CYCLOPS, CLASS_BONEWALKER, ITEM_SWORD_KILLER },
+    { CLASS_DRACO_ZOMBIE, CLASS_DEATHGOYLE, ITEM_LANCE_KILLER },
+    { CLASS_GORGON, CLASS_GORGONEGG, ITEM_MONSTER_DEMON_SURGE },
+    { CLASS_DEATHGOYLE, CLASS_GARGOYLE, ITEM_LANCE_KILLER },
+    { CLASS_GWYLLGI, CLASS_MAUTHEDOOG, ITEM_MONSTER_HELL_FANG },
+};

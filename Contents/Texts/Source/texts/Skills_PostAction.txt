@@ -381,3 +381,10 @@ Ripple:[N]
 Grants a new action for each[N]
 enemy unit killed where <= 25%[N]
 of their max HP.[X]
+
+## MSG_SKILL_Minions_NAME
+Minions:[X]
+## MSG_SKILL_Minions_DESC
+Minions:[N]
+Summon a lower tier version[N]
+of this unit on death.[X]

@@ -31,6 +31,7 @@ gPostActionFuncs:
     POIN PostActionShadowStep
     POIN PostActionSealSkills
     POIN PostActionUndying
+    POIN PostAction_Minions
     POIN ResetComboAtkList
 
     //End

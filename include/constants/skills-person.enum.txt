@@ -364,6 +364,7 @@
 // SID_Turret
 // SID_QuickSalve
 // SID_Ripple
+// SID_Minions
 
 //////// AURA SKILLS
 // SID_Anathema

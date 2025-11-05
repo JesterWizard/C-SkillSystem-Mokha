@@ -47,7 +47,7 @@ static void callback_anim(ProcPtr proc)
 
 static void callback_exec(ProcPtr proc)
 {
-    for (int i = 0; i < dismountListSize; i++)
+    for (int i = 0; i < (int)ARRAY_COUNT(dismountPairs); i++)
     {
         if (gActiveUnit->pClassData->number == dismountPairs[i][0])
         {

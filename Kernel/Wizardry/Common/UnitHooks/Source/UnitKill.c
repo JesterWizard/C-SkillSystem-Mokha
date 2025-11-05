@@ -13,6 +13,8 @@ void UnitKill(struct Unit *unit)
 		(*it)(unit);
 #endif
 
+
+
 	if (UNIT_FACTION(unit) == FACTION_BLUE) {
 		if (UNIT_IS_PHANTOM(unit))
 			unit->pCharacterData = NULL;

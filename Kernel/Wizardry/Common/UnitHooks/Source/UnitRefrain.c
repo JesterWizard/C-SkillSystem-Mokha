@@ -101,7 +101,7 @@ void ChapterChangeUnitCleanup(void)
 #if defined(SID_Transform) && (COMMON_SKILL_VALID(SID_Transform))
         if (SkillTester(unit, SID_Transform))
         {
-            for (int i = 0; i < transformationListSize; i++)
+            for (int i = 0; i < (int)ARRAY_COUNT(transformationPairs); i++)
             {
                 if (unit->pClassData->number == transformationPairs[i][1])
                 {
@@ -114,7 +114,7 @@ void ChapterChangeUnitCleanup(void)
 #endif
 
 #ifdef CONFIG_LAGUZ_BARS
-        for (int i = 0; i < laguzListSize; i++)
+        for (int i = 0; i < ARRAY_COUNT(laguzPairs); i++)
         {
             if (unit->pClassData->number == laguzPairs[i][1])
             {
@@ -150,7 +150,7 @@ void ChapterChangeUnitCleanup(void)
 #if defined(SID_Doppleganger) && (COMMON_SKILL_VALID(SID_Doppleganger))
         if (SkillTester(unit, SID_Doppleganger))
         {
-            for (int i = 0; i < dopplegangerListSize; i++)
+            for (int i = 0; i < (int)ARRAY_COUNT(dopplegangerPairs); i++)
             {
                 if (unit->pCharacterData->number == dopplegangerPairs[i][0])
                 {
@@ -165,7 +165,7 @@ void ChapterChangeUnitCleanup(void)
 #if defined(SID_Dismount) && (COMMON_SKILL_VALID(SID_Dismount))
         if (SkillTester(unit, SID_Dismount))
         {
-            for (int i = 0; i < dismountListSize; i++)
+            for (int i = 0; i < (int)ARRAY_COUNT(dismountPairs); i++)
             {
                 if (unit->pClassData->number == dismountPairs[i][1])
                 {

@@ -47,7 +47,7 @@ STATIC_DECLAR void CheckBattleUnitStatCapsVanilla(struct Unit *unit, struct Batt
 #if defined(SID_Dismount) && (COMMON_SKILL_VALID(SID_Dismount))
     if (SkillTester(unit, SID_Dismount) && GetUnitStatusIndex(unit) == NEW_UNIT_STATUS_DISMOUNT)
     {
-        for (int i = 0; i < dismountListSize; i++)
+        for (int i = 0; i < (int)ARRAY_COUNT(dismountPairs); i++)
         {
             if (gActiveUnit->pClassData->number == dismountPairs[i][1])
             {
@@ -136,7 +136,7 @@ STATIC_DECLAR void UnitCheckStatCapsVanilla(struct Unit *unit)
 #if defined(SID_Dismount) && (COMMON_SKILL_VALID(SID_Dismount))
     if (SkillTester(unit, SID_Dismount) && GetUnitStatusIndex(unit) == NEW_UNIT_STATUS_DISMOUNT)
     {
-        for (int i = 0; i < dismountListSize; i++)
+        for (int i = 0; i < (int)ARRAY_COUNT(dismountPairs); i++)
         {
             if (gActiveUnit->pClassData->number == dismountPairs[i][1])
             {

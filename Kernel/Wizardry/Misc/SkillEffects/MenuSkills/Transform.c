@@ -47,7 +47,7 @@ static void callback_anim(ProcPtr proc)
 
 static void callback_exec(ProcPtr proc)
 {
-    for (int i = 0; i < transformationListSize; i++)
+    for (int i = 0; i < (int)ARRAY_COUNT(transformationPairs); i++)
     {
         if (gActiveUnit->pClassData->number == transformationPairs[i][0])
         {

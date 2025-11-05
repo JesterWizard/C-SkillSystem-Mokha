@@ -319,7 +319,7 @@ void ManimLevelUp_InitMainScreen(struct ManimLevelUpProc* proc)
 	// #ifdef CONFIG_SUMMONERS_GAIN_EXP_FROM_SUMMON_FIGHTS
 	//    switch (proc->actor_id) {
 	// 	case CHARACTER_SUMMON_EWAN:
-	// 	   for (int i = 0; i < summonArraySize; i ++)
+	// 	   for (int i = 0; i < ARRAY_COUNT(gNewSummonConfig); i ++)
 	// 	   {
 	// 		 if (proc->actor_id == gNewSummonConfig[i][1])
 	// 		 {

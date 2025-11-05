@@ -73,7 +73,7 @@ static void callback_anim(ProcPtr proc)
 static void callback_exec(ProcPtr proc)
 {
 #if (defined(SID_Doppleganger) && (COMMON_SKILL_VALID(SID_Doppleganger)))
-    for (int i = 0; i < dopplegangerListSize; i++)
+    for (int i = 0; i < (int)ARRAY_COUNT(dopplegangerPairs); i++)
         if (gActiveUnit->pCharacterData->number == dopplegangerPairs[i][0])
         {
             gActiveUnit->pClassData = GetUnit(gActionData.targetIndex)->pClassData;
