@@ -302,6 +302,7 @@ SID_Crescendo
 SID_PenanceStare
 SID_DamageToMP
 SID_Blight
+SID_HighGrace
 
 //////// POST-BATTLE SKILLS
 SID_Canto
