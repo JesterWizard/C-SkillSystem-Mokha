@@ -651,6 +651,7 @@ SID_TrickRoom
 SID_LastStand
 SID_YngviAscendant
 SID_BrashAssault
+SID_Hasty
 
 //////// PRE-PHASE SKILLS
 SID_Renewal

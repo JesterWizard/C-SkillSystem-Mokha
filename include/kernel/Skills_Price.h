@@ -867,3 +867,4 @@
 #define MSG_SKILL_Undying_PRICE 1000
 #define MSG_SKILL_DoubleTime_PRICE 1000
 #define MSG_SKILL_HighGrace_PRICE 1000
+#define MSG_SKILL_Hasty_PRICE 1000

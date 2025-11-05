@@ -1780,7 +1780,7 @@ If this unit has MP, damage[N]
 taken is deflected to it.[X]
 
 ## MSG_SKILL_HighGrace_NAME
-High Grce[X]
+High Grace[X]
 ## MSG_SKILL_HighGrace_DESC
 High Grace:[N]
 This unit cannot be hit on[N]

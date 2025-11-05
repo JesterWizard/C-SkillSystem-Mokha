@@ -208,3 +208,10 @@ Brash Assault[N]
 Brash Assault:[N]
 Attack twice if the foe[N]
 can counter.[X]
+
+## MSG_SKILL_Hasty_NAME
+Hasty[X]
+## MSG_SKILL_Hasty_DESC
+Hasty:[N]
+Lowers the attack speed threshold[N]
+for this unit to 1.[X]

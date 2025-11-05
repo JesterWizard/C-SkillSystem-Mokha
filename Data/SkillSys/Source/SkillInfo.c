@@ -8689,4 +8689,14 @@ const struct SkillInfo gSkillInfos[MAX_SKILL_NUM + 1] = {
     },
 #endif
 
+#if (defined(SID_Hasty) && COMMON_SKILL_VALID(SID_Hasty))
+    [SID_Hasty] = {
+        .name = MSG_SKILL_Hasty_NAME,
+        .desc = MSG_SKILL_Hasty_DESC,
+        .capacity = MSG_SKILL_Hasty_CAPACITY,
+        .price = MSG_SKILL_Hasty_PRICE,
+        .icon = GFX_SkillIcon_WIP,
+    },
+#endif
+
 };

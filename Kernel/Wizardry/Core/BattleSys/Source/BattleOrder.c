@@ -365,6 +365,11 @@ bool CheckCanTwiceAttackOrder(struct BattleUnit *actor, struct BattleUnit *targe
 	else
 		gBattleTemporaryFlag.tar_normal_judge_twice_order = true;
 
+#if defined(SID_Hasty) && (COMMON_SKILL_VALID(SID_Hasty))
+        if (BattleFastSkillTester(actor, SID_Hasty))
+			return (actor->battleSpeed - target->battleSpeed) >= 1;
+#endif
+
 	return ((actor->battleSpeed - target->battleSpeed) >= get_battle_followup_speed_threshold());
 }
 
@@ -529,19 +534,29 @@ STATIC_DECLAR void RegenerateBattleOrderFlagsAfterCalc(void)
 	int act_as = gBattleActor.battleSpeed;
 	int tar_as = gBattleTarget.battleSpeed;
 
+	int follow_up_threshold_act = get_battle_followup_speed_threshold();
+	int follow_up_threshold_tar = get_battle_followup_speed_threshold();
+
+#if defined(SID_Hasty) && (COMMON_SKILL_VALID(SID_Hasty))
+        if (BattleFastSkillTester(&gBattleActor, SID_Hasty))
+			follow_up_threshold_act = 1;
+        if (BattleFastSkillTester(&gBattleTarget, SID_Hasty))
+			follow_up_threshold_tar = 1;
+#endif
+
 	/**
 	 * As battle speed may be modifed during pre-battle calc,
 	 * so here we need to retry for speed judgement for twice-order
 	 */
 	if (gBattleTemporaryFlag.act_normal_judge_twice_order == true) {
-		if ((act_as - tar_as) >= get_battle_followup_speed_threshold())
+		if ((act_as - tar_as) >= follow_up_threshold_act)
 			gBattleFlagExt.round_mask |=  UNWIND_DOUBLE_ACT;
 		else
 			gBattleFlagExt.round_mask &= ~UNWIND_DOUBLE_ACT;
 	}
 
 	if (gBattleTemporaryFlag.tar_normal_judge_twice_order == true) {
-		if ((tar_as - act_as) >= get_battle_followup_speed_threshold())
+		if ((tar_as - act_as) >= follow_up_threshold_tar)
 			gBattleFlagExt.round_mask |=  UNWIND_DOUBLE_TAR;
 		else
 			gBattleFlagExt.round_mask &= ~UNWIND_DOUBLE_TAR;
