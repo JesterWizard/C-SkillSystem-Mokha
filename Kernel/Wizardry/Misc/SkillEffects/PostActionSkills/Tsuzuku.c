@@ -157,6 +157,14 @@ bool PostActionTsuzuku(ProcPtr parent)
         }
 #endif
 
+#if defined(SID_DoubleTime) && (COMMON_SKILL_VALID(SID_DoubleTime))
+        if (PlayStExpa_CheckBit(PLAYSTEXPA_BIT_DoubleTime_Used))
+        {
+            refresh_turn_once(unit, parent);
+            PlayStExpa_ClearBit(PLAYSTEXPA_BIT_DoubleTime_Used);
+        }
+#endif
+
 		if ((GetCombatArtInForce(unit) == CID_Galeforce) && gBattleActorGlobalFlag.enemy_defeated)
 			goto L_exec_rafrain_action_anim;
 
@@ -174,6 +182,14 @@ bool PostActionTsuzuku(ProcPtr parent)
         {
             refresh_turn_once(unit, parent);
             PlayStExpa_ClearBit(PLAYSTEXPA_BIT_CoinFlip_Used);
+        }
+#endif
+
+#if defined(SID_DoubleTime) && (COMMON_SKILL_VALID(SID_DoubleTime))
+        if (PlayStExpa_CheckBit(PLAYSTEXPA_BIT_DoubleTime_Used))
+        {
+            refresh_turn_once(unit, parent);
+            PlayStExpa_ClearBit(PLAYSTEXPA_BIT_DoubleTime_Used);
         }
 #endif
 
@@ -209,6 +225,14 @@ bool PostActionTsuzuku(ProcPtr parent)
         }
 #endif
 
+#if defined(SID_DoubleTime) && (COMMON_SKILL_VALID(SID_DoubleTime))
+        if (PlayStExpa_CheckBit(PLAYSTEXPA_BIT_DoubleTime_Used))
+        {
+            refresh_turn_once(unit, parent);
+            PlayStExpa_ClearBit(PLAYSTEXPA_BIT_DoubleTime_Used);
+        }
+#endif
+
 	/* fall through */
 
 	case UNIT_ACTION_RESCUE:
@@ -227,6 +251,14 @@ bool PostActionTsuzuku(ProcPtr parent)
         {
             refresh_turn_once(unit, parent);
             PlayStExpa_ClearBit(PLAYSTEXPA_BIT_CoinFlip_Used);
+        }
+#endif
+
+#if defined(SID_DoubleTime) && (COMMON_SKILL_VALID(SID_DoubleTime))
+        if (PlayStExpa_CheckBit(PLAYSTEXPA_BIT_DoubleTime_Used))
+        {
+            refresh_turn_once(unit, parent);
+            PlayStExpa_ClearBit(PLAYSTEXPA_BIT_DoubleTime_Used);
         }
 #endif
 
@@ -255,6 +287,14 @@ bool PostActionTsuzuku(ProcPtr parent)
         {
             refresh_turn_once(unit, parent);
             PlayStExpa_ClearBit(PLAYSTEXPA_BIT_CoinFlip_Used);
+        }
+#endif
+
+#if defined(SID_DoubleTime) && (COMMON_SKILL_VALID(SID_DoubleTime))
+        if (PlayStExpa_CheckBit(PLAYSTEXPA_BIT_DoubleTime_Used))
+        {
+            refresh_turn_once(unit, parent);
+            PlayStExpa_ClearBit(PLAYSTEXPA_BIT_DoubleTime_Used);
         }
 #endif
 		break;

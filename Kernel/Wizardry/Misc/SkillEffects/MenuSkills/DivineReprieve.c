@@ -26,7 +26,7 @@ u8 DivineReprieve_Usability(const struct MenuItemDef *def, int number)
 u8 DivineReprieve_OnSelected(struct MenuProc *menu, struct MenuItemProc *item)
 {
 	if (item->availability == MENU_DISABLED) {
-		MenuFrozenHelpBox(menu, MSG_SKILL_DivineReprieve_FRtext);
+		MenuFrozenHelpBox(menu, MSG_SKILL_CommonFail);
 		return MENU_ACT_SND6B;
 	}
 

@@ -294,4 +294,8 @@ const SkillActionFunc_t gSkillActionFuncTable[MAX_SKILL_NUM + 1] = {
 #if (defined(SID_Thrust) && COMMON_SKILL_VALID(SID_Thrust))
 	[SID_Thrust] = Action_Thrust,
 #endif
+
+#if (defined(SID_DoubleTime) && COMMON_SKILL_VALID(SID_DoubleTime))
+	[SID_DoubleTime] = Action_DoubleTime,
+#endif
 };

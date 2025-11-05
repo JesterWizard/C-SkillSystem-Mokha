@@ -1175,4 +1175,19 @@ struct MenuItemDef const* const gSkillMenuInfos[MAX_SKILL_NUM + 1] = {
         .onSwitchOut = NULL,
     },
 #endif
+
+#if (defined(SID_DoubleTime) && COMMON_SKILL_VALID(SID_DoubleTime))
+    [SID_DoubleTime] = &(const struct MenuItemDef) {
+        .name = "　",
+        .nameMsgId = MSG_SKILL_DoubleTime_NAME,
+        .helpMsgId = MSG_SKILL_DoubleTime_DESC,
+        .color = TEXT_COLOR_SYSTEM_GOLD,
+        .isAvailable = DoubleTime_Usability,
+        .onDraw = NULL,
+        .onSelected = DoubleTime_OnSelected,
+        .onIdle = NULL,
+        .onSwitchIn = NULL,
+        .onSwitchOut = NULL,
+    },
+#endif
 };

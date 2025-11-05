@@ -673,3 +673,10 @@ Grace Of Water[X]
 Grace Of Water:[N]
 Recover 10 HP for every allied[N]
 unit, once per map.[X]
+
+## MSG_SKILL_DoubleTime_NAME
+Double Time[X]
+## MSG_SKILL_DoubleTime_DESC
+Double Time:[N]
+Sacrifice 15 HP to allow[N]
+the next unit to move again.[X]
