@@ -1799,3 +1799,10 @@ Charge Speed[X]
 Charge Speed:[N]
 +1 speed for every[N]
 2 tiles moved.[X]
+
+## MSG_SKILL_ChargeSkill_NAME
+Charge Skill[X]
+## MSG_SKILL_ChargeSkill_DESC
+Charge Skill:[N]
++2 hit for every[N]
+tile moved.[X]

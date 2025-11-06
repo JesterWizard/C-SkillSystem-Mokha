@@ -305,6 +305,7 @@ SID_Blight
 SID_HighGrace
 SID_ChargeDefense
 SID_ChargeSpeed
+SID_ChargeSkill
 
 //////// POST-BATTLE SKILLS
 SID_Canto

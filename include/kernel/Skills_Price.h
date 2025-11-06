@@ -872,3 +872,4 @@
 #define MSG_SKILL_Minions_PRICE 1000
 #define MSG_SKILL_ChargeDefense_PRICE 1000
 #define MSG_SKILL_ChargeSpeed_PRICE 1000
+#define MSG_SKILL_ChargeSkill_PRICE 1000
