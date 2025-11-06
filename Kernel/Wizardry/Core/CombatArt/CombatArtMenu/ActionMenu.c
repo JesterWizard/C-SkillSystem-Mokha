@@ -3,6 +3,7 @@
 #include "weapon-range.h"
 #include "kernel-tutorial.h"
 #include "constants/texts.h"
+#include "debuff.h"
 
 u8 CombatArtActionCommandUsability(const struct MenuItemDef *def, int number)
 {
@@ -13,6 +14,11 @@ u8 CombatArtActionCommandUsability(const struct MenuItemDef *def, int number)
 
 	if (gActiveUnit->state & US_IN_BALLISTA)
 		return MENU_NOTSHOWN;
+
+    if (GetUnitStatusIndex(gActiveUnit) == NEW_UNIT_STATUS_BREAK)
+	{
+        return MENU_DISABLED;
+	};
 
 	/* If vanilla "Attack" button is enabled, here not show */
 	if (AttackCommandUsabilityFix(def, number) == MENU_ENABLED)
@@ -49,6 +55,9 @@ int CombatArtActionCommandOnDarw(struct MenuProc *menu, struct MenuItemProc *ite
 
 	if (!CheckKtutFlagTriggered(KTUTORIAL_COMBATART_MENU))
 		color = TEXT_COLOR_SYSTEM_GREEN;
+
+    if (GetUnitStatusIndex(gActiveUnit) == NEW_UNIT_STATUS_BREAK)
+		color = TEXT_COLOR_SYSTEM_GRAY;
 
 	Text_SetColor(&item->text, color);
 	Text_DrawString(&item->text, GetStringFromIndex(MSG_COMBATART_UM_NAME));
