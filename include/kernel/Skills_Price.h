@@ -870,3 +870,4 @@
 #define MSG_SKILL_Hasty_PRICE 1000
 #define MSG_SKILL_Ripple_PRICE 1000
 #define MSG_SKILL_Minions_PRICE 1000
+#define MSG_SKILL_ChargeDefense_PRICE 1000

@@ -419,7 +419,7 @@ Charge[X]
 ## MSG_SKILL_Charge_DESC
 Charge:[N]
 +1 damage for every[N]
-two tiles moved.[X]
+2 tiles moved.[X]
 
 ## MSG_SKILL_ChargePlus_NAME
 Charge+[X]
@@ -1785,3 +1785,10 @@ High Grace[X]
 High Grace:[N]
 This unit cannot be hit on[N]
 the first turn.[X]
+
+## MSG_SKILL_ChargeDefense_NAME
+Charge Defense[X]
+## MSG_SKILL_ChargeDefense_DESC
+Charge Defense:[N]
++1 defense for every[N]
+2 tiles moved.[X]

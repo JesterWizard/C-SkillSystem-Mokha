@@ -303,6 +303,7 @@
 // SID_DamageToMP
 // SID_Blight
 // SID_HighGrace
+// SID_ChargeDefense
 
 //////// POST-BATTLE SKILLS
 // SID_Canto
