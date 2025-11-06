@@ -111,14 +111,52 @@ void PutUnitSpriteIconsOam(void)
 				if (info->on_draw)
 					info->on_draw(unit, ix, iy);
 				else {
-					switch (info->positive_type) {
-					case STATUS_DEBUFF_NEGATIVE:
-						MapTaskPutOamHi(MTSKCONF_COMM_DEBUFF, OAM2_LAYER(2) + OAM2_CHR(0x980 / 0x20));
+					bool statusIconApplied;
+
+					switch (status) {
+					case NEW_UNIT_STATUS_SLOW:
+						MapTaskPutOamHi(MTSKCONF_STATUS_SLOW, OAM2_LAYER(2) + OAM2_CHR(0x300 / 0x20));
+						statusIconApplied = true;
 						break;
 
-					case STATUS_DEBUFF_POSITIVE:
-						MapTaskPutOamHi(MTSKCONF_COMM_BUFF, OAM2_LAYER(2) + OAM2_CHR(0xD80 / 0x20));
+					case NEW_UNIT_STATUS_BREAK:
+						MapTaskPutOamHi(MTSKCONF_STATUS_BREAK, OAM2_LAYER(2) + OAM2_CHR(0x320 / 0x20));
+						statusIconApplied = true;
 						break;
+						
+					case NEW_UNIT_STATUS_TOXIC_POISON:
+						MapTaskPutOamHi(MTSKCONF_STATUS_TOXIC, OAM2_LAYER(2) + OAM2_CHR(0x340 / 0x20));
+						statusIconApplied = true;
+						break;
+
+					case NEW_UNIT_STATUS_HIDE:
+						MapTaskPutOamHi(MTSKCONF_STATUS_HIDE, OAM2_LAYER(2) + OAM2_CHR(0x360 / 0x20));
+						statusIconApplied = true;
+						break;
+
+					case NEW_UNIT_STATUS_DECOY:
+						MapTaskPutOamHi(MTSKCONF_STATUS_DECOY, OAM2_LAYER(2) + OAM2_CHR(0x380 / 0x20));
+						statusIconApplied = true;
+						break;
+
+					case NEW_UNIT_STATUS_DOOM:
+						MapTaskPutOamHi(MTSKCONF_STATUS_DOOM, OAM2_LAYER(2) + OAM2_CHR(0x3A0 / 0x20));
+						statusIconApplied = true;
+						break;
+					
+					}
+
+					if (!statusIconApplied)
+					{
+						switch (info->positive_type) {
+						case STATUS_DEBUFF_NEGATIVE:
+							MapTaskPutOamHi(MTSKCONF_COMM_DEBUFF, OAM2_LAYER(2) + OAM2_CHR(0x980 / 0x20));
+							break;
+
+						case STATUS_DEBUFF_POSITIVE:
+							MapTaskPutOamHi(MTSKCONF_COMM_BUFF, OAM2_LAYER(2) + OAM2_CHR(0xD80 / 0x20));
+							break;
+						}
 					}
 				}
 			} else {

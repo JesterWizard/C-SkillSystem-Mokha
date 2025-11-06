@@ -12,6 +12,12 @@ const struct MapTaskConf gMapTaskConfs[] = {
 	[MTSKCONF_TALK_2]   	= {  -6, -6, gObject_32x8 },
 	[MTSKCONF_DROP_ITEM]	= {  9, 7, gObject_8x8 },
 	[MTSKCONF_WARNING]		= {  3, 2, gObject_8x8 },
+	[MTSKCONF_STATUS_SLOW]  = {  7, -4, gObject_8x8 },
+	[MTSKCONF_STATUS_BREAK] = {  7, -4, gObject_8x8 },
+	[MTSKCONF_STATUS_TOXIC] = {  7, -4, gObject_8x8 },
+	[MTSKCONF_STATUS_HIDE]  = {  7, -4, gObject_8x8 },
+	[MTSKCONF_STATUS_DECOY] = {  7, -4, gObject_8x8 },
+	[MTSKCONF_STATUS_DOOM]  = {  7, -4, gObject_8x8 },
 };
 
 const u8 gHpBarChr[] = {
