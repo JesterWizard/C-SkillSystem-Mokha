@@ -304,6 +304,7 @@ SID_DamageToMP
 SID_Blight
 SID_HighGrace
 SID_ChargeDefense
+SID_ChargeSpeed
 
 //////// POST-BATTLE SKILLS
 SID_Canto

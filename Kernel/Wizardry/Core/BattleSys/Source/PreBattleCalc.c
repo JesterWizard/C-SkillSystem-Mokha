@@ -1128,6 +1128,12 @@ void PreBattleCalcAttackerSkills(struct BattleUnit* attacker, struct BattleUnit*
 			break;
 #endif
 
+#if (defined(SID_ChargeSpeed) && (COMMON_SKILL_VALID(SID_ChargeSpeed)))
+		case SID_ChargeSpeed:
+			attacker->battleSpeed += (gActionData.moveCount * SKILL_EFF0(SID_ChargeSpeed)) / 2;
+			break;
+#endif
+
 #if (defined(SID_NaturalCover) && (COMMON_SKILL_VALID(SID_NaturalCover)))
 		case SID_NaturalCover:
 			if (attacker->terrainDefense > 0 || attacker->terrainAvoid > 0 || attacker->terrainResistance > 0)

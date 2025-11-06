@@ -871,3 +871,4 @@
 #define MSG_SKILL_Ripple_CAPACITY 1
 #define MSG_SKILL_Minions_CAPACITY 1
 #define MSG_SKILL_ChargeDefense_CAPACITY 1
+#define MSG_SKILL_ChargeSpeed_CAPACITY 1

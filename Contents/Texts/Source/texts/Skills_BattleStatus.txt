@@ -1792,3 +1792,10 @@ Charge Defense[X]
 Charge Defense:[N]
 +1 defense for every[N]
 2 tiles moved.[X]
+
+## MSG_SKILL_ChargeSpeed_NAME
+Charge Speed[X]
+## MSG_SKILL_ChargeSpeed_DESC
+Charge Speed:[N]
++1 speed for every[N]
+2 tiles moved.[X]
