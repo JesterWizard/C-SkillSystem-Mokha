@@ -1136,7 +1136,13 @@ void PreBattleCalcAttackerSkills(struct BattleUnit* attacker, struct BattleUnit*
 
 #if (defined(SID_ChargeSkill) && (COMMON_SKILL_VALID(SID_ChargeSkill)))
 		case SID_ChargeSkill:
-			attacker->battleHitRate += (gActionData.moveCount * SKILL_EFF0(SID_ChargeSkill)) * 2;
+			attacker->battleHitRate += (gActionData.moveCount * SKILL_EFF0(SID_ChargeSkill));
+			break;
+#endif
+
+#if (defined(SID_ChargeCrit) && (COMMON_SKILL_VALID(SID_ChargeCrit)))
+		case SID_ChargeCrit:
+			attacker->battleCritRate += (gActionData.moveCount * SKILL_EFF0(SID_ChargeCrit));
 			break;
 #endif
 

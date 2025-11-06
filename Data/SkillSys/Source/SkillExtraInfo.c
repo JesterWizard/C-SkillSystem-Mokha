@@ -356,7 +356,11 @@ const struct SkillExtraInfo gSkillExtraInfo[MAX_SKILL_NUM + 1] = {
 #endif
 
 #if (defined(SID_ChargeSkill) && COMMON_SKILL_VALID(SID_ChargeSkill))
-	[SID_ChargeSkill] = {{ 1 }},
+	[SID_ChargeSkill] = {{ 2 }},
+#endif
+
+#if (defined(SID_ChargeCrit) && COMMON_SKILL_VALID(SID_ChargeCrit))
+	[SID_ChargeCrit] = {{ 2 }},
 #endif
 
 #if (defined(SID_FieryBlood) && COMMON_SKILL_VALID(SID_FieryBlood))

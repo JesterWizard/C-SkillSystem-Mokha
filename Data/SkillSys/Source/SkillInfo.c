@@ -8749,4 +8749,14 @@ const struct SkillInfo gSkillInfos[MAX_SKILL_NUM + 1] = {
     },
 #endif
 
+#if (defined(SID_ChargeCrit) && COMMON_SKILL_VALID(SID_ChargeCrit))
+    [SID_ChargeCrit] = {
+        .name = MSG_SKILL_ChargeCrit_NAME,
+        .desc = MSG_SKILL_ChargeCrit_DESC,
+        .capacity = MSG_SKILL_ChargeCrit_CAPACITY,
+        .price = MSG_SKILL_ChargeCrit_PRICE,
+        .icon = GFX_SkillIcon_WIP,
+    },
+#endif
+
 };

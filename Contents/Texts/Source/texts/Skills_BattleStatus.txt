@@ -1806,3 +1806,10 @@ Charge Skill[X]
 Charge Skill:[N]
 +2 hit for every[N]
 tile moved.[X]
+
+## MSG_SKILL_ChargeCrit_NAME
+Charge Crit[X]
+## MSG_SKILL_ChargeCrit_DESC
+Charge Crit:[N]
++2 crit for every[N]
+tile moved.[X]

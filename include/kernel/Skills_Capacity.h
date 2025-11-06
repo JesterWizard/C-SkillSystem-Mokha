@@ -873,3 +873,4 @@
 #define MSG_SKILL_ChargeDefense_CAPACITY 1
 #define MSG_SKILL_ChargeSpeed_CAPACITY 1
 #define MSG_SKILL_ChargeSkill_CAPACITY 1
+#define MSG_SKILL_ChargeCrit_CAPACITY 1
