@@ -143,6 +143,24 @@ void PutUnitSpriteIconsOam(void)
 						MapTaskPutOamHi(MTSKCONF_STATUS_DOOM, OAM2_LAYER(2) + OAM2_CHR(0x3A0 / 0x20));
 						statusIconApplied = true;
 						break;
+
+					case NEW_UNIT_STATUS_REPLICATE:
+						MapTaskPutOamHi(MTSKCONF_STATUS_REPLICATE, OAM2_LAYER(2) + OAM2_CHR(0x3A0 / 0x20));
+						statusIconApplied = true;
+						break;
+
+					case NEW_UNIT_STATUS_ARMOR_EFFECTIVE:
+					case NEW_UNIT_STATUS_CAVALRY_EFFECTIVE:
+					case NEW_UNIT_STATUS_FLIER_EFFECTIVE:
+					case NEW_UNIT_STATUS_INFANTRY_EFFECTIVE:
+						MapTaskPutOamHi(MTSKCONF_STATUS_EFFECTIVE, OAM2_LAYER(2) + OAM2_CHR(0x3C0 / 0x20));
+						statusIconApplied = true;
+						break;
+
+					case NEW_UNIT_STATUS_SHOCK:
+						MapTaskPutOamHi(MTSKCONF_STATUS_SHOCK, OAM2_LAYER(2) + OAM2_CHR(0x3E0 / 0x20));
+						statusIconApplied = true;
+						break;
 					
 					}
 
