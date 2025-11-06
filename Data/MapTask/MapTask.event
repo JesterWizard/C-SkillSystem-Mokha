@@ -1,15 +1,12 @@
 ALIGN 4
 Img_HpBar:
-   // #incbin "Gfx/WarningHpSheet.lz77"
-   // #incext Png2Dmp "Gfx/WarningHpSheet_Jester.png" --lz77
-   // #incext Png2Dmp "Gfx/WarningHpSheet_Jester2.png" --lz77
-   #incext Png2Dmp "Gfx/WarningHpSheet_Jester3.png" --lz77
+   #incext Png2Dmp "Gfx/WarningHpSheet_Jester.png" --lz77
    
 PUSH
     ORG $156AC
     POIN Img_HpBar
     ORG $15690 // Change width of loaded image
-    BYTE $18
+    BYTE $20
     PROTECT 0x00015680 0x000156BC // LoadObjUIGfx
 
     ORG $35718 // Force Subtitle Help (option replaced by hp bars toggle)
