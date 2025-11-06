@@ -161,6 +161,16 @@ void PutUnitSpriteIconsOam(void)
 						MapTaskPutOamHi(MTSKCONF_STATUS_SHOCK, OAM2_LAYER(2) + OAM2_CHR(0x3E0 / 0x20));
 						statusIconApplied = true;
 						break;
+
+					case NEW_UNIT_STATUS_PANIC:
+						MapTaskPutOamHi(MTSKCONF_STATUS_REPLICATE, OAM2_LAYER(2) + OAM2_CHR(0x700 / 0x20));
+						statusIconApplied = true;
+						break;
+
+					// case NEW_UNIT_STATUS_ENFEEBLE:
+					// 	MapTaskPutOamHi(MTSKCONF_STATUS_REPLICATE, OAM2_LAYER(2) + OAM2_CHR(0x720 / 0x20));
+					// 	statusIconApplied = true;
+					// 	break;
 					
 					}
 
