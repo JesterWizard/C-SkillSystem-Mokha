@@ -3,6 +3,7 @@
 #include "skill-system.h"
 #include "constants/skills.h"
 #include "constants/texts.h"
+#include "debuff.h"
 
 #ifndef CONFIG_UNIT_ACTION_EXPA_ExecSkill
     #define CONFIG_UNIT_ACTION_EXPA_ExecSkill 20
@@ -89,10 +90,14 @@ static void callback_exec(ProcPtr proc)
 	// if target has bad status, recover it 
 	int stID = targetUnit->statusIndex; 
 	if (stID) { 
-		if ((stID == UNIT_STATUS_POISON) || (stID == UNIT_STATUS_SLEEP) || (stID == UNIT_STATUS_SILENCED) || (stID == UNIT_STATUS_BERSERK) || (stID == UNIT_STATUS_SICK) || (stID == UNIT_STATUS_PETRIFY)) {
-			targetUnit->statusIndex = 0; 
-			targetUnit->statusDuration = 0; 
-		}			
+		for (int i = 0; i < ARRAY_COUNT(debuffs); i++)
+		{
+			if (stID == debuffs[i])
+			{
+				targetUnit->statusIndex = 0; 
+				targetUnit->statusDuration = 0; 	
+			}
+		}		
 	}
 	//gActiveUnit->curHP -= amountToHeal; // if not showing anim
 	gEventSlots[1] = gActiveUnit->pCharacterData->number; 
