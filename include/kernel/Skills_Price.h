@@ -875,3 +875,4 @@
 #define MSG_SKILL_ChargeSkill_PRICE 1000
 #define MSG_SKILL_ChargeCrit_PRICE 1000
 #define MSG_SKILL_Bloodthirst_PRICE 1000
+#define MSG_SKILL_SliceNDice_PRICE 1000

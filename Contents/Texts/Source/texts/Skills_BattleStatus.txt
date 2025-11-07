@@ -1813,3 +1813,11 @@ Charge Crit[X]
 Charge Crit:[N]
 +2 crit for every[N]
 tile moved.[X]
+
+## MSG_SKILL_SliceNDice_NAME
+Slice n' Dice[X]
+## MSG_SKILL_SliceNDice_DESC
+Slice n' Dice:[N]
+Lowers this unit's critical rate[N]
+until their hit rate reaches 100[N]
+(or as close as possible).[X]

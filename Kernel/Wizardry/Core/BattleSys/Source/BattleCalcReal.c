@@ -313,6 +313,23 @@ void ComputeBattleUnitEffectiveHitRate(struct BattleUnit *attacker, struct Battl
     }
 #endif
 
+#if defined(SID_SliceNDice) && (COMMON_SKILL_VALID(SID_SliceNDice))
+	if (BattleFastSkillTester(attacker, SID_SliceNDice))
+	{
+		int critRate = attacker->battleCritRate;
+		int hitRate  = attacker->battleHitRate - defender->battleAvoidRate;
+
+		if (hitRate < 100) {
+			int needed    = 100 - hitRate;
+			int reduction = (critRate >= needed) ? needed : critRate;
+
+			attacker->battleCritRate -= reduction;
+			attacker->battleHitRate  += reduction;
+		}
+	}
+#endif
+
+
 	attacker->battleEffectiveHitRate = attacker->battleHitRate - defender->battleAvoidRate;
 
 	/* For non-ballista combat, Distance +2, hit rate -20% for actor */

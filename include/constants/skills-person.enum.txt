@@ -307,6 +307,7 @@
 // SID_ChargeSpeed
 // SID_ChargeSkill
 // SID_ChargeCrit
+// SID_SliceNDice
 
 //////// POST-BATTLE SKILL
 // SID_Canto

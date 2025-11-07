@@ -15,16 +15,6 @@
 typedef int (*HealAmountGetterFunc_t)(int old, struct Unit *actor, struct Unit *target);
 extern HealAmountGetterFunc_t const *const gpHealAmountGetters;
 
-static int find_item_slot(struct Unit *unit, int item)
-{
-	int i;
-	int iid = ITEM_INDEX(item);
-	for (i = 0; i < UNIT_ITEM_COUNT; i++)
-		if (ITEM_INDEX(unit->items[i]) == iid)
-			return i;
-	return -1;
-}
-
 int HealAmountGetter(int base, struct Unit *actor, struct Unit *target)
 {
 	const HealAmountGetterFunc_t *it;
