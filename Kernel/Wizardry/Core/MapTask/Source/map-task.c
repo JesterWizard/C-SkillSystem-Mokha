@@ -167,10 +167,10 @@ void PutUnitSpriteIconsOam(void)
 						statusIconApplied = true;
 						break;
 
-					// case NEW_UNIT_STATUS_ENFEEBLE:
-					// 	MapTaskPutOamHi(MTSKCONF_STATUS_REPLICATE, OAM2_LAYER(2) + OAM2_CHR(0x720 / 0x20));
-					// 	statusIconApplied = true;
-					// 	break;
+					case NEW_UNIT_STATUS_ENFEEBLE:
+						MapTaskPutOamHi(MTSKCONF_STATUS_REPLICATE, OAM2_LAYER(2) + OAM2_CHR(0x720 / 0x20));
+						statusIconApplied = true;
+						break;
 					
 					}
 

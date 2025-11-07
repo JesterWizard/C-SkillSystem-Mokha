@@ -136,3 +136,10 @@ Focus[X]
 
 ## MSG_STATUS_SLEEP_NAME
 Sleep[X]
+
+## MSG_DEBUFF_ENFEEBLE_NAME
+Enfeeble[X]
+## MSG_DEBUFF_ENFEEBLE_DESC
+Enfeeble:[N]
+Reduce all stats by remaining[N]
+status duration * 2.[X]

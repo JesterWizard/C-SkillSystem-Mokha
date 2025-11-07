@@ -232,6 +232,11 @@ int SpdGetterSkills(int status, struct Unit *unit)
         status -= Div(status * SKILL_EFF0(SID_SlowStart), 100);
 #endif
 
+    if (GetUnitStatusIndex(unit) == NEW_UNIT_STATUS_ENFEEBLE)
+    {
+        status -= GetUnitStatusDuration(unit) * 2;
+    };
+
 	return status;
 }
 
