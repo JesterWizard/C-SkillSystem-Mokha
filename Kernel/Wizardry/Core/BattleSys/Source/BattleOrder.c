@@ -11,6 +11,7 @@
 #include "combo-attack.h"
 #include "constants/skills.h"
 #include "combat-art.h"
+#include "debuff.h"
 
 #define LOCAL_TRACE 0
 
@@ -32,6 +33,12 @@ STATIC_DECLAR bool CheckCanContinueAttack(struct BattleUnit *bu)
 
 	case UNIT_STATUS_SILENCED:
 		if (IsMagicAttack(bu))
+			return false;
+
+		break;
+
+	case NEW_UNIT_STATUS_SPELLBOUND:
+		if (!IsMagicAttack(bu))
 			return false;
 
 		break;

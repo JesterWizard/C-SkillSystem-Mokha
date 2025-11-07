@@ -3326,6 +3326,10 @@ u8 AttackCommandUsability(const struct MenuItemDef* def, int number)
     if (GetUnitStatusIndex(gActiveUnit) == NEW_UNIT_STATUS_BREAK)
         return MENU_DISABLED;
 
+    if (GetUnitStatusIndex(gActiveUnit) == NEW_UNIT_STATUS_SPELLBOUND)
+        if (!(GetItemAttributes(GetUnitEquippedWeapon(gActiveUnit)) & IA_MAGIC))
+            return MENU_DISABLED;
+
 #if defined(SID_GridMasterPlus) && (COMMON_SKILL_VALID(SID_GridMasterPlus))
     if (SkillTesterPlus(unit, SID_GridMasterPlus) && (unit->state & US_CANTOING))
         return MENU_ENABLED;

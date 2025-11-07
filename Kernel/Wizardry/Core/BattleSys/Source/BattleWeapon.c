@@ -433,6 +433,9 @@ s8 CanUnitUseWeapon(struct Unit *unit, int item)
 #endif
 		return false;
 
+	if ((GetUnitStatusIndex(unit) == NEW_UNIT_STATUS_SPELLBOUND))
+		return false;
+
 #if CHAX
 	switch (CheckWeaponLockEx(unit, item)) {
 	case 1:
