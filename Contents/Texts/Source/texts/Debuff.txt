@@ -143,3 +143,11 @@ Enfeeble[X]
 Enfeeble:[N]
 Reduce all stats by remaining[N]
 status duration * 2.[X]
+
+## MSG_DEBUFF_PROVIDENCE_NAME
+Providence[X]
+## MSG_DEBUFF_PROVIDENCE_DESC
+Providence:[N]
+Unit will survive the next lethal[N]
+attack at 1 HP. Status wears off[N]
+after the effect triggers.[X]

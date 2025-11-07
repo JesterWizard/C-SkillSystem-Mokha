@@ -223,10 +223,14 @@ STATIC_DECLAR void DrawPage1ValueCommon(void)
 			unit->index & 0xFF, UNIT_CHAR_ID(unit),
 			GetUnitStatusIndex(unit), GetUnitStatusDuration(unit));
 
-		PutNumberSmall(
-			gUiTmScratchA + TILEMAP_INDEX(0x10, 0xB),
-			0,
-			GetUnitStatusDuration(unit));
+		NoCashGBAPrintf("%d", GetUnitStatusDuration(unit));
+		if (GetUnitStatusIndex(gStatScreen.unit) != UNIT_STATUS_NONE || GetUnitStatusDuration(unit) > 0 )
+		{
+			PutNumberSmall(
+				gUiTmScratchA + TILEMAP_INDEX(0x10, 0xB),
+				0,
+				GetUnitStatusDuration(unit));
+		}
 	}
 }
 

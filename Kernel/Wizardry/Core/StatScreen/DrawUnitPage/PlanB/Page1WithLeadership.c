@@ -214,9 +214,10 @@ static void DrawPage1ValueCommon(void)
 			 Utf8ToNarrowFonts(GetUnitStatusName(unit)));
 	}
 
-	if (GetUnitStatusIndex(gStatScreen.unit) != UNIT_STATUS_NONE) {
+	if (GetUnitStatusIndex(gStatScreen.unit) != UNIT_STATUS_NONE || GetUnitStatusDuration(unit) > 0 )
+	{
 		PutNumberSmall(
-			gUiTmScratchA + TILEMAP_INDEX(0x10, 0xF),
+			gUiTmScratchA + TILEMAP_INDEX(0x10, 0xB),
 			0,
 			GetUnitStatusDuration(unit));
 	}

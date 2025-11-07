@@ -2281,7 +2281,7 @@ void ChStateIdle(DebuggerProc* proc) {
 } 
 
 
-#define NumberOfMisc 7 
+#define NumberOfMisc 8
 #define MiscNameWidth 8 
  
 void SaveMisc(DebuggerProc* proc) { 
@@ -2295,7 +2295,8 @@ void SaveMisc(DebuggerProc* proc) {
     unit->movBonus = proc->tmp[5]; 
     if (UNIT_MOV(unit) > 15) { unit->movBonus = 15 - UNIT_MOV_BASE(unit); } 
     SetUnitStatusIndex(unit, proc->tmp[6] & 0x3F);
-    if (unit->statusIndex) { SetUnitStatusDuration(unit, 3); }
+    SetUnitStatusDuration(unit, proc->tmp[7]);
+    // if (unit->statusIndex) { SetUnitStatusDuration(unit, 3); }
 
 }  
 
@@ -2314,6 +2315,7 @@ void EditMiscInit(DebuggerProc* proc) {
     proc->tmp[4] = unit->conBonus; 
     proc->tmp[5] = unit->movBonus; 
     proc->tmp[6] = (GetUnitStatusIndex(unit) & 0x3F);
+    proc->tmp[7] = (GetUnitStatusDuration(unit));
     
     
     int x = NUMBER_X - MiscNameWidth - 1; 
@@ -2369,6 +2371,7 @@ void RedrawMiscMenu(DebuggerProc* proc) {
         
         Text_DrawString(&th[i], GetStringFromIndex(gpDebuffInfos[proc->tmp[6] & 0x3F].name)); i++;
     } 
+    Text_DrawString(&th[i], "Duration"); i++; 
     
     int x = NUMBER_X - (MiscNameWidth); 
     for (i = 0; i < NumberOfMisc; ++i) { 
@@ -2404,7 +2407,8 @@ int GetMiscMin(int id) {
         case 3: { result = 0; break; } // exp  -1 ? 
         case 4: { result = 0; break; } // + con 
         case 5: { result = 0; break; } // + mov  
-        case 6: { result = 0; break; } // status  
+        case 6: { result = 0; break; } // status index
+        case 7: { result = 0; break; } // status duration
         default: 
     } 
     return result; 
@@ -2445,7 +2449,8 @@ int GetMiscMax(int id) {
         case 3: { result = 100; break; } // exp  
         case 4: { result = 15; break; } // + con 
         case 5: { result = 15; break; } // + mov  
-        case 6: { result = 63; break; } // status  
+        case 6: { result = 63; break; } // status index
+        case 7: { result = 4; break; }  // status duration  
         default: 
     } 
     return result; 

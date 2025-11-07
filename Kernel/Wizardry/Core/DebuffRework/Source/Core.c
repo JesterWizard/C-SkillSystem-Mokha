@@ -30,8 +30,13 @@ void SetUnitStatusIndex(struct Unit *unit, int status)
 
 void SetUnitStatusDuration(struct Unit *unit, int duration)
 {
-	if (duration == 0) {
+	if (duration == 0 && gpDebuffInfos[GetUnitStatusIndex(unit)].duration > 0) {
 		UNIT_STATUS_INDEX(unit) = 0;
+		UNIT_STATUS_DURATION(unit) = 0;
+		return;
+	}
+	else if (gpDebuffInfos[GetUnitStatusIndex(unit)].duration == 0)
+	{
 		UNIT_STATUS_DURATION(unit) = 0;
 		return;
 	}
@@ -39,7 +44,6 @@ void SetUnitStatusDuration(struct Unit *unit, int duration)
 	if (duration > NEW_UNIT_STATUS_MAX_DURATION) {
 		Errorf("Status duration overflow: %d", duration);
 		UNIT_STATUS_DURATION(unit) = 3;
-
 	}
 
 	UNIT_STATUS_DURATION(unit) = duration - 1;

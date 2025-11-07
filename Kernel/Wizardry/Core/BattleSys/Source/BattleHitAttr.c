@@ -120,6 +120,12 @@ bool CheckBattleInori(struct BattleUnit *attacker, struct BattleUnit *defender)
 	}
 #endif
 
+	if (GetUnitStatusIndex(GetUnit(defender->unit.index)) == NEW_UNIT_STATUS_PROVIDENCE)
+	{
+		SetUnitStatusIndex(GetUnit(defender->unit.index), UNIT_STATUS_NONE);
+		return true;
+	}
+
 	return false;
 }
 
