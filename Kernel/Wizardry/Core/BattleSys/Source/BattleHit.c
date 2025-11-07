@@ -741,6 +741,22 @@ bool BattleGenerateHit(struct BattleUnit* attacker, struct BattleUnit* defender)
             }
 #endif
 
+#if defined(SID_Bloodthirst) && (COMMON_SKILL_VALID(SID_Bloodthirst))
+    if (BattleFastSkillTester(&gBattleActor, SID_Bloodthirst))
+    {
+        int weapon = gBattleActor.weapon;
+
+        if (weapon != ITEM_NONE)
+        {
+            if (!(GetItemAttributes(weapon) & IA_UNBREAKABLE))
+            {
+                gBattleActor.weapon = (weapon += (1 << 8));
+                RegisterActorEfxSkill(GetBattleHitRound(gBattleHitIterator), SID_Bloodthirst);
+            }
+        }
+    }
+#endif
+
 #ifdef CONFIG_FORGING
 #ifdef CONFIG_FE4_CRIT_BONUS_ON_KILL
 			u16 item = GetUnitEquippedWeapon(GetUnit(gBattleActor.unit.index));

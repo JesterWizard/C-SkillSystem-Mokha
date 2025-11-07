@@ -8759,4 +8759,14 @@ const struct SkillInfo gSkillInfos[MAX_SKILL_NUM + 1] = {
     },
 #endif
 
+#if (defined(SID_Bloodthirst) && COMMON_SKILL_VALID(SID_Bloodthirst))
+    [SID_Bloodthirst] = {
+        .name = MSG_SKILL_Bloodthirst_NAME,
+        .desc = MSG_SKILL_Bloodthirst_DESC,
+        .capacity = MSG_SKILL_Bloodthirst_CAPACITY,
+        .price = MSG_SKILL_Bloodthirst_PRICE,
+        .icon = GFX_SkillIcon_WIP,
+    },
+#endif
+
 };

@@ -3,10 +3,11 @@
 #include "skill-system.h"
 #include "efx-skill.h"
 #include "constants/skills.h"
+#include "jester_headers/custom-functions.h"
 
 #define LOCAL_TRACE 0
 
-FORCE_DECLARE static int find_item_slot(struct Unit *unit, int item)
+int find_item_slot(struct Unit *unit, int item)
 {
 	int i;
 	int iid = ITEM_INDEX(item);

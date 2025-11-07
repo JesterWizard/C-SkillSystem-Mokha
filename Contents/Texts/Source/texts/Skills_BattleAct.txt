@@ -392,3 +392,10 @@ Penance Stare:[N]
 If this unit can attack, deal half of[N]
 their missing HP as damage at the start[N]
 of each round. Cannot kill.[X]
+
+## MSG_SKILL_Bloodthirst_NAME
+Bloodthirst[X]
+## MSG_SKILL_Bloodthirst_DESC
+Bloodthirst:[N]
+Killing blows do not consume[N]
+weapon uses.[X]

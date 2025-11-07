@@ -90,7 +90,7 @@ static void callback_exec(ProcPtr proc)
 	// if target has bad status, recover it 
 	int stID = targetUnit->statusIndex; 
 	if (stID) { 
-		for (int i = 0; i < ARRAY_COUNT(debuffs); i++)
+		for (int i = 0; i < (int)ARRAY_COUNT(debuffs); i++)
 		{
 			if (stID == debuffs[i])
 			{
