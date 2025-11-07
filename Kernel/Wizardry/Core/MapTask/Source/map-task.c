@@ -176,6 +176,16 @@ void PutUnitSpriteIconsOam(void)
 					// 	MapTaskPutOamHi(MTSKCONF_STATUS_PROVIDENCE, OAM2_LAYER(2) + OAM2_CHR(0x000 / 0x20));
 					// 	statusIconApplied = true;
 					// 	break;
+
+					// case NEW_UNIT_STATUS_SPELLBOUND:
+					// 	MapTaskPutOamHi(MTSKCONF_STATUS_SPELLBOUND, OAM2_LAYER(2) + OAM2_CHR(0x000 / 0x20));
+					// 	statusIconApplied = true;
+					// 	break;
+
+					// case NEW_UNIT_STATUS_HEX:
+					// 	MapTaskPutOamHi(MTSKCONF_STATUS_HEX, OAM2_LAYER(2) + OAM2_CHR(0x000 / 0x20));
+					// 	statusIconApplied = true;
+					// 	break;
 					
 					}
 

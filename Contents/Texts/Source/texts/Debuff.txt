@@ -158,3 +158,9 @@ Spellbound[X]
 Spellbound:[N]
 Unit is unable to attack with[N]
 physical weapons.[X]
+
+## MSG_DEBUFF_HEX_NAME
+Hex[X]
+## MSG_DEBUFF_HEX_DESC
+Hex:[N]
+Max HP reduced by half.[X]

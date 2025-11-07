@@ -23,6 +23,9 @@ const struct MapTaskConf gMapTaskConfs[] = {
 	[MTSKCONF_STATUS_SHOCK]  = {  0, -4, gObject_8x8 },
 	[MTSKCONF_STATUS_PANIC] = {  0, -4, gObject_8x8 },
 	// [MTSKCONF_STATUS_ENFEEBLE] = {  0, -4, gObject_8x8 },
+	// [MTSKCONF_STATUS_PROVIDENCE] = {  0, -4, gObject_8x8 },
+	// [MTSKCONF_STATUS_SPELLBOUND] = {  0, -4, gObject_8x8 },
+	// [MTSKCONF_STATUS_HEX] = {  0, -4, gObject_8x8 },
 };
 
 const u8 gHpBarChr[] = {

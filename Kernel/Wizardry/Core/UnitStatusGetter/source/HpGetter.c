@@ -4,6 +4,7 @@
 #include "constants/skills.h"
 #include "bwl.h"
 #include "unit-expa.h"
+#include "debuff.h"
 
 int _GetUnitMaxHp(struct Unit *unit)
 {
@@ -22,6 +23,10 @@ int _GetUnitMaxHp(struct Unit *unit)
 
 	if (gpExternalHpGetters)
 		status = gpExternalHpGetters(status, unit);
+
+    if (GetUnitStatusIndex(unit) == NEW_UNIT_STATUS_HEX) {
+        status = status / 2;
+    }
 
 	return status;
 }
