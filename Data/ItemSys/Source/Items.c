@@ -2105,7 +2105,7 @@ const struct ItemData gItemData_New[] = {
 		.encodedRange = 0x11,
 		.costPerUse = 20000,
 		.iconId = 0xd9,
-		.useEffectId = 45,
+		.useEffectId = IER_MASTERSEAL,
 	},
 	[ITEM_METISSTOME] = {
 		.nameTextId = 0x3f5,
