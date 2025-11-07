@@ -9,6 +9,7 @@
 #include "constants/texts.h"
 #include "skill-system.h"
 #include "constants/skills.h"
+#include "utf8.h"
 #include "jester_headers/custom-functions.h"
 
 static void DrawPage1TextCommon(void)
@@ -210,7 +211,7 @@ static void DrawPage1ValueCommon(void)
 		Text_InsertDrawString(
 			&gStatScreen.text[STATSCREEN_TEXT_STATUS],
 			22, TEXT_COLOR_SYSTEM_BLUE,
-			GetUnitStatusName(unit));
+			 Utf8ToNarrowFonts(GetUnitStatusName(unit)));
 	}
 
 	if (GetUnitStatusIndex(gStatScreen.unit) != UNIT_STATUS_NONE) {
