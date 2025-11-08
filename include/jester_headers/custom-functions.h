@@ -132,3 +132,5 @@ int RandSkill(int id, struct Unit * unit);
 extern bool SkillTesterPlus(struct Unit *unit, u16 sid);
 extern bool isMonsterClass(int classId);
 extern int find_item_slot(struct Unit *unit, int item);
+extern int GetUnitCurrentMP(struct Unit * unit);
+extern int GetUnitMaxMP(struct Unit * unit);

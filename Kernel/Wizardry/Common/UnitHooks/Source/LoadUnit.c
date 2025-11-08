@@ -30,7 +30,14 @@ void UnitLoadStatsFromChracterVanilla(struct Unit* unit, const struct CharacterD
     struct NewBwl* bwl = GetNewBwl(UNIT_CHAR_ID(unit));
 
     if (bwl != NULL)
+    {
         bwl->maxMP = gMpSystemPInfoConfigList[UNIT_CHAR_ID(unit)].maxMP;
+
+#if defined(SID_ManaRush) && (COMMON_SKILL_VALID(SID_ManaRush))
+    if (SkillTester(unit, SID_ManaRush))
+        bwl->maxMP = bwl->maxMP * 2;
+#endif
+    }
 
 #endif
 

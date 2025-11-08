@@ -2,6 +2,7 @@
 .thumb
 
 .include "../CommonDefinitions.inc"
+.include "../../../../../fe8-kernel-dev.h"
 
 MMBDrawMP:
 
@@ -83,39 +84,57 @@ MMBDrawMP:
 
 SkipBottom:
 
-	@ Get MP numbers
+	@ @ Get MP numbers
 
-	@ BWL - Current MP
-	@ 1. Get unit pointer for the attacker
-	@ 2. Get BWL entry 0xC for that unit
+	@ @ BWL - Current MP
+	@ @ 1. Get unit pointer for the attacker
+	@ @ 2. Get BWL entry 0xC for that unit
+	@ @ This is the old system that requires a specific BWL entry
 
-	mov 	r0, r5
-	ldr 	r0, [r0, #0] 		@ Load class data of unit
-	ldrb 	r0, [r0, #4] 		@ Load character index
-	ldr 	r1, =BWL_GetEntry
-	push 	{lr}
-	mov 	lr, r1
+	@ mov 	r0, r5
+	@ ldr 	r0, [r0, #0] 		@ Load class data of unit
+	@ ldrb 	r0, [r0, #4] 		@ Load character index
+	@ ldr 	r1, =BWL_GetEntry
+	@ push 	{lr}
+	@ mov 	lr, r1
+	@ bllr
+	@ pop		{r3}
+	@ mov 	lr, r3
+	@ cmp 	r0, #0
+	@ beq 	NoBWLData
+	@ add 	r0, #UnitCurrentMP
+	@ ldrb 	r0, [r0]
+	@ b 		CheckLimit
+
+	@ NoBWLData:
+	@ mov 	r0, #0
+
+	@ CheckLimit:
+	@ cmp		r0, #254 // JESTER - Originally 99, but expanded as I have made HP go up to 254
+	@ ble		SkipDashedCurrentMP
+
+	@ @ MP too high, display --
+
+	mov		r0, #0xFF
+
+	@ This is the new system that uses a custom MP getter derived from a custom fe8-kernel-dev.h header file
+	mov		r2, r0
+	mov		r0, r6
+	mov		r1, r7
+
+	mov		r0, r5
+	ldr		r1, =GetUnitCurrentMP
+	mov		lr, r1
 	bllr
-	pop		{r3}
-	mov 	lr, r3
-	cmp 	r0, #0
-	beq 	NoBWLData
-	add 	r0, #UnitCurrentMP
-	ldrb 	r0, [r0]
-	b 		CheckLimit
 
-	NoBWLData:
-	mov 	r0, #0
-
-	CheckLimit:
 	cmp		r0, #254 // JESTER - Originally 99, but expanded as I have made HP go up to 254
-	ble		SkipDashedCurrentHP
+	ble		SkipDashedCurrentMP
 
 	@ HP too high, display --
 
 	mov		r0, #0xFF
 
-SkipDashedCurrentHP:
+SkipDashedCurrentMP:
 
 	mov		r2, r0
 	mov		r0, r6
@@ -128,35 +147,53 @@ SkipDashedCurrentHP:
 
 	add		r6, r6, #25
 
-	@ BWL - Max MP
-	@ 1. Get unit pointer for the attacker
-	@ 2. Get BWL entry 0xD for that unit
+	@ @ BWL - Max MP
+	@ @ 1. Get unit pointer for the attacker
+	@ @ 2. Get BWL entry 0xD for that unit
+	@ @ This is the old system that requires a specific BWL entry
 
-	mov 	r0, r5
-	ldr 	r0, [r0, #0] 		@ Load class data of unit
-	ldrb 	r0, [r0, #4] 		@ Load character index
-	ldr 	r1, =BWL_GetEntry
-	mov 	lr, r1
+	@ mov 	r0, r5
+	@ ldr 	r0, [r0, #0] 		@ Load class data of unit
+	@ ldrb 	r0, [r0, #4] 		@ Load character index
+	@ ldr 	r1, =BWL_GetEntry
+	@ mov 	lr, r1
+	@ bllr
+	@ mov 	lr, r3
+	@ cmp 	r0, #0
+	@ beq 	NoBWLData2
+	@ add 	r0, #UnitMaxMP
+	@ ldrb 	r0, [r0]
+	@ b 		CheckLimit2
+
+	@ NoBWLData2:
+	@ mov 	r0, #0
+
+	@ CheckLimit2:
+	@ cmp		r0, #254 // JESTER - Originally 99, but expanded as I have made HP go up to 254
+	@ ble		SkipDashedMaxMP
+
+	@ @ HP too high, display --
+
+	@ mov		r0, #0xFF
+
+	@ This is the new system that uses a custom MP getter derived from a custom fe8-kernel-dev.h header file
+	mov		r2, r0
+	mov		r0, r6
+	mov		r1, r7
+
+	mov		r0, r5
+	ldr		r1, =GetUnitMaxMP
+	mov		lr, r1
 	bllr
-	mov 	lr, r3
-	cmp 	r0, #0
-	beq 	NoBWLData2
-	add 	r0, #UnitMaxMP
-	ldrb 	r0, [r0]
-	b 		CheckLimit2
 
-	NoBWLData2:
-	mov 	r0, #0
-
-	CheckLimit2:
 	cmp		r0, #254 // JESTER - Originally 99, but expanded as I have made HP go up to 254
-	ble		SkipDashedMaxHP
+	ble		SkipDashedMaxMP
 
 	@ HP too high, display --
 
 	mov		r0, #0xFF
 
-SkipDashedMaxHP:
+SkipDashedMaxMP:
 
 	mov		r2, r0
 	mov		r0, r6

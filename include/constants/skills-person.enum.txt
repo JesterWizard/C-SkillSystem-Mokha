@@ -877,6 +877,7 @@
 // SID_DilligentMind
 // SID_MineDetector
 // SID_Undying
+// SID_ManaRush
 
 //////// COMBAT ARTS
 // SID_COMBAT_Grounder

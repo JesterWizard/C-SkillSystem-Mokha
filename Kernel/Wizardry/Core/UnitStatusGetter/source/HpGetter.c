@@ -28,6 +28,11 @@ int _GetUnitMaxHp(struct Unit *unit)
         status = status / 2;
     }
 
+#if defined(SID_ManaRush) && (COMMON_SKILL_VALID(SID_ManaRush))
+    if (SkillTester(unit, SID_ManaRush))
+        status = status / 2;
+#endif
+
 	return status;
 }
 

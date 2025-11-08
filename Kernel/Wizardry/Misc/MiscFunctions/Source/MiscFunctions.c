@@ -4436,3 +4436,33 @@ void PrepItemUse_InitDisplay(struct ProcPrepItemUse *proc)
 
 //     ClearSlide(proc);
 // }
+
+int GetUnitMaxMP(struct Unit * unit)
+{
+    struct NewBwl* bwl = GetNewBwl(UNIT_CHAR_ID(unit));
+
+    int maxMP = bwl->maxMP;
+
+#if defined(SID_ManaRush) && (COMMON_SKILL_VALID(SID_ManaRush))
+    if (SkillTester(unit, SID_ManaRush))
+        maxMP = maxMP * 2;
+#endif
+
+    return maxMP;
+};
+
+int GetUnitCurrentMP(struct Unit * unit)
+{
+    struct NewBwl* bwl = GetNewBwl(UNIT_CHAR_ID(unit));
+
+    int currentMP = bwl->currentMP;
+    int maxMP = GetUnitMaxMP(unit);
+
+    if (currentMP > maxMP)
+    {
+        bwl->currentMP = maxMP;
+        currentMP = maxMP;
+    }
+
+    return currentMP;
+};

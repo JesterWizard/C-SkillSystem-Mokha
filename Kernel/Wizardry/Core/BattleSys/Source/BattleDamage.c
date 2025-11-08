@@ -395,9 +395,11 @@ bool rampartPlus_activated = false;
 #if (defined(SID_Osmose) && (COMMON_SKILL_VALID(SID_Osmose)))
     if (BattleFastSkillTester(attacker, SID_Osmose))
     {
-        struct NewBwl * bwl = GetNewBwl(UNIT_CHAR_ID(GetUnit(attacker->unit.index)));
+        struct Unit * unit = GetUnit(attacker->unit.index);
+        int maxMP = GetUnitMaxMP(unit);
+        struct NewBwl * bwl = GetNewBwl(UNIT_CHAR_ID(unit));
         bwl->currentMP += result/4;
-        bwl->currentMP = (bwl->currentMP > bwl->maxMP) ? bwl->maxMP : bwl->currentMP; 
+        bwl->currentMP = (bwl->currentMP > maxMP) ? maxMP : bwl->currentMP; 
     }
 #endif
 

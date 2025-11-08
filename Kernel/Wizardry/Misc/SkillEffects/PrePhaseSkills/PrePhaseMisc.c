@@ -4,6 +4,7 @@
 #include "skill-system.h"
 #include "constants/skills.h"
 #include "jester_headers/custom-arrays.h"
+#include "jester_headers/custom-functions.h"
 
 bool PrePhsae_ClearMiscUES(ProcPtr proc)
 {
@@ -75,7 +76,8 @@ void PrePhase_ApplyMpStartingAmount(ProcPtr proc)
 			}
 
 			// Clamp the value to max MP using a ternary operator
-			bwl->currentMP = (bwl->currentMP > bwl->maxMP) ? bwl->maxMP : bwl->currentMP;
+			int maxMP = GetUnitMaxMP(unit);
+			bwl->currentMP = (bwl->currentMP > maxMP) ? maxMP : bwl->currentMP;
 		}
 	}
 }

@@ -6,6 +6,7 @@
 #include "bwl.h"
 #include "gaiden-magic.h"
 #include "utf8.h"
+#include "jester_headers/custom-functions.h"
 
 /*
 ** gStatScreen.text is 35 fields long
@@ -124,7 +125,7 @@ void DisplayMP(struct Unit * unit)
     else
     {
         currentMP = bwl->currentMP;
-        maxMP = bwl->maxMP;
+        maxMP = GetUnitMaxMP(gStatScreen.unit);
     }
 
     PutNumber((gUiTmScratchA + TILEMAP_INDEX(0x8, 0xE)), TEXT_COLOR_SYSTEM_BLUE, currentMP);

@@ -512,3 +512,10 @@ Trap Buster[X]
 Trap Buster:[N]
 Deactivate and pocket any[N]
 mines this unit steps on.[X]
+
+## MSG_SKILL_ManaRush_NAME
+Mana Rush[X]
+## MSG_SKILL_ManaRush_DESC
+Mana Rush:[N]
+Double max MP but[N]
+half max HP.[x]

@@ -300,8 +300,8 @@ void UpdateUnitFromBattle(struct Unit* unit, struct BattleUnit* bu)
 	if (bwl != NULL)
 	{
 		bwl->currentMP += gMpSystemPInfoConfigList[UNIT_CHAR_ID(unit)].battleGeneration;
-		if (bwl->currentMP > gMpSystemPInfoConfigList[UNIT_CHAR_ID(GetUnit(gBattleActor.unit.index))].maxMP)
-			bwl->currentMP = gMpSystemPInfoConfigList[UNIT_CHAR_ID(GetUnit(gBattleActor.unit.index))].maxMP;
+		if (bwl->currentMP > GetUnitMaxMP(unit))
+			bwl->currentMP = GetUnitMaxMP(unit);
 	}
 #endif
 }

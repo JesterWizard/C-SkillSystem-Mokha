@@ -419,6 +419,23 @@ endif
 
 CLEAN_FILES += $(CHAX_SYM) $(CHAX_REFS) $(CHAX_REFE) $(CHAX_NUPS)
 
+# ============
+# = SYM → H =
+# ============
+
+# Generate .h from .sym (preserve full address exactly as given)
+CHAX_SYM := $(FE8_CHX:.gba=.sym)
+CHAX_SYM_H := $(CHAX_SYM:.sym=.h)
+
+$(CHAX_SYM_H): $(CHAX_SYM)
+	@echo "[GEN]	$@"
+	@awk '{ printf("#define %-40s 0x%s\n", $$2, $$1) }' $< > $@
+	@echo "Generated $@ from $<"
+
+
+# Automatically generate the .h whenever post_chax runs
+post_chax: $(CHAX_SYM_H)
+
 # ========
 # = MISC =
 # ========

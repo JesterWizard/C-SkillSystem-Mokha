@@ -8779,4 +8779,14 @@ const struct SkillInfo gSkillInfos[MAX_SKILL_NUM + 1] = {
     },
 #endif
 
+#if (defined(SID_ManaRush) && COMMON_SKILL_VALID(SID_ManaRush))
+    [SID_ManaRush] = {
+        .name = MSG_SKILL_ManaRush_NAME,
+        .desc = MSG_SKILL_ManaRush_DESC,
+        .capacity = MSG_SKILL_ManaRush_CAPACITY,
+        .price = MSG_SKILL_ManaRush_PRICE,
+        .icon = GFX_SkillIcon_WIP,
+    },
+#endif
+
 };
