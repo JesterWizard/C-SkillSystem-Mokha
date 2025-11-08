@@ -152,10 +152,10 @@ Unit will survive the next lethal[N]
 attack at 1 HP. Status wears off[N]
 after the effect triggers.[X]
 
-## MSG_DEBUFF_SPELLBOUND_NAME
-Spellbound[X]
-## MSG_DEBUFF_SPELLBOUND_DESC
-Spellbound:[N]
+## MSG_DEBUFF_BOUND_NAME
+Bound[X]
+## MSG_DEBUFF_BOUND_DESC
+Bound:[N]
 Unit is unable to attack with[N]
 physical weapons.[X]
 

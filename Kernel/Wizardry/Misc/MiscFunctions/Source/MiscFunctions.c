@@ -3326,7 +3326,7 @@ u8 AttackCommandUsability(const struct MenuItemDef* def, int number)
     if (GetUnitStatusIndex(gActiveUnit) == NEW_UNIT_STATUS_BREAK)
         return MENU_DISABLED;
 
-    if (GetUnitStatusIndex(gActiveUnit) == NEW_UNIT_STATUS_SPELLBOUND)
+    if (GetUnitStatusIndex(gActiveUnit) == NEW_UNIT_STATUS_BOUND)
         if (!(GetItemAttributes(GetUnitEquippedWeapon(gActiveUnit)) & IA_MAGIC))
             return MENU_DISABLED;
 

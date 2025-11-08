@@ -863,7 +863,7 @@
 #define SpellFix                                 0x08B77C74
 #define gMsgHuffmanTableRe                       0x08B77CBC
 #define gMsgHuffmanTableRootRe                   0x08B7B2D0
-#define FreeSpace_UsrDataTail                    0x08BA8858
+#define FreeSpace_UsrDataTail                    0x08BA8852
 #define FontItem_001F                            0x08EFB2E0
 #define FontItem_0020                            0x08EFB328
 #define FontItem_0021                            0x08EFB370

@@ -177,8 +177,8 @@ void PutUnitSpriteIconsOam(void)
 					// 	statusIconApplied = true;
 					// 	break;
 
-					// case NEW_UNIT_STATUS_SPELLBOUND:
-					// 	MapTaskPutOamHi(MTSKCONF_STATUS_SPELLBOUND, OAM2_LAYER(2) + OAM2_CHR(0x000 / 0x20));
+					// case NEW_UNIT_STATUS_BOUND:
+					// 	MapTaskPutOamHi(MTSKCONF_STATUS_BOUND, OAM2_LAYER(2) + OAM2_CHR(0x000 / 0x20));
 					// 	statusIconApplied = true;
 					// 	break;
 

@@ -37,7 +37,7 @@ STATIC_DECLAR bool CheckCanContinueAttack(struct BattleUnit *bu)
 
 		break;
 
-	case NEW_UNIT_STATUS_SPELLBOUND:
+	case NEW_UNIT_STATUS_BOUND:
 		if (!IsMagicAttack(bu))
 			return false;
 
