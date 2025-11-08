@@ -2724,7 +2724,7 @@ const struct ItemData gItemData_New[] = {
 		.maxUses = 1,
 		.encodedRange = 0x11,
 		.iconId = 0xdd,
-		.useEffectId = 54,
+		.useEffectId = IER_JUNAFRUIT,
 	},
 	[ITEM_150G] = {
 		.nameTextId = 0x3fe,
