@@ -2,7 +2,7 @@
 .thumb
 
 .include "../CommonDefinitions.inc"
-.include "../../../../../fe8-kernel-dev.h"
+.include "../../../../../fe8-kernel-dev.ref.s"
 
 MMBDrawMP:
 
