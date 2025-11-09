@@ -857,6 +857,10 @@ int GetBattleUnitHitCount(struct BattleUnit *actor)
 	}
 #endif
 
+	if (GetUnitStatusIndex(GetUnit(actor->unit.index)) == NEW_UNIT_STATUS_QUICKEN) {
+		result = result + 1;
+	}
+
 	return result;
 }
 

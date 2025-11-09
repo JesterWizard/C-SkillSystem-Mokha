@@ -164,3 +164,10 @@ Hex[X]
 ## MSG_DEBUFF_HEX_DESC
 Hex:[N]
 Max HP reduced by half.[X]
+
+## MSG_DEBUFF_QUICKEN_NAME
+Quicken[X]
+## MSG_DEBUFF_QUICKEN_DESC
+Quicken:[N]
+The unit attacks as if they're[N]
+using a brave weapon (double attacks).[X]
