@@ -877,3 +877,4 @@
 #define MSG_SKILL_Bloodthirst_CAPACITY 1
 #define MSG_SKILL_SliceNDice_CAPACITY 1
 #define MSG_SKILL_ManaRush_CAPACITY 1
+#define MSG_SKILL_Symbiosis_CAPACITY 1

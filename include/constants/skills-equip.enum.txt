@@ -308,6 +308,7 @@ SID_ChargeSpeed
 SID_ChargeSkill
 SID_ChargeCrit
 SID_SliceNDice
+SID_Symbiosis
 
 //////// POST-BATTLE SKILLS
 SID_Canto

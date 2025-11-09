@@ -19,6 +19,17 @@ void BattleDamageCalc_DefenderSkills(struct BattleUnit* attacker, struct BattleU
 		return;
 
 	list = GetUnitSkillList(&defender->unit);
+
+#if defined(SID_Symbiosis) && (COMMON_SKILL_VALID(SID_Symbiosis))
+	if (BattleFastSkillTester(defender, SID_Symbiosis))
+	{
+		struct SkillList * rescueeList = GetUnitSkillList(GetUnit(defender->unit.rescue));
+
+		for (int i = 0; i < rescueeList->amt; i++) 
+			list->sid[list->amt++] = rescueeList->sid[i];
+	}
+#endif
+
 	for (_skill_list_cnt = 0; _skill_list_cnt < list->amt; _skill_list_cnt++) {
 		switch (list->sid[_skill_list_cnt]) {
 #if (defined(SID_GreatShield) && (COMMON_SKILL_VALID(SID_GreatShield)))

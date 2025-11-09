@@ -8789,4 +8789,14 @@ const struct SkillInfo gSkillInfos[MAX_SKILL_NUM + 1] = {
     },
 #endif
 
+#if (defined(SID_Symbiosis) && COMMON_SKILL_VALID(SID_Symbiosis))
+    [SID_Symbiosis] = {
+        .name = MSG_SKILL_Symbiosis_NAME,
+        .desc = MSG_SKILL_Symbiosis_DESC,
+        .capacity = MSG_SKILL_Symbiosis_CAPACITY,
+        .price = MSG_SKILL_Symbiosis_PRICE,
+        .icon = GFX_SkillIcon_WIP,
+    },
+#endif
+
 };
