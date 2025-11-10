@@ -36,8 +36,8 @@ PreBattleGenerateFuncs:
 
 ALIGN 4
 Gfx_BKSEL:
-    #incbin "Data/Gfx_BKSEL.4bpp"
+    #incbin "Data/Gfx_BKSEL_JESTER.4bpp"
 
 ALIGN 4
 Pal_BKSEL:
-    #incbin "Data/Gfx_BKSEL.gbapal"
+    #incbin "Data/Gfx_BKSEL_JESTER.gbapal"
