@@ -264,3 +264,32 @@ void MakeTargetListForPoison(struct Unit *unit)
 #endif
 	ForEachAdjacentUnit(x, y, TryAddUnitToPoisonTargetList);
 }
+
+void TryAddUnitToDelayTargetList(struct Unit* unit) 
+{
+    if (AreUnitsAllied(gSubjectUnit->index, unit->index)) {
+        return;
+    }
+
+    if (unit->statusIndex != UNIT_STATUS_NONE) {
+        return;
+    }
+
+    AddTarget(unit->xPos, unit->yPos, unit->index, 0);
+
+    return;
+}
+
+void MakeTargetListForDelay(struct Unit *unit)
+{
+	int x = unit->xPos;
+    int y = unit->yPos;
+	gSubjectUnit = unit;
+	InitTargets(x, y);
+
+	BmMapFill(gBmMapRange, 0);
+#ifdef CONFIG_ITEM_INDEX_DELAY_STAFF
+	AddMapForItem(unit, CONFIG_ITEM_INDEX_DELAY_STAFF);
+#endif
+	ForEachAdjacentUnit(x, y, TryAddUnitToDelayTargetList);
+}

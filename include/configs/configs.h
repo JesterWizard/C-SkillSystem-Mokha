@@ -268,7 +268,6 @@
 	#define CONFIG_ICON_INDEX_SPRINT_STAFF 0xAD
 	#define CONFIG_ICON_INDEX_TEMPEST_STAFF 0xAE
 	#define CONFIG_ICON_INDEX_OMNI_STAFF 0x9F // Originally the Sol Katti
-	#define CONFIG_ICON_INDEX_POISON_STAFF 0xA0 // Originally Armedes or the other FE7 axe?
 #endif
 
 #define CONFIG_ICON_INDEX_RUNE_STAFF 0xAF
@@ -276,6 +275,8 @@
 #define CONFIG_ICON_INDEX_SLOW_STAFF 0x78 // Originally Echesacks
 #define CONFIG_ICON_INDEX_FORGE_STAFF 0xAB // Originally a musical note, for play?
 #define CONFIG_ICON_INDEX_REWARP_STAFF 0xAC // Originally a musical note, for play?
+#define CONFIG_ICON_INDEX_POISON_STAFF 0xA0 // Originally Armedes or the other FE7 axe?
+#define CONFIG_ICON_INDEX_DELAY_STAFF 0xA1
 
 /**
 * Item config
@@ -304,6 +305,7 @@
 #define CONFIG_ITEM_INDEX_FORGE_STAFF 0xCB
 #define CONFIG_ITEM_INDEX_REWARP_STAFF 0xCD
 #define CONFIG_ITEM_INDEX_POISON_STAFF 0xD0
+#define CONFIG_ITEM_INDEX_DELAY_STAFF 0xD1
 
 #ifdef CONFIG_ITEM_INDEX_FORGE_STAFF
 	#define CONFIG_FORGE_CHECKER 5000

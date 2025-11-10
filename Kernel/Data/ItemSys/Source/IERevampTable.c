@@ -206,6 +206,15 @@ struct IERevamp const IERevampTable[IER_MAX] = {
 		.prep_effect    = NULL,
 	},
 #endif
+#ifdef CONFIG_ITEM_INDEX_DELAY_STAFF
+	[IER_STAFF_DELAY] = {
+		.usability      = IER_Usability_Delay,
+		.prep_usability = NULL,
+		.effect         = IER_Effect_Delay,
+		.action_effect  = IER_Action_CustomStaves,
+		.prep_effect    = NULL,
+	},
+#endif
 
 	/**
 	 * Boosters

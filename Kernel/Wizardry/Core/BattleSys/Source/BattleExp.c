@@ -41,6 +41,9 @@ inline static int StaffEXP(int weapon)
 #ifdef CONFIG_ITEM_INDEX_POISON_STAFF
     case CONFIG_ITEM_INDEX_POISON_STAFF:
 #endif
+#ifdef CONFIG_ITEM_INDEX_DELAY_STAFF
+    case CONFIG_ITEM_INDEX_DELAY_STAFF:
+#endif
     case ITEM_STAFF_BARRIER:
         exp = 17;
         break;

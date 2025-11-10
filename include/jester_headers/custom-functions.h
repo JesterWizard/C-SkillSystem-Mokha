@@ -39,6 +39,8 @@ extern void MakeRewarpRangeMap(struct Unit* unit);
 extern const struct ProcCmd gProcScr_SquareSelectWarp[];
 extern void TryAddUnitToPoisonTargetList(struct Unit* unit);
 extern void MakeTargetListForPoison(struct Unit *unit);
+extern void TryAddUnitToDelayTargetList(struct Unit* unit);
+extern void MakeTargetListForDelay(struct Unit *unit);
 
 struct SecondaryGoalWindowProc {
     PROC_HEADER;

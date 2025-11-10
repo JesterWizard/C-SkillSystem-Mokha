@@ -165,6 +165,11 @@ bool IER_Usability_Poison(struct Unit * unit, int item)
     return HasSelectTarget(unit, MakeTargetListForPoison);
 }
 
+bool IER_Usability_Delay(struct Unit * unit, int item)
+{
+    return HasSelectTarget(unit, MakeTargetListForDelay);
+}
+
 /**
  * Effects
  */
@@ -273,6 +278,11 @@ void IER_Effect_Forge(struct Unit *unit, int item)
 void IER_Effect_Poison(struct Unit *unit, int item)
 {
     DoUseAttackStaff(unit, MakeTargetListForPoison);
+}
+
+void IER_Effect_Delay(struct Unit *unit, int item)
+{
+    DoUseAttackStaff(unit, MakeTargetListForDelay);
 }
 
 /**

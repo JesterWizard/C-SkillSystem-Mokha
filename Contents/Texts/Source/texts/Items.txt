@@ -180,3 +180,14 @@ Poison the target[N]
 for 3 turns.[X]
 ## MSG_ITEM_POISON_STAFF_SUBTITLE
 Select a unit to poison.[X]
+
+## MSG_ITEM_DELAY_STAFF_NAME
+Delay[X]
+## MSG_ITEM_DELAY_STAFF_DESC
+Target unit cannot double[N]
+for 1 turn.[X]
+## MSG_ITEM_DELAY_STAFF_USEDESC
+Delay the target[N]
+for 1 turn.[X]
+## MSG_ITEM_DELAY_STAFF_SUBTITLE
+Select a unit to delay.[X]

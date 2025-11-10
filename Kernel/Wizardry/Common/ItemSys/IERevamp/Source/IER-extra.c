@@ -551,6 +551,11 @@ void ExecCustomStaves(ProcPtr proc) {
         SetUnitStatus(unit_tar, UNIT_STATUS_POISON);
         break;
 #endif
+#ifdef CONFIG_ITEM_INDEX_DELAY_STAFF
+    case CONFIG_ITEM_INDEX_DELAY_STAFF:
+        SetUnitStatus(unit_tar, NEW_UNIT_STATUS_DELAY);
+        break;
+#endif
 
     default:
         break;
