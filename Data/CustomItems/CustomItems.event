@@ -9,6 +9,7 @@
 #include "SprintStaff/Installer.event"  // SPD boost
 #include "FortuneStaff/Installer.event" // LCK boost
 #include "IronStaff/Installer.event"    // DEF boost
+#include "OmniStaff/Installer.event"    // All boost
 
 #include "RuneStaff/Installer.event"
 #include "MineStaff/Installer.event"

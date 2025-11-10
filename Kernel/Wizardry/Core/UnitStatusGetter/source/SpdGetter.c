@@ -272,5 +272,8 @@ int SpdGetterStaffBoost(int status, struct Unit *unit)
     if (unit->boostType == 3)
 	    return status + unit->barrierDuration;
 
+    if (unit->boostType == 7)
+	    return status + unit->barrierDuration;
+
     return status;
 }

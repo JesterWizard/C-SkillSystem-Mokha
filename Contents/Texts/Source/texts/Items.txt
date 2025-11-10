@@ -8,21 +8,17 @@ or weapons heavier than unit.[X]
 
 ## MSG_ITEM_SKILLSTEALER_NAME
 Skill Stealer[X]
-
 ## MSG_ITEM_SKILLSTEALER_DESC
 Steal a skill from a defeated boss[X]
-
 ## MSG_ITEM_SKILLSTEALER_USEDESC
 Steal a skill from[N]
 a defeated boss.[X]
 
 ## MSG_ITEM_ArmsScroll_NAME
 Arms Scroll[X]
-
 ## MSG_ITEM_ArmsScroll_DESC
 Increase highest weapon rank by[N]
 1 stage.[X]
-
 ## MSG_ITEM_ArmsScroll_USEDESC
 Increase highest[N]
 weapon rank by[N]
@@ -30,11 +26,9 @@ weapon rank by[N]
 
 ## MSG_ITEM_FORCE_STAFF_NAME
 Force[X]
-
 ## MSG_ITEM_FORCE_STAFF_DESC
 Increase ATK by 7 for as many[N]
 turns. Reduces by 1 per turn.[X]
-
 ## MSG_ITEM_FORCE_STAFF_USEDESC
 Increase ATK by 7[N]
 for as many turns.[N]
@@ -42,11 +36,9 @@ Reduces by 1 per turn.[X]
 
 ## MSG_ITEM_TEMPEST_STAFF_NAME
 Tempest[X]
-
 ## MSG_ITEM_TEMPEST_STAFF_DESC
 Increase MAG by 7 for as many[N]
 turns. Reduces by 1 per turn.[X]
-
 ## MSG_ITEM_TEMPEST_STAFF_USEDESC
 Increase MAG by 7[N]
 for as many turns.[N]
@@ -54,11 +46,9 @@ Reduces by 1 per turn.[X]
 
 ## MSG_ITEM_ACUITY_STAFF_NAME
 Acuity[X]
-
 ## MSG_ITEM_ACUITY_STAFF_DESC
 Increase SKL by 7 for as many[N]
 turns. Reduces by 1 per turn.[X]
-
 ## MSG_ITEM_ACUITY_STAFF_USEDESC
 Increase SKL by 7[N]
 for as many turns.[N]
@@ -66,11 +56,9 @@ Reduces by 1 per turn.[X]
 
 ## MSG_ITEM_SPRINT_STAFF_NAME
 Sprint[X]
-
 ## MSG_ITEM_SPRINT_STAFF_DESC
 Increase SPD by 7 for as many[N]
 turns. Reduces by 1 per turn.[X]
-
 ## MSG_ITEM_SPRINT_STAFF_USEDESC
 Increase SPD by 7[N]
 for as many turns.[N]
@@ -78,11 +66,9 @@ Reduces by 1 per turn.[X]
 
 ## MSG_ITEM_FORTUNE_STAFF_NAME
 Fortune[X]
-
 ## MSG_ITEM_FORTUNE_STAFF_DESC
 Increase LCK by 7 for as many[N]
 turns. Reduces by 1 per turn.[X]
-
 ## MSG_ITEM_FORTUNE_STAFF_USEDESC
 Increase LCK by 7[N]
 for as many turns.[N]
@@ -90,59 +76,62 @@ Reduces by 1 per turn.[X]
 
 ## MSG_ITEM_IRON_STAFF_NAME
 Iron[X]
-
 ## MSG_ITEM_IRON_STAFF_DESC
 Increase DEF by 7 for as many[N]
 turns. Reduces by 1 per turn.[X]
-
 ## MSG_ITEM_IRON_STAFF_USEDESC
 Increase DEF by 7[N]
 for as many turns.[N]
 Reduces by 1 per turn.[X]
 
+## MSG_ITEM_OMNI_STAFF_NAME
+Omni[X]
+## MSG_ITEM_OMNI_STAFF_DESC
+Increase all stats by 7 for as[N]
+many turns. Reduces by 1 per turn.[X]
+## MSG_ITEM_OMNI_STAFF_USEDESC
+Increase all stats by[N]
+7 for as many turns.[N]
+Reduces by 1 per turn.[X]
+
 ## MSG_ITEM_RUNE_STAFF_NAME
 Rune[X]
-
 ## MSG_ITEM_RUNE_STAFF_DESC
 Place a Light Rune[N]
 on an open tile.[X]
-
 ## MSG_ITEM_RUNE_STAFF_USEDESC
 Place a Light Rune[N]
 on an open tile.[X]
 
 ## MSG_ITEM_MINE_STAFF_NAME
 Mine[X]
-
 ## MSG_ITEM_MINE_STAFF_DESC
 Place a Mine on[N]
 an open tile.[X]
-
 ## MSG_ITEM_MINE_STAFF_USEDESC
 Place a Mine on[N]
 an open tile.[X]
 
 ## MSG_ITEM_SLOW_STAFF_NAME
 Slow[X]
-
 ## MSG_ITEM_SLOW_STAFF_DESC
 Half the target's[N]
 movement.[X]
-
 ## MSG_ITEM_SLOW_STAFF_USEDESC
 Half the target's[N]
 movement.[X]
 
 ## MSG_ITEM_FORGE_STAFF_NAME
 Forge[X]
-
 ## MSG_ITEM_FORGE_STAFF_DESC
 Copy an enemy's[N]
 weapon.[X]
-
 ## MSG_ITEM_FORGE_STAFF_USEDESC
 Copy an enemy's[N]
 weapon.[X]
+## MSG_ITEM_CANT_FORGE_ITEM
+Cannot copy items.[N]
+Only weapons are allowed.[X]
 
 ## MSG_ITEM_METIS_TOME_DESC
 Boost all of this unit's[N]
@@ -171,20 +160,13 @@ Heal amount: 10 + unit's MAG.[X]
 ## MSG_ITEM_VULNERARY_DESC
 Heal the active unit's HP by 10.[X]
 
-## MSG_ITEM_CANT_FORGE_ITEM
-Cannot copy items.[N]
-Only weapons are allowed.[X]
-
 ## MSG_ITEM_REWARP_STAFF_NAME
 Rewarp[X]
-
 ## MSG_ITEM_REWARP_STAFF_DESC
 Warp staff user to[N]
 selected location.[X]
-
 ## MSG_ITEM_REWARP_STAFF_USEDESC
 Warp staff user to[N]
 selected location.[X]
-
 ## MSG_ITEM_REWARP_STAFF_SUBTITLE
 Select space to warp unit.[X]

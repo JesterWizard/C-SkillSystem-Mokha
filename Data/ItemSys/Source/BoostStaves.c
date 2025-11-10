@@ -57,6 +57,13 @@ void DrawUnitResChangeText(struct Text* text, struct Unit* unit, int bonus) {
         statNumber = GetUnitResistance(unit);
         break;
 
+#ifdef CONFIG_ITEM_INDEX_OMNI_STAFF
+    case CONFIG_ITEM_INDEX_OMNI_STAFF:
+        statName = "Omni";
+        statNumber = 0xFF;
+        break;
+#endif
+
     default:
         break;
     }

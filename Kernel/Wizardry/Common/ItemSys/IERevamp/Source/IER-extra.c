@@ -376,6 +376,11 @@ void DoUseBarrierStaff(struct Unit* unit)
     case ITEM_STAFF_BARRIER:
         str = "Select which character's resistance to bolster";
         break;
+#ifdef CONFIG_ITEM_INDEX_OMNI_STAFF
+    case CONFIG_ITEM_INDEX_OMNI_STAFF:
+        str = "Select which character's stats to bolster";
+        break;
+#endif
 
     default:
         break;
@@ -433,6 +438,11 @@ void ExecBarrierStaff(ProcPtr proc) {
     case ITEM_STAFF_BARRIER:
         unit_tar->boostType = 6;
         break;
+#ifdef CONFIG_ITEM_INDEX_OMNI_STAFF
+    case CONFIG_ITEM_INDEX_OMNI_STAFF:
+        unit_tar->boostType = 7;
+        break;
+#endif
     
     default:
         break;

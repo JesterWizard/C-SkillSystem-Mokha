@@ -3277,4 +3277,24 @@ const struct ItemData gItemData_New[] = {
 		.weaponExp = 1,
 	},
 #endif
+#ifdef CONFIG_ITEM_INDEX_OMNI_STAFF
+	[CONFIG_ITEM_INDEX_OMNI_STAFF] = {
+		.nameTextId = MSG_ITEM_OMNI_STAFF_NAME,
+		.descTextId = MSG_ITEM_OMNI_STAFF_DESC,
+		.useDescTextId = MSG_ITEM_OMNI_STAFF_USEDESC,
+		.number = CONFIG_ITEM_INDEX_OMNI_STAFF,
+		.weaponType = ITYPE_STAFF,
+		.pStatBonuses = NULL,
+		.maxUses = 5,
+		.encodedRange = 0x10,
+		.costPerUse = 8000,
+		.iconId = CONFIG_ICON_INDEX_OMNI_STAFF,
+		.useEffectId = IER_STAFF_OMNI,
+		.weaponRank = WPN_EXP_B,
+		.weaponExp = 4,
+		.hit = 100,
+		.weight = 5,
+		.attributes = IA_STAFF,
+	},
+#endif
 };

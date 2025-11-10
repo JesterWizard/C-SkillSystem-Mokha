@@ -154,6 +154,15 @@ struct IERevamp const IERevampTable[IER_MAX] = {
 		.prep_effect    = NULL,
 	},
 #endif
+#ifdef CONFIG_ITEM_INDEX_OMNI_STAFF
+	[IER_STAFF_OMNI] = {
+		.usability      = IER_Usability_Barrier,
+		.prep_usability = NULL,
+		.effect         = IER_Effect_Barrier,
+		.action_effect  = IER_Action_BarrierStaff,
+		.prep_effect    = NULL,
+	},
+#endif
 	[IER_STAFF_BARRIER] = {
 		.usability      = IER_Usability_Barrier,
 		.prep_usability = NULL,

@@ -42,6 +42,9 @@ enum chax_ierevamp_use_effects {
 #ifdef CONFIG_ITEM_INDEX_IRON_STAFF
     IER_STAFF_IRON,
 #endif
+#ifdef CONFIG_ITEM_INDEX_OMNI_STAFF
+    IER_STAFF_OMNI,
+#endif
 #ifdef CONFIG_ITEM_INDEX_SLOW_STAFF
     IER_STAFF_SLOW,
 #endif
