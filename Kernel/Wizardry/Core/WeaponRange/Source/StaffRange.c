@@ -5,6 +5,7 @@
 #include "skill-system.h"
 #include "constants/skills.h"
 #include "jester_headers/custom-functions.h"
+#include "constants/texts.h"
 
 LYN_REPLACE_CHECK(TryAddUnitToHealTargetList);
 void TryAddUnitToHealTargetList(struct Unit* unit) {
@@ -292,4 +293,39 @@ void MakeTargetListForDelay(struct Unit *unit)
 	AddMapForItem(unit, CONFIG_ITEM_INDEX_DELAY_STAFF);
 #endif
 	ForEachAdjacentUnit(x, y, TryAddUnitToDelayTargetList);
+}
+
+void TryAddUnitToEntrapTargetList(struct Unit* unit) 
+{
+    if (AreUnitsAllied(gSubjectUnit->index, unit->index)) {
+        return;
+    }
+
+    AddTarget(unit->xPos, unit->yPos, unit->index, 0);
+    return;
+}
+
+void MakeTargetListForEntrap(struct Unit *unit)
+{
+	int x = unit->xPos;
+    int y = unit->yPos;
+	gSubjectUnit = unit;
+	InitTargets(x, y);
+
+	BmMapFill(gBmMapRange, 0);
+#ifdef CONFIG_ITEM_INDEX_ENTRAP_STAFF
+	AddMapForItem(unit, CONFIG_ITEM_INDEX_ENTRAP_STAFF);
+#endif
+	ForEachUnit(TryAddUnitToEntrapTargetList, gBmMapRange, 0);
+}
+
+void DoUseEntrapStaff(struct Unit* unit, void(*func)(struct Unit*))
+{
+    func(unit);
+
+    BmMapFill(gBmMapMovement, -1);
+
+    StartSubtitleHelp(
+        NewTargetSelection_Specialized(&gSelectInfo_WarpUnit, StaffSelectOnSelect),
+        GetStringFromIndex(MSG_ITEM_ENTRAP_STAFF_SUBTITLE)); // TODO: msgid "Select which character to bring next to you."
 }

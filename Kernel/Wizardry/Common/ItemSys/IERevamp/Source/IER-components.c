@@ -170,6 +170,11 @@ bool IER_Usability_Delay(struct Unit * unit, int item)
     return HasSelectTarget(unit, MakeTargetListForDelay);
 }
 
+bool IER_Usability_Entrap(struct Unit * unit, int item)
+{
+    return HasSelectTarget(unit, MakeTargetListForEntrap);
+}
+
 /**
  * Effects
  */
@@ -283,6 +288,11 @@ void IER_Effect_Poison(struct Unit *unit, int item)
 void IER_Effect_Delay(struct Unit *unit, int item)
 {
     DoUseAttackStaff(unit, MakeTargetListForDelay);
+}
+
+void IER_Effect_Entrap(struct Unit *unit, int item)
+{
+    DoUseEntrapStaff(unit, MakeTargetListForEntrap);
 }
 
 /**
@@ -438,6 +448,11 @@ void IER_Action_JunaFruitItem(ProcPtr proc, struct Unit *unit, int item)
 void IER_Action_CustomStaves(ProcPtr proc, struct Unit *unit, int item)
 {
 	ExecCustomStaves(proc);
+}
+
+void IER_Action_Entrap(ProcPtr proc, struct Unit *unit, int item)
+{
+	ExecRescueStaff(proc);
 }
 
 /**

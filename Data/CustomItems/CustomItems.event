@@ -18,3 +18,4 @@
 #include "RewarpStaff/Installer.event"
 #include "PoisonStaff/Installer.event"
 #include "DelayStaff/Installer.event"
+#include "EntrapStaff/Installer.event"

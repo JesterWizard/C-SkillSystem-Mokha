@@ -3337,4 +3337,24 @@ const struct ItemData gItemData_New[255] = {
 		.attributes = IA_STAFF,
 	},
 #endif
+#ifdef CONFIG_ITEM_INDEX_ENTRAP_STAFF
+	[CONFIG_ITEM_INDEX_ENTRAP_STAFF] = {
+		.nameTextId = MSG_ITEM_ENTRAP_STAFF_NAME,
+		.descTextId = MSG_ITEM_ENTRAP_STAFF_DESC,
+		.useDescTextId = MSG_ITEM_ENTRAP_STAFF_USEDESC,
+		.number = CONFIG_ITEM_INDEX_ENTRAP_STAFF,
+		.weaponType = ITYPE_STAFF,
+		.pStatBonuses = NULL,
+		.maxUses = 15,
+		.encodedRange = 0x13,
+		.costPerUse = 8000,
+		.iconId = CONFIG_ICON_INDEX_ENTRAP_STAFF,
+		.useEffectId = IER_STAFF_ENTRAP,
+		.weaponRank = WPN_EXP_C,
+		.weaponExp = 4,
+		.hit = 100,
+		.weight = 5,
+		.attributes = IA_STAFF,
+	},
+#endif
 };

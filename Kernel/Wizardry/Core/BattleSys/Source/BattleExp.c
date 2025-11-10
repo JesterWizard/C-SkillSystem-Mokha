@@ -77,6 +77,9 @@ inline static int StaffEXP(int weapon)
         exp = 30;
         break;
     case ITEM_STAFF_RESCUE:
+#ifdef CONFIG_ITEM_INDEX_ENTRAP_STAFF
+    case CONFIG_ITEM_INDEX_ENTRAP_STAFF:
+#endif
         exp = 50;
         break;
     case ITEM_STAFF_WARP:

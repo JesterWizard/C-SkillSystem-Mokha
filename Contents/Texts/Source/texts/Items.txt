@@ -191,3 +191,14 @@ Delay the target[N]
 for 1 turn.[X]
 ## MSG_ITEM_DELAY_STAFF_SUBTITLE
 Select a unit to delay.[X]
+
+## MSG_ITEM_ENTRAP_STAFF_NAME
+Entrap[X]
+## MSG_ITEM_ENTRAP_STAFF_DESC
+Teleport an enemy to an[N]
+adjacent tile.[X]
+## MSG_ITEM_ENTRAP_STAFF_USEDESC
+Teleport an enemy[N]
+to an adjacent tile.[X]
+## MSG_ITEM_ENTRAP_STAFF_SUBTITLE
+Select a unit to entrap.[X]

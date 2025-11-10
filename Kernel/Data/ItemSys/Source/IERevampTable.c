@@ -215,6 +215,15 @@ struct IERevamp const IERevampTable[IER_MAX] = {
 		.prep_effect    = NULL,
 	},
 #endif
+#ifdef CONFIG_ITEM_INDEX_ENTRAP_STAFF
+	[IER_STAFF_ENTRAP] = {
+		.usability      = IER_Usability_Entrap,
+		.prep_usability = NULL,
+		.effect         = IER_Effect_Entrap,
+		.action_effect  = IER_Action_Entrap,
+		.prep_effect    = NULL,
+	},
+#endif
 
 	/**
 	 * Boosters
