@@ -37,6 +37,8 @@ extern void RewarpMapSelect_Init(ProcPtr proc);      // Optional: setup help tex
 extern u8 RewarpMapSelect_SwitchIn(ProcPtr proc, struct SelectTarget* target); // Optional: called when cursor moves to a tile
 extern void MakeRewarpRangeMap(struct Unit* unit);
 extern const struct ProcCmd gProcScr_SquareSelectWarp[];
+extern void TryAddUnitToPoisonTargetList(struct Unit* unit);
+extern void MakeTargetListForPoison(struct Unit *unit);
 
 struct SecondaryGoalWindowProc {
     PROC_HEADER;

@@ -197,6 +197,15 @@ struct IERevamp const IERevampTable[IER_MAX] = {
 		.prep_effect    = NULL,
 	},
 #endif
+#ifdef CONFIG_ITEM_INDEX_POISON_STAFF
+	[IER_STAFF_POISON] = {
+		.usability      = IER_Usability_Poison,
+		.prep_usability = NULL,
+		.effect         = IER_Effect_Poison,
+		.action_effect  = IER_Action_CustomStaves,
+		.prep_effect    = NULL,
+	},
+#endif
 
 	/**
 	 * Boosters

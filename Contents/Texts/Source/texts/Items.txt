@@ -170,3 +170,13 @@ Warp staff user to[N]
 selected location.[X]
 ## MSG_ITEM_REWARP_STAFF_SUBTITLE
 Select space to warp unit.[X]
+
+## MSG_ITEM_POISON_STAFF_NAME
+Poison[X]
+## MSG_ITEM_POISON_STAFF_DESC
+Poison the target for 3 turns.[X]
+## MSG_ITEM_POISON_STAFF_USEDESC
+Poison the target[N]
+for 3 turns.[X]
+## MSG_ITEM_POISON_STAFF_SUBTITLE
+Select a unit to poison.[X]

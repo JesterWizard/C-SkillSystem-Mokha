@@ -54,6 +54,9 @@ enum chax_ierevamp_use_effects {
 #ifdef CONFIG_ITEM_INDEX_REWARP_STAFF
     IER_STAFF_REWARP,
 #endif
+#ifdef CONFIG_ITEM_INDEX_POISON_STAFF
+    IER_STAFF_POISON,
+#endif
 
 
 	/**
@@ -238,6 +241,7 @@ IER_DECLEARE_Usability(IER_Usability_NightMare);
 IER_DECLEARE_Usability(IER_Usability_Slow);
 IER_DECLEARE_Usability(IER_Usability_Forge);
 IER_DECLEARE_Usability(IER_Usability_Rewarp);
+IER_DECLEARE_Usability(IER_Usability_Poison);
 
 IER_DECLEARE_Effect(IER_Effect_AdjacentHeal);
 IER_DECLEARE_Effect(IER_Effect_RangedHeal);
@@ -258,6 +262,7 @@ IER_DECLEARE_Effect(IER_Effect_SpeicalDance);
 IER_DECLEARE_Effect(IER_Effect_Slow);
 IER_DECLEARE_Effect(IER_Effect_Forge);
 IER_DECLEARE_Effect(IER_Effect_Rewarp);
+IER_DECLEARE_Effect(IER_Effect_Poison);
 
 IER_DECLEARE_Action(IER_Action_StandardHeal);
 IER_DECLEARE_Action(IER_Action_StatusStaff);
@@ -285,6 +290,7 @@ IER_DECLEARE_Action(IER_Action_DanceRing);
 IER_DECLEARE_Action(IER_Action_JunaFruitItem);
 IER_DECLEARE_Action(IER_Action_CustomStaves);
 IER_DECLEARE_Action(IER_Action_Rewarp);
+IER_DECLEARE_Action(IER_Action_Poison);
 
 IER_DECLEARE_PrepEffect(IER_PrepEffect_StatBooster);
 IER_DECLEARE_PrepEffect(IER_PrepEffect_Promotion);

@@ -128,6 +128,11 @@ WORD $0
 POIN IER_Effect_Rewarp
 POIN IER_Action_Rewarp
 WORD $0
+POIN IER_Usability_Poison
+WORD $0
+POIN IER_Effect_Poison
+POIN IER_Action_CustomStaves
+WORD $0
 POIN IER_Usability_Booster
 POIN IER_Usability_Booster
 WORD $0
@@ -325,4 +330,4 @@ POIN IER_PrepUsability_ArmsScroll
 WORD $0
 POIN IER_ActionEffect_ArmsScroll
 POIN IER_PrepEffect_ArmsScroll
-WORD $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0
+WORD $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0

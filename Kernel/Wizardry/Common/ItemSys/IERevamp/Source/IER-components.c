@@ -160,6 +160,11 @@ bool IER_Usability_Forge(struct Unit *unit, int item)
 	return HasSelectTarget(unit, MakeTargetListForForge);
 }
 
+bool IER_Usability_Poison(struct Unit * unit, int item)
+{
+    return HasSelectTarget(unit, MakeTargetListForPoison);
+}
+
 /**
  * Effects
  */
@@ -263,6 +268,11 @@ void IER_Effect_Forge(struct Unit *unit, int item)
 
     MakeTargetListForForge(gActiveUnit);
     NewTargetSelection(&gSelectInfo_Steal);
+}
+
+void IER_Effect_Poison(struct Unit *unit, int item)
+{
+    DoUseAttackStaff(unit, MakeTargetListForPoison);
 }
 
 /**

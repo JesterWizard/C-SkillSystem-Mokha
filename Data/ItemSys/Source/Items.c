@@ -6,7 +6,7 @@
 
 /* JESTER - Something seems wrong with item ID 0xBF. It doesn't properly replace text strings. Don't use it for replacements */
 
-const struct ItemData gItemData_New[] = {
+const struct ItemData gItemData_New[255] = {
 	[ITEM_NONE] = {
 		.number = ITEM_NONE,
 		.weaponType = ITYPE_SWORD,
@@ -3291,6 +3291,26 @@ const struct ItemData gItemData_New[] = {
 		.iconId = CONFIG_ICON_INDEX_OMNI_STAFF,
 		.useEffectId = IER_STAFF_OMNI,
 		.weaponRank = WPN_EXP_B,
+		.weaponExp = 4,
+		.hit = 100,
+		.weight = 5,
+		.attributes = IA_STAFF,
+	},
+#endif
+#ifdef CONFIG_ITEM_INDEX_POISON_STAFF
+	[CONFIG_ITEM_INDEX_POISON_STAFF] = {
+		.nameTextId = MSG_ITEM_POISON_STAFF_NAME,
+		.descTextId = MSG_ITEM_POISON_STAFF_DESC,
+		.useDescTextId = MSG_ITEM_POISON_STAFF_USEDESC,
+		.number = CONFIG_ITEM_INDEX_POISON_STAFF,
+		.weaponType = ITYPE_STAFF,
+		.pStatBonuses = NULL,
+		.maxUses = 15,
+		.encodedRange = 0x13,
+		.costPerUse = 8000,
+		.iconId = CONFIG_ICON_INDEX_POISON_STAFF,
+		.useEffectId = IER_STAFF_POISON,
+		.weaponRank = WPN_EXP_C,
 		.weaponExp = 4,
 		.hit = 100,
 		.weight = 5,

@@ -235,3 +235,32 @@ void MakeTargetListForForge(struct Unit *unit)
 #endif
 	ForEachUnitInMagBy2Range(TryAddUnitToForgeTargetList);
 }
+
+void TryAddUnitToPoisonTargetList(struct Unit* unit) 
+{
+    if (AreUnitsAllied(gSubjectUnit->index, unit->index)) {
+        return;
+    }
+
+    if (unit->statusIndex != UNIT_STATUS_NONE) {
+        return;
+    }
+
+    AddTarget(unit->xPos, unit->yPos, unit->index, 0);
+
+    return;
+}
+
+void MakeTargetListForPoison(struct Unit *unit)
+{
+	int x = unit->xPos;
+    int y = unit->yPos;
+	gSubjectUnit = unit;
+	InitTargets(x, y);
+
+	BmMapFill(gBmMapRange, 0);
+#ifdef CONFIG_ITEM_INDEX_POISON_STAFF
+	AddMapForItem(unit, CONFIG_ITEM_INDEX_POISON_STAFF);
+#endif
+	ForEachAdjacentUnit(x, y, TryAddUnitToPoisonTargetList);
+}

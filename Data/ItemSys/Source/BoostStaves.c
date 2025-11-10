@@ -60,7 +60,7 @@ void DrawUnitResChangeText(struct Text* text, struct Unit* unit, int bonus) {
 #ifdef CONFIG_ITEM_INDEX_OMNI_STAFF
     case CONFIG_ITEM_INDEX_OMNI_STAFF:
         statName = "Omni";
-        statNumber = 0xFF;
+        statNumber = 0;
         break;
 #endif
 

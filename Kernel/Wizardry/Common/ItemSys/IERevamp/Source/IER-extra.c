@@ -546,6 +546,12 @@ void ExecCustomStaves(ProcPtr proc) {
         // IER_Effect_Forge takes care of this. Splitting out its effects when it depends on the steal menu is... hard.
         break;
 #endif
+#ifdef CONFIG_ITEM_INDEX_POISON_STAFF
+    case CONFIG_ITEM_INDEX_POISON_STAFF:
+        SetUnitStatus(unit_tar, UNIT_STATUS_POISON);
+        break;
+#endif
+
     default:
         break;
     }
