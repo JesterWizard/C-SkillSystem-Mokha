@@ -526,3 +526,10 @@ Symbiosis[X]
 Symbiosis:[N]
 When rescuing, this unit can use[N]
 the rescuee's battle skills.[X]
+
+## MSG_SKILL_Residium_NAME
+Residium[X]
+## MSG_SKILL_Residium_DESC
+Residium:[N]
+Add +1 turn to any beneficial[N]
+status this unit gains.[X]

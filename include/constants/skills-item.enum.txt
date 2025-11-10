@@ -309,6 +309,7 @@
 // SID_ChargeCrit
 // SID_SliceNDice
 // SID_Symbiosis
+// SID_Residium
 
 //////// POST-BATTLE SKILLS
 // SID_Canto

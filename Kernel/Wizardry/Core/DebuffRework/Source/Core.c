@@ -1,5 +1,7 @@
 #include "common-chax.h"
 #include "debuff.h"
+#include "skill-system.h"
+#include "constants/skills.h"
 
 #define LOCAL_TRACE 0
 
@@ -26,6 +28,7 @@ void SetUnitStatusIndex(struct Unit *unit, int status)
 {
 	if (status < NEW_UNIT_STATUS_MAX)
 		UNIT_STATUS_INDEX(unit) = status;
+
 }
 
 void SetUnitStatusDuration(struct Unit *unit, int duration)

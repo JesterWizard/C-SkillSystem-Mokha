@@ -1,5 +1,7 @@
 #include "common-chax.h"
 #include "debuff.h"
+#include "skill-system.h"
+#include "constants/skills.h"
 
 #define LOCAL_TRACE 0
 
@@ -19,6 +21,17 @@ void SetUnitStatus(struct Unit *unit, int status)
 		hang();
 	} else {
 		int duration = gpDebuffInfos[status].duration;
+
+#if defined(SID_Residium) && (COMMON_SKILL_VALID(SID_Residium))
+    if (SkillTester(unit, SID_Residium))
+    {
+		for (int i = 0; i < (int)ARRAY_COUNT(buffs); i++)
+		{
+			if (buffs[i] == status)
+				duration += 1;
+		}
+    }
+#endif
 
 		if (duration == 0)
 			duration = 3;
