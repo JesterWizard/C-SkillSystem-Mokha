@@ -134,6 +134,15 @@ bool CheckCanTwiceAttackOrder(struct BattleUnit *actor, struct BattleUnit *targe
 			if (BattleFastSkillTester(actor, SID_Moonlight))
 				return false;
 #endif
+
+			if (GetUnitStatusIndex(GetUnit(gBattleActor.unit.index)) == NEW_UNIT_STATUS_DELAY) {
+				return false;
+			}
+		}
+		else if (&gBattleTarget == actor) {
+			if (GetUnitStatusIndex(GetUnit(gBattleTarget.unit.index)) == NEW_UNIT_STATUS_DELAY) {
+				return false;
+			}
 		}
 	}
 
@@ -372,12 +381,15 @@ bool CheckCanTwiceAttackOrder(struct BattleUnit *actor, struct BattleUnit *targe
 	else
 		gBattleTemporaryFlag.tar_normal_judge_twice_order = true;
 
+	bool canActorDouble = ((actor->battleSpeed - target->battleSpeed) >= get_battle_followup_speed_threshold());
+
+
 #if defined(SID_Hasty) && (COMMON_SKILL_VALID(SID_Hasty))
-        if (BattleFastSkillTester(actor, SID_Hasty))
-			return (actor->battleSpeed - target->battleSpeed) >= 1;
+    if (BattleFastSkillTester(actor, SID_Hasty))
+		canActorDouble = (actor->battleSpeed - target->battleSpeed) >= 1;
 #endif
 
-	return ((actor->battleSpeed - target->battleSpeed) >= get_battle_followup_speed_threshold());
+	return canActorDouble;
 }
 
 STATIC_DECLAR bool CheckDesperationOrder(void)

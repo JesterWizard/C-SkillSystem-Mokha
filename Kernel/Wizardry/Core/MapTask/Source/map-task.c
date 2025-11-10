@@ -191,6 +191,11 @@ void PutUnitSpriteIconsOam(void)
 					// 	MapTaskPutOamHi(MTSKCONF_STATUS_QUICKEN, OAM2_LAYER(2) + OAM2_CHR(0x000 / 0x20));
 					// 	statusIconApplied = true;
 					// 	break;
+
+					// case NEW_UNIT_STATUS_DELAY:
+					// 	MapTaskPutOamHi(MTSKCONF_STATUS_DELAY, OAM2_LAYER(2) + OAM2_CHR(0x000 / 0x20));
+					// 	statusIconApplied = true;
+					// 	break;
 					
 					}
 

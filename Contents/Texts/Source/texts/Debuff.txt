@@ -171,3 +171,9 @@ Quicken[X]
 Quicken:[N]
 The unit attacks as if they're[N]
 using a brave weapon (double attacks).[X]
+
+## MSG_DEBUFF_DELAY_NAME
+Delay[X]
+## MSG_DEBUFF_DELAY_DESC
+Delay:[N]
+This unit cannot double.[X]
