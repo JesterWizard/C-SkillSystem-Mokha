@@ -561,6 +561,11 @@ void ExecCustomStaves(ProcPtr proc) {
         SetUnitStatus(unit_tar, NEW_UNIT_STATUS_QUICKEN);
         break;
 #endif
+#ifdef CONFIG_ITEM_INDEX_HIDE_STAFF
+    case CONFIG_ITEM_INDEX_HIDE_STAFF:
+        SetUnitStatus(unit_tar, NEW_UNIT_STATUS_HIDE);
+        break;
+#endif
 
     default:
         break;

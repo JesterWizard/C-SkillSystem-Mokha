@@ -46,6 +46,8 @@ extern void MakeTargetListForEntrap(struct Unit *unit);
 extern void DoUseEntrapStaff(struct Unit* unit, void(*func)(struct Unit*));
 extern void TryAddUnitToQuickenTargetList(struct Unit* unit);
 extern void MakeTargetListForQuicken(struct Unit *unit);
+extern void TryAddUnitToHideTargetList(struct Unit* unit);
+extern void MakeTargetListForHide(struct Unit *unit);
 
 struct SecondaryGoalWindowProc {
     PROC_HEADER;

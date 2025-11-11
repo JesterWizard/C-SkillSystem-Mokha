@@ -180,6 +180,11 @@ bool IER_Usability_Quicken(struct Unit * unit, int item)
     return HasSelectTarget(unit, MakeTargetListForQuicken);
 }
 
+bool IER_Usability_Hide(struct Unit * unit, int item)
+{
+    return HasSelectTarget(unit, MakeTargetListForHide);
+}
+
 /**
  * Effects
  */
@@ -304,6 +309,12 @@ void IER_Effect_Quicken(struct Unit *unit, int item)
 {
     DoUseAttackStaff(unit, MakeTargetListForQuicken);
 }
+
+void IER_Effect_Hide(struct Unit *unit, int item)
+{
+    DoUseAttackStaff(unit, MakeTargetListForHide);
+}
+
 
 /**
  * Actions
