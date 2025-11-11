@@ -232,3 +232,13 @@ Give a unit the[N]
 provoke status.[X]
 ## MSG_ITEM_PROVOKE_STAFF_SUBTITLE
 Select a unit to be a provoker.[X]
+
+## MSG_ITEM_PETRIFY_STAFF_NAME
+Petrify[X]
+## MSG_ITEM_PETRIFY_STAFF_DESC
+Give a unit the petrify status.[X]
+## MSG_ITEM_PETRIFY_STAFF_USEDESC
+Give a unit the[N]
+petrify status.[X]
+## MSG_ITEM_PETRIFY_STAFF_SUBTITLE
+Select a unit to be petrified.[X]

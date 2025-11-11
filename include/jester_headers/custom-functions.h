@@ -50,6 +50,8 @@ extern void TryAddUnitToHideTargetList(struct Unit* unit);
 extern void MakeTargetListForHide(struct Unit *unit);
 extern void TryAddUnitToProvokeTargetList(struct Unit* unit);
 extern void MakeTargetListForProvoke(struct Unit *unit);
+extern void TryAddUnitToPetrifyTargetList(struct Unit* unit);
+extern void MakeTargetListForPetrify(struct Unit *unit);
 
 struct SecondaryGoalWindowProc {
     PROC_HEADER;

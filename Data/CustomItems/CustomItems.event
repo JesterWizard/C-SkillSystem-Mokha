@@ -22,3 +22,4 @@
 #include "QuickenStaff/Installer.event"
 #include "HideStaff/Installer.event"
 #include "ProvokeStaff/Installer.event"
+#include "PetrifyStaff/Installer.event"

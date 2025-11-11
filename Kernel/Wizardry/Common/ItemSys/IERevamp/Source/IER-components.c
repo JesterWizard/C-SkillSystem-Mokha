@@ -190,6 +190,11 @@ bool IER_Usability_Provoke(struct Unit * unit, int item)
     return HasSelectTarget(unit, MakeTargetListForProvoke);
 }
 
+bool IER_Usability_Petrify(struct Unit * unit, int item)
+{
+    return HasSelectTarget(unit, MakeTargetListForPetrify);
+}
+
 /**
  * Effects
  */
@@ -323,6 +328,11 @@ void IER_Effect_Hide(struct Unit *unit, int item)
 void IER_Effect_Provoke(struct Unit *unit, int item)
 {
     DoUseAttackStaff(unit, MakeTargetListForProvoke);
+}
+
+void IER_Effect_Petrify(struct Unit *unit, int item)
+{
+    DoUseAttackStaff(unit, MakeTargetListForPetrify);
 }
 
 

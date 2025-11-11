@@ -83,6 +83,9 @@ inline static int StaffEXP(int weapon)
 #ifdef CONFIG_ITEM_INDEX_PROVOKE_STAFF
     case CONFIG_ITEM_INDEX_PROVOKE_STAFF:
 #endif
+#ifdef CONFIG_ITEM_INDEX_PETRIFY_STAFF
+    case CONFIG_ITEM_INDEX_PETRIFY_STAFF:
+#endif
         exp = 30;
         break;
     case ITEM_STAFF_RESCUE:

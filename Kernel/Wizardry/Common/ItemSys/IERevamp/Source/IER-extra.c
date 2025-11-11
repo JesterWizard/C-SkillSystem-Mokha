@@ -571,6 +571,11 @@ void ExecCustomStaves(ProcPtr proc) {
         SetUnitStatus(unit_tar, NEW_UNIT_STATUS_DECOY);
         break;
 #endif
+#ifdef CONFIG_ITEM_INDEX_PETRIFY_STAFF
+    case CONFIG_ITEM_INDEX_PETRIFY_STAFF:
+        SetUnitStatus(unit_tar, UNIT_STATUS_PETRIFY);
+        break;
+#endif
 
     default:
         break;
