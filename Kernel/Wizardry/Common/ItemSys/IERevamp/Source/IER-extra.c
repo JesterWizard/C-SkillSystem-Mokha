@@ -556,6 +556,11 @@ void ExecCustomStaves(ProcPtr proc) {
         SetUnitStatus(unit_tar, NEW_UNIT_STATUS_DELAY);
         break;
 #endif
+#ifdef CONFIG_ITEM_INDEX_QUICKEN_STAFF
+    case CONFIG_ITEM_INDEX_QUICKEN_STAFF:
+        SetUnitStatus(unit_tar, NEW_UNIT_STATUS_QUICKEN);
+        break;
+#endif
 
     default:
         break;

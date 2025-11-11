@@ -175,6 +175,11 @@ bool IER_Usability_Entrap(struct Unit * unit, int item)
     return HasSelectTarget(unit, MakeTargetListForEntrap);
 }
 
+bool IER_Usability_Quicken(struct Unit * unit, int item)
+{
+    return HasSelectTarget(unit, MakeTargetListForQuicken);
+}
+
 /**
  * Effects
  */
@@ -293,6 +298,11 @@ void IER_Effect_Delay(struct Unit *unit, int item)
 void IER_Effect_Entrap(struct Unit *unit, int item)
 {
     DoUseEntrapStaff(unit, MakeTargetListForEntrap);
+}
+
+void IER_Effect_Quicken(struct Unit *unit, int item)
+{
+    DoUseAttackStaff(unit, MakeTargetListForQuicken);
 }
 
 /**

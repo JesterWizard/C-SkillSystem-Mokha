@@ -329,3 +329,31 @@ void DoUseEntrapStaff(struct Unit* unit, void(*func)(struct Unit*))
         NewTargetSelection_Specialized(&gSelectInfo_WarpUnit, StaffSelectOnSelect),
         GetStringFromIndex(MSG_ITEM_ENTRAP_STAFF_SUBTITLE)); // TODO: msgid "Select which character to bring next to you."
 }
+
+void TryAddUnitToQuickenTargetList(struct Unit* unit) 
+{
+    if (!AreUnitsAllied(gSubjectUnit->index, unit->index)) {
+        return;
+    }
+
+    if (unit->statusIndex != UNIT_STATUS_NONE) {
+        return;
+    }
+
+    AddTarget(unit->xPos, unit->yPos, unit->index, 0);
+    return;
+}
+
+void MakeTargetListForQuicken(struct Unit *unit)
+{
+	int x = unit->xPos;
+    int y = unit->yPos;
+	gSubjectUnit = unit;
+	InitTargets(x, y);
+
+	BmMapFill(gBmMapRange, 0);
+#ifdef CONFIG_ITEM_INDEX_QUICKEN_STAFF
+	AddMapForItem(unit, CONFIG_ITEM_INDEX_QUICKEN_STAFF);
+#endif
+	ForEachAdjacentUnit(x, y, TryAddUnitToQuickenTargetList);
+}

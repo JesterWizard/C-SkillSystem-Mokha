@@ -19,3 +19,4 @@
 #include "PoisonStaff/Installer.event"
 #include "DelayStaff/Installer.event"
 #include "EntrapStaff/Installer.event"
+#include "QuickenStaff/Installer.event"

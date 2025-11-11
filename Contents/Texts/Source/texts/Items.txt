@@ -202,3 +202,13 @@ Teleport an enemy[N]
 to an adjacent tile.[X]
 ## MSG_ITEM_ENTRAP_STAFF_SUBTITLE
 Select a unit to entrap.[X]
+
+## MSG_ITEM_QUICKEN_STAFF_NAME
+Quicken[X]
+## MSG_ITEM_QUICKEN_STAFF_DESC
+Give a unit the brave status.[X]
+## MSG_ITEM_QUICKEN_STAFF_USEDESC
+Give a unit the[N]
+brave status.[X]
+## MSG_ITEM_QUICKEN_STAFF_SUBTITLE
+Select a unit to quicken.[X]

@@ -74,6 +74,9 @@ inline static int StaffEXP(int weapon)
 #ifdef CONFIG_ITEM_INDEX_REWARP_STAFF
     case CONFIG_ITEM_INDEX_REWARP_STAFF:
 #endif
+#ifdef CONFIG_ITEM_INDEX_QUICKEN_STAFF
+    case CONFIG_ITEM_INDEX_QUICKEN_STAFF:
+#endif
         exp = 30;
         break;
     case ITEM_STAFF_RESCUE:
