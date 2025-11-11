@@ -177,3 +177,9 @@ Delay[X]
 ## MSG_DEBUFF_DELAY_DESC
 Delay:[N]
 This unit cannot double.[X]
+
+## MSG_DEBUFF_RENEWAL_NAME
+Renewal[X]
+## MSG_DEBUFF_RENEWAL_DESC
+Renewal:[N]
+Regain 30% of max HP each turn.[X]

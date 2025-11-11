@@ -52,6 +52,8 @@ extern void TryAddUnitToProvokeTargetList(struct Unit* unit);
 extern void MakeTargetListForProvoke(struct Unit *unit);
 extern void TryAddUnitToPetrifyTargetList(struct Unit* unit);
 extern void MakeTargetListForPetrify(struct Unit *unit);
+extern void TryAddUnitToSoothTargetList(struct Unit* unit);
+extern void MakeTargetListForSooth(struct Unit *unit);
 
 struct SecondaryGoalWindowProc {
     PROC_HEADER;

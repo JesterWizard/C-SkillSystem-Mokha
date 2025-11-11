@@ -195,6 +195,11 @@ bool IER_Usability_Petrify(struct Unit * unit, int item)
     return HasSelectTarget(unit, MakeTargetListForPetrify);
 }
 
+bool IER_Usability_Sooth(struct Unit * unit, int item)
+{
+    return HasSelectTarget(unit, MakeTargetListForSooth);
+}
+
 /**
  * Effects
  */
@@ -333,6 +338,11 @@ void IER_Effect_Provoke(struct Unit *unit, int item)
 void IER_Effect_Petrify(struct Unit *unit, int item)
 {
     DoUseAttackStaff(unit, MakeTargetListForPetrify);
+}
+
+void IER_Effect_Sooth(struct Unit *unit, int item)
+{
+    DoUseAttackStaff(unit, MakeTargetListForSooth);
 }
 
 

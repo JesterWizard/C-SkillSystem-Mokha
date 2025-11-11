@@ -3437,4 +3437,24 @@ const struct ItemData gItemData_New[255] = {
 		.attributes = IA_STAFF,
 	},
 #endif
+#ifdef CONFIG_ITEM_INDEX_SOOTH_STAFF
+	[CONFIG_ITEM_INDEX_SOOTH_STAFF] = {
+		.nameTextId = MSG_ITEM_SOOTH_STAFF_NAME,
+		.descTextId = MSG_ITEM_SOOTH_STAFF_DESC,
+		.useDescTextId = MSG_ITEM_SOOTH_STAFF_USEDESC,
+		.number = CONFIG_ITEM_INDEX_SOOTH_STAFF,
+		.weaponType = ITYPE_STAFF,
+		.pStatBonuses = NULL,
+		.maxUses = 5,
+		.encodedRange = 0x13,
+		.costPerUse = 8000,
+		.iconId = CONFIG_ICON_INDEX_SOOTH_STAFF,
+		.useEffectId = IER_STAFF_SOOTH,
+		.weaponRank = WPN_EXP_C,
+		.weaponExp = 4,
+		.hit = 100,
+		.weight = 5,
+		.attributes = IA_STAFF,
+	},
+#endif
 };

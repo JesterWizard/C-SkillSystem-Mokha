@@ -4,6 +4,7 @@
 #include "skill-system.h"
 #include "constants/skills.h"
 #include "strmag.h"
+#include "debuff.h"
 #include "jester_headers/custom-functions.h"
 
 extern int (*gpExternalPrePhaseHealCalc)(int cur, struct Unit *unit);
@@ -120,6 +121,11 @@ STATIC_DECLAR int GetPrePhaseHealAmount(struct Unit *unit)
     if (SkillTester(unit, SID_GoodyBasket))
         ret += Div(GetUnitMaxHp(unit) * unit->lck, 100);
 #endif
+
+    if (GetUnitStatusIndex(unit) == NEW_UNIT_STATUS_RENEWAL)
+	{
+        ret += Div(GetUnitMaxHp(unit) * SKILL_EFF0(SID_Renewal), 100);
+	}
 
 	if (gpExternalPrePhaseHealCalc)
 		ret = gpExternalPrePhaseHealCalc(ret, unit);
