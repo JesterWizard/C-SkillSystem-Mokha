@@ -252,3 +252,13 @@ Give a unit the[N]
 sooth status.[X]
 ## MSG_ITEM_SOOTH_STAFF_SUBTITLE
 Select a unit to be soothed.[X]
+
+## MSG_ITEM_ENFEEBLE_STAFF_NAME
+Enfeeble[X]
+## MSG_ITEM_ENFEEBLE_STAFF_DESC
+Give a unit the enfeeble status.[X]
+## MSG_ITEM_ENFEEBLE_STAFF_USEDESC
+Give a unit the[N]
+enfeeble status.[X]
+## MSG_ITEM_ENFEEBLE_STAFF_SUBTITLE
+Select a unit to be enfeebled.[X]

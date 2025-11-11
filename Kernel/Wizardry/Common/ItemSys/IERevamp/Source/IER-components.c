@@ -200,6 +200,11 @@ bool IER_Usability_Sooth(struct Unit * unit, int item)
     return HasSelectTarget(unit, MakeTargetListForSooth);
 }
 
+bool IER_Usability_Enfeeble(struct Unit * unit, int item)
+{
+    return HasSelectTarget(unit, MakeTargetListForEnfeeble);
+}
+
 /**
  * Effects
  */
@@ -343,6 +348,11 @@ void IER_Effect_Petrify(struct Unit *unit, int item)
 void IER_Effect_Sooth(struct Unit *unit, int item)
 {
     DoUseAttackStaff(unit, MakeTargetListForSooth);
+}
+
+void IER_Effect_Enfeeble(struct Unit *unit, int item)
+{
+    DoUseAttackStaff(unit, MakeTargetListForEnfeeble);
 }
 
 

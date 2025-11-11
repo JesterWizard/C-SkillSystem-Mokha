@@ -24,3 +24,4 @@
 #include "ProvokeStaff/Installer.event"
 #include "PetrifyStaff/Installer.event"
 #include "SoothStaff/Installer.event"
+#include "EnfeebleStaff/Installer.event"

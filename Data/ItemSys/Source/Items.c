@@ -3457,4 +3457,24 @@ const struct ItemData gItemData_New[255] = {
 		.attributes = IA_STAFF,
 	},
 #endif
+#ifdef CONFIG_ITEM_INDEX_ENFEEBLE_STAFF
+	[CONFIG_ITEM_INDEX_ENFEEBLE_STAFF] = {
+		.nameTextId = MSG_ITEM_ENFEEBLE_STAFF_NAME,
+		.descTextId = MSG_ITEM_ENFEEBLE_STAFF_DESC,
+		.useDescTextId = MSG_ITEM_ENFEEBLE_STAFF_USEDESC,
+		.number = CONFIG_ITEM_INDEX_ENFEEBLE_STAFF,
+		.weaponType = ITYPE_STAFF,
+		.pStatBonuses = NULL,
+		.maxUses = 5,
+		.encodedRange = 0x13,
+		.costPerUse = 8000,
+		.iconId = CONFIG_ICON_INDEX_ENFEEBLE_STAFF,
+		.useEffectId = IER_STAFF_ENFEEBLE,
+		.weaponRank = WPN_EXP_C,
+		.weaponExp = 4,
+		.hit = 100,
+		.weight = 5,
+		.attributes = IA_STAFF,
+	},
+#endif
 };

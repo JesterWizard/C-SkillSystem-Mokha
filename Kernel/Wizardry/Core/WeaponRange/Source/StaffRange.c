@@ -469,3 +469,31 @@ void MakeTargetListForSooth(struct Unit *unit)
 #endif
 	ForEachAdjacentUnit(x, y, TryAddUnitToSoothTargetList);
 }
+
+void TryAddUnitToEnfeebleTargetList(struct Unit* unit) 
+{
+    if (AreUnitsAllied(gSubjectUnit->index, unit->index)) {
+        return;
+    }
+
+    if (unit->statusIndex != UNIT_STATUS_NONE) {
+        return;
+    }
+
+    AddTarget(unit->xPos, unit->yPos, unit->index, 0);
+    return;
+}
+
+void MakeTargetListForEnfeeble(struct Unit *unit)
+{
+	int x = unit->xPos;
+    int y = unit->yPos;
+	gSubjectUnit = unit;
+	InitTargets(x, y);
+
+	BmMapFill(gBmMapRange, 0);
+#ifdef CONFIG_ITEM_INDEX_ENFEEBLE_STAFF
+	AddMapForItem(unit, CONFIG_ITEM_INDEX_ENFEEBLE_STAFF);
+#endif
+	ForEachAdjacentUnit(x, y, TryAddUnitToEnfeebleTargetList);
+}
