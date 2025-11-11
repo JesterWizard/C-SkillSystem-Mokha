@@ -310,6 +310,7 @@
 // SID_SliceNDice
 // SID_Symbiosis
 // SID_Residium
+// SID_Malidiction
 
 //////// POST-BATTLE SKILL
 // SID_Canto

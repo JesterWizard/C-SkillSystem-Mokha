@@ -33,6 +33,17 @@ void SetUnitStatus(struct Unit *unit, int status)
     }
 #endif
 
+#if defined(SID_Malidiction) && (COMMON_SKILL_VALID(SID_Malidiction))
+    if (SkillTester(gSubjectUnit, SID_Malidiction))
+    {
+		for (int i = 0; i < (int)ARRAY_COUNT(buffs); i++)
+		{
+			if (debuffs[i] == status)
+				duration += 1;
+		}
+    }
+#endif
+
 		if (duration == 0)
 			duration = 3;
 

@@ -533,3 +533,10 @@ Residium[X]
 Residium:[N]
 Add +1 turn to any beneficial[N]
 status this unit gains.[X]
+
+## MSG_SKILL_Malidiction_NAME
+Malidiction[X]
+## MSG_SKILL_Malidiction_DESC
+Malidiction:[N]
+Add +1 turn to negative statuses[N]
+inflicted by this unit.[X]
