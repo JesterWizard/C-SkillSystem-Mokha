@@ -385,3 +385,31 @@ void MakeTargetListForHide(struct Unit *unit)
 #endif
 	ForEachAdjacentUnit(x, y, TryAddUnitToHideTargetList);
 }
+
+void TryAddUnitToProvokeTargetList(struct Unit* unit) 
+{
+    if (!AreUnitsAllied(gSubjectUnit->index, unit->index)) {
+        return;
+    }
+
+    if (unit->statusIndex != UNIT_STATUS_NONE) {
+        return;
+    }
+
+    AddTarget(unit->xPos, unit->yPos, unit->index, 0);
+    return;
+}
+
+void MakeTargetListForProvoke(struct Unit *unit)
+{
+	int x = unit->xPos;
+    int y = unit->yPos;
+	gSubjectUnit = unit;
+	InitTargets(x, y);
+
+	BmMapFill(gBmMapRange, 0);
+#ifdef CONFIG_ITEM_INDEX_HIDE_STAFF
+	AddMapForItem(unit, CONFIG_ITEM_INDEX_PROVOKE_STAFF);
+#endif
+	ForEachAdjacentUnit(x, y, TryAddUnitToProvokeTargetList);
+}

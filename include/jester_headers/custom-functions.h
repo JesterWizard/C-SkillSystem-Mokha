@@ -48,6 +48,8 @@ extern void TryAddUnitToQuickenTargetList(struct Unit* unit);
 extern void MakeTargetListForQuicken(struct Unit *unit);
 extern void TryAddUnitToHideTargetList(struct Unit* unit);
 extern void MakeTargetListForHide(struct Unit *unit);
+extern void TryAddUnitToProvokeTargetList(struct Unit* unit);
+extern void MakeTargetListForProvoke(struct Unit *unit);
 
 struct SecondaryGoalWindowProc {
     PROC_HEADER;

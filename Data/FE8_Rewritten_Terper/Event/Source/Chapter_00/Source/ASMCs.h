@@ -32,7 +32,7 @@ void SetGameOptions_Chapter0()
 
     unit_eirika->ranks[ITYPE_STAFF] = WPN_EXP_A;
     unit_eirika->items[0] = MakeNewItem(ITEM_SWORD_IRON);
-    unit_eirika->items[1] = MakeNewItem(CONFIG_ITEM_INDEX_HIDE_STAFF);
+    unit_eirika->items[1] = MakeNewItem(CONFIG_ITEM_INDEX_PROVOKE_STAFF);
     // unit_eirika->items[2] = MakeNewItem(CONFIG_ITEM_INDEX_FORGE_STAFF);
     // unit_eirika->items[3] = MakeNewItem(CONFIG_ITEM_INDEX_REWARP_STAFF);
 

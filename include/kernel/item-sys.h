@@ -69,6 +69,9 @@ enum chax_ierevamp_use_effects {
 #ifdef CONFIG_ITEM_INDEX_HIDE_STAFF
     IER_STAFF_HIDE,
 #endif
+#ifdef CONFIG_ITEM_INDEX_PROVOKE_STAFF
+    IER_STAFF_PROVOKE,
+#endif
 
 
 	/**
@@ -258,6 +261,7 @@ IER_DECLEARE_Usability(IER_Usability_Delay);
 IER_DECLEARE_Usability(IER_Usability_Entrap);
 IER_DECLEARE_Usability(IER_Usability_Quicken);
 IER_DECLEARE_Usability(IER_Usability_Hide);
+IER_DECLEARE_Usability(IER_Usability_Provoke);
 
 IER_DECLEARE_Effect(IER_Effect_AdjacentHeal);
 IER_DECLEARE_Effect(IER_Effect_RangedHeal);
@@ -283,6 +287,7 @@ IER_DECLEARE_Effect(IER_Effect_Delay);
 IER_DECLEARE_Effect(IER_Effect_Entrap);
 IER_DECLEARE_Effect(IER_Effect_Quicken);
 IER_DECLEARE_Effect(IER_Effect_Hide);
+IER_DECLEARE_Effect(IER_Effect_Provoke);
 
 IER_DECLEARE_Action(IER_Action_StandardHeal);
 IER_DECLEARE_Action(IER_Action_StatusStaff);
@@ -315,6 +320,7 @@ IER_DECLEARE_Action(IER_Action_Delay);
 IER_DECLEARE_Action(IER_Action_Entrap);
 IER_DECLEARE_Action(IER_Action_Quicken);
 IER_DECLEARE_Action(IER_Action_Hide);
+IER_DECLEARE_Action(IER_Action_Provoke);
 
 IER_DECLEARE_PrepEffect(IER_PrepEffect_StatBooster);
 IER_DECLEARE_PrepEffect(IER_PrepEffect_Promotion);

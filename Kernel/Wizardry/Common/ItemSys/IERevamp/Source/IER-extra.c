@@ -566,6 +566,11 @@ void ExecCustomStaves(ProcPtr proc) {
         SetUnitStatus(unit_tar, NEW_UNIT_STATUS_HIDE);
         break;
 #endif
+#ifdef CONFIG_ITEM_INDEX_PROVOKE_STAFF
+    case CONFIG_ITEM_INDEX_PROVOKE_STAFF:
+        SetUnitStatus(unit_tar, NEW_UNIT_STATUS_DECOY);
+        break;
+#endif
 
     default:
         break;
