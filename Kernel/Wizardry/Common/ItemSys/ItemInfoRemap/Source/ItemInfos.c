@@ -1100,3 +1100,8 @@ LYN_REPLACE_CHECK(GetItemMaxRange);
 int GetItemMaxRange(int item) {
     return GetItemData(ITEM_INDEX(item))->encodedRange & 0xF;
 }
+
+LYN_REPLACE_CHECK(GetItemMinRange);
+int GetItemMinRange(int item) {
+    return GetItemData(ITEM_INDEX(item))->encodedRange >> 4;
+}
