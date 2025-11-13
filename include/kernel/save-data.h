@@ -42,39 +42,23 @@ struct EmsPackedSavUnit {
 	/* 00 */ u8 jid;
 	/* 01 */ u8 pid;
 	/* 02 */ u8 max_hp;
-	/* 03 */ u8 pow : 7;
-			 u8 mag : 7;
-			 u8 skl : 7;
-			 u8 spd : 7;
-			 u8 lck : 7;
-			 u8 def : 7;
-			 u8 res : 7;
-			 u8 mov : 5;
-			 u8 con : 5;
+	/* 03 */ u8 pow, mag, skl, spd, lck, def, res, mov, con;
 	/* 0C */ u32 level : 5;
 			 u32 exp   : 7;
 			 u32 xPos  : 6;
 			 u32 yPos  : 6;
 	/* 0F */ u8 ranks[0x8];
 	/* 17 */ u8 skills[UNIT_SUPPORT_MAX_COUNT];
-	/* 1F */ u16 items[UNIT_ITEM_COUNT];
-	/* 29 */ u32 state;
-	/* 2D */
+	/* 1E */ u16 items[UNIT_ITEM_COUNT];
+	/* 28 */ u32 state;
+	/* 2C */
 } BITPACKED;
 
 struct EmsPackedSusUnit {
 	/* 00 */ u8 jid;
 	/* 01 */ u8 pid;
 	/* 02 */ u8 max_hp;
-	/* 03 */ u8 pow : 7;
-			 u8 mag : 7;
-			 u8 skl : 7;
-			 u8 spd : 7;
-			 u8 lck : 7;
-			 u8 def : 7;
-			 u8 res : 7;
-			 u8 mov : 5;
-			 u8 con : 5;
+	/* 03 */ u8 pow, mag, skl, spd, lck, def, res, mov, con;
 	/* 0C */ u32 level : 5;
 			 u32 exp   : 7;
 			 u32 xPos  : 6;
@@ -121,13 +105,13 @@ struct EmsPackedSusUnit {
 				} ai;
 			} pad;
 
-	/* 1D */ u8 ranks[0x8];
+	/* 1C */ u8 ranks[0x8];
 
-	/* 25 */ u32 state;
-	/* 29 */ u16 items[UNIT_ITEM_COUNT];
+	/* 24 */ u32 state;
+	/* 28 */ u16 items[UNIT_ITEM_COUNT];
 
-	/* 33 */ u8 _u3A;
-	/* 34 */ u8 _u3B;
+	/* 32 */ u8 _u3A;
+	/* 33 */ u8 _u3B;
 } BITPACKED;
 
 #define SIZE_OF_SAV_UNIT_PACK 0x2C
