@@ -399,7 +399,7 @@ struct MapChange
     /* 08 */ const void* data;
 };
 
-enum { UNIT_SUPPORT_MAX_COUNT = 7 };
+enum { UNIT_SUPPORT_MAX_COUNT = 8 }; // Freed up some bits in the stats and movBonus in the unit struct to extend this from 7 to 8
 
 enum
 {

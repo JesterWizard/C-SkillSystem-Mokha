@@ -48,7 +48,7 @@ struct EmsPackedSavUnit {
 			 u32 xPos  : 6;
 			 u32 yPos  : 6;
 	/* 0F */ u8 ranks[0x8];
-	/* 17 */ u8 skills[7];
+	/* 17 */ u8 skills[UNIT_SUPPORT_MAX_COUNT];
 	/* 1E */ u16 items[UNIT_ITEM_COUNT];
 	/* 28 */ u32 state;
 	/* 2C */
@@ -74,7 +74,7 @@ struct EmsPackedSusUnit {
 
 	/* 10 */ union {
 				struct {
-					u8 skills[7];
+					u8 skills[UNIT_SUPPORT_MAX_COUNT];
 					u8 cur_hp;
 					u8 ballista;
 

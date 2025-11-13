@@ -156,12 +156,12 @@ struct Unit
     /* 12 */ s8 maxHP;
     /* 13 */ s8 curHP;
 #endif
-    /* 14 */ s8 pow;
-    /* 15 */ s8 skl;
-    /* 16 */ s8 spd;
-    /* 17 */ s8 def;
-    /* 18 */ s8 res;
-    /* 19 */ s8 lck;
+    /* 14 */ s8 pow : 7; // Free up a bit so the range becomes -64/63
+    /* 15 */ s8 skl : 7; // Free up a bit so the range becomes -64/63
+    /* 16 */ s8 spd : 7; // Free up a bit so the range becomes -64/63
+    /* 17 */ s8 def : 7; // Free up a bit so the range becomes -64/63
+    /* 18 */ s8 res : 7; // Free up a bit so the range becomes -64/63
+    /* 19 */ s8 lck : 7; // Free up a bit so the range becomes -64/63
 #ifdef CONFIG_MISC_UNIT_COUNTERS
     /* 1A */ u8 conBonus : 5;
     /* 1A */ u8 counters : 3;
@@ -170,7 +170,7 @@ struct Unit
 #endif
     /* 1B */ u8 rescue;
     /* 1C */ u8 ballistaIndex;
-    /* 1D */ s8 movBonus;
+    /* 1D */ s8 movBonus: 5; // Free up 3 bit so the range becomes -16/15;
 
     /* 1E */ u16 items[UNIT_ITEM_COUNT];
     /* 28 */ u8 ranks[8];

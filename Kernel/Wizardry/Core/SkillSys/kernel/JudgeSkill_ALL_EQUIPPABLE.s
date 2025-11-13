@@ -81,7 +81,7 @@ _SkillTester_Generic:
     
     @ Load the skill value (need up to 2 bytes to get 10 bits)
     ldrb    r11, [r1, r12]       @ Load first byte
-    cmp     r12, #6              @ Check if we can safely load next byte
+    cmp     r12, #7              @ Check if we can safely load next byte
     bge     .Lsingle_byte        @ If offset >= 6, only use single byte
     
     add     r12, r12, #1         @ r12 = next byte offset
@@ -107,7 +107,7 @@ _SkillTester_Generic:
     
     @ Move to next skill slot
     add     r3, r3, #1
-    cmp     r3, #5               @ Check if we've processed all 5 slots
+    cmp     r3, #6               @ Check if we've processed all 6 slots
     blt     .Lskill_loop
     
     @ Not found, continue to other skill sources
