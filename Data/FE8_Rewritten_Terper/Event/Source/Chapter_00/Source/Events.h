@@ -1,6 +1,7 @@
 static const EventScr EventScr_Beginning[] = {
-    LOAD_WAIT(Renais_Castle_Allies)
     LOAD_MAP_XY(17, 13, CHAPTER_16)
+    STAL(16)
+    LOAD_WAIT(Renais_Castle_Allies)
     FADE_TO_BLACK(16)
     MUSC(SONG_RAID)
     BROWNBOXTEXT(BB_Renais_Castle, 2, 2)
