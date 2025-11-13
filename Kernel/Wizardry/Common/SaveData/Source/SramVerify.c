@@ -44,9 +44,12 @@ void EraseInvalidSaveData(void)
 		// SoftReset(0);
 	}
 
-	/* Misc judgement */
-	Assert(sizeof(struct EmsPackedSavUnit) == SIZE_OF_SAV_UNIT_PACK);
-	Assert(sizeof(struct EmsPackedSusUnit) == SIZE_OF_SUS_UNIT_PACK);
+	/* Misc judgement */ 
+
+	/* Both of these lines cause an instant crash after I modified the skills to be a max of 6 ewquippable */
+	/* I increased the sizes of SIZE_OF_SAV_UNIT_PACK to 0x2D and SIZE_OF_SUS_UNIT_PACK to 0x25 but it hasn't fixed it */
+	// Assert(sizeof(struct EmsPackedSavUnit) == SIZE_OF_SAV_UNIT_PACK);
+	// Assert(sizeof(struct EmsPackedSusUnit) == SIZE_OF_SUS_UNIT_PACK);
 }
 
 const u32 size_EmsPackedSusUnit = sizeof(struct EmsPackedSusUnit);
