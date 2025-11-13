@@ -10,6 +10,7 @@
 #include "bmunit.h"
 #include "lvup.h"
 #include "constants/texts.h"
+#include "gaiden-magic.h"
 #include "jester_headers/custom-functions.h"
 
 typedef int (*HealAmountGetterFunc_t)(int old, struct Unit *actor, struct Unit *target);
@@ -403,8 +404,25 @@ void DrawUnitHpText(struct Text* text, struct Unit* unit) {
 
     Text_InsertDrawString(text, 0, 3, GetStringFromIndex(0x4E9)); // TODO: msgid "HP"
 
+    NoCashGBAPrintf("Items lot index is: %d", gActionData.itemSlotIndex);
+
 #ifdef CONFIG_SHOW_HEAL_AMOUNT
-    int healedHP = GetUnitCurrentHp(unit) + GetUnitItemHealAmount(gSubjectUnit, gSubjectUnit->items[gActionData.itemSlotIndex]);
+    int healAmount = GetUnitItemHealAmount(gSubjectUnit, gSubjectUnit->items[gActionData.itemSlotIndex]);
+
+    if (healAmount == 0)
+    {
+        switch (gActionData.itemSlotIndex)
+        {
+	    case CHAX_BUISLOT_GAIDEN_BMAG1 ... CHAX_BUISLOT_GAIDEN_BMAG7:
+	    case CHAX_BUISLOT_GAIDEN_WMAG1 ... CHAX_BUISLOT_GAIDEN_WMAG7:
+		    healAmount = GetUnitItemHealAmount(gSubjectUnit, ITEM_INDEX(GetGaidenMagicItem(gSubjectUnit, gActionData.itemSlotIndex)) | (0xFF << 8));
+            break;
+        default:
+            break;
+        }
+    }
+
+    int healedHP = GetUnitCurrentHp(unit) + healAmount;
     int colorId = TEXT_COLOR_SYSTEM_BLUE;
 
     /* Boost the healed HP amount in the preview window by 50% */
