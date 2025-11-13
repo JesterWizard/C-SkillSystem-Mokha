@@ -100,7 +100,7 @@ STATIC_DECLAR void NewPackSaveUnit(struct Unit *src, struct EmsPackedSavUnit *ds
 		dst->ranks[i] = src->ranks[i];
 
 	/* With BWL support patch */
-	for (i = 0; i < UNIT_SUPPORT_MAX_COUNT; i++)
+	for (i = 0; i < 7; i++)
 		dst->skills[i] = src->supports[i];
 
 	for (i = 0; i < 0x5; i++)
@@ -136,7 +136,7 @@ STATIC_DECLAR void NewUnpackSaveUnit(struct EmsPackedSavUnit *src, struct Unit *
 	for (i = 0; i < 8; i++)
 		dst->ranks[i] = src->ranks[i];
 
-	for (i = 0; i < UNIT_SUPPORT_MAX_COUNT; i++)
+	for (i = 0; i < 7; i++)
 		dst->supports[i] = src->skills[i];
 
 	for (i = 0; i < 0x5; i++)

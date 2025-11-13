@@ -18,7 +18,7 @@
 #endif
 
 #ifdef CONFIG_TURN_ON_ALL_SKILLS
-#define UNIT_RAM_SKILLS_LEN 6
+#define UNIT_RAM_SKILLS_LEN 5
 #else
 #define UNIT_RAM_SKILLS_LEN 7
 #endif
@@ -31,7 +31,7 @@ static inline u16 GetUnitSkillIndex(const struct Unit* unit, int index) {
 	if (index < 0 || index >= UNIT_RAM_SKILLS_LEN) return 0xFFFF;
 
 	u64 buffer = 0;
-	for (int i = 0; i < UNIT_SUPPORT_MAX_COUNT; ++i)
+	for (int i = 0; i < 7; ++i)
 		buffer |= ((u64)unit->supports[i]) << (8 * i);
 
 	return (buffer >> (index * 10)) & 0x3FF;
@@ -41,13 +41,13 @@ static inline void SetUnitSkillIndex(struct Unit* unit, int index, u16 sid) {
 	if (index < 0 || index >= UNIT_RAM_SKILLS_LEN) return;
 
 	u64 buffer = 0;
-	for (int i = 0; i < UNIT_SUPPORT_MAX_COUNT; ++i)
+	for (int i = 0; i < 7; ++i)
 		buffer |= ((u64)unit->supports[i]) << (8 * i);
 
 	buffer &= ~(((u64)0x3FF) << (index * 10));
 	buffer |= ((u64)(sid & 0x3FF)) << (index * 10);
 
-	for (int i = 0; i < UNIT_SUPPORT_MAX_COUNT; ++i)
+	for (int i = 0; i < 7; ++i)
 		unit->supports[i] = (buffer >> (8 * i)) & 0xFF;
 }
 
@@ -107,8 +107,7 @@ enum SkillInfoListss {
     (((u64)(unit)->supports[3]) << 24) |           \
     (((u64)(unit)->supports[4]) << 32) |           \
     (((u64)(unit)->supports[5]) << 40) |           \
-    (((u64)(unit)->supports[6]) << 48) |           \
-    (((u64)(unit)->supports[7]) << 56)) >> ((i) * 10)) & 0x3FF)
+    (((u64)(unit)->supports[6]) << 48)) >> ((i) * 10)) & 0x3FF)
 
 #define UNIT_RAM_SKILLS(unit) ((u16 *)((unit)->supports))
 
@@ -236,7 +235,7 @@ struct PrepEquipSkillList* GetPrepEquipSkillList(struct Unit* unit);
 
 /* Game data */
 #ifdef CONFIG_TURN_ON_ALL_SKILLS
-#define SKILL_ROM_DATA_AMT 6
+#define SKILL_ROM_DATA_AMT 5
 #else
 #define SKILL_ROM_DATA_AMT 7 /* Unit can learn 7 skills on lv0/5/10/15/20 */
 #endif
@@ -301,7 +300,7 @@ extern const EventScr EventScr_MuSkillAnim[];
 /**
  * Skill menu
  */
-#define UNIT_MENU_SKILL_AMOUNT 6
+#define UNIT_MENU_SKILL_AMOUNT 4
 extern u16 UnitMenuSkills[UNIT_MENU_SKILL_AMOUNT];
 extern struct MenuItemDef const* const gSkillMenuInfos[MAX_SKILL_NUM + 1];
 extern struct MenuItemDef const* const* const gpSkillMenuInfos;

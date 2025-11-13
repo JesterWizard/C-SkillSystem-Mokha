@@ -65,19 +65,6 @@ STATIC_DECLAR const struct MenuItemDef sUnitSkillMenuItems[] = {
 		MenuSkills_Hover,
 		MenuSkills_Unhover
 	},
-	{
-		"　特技",
-		0x4EC,
-		4,
-		TEXT_COLOR_SYSTEM_WHITE,
-		0x57,
-		MenuSkills_Usability,
-		MenuSkills_OnDraw,
-		MenuSkills_OnSelected,
-		MenuSkills_Idle,
-		MenuSkills_Hover,
-		MenuSkills_Unhover
-	},
 	MenuItemsEnd
 };
 

@@ -381,16 +381,10 @@ struct SkillList *GetUnitSkillList(struct Unit *unit)
 {
 	struct SkillList *list = SkillListGeneric;
 
-    /* 
-    ** JESTER - These seem to intefere with my 10 bit, 6 equippable skill indexes in the stat screen, so I'm disabling
-    ** will revisit if it becomes an issue
-    */
-	// if (unit == &gBattleActor.unit)
-	// 	list = SkillListBattleActor;
-	// else if (unit == &gBattleTarget.unit)
-	// 	list = SkillListBattleTarget;
-
-    GenerateSkillListExt(unit, list);
+	if (unit == &gBattleActor.unit)
+		list = SkillListBattleActor;
+	else if (unit == &gBattleTarget.unit)
+		list = SkillListBattleTarget;
 
 	if (!JudgeUnitList(unit, &list->header)) {
 		Errorf("Ops! regenerate skilllist: uid=%02X, pid=%02X", unit->index & 0xFF, UNIT_CHAR_ID(unit));
