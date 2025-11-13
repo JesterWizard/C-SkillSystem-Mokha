@@ -1287,7 +1287,7 @@ void EditSkillsIdle(DebuggerProc* proc) {
 	u16 keys = sKeyStatusBuffer.repeatedKeys; 
     if (keys & B_BUTTON) {
         // Otherwise, close the Supports/Skills window
-        struct HelpBoxProc* proc_helpbox = (void*) Proc_Find(gProcScr_HelpBox);
+        struct HelpBoxProc* proc_helpbox = (void*)Proc_Find(gProcScr_HelpBox);
         if (proc_helpbox)
             CloseHelpBox();
         else
@@ -1330,9 +1330,8 @@ void EditSkillsIdle(DebuggerProc* proc) {
 
             if (Proc_Find(gProcScr_HelpBox)) {
                 const u16 skillId = proc->tmp[proc->id];
-                u16 msg = GetSkillDescMsg(skillId);
-                char * skillDesc = GetStringFromIndex(msg); // Clear any leftover tile data     
-                StartHelpBoxString(11 * 8, 10 * 8, skillDesc);
+                LoadHelpBoxGfx(NULL, -1);
+                StartHelpBox(11 * 8, 10 * 8, GetSkillDescMsg(skillId));
             }
         }
         if (keys & DPAD_DOWN) {
@@ -1347,18 +1346,15 @@ void EditSkillsIdle(DebuggerProc* proc) {
 
             if (Proc_Find(gProcScr_HelpBox)) {
                 const u16 skillId = proc->tmp[proc->id];
-                u16 msg = GetSkillDescMsg(skillId);
-                char * skillDesc = GetStringFromIndex(msg); // Clear any leftover tile data     
-                StartHelpBoxString(11 * 8, 10 * 8, skillDesc);
+                LoadHelpBoxGfx(NULL, -1);
+                StartHelpBox(11 * 8, 10 * 8, GetSkillDescMsg(skillId));
             }
         }
 
         if (keys & R_BUTTON) {
             const u16 skillId = proc->tmp[proc->id];
-            u16 msg = GetSkillDescMsg(skillId);
-            char * skillDesc = GetStringFromIndex(msg); // Clear any leftover tile data     
-            LoadHelpBoxGfx(NULL, -1); // TODO: default constants?
-            StartHelpBoxString(11 * 8, 10 * 8, skillDesc);
+            LoadHelpBoxGfx(NULL, -1);
+            StartHelpBox(11 * 8, 10 * 8, GetSkillDescMsg(skillId));
         }
     }
     else { 
@@ -1379,9 +1375,8 @@ void EditSkillsIdle(DebuggerProc* proc) {
 
             if (Proc_Find(gProcScr_HelpBox)) {
                 const u16 skillId = proc->tmp[proc->id];
-                u16 msg = GetSkillDescMsg(skillId);
-                char * skillDesc = GetStringFromIndex(msg); // Clear any leftover tile data     
-                StartHelpBoxString(11 * 8, 10 * 8, skillDesc);
+                LoadHelpBoxGfx(NULL, -1);
+                StartHelpBox(11 * 8, 10 * 8, GetSkillDescMsg(skillId));
             }
 
         }
@@ -1392,19 +1387,16 @@ void EditSkillsIdle(DebuggerProc* proc) {
 
             if (Proc_Find(gProcScr_HelpBox)) {
                 const u16 skillId = proc->tmp[proc->id];
-                u16 msg = GetSkillDescMsg(skillId);
-                char * skillDesc = GetStringFromIndex(msg); // Clear any leftover tile data     
-                StartHelpBoxString(11 * 8, 10 * 8, skillDesc);
+                LoadHelpBoxGfx(NULL, -1);
+                StartHelpBox(11 * 8, 10 * 8, GetSkillDescMsg(skillId));
             }
             
         }
 
         if (keys & R_BUTTON) {
             const u16 skillId = proc->tmp[proc->id];
-            u16 msg = GetSkillDescMsg(skillId);
-            char * skillDesc = GetStringFromIndex(msg); // Clear any leftover tile data     
-            LoadHelpBoxGfx(NULL, -1); // TODO: default constants?
-            StartHelpBoxString(11 * 8, 10 * 8, skillDesc);
+            LoadHelpBoxGfx(NULL, -1);
+            StartHelpBox(11 * 8, 10 * 8, GetSkillDescMsg(skillId));
         }
     } 
 } 
