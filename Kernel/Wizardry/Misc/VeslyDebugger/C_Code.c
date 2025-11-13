@@ -1823,7 +1823,6 @@ void RedrawItemMenu(DebuggerProc* proc) {
 
 }
 
-static int GetMaxItems(void); 
 void EditItemsIdle(DebuggerProc* proc) { 
 	//DisplayVertUiHand(CursorLocationTable[proc->digit].x, CursorLocationTable[proc->digit].y); // 6 is the tile of the downwards hand 	
 	u16 keys = sKeyStatusBuffer.repeatedKeys; 
@@ -1839,7 +1838,7 @@ void EditItemsIdle(DebuggerProc* proc) {
     if (proc->editing) { 
         if (proc->editing == 1) { 
             DisplayVertUiHand(CursorLocationTable[proc->digit].x, (Y_HAND + (proc->id * 2)) * 8); 	
-            int max = GetMaxItems(); 
+            int max = 0xFF; 
             int min = 0; 
             int max_digits = GetMaxDigits(max, 1); 
             int val = 0; 
@@ -2404,19 +2403,6 @@ int GetMiscMin(int id) {
         default: 
     } 
     return result; 
-} 
-
-static int GetMaxItems(void) {  
-	const struct ItemData* table = GetItemData(1); 
-    int c = 255; 
-	for (int i = 1; i < 255; i++) { 
-		if (table->number != i) { table--; break; } 
-		table++; 
-	} 
-    c = table->number;
-	if (c > 255) { c = 255; } 
-	if (c < 1) { c = 1; } 
-	return table->number; 
 } 
 
 static int GetMaxClasses(void) { 
