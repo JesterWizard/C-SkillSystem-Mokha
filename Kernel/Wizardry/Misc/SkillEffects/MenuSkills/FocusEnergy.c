@@ -50,7 +50,7 @@ static u8 FocusEnergy_OnSelectTarget(ProcPtr proc, struct SelectTarget* target)
 
 	struct Unit* unit = GetUnit(target->uid);
 
-	SetUnitStatusIndex(unit, NEW_UNIT_STATUS_FOCUS_ENERGY);
+	SetUnitStatusIndex(unit, UNIT_STATUS_CRIT);
 
 	return TARGETSELECTION_ACTION_ENDFAST | TARGETSELECTION_ACTION_END | TARGETSELECTION_ACTION_SE_6A | TARGETSELECTION_ACTION_CLEARBGS;
 }
