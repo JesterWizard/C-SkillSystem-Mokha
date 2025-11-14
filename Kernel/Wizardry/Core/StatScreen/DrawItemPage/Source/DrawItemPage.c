@@ -283,6 +283,44 @@ void DisplayPage1(void)
 		DrawItemPage_ShieldEquipLine();
 }
 
+// Column X positions
+#define COL_BMAG   166
+#define COL_WMAG   102
+
+// Row layout
+#define ROW_START   40
+#define ROW_STEP    16
+#define ROW_COUNT    5
+
+// Returns row index 0–4, or -1 if not on a valid row
+static inline int GetGaidenMagicStatusRowIndex(int y) {
+    int delta = y - ROW_START;
+    if (delta < 0) return -1;
+
+    if (delta % ROW_STEP != 0) return -1; // not aligned
+    int i = delta / ROW_STEP;
+
+    return (i < ROW_COUNT) ? i : -1;
+}
+
+static inline bool IsGaidenMagicItemMissingAtCursor(struct HelpBoxProc *proc, struct GaidenMagicList *list)
+{
+    int row = GetGaidenMagicStatusRowIndex(proc->info->yDisplay);
+    if (row < 0)
+        return false;  // Not on a valid row
+
+    int x = proc->info->xDisplay;
+
+    if (x == COL_BMAG) {
+        return (list->bmags[row] == ITEM_NONE);
+    }
+    else if (x == COL_WMAG) {
+        return (list->wmags[row] == ITEM_NONE);
+    }
+
+    return false; // Not pointing at a valid column
+}
+
 /**
  * Helpbox
  */
@@ -306,36 +344,9 @@ void HbRedirect_SSItem(struct HelpBoxProc *proc)
 	if (gpKernelDesigerConfig->gaiden_magic_en)
 	{
 		struct GaidenMagicList *list_gaiden = GetGaidenMagicList(gStatScreen.unit);
-		if (list_gaiden->wmags[proc->info->mid] == ITEM_NONE) 
-		{
 
-			for (int i = 0; i < 5; ++i)
-			{
-				if (proc->info->xDisplay == 102 && proc->info->yDisplay == (40 + i * 16))
-				{
-					if (proc->moveKey == DPAD_DOWN || proc->moveKey == DPAD_UP)
-					{
-						gKeyStatusPtr->newKeys = B_BUTTON;
-					}
-					break; // Exit the loop once a match is found
-				}
-			}
-		}
-		if (list_gaiden->bmags[proc->info->mid] == ITEM_NONE) 
-		{
-
-			for (int i = 0; i < 5; ++i)
-			{
-				if (proc->info->xDisplay == 166 && proc->info->yDisplay == (40 + i * 16))
-				{
-					if (proc->moveKey == DPAD_DOWN || proc->moveKey == DPAD_UP)
-					{
-						gKeyStatusPtr->newKeys = B_BUTTON;
-					}
-					break; // Exit the loop once a match is found
-				}
-			}
-		}
+		if ((proc->moveKey == DPAD_DOWN || proc->moveKey == DPAD_UP) && IsGaidenMagicItemMissingAtCursor(proc, list_gaiden))
+			gKeyStatusPtr->newKeys = B_BUTTON;
 	}
 #endif
 }

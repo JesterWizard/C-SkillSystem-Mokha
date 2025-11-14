@@ -12,10 +12,7 @@ STATIC_DECLAR void SplitNumberDec2(int in, u8 out[])
 }
 
 STATIC_DECLAR char *ItemRangeToString(int min, int max)
-{
-	NoCashGBAPrintf("Min range is: %d", min);
-	NoCashGBAPrintf("Max range is: %d", max);
-	
+{	
 	int i, count = 0;
 	u8 min_splited[2], max_splited[2];
 	char str[5];

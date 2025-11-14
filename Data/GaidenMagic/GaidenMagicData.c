@@ -44,6 +44,7 @@ struct GaidenPinfoConfig const gGaidenPinfoConfigList[0x100] = {
 	[CHARACTER_SALEH] = { .ent = (const struct GaidenPinfoConfigEnt []) {
 		{ 1, ITEM_DARK_NOSFERATU },
 		{ 1, ITEM_STAFF_PHYSIC },
+		{ 1, ITEM_STAFF_HEAL },
 		{ 0 }
 	}},
 	[CHARACTER_SELENA] = { .ent = (const struct GaidenPinfoConfigEnt []) {
