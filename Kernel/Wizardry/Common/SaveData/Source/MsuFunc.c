@@ -172,6 +172,10 @@ STATIC_DECLAR void NewPackSuspandUnit(struct Unit *src, struct EmsPackedSusUnit 
 	if (UNIT_FACTION(src) == FACTION_BLUE) {
 		dst->pad.ally.rescue = src->rescue;
 		dst->pad.ally.ballista = src->ballistaIndex;
+
+#ifdef CONFIG_MULTIPLE_BOOST_STAVES
+    	dst->pad.ally.boostType = src->boostType;
+#endif
 		dst->pad.ally.torch = src->torchDuration;
 		dst->pad.ally.barrier = src->barrierDuration;
 
@@ -237,6 +241,11 @@ STATIC_DECLAR void NewUnpackSuspandUnit(struct EmsPackedSusUnit *src, struct Uni
 
 		dst->rescue = src->pad.ally.rescue;
 		dst->ballistaIndex = src->pad.ally.ballista;
+
+#ifdef CONFIG_MULTIPLE_BOOST_STAVES
+    	dst->boostType = src->pad.ally.boostType;
+#endif
+
 		dst->torchDuration = src->pad.ally.torch;
 		dst->barrierDuration = src->pad.ally.barrier;
 

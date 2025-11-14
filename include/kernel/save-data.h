@@ -86,8 +86,14 @@ struct EmsPackedSusUnit {
 					 * 4. gain support
 					 */
 					u8 rescue;
-					u8 torch   : 4;
+		#ifdef CONFIG_MULTIPLE_BOOST_STAVES
+					u8 torch : 2;
+					u8 barrier : 3;
+					u8 boostType : 3;
+		#else
+					u8 torch : 4;
 					u8 barrier : 4;
+		#endif
 					s8 support_gain;
 				} ally;
 
