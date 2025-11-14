@@ -1,7 +1,5 @@
 #include "gbafe.h"
 
-#ifdef CONFIG_FORGING
-
 extern const int UseForgedItemDurability;
 int GetForgedItemDurability(int id); 
 int InitFreeForgedItemSlot(int item); 
@@ -78,4 +76,3 @@ extern struct ForgedItemRam *gForgedItemRam; // NumOfForgables entries
 // forged or not. if not forged, then it could use durability in the regular way
 // #define FORGED_ITEM 0x8000
 // #define ITEM_FORGE_ID(id) "(id >> 8)& 0x3F"
-#endif
