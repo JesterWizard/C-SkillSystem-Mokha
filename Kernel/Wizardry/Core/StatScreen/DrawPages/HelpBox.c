@@ -111,8 +111,7 @@ void LoadHelpBoxGfx(void * vram, int palId)
         ProcScr_PrepItemUseScreen,
         gProcScr_DrawPrepFundsSprite,
         gProcScr_PrepWMShopSell,
-        ProcScr_SlidingWallBg
-        // PrepScreenProc_MapIdle,
+        ProcScr_SlidingWallBg,
     };
 
     FORCE_DECLARE bool procFound = false;

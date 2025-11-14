@@ -1373,7 +1373,7 @@ extern struct ProcCmd CONST_DATA ProcScr_WorldMapFaceHolder[];
 // extern ??? ProcScr_08A3DD38
 // extern ??? gWMSongTable
 // extern ??? ProcScr_GMapScreenVSync
-// extern ??? ProcScr_GMapScreen
+extern struct ProcCmd ProcScr_GMapScreen[];
 // extern ??? ProcScr_GmapUnit
 // extern ??? ProcScr_GmapUnitContainer
 // extern ??? ProcScr_GmapUnitFade

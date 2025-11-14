@@ -111,12 +111,7 @@ void PrepItemScreen_SetupGfx(struct PrepItemScreenProc* proc)
     InitText(&gPrepItemTexts[30], 7);
     InitText(&gPrepItemTexts[31], 5);
 
-#ifdef CONFIG_VESLY_EXTENDED_ITEM_DESCRIPTIONS
-    LoadHelpBoxGfx((void*)0x06012000, -1);
-#else
     LoadHelpBoxGfx((void*)0x06014000, -1);
-#endif
-
 
     SetBlendBackdropA(0);
     SetBlendBackdropB(0);
