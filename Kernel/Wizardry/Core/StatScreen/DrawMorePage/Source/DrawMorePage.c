@@ -1,4 +1,8 @@
 #include "common-chax.h"
+#include "icon-rework.h"
+#include "stat-screen.h"
+#include "skill-system.h"
+#include "jester_headers/custom-structs.h"
 
 extern u16 const *const *const gpSprites_PageNameRework;
 extern u16 const *const gpPageNameChrOffsetLutRe;
@@ -9,6 +13,18 @@ void DisplayPageNameSprite(int pageid)
 {
 	int colorid;
 
+    /* 
+    ** JESTER - This is a stop gap measure to deal with a lack of space and new titles in Gfx_StatScreenObj_9pages.png
+    ** However, I simply do not have enough VRAM space to support both extended text boxes and the SMS sprites on page 7
+    ** This means that page 4 will have its title corrupted if you open R Text on the promotions page and then navigate
+    ** back to the support page
+    */
+    int alteredPageId = pageid;
+    if (alteredPageId > 3)
+    {
+        alteredPageId = 0;
+    }
+
 	PutSprite(4,
 		111 + gStatScreen.xDispOff, 1 + gStatScreen.yDispOff,
 		sSprite_PageNameBack, TILEREF(0x293, 4) + 0xC00);
@@ -16,8 +32,8 @@ void DisplayPageNameSprite(int pageid)
     /* Display stat screen title */
 	PutSprite(4,
 		114 + gStatScreen.xDispOff, 0 + gStatScreen.yDispOff,
-		gpSprites_PageNameRework[pageid],
-		TILEREF(0x240 + gpPageNameChrOffsetLutRe[pageid], 3) + 0xC00);
+		gpSprites_PageNameRework[alteredPageId],
+		TILEREF(0x240 + gpPageNameChrOffsetLutRe[alteredPageId], 3) + 0xC00);
 
 	colorid = (GetGameClock()/4) % 16;
 
@@ -87,6 +103,10 @@ void StatScreen_Display(struct Proc* proc)
 #endif
 
 #ifdef CONFIG_STAT_PAGE_PERSONAL_INFO
+    pageAmt += 1;
+#endif
+
+#ifdef CONFIG_STAT_PAGE_PROMOTIONS
     pageAmt += 1;
 #endif
 
@@ -160,27 +180,178 @@ void PageNumCtrl_UpdatePageNum(struct StatScreenPageNameProc* proc)
 {
     int chr = 0x289;
 
-    /* JESTER - A little something to account for page numbers greater than the standard 5 */
-    int shift = 0;
+    /* Standard page number calculatins up to page 6 starting at 0x6015100 in the OBJ tile view in NoCashGBA */
+    int pageAmtShift = gStatScreen.pageAmt - 1;
+    int pageNumShift = gStatScreen.page;
 
-    if (gStatScreen.pageAmt > 5)
-        shift = gStatScreen.pageAmt - 5;
+    /* Pages 7,8 and 9 are listed below that starting at 0x6015500 in the OBJ tile view in NoCashGBA  */
+    if (gStatScreen.pageAmt > 6)
+        pageAmtShift = 0x20 - 1;
+    
+    if (gStatScreen.page > 5)
+        pageNumShift = (gStatScreen.page - 7) + 0x20;
 
     // page amt
     PutSprite(2,
         gStatScreen.xDispOff + PAGENUM_DISPLAY_X + 13,
         gStatScreen.yDispOff + PAGENUM_DISPLAY_Y,
-        gObject_8x8, TILEREF(chr, STATSCREEN_OBJPAL_4) + OAM2_LAYER(3) + gStatScreen.pageAmt - shift);
+        gObject_8x8, TILEREF(chr, STATSCREEN_OBJPAL_4) + OAM2_LAYER(3) + pageAmtShift);
 
     // '/'
     PutSprite(2,
         gStatScreen.xDispOff + PAGENUM_DISPLAY_X + 7,
         gStatScreen.yDispOff + PAGENUM_DISPLAY_Y,
-        gObject_8x8, TILEREF(chr, STATSCREEN_OBJPAL_4) + OAM2_LAYER(3) - shift);
+        gObject_8x8, TILEREF(chr, STATSCREEN_OBJPAL_4) + OAM2_LAYER(3) - 1);
 
     // page num
     PutSprite(2,
         gStatScreen.xDispOff + PAGENUM_DISPLAY_X,
         gStatScreen.yDispOff + PAGENUM_DISPLAY_Y,
-        gObject_8x8, TILEREF(chr, STATSCREEN_OBJPAL_4) + OAM2_LAYER(3) + gStatScreen.page + 1 - shift);
+        gObject_8x8, TILEREF(chr, STATSCREEN_OBJPAL_4) + OAM2_LAYER(3) + pageNumShift);
+}
+
+void GetPromotedUnitDescId(struct HelpBoxProc* proc)
+{
+    struct Unit *unit = gStatScreen.unit;
+    int charId = UNIT_CHAR_ID(unit);
+    const UnitPromotions *promo_data = NULL;
+
+    for (int i = 0; unit_promotions[i].key != 0; i++)
+    {
+        if (unit_promotions[i].key == charId)
+        {
+            promo_data = &unit_promotions[i];
+            break;
+        }
+    }
+
+    if (promo_data != NULL)
+    {
+        if (proc->info->yDisplay == 0x20)
+        {
+            if (promo_data->promotions[0].classId)
+                proc->mid = GetClassData(promo_data->promotions[0].classId)->descTextId;
+        }
+        else if (proc->info->yDisplay == 0x48)
+        {
+            if (promo_data->promotions[1].classId)
+                proc->mid = GetClassData(promo_data->promotions[1].classId)->descTextId;
+        }
+        else if (proc->info->yDisplay == 0x70)
+        {
+            if (promo_data->promotions[2].classId)
+                proc->mid = GetClassData(promo_data->promotions[2].classId)->descTextId;
+        }
+        else
+            proc->mid = 0;
+    }
+}
+
+void GetPromotedUnitSkillId(struct HelpBoxProc* proc)
+{
+    struct Unit *unit = gStatScreen.unit;
+    int charId = UNIT_CHAR_ID(unit);
+    const UnitPromotions *promo_data = NULL;
+
+    for (int i = 0; unit_promotions[i].key != 0; i++)
+    {
+        if (unit_promotions[i].key == charId)
+        {
+            promo_data = &unit_promotions[i];
+            break;
+        }
+    }
+
+    if (promo_data != NULL)
+    {
+        if (proc->info->xDisplay == (0x12 * 0x8) && proc->info->yDisplay == (0x5 * 0x8))
+            proc->mid = GetSkillDescMsg(promo_data->promotions[0].skills[0]);
+        else if (proc->info->xDisplay == (0x14 * 0x8) && proc->info->yDisplay == (0x5 * 0x8))
+            proc->mid = GetSkillDescMsg(promo_data->promotions[0].skills[1]);
+        else if (proc->info->xDisplay == (0x16 * 0x8) && proc->info->yDisplay == (0x5 * 0x8))
+            proc->mid = GetSkillDescMsg(promo_data->promotions[0].skills[2]);
+
+        else if (proc->info->xDisplay == (0x12 * 0x8) && proc->info->yDisplay == (0xA * 0x8))
+            proc->mid = GetSkillDescMsg(promo_data->promotions[1].skills[0]);
+        else if (proc->info->xDisplay == (0x14 * 0x8) && proc->info->yDisplay == (0xA * 0x8))
+            proc->mid = GetSkillDescMsg(promo_data->promotions[1].skills[1]);
+        else if (proc->info->xDisplay == (0x16 * 0x8) && proc->info->yDisplay == (0xA * 0x8))
+            proc->mid = GetSkillDescMsg(promo_data->promotions[1].skills[2]);
+
+        else if (proc->info->xDisplay == (0x12 * 0x8) && proc->info->yDisplay == (0xF * 0x8))
+            proc->mid = GetSkillDescMsg(promo_data->promotions[2].skills[0]);
+        else if (proc->info->xDisplay == (0x14 * 0x8) && proc->info->yDisplay == (0xF * 0x8))
+            proc->mid = GetSkillDescMsg(promo_data->promotions[2].skills[1]);
+        else if (proc->info->xDisplay == (0x16 * 0x8) && proc->info->yDisplay == (0xF * 0x8))
+            proc->mid = GetSkillDescMsg(promo_data->promotions[2].skills[2]);
+
+    }
+}
+
+LYN_REPLACE_CHECK(PageNumCtrl_DisplayMuPlatform);
+void PageNumCtrl_DisplayMuPlatform(struct StatScreenPageNameProc *proc)
+{
+	// SetBlendTargetA(0, 0, 1, 0, 0);
+	// SetBlendTargetB(0, 0, 0, 1, 0);
+	// SetBlendAlpha(6, 8);
+
+	// PutSprite(12,
+	// 	gStatScreen.xDispOff,
+	// 	gStatScreen.yDispOff,
+	// 	Sprite_StatScreenMuAreaBackground,
+	// 	OAM2_CHR(STATSCREEN_MUAREA_CHR_BASE / 0x20) +
+	// 	OAM2_PAL(STATSCREEN_MUAREA_PAL_BASE) +
+	// 	OAM2_LAYER(3));
+
+    /* Display unit platform on left side of screen */
+	PutSprite(11,
+		gStatScreen.xDispOff + 64,
+		gStatScreen.yDispOff + 131,
+		gObject_32x16, TILEREF(0x28F, STATSCREEN_OBJPAL_4) + OAM2_LAYER(3));
+
+	if (gStatScreen.page == 6)
+    {
+        struct Unit *unit = gStatScreen.unit;
+        int charId = UNIT_CHAR_ID(unit);
+        // Find the unit's promotion data
+        const UnitPromotions *promo_data = NULL;
+        for (int i = 0; unit_promotions[i].key != 0; i++)
+        {
+            if (unit_promotions[i].key == charId)
+            {
+                promo_data = &unit_promotions[i];
+                break;
+            }
+        }
+        
+        // If we found promotion data for this character, use it
+        if (promo_data != NULL)
+        {
+            int platform_y_positions[] = {41, 82, 122};
+            int unit_sprite_y_positions[] = {35, 76, 116};
+            
+            // Iterate through promotions
+            for (int i = 0; i < 3; i++)
+            {
+                // Check if this promotion exists (classId != 0)
+                if (promo_data->promotions[i].classId)
+                {
+                    // Draw background sprite
+                    PutSprite(11, 99, platform_y_positions[i], gObject_32x16, 
+                            TILEREF(0x28F, STATSCREEN_OBJPAL_4) + OAM2_LAYER(3));
+                    
+                    // Draw unit sprite for this class
+                    PutUnitSpriteForClassId(0, 108, unit_sprite_y_positions[i], 0xc800, 
+                                        promo_data->promotions[i].classId);
+                }
+            }
+            
+            SyncUnitSpriteSheet();
+        }
+    }
+    else 
+    {
+        EndAllMus();
+        gStatScreen.mu = StartUiMu(gStatScreen.unit, 80, 138);
+    }
 }

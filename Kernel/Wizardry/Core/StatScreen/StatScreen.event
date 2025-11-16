@@ -13,6 +13,10 @@
     #include "DrawPages/DrawPage6.lyn.event"
 #endif
 
+#ifdef CONFIG_STAT_PAGE_PROMOTIONS
+    #include "DrawPages/DrawPage7.lyn.event"
+#endif
+
 #include "DrawPages/HelpBox.lyn.event"
 
 #include "DrawUnitPage/DrawUnitPage.event"

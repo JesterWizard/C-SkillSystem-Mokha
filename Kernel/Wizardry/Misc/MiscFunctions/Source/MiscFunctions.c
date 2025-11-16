@@ -4461,3 +4461,23 @@ int GetUnitCurrentMP(struct Unit * unit)
 
     return currentMP;
 };
+
+u8 EWRAM_DATA gSMSGfxBuffer[3][8*0x20*0x20] = {};
+
+LYN_REPLACE_CHECK(SyncUnitSpriteSheet);
+void SyncUnitSpriteSheet(void)
+{
+    int frame = k_umod(GetGameClock(), 72);
+
+    if (frame == 0)
+        CpuFastCopy(gSMSGfxBuffer[0], (void*)0x06011000, sizeof(gSMSGfxBuffer[0]));
+
+    if (frame == 32)
+        CpuFastCopy(gSMSGfxBuffer[1], (void*)0x06011000, sizeof(gSMSGfxBuffer[1]));
+
+    if (frame == 36)
+        CpuFastCopy(gSMSGfxBuffer[2], (void*)0x06011000, sizeof(gSMSGfxBuffer[2]));
+
+    if (frame == 68)
+        CpuFastCopy(gSMSGfxBuffer[1], (void*)0x06011000, sizeof(gSMSGfxBuffer[1]));
+}

@@ -41,6 +41,11 @@ void StartStatScreenHelp(int pageid, struct Proc *proc)
             gStatScreen.help = RTextPagePersonalData;
             break;
 #endif
+#ifdef CONFIG_STAT_PAGE_PROMOTIONS
+        case 6:
+            gStatScreen.help = RTextPagePromotions;
+            break;
+#endif
 		} // switch (pageid)
 	}
 	StartMovingHelpBox(gStatScreen.help, proc);
@@ -65,7 +70,10 @@ void LoadHelpBoxGfx(void * vram, int palId)
 #ifdef CONFIG_VESLY_EXTENDED_ITEM_DESCRIPTIONS
     if (vram == NULL) {
         if (Proc_Find(gProcScr_StatScreen))
-            vram = (void *)0x06012000;
+            if (gStatScreen.page == 6) 
+                vram = (void *)0x060158A0; // This is reliant on CONFIG_STAT_PAGE_PROMOTIONS being the page for this slot
+            else
+                vram = (void *)0x06012000;
         else
             vram = (void *)0x06013000;
     }

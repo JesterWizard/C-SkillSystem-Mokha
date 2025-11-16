@@ -466,6 +466,7 @@
 // #define CONFIG_ENTER_DISTRICT // Not yet finished, I also might not need it if I get base chapters working
 
 #define CONFIG_STAT_PAGE_PERSONAL_INFO
+#define CONFIG_STAT_PAGE_PROMOTIONS
 
 #define CONFIG_DISPLAY_TALK_ICON
 

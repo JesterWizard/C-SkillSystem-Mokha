@@ -16,6 +16,13 @@ extern _DECL_INFO *const RTextPageSupport;
 	extern _DECL_INFO *const RTextPagePersonalData;
 #endif
 
+#ifdef CONFIG_STAT_PAGE_PROMOTIONS
+	extern _DECL_INFO *const RTextPagePromotions;
+#endif
+
+extern void GetPromotedUnitDescId(struct HelpBoxProc* proc);
+extern void GetPromotedUnitSkillId(struct HelpBoxProc* proc);
+
 extern struct {
 	u8 talkee;
 	u8 unitpage_max;

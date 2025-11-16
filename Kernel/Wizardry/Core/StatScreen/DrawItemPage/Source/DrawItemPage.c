@@ -327,6 +327,19 @@ static inline bool IsGaidenMagicItemMissingAtCursor(struct HelpBoxProc *proc, st
 LYN_REPLACE_CHECK(HbRedirect_SSItem);
 void HbRedirect_SSItem(struct HelpBoxProc *proc)
 {
+
+	/* JESTER - I'm not sure how to prevent the R Text bubble from displaying when shifting between bubbles on this page, proc->mid doesn't refresh in this way */
+#ifdef CONFIG_STAT_PAGE_PROMOTIONS
+	if (gStatScreen.page == 6)
+	{
+		if (proc->mid == 0)
+		{
+			gKeyStatusPtr->newKeys = B_BUTTON;
+			return;
+		}
+	}
+#endif
+
 	struct ItemPageList *list = GetUnitItemPageList(gStatScreen.unit);
 
 	if (list->ent[0].item == ITEM_NONE)
@@ -341,7 +354,7 @@ void HbRedirect_SSItem(struct HelpBoxProc *proc)
 
 	/* JESTER - A little something to turn off the RText box when moving up and down to empty positions in the Gaiden Magic list */
 #ifdef CONFIG_USE_GAIDEN_MAGIC
-	if (gpKernelDesigerConfig->gaiden_magic_en)
+	if (gpKernelDesigerConfig->gaiden_magic_en && gStatScreen.page == 4)
 	{
 		struct GaidenMagicList *list_gaiden = GetGaidenMagicList(gStatScreen.unit);
 

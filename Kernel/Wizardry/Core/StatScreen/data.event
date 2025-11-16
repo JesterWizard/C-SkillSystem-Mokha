@@ -8,6 +8,10 @@
     #include "DrawPages/HelpBoxPage6.event"
 #endif
 
+#ifdef CONFIG_STAT_PAGE_PROMOTIONS
+    #include "DrawPages/HelpBoxPage7.lyn.event"
+#endif
+
 #include "DrawSkillPage/data.event"
 #include "DrawUnitPage/data.event"
 
@@ -22,5 +26,8 @@ gStatScreenDrawPages:
 #endif
 #ifdef CONFIG_STAT_PAGE_PERSONAL_INFO
     POIN DrawPage6Rework
+#endif
+#ifdef CONFIG_STAT_PAGE_PROMOTIONS
+    POIN DrawPage7Rework
 #endif
     WORD 0

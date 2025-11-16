@@ -563,7 +563,7 @@ void ClearHelpBoxText(void) {
     SpriteText_DrawBackground(&gHelpBoxSt.text[1]);
     SpriteText_DrawBackground(&gHelpBoxSt.text[2]);
 
-    /* Only provide the extra text box tiles if we're not in the save menu or chapter status screens */
+    /* Do not allocate additional text box space if we're using any of these procs */
 #ifdef CONFIG_VESLY_EXTENDED_ITEM_DESCRIPTIONS
 
     const struct ProcCmd * procExceptionsList[9] = 

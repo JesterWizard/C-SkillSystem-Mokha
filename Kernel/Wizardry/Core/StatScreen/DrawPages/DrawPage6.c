@@ -66,7 +66,7 @@ static const CharacterTraits character_traits[] =
     { CHARACTER_HAYDEN_CC,    {"Age weighs on me, yet", "my crown keeps me steady."}, "50", "182cm", {"Stability", "Wisdom"}, {"Chaos", "Loss"} },
 };
 
-	const int character_traits_size = sizeof(character_traits) / sizeof(character_traits[0]);
+const int character_traits_size = sizeof(character_traits) / sizeof(character_traits[0]);
 
 // ---------------------------------------------------------------------------
 // Core helper: find traits by charId
