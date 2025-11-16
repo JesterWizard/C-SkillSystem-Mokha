@@ -153,3 +153,5 @@ extern bool isMonsterClass(int classId);
 extern int find_item_slot(struct Unit *unit, int item);
 extern int GetUnitCurrentMP(struct Unit * unit);
 extern int GetUnitMaxMP(struct Unit * unit);
+
+extern int GetWEXPForNextLevel(int wexp);

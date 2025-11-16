@@ -6,6 +6,7 @@
 #include "uichapterstatus.h"
 #include "unitlistscreen.h"
 #include "skill-system.h"
+#include "constants/texts.h"
 
 LYN_REPLACE_CHECK(HbMoveCtrl_OnIdle);
 void HbMoveCtrl_OnIdle(struct HelpBoxProc *proc)
@@ -172,6 +173,10 @@ void HelpBoxSetupstringLines(struct ProcHelpBoxIntro *proc)
 		case NEW_HB_WRANK_STATSCREEN:
 			DrawHelpBoxLabels_WrankBonus();
 			proc->pretext_lines = 3;
+    
+    #ifdef CONFIG_QUALITY_OF_LIFE_WEAPON_EXP_HELPBOX
+            proc->pretext_lines = 2;
+    #endif
 			break;
 
 		default:

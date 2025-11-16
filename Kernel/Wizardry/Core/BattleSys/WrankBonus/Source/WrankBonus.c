@@ -2,6 +2,7 @@
 #include "help-box.h"
 #include "wrank-bonus.h"
 #include "constants/texts.h"
+#include "jester_headers/custom-functions.h"
 
 #define LOCAL_TRACE 0
 
@@ -53,28 +54,39 @@ void PreBattleCalc_WrankBonus(struct BattleUnit *attacker, struct BattleUnit *de
  */
 void HbPopuplate_WrankBonus(struct HelpBoxProc *proc)
 {
-	int wtype;
-	const struct WrankBonusConfEnt *conf;
+	// int wtype;
+	// const struct WrankBonusConfEnt *conf;
 
 	sHelpBoxType = NEW_HB_DEFAULT;
 
 	if (!gpKernelDesigerConfig->wrank_bonux_rtext_auto_gen)
 		return;
 
-	wtype = GetWtypeFromRTextMsg(proc->info->mid);
+	// wtype = GetWtypeFromRTextMsg(proc->info->mid);
 
-	if (wtype < 0)
-		return;
+	// if (wtype < 0)
+	// 	return;
 
-	conf = GetWrankBonusConf(gStatScreen.unit, wtype, GetWeaponLevelFromExp(UNIT_WRANK(gStatScreen.unit, wtype)));
-	if (!conf)
-		return;
+	// conf = GetWrankBonusConf(gStatScreen.unit, wtype, GetWeaponLevelFromExp(UNIT_WRANK(gStatScreen.unit, wtype)));
+	// if (!conf)
+	// 	return;
 
 	sHelpBoxType = NEW_HB_WRANK_STATSCREEN;
 }
 
 void DrawHelpBoxLabels_WrankBonus(void)
 {
+
+#ifdef CONFIG_QUALITY_OF_LIFE_WEAPON_EXP_HELPBOX
+	Text_InsertDrawString(&gHelpBoxSt.text[0], 0x00, TEXT_COLOR_47CF, "WEXP");
+	Text_InsertDrawString(&gHelpBoxSt.text[0], 0x40, TEXT_COLOR_47CF, "Rank Up");
+
+	Text_InsertDrawString(&gHelpBoxSt.text[1], 0x00, TEXT_COLOR_47CF, GetStringFromIndex(MSG_04F4)); // atk
+	Text_InsertDrawString(&gHelpBoxSt.text[1], 0x40, TEXT_COLOR_47CF, GetStringFromIndex(MSG_0501)); // hit
+
+#else
+
+#ifdef CONFIG_QUALITY_OF_LIFE_WEAPON_STAT_BONUSES
 	Text_InsertDrawString(&gHelpBoxSt.text[0], 0x00, TEXT_COLOR_47CF, GetStringFromIndex(MSG_04F3)); // atk
 	Text_InsertDrawString(&gHelpBoxSt.text[0], 0x30, TEXT_COLOR_47CF, GetStringFromIndex(MSG_04EF)); // def
 	Text_InsertDrawString(&gHelpBoxSt.text[0], 0x60, TEXT_COLOR_47CF, GetStringFromIndex(MSG_0504)); // as
@@ -86,6 +98,9 @@ void DrawHelpBoxLabels_WrankBonus(void)
 	Text_InsertDrawString(&gHelpBoxSt.text[2], 0x00, TEXT_COLOR_47CF, GetStringFromIndex(MSG_51E)); // dodge
 	Text_InsertDrawString(&gHelpBoxSt.text[2], 0x30, TEXT_COLOR_47CF, GetStringFromIndex(MSG_SILENCER));  // dodge
 	Text_InsertDrawString(&gHelpBoxSt.text[2], 0x70, TEXT_COLOR_47CF, GetStringFromIndex(MSG_MSS_SupportBonus));  // bonus
+#endif
+
+#endif
 }
 
 void DrawHelpBoxStats_WrankBonus(struct ProcHelpBoxIntro *proc)
@@ -100,6 +115,16 @@ void DrawHelpBoxStats_WrankBonus(struct ProcHelpBoxIntro *proc)
 		conf = &_conf;
 	}
 
+#ifdef CONFIG_QUALITY_OF_LIFE_WEAPON_EXP_HELPBOX
+	Text_InsertDrawNumberOrBlank(&gHelpBoxSt.text[0], 0x30, TEXT_COLOR_456F, UNIT_WRANK(gStatScreen.unit, wtype));
+	Text_InsertDrawNumberOrBlank(&gHelpBoxSt.text[0], 0x80, TEXT_COLOR_456F, GetWEXPForNextLevel(UNIT_WRANK(gStatScreen.unit, wtype)));
+
+	Text_InsertDrawNumberOrBlank(&gHelpBoxSt.text[1], 0x30, TEXT_COLOR_456F, conf->bonus[BATTLE_STATUS_HIT]);
+	Text_InsertDrawNumberOrBlank(&gHelpBoxSt.text[1], 0x80, TEXT_COLOR_456F, conf->bonus[BATTLE_STATUS_CRIT]);
+
+#else
+
+#ifdef CONFIG_QUALITY_OF_LIFE_WEAPON_STAT_BONUSES
 	Text_InsertDrawNumberOrBlank(&gHelpBoxSt.text[0], 0x20, TEXT_COLOR_456F, conf->bonus[BATTLE_STATUS_ATK]);
 	Text_InsertDrawNumberOrBlank(&gHelpBoxSt.text[0], 0x50, TEXT_COLOR_456F, conf->bonus[BATTLE_STATUS_DEF]);
 	Text_InsertDrawNumberOrBlank(&gHelpBoxSt.text[0], 0x80, TEXT_COLOR_456F, conf->bonus[BATTLE_STATUS_AS]);
@@ -110,4 +135,21 @@ void DrawHelpBoxStats_WrankBonus(struct ProcHelpBoxIntro *proc)
 
 	Text_InsertDrawNumberOrBlank(&gHelpBoxSt.text[2], 0x20, TEXT_COLOR_456F, conf->bonus[BATTLE_STATUS_DODGE]);
 	Text_InsertDrawNumberOrBlank(&gHelpBoxSt.text[2], 0x50, TEXT_COLOR_456F, conf->bonus[BATTLE_STATUS_SILENCER]);
+#endif
+
+#endif
+}
+
+int GetWEXPForNextLevel(int wexp)
+{
+	if (wexp < WPN_EXP_D)
+		return WPN_EXP_D - wexp;
+	else if (wexp < WPN_EXP_C)
+		return WPN_EXP_C - wexp;
+	else if (wexp < WPN_EXP_B)
+		return WPN_EXP_B - wexp;
+	else if (wexp < WPN_EXP_A)
+		return WPN_EXP_A - wexp;
+	else
+		return WPN_EXP_S - wexp;
 }
