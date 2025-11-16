@@ -37,6 +37,8 @@ To edit the promotion options on a per-unit basis you'll want to navigate to [Dr
 
 ## Limitations/Bugs
 
-There is a problem in [DrawItemPage.c](../../Kernel/Wizardry/Core/StatScreen/DrawItemPage.c) inside ``HbRedirect_SSItem`` where I've attempted to turn off the R text option for promotion locations the unit isn't using (e.g. they only have 2 promotions instead of 3). However, there doesn't seem to be a bulletproof way of disabling R text in this situation when transitioning around the page with the DPAD. Right now, the best I've been able to do is disable R text when you try to enable it directly on an unused space on the page.
+- There is a problem in [DrawItemPage.c](../../Kernel/Wizardry/Core/StatScreen/DrawItemPage.c) inside ``HbRedirect_SSItem`` where I've attempted to turn off the R text option for promotion locations the unit isn't using (e.g. they only have 2 promotions instead of 3). However, there doesn't seem to be a bulletproof way of disabling R text in this situation when transitioning around the page with the DPAD. Right now, the best I've been able to do is disable R text when you try to enable it directly on an unused space on the page.
+
+- Some logic expects this page to be 7th in ``gStatScreen.page`` (which as a 0 based index would be 6). So the MP system and personal info stat pages will need to be enabled or certain things might not work correctly. At some point I'll look into solving this.
 
 Report any further issues in the [issues](https://github.com/JesterWizard/C-SkillSystem-Mokha/issues) tab of the repo.
