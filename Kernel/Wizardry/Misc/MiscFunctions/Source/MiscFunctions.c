@@ -4528,3 +4528,77 @@ u16 GetMuQ4MovementSpeed(struct MuProc * proc)
 
     return 16 * sMuWalkSpeedLut[GetClassData(proc->jid)->slowWalking];
 }
+
+
+//! FE8U = 0x0801DB4C
+LYN_REPLACE_CHECK(TrySwitchViewedUnit);
+void TrySwitchViewedUnit(int x, int y)
+{
+    int i;
+    int unitId = gBmMapUnit[y][x];
+    int factionMin, factionMax;
+    
+#ifdef CONFIG_L_BUTTON_SAME_FACTION_CYCLING
+    // Determine faction range based on current unit
+    if (unitId & 0x80)
+    {
+        // Enemy Faction (Red)
+        factionMin = 0x80;
+        factionMax = 0xBF;
+    }
+    else if (unitId & 0x40)
+    {
+        // NPC Faction (Green)
+        factionMin = 0x40;
+        factionMax = 0x7F;
+    }
+    else
+    {
+        // Player Faction (Blue)
+        factionMin = 0x01;
+        factionMax = 0x3F;
+    }
+#else
+    // Original behavior: only cycle through Blue faction
+    if ((unitId & 0xC0) != FACTION_BLUE)
+    {
+        unitId = 0;
+    }
+    factionMin = 0x01;
+    factionMax = 0x3F;
+#endif
+    
+    // Normalize unitId if outside faction range
+    if (unitId < factionMin || unitId > factionMax)
+    {
+        unitId = factionMin - 1;
+    }
+    
+    unitId++;
+    
+    // Wrap around if past end of faction
+    if (unitId > factionMax)
+    {
+        unitId = factionMin;
+    }
+    
+    // First loop: from current unit to end of faction
+    for (i = unitId; i <= factionMax; ++i)
+    {
+        if (TrySetCursorOn(i))
+        {
+            return;
+        }
+    }
+    
+    // Second loop: wrap around from start of faction to current unit
+    for (i = factionMin; i < unitId; ++i)
+    {
+        if (TrySetCursorOn(i))
+        {
+            return;
+        }
+    }
+    
+    return;
+}
