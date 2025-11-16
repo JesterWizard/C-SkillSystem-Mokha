@@ -2,7 +2,7 @@
 
 ![](../Gifs/Promotion_Stat_Page.gif)
 
-##  Index 
+##  Index
 - ### [Introduction](#Introduction)
 - ### [Plan](#Plan)
 - ### [Code Locations](#Code-Locations)
@@ -11,7 +11,7 @@
 
 ## Introduction
 
-By default, it can be annoying to work out what classes promote to what. Historially, this information has generally been obscured from the player, making promotion paths a bit of guessing game. Finding out the answers usually requires either getting the required promotion items, hitting certain story/event milestones or digging into the source files of the page.
+By default, it can be annoying to work out what classes promote to what. Historially, this information has generally been obscured from the player, making promotion paths a bit of a guessing game. Finding out the answers usually requires one of getting the required promotion items, hitting certain story/event milestones or digging into the source files of the game.
 
 ## Plan
 
