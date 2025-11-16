@@ -8819,4 +8819,14 @@ const struct SkillInfo gSkillInfos[MAX_SKILL_NUM + 1] = {
     },
 #endif
 
+#if (defined(SID_AirWalk) && COMMON_SKILL_VALID(SID_AirWalk))
+    [SID_AirWalk] = {
+        .name = MSG_SKILL_AirWalk_NAME,
+        .desc = MSG_SKILL_AirWalk_DESC,
+        .capacity = MSG_SKILL_AirWalk_CAPACITY,
+        .price = MSG_SKILL_AirWalk_PRICE,
+        .icon = GFX_SkillIcon_WIP,
+    },
+#endif
+
 };

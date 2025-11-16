@@ -540,3 +540,10 @@ Malidiction[X]
 Malidiction:[N]
 Add +1 turn to negative statuses[N]
 inflicted by this unit.[X]
+
+## MSG_SKILL_AirWalk_NAME
+Air Walk[X]
+## MSG_SKILL_AirWalk_DESC
+Air Walk:[N]
+This unit can rescue units[N]
+bigger than them.[X]

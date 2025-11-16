@@ -881,6 +881,7 @@ SID_DilligentMind
 SID_MineDetector
 SID_Undying
 SID_ManaRush
+SID_AirWalk
 
 //////// COMBAT ARTS
 // SID_COMBAT_Grounder

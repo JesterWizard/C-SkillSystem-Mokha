@@ -880,3 +880,4 @@
 #define MSG_SKILL_Symbiosis_CAPACITY 1
 #define MSG_SKILL_Residium_CAPACITY 1
 #define MSG_SKILL_Malidiction_CAPACITY 1
+#define MSG_SKILL_AirWalk_CAPACITY 1

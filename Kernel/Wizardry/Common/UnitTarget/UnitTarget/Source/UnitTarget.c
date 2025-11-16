@@ -94,6 +94,20 @@ void TryAddUnitToBerserkTargetList(struct Unit *unit)
     return;
 }
 
+LYN_REPLACE_CHECK(CanUnitRescue);
+s8 CanUnitRescue(struct Unit* actor, struct Unit* target) {
+    int actorAid  = GetUnitAid(actor);
+    int targetCon = UNIT_CON(target);
+
+#if defined(SID_AirWalk) && (COMMON_SKILL_VALID(SID_AirWalk))
+    if (SkillTester(actor, SID_AirWalk))
+        return true;
+#endif
+
+    return (actorAid >= targetCon) ? TRUE : FALSE;
+}
+
+
 LYN_REPLACE_CHECK(TryAddUnitToRescueTargetList);
 void TryAddUnitToRescueTargetList(struct Unit* unit) {
 

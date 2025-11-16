@@ -880,3 +880,4 @@
 #define MSG_SKILL_Symbiosis_PRICE 1000
 #define MSG_SKILL_Residium_PRICE 1000
 #define MSG_SKILL_Malidiction_PRICE 1000
+#define MSG_SKILL_AirWalk_PRICE 1000
