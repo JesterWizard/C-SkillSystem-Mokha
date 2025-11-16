@@ -4481,3 +4481,50 @@ void SyncUnitSpriteSheet(void)
     if (frame == 68)
         CpuFastCopy(gSMSGfxBuffer[1], (void*)0x06011000, sizeof(gSMSGfxBuffer[1]));
 }
+
+static u8 CONST_DATA sMuWalkSpeedLut[2] = {
+    [UNIT_WALKSPEED_FAST] = 2,
+    [UNIT_WALKSPEED_SLOW] = 1,
+};
+
+LYN_REPLACE_CHECK(GetMuQ4MovementSpeed);
+u16 GetMuQ4MovementSpeed(struct MuProc * proc)
+{
+#ifdef CONFIG_SUPER_FAST_MAP_ANIMATIONS
+    return 0x200;
+#endif
+
+    int config = proc->moveConfig;
+
+    if (config & 0x80)
+        config += 0x80; // I don't really get that one
+
+    if (proc->fast_walk_b)
+        return 0x100;
+
+    if (config != 0x40)
+    {
+        if (config != 0x00)
+        {
+            int speed = config;
+
+            if (speed & 0x40)
+                speed ^= 0x40;
+            else if (gPlaySt.config.gameSpeed || (gKeyStatusPtr->heldKeys & A_BUTTON))
+                speed *= 4;
+
+            if (speed > 0x80)
+                speed = 0x80;
+
+            return speed;
+        }
+
+        if (!IsFirstPlaythrough() && (gKeyStatusPtr->heldKeys & A_BUTTON))
+            return 0x80;
+
+        if (gPlaySt.config.gameSpeed)
+            return 0x40;
+    }
+
+    return 16 * sMuWalkSpeedLut[GetClassData(proc->jid)->slowWalking];
+}
