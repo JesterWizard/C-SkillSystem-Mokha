@@ -250,9 +250,8 @@ void BattleGenerateHitAttributes(struct BattleUnit* attacker, struct BattleUnit*
 	gBattleStats.damage = BattleHit_CalcDamage(attacker, defender);
 
 #if defined(SID_BloodyAlchemy) && (COMMON_SKILL_VALID(SID_BloodyAlchemy))
-    if (BattleFastSkillTester(attacker, SID_BloodyAlchemy) || BattleFastSkillTester(defender, SID_BloodyAlchemy))
-        if (PlayStExpa_CheckBit(PLAYSTEXPA_BIT_BloodyAlchemy_Used))
-            SetPartyGoldAmount(GetPartyGoldAmount() + gBattleStats.damage);
+    if (PlayStExpa_CheckBit(PLAYSTEXPA_BIT_BloodyAlchemy_Used))
+        SetPartyGoldAmount(GetPartyGoldAmount() + gBattleStats.damage);
 #endif
 
 	if (gBattleStats.config & BATTLE_CONFIG_REAL) {
