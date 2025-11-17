@@ -7,6 +7,7 @@
 - ### [Plan](#Plan)
 - ### [Code Locations](#Code-Locations)
 - ### [How To Modify](#How-To-Modify)
+- ### [TODO](#TODO)
 - ### [Limitations and Bugs](#Limitations-and-Bugs)
 
 ## Introduction
@@ -34,6 +35,9 @@ As of the current version, you have up to 3 promotion options and 3 skills per p
 ## How To Modify
 
 To edit the promotion options on a per-unit basis you'll want to navigate to [DrawPage7.c](../../Kernel/Wizardry/Core/StatScreen/DrawPages/DrawPage7.c). Inside ``unit_promotions`` is a variable width macros called ``UNIT_PROMOS`` that takes a unit character ID as a key, and a number of ``PROMO`` macros between 1-3. The ``PROMO`` macros themselves take a class ID and a variable number of skill IDs between 0-3. The list is terminated with ``{0}`` do not remove it.
+
+## TODO
+- Maybe shift the space around for a 4th option?
 
 ## Limitations/Bugs
 
