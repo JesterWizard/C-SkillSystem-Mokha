@@ -1,71 +1,121 @@
-# How to Install WAVs into your game
+# Voice Acted Intros - How to Install WAVs into Your Game
 
-##  Index 
-- ### [Introduction](#Introduction)
-- ### [Plan](#Plan)
-- ### [Tools](#Tools)
-- ### [How To Modify](#How-To-Modify)
-- ### [Limitations and Bugs](#Limitations-and-Bugs)
+---
+
+## 📑 Index
+- [Introduction](#introduction)
+- [Plan](#plan)
+- [Tools](#tools)
+- [How to Modify](#how-to-modify)
+- [Limitations and Bugs](#limitations-and-bugs)
+
+---
 
 ## Introduction
-A lot of the guides for music/sound on FEUniverse focus on MIDI installation.
-This makes sense, given the inexpensive nature of MIDI files from a storage perspective
-and the relatively expensive nature of WAVs by comparison.
 
-But while the GBA isn't terribly well known for its audio capabilities,
-it is still possible to play voiced audio. Examples include the GBA video
-catridges from back in the day. This is where WAVS shine, as they are the best
-audio format for this task.
+A lot of guides for music/sound on FEUniverse focus on **MIDI installation**. That makes sense: MIDI files are tiny compared to WAVs, which are relatively large.
+
+The GBA isn’t widely known for advanced audio, but it **can** play voiced audio (see old GBA Video cartridges). For voiced dialogue and short high-quality clips, **WAVs** are a good choice.
+
+This guide focuses specifically on preparing and installing WAVs into a buildfile-based ROM project.
+
+---
 
 ## Plan
-This guide aims to focus on the installation of WAVs specifically, if you want to get
-inventive with your game and add some voiced dialogue or some small snippets of songs.
+
+This guide explains how to:
+
+- Prepare WAV files for the GBA
+- Compress them with FEBuilder
+- Convert them to `.bin`
+- Generate an Event Assembler installer (`.txt`) using WAV2EA
+- Insert the installer and `.bin` into your buildfile and call the audio in-game
+
+---
 
 ## Tools
-To get started you'll need the following:
 
-- WAV2EA (For converting the WAV into something we can insert into buildfile)
-- WAV2GBA ( should be included with the above)
-- FEBuilder (For additional compression)
-- A good ear for sound
+You will need:
 
-WAVE2EA - https://feuniverse.us/t/wav2ea-convert-wavs-to-a-ea-insertable-format/2686
-FEBuilder - https://github.com/FEBuilderGBA/FEBuilderGBA/releases/tag/ver_20240521.05
+- **WAV2EA** — converts a `.bin` into an EA-insertable `.txt` installer  
+  (WAV2GBA is usually bundled with this)
+- **WAV2GBA** — converts WAV → GBA-friendly `.bin`
+- **FEBuilder** — for downsampling and DPCM compression
+- A good ear for judging audio quality
+
+Links:
+
+- WAV2EA: https://feuniverse.us/t/wav2ea-convert-wavs-to-a-ea-insertable-format/2686  
+- FEBuilder: https://github.com/FEBuilderGBA/FEBuilderGBA/releases/tag/ver_20240521.05
+
+---
 
 ## How to Modify
 
-1) Grab your WAV from whatever source you like.
+1. **Grab your WAV** from whatever source you like. Trim and clean it first.
 
-2) Navigate to FEBuilder's ``Song Track`` section in the menu, select a track section and click ``Import Music`` and use the following settings
-    - Reduce Autio Quality - ``11025Hz - 22050Hz``
-    - Remove Silence - ``1 = Remove Silence``
-    - Channel - ``1 = 8bit mono``
-    - Volume - ``200% - 300%``
-    - DCPM Compression - ``1 - Compress, Lookahead - 3``
+2. **Open FEBuilder → Sound → Song Track**  
+   - Select a slot and click **Import Music**. Use these settings:
+     - **Audio Quality:** `11025Hz - 22050Hz`
+     - **Remove Silence:** `1 (Remove Silence)`
+     - **Channel:** `1 = 8-bit mono`
+     - **Volume:** `200% - 300%`
+     - **DPCM Compression:** `Compression = 1`, `Lookahead = 3`
 
-That last one requires that you install the ``m4a mixer`` via the patches menu section
+   > Note: DPCM compression requires the **m4a mixer** patch. Install it via FEBuilder’s Patches menu.
 
-You can select ``preview`` at any given time to check how the audio sounds
+   Use **Preview** to inspect how the processed audio sounds.
 
-3) Now select ``import``. We don't bother with the loop setting as we'll be re-exporting
-4) Click on the ``Instrument Set`` for the track you just entered
-5) Now click on ``Export WAV Data`` and choose your filepath
+3. **Click Import.** (Ignore loop settings — you’ll re-export later.)
 
-Now you should have a WAV that's as small as reasonably possible and doesn't sound like total shit.
+4. **Open the Instrument Set** for the track you just imported.
 
-6) Now drag the WAV onto one of the two batch files (or Linux equivalents) in WAV2GBA to produce a ``BIN`` file
-7) Now open WAV2EA and locate your bin, and fill in the textboxes (The ids for Replacing IDs can be found in Music List.txt, and for group IDs in Group List.txt)
-8) Click save and this should be produce an installer in ``TXT`` format in the same folder
-9) Copy paste ``MPlayDef.event`` in said folder along with the installer and WAV to your buildfile
-10) One thing that you don't get told is that you need to append the name of your bin file to line 19 of the txt file where ``loop_sfx_mvl`` is. So if you called the file ``my_cool_track.bin`` then ``loop_sfx_mvl`` needs to become ``loop_sfx_mvl_my_cool_track`` or it won't install.
-11) Install via event assembler aaaaaaand DONE!
-12) Now you can call the track as either as sound effect or a music track using SOUN or MUSC (and the music list ID as a parameter) respectively.
+5. **Export WAV Data** and choose a filepath. This produces a smaller, processed WAV that should sound reasonable.
+
+6. **Convert the processed WAV to `.bin`** using WAV2GBA: drag the WAV onto one of WAV2GBA’s batch files (or use the Linux equivalent). This produces a `.bin`.
+
+7. **Run WAV2EA**: open WAV2EA, select the `.bin`, and fill the required fields.  
+   - Use `Music List.txt` for replacing IDs and `Group List.txt` for group IDs.
+
+8. **Save the installer** — WAV2EA will produce a `.txt` installer in the same folder.
+
+9. **Copy files into your buildfile folder**:
+   - `MPlayDef.event`
+   - The `.txt` installer generated by WAV2EA
+   - The `.bin` file
+
+10. **IMPORTANT: Fix the installer symbol**  
+    In the generated `.txt` file, find the symbol `loop_sfx_mvl` (usually around line 19).  
+    Append your bin filename to this symbol. Example:
+
+    If your `.bin` is named `my_cool_track.bin`, change:
+    ```
+    loop_sfx_mvl
+    ```
+    to:
+    ```
+    loop_sfx_mvl_my_cool_track
+    ```
+
+    If you do not perform this rename, the installer will fail to install the audio.
+
+11. **Install with Event Assembler.** Assemble the `.txt` installer into your ROM as usual.
+
+12. **Call the track in-game**:
+    - As a sound effect:
+      ```
+      SOUN <id>
+      ```
+    - As music:
+      ```
+      MUSC <id>
+      ```
+    Where `<id>` is the Music List ID you assigned in WAV2EA.
+
+---
 
 ## Limitations and Bugs
 
-We use WAVs instead of MP3s as GBA hardware just isn't powerful enough to decode
-MP3s in real time. If we could, we'd probably x3 or x4 the amount of storage
-we have available at the same quality level. There are some decent compression
-utilities out there like 8ad but they require the installation of a whole new
-sound engine and getting that to play nice with Fire Emblem 8 is outside the
-scope of this document.
+- The GBA cannot decode MP3s or modern compressed formats in real time, so WAV (with DPCM compression) is the practical option.  
+- WAVs are large even after compression; storage is limited.  
+- Better compression solutions (e.g., **8ad**) require replacing the sound engine, which is outside the scope of this guide and significantly more complex.

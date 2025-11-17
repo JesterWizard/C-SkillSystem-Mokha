@@ -1,28 +1,42 @@
 # Free Movement
 
-##  Index
-- ### [Introduction](#Introduction)
-- ### [How To Use](#How-To-Use)
-- ### [Limitations and Bugs](#Limitations-and-Bugs)
+---
 
-## Introduction
+## 📑 Index
+- [Introduction](#introduction)
+- [How To Use](#how-to-use)
+- [Limitations & Bugs](#limitations--bugs)
 
-Free movement that enables typical JRPG movements on your units, so that they can freely move
-around and change directions without needing to be restricted to their initial movement range.
+---
 
-This fork comes installed with the ASM Sme version of free movement.
+## 🧩 Introduction
 
-## How To Use
+This feature enables **free movement**, allowing units to move around the map in a style similar to traditional **JRPG overworld movement**, rather than being restricted to their standard Fire Emblem movement range.
 
-This can be enabled in any ``.c``/``.h`` file that includes ``jester_headers/custom-functions.h``.
+This fork includes the **ASM Sme** implementation of free movement by default.
 
-In your starting event, you just need to include ``ASMC(EnableFreeMovementASMC)``
+---
 
-## Limitations and Bugs
+## 🚀 How To Use
 
-Please note, it seems that the free movement ASMC turns off if you save and suspend
+Free movement can be enabled from any `.c` or `.h` file that includes:
 
-It is only employed on the first unit in your deployment list, s don;t try to load
-more than one and once.
+```c
+#include "jester_headers/custom-functions.h"
+```
 
-You cannot interact with enemies to start fights or use typical commands like trade.
+To enable it in a chapter, simply add the following to your starting event:
+
+Once called, the player gains control of free movement for the active unit.
+
+## 🐛 Limitations & Bugs
+
+Please be aware of the following limitations:
+
+- Free movement disables itself after saving and suspending a chapter
+
+- Only the first deployed unit is supported — do not attempt to activate free movement for multiple units simultaneously
+
+- You cannot interact with enemies to initiate combat, nor can you use standard commands like Trade, Rescue, etc. while in free movement mode
+
+Please report additional issues in the repository’s Issues tab.

@@ -1,55 +1,82 @@
 # Biorhythm
 
-##  Index 
-- ### [Introduction](#Introduction)
-- ### [Plan](#Plan)
-- ### [Code Locations](#Code-Locations)
-- ### [TODO](#TODO)
-- ### [Limitations and Bugs](#Limitations-and-Bugs)
+---
 
-## Introduction
+## 📑 Index
+- [Introduction](#introduction)
+- [Plan](#plan)
+- [Code Locations](#code-locations)
+- [TODO](#todo)
+- [Limitations & Bugs](#limitations--bugs)
 
-This is a controversial FE9 mechanic made to simulate characters having good days
-and bad days. The idea being on the certain turns they will hit and dodge better and
-on others they will be worse.
+---
 
-## Plan
+## 🧩 Introduction
 
-This implementation offers the following:
+This system recreates the **Biorhythm** mechanic from **Fire Emblem 9**, a feature meant to simulate characters having *good days* and *bad days*.  
 
-- The ability to set the number of states
-- The ability to set a per character value for each state
-- The ability to set a per character starting position in the range of states
+Depending on the current biorhythm state, a unit may experience increases or decreases to **hit** and **avoid** on each turn.
 
-It works by gradually moving the unit through their various biorhythm states on
-a turn by turn basis. Looping back around when it reaches the end.
+---
 
-E.g.
+## 🛠️ Plan
 
-```
-Turn 1 = -15 HIT/AVO
-Turn 2 = -5 HIT/AVO
-Turn 3 = 0 HIT/AVO
-Turn 4 = 5 HIT/AVO
-Turn 5 = 15 HIT/AVO
-Turn 6 = -15 HIT/AVO
-```
+This implementation provides:
 
-## Code Locations
+- The ability to configure the **number of biorhythm states**
+- The ability to set **per-character values** for each state
+- The ability to set a **per-character starting position** within the state cycle
 
-- The functions are declared in [custom-arrays.h](../../include/jester_headers/custom-arrays.h)
-    - The size of the biorhythm array is determined by ``MAX_BIORHYTHM_STATES``. Increase this if you want more of them
-    - ``BiorhythmPInfoConfig`` is the struct that holds the different variables for Biorhythm. You can add new ones here like ``BiorhythmSpeed``
-        for determining how fast a unit cycles though their states.
+Units transition through their biorhythm states **one per turn**, looping back to the beginning once the cycle ends.
 
-- And they are defined in [Biorhythm.c](../../Kernel/Wizardry/Misc/Biorhythm/Biorhythm.c)
-    - There is enough room for unique values for 255 units
-    - You can add more states per ``MAX_BIORHYTHM_STATES`` or change the values of each unit's hit/dodge biorhythms
+### Example Cycle
 
-## TODO
+|  Turn  |   Hit    |    Avo    |
+|--------|----------|-----------|
+| 1      |   -15    |    -15    |
+| 2      |    -5    |     -5    |
+| 3      |     0    |      0    |
+| 4      |     5    |      5    |
+| 5      |    10    |     10    |
+| 6      |    15    |     15    |
 
-## Limitations/Bugs
+...etc etc
 
-None that I'm aware of.
 
-Report in the ``issues`` tab of the repo.
+---
+
+## 🗂️ Code Locations
+
+### Header / Configuration
+Declared in [`custom-arrays.h`](../../include/jester_headers/custom-arrays.h):
+
+- `MAX_BIORHYTHM_STATES`  
+  - Determines the size of the biorhythm array  
+  - Increase for more states
+- `BiorhythmPInfoConfig` struct  
+  - Stores biorhythm-related properties  
+  - You may add new variables (e.g., `BiorhythmSpeed`) to control cycle rate
+
+### Implementation
+Defined in [`Biorhythm.c`](../../Kernel/Wizardry/Misc/Biorhythm/Biorhythm.c):
+
+- Supports **unique values for up to 255 units**
+- You may:
+  - Increase `MAX_BIORHYTHM_STATES`
+  - Adjust per-unit HIT/AVO modifiers for each state
+
+---
+
+## 📝 TODO
+
+_(None listed yet — add items as needed.)_
+
+---
+
+## 🐛 Limitations & Bugs
+
+None currently known.
+
+Please report new issues in the repository’s **Issues** tab.
+
+---

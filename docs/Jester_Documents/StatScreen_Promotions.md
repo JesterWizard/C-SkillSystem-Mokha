@@ -1,48 +1,109 @@
-# Stat Screen - Promotions
+# Stat Screen – Promotions
 
-![](../Gifs/Promotion_Stat_Page.gif)
+<p align="center">
+  <img src="../Gifs/Promotion_Stat_Page.gif" alt="Promotion Stat Page" width="600"/>
+</p>
 
-##  Index
-- ### [Introduction](#Introduction)
-- ### [Plan](#Plan)
-- ### [Code Locations](#Code-Locations)
-- ### [How To Modify](#How-To-Modify)
-- ### [TODO](#TODO)
-- ### [Limitations and Bugs](#Limitations-and-Bugs)
+---
 
-## Introduction
+## 📑 Index
+- [Introduction](#introduction)
+- [Plan](#plan)
+- [Code Locations](#code-locations)
+- [How To Modify](#how-to-modify)
+- [TODO](#todo)
+- [Limitations & Bugs](#limitations--bugs)
 
-By default, it can be annoying to work out what classes promote to what. Historially, this information has generally been obscured from the player, making promotion paths a bit of a guessing game. Finding out the answers usually requires one of getting the required promotion items, hitting certain story/event milestones or digging into the source files of the game.
+---
 
-## Plan
+## 🧩 Introduction
 
-This page seeks to remedy that and allow you to display a modular list of promotion options for the active unit alongside and acquired skills from those promotions.
+In most Fire Emblem titles, determining **promotion paths** requires digging through internal data, reaching specific items or events, or searching external documentation.  
+The game itself historically obscures this information, leaving players guessing about what classes promote into and what skills they gain.
 
-As of the current version, you have up to 3 promotion options and 3 skills per promotion displayed within the page, with r text enabled to help you make a more informed decision later down the road.
+This feature solves that problem by providing a **dedicated stat screen page** that clearly displays:
 
-## Code Locations
+- All available promotion options for the active unit  
+- Up to **three promotions per unit**  
+- Up to **three skills per promotion**  
+- Full **R-text integration** for skill explanations
 
-- The redirection of the R text is controlled within ``HbRedirect_SSItem`` inside the ``CONFIG_STAT_PAGE_PROMOTIONS`` definition inside [DrawItemPage.c](../../Kernel/Wizardry/Core/StatScreen/DrawItemPage.c).
+---
 
-- The display of the SMS (standing map sprites) and the platforms are controlled in ``PageNumCtrl_DisplayMuPlatform`` in [DrawMorePage.c](../../Kernel/Wizardry/Core/StatScreen/DrawMorePage/Source/DrawMorePage.c)
+## 🛠️ Plan
 
-- The array that holds the promotion data is ``unit_promotions`` as well as what draws the skill icons ``DrawPage7Rework`` are both contained in [DrawPage7.c](../../Kernel/Wizardry/Core/StatScreen/DrawPages/DrawPage7.c)
+The system aims to give players full visibility into promotion choices before they commit.
 
-- The redirection logic for the R text is controlled in [HelpBoxPage7.c](../../Kernel/Wizardry/Core/StatScreen/DrawPages/HelpBoxPage7.c)
+Features include:
 
-- The sprite sheet for the page numbers and titles is in [Gfx_StatScreenObj_9Pages.png](../../Data/StatScreen/Data/Gfx_StatScreenObj_9pages.png) and is controlled by ``DisplayPageNameSprite`` and ``PageNumCtrl_UpdatePageNum.c`` in [DrawMorePage.c](../../Kernel/Wizardry/Core/StatScreen/DrawMorePage/Source/DrawMorePage.c).
+- Display of up to **3 promotion options**
+- Display of up to **3 skills per promotion**
+- Modular, per-unit customization
+- Standing map sprites (SMS) and decorative platforms for each option
+- R-text popups for all shown skills
+- Fully integrated into the stat screen as a new page
 
-## How To Modify
+---
 
-To edit the promotion options on a per-unit basis you'll want to navigate to [DrawPage7.c](../../Kernel/Wizardry/Core/StatScreen/DrawPages/DrawPage7.c). Inside ``unit_promotions`` is a variable width macros called ``UNIT_PROMOS`` that takes a unit character ID as a key, and a number of ``PROMO`` macros between 1-3. The ``PROMO`` macros themselves take a class ID and a variable number of skill IDs between 0-3. The list is terminated with ``{0}`` do not remove it.
+## 🗂️ Code Locations
 
-## TODO
-- Maybe shift the space around for a 4th option?
+| Functionality | Location | Description |
+|--------------|----------|-------------|
+| **R-text redirection** | `HbRedirect_SSItem` inside `CONFIG_STAT_PAGE_PROMOTIONS` in [`DrawItemPage.c`](../../Kernel/Wizardry/Core/StatScreen/DrawItemPage.c) | Routes the help box to promotion data |
+| **SMS + platforms** | `PageNumCtrl_DisplayMuPlatform` in [`DrawMorePage.c`](../../Kernel/Wizardry/Core/StatScreen/DrawMorePage/Source/DrawMorePage.c) | Handles sprite/platform display |
+| **Promotion data & skill icons** | `unit_promotions` and `DrawPage7Rework` in [`DrawPage7.c`](../../Kernel/Wizardry/Core/StatScreen/DrawPages/DrawPage7.c) | Core promotion logic and drawing |
+| **R-text logic** | [`HelpBoxPage7.c`](../../Kernel/Wizardry/Core/StatScreen/DrawPages/HelpBoxPage7.c) | Determines which promotion entry is being referenced |
+| **Page graphics** | `Gfx_StatScreenObj_9Pages.png` and related logic in `DisplayPageNameSprite` and `PageNumCtrl_UpdatePageNum` in [`DrawMorePage.c`](../../Kernel/Wizardry/Core/StatScreen/DrawMorePage/Source/DrawMorePage.c) | Handles page titles and page number sprites |
 
-## Limitations/Bugs
+---
 
-- There is a problem in [DrawItemPage.c](../../Kernel/Wizardry/Core/StatScreen/DrawItemPage.c) inside ``HbRedirect_SSItem`` where I've attempted to turn off the R text option for promotion locations the unit isn't using (e.g. they only have 2 promotions instead of 3). However, there doesn't seem to be a bulletproof way of disabling R text in this situation when transitioning around the page with the DPAD. Right now, the best I've been able to do is disable R text when you try to enable it directly on an unused space on the page.
+## 🧭 How To Modify
 
-- Some logic expects this page to be 7th in ``gStatScreen.page`` (which as a 0 based index would be 6). So the MP system and personal info stat pages will need to be enabled or certain things might not work correctly. At some point I'll look into solving this.
+To edit promotion options:
 
-Report any further issues in the [issues](https://github.com/JesterWizard/C-SkillSystem-Mokha/issues) tab of the repo.
+1. Open  
+   **[`DrawPage7.c`](../../Kernel/Wizardry/Core/StatScreen/DrawPages/DrawPage7.c)**  
+
+2. Find the `unit_promotions` array. Entries use the `UNIT_PROMOS` macro with `PROMO()` entries for each promotion option.
+
+3. Example entry:
+```c
+UNIT_PROMOS(CHAR_MY_UNIT,
+    PROMO(CLASS_PALADIN, SKILL_LANCE_MASTER, SKILL_DEFENSE_UP, SKILL_NONE),
+    PROMO(CLASS_DRUID,    SKILL_MAGIC_BOOST, SKILL_NONE,       SKILL_NONE),
+    PROMO(CLASS_WYVERN,  SKILL_FLYING_STR,   SKILL_NONE,       SKILL_NONE)
+),
+/* other UNIT_PROMOS(...) entries ... */
+{0} /* terminator - DO NOT REMOVE */
+```
+
+---
+
+### Notes / Rules
+
+- Each UNIT_PROMOS entry corresponds to a specific unit character ID.
+
+- A unit may have 1 to 3 PROMO() entries.
+
+- Each PROMO(class_id, skillA, skillB, skillC) can list 0–3 skills; use a sentinel (SKILL_NONE or 0) for unused slots.
+
+- Terminate the unit_promotions list with a final {0} — this is required by the parser and must not be removed.
+
+---
+
+## 📝 TODO
+
+Consider redesigning layout to accommodate a 4th promotion option if needed.
+
+---
+
+## 🐛 Limitations & Bugs
+
+R-text / Help box disabling is imperfect.
+The ``HbRedirect_SSItem`` logic in ``DrawItemPage.c`` attempts to disable R-text on unused promotion slots, but suppression isn't fully bulletproof when navigating with the D-Pad. Currently the system prevents direct activation of R-text on unused slots but may still briefly allow focus transitions into them.
+
+Page index expectations
+Some code assumes this promotions page is located at a specific index (page 7 / index 6) in ``gStatScreen.page``. If MP or personal-info pages are disabled or reordered, certain behaviors may break. Consider ensuring required pages are present or refactoring any hardcoded page-index logic.
+
+Report further issues in the repo’s Issues tab:
+https://github.com/JesterWizard/C-SkillSystem-Mokha/issues

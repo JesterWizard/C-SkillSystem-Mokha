@@ -1,29 +1,40 @@
 # Make Fog Great Again!
 
-![](../Gifs/Fog_Stages.gif)
+<p align="center">
+  <img src="../Gifs/Fog_Stages.gif" alt="Fog Stages Demo" width="600"/>
+</p>
 
-##  Index 
-- ### [Introduction](#Introduction)
-- ### [Plan](#Plan)
-- ### [Code Locations](#Code-Locations)
-- ### [TODO](#TODO)
-- ### [Limitations and Bugs](#Limitations-and-Bugs)
+---
 
-## Introduction
-This is my plan to make fog more inclusive and strategic as a gameplay element.
+## 📑 Index
+- [Introduction](#introduction)
+- [Plan](#plan)
+- [Code Locations](#code-locations)
+- [TODO](#todo)
+- [Limitations & Bugs](#limitations--bugs)
 
-Historically, fog has plagued every Fire Emblem it has appeared in mostly due to the fact
-that its standard implementation stands in direct contradiction to how a strategy game
-ought to be played. Wherein you make a plan of action based on the available map data to
-determine which of your units should move to fight / defend.
+---
 
-Vanilla fog in the GBA games works by obscuring all enemy units outside of the sight
-radius of the player units. In addition, you automatically lose your action if you
-run into an enemy unit oscured by fog, and enemy units themselves have an unfair
-advantage in that they can see the whole map.
+## 🧩 Introduction
 
-## Plan
-To combat these limitations, I propose a three stage revamp to fog
+This project aims to make **fog of war** a more strategic and engaging gameplay element.
+
+Historically, fog has been a controversial mechanic in Fire Emblem.  
+Its default GBA implementation contradicts core strategy design principles: players are expected to make informed decisions based on map information, yet fog removes information and penalizes players for guessing wrong.
+
+Vanilla fog issues include:
+
+- Enemy units outside a unit’s sight radius are completely hidden  
+- Running into hidden enemies **ends your turn immediately**  
+- Enemy units enjoy unfair omniscient vision of the entire map  
+
+This system seeks to address those problems.
+
+---
+
+## 🛠️ Plan
+
+To improve fog, this redesign introduces **three distinct fog stages**:
 
 ```
         3
@@ -37,28 +48,46 @@ To combat these limitations, I propose a three stage revamp to fog
         3
 ```
 
-- The player unit sits in the center at ``U``.
-- All tiles at ``0`` signify the player unit's 'sight'. All the data about an enemy unit is available at this stage.
-- At ``stage 1`` enemy units can still be seen, but their status screen, MMB and forecast stats are hidden
-- At ``stage 2`` enemy units are replaced with a ``citizen`` sprite, making it impossible to tell friend from foe
-- At ``stage 3`` enemy units are completely hidden as in vanilla fog. Alongside terrain.
 
-## Code Locations
+### How It Works
 
-The modifications required to make this work are silo'd via the ``CONFIG_MULTIPLE_FOG_STAGES`` preprocessor definition
-within each function that modifications were made.
+| Stage | Visibility | Description |
+|-------|------------|-------------|
+| **U** | — | Player unit position |
+| **0** | Full visibility | Enemy fully visible (stats, forecast, everything) |
+| **1** | Limited info | Enemy visible, but stats/MMB/forecast are hidden |
+| **2** | Low clarity | Enemy replaced with a neutral **citizen sprite** (identity obscured) |
+| **3** | Full fog | Enemy completely hidden (as in vanilla), terrain also obscured |
 
-- Access to the stat screen is controlled within the ``CanShowUnitStatScreen`` and ``FindNextUnit`` functions at [AccessStatScreen.c](../../Data/StatScreen/Source/AccessStatScreen.c)
+This layered fog provides partial information instead of the all-or-nothing approach of vanilla fog, leading to more strategic decision-making.
 
-- Whether or not to hide enemy units in fog is controlled within the ``RefreshUnitsOnBmMap`` function at [MiscFunctions.c](../../Kernel/Wizardry/Misc/MiscFunctions/Source/MiscFunctions.c)
+---
 
-- Whether or not to show the enemy units' battle forecast data is controlled within the ``DrawBattleForecastContentsStandard`` and ``DrawBattleForecastContentsExtended`` functions are [BattleForecast.c](../../Kernel/Wizardry/Core/CombatArt/BKSELfx/Source/BattleForcast.c)
+## 🗂️ Code Locations
 
-### TODO
+All modifications are gated behind the `CONFIG_MULTIPLE_FOG_STAGES` preprocessor flag.
 
-## Limitations and Bugs
+| Feature | Location | Description |
+|--------|----------|-------------|
+| **Stat screen accessibility** | `CanShowUnitStatScreen` and `FindNextUnit` in [`AccessStatScreen.c`](../../Data/StatScreen/Source/AccessStatScreen.c) | Controls whether a fog-obscured unit’s stats may be viewed |
+| **Fog-based unit hiding** | `RefreshUnitsOnBmMap` in [`MiscFunctions.c`](../../Kernel/Wizardry/Misc/MiscFunctions/Source/MiscFunctions.c) | Determines if an enemy should be visually hidden |
+| **Battle forecast data visibility** | `DrawBattleForecastContentsStandard` and `DrawBattleForecastContentsExtended` in [`BattleForecast.c`](../../Kernel/Wizardry/Core/CombatArt/BKSELfx/Source/BattleForcast.c) | Determines whether enemy stats appear in the forecast |
 
-As of the time of writing, stages 2 and 3 of the fog still need fleshing out mechanically and graphically.
-There are issues that need resolving with having multiple different fogs occupying the same layer.
-Ideally they should all be able to programatically share the same space so long as the total palette sits
-below 16 colors, but we'll see.
+---
+
+## 📝 TODO
+
+- Expand mechanical and graphical functionality of **stages 2 and 3**
+- Resolve issues involving **multiple fog overlays** sharing a single layer
+- Optimize palette usage (must stay under 16 colors)
+
+---
+
+## 🐛 Limitations & Bugs
+
+Currently, stages **2** and **3** are incomplete and require further development.  
+There are technical challenges around rendering multiple fog layers simultaneously. Ideally, all fog patterns should programmatically coexist as long as the palette remains within hardware limits.
+
+Please report any issues in the repository’s **Issues** tab.
+
+---

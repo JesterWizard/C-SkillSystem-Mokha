@@ -1,38 +1,61 @@
 # Modular Fog Vision Range
 
-##  Index 
-- ### [Introduction](#Introduction)
-- ### [Plan](#Plan)
-- ### [Code Locations](#Code-Locations)
-- ### [TODO](#TODO)
-- ### [Limitations and Bugs](#Limitations-and-Bugs)
+---
 
-## Introduction
+## 📑 Index
+- [Introduction](#introduction)
+- [Plan](#plan)
+- [Code Locations](#code-locations)
+- [TODO](#todo)
+- [Limitations & Bugs](#limitations--bugs)
 
-By default in FE8, fog vision is very static with almost all units having a 1 tile range.
-Thieves are an exception with a bonus +5. Other than this, your only other options have historically
-been torch items or torch staves.
+---
 
-## Plan
+## 🧩 Introduction
 
-I propose to make this more modular, with fog vision ranges based on a class by class basis.
+In vanilla **FE8**, fog vision is extremely limited and largely static.  
+Most units only see **1 tile** ahead, with **thieves** being the notable exception (+5 range).  
+Beyond that, the only ways to extend vision are **torch items** or **torch staves**.
 
-This way you can have situatons where you can have far sighted archers (who realistically should have better vision than thieves). As well as flying units who can see further than your infantry etc.
+This system is restrictive and doesn’t reflect the diversity of classes in the game.
 
-## Code Locations
+---
 
-- The actual vision ranges are controlled in the ``GetUnitFogViewRange`` function in [FogVision.c](../../Kernel/Wizardry/Common/FogVision/FogVision.c)
+## 🛠️ Plan
 
-- The drawing of the vision text in the stat screen is controlled in the ``DrawPage1TextCommon`` function in [Page1WithBWL.c](../../Kernel/Wizardry/Core/StatScreen/DrawUnitPage/PlanA/Page1WithBwl.c) or [Page1WithLeadershi.c](../../Kernel/Wizardry/Core/StatScreen/DrawUnitPage/PlanB/Page1WithLeadership.c)
+This feature introduces a **modular fog vision system**, allowing vision ranges to be defined **per class**.
 
-- The drawing of the vision bar in the stat screen is controlled in the ``DisplayPage_WithBWL`` function in [Page1WithBwl.c](../../Kernel/Wizardry/Core/StatScreen/DrawUnitPage/PlanA/Page1WithBwl.c) or the ``DisplayPage_WithLeadership`` function in [Page1WithLeadership.c](../../Kernel/Wizardry/Core/StatScreen/DrawUnitPage/PlanB/Page1WithLeadership.c)
+This opens the door to more realistic and strategic class design:
 
-- The linking of each stat screen option as you cycle through them is controlled by the various ``RText`` arrays in [Page1WithBwlHelpBox.c](../../Kernel/Wizardry/Core/StatScreen/DrawUnitPage/PlanA/Page1WithBwlHelpBox.c) or [Page1WithLeadershipHelpBox.c](../../Kernel//Wizardry/Core/StatScreen/DrawUnitPage/PlanB/Page1WithLeadershipHelpBox.c)
+- Archers could have **extended vision**, representing their observational skill  
+- Flying units might see further due to aerial perspective  
+- Infantry can remain limited, maintaining class identity  
 
-## TODO
+The result is more interesting map design and more dynamic fog gameplay.
 
-## Limitations/Bugs
+---
 
-None that I'm aware of.
+## 🗂️ Code Locations
 
-Report in the ``issues`` tab of the repo.
+| Feature | Location | Description |
+|--------|----------|-------------|
+| **Vision range logic** | `GetUnitFogViewRange` in [`FogVision.c`](../../Kernel/Wizardry/Common/FogVision/FogVision.c) | Controls how far each unit can see under fog |
+| **Vision value text on stat screen** | `DrawPage1TextCommon` in [`Page1WithBwl.c`](../../Kernel/Wizardry/Core/StatScreen/DrawUnitPage/PlanA/Page1WithBwl.c) or `DrawPage1TextCommon` in [`Page1WithLeadership.c`](../../Kernel/Wizardry/Core/StatScreen/DrawUnitPage/PlanB/Page1WithLeadership.c) | Writes the fog vision number |
+| **Vision bar on stat screen** | `DisplayPage_WithBWL` in [`Page1WithBwl.c`](../../Kernel/Wizardry/Core/StatScreen/DrawUnitPage/PlanA/Page1WithBwl.c) or `DisplayPage_WithLeadership` in [`Page1WithLeadership.c`](../../Kernel/Wizardry/Core/StatScreen/DrawUnitPage/PlanB/Page1WithLeadership.c) | Draws the graphical vision bar |
+| **Help box navigation links** | `RText` arrays in [`Page1WithBwlHelpBox.c`](../../Kernel/Wizardry/Core/StatScreen/DrawUnitPage/PlanA/Page1WithBwlHelpBox.c) or [`Page1WithLeadershipHelpBox.c`](../../Kernel/Wizardry/Core/StatScreen/DrawUnitPage/PlanB/Page1WithLeadershipHelpBox.c) | Controls which help boxes appear when cycling through stats |
+
+---
+
+## 📝 TODO
+
+_(Add items as discovered.)_
+
+---
+
+## 🐛 Limitations & Bugs
+
+No issues currently known.
+
+Please report any bugs using the repository’s **Issues** tab.
+
+---

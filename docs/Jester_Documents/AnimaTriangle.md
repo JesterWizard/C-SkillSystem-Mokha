@@ -1,43 +1,61 @@
 # Anima Triangle
 
-![](../Gifs/Anima_Triangle.gif)
+<p align="center">
+  <img src="../Gifs/Anima_Triangle.gif" alt="Anima Triangle Demo" width="600"/>
+</p>
 
-##  Index 
-- ### [Introduction](#Introduction)
-- ### [Plan](#Plan)
-- ### [Code Locations](#Code-Locations)
-- ### [TODO](#TODO)
-- ### [Limitations and Bugs](#Limitations-and-Bugs)
+---
 
-## Introduction
+## 📑 Index
+- [Introduction](#introduction)
+- [Plan](#plan)
+- [Code Locations](#code-locations)
+- [TODO](#todo)
+- [Limitations & Bugs](#limitations--bugs)
 
-This is a feature from FE4/FE5 where anima magic has a weapon triangle
-in much the same way as standard weapons and magic do.
+---
 
-## Plan
+## 🧩 Introduction
 
-The proposal is as follows:
+This feature recreates the **anima magic triangle** from **Fire Emblem 4 and 5**, where anima spells interact with one another similarly to traditional weapon and magic triangles.
 
-- Fire -> Wind/Ice
-- Wind/Ice -> Thunder
-- Thunder -> Fire
+---
 
-The system is set up to support a maximum of three anima magics of each type
-in a triangular relationship.
+## 🛠️ Plan
 
-## Code Locations
+The system follows the classic FE4/FE5 structure:
 
-### Anima storage struct
-- ``weaponId_1`` and ``weaponId_2`` in ``WeaponTriangleItemConf`` in [battle-system.h](../../include/kernel/battle-system.h)
-### Weapon Triangle relationship struct (and bonus damage/hit)
-- ``gWeaponTriangleItemConf`` in [WeaponTriangle.c](../../Data/BattleSys/Source/WeaponTriangle.c)
-### WTA logic
-- ``#ifdef CONFIG_ANIMA_WEAPON_TRIANGLE`` in ``WTA_HandlerWeapon`` in [WeaponTriangle.c](../../Kernel/Wizardry/Core/BattleSys/Source/WeaponTriangle.c) (different file)
+- **Fire → Wind/Ice**
+- **Wind/Ice → Thunder**
+- **Thunder → Fire**
 
-## TODO
+The configuration supports **up to three anima types**, arranged in a triangular advantage/disadvantage relationship.
 
-## Limitations/Bugs
+---
 
-Report in the ``issues`` tab of the repo.
+## 🗂️ Code Locations
 
-- There appears to be some slight lag when running this, not enought to be a problem but good to keep an eye on. I may revist this and try to resolve it.
+| Feature | Location | Description |
+|--------|----------|-------------|
+| **Anima storage struct** | `weaponId_1` and `weaponId_2` in `WeaponTriangleItemConf` in [`battle-system.h`](../../include/kernel/battle-system.h) | Defines anima weapon IDs involved in triangle |
+| **Triangle relationships & bonuses** | `gWeaponTriangleItemConf` in [`WeaponTriangle.c`](../../Data/BattleSys/Source/WeaponTriangle.c) | Holds triangle rules and hit/damage bonuses |
+| **WTA logic** | `WTA_HandlerWeapon` (inside `#ifdef CONFIG_ANIMA_WEAPON_TRIANGLE`) in [`WeaponTriangle.c`](../../Kernel/Wizardry/Core/BattleSys/Source/WeaponTriangle.c) | Applies the triangle logic during combat |
+
+---
+
+## 📝 TODO
+
+_Add items when identified._
+
+---
+
+## 🐛 Limitations & Bugs
+
+Please report issues in the repository’s **Issues** tab.
+
+### ⚠️ Known Concern
+
+- There may be **slight lag** when this system is active.  
+  It’s not disruptive, but worth monitoring for future optimization.
+
+---

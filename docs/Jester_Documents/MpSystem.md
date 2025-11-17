@@ -1,62 +1,88 @@
 # MP System
 
-![](../Gifs/MP_System.gif)
+<p align="center">
+  <img src="../Gifs/MP_System.gif" alt="MP System Demo" width="600"/>
+</p>
 
-##  Index 
-- ### [Introduction](#Introduction)
-- ### [Plan](#Plan)
-- ### [Code Locations](#Code-Locations)
-- ### [TODO](#TODO)
-- ### [Limitations and Bugs](#Limitations-and-Bugs)
+---
 
-## Introduction
+## 📑 Index
+- [Introduction](#introduction)
+- [Plan](#plan)
+- [Code Locations](#code-locations)
+- [TODO](#todo)
+- [Limitations & Bugs](#limitations--bugs)
 
-This builds on Mokha's implementation of the FE Gaiden magic system.
-By default, Gaiden Magic is split into "Black" and "White" categories
-and costs a set amount of HP to cast. Given the importance of HP as  a resource
-in a game where enemies are stacked against you, this setup is less than ideal.
+---
 
-## Plan
+## 🧩 Introduction
 
-This hack implements a functional MP system for every playable unit with BWL data,
-storing both their current MP and max MP in their BWL structs. C Skill System limits
-this to 51 units instead of 0x46 in the base game (presumably to free up the RAM for other things).
+This system expands upon **Mokha’s FE Gaiden magic implementation**.  
+In Gaiden, magic is divided into **Black** and **White** categories and consumes **HP** to cast.  
+Given HP’s importance as a survival resource—especially in enemy-heavy gameplay—using HP for magic creates undesirable tradeoffs.
 
-The MP system follows FFTA2 rules. For those unfamiliar, this means your units
-start at 0 MP each map and gain X amount per turn and/or battle. The idea behind this is
-in return for making MP a self replenishing resource, you're unable to fire off
-your most powerful Gaiden magic straight away.
+This hack replaces HP-based casting with a **true MP system**, offering a more flexible and sustainable way to manage magic.
 
-In addition, a stat page has been fashioned to display all white/black gaiden magic
-alongside their MP costs. The default system tried to display them in the item page,
-which quickly becomes a problem when you're running with a full stock.
+---
 
-## Code Locations
+## 🛠️ Plan
 
-### MP costs
-- ``gGaidenWeaponCostList`` in [GaidenMagicData.c](../../Data/GaidenMagic/GaidenMagicData.c)
-### MP lists
-- ``gGaidenPinfoConfigList`` in [GaidenMagicData.c](../../Data/GaidenMagic/GaidenMagicData.c)
-### Stat screen display - MP cost color
-- ``PutGaidenCost`` in [DrawPage5.c](../../Kernel/Wizardry/Core/StatScreen/DrawPages/DrawPage5.c)
-### Stat screen display - white Gaiden magic
-- ``WhiteMagicList`` in [DrawPage5.c](../../Kernel/Wizardry/Core/StatScreen/DrawPages/DrawPage5.c)
-### Stat screen display - black Gaiden magic
-- ``BlackMagicList`` in [DrawPage5.c](../../Kernel/Wizardry/Core/StatScreen/DrawPages/DrawPage5.c)
-### MP generation
-- ``gMpSystemPInfoConfigList`` in [MpSystem.c](../../Data/MpSystem/MpSystem.c)
+This system implements:
 
-## TODO
+- A full **MP pool** for every playable unit with BWL data  
+- Both **current MP** and **maximum MP** stored in the BWL struct  
+- Support for up to **51 units** (C Skill System change from FE8's 0x46)
 
-- Switch from MMB to GORGON-EGG for MP display in the minimug box
-- Add an option for 3 houses magic
-- Add an option for FFTA MP rules alongside the current FFTA2
+### 🔵 MP rules (FFTA2-style)
 
-## Limitations/Bugs
+This implementation follows **Final Fantasy Tactics A2** MP logic:
 
-Report in the ``issues`` tab of the repo.
+- Units begin each chapter with **0 MP**
+- Units gain **MP each turn and/or after combat**
+- Stronger spells cannot be fired off immediately
+- MP is a **self-replenishing resource**, unlike the HP-based Gaiden system
 
-- Getters for the current MP and max MP have been created in [MiscFunctions.c](../../Kernel/Wizardry/Misc/MiscFunctions/Source/MiscFunctions.c)
-  ``GetUnitCurrentMP`` and ``GetUnitMaxMP``, however these are not very compatible with the [MMBDrawMP.s](../../Kernel/Wizardry//Misc/ModularMinimugBox/Modules/MMBDrawMP.s)
-  which draws the MP inside the Minimug box on the map. This makes it hard for the MP to be dynamic outside of what's set in the ROM. It's possible GORGON-EGG might be able
-  to fix this, as I think that one uses C, but we'll see.
+### 📘 Stat Page Enhancements
+
+A dedicated stat page displays all **Black** and **White** magic and their MP costs.  
+The default Gaiden system tried to display magic as items, which becomes problematic when inventories fill up.
+
+---
+
+## 🗂️ Code Locations
+
+| Feature | Location | Description |
+|--------|----------|-------------|
+| **MP costs** | `gGaidenWeaponCostList` in [`GaidenMagicData.c`](../../Data/GaidenMagic/GaidenMagicData.c) | MP cost per Gaiden magic |
+| **MP configuration per unit** | `gGaidenPinfoConfigList` in [`GaidenMagicData.c`](../../Data/GaidenMagic/GaidenMagicData.c) | Unit MP stats and growth behavior |
+| **Stat screen: MP cost colors** | `PutGaidenCost` in [`DrawPage5.c`](../../Kernel/Wizardry/Core/StatScreen/DrawPages/DrawPage5.c) | Colors MP values based on affordability |
+| **Stat screen: White Magic list** | `WhiteMagicList` in [`DrawPage5.c`](../../Kernel/Wizardry/Core/StatScreen/DrawPages/DrawPage5.c) | Displays white magic on page 5 |
+| **Stat screen: Black Magic list** | `BlackMagicList` in [`DrawPage5.c`](../../Kernel/Wizardry/Core/StatScreen/DrawPages/DrawPage5.c) | Displays black magic on page 5 |
+| **MP generation** | `gMpSystemPInfoConfigList` in [`MpSystem.c`](../../Data/MpSystem/MpSystem.c) | MP gain per turn/battle |
+
+---
+
+## 📝 TODO
+
+- Replace MMB with **GORGON-EGG** for MP minimug display  
+- Add option for **Three Houses-style magic**  
+- Add option for **FFTA-style MP** (alongside current FFTA2 rules)
+
+---
+
+## 🐛 Limitations & Bugs
+
+Please report issues in the repository’s **Issues** tab.
+
+### Known Issues
+
+- Getter functions `GetUnitCurrentMP` and `GetUnitMaxMP` (from [`MiscFunctions.c`](../../Kernel/Wizardry/Misc/MiscFunctions/Source/MiscFunctions.c)) exist,  
+  **but are not fully compatible** with the MP display module:
+
+  - The MP minimug display is handled in  
+    [`MMBDrawMP.s`](../../Kernel/Wizardry//Misc/ModularMinimugBox/Modules/MMBDrawMP.s)  
+  - Because this is assembly-based, **MP cannot dynamically update** outside of static ROM values
+
+Potential solution: Rewrite the minimug MP renderer using **GORGON-EGG**, which supports C and may allow dynamic MP drawing.
+
+---

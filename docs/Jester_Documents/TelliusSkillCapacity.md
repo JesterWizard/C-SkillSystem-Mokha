@@ -1,58 +1,89 @@
 # Tellius Skill Capacity
 
-![](../Gifs/Tellius_Skill_Capacity.gif)
+<p align="center">
+  <img src="../Gifs/Tellius_Skill_Capacity.gif" alt="Tellius Skill Capacity Demo" width="600"/>
+</p>
 
-##  Index 
-- ### [Introduction](#Introduction)
-- ### [Plan](#Plan)
-- ### [Code Locations](#Code-Locations)
-- ### [TODO](#TODO)
-- ### [Limitations and Bugs](#Limitations-and-Bugs)
+---
 
-## Introduction
+## 📑 Index
+- [Introduction](#introduction)
+- [Plan](#plan)
+- [Code Locations](#code-locations)
+- [TODO](#todo)
+- [Limitations & Bugs](#limitations--bugs)
 
-One thing I've never really seen any GBA hacks do is introduce
-a skill capacity system. This rectifies that.
+---
 
-For those unfamiliar, skill capacity is a concept introduced in
-the Tellius games (FE9/FE10) and pretty much only those games.
-It's aim was to add another layer of strategy to skill placements
-on units by giving every unit a capacity meter and each skill a
-capacity amount. Even if you have a spare skill slot, if your remaining
-skill capacity is below the capacity of the skill you can't equip it.
-This forces players to consider tradeoffs between different pairs of skills
-rather than just slapping a ton of busted skills on one unit.
+## 🧩 Introduction
 
-## Plan
+One thing I've never really seen any GBA hacks do is introduce a **skill capacity system**.  
+This project implements one.
 
-The proposal is as follows:
+For those unfamiliar, skill capacity is a concept introduced in the **Tellius games (FE9/FE10)**.  
+It adds another strategic layer to skill assignment by giving each unit:
 
-- Each skill gets a capacity amount
-- Every unit gets a capacity meter (starting at 50)
-- Promoted units get an additional 25
-- Any learned skills that would tip the unit over this capacity
-amount are prevented from being learned
+- A **capacity meter**
+- Each skill a **capacity cost**
 
-## Code Locations
+Even if a unit has an empty skill slot, the **remaining capacity** must be high enough to equip the skill.  
+This forces players to consider meaningful tradeoffs instead of stacking many powerful skills on a single unit.
 
-### Skill capacity location
-- The definitions in [Skills_Capacity.h](../../include/kernel/Skills_Capacity.h)
-### Skill capacity getter
-- ``GetSkillCapacity(u16 sid)`` in [Infos.c](../../Kernel/Wizardry/Core/SkillSys/kernel/Infos.c)
-### Scroll usability with Skill capacity
-- ``ItemUseAction_SkillScroll`` in [SkillScroll.c](../../Kernel/Wizardry/Core/SkillSys/SkillScroll/Source/SkillScroll.c)
+---
 
-## TODO
+## 🛠️ Plan
 
-## Limitations/Bugs
+The system works as follows:
 
-Report in the ``issues`` tab of the repo.
+### ✔️ Skill Rules
+- Every **skill** receives a **capacity cost**
 
-- There are skills that reduce the capacity required for other skills.
-An issue arises if this first skill is removed as now the unit might be over capacity
-and yet still able to use skills they wouldn't normally be able to use.
-I'm unsure how to remedy this, if at all.
+### ✔️ Unit Rules
+- Every **unit** starts with **50 capacity**
+- Promoted units gain **+25 capacity**
 
-- A similar situation comes to mind for skills that are learned though level up
-or through other events, I don't currently have a check to prevent them from
-being learned. Maybe that's somethint to look into.
+### ✔️ Learning Rules
+- A unit **cannot learn a skill** if it would exceed their remaining capacity
+
+---
+
+## 🗂️ Code Locations
+
+| Feature | Location | Description |
+|--------|----------|-------------|
+| **Skill capacity definitions** | [`Skills_Capacity.h`](../../include/kernel/Skills_Capacity.h) | Defines capacity values per skill |
+| **Skill capacity getter** | `GetSkillCapacity(u16 sid)` in [`Infos.c`](../../Kernel/Wizardry/Core/SkillSys/kernel/Infos.c) | Retrieves a skill’s capacity cost |
+| **Scroll usability + capacity check** | `ItemUseAction_SkillScroll` in [`SkillScroll.c`](../../Kernel/Wizardry/Core/SkillSys/SkillScroll/Source/SkillScroll.c) | Prevents scroll use when over capacity |
+
+---
+
+## 📝 TODO
+
+_Add items as discovered._
+
+---
+
+## 🐛 Limitations & Bugs
+
+Please report any issues in the repository’s **Issues** tab.
+
+### ⚠️ Known Concerns
+
+#### 1. Capacity-reducing skills may cause overflow conditions  
+Some skills reduce the capacity required for other skills.  
+If the reducing skill is removed, the unit may remain **over capacity** yet still retain skills they normally could not equip.
+
+This is currently unresolved.
+
+#### 2. Level-up / event-learned skills bypass capacity checks  
+Currently, only scroll-based learning checks capacity.  
+Skills learned through:
+- Level-ups  
+- Event scripts  
+- Other systems  
+
+…may exceed capacity without restriction.
+
+A global learning hook might be needed.
+
+---
