@@ -57,16 +57,16 @@ static void WhiteMagicList(struct Unit * unit)
 			if (item == 0)
 				break;
 
-            DrawIcon(gUiTmScratchA + TILEMAP_INDEX(0x1, 0x3 + (i * 2)), GetItemIconId(item), 0x4000);
+            DrawIcon(gUiTmScratchA + TILEMAP_INDEX(0x0, 0x3 + (i * 2)), GetItemIconId(item), 0x4000);
 
             PutDrawText(
                 &gStatScreen.text[WHITE_MAGIC_STARTING_TEXT_FIELD + (i + 1)],
-                gUiTmScratchA + TILEMAP_INDEX(0x3, 0x3 + (i * 2)),
+                gUiTmScratchA + TILEMAP_INDEX(0x2, 0x3 + (i * 2)),
                 TEXT_COLOR_SYSTEM_GOLD,
                 0, 0,
                 Utf8ToNarrowFonts(GetItemName(item)));
 
-            PutGaidenCost(GetGaidenWeaponHpCost(unit, item), gUiTmScratchA + TILEMAP_INDEX(0x6, 0x3 + (i * 2)));
+            PutGaidenCost(GetGaidenWeaponHpCost(unit, item), gUiTmScratchA + TILEMAP_INDEX(0x5, 0x3 + (i * 2)));
 		}
 #endif
 };
@@ -89,16 +89,16 @@ static void BlackMagicList(struct Unit * unit)
 			if (item == 0)
 				break;
 
-            DrawIcon(gUiTmScratchA + TILEMAP_INDEX(0x9, 0x3 + (i * 2)), GetItemIconId(item), 0x4000);
+            DrawIcon(gUiTmScratchA + TILEMAP_INDEX(0x8, 0x3 + (i * 2)), GetItemIconId(item), 0x4000);
 
             PutDrawText(
                 &gStatScreen.text[BLACK_MAGIC_STARTING_TEXT_FIELD + (i +1)],
-                gUiTmScratchA + TILEMAP_INDEX(0xB, 0x3 + (i * 2)),
+                gUiTmScratchA + TILEMAP_INDEX(0xA, 0x3 + (i * 2)),
                 TEXT_COLOR_SYSTEM_GOLD,
                 0, 0,
                 Utf8ToNarrowFonts(GetItemName(item)));
 
-            PutGaidenCost(GetGaidenWeaponHpCost(unit, item), gUiTmScratchA + TILEMAP_INDEX(0xF, 0x3 + (i * 2)));
+            PutGaidenCost(GetGaidenWeaponHpCost(unit, item), gUiTmScratchA + TILEMAP_INDEX(0xE, 0x3 + (i * 2)));
 		}
 #endif
 };

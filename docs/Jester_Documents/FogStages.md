@@ -6,7 +6,7 @@
 - ### [Introduction](#Introduction)
 - ### [Plan](#Plan)
 - ### [Code Locations](#Code-Locations)
-- ### [How To Modify](#How-To-Modify)
+- ### [TODO](#TODO)
 - ### [Limitations and Bugs](#Limitations-and-Bugs)
 
 ## Introduction
@@ -53,8 +53,6 @@ within each function that modifications were made.
 - Whether or not to hide enemy units in fog is controlled within the ``RefreshUnitsOnBmMap`` function at [MiscFunctions.c](../../Kernel/Wizardry/Misc/MiscFunctions/Source/MiscFunctions.c)
 
 - Whether or not to show the enemy units' battle forecast data is controlled within the ``DrawBattleForecastContentsStandard`` and ``DrawBattleForecastContentsExtended`` functions are [BattleForecast.c](../../Kernel/Wizardry/Core/CombatArt/BKSELfx/Source/BattleForcast.c)
-
-## How To Modify
 
 ### TODO
 

@@ -2,4 +2,7 @@
 
 #include "Event/Event.event"
 #include "Chapter/Chapter.event"
-#include "Music/Music_Installer.event"
+
+#ifdef CONFIG_VOICE_ACTED_PROLOGUE
+    #include "Music/Music_Installer.event"
+#endif

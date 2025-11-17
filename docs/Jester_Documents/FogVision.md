@@ -4,7 +4,7 @@
 - ### [Introduction](#Introduction)
 - ### [Plan](#Plan)
 - ### [Code Locations](#Code-Locations)
-- ### [How To Modify](#How-To-Modify)
+- ### [TODO](#TODO)
 - ### [Limitations and Bugs](#Limitations-and-Bugs)
 
 ## Introduction
@@ -29,9 +29,7 @@ This way you can have situatons where you can have far sighted archers (who real
 
 - The linking of each stat screen option as you cycle through them is controlled by the various ``RText`` arrays in [Page1WithBwlHelpBox.c](../../Kernel/Wizardry/Core/StatScreen/DrawUnitPage/PlanA/Page1WithBwlHelpBox.c) or [Page1WithLeadershipHelpBox.c](../../Kernel//Wizardry/Core/StatScreen/DrawUnitPage/PlanB/Page1WithLeadershipHelpBox.c)
 
-## How To Modify
-
-TODO
+## TODO
 
 ## Limitations/Bugs
 

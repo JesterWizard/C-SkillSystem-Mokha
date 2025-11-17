@@ -4,7 +4,7 @@
 - ### [Introduction](#Introduction)
 - ### [Plan](#Plan)
 - ### [Code Locations](#Code-Locations)
-- ### [How To Modify](#How-To-Modify)
+- ### [TODO](#TODO)
 - ### [Limitations and Bugs](#Limitations-and-Bugs)
 
 ## Introduction
@@ -46,22 +46,7 @@ Turn 6 = -15 HIT/AVO
     - There is enough room for unique values for 255 units
     - You can add more states per ``MAX_BIORHYTHM_STATES`` or change the values of each unit's hit/dodge biorhythms
 
-## How To Modify
-
-### Add a new unit
-
-In [Biorhythm.c](../../Kernel/Wizardry/Misc/Biorhythm/Biorhythm.c) you can just add a new entry at the bottom of ``gBiorhythmPInfoConfigList``
-
-e.g. 
-```[CHARACTER_WHOEVER]   = { .biorhythm = { -15, -5, 0, 5, 15 }, .startOffset = 0 }```
-
-### Change the Biorhythm values
-
-In the same file above, where you see ``-15, -5, -, 5, 15``, change these to whatever values you want.
-
-### Change starting position of Biorhythm
-
-In the same file above, where you see ``startOffset`` change that to any value between 0 and ``MAX_BIORHYTHM_STATES - 1``
+## TODO
 
 ## Limitations/Bugs
 
