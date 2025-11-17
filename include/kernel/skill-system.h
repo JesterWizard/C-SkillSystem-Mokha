@@ -594,6 +594,8 @@ u8 Thrust_Usability(const struct MenuItemDef * def, int number);
 u8 Thrust_OnSelected(struct MenuProc * menu, struct MenuItemProc * item);
 u8 DoubleTime_Usability(const struct MenuItemDef * def, int number);
 u8 DoubleTime_OnSelected(struct MenuProc * menu, struct MenuItemProc * item);
+u8 BloodyAlchemy_Usability(const struct MenuItemDef* def, int number);
+u8 BloodyAlchemy_OnSelected(struct MenuProc* menu, struct MenuItemProc* item);
 
 u8 Transform_Laguz_Usability(const struct MenuItemDef* def, int number);
 u8 Transform_Laguz_OnSelected(struct MenuProc* menu, struct MenuItemProc* item);
@@ -669,6 +671,7 @@ bool Action_Reinforce(ProcPtr parent);
 bool Action_SealedZone(ProcPtr parent);
 bool Action_Thrust(ProcPtr parent);
 bool Action_DoubleTime(ProcPtr parent);
+bool Action_BloodyAlchemy(ProcPtr parent);
 
 bool Action_Transform_Laguz(ProcPtr parent);
 

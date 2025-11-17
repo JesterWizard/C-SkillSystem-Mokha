@@ -1190,4 +1190,19 @@ struct MenuItemDef const* const gSkillMenuInfos[MAX_SKILL_NUM + 1] = {
         .onSwitchOut = NULL,
     },
 #endif
+
+#if (defined(SID_BloodyAlchemy) && COMMON_SKILL_VALID(SID_BloodyAlchemy))
+	[SID_BloodyAlchemy] = &(const struct MenuItemDef) {
+		.name = "　神裁の恩寵",
+		.nameMsgId = MSG_SKILL_BloodyAlchemy_NAME,
+		.helpMsgId = MSG_SKILL_BloodyAlchemy_DESC,
+		.color = TEXT_COLOR_SYSTEM_GOLD,
+		.isAvailable = BloodyAlchemy_Usability,
+		.onDraw = NULL,
+		.onSelected = BloodyAlchemy_OnSelected,
+		.onIdle = NULL,
+		.onSwitchIn = NULL,
+		.onSwitchOut = NULL,
+	},
+#endif
 };

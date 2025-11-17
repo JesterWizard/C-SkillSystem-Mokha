@@ -82,6 +82,7 @@ SID_GorillaTactics
 SID_GraceOfFire
 SID_GraceOfWater
 SID_DoubleTime
+SID_BloodyAlchemy
 
 //////// PRE-BATTLE SKILLS
 SID_DefiantStr

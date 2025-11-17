@@ -680,3 +680,10 @@ Double Time[X]
 Double Time:[N]
 Sacrifice 15 HP to allow[N]
 the next unit to move again.[X]
+
+## MSG_SKILL_BloodyAlchemy_NAME
+Bloody Alchemy[X]
+## MSG_SKILL_BloodyAlchemy_DESC
+Bloody Alchemy:[N]
+Convert damage taken and[N]
+received map-wide into gold.[X]

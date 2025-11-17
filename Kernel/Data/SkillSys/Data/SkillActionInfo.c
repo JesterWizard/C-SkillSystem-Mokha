@@ -298,4 +298,8 @@ const SkillActionFunc_t gSkillActionFuncTable[MAX_SKILL_NUM + 1] = {
 #if (defined(SID_DoubleTime) && COMMON_SKILL_VALID(SID_DoubleTime))
 	[SID_DoubleTime] = Action_DoubleTime,
 #endif
+
+#if (defined(SID_BloodyAlchemy) && COMMON_SKILL_VALID(SID_BloodyAlchemy))
+	[SID_BloodyAlchemy] = Action_BloodyAlchemy,
+#endif
 };
