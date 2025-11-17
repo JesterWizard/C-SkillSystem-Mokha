@@ -44,7 +44,9 @@ struct WeaponTriangleItemConf {
 	} battle_status;
 
 	bool is_buff;
-	u8 _pad_[3];
+	u8 weaponId_1;
+	u8 weaponId_2;
+	u8 _pad_[1];
 };
 
 extern const struct WeaponTriangleItemConf gWeaponTriangleItemConf[0x100];

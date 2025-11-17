@@ -194,5 +194,56 @@ const struct WeaponTriangleItemConf gWeaponTriangleItemConf[0x100] = {
 		.is_buff = true,
 		.battle_status.atk = 3,
 		.battle_status.hit = 15,
+	},
+
+#ifdef CONFIG_ANIMA_WEAPON_TRIANGLE
+	[ITEM_ANIMA_FIRE] = {
+		.valid = true,
+		.weaponId_1 = ITEM_ANIMA_FIMBULVETR,
+		.weaponId_2 = ITEM_ANIMA_EXCALIBUR,
+		.is_buff = true,
+		.battle_status.atk = 3,
+		.battle_status.hit = 15,
+	},
+	[ITEM_ANIMA_ELFIRE] = {
+		.valid = true,
+		.weaponId_1 = ITEM_ANIMA_FIMBULVETR,
+		.weaponId_2 = ITEM_ANIMA_EXCALIBUR,
+		.is_buff = true,
+		.battle_status.atk = 3,
+		.battle_status.hit = 15,
+	},
+	[ITEM_ANIMA_THUNDER] = {
+		.valid = true,
+		.weaponId_1 = ITEM_ANIMA_FIRE,
+		.weaponId_2 = ITEM_ANIMA_ELFIRE,
+		.is_buff = true,
+		.battle_status.atk = 3,
+		.battle_status.hit = 15,
+	},
+	[ITEM_ANIMA_BOLTING] = {
+		.valid = true,
+		.weaponId_1 = ITEM_ANIMA_FIRE,
+		.weaponId_2 = ITEM_ANIMA_ELFIRE,
+		.is_buff = true,
+		.battle_status.atk = 3,
+		.battle_status.hit = 15,
+	},
+	[ITEM_ANIMA_FIMBULVETR] = {
+		.valid = true,
+		.weaponId_1 = ITEM_ANIMA_THUNDER,
+		.weaponId_2 = ITEM_ANIMA_BOLTING,
+		.is_buff = true,
+		.battle_status.atk = 3,
+		.battle_status.hit = 15,
+	},
+	[ITEM_ANIMA_EXCALIBUR] = {
+		.valid = true,
+		.weaponId_1 = ITEM_ANIMA_THUNDER,
+		.weaponId_2 = ITEM_ANIMA_BOLTING,
+		.is_buff = true,
+		.battle_status.atk = 3,
+		.battle_status.hit = 15,
 	}
+#endif
 };
