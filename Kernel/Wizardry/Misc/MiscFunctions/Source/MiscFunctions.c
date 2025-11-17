@@ -478,7 +478,7 @@ void TradeMenu_InitUnitNameDisplay(struct TradeMenuProc* proc)
 
     // TODO: constants
 #ifdef CONFIG_VESLY_EXTENDED_ITEM_DESCRIPTIONS
-    StartSysBrownBox(6, 0x5800, 0x08, 0x800, 0x400, (struct Proc*)(proc));
+    StartSysBrownBox(6, 0x7080, 0x08, 0x800, 0x400, (struct Proc*)(proc));
 #else
     StartSysBrownBox(6, 0x4800, 0x08, 0x800, 0x400, (struct Proc*)(proc));
 #endif
