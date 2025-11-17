@@ -14,4 +14,4 @@ ALIGN 4
 PUSH
 ORG CURRENTOFFSET+$18;unit_promotions:
 POP
-WORD $1 $6 $B $3 $8 $D $1 $4 $2EE $1CA $271 $3 $2CF $193 $0 $7 $1FC $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0
+WORD $1 $6 $B $3 $8 $D $1 $4 $2EF $1CB $272 $3 $2D0 $194 $0 $7 $1FD $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0 $0

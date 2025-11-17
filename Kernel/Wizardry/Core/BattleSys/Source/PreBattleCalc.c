@@ -307,7 +307,7 @@ STATIC_DECLAR void Local_PreBattleCalcInitExt(struct BattleUnit* attacker, struc
 	ComputeBattleUnitCritRate(attacker);
 	ComputeBattleUnitDodgeRate(attacker);
 	ComputeBattleUnitSupportBonuses(attacker, defender);
-	ComputeBattleUnitWeaponRankBonuses(attacker);
+	// ComputeBattleUnitWeaponRankBonuses(attacker);
 	ComputeBattleUnitStatusBonuses(attacker);
 
 	/* Calc silencer rate at pre-battle-calc rather than battle-calc-real */
