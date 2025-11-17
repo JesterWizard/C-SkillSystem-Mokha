@@ -10,8 +10,8 @@
 
 // extern u8 DangerBonesBuffer[DangerBonesBufferSize];
 
-#define US_BIT_SHAKE (1 << 24)
-#define US_BIT_PAL (1 << 27)
+extern int US_BIT_SHAKE;
+extern int US_BIT_PAL;
 
 // #define EMPTY_BmUnit
 
@@ -35,6 +35,46 @@ int ShouldDangerBonesNotRun(void)
     return false;
 }
 
+#ifdef FE6
+// fe6 has no bitflags for shaking / 4th palette, so make a buffer
+int IsDangerBonesSetForUnit(const struct Unit * unit)
+{
+    if ((unit->index & 0xFF) < 0x80)
+    {
+        return false;
+    }
+    if (ShouldDangerBonesNotRun())
+    {
+        return false;
+    }
+
+    int id = unit->index & 0x3F;
+    return DangerBonesPalBuffer[id >> 3] & (1 << (id & 7));
+}
+
+void SetDangerBonesForId(int id)
+{
+    id &= 0x3F;
+    DangerBonesPalBuffer[id >> 3] |= (1 << (id & 7));
+}
+void UnsetDangerBonesForId(int id)
+{
+    id &= 0x3F;
+    DangerBonesPalBuffer[id >> 3] &= ~(1 << (id & 7));
+}
+
+int GetUnitDisplayedSpritePalette_FE6(const struct Unit * unit)
+{
+    if (unit->state & US_UNSELECTABLE)
+        return 0xF;
+
+    if (IsDangerBonesSetForUnit(unit))
+        return 0xB;
+
+    return GetUnitSpritePalette(unit); // 22064
+}
+
+#endif
 extern const u16 gPal_DangerBones[];
 void SetDangerBonesPalette(void)
 {
@@ -43,6 +83,11 @@ void SetDangerBonesPalette(void)
         CopyToPaletteBuffer(gPal_DangerBones, 0x1B * 0x20, 0x20);
     }
 }
+
+// #define EMPTY_BmUnit
+
+// break point on buffer
+// [0x201c8d0..0x201c8d0+0x2878]!!
 
 int IsUnitInvalid(struct Unit * unit)
 {
@@ -71,6 +116,15 @@ void RemoveEnemyShaking(void)
     {
         return;
     }
+#ifdef FE6
+    for (int i = 0x80; i < 0xC0; ++i)
+    {
+        UnsetDangerBonesForId(i);
+    }
+
+    return;
+#endif
+
     struct Unit * unit;
     int unitState = 0;
     if (ShakeIt)
@@ -149,7 +203,9 @@ void UpdateVisualsForEnemiesWhoCanAttackTile(void)
             {
                 continue; // not a unit
             }
-
+#ifdef FE6
+            SetDangerBonesForId(deploymentID);
+#endif
             unit->state |= unitState;
         }
     }
@@ -194,15 +250,13 @@ typedef struct
 {
     /* 00 */ PROC_HEADER;
     /* 2c */ u8 id;
-     u8 selected;
+    u8 selected;
 } DangerBonesProc;
 
 extern void RefreshUnitsOnBmMap(void);
 void GenerateDangerBones(DangerBonesProc * proc) // do 1 valid unit per frame to spread out the lag
 {
     u8 savedUnitId;
-    struct Unit * activeUnit = gActiveUnit;
-
     int xSize = gBmMapSize.x;
     int ySize = gBmMapSize.y;
 
@@ -235,25 +289,32 @@ void GenerateDangerBones(DangerBonesProc * proc) // do 1 valid unit per frame to
         BmMapFill(gBmMapUnit, 0);
 #endif
         counter++;
-        gActiveUnit = unit;
 
         BmMapFill(gBmMapRange, 0);
-        BmMapFill(gBmMapOther, 0);
+        BmMapFill(gBmMapOther, 0); // all movable squares expects this to be empty to make a range map
         GenerateUnitMovementMap(unit);
 
         savedUnitId = gBmMapUnit[unit->yPos][unit->xPos];
         gBmMapUnit[unit->yPos][unit->xPos] = 0;
 
         SetWorkingBmMap(gBmMapRange);
-        // gWorkingBmMap 30049a0
-        GenerateUnitCompleteAttackRange(unit);
-        // SetWorkingBmMap(gBmMapRange);
+        if ((unit->ai_config & 0x2000) || (unit->ai1 == 3))
+        { // boss ai: never move
+#ifndef FE8
+            GenerateUnitStandingReachRange(unit, GetUnitWeaponReachBits(unit, -1));
+#else
+            GenerateUnitCompleteAttackRange(unit);
+#endif
+        }
+        else
+        {
+            GenerateUnitCompleteAttackRange(unit);
+        }
 
         CopyAttackRangeIntoBuffer(i & 0x3F, xSize, ySize);
 
         gBmMapUnit[unit->yPos][unit->xPos] = savedUnitId;
     }
-    gActiveUnit = activeUnit;
 #ifdef EMPTY_BmUnit
     RefreshUnitsOnBmMap();
 #endif
@@ -267,6 +328,12 @@ void DangerBonesWaitForBattle(DangerBonesProc * proc)
     }
 }
 
+void CallRefreshUnitSprites(void)
+{
+    // asm("mov r11, r11");
+    // RefreshUnitSprites();
+}
+
 const struct ProcCmd DangerBonesProcCmd[] = {
     PROC_YIELD,
     PROC_NAME("DangerBones"),
@@ -274,7 +341,8 @@ const struct ProcCmd DangerBonesProcCmd[] = {
     PROC_CALL(SetDangerBonesPalette),
     PROC_REPEAT(GenerateDangerBones),
     PROC_REPEAT(DangerBonesWaitForBattle),
-    PROC_CALL(RefreshUnitSprites),
+    // PROC_CALL(CallRefreshUnitSprites), // this was making sms appear under mms in fe8 - Nov 2025
+    // perhaps this was necessary for fe6/fe7?
     PROC_END,
 };
 
@@ -282,7 +350,6 @@ void GenerateDangerBonesRangeAll(int i) // Causes noticable lag if done for 0x80
 {
     // brk;
     u8 savedUnitId;
-    struct Unit * activeUnit = gActiveUnit;
     int xSize = gBmMapSize.x;
     int ySize = gBmMapSize.y;
 #ifdef EMPTY_BmUnit
@@ -297,22 +364,33 @@ void GenerateDangerBonesRangeAll(int i) // Causes noticable lag if done for 0x80
         {
             continue;
         }
-        gActiveUnit = unit;
         BmMapFill(gBmMapRange, 0);
+        BmMapFill(gBmMapOther, 0); // all movable squares expects this to be empty to make a range map
         GenerateUnitMovementMap(unit);
 
         savedUnitId = gBmMapUnit[unit->yPos][unit->xPos];
         gBmMapUnit[unit->yPos][unit->xPos] = 0;
 
         SetWorkingBmMap(gBmMapRange);
-        GenerateUnitCompleteAttackRange(unit);
+
+        if ((unit->ai_config & 0x2000) || (unit->ai1 == 3))
+        { // boss ai: never move
+#ifndef FE8
+            GenerateUnitStandingReachRange(unit, GetUnitWeaponReachBits(unit, -1));
+#else
+            GenerateUnitCompleteAttackRange(unit);
+#endif
+        }
+        else
+        {
+            GenerateUnitCompleteAttackRange(unit);
+        }
         CopyAttackRangeIntoBuffer(i & 0x3F, xSize, ySize);
 
         gBmMapUnit[unit->yPos][unit->xPos] = savedUnitId;
     }
     BmMapFill(gBmMapRange, 0);
     BmMapFill(gBmMapMovement, 0);
-    gActiveUnit = activeUnit;
 #ifdef EMPTY_BmUnit
     RefreshUnitsOnBmMap();
 #endif

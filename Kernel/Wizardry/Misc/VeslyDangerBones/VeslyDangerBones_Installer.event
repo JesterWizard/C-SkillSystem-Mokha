@@ -6,6 +6,19 @@
 #define TRUE 1
 #define FALSE 0
 
+ALIGN 4
+#ifdef CONFIG_VESLY_DANGER_BONES
+US_BIT_SHAKE:
+    WORD (1 << 24)
+US_BIT_PAL:
+    WORD (1 << 27)
+#else
+US_BIT_SHAKE:
+    WORD 0
+US_BIT_PAL:
+    WORD 0
+#endif
+
 ALIGN 4 
 ShakeSpeed_Link:
 WORD ShakeSpeed 
@@ -13,7 +26,7 @@ WORD ShakeSpeed
 ShakeIt:
 WORD TRUE
 Pal_4th:
-WORD FALSE
+WORD TRUE
 DangerBonesDisabledFlag:
 WORD 0x128
 

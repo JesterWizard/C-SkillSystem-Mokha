@@ -18,9 +18,7 @@
     #include "Misc/VeslyDebugger/VeslyDebugger_Installer.event"
 #endif
 
-#ifdef CONFIG_VESLY_DANGER_BONES
-    #include "Misc/VeslyDangerBones/VeslyDangerBones_Installer.event"
-#endif
+#include "Misc/VeslyDangerBones/VeslyDangerBones_Installer.event"
 
 #ifdef CONFIG_VESLY_SUPPORT_POST_BATTLE
     #include "Misc/VeslySupportPostBattle/VeslySupportPostBattle_Installer.event"

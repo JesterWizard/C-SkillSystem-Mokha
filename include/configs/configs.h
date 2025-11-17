@@ -334,7 +334,15 @@
 #define CONFIG_UNIT_AMT_NPC   8
 
 #define CONFIG_VESLY_DEBUGGER
-#define CONFIG_VESLY_DANGER_BONES // Overwrites light rune paletter and makes it red
+
+/**
+ *  Overwrites light rune paletter and makes it red
+ *  I've also had to change how I install it due to this bug https://github.com/JesterWizard/C-SkillSystem-Jester/issues/352
+ * So technically this hack is always installed but it's effect can be toggled off with this definition below
+ * You may need to delete the C_Code.lyn.event file for danger bones as well at Kernel/Wizardry/Misc/VeslyDangerBones and let it regenerate
+ */
+// #define CONFIG_VESLY_DANGER_BONES 
+
 #define CONFIG_VESLY_SUPPORT_POST_BATTLE
 
 #ifdef  CONFIG_VESLY_SUPPORT_POST_BATTLE
