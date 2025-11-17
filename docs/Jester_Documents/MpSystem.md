@@ -34,17 +34,17 @@ which quickly becomes a problem when you're running with a full stock.
 ## Code Locations
 
 ### MP costs
- ``gGaidenWeaponCostList`` in [GaidenMagicData.c](../../Data/GaidenMagic/GaidenMagicData.c)
+- ``gGaidenWeaponCostList`` in [GaidenMagicData.c](../../Data/GaidenMagic/GaidenMagicData.c)
 ### MP lists
-``gGaidenPinfoConfigList`` in [GaidenMagicData.c](../../Data/GaidenMagic/GaidenMagicData.c)
+- ``gGaidenPinfoConfigList`` in [GaidenMagicData.c](../../Data/GaidenMagic/GaidenMagicData.c)
 ### Stat screen display - MP cost color
-``PutGaidenCost`` in [DrawPage5.c](../../Kernel/Wizardry/Core/StatScreen/DrawPages/DrawPage5.c)
+- ``PutGaidenCost`` in [DrawPage5.c](../../Kernel/Wizardry/Core/StatScreen/DrawPages/DrawPage5.c)
 ### Stat screen display - white Gaiden magic
-``WhiteMagicList`` in [DrawPage5.c](../../Kernel/Wizardry/Core/StatScreen/DrawPages/DrawPage5.c)
+- ``WhiteMagicList`` in [DrawPage5.c](../../Kernel/Wizardry/Core/StatScreen/DrawPages/DrawPage5.c)
 ### Stat screen display - black Gaiden magic
-``BlackMagicList`` in [DrawPage5.c](../../Kernel/Wizardry/Core/StatScreen/DrawPages/DrawPage5.c)
+- ``BlackMagicList`` in [DrawPage5.c](../../Kernel/Wizardry/Core/StatScreen/DrawPages/DrawPage5.c)
 ### MP generation
-``gMpSystemPInfoConfigList`` in [MpSystem.c](../../Data/MpSystem/MpSystem.c)
+- ``gMpSystemPInfoConfigList`` in [MpSystem.c](../../Data/MpSystem/MpSystem.c)
 
 ## TODO
 
