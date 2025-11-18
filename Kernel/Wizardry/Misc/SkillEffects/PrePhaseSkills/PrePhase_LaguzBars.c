@@ -30,7 +30,7 @@ void PrePhase_LaguzBars(ProcPtr proc)
                     if (bwl->laguzBar - 4 <= 0)
                     {
                         bwl->laguzBar = 0;
-                        for (int i = 0; i < ARRAY_COUNT(laguzPairs); i++)
+                        for (int i = 0; i < (int)ARRAY_COUNT(laguzPairs); i++)
                         {
                             if (unit->pClassData->number == laguzPairs[i][1])
                             {

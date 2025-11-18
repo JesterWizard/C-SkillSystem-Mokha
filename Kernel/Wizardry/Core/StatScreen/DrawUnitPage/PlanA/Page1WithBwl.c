@@ -264,7 +264,7 @@ static u8 GetUnitLaguzBarValue(struct Unit * unit)
     u8 pid = UNIT_CHAR_ID(unit);
     bwl = GetNewBwl(pid);
 
-    if (pid > 0x40)
+    if (pid > CONFIG_UNIT_AMT_ALLY)
         return 0;
     else
         return bwl->laguzBar;

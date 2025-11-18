@@ -17,11 +17,15 @@ struct NewBwl {
     /* JESTER - Laguz bars and MP are stored here */
 #ifdef CONFIG_LAGUZ_BARS
     u8 laguzBar : 5;
-    u8 leftover : 3;
+	u8 leftover : 3;
 #endif
+
+#ifdef CONFIG_MP_SYSTEM
     u8 currentMP;
     u8 maxMP;
-    u8 _pad_;
+#endif
+
+    u8 _pad_; // Padding bytes to use for whatever you want
 
 
 	//STRUCT_PAD(0x0C, 0x10);

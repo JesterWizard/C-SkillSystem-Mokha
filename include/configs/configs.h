@@ -443,7 +443,7 @@
 #define CONFIG_TELLIUS_CAPACITY_SYSTEM
 #define CONFIG_TELLIUS_CAPACITY_BASE 50
 #define CONFIG_TELLIUS_CAPACITY_PROMOTED 25
-// #define CONFIG_LAGUZ_BARS
+// #define CONFIG_LAGUZ_BARS /* Breaks MP system */
 // #define CONFIG_FORGING
 // #ifdef CONFIG_FORGING
 // 	#define CONFIG_FE4_CRIT_BONUS_ON_KILL
@@ -489,6 +489,6 @@
 
 // #define CONFIG_ANIMA_WEAPON_TRIANGLE
 
-#define CONFIG_UNLOCK_SUPPORT_CONVO_LIMIT 10 // Supports up to a maximum of 10 conversations, still only 1 A
+// #define CONFIG_UNLOCK_SUPPORT_CONVO_LIMIT 10 // Supports up to a maximum of 10 conversations, still only 1 A this breaks the MP system. More investigation needed.
 
 #endif /* CONFIG_INSTALLED */

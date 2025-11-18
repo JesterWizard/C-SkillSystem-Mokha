@@ -114,7 +114,7 @@ void ChapterChangeUnitCleanup(void)
 #endif
 
 #ifdef CONFIG_LAGUZ_BARS
-        for (int i = 0; i < ARRAY_COUNT(laguzPairs); i++)
+        for (int i = 0; i < (int)ARRAY_COUNT(laguzPairs); i++)
         {
             if (unit->pClassData->number == laguzPairs[i][1])
             {

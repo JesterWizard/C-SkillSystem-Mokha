@@ -1,0 +1,7 @@
+ALIGN 4
+PUSH
+ORG CURRENTOFFSET+$1;Transform_Laguz_Usability:
+ORG CURRENTOFFSET+$4;Transform_Laguz_OnSelected:
+ORG CURRENTOFFSET+$4;Transform_Laguz_Effect:
+POP
+WORD $47702002 $47702017 $47702017
