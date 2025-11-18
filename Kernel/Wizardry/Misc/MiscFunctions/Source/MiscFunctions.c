@@ -4602,3 +4602,42 @@ void TrySwitchViewedUnit(int x, int y)
     
     return;
 }
+
+//! FE8U = 0x080A207C
+LYN_REPLACE_CHECK(InitSupportSubScreenRemainingSupports);
+void InitSupportSubScreenRemainingSupports(struct SubScreenProc* proc) {
+    int i;
+
+    if (proc->fromPrepScreen) {
+#ifdef CONFIG_UNLOCK_SUPPORT_CONVO_LIMIT
+        proc->remainingSupports = MAX_SIMULTANEOUS_SUPPORT_COUNT - GetTotalSupportLevel(proc->unitIdx);
+#else
+        proc->remainingSupports = 5 - GetTotalSupportLevel(proc->unitIdx);
+#endif
+    } else {
+        int charId = GetSupportScreenCharIdAt(proc->unitIdx);
+
+        proc->remainingSupports = 0;
+
+        for (i = 0; i < proc->partnerCount; i++) {
+            proc->remainingSupports += GetUnitsAverageSupportValue(charId, GetSupportScreenPartnerCharId(proc->unitIdx, i));
+        }
+
+        proc->remainingSupports -= GetTotalSupportLevel(proc->unitIdx);
+    }
+
+    return;
+}
+
+LYN_REPLACE_CHECK(GetUnitSupporterCount);
+int GetUnitSupporterCount(struct Unit* unit)
+{
+    if (!UNIT_SUPPORT_DATA(unit))
+        return 0;
+
+#ifdef CONFIG_UNLOCK_SUPPORT_CONVO_LIMIT
+    return MAX_SIMULTANEOUS_SUPPORT_COUNT;
+#else
+    return UNIT_SUPPORT_DATA(unit)->supportCount;
+#endif
+}

@@ -41,7 +41,7 @@
  *
  * Flyer in outdoor environments are not affected by this effect
  */
-#define CONFIG_BATTLE_SURROUND
+// #define CONFIG_BATTLE_SURROUND
 
 /**
  * 0: Not show any kernel tutorial
@@ -488,5 +488,7 @@
 #define CONFIG_L_BUTTON_SAME_FACTION_CYCLING
 
 // #define CONFIG_ANIMA_WEAPON_TRIANGLE
+
+#define CONFIG_UNLOCK_SUPPORT_CONVO_LIMIT 10 // Supports up to a maximum of 10 conversations, still only 1 A
 
 #endif /* CONFIG_INSTALLED */

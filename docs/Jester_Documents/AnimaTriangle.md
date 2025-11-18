@@ -17,6 +17,8 @@
 
 ## 🧩 Introduction
 
+``CONFIG_ANIMA_WEAPON_TRIANGLE``
+
 This feature recreates the **anima magic triangle** from **Fire Emblem 4 and 5**, where anima spells interact with one another similarly to traditional weapon and magic triangles.
 
 ---
