@@ -1,5 +1,4 @@
 
-// Prologue
 ## MSG_BATTLE_QUOTE_VALTER_PROLOGUE
 [OpenMidLeft][LoadFace_Valter]
 I am Valter, Commander of[N]
@@ -7,7 +6,6 @@ Grado's Wyvern forces.[A][N]
 And you're just a corpse who[N]
 does not know he is dead.[A][X]
 
-// Prologue
 ## MSG_BATTLE_QUOTE_EIRIKA_ONEILL
 [OpenMidLeft][LoadFace_ONeill]
 Princess Eirika of Renais.[A][N]
@@ -23,7 +21,6 @@ What you want is irrelevant.[A][N]
 Lay down your arms or be[N]
 beaten into the dirt.[A][X]
 
-// Prologue
 ## MSG_BATTLE_QUOTE_SETH_ONEILL
 [OpenMidLeft][LoadFace_ONeill]
 General Seth.[A][N]
@@ -37,7 +34,6 @@ What manner of knight would[N]
 abandon their charge?[A][N]
 Not I![A][X]
 
-// Chapter 01
 ## MSG_BATTLE_QUOTE_GILLIAM_BREGUET
 [OpenMidLeft][LoadFace_Breguet]
 Ah, Frelia's living fortress.[N]
@@ -55,7 +51,6 @@ No... sorry that was the guard.[A][N]
 If the princess has come to harm,[N]
 you will not face a pleasant end...[A][X]
 
-// Chapter 02
 ## MSG_BATTLE_QUOTE_ROSS_BONE
 [OpenMidRight][LoadFace_Ross]
 You... was it you?[A][N]
@@ -89,7 +84,6 @@ if it bothers you so much.[A][N]
 Bazba.[A][N]
 Then he's next.[A][X]
 
-// Chapter 03
 ## MSG_BATTLE_QUOTE_ROSS_BAZBA
 [OpenMidRight][LoadFace_Ross]
 You're Bazba, right?[A][N]
@@ -119,9 +113,6 @@ It was called... Ide.[A][N][OpenEyes]
 [MoveMidRight]
 Carve it into your memory.[A][X]
 
-// Chapter 4 - No quote as it's all monsters
-
-// Chapter 5
 ## MSG_BATTLE_QUOTE_NATASHA_SAAR
 [OpenMidLeft][LoadFace_Saar]
 So the traitor shows her face[N]
@@ -185,9 +176,6 @@ station would assume.[A][N]
 Let's see if you have the bite[N]
 to match your bark![A][X]
 
-// Chapter 05x - Nothing to do here
-
-// Chapter 06
 ## MSG_BATTLE_QUOTE_ARTUR_NOVALA
 [OpenMidLeft][LoadFace_Novala][ToggleSmile]
 Greetings, little monk.[A][N]
@@ -245,9 +233,6 @@ I must... do my duty...[A][N][HalfCloseEyes]
 As Renais' princess.[A][N]
 I must...[A][X]
 
-// Chapter 07 - Nothing to do here
-
-// Chapter 08
 ## MSG_BATTLE_QUOTE_SETH_TIRADO
 [OpenMidLeft][LoadFace_Tirado]
 Well met, Silver Knight[A][N]
@@ -270,8 +255,3 @@ by accepting an enemy's grace.[A][N]
 Well said. Whether a farm hand or[N]
 fedual monarch all are equal in death.[A][N]
 Engarde![A][X]
-
-// Chapter 09 - Nothing to do here
-
-// Chapter 10
-// ## MSG_BATTLE_QUOTE_INNES_PABLO

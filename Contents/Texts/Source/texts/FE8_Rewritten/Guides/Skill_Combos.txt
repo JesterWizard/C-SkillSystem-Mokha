@@ -1,5 +1,5 @@
 ## Guide_Category_Skill_Combos
-Skill combos[X]
+Skill Combos[X]
 
 ## Guide_Title_Skill_Combo_1
 Wrath + Vantage[X]

@@ -62,6 +62,7 @@ AddGuideEntry(SkillsTalkIndex, Guide_Title_Skill_Talk_1, Guide_Description_Skill
 AddGuideEntry(SkillsTalkIndex, Guide_Title_Skill_Talk_2, Guide_Description_Skill_Talk_2)
 AddGuideEntry(SkillsTalkIndex, Guide_Title_Skill_Talk_3, Guide_Description_Skill_Talk_3)
 AddGuideEntry(SkillsTalkIndex, Guide_Title_Skill_Talk_4, Guide_Description_Skill_Talk_4)
+AddGuideEntry(SkillsTalkIndex, Guide_Title_Skill_Talk_5, Guide_Description_Skill_Talk_5)
 
 // Skill combos
 AddGuideEntry(SkillsComboIndex, Guide_Title_Skill_Combo_1, Guide_Description_Skill_Combo_1) // Wrath + Vantage
@@ -97,12 +98,25 @@ AddGuideEntry(MechanicsIndex, Guide_Title_Infinite_Durability, Guide_Mechanic_In
 AddGuideEntry(MechanicsIndex, Guide_Title_Flipped_Sprites, Guide_Mechanic_Flipped_Sprites)
 AddGuideEntry(MechanicsIndex, Guide_Title_Allegiance_Colors, Guide_Mechanic_Allegiance_Colors)
 AddGuideEntry(MechanicsIndex, Guide_Title_Summon_EXP, Guide_Mechanic_Summon_EXP)
+AddGuideEntry(MechanicsIndex, Guide_Title_L_Button_Same_Faction_Cycling, Guide_Mechanic_L_Button_Same_Faction_Cycling)
+AddGuideEntry(MechanicsIndex, Guide_Title_Lex_Talionus_Talk_Icon, Guide_Mechanic_Lex_Talionus_Talk_Icon)
+AddGuideEntry(MechanicsIndex, Guide_Title_Stat_Page_Personal_Info, Guide_Mechanic_Stat_Page_Personal_Info)
+AddGuideEntry(MechanicsIndex, Guide_Title_Stat_Page_Promotions, Guide_Mechanic_Stat_Page_Promotions)
+AddGuideEntry(MechanicsIndex, Guide_Title_Mini_Game, Guide_Mechanic_Mini_Game)
+AddGuideEntry(MechanicsIndex, Guide_Title_Modular_Fog_Vision, Guide_Mechanic_Modular_Fog_Vision)
+AddGuideEntry(MechanicsIndex, Guide_Title_Laguz_Bars, Guide_Mechanic_Laguz_Bars)
+AddGuideEntry(MechanicsIndex, Guide_Title_Modular_Staff_EXP, Guide_Mechanic_Modular_Staff_EXP)
+AddGuideEntry(MechanicsIndex, Guide_Title_Multiple_Death_Quotes, Guide_Mechanic_Multiple_Death_Quotes)
+AddGuideEntry(MechanicsIndex, Guide_Title_Quality_Of_Life_Fixes, Guide_Mechanic_Quality_Of_Life_Fixes)
 
 // Stat screen pages
 AddGuideEntry(StatScreenIndex, Guide_Title_Skill_Stat_Screen_1, Guide_Description_Skill_Stat_Screen_1)
 AddGuideEntry(StatScreenIndex, Guide_Title_Skill_Stat_Screen_2, Guide_Description_Skill_Stat_Screen_2)
 AddGuideEntry(StatScreenIndex, Guide_Title_Skill_Stat_Screen_3, Guide_Description_Skill_Stat_Screen_3)
 AddGuideEntry(StatScreenIndex, Guide_Title_Skill_Stat_Screen_4, Guide_Description_Skill_Stat_Screen_4)
+AddGuideEntry(StatScreenIndex, Guide_Title_Skill_Stat_Screen_5, Guide_Description_Skill_Stat_Screen_5)
+AddGuideEntry(StatScreenIndex, Guide_Title_Skill_Stat_Screen_6, Guide_Description_Skill_Stat_Screen_6)
+AddGuideEntry(StatScreenIndex, Guide_Title_Skill_Stat_Screen_7, Guide_Description_Skill_Stat_Screen_7)
 
 // Terminator
 AddGuideEntry(0xC, 0, 0, 0, 0)

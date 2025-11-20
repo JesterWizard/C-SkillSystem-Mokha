@@ -53,7 +53,7 @@ def text_preprocess(text):
     text = re.sub(r'/\*.*?\*/', '', text, flags=re.DOTALL)
     return text
 
-def text_to_utf8_u16_array(text, control_chars):
+def text_to_utf8_u16_array(text, control_chars, file_path):
     pattern = re.compile(r'\[(.*?)\]')
 
     text = text_preprocess(text)
@@ -66,7 +66,7 @@ def text_to_utf8_u16_array(text, control_chars):
         if match:
             preceding_text = text[pos:match.start()]
             if preceding_text:
-                byte_array.extend(bytearray(preceding_text, 'utf-8'))
+                byte_array.extend(preceding_text.encode('utf-8'))
 
             control_char = match.group(1)
             if control_char in control_chars:
@@ -77,58 +77,62 @@ def text_to_utf8_u16_array(text, control_chars):
         else:
             remaining_text = text[pos:]
             if remaining_text:
-                byte_array.extend(bytearray(preceding_text, 'utf-8'))
+                byte_array.extend(remaining_text.encode('utf-8'))
             break
 
-    # step2: generate u16 array
+    # step2: safe u16 conversion
     u16_array = []
     pos = 0
-    while pos < len(byte_array):
-        # same as textencode::compress_string()
+    length = len(byte_array)
+
+    while pos < length:
         _ch = byte_array[pos]
 
+        def need(n):
+            if pos + n > length:
+                raise ValueError(
+                    f"Malformed UTF-8/control sequence in file:\n"
+                    f"  {file_path}\n"
+                    f"Expected {n} bytes, but only {length - pos} remain.\n"
+                    f"Bytearray remaining: {byte_array[pos:]}"
+                )
+
         if _ch == 0x80:
-            ch1 = byte_array[pos]
-            ch2 = byte_array[pos + 1]
-            pos = pos + 2
+            need(2)
+            u16_array.append(byte_array[pos])
+            u16_array.append(byte_array[pos+1])
+            pos += 2
 
-            u16_array.append(ch1)
-            u16_array.append(ch2)
         elif _ch == 0x10:
-            ch1 = byte_array[pos]
-            ch2 = byte_array[pos + 1]
-            ch3 = byte_array[pos + 2]
-            pos = pos + 3
+            need(3)
+            u16_array.append(byte_array[pos])
+            u16_array.append(byte_array[pos+1] | (byte_array[pos+2] << 8))
+            pos += 3
 
-            u16_array.append(ch1)
-            u16_array.append(ch2 | (ch3 << 8))
-        elif _ch == 0x23 or _ch == 0x7F or _ch == 0xE9:
-            ch1 = byte_array[pos]
-            pos = pos + 1
+        elif _ch in (0x23, 0x7F, 0xE9):
+            u16_array.append(_ch)
+            pos += 1
 
-            u16_array.append(ch1)
         elif _ch >= 0x20:
-            ch1 = byte_array[pos]
-            ch2 = byte_array[pos + 1]
-            pos = pos + 2
+            need(2)
+            u16_array.append(byte_array[pos] | (byte_array[pos+1] << 8))
+            pos += 2
 
-            u16_array.append(ch1 | (ch2 << 8))
         else:
-            ch1 = byte_array[pos]
-            pos = pos + 1
+            u16_array.append(_ch)
+            pos += 1
 
-            u16_array.append(ch1)
-
-    if u16_array[-1] != 0:
+    if not u16_array or u16_array[-1] != 0:
         u16_array.append(0)
 
     return u16_array
 
-def text_to_u16_array(text, control_chars, encoding_method):
+def text_to_u16_array(text, control_chars, encoding_method, file_path):
     if encoding_method == 'cp932':
         pass
     else:
-        return text_to_utf8_u16_array(text, control_chars)
+        return text_to_utf8_u16_array(text, control_chars, file_path)
+
 
 def process_file(messages, file_path, control_chars, encoding_method, index=0):
     current_index = index
@@ -162,7 +166,7 @@ def process_file(messages, file_path, control_chars, encoding_method, index=0):
                 text.append(lines[i].rstrip('\n'))
                 i += 1
             text = ''.join(text)
-            data = text_to_u16_array(text, control_chars, encoding_method)
+            data = text_to_u16_array(text, control_chars, encoding_method, file_path)
 
             if msg_refs[current_index] == -1:
                 debug_printf(f"Register to ref: idx=0x{current_index:04X}, val=0x{len(messages):04X}")
@@ -183,7 +187,7 @@ def process_file(messages, file_path, control_chars, encoding_method, index=0):
                     text.append(lines[i].rstrip('\n'))
                     i += 1
                 text = ''.join(text)
-                data = text_to_u16_array(text, control_chars, encoding_method)
+                data = text_to_u16_array(text, control_chars, encoding_method, file_path)
 
                 if msg_refs[current_index] == -1:
                     debug_printf(f"Register to ref: idx=0x{current_index:04X}, val=0x{len(messages):04X}")

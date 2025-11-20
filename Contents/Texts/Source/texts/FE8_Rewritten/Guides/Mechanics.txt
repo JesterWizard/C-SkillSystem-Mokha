@@ -10,7 +10,7 @@ turns next to each other,[N]
 units gain support points[N]
 through rounds of combat[N]
 in a 3 tile radius of each[N]
-other.[N][N]
+other.[N]
 When two applicable units[N]
 gain supports points this[N]
 will be indicated by a pair[N]
@@ -152,3 +152,96 @@ Gain EXP from Summons[X]
 By: Snakey1[N]
 Summoners can gain EXP[N]
 from their summons.[X]
+
+## Guide_Title_L_Button_Same_Faction_Cycling
+L Button Faction Cycling[X]
+## Guide_Mechanic_L_Button_Same_Faction_Cycling
+By: Jester[N]
+By default, L button faction[N]
+cycling will only work on[N]
+the player's faction.[N]
+But this let's the player[N]
+cycle through the faction[N]
+they start on.[X]
+
+## Guide_Title_Lex_Talionus_Talk_Icon
+Lex Talionus Talk Icon[X]
+## Guide_Mechanic_Lex_Talionus_Talk_Icon
+By: Jester[N]
+Implements a talk icon in[N]
+the style of Lex Talionus.[N]
+Icon by Alice.[X]
+
+## Guide_Title_Stat_Page_Personal_Info
+Stat Page - Personal Info[X]
+## Guide_Mechanic_Stat_Page_Personal_Info
+By: Jester[N]
+Provides personal info[N]
+on different units like[N]
+their age, height, likes,[N]
+dislikes and a personal quote.[X]
+
+## Guide_Title_Stat_Page_Promotions
+State Page - Promotions[X]
+## Guide_Mechanic_Stat_Page_Promotions
+By: Jester[N]
+Provides a promotion graph[N]
+to view a unit's promotion[N]
+options and any learnable[N]
+skills from those classes.[X]
+
+## Guide_Title_Mini_Game
+Lights Out Mini Game[X]
+## Guide_Mechanic_Mini_Game
+By: Huicheelar[N]
+Implements a flip the[N]
+tile style mini game[N]
+with several different[N]
+levels of difficulty[N]
+and reward options.[X]
+
+## Guide_Title_Modular_Fog_Vision
+Modular Fog Vision[X]
+## Guide_Mechanic_Modular_Fog_Vision
+By: Jester[N]
+Provides a new stat that[N]
+keeps track of how many[N]
+spaces different classes of[N]
+units can see into fog.[X]
+
+## Guide_Title_Laguz_Bars
+Laguz Bars[X]
+## Guide_Mechanic_Laguz_Bars
+By: Jester[N]
+Implements the FE9/FE10[N]
+Laguz Bars mechanic.[N]
+Visible in the unit's[N]
+stat screen and only[N]
+for playable units.[X]
+
+## Guide_Title_Modular_Staff_EXP
+Modular Staff EXP[X]
+## Guide_Mechanic_Modular_Staff_EXP
+By: Jester[N]
+Different staves will[N]
+grant completely custom[N]
+EXP values.[X]
+
+## Guide_Title_Multiple_Death_Quotes
+Multiple Death Quotes.[X]
+## Guide_Mechanic_Multiple_Death_Quotes
+By: Jester[N]
+Enemy units will say[N]
+different things depending[N]
+on who or what kills them.[X]
+
+## Guide_Title_Quality_Of_Life_Fixes
+Quality of Life fixes[X]
+## Guide_Mechanic_Quality_Of_Life_Fixes
+By: Jester[N]
+1 - Shorten AVO text[N]
+2 - Unit name in popups[N]
+3 - Unit's fade in Epilogue[N]
+4 - Crit capped at 100%[N]
+5 - AI portraits don't glitch[N]
+when trading between them[X]

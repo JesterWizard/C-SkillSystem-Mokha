@@ -80,12 +80,12 @@
 #define FreeSpace_Magic    (FreeSpaceCommon + 0x0)
 #define FreeSpace_Reloc    (FreeSpaceCommon + UsrMagicSize)
 #define FreeSpace_UsrData  (FreeSpaceCommon + UsrMagicSize + UsrRelocSize)
-#define FreeSpace_MsgTable (FreeSpaceCommon + UsrMagicSize + UsrRelocSize + UsrDataSize)
+#define FreeSpace_MsgTable (FreeSpaceDEMO + UsrMagicSize + UsrRelocSize + UsrDataSize)
 
 #define FreeSpace_MagicEnd    (FreeSpaceCommon + UsrMagicSize)
 #define FreeSpace_RelocEnd    (FreeSpaceCommon + UsrMagicSize + UsrRelocSize)
 // I was originally using FreeSpaceCommon here, but the text extends beyond 0xB2A604 and overwrites battle animations
-#define FreeSpace_UsrDataEnd  (FreeSpaceCommon + UsrMagicSize + UsrRelocSize + UsrDataSize)
-#define FreeSpace_MsgTableEnd (FreeSpaceCommon + UsrMagicSize + UsrRelocSize + UsrDataSize + MsgTableSize)
+#define FreeSpace_UsrDataEnd  (FreeSpaceDEMO+ UsrMagicSize + UsrRelocSize + UsrDataSize)
+#define FreeSpace_MsgTableEnd (FreeSpaceDEMO + UsrMagicSize + UsrRelocSize + UsrDataSize + MsgTableSize)
 
 #endif

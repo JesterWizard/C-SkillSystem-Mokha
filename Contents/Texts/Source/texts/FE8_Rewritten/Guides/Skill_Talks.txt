@@ -36,3 +36,14 @@ capacity system for its skills.[N]
 You can only equip or learn skills[N]
 that fall within the limits of[N]
 your capacity.[X]
+
+## Guide_Title_Skill_Talk_5
+Skill Limits[X]
+## Guide_Description_Skill_Talk_5
+Thanks to some extensive[N]
+modifications, this game can[N]
+support up to a maximum of[N]
+1023 active equippable skills,[N]
+rather than the standard[N]
+4x255 split that C Skill[N]
+System uses by default.[X]

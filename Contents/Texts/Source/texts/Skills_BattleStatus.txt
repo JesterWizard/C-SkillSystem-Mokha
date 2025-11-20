@@ -1,103 +1,103 @@
 ## MSG_SKILL_Lethality_NAME
 Lethality[X]
 ## MSG_SKILL_Lethality_DESC
-Lethality: [N]
+Lethality:[N]
 Unit may instantly kill enemy with a[N]
 critical attack. (Skill % activation).[X]
 
 ## MSG_SKILL_Crit_NAME
 Crit[X]
 ## MSG_SKILL_Crit_DESC
-Crit: [N]
+Crit:[N]
 Crit rate +15%.[X]
 
 ## MSG_SKILL_WatchfulEye_NAME
 Watchful Eye[X]
 ## MSG_SKILL_WatchfulEye_DESC
-Watchful Eye: [N]
+Watchful Eye:[N]
 Hit rate +20%.[X]
 
 ## MSG_SKILL_CritSword_NAME
 Crit Sword[X]
 ## MSG_SKILL_CritSword_DESC
-Crit Sword: [N]
+Crit Sword:[N]
 Crit rate +10%,[N]
 if a Sword is equipped.[X]
 
 ## MSG_SKILL_CritAxe_NAME
 Crit Axe[X]
 ## MSG_SKILL_CritAxe_DESC
-Crit Axe: [N]
+Crit Axe:[N]
 Crit rate +10%,[N]
 if an Axe is equipped.[X]
 
 ## MSG_SKILL_CritLance_NAME
 Crit Lance[X]
 ## MSG_SKILL_CritLance_DESC
-Crit Lance: [N]
+Crit Lance:[N]
 Crit rate +10%,[N]
 if a Lance is equipped.[X]
 
 ## MSG_SKILL_CritBow_NAME
 Crit Bow[X]
 ## MSG_SKILL_CritBow_DESC
-Crit Bow: [N]
+Crit Bow:[N]
 Crit rate +10%,[N]
 if a Bow is equipped.[X]
 
 ## MSG_SKILL_FaireSword_NAME
 Faire Sword[X]
 ## MSG_SKILL_FaireSword_DESC
-Faire Sword: [N]
+Faire Sword:[N]
 Atk +5 if unit[N]
 equips a Sword.[X]
 
 ## MSG_SKILL_FaireLance_NAME
 Faire Lance[X]
 ## MSG_SKILL_FaireLance_DESC
-Faire Lance: [N]
+Faire Lance:[N]
 Atk +5 if unit[N]
 equips a Lance.[X]
 
 ## MSG_SKILL_FaireAxe_NAME
 Faire Axe[X]
 ## MSG_SKILL_FaireAxe_DESC
-Faire Axe: [N]
+Faire Axe:[N]
 Atk +5 if unit[N]
 equips an Axe.[X]
 
 ## MSG_SKILL_FaireBow_NAME
 Faire Bow[X]
 ## MSG_SKILL_FaireBow_DESC
-Faire Bow: [N]
+Faire Bow:[N]
 Atk +5 if unit[N]
 equips a Bow.[X]
 
 ## MSG_SKILL_FaireBMag_NAME
 Faire Magic[X]
 ## MSG_SKILL_FaireBMag_DESC
-Faire Magic: [N]
+Faire Magic:[N]
 Atk +5 if unit[N]
 equips B.Mag.[X]
 
 ## MSG_SKILL_FaireAnima_NAME
 Faire Anima[X]
 ## MSG_SKILL_FaireAnima_DESC
-Faire Anima: [N]
+Faire Anima:[N]
 ATK +5 if the unit[N]
 has anima magic equipped.[X]
 
 ## MSG_SKILL_FaireLight_NAME
 Faire Light[X]
 ## MSG_SKILL_FaireLight_DESC
-Faire Light: [N]
+Faire Light:[N]
 ATK +5 if the unit[N]
 has light magic equipped.[X]
 
 ## MSG_SKILL_FaireDark_NAME
 Faire Dark[X]
 ## MSG_SKILL_FaireDark_DESC
-Faire Dark: [N]
+Faire Dark:[N]
 ATK +5 if the unit[N]
 has dark magic equipped.[X]
 
@@ -110,7 +110,7 @@ Avoid rate +10%.[X]
 ## MSG_SKILL_AvoidSword_NAME
 Avoid Sword[X]
 ## MSG_SKILL_AvoidSword_DESC
-Avoid Sword: [N]
+Avoid Sword:[N]
 Grants avoid rate +20%[N]
 if unit equips a Sword.[X]
 
@@ -131,48 +131,48 @@ battle hit +1 but cannot crit.[X]
 ## MSG_SKILL_InfinityEdge_NAME
 Infinity Edge[X]
 ## MSG_SKILL_InfinityEdge_DESC
-Infinity Edge: [N]
+Infinity Edge:[N]
 Critical attacks damage +100%.[X]
 
 ## MSG_SKILL_HeavyBlade_NAME
 Heavy Blade[X]
 ## MSG_SKILL_HeavyBlade_DESC
-Heavy Blade: [N]
+Heavy Blade:[N]
 If unit's attack is higher than[N]
 foe, critical rate +15%.[X]
 
 ## MSG_SKILL_FlashingBlade_NAME
 Flashing Blade[X]
 ## MSG_SKILL_FlashingBlade_DESC
-Flashing Blade: [N]
+Flashing Blade:[N]
 If unit's AS is higher than[N]
 foe, critical rate +15%.[X]
 
 ## MSG_SKILL_HeavyBladePlus_NAME
 Heavy Blade+[X]
 ## MSG_SKILL_HeavyBladePlus_DESC
-Heavy Blade+: [N]
+Heavy Blade+:[N]
 Str+5. If unit's attack is higher[N]
 than foe, critical rate +25%.[X]
 
 ## MSG_SKILL_FlashingBladePlus_NAME
 Flash Blade+[X]
 ## MSG_SKILL_FlashingBladePlus_DESC
-Flash Blade+: [N]
+Flash Blade+:[N]
 Dmg+3. If unit's AS is higher[N]
 than foe, critical rate +25%.[X]
 
 ## MSG_SKILL_LunaAttack_NAME
 Luna Attack[X]
 ## MSG_SKILL_LunaAttack_DESC
-Luna Attack: [N]
+Luna Attack:[N]
 Grants real dmg bonus[N]
 of enemy's DEF / 4.[X]
 
 ## MSG_SKILL_SorceryBlade_NAME
 Sorcery Blade[X]
 ## MSG_SKILL_SorceryBlade_DESC
-Sorcery Blade: [N]
+Sorcery Blade:[N]
 Target defense is calculated as[N]
 lower value of DEF or RES.[X]
 
@@ -193,7 +193,7 @@ with this skill, gain Attack +2.[X]
 ## MSG_SKILL_Frenzy_NAME
 Frenzy[X]
 ## MSG_SKILL_Frenzy_DESC
-Frenzy: [N]
+Frenzy:[N]
 For every 4 damage taken,[N]
 +1 to damage dealt.[X]
 
@@ -214,20 +214,20 @@ on the opponent.[X]
 ## MSG_SKILL_Merciless_NAME
 Merciless[X]
 ## MSG_SKILL_Merciless_DESC
-Merciless: [N]
+Merciless:[N]
 Guaranteed critical hit[N]
 against poisoned foes.[X]
 
 ## MSG_SKILL_CriticalPierce_NAME
 Critical Pierce[X]
 ## MSG_SKILL_CriticalPierce_DESC
-Critical Pierce: [N]
+Critical Pierce:[N]
 Ignore enemy's dodge rate.[X]
 
 ## MSG_SKILL_KillingMachine_NAME
 Killing Machine[X]
 ## MSG_SKILL_KillingMachine_DESC
-Killing Machine: [N]
+Killing Machine:[N]
 Double this unit's[N]
 total crit rate.[X]
 
@@ -241,7 +241,7 @@ to critical chance.[X]
 ## MSG_SKILL_QuickBurn_NAME
 Quick Burn[X]
 ## MSG_SKILL_QuickBurn_DESC
-Quick Burn: [N]
+Quick Burn:[N]
 +15 Hit and Avoid.[N]
 This bonus decreases each turn.[X]
 
@@ -262,7 +262,7 @@ they're above the doubling threshold.[X]
 ## MSG_SKILL_SlowBurn_NAME
 Slow Burn[X]
 ## MSG_SKILL_SlowBurn_DESC
-Slow Burn: [N]
+Slow Burn:[N]
 +1 Hit and Avoid for[N]
 each passing turn, up to 15.[X]
 
@@ -905,7 +905,7 @@ Pickup[X]
 ## MSG_SKILL_Pickup_DESC
 Pickup: Obtain the last item in the[N]
 enemy's inventory after attacking[N]
-and killing them. [Luck % activation](X)
+and killing them. (Luck % activation).[X]
 
 ## MSG_SKILL_Expertise_NAME
 Expertise[X]

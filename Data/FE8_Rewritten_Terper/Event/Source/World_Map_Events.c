@@ -10,6 +10,255 @@
 #include "jester_headers/custom-functions.h"
 #include "EAstdlib.h"
 
+extern const u16* Events_WM_Beginning[];
+extern const u16* Events_WM_ChapterIntro[];
+
+LYN_REPLACE_CHECK(WorldMap_CallBeginningEvent);
+//! FE8U = 0x080BA334
+void WorldMap_CallBeginningEvent(struct WorldMapMainProc* proc)
+{
+    int chIndex;
+    int node_next;
+
+    Sound_FadeOutBGM(4);
+
+    if ((gGMData.state.bits.monster_merged) || (gPlaySt.chapterStateBits & PLAY_FLAG_POSTGAME))
+    {
+        sub_80BA008(proc->timer);
+    }
+    else
+    {
+        int loc = gGMData.units[0].location;
+
+        gGMData.current_node = loc;
+        node_next = WMLoc_GetNextLocId(loc);
+
+        if (node_next > -1)
+        {
+            chIndex = WMLoc_GetChapterId(node_next);
+
+            gPlaySt.chapterIndex = chIndex;
+
+
+            if (Events_WM_Beginning[GetROMChapterStruct(chIndex)->gmapEventId] == NULL)
+                return;
+
+            ResetGmStoryNode();
+            proc->gm_icon->merge_next_node = false;
+
+            /**
+             * JESTER - I've resorted to hooking into the WM call function to directly load the
+             * WM events I want based on the supplied eventSCR. It's an unfortunate bit of hardcoding
+             * I'm looking to remove, but it frees me from having to rely on the list in ASM in vanilla.
+             */
+            int eventID = GetROMChapterStruct(chIndex)->gmapEventId;
+
+            // NoCashGBAPrintf("SET event id is: %d", eventID);
+
+            switch (eventID) {
+            case 55:
+                CallEvent((const u16*)EventScrWM_Ch1_ENDING, 0);
+                break;
+            case 1:
+                CallEvent((const u16*)EventScrWM_Prologue_SET_NODE, 0);
+                break;
+            case 2:
+                break;
+            case 3:
+                CallEvent((const u16*)EventScrWM_Ch2_SET_NODE, 0);
+                break;
+            case 4:
+                CallEvent((const u16*)EventScrWM_Ch3_SET_NODE, 0);
+                break;
+            case 5:
+                CallEvent((const u16*)EventScrWM_Ch4_SET_NODE, 0);
+                break;
+            case 6:
+                break;
+            case 7:
+                CallEvent((const u16*)EventScrWM_Ch5_SET_NODE, 0);
+                break;
+            case 8:
+                CallEvent((const u16*)EventScrWM_Ch6_SET_NODE, 0);
+                break;
+            case 9:
+                CallEvent((const u16*)EventScrWM_Ch7_SET_NODE, 0);
+                break;
+            case 10:
+                CallEvent((const u16*)EventScrWM_Ch8_SET_NODE, 0);
+                break;
+            case 11:
+                CallEvent((const u16*)EventScrWM_Ch9_SET_NODE, 0);
+                break;
+            case 12:
+                CallEvent((const u16*)EventScrWM_Ch10_SET_NODE, 0);
+                break;
+            default:
+                CallEvent(Events_WM_Beginning[eventID], 0);
+                break;
+            }
+        }
+    }
+
+    StartWMFaceCtrl(proc);
+    StartGmapMuEntry(NULL);
+}
+
+//! FE8U = 0x080BA3D4
+LYN_REPLACE_CHECK(CallChapterWMIntroEvents);
+void CallChapterWMIntroEvents(ProcPtr proc)
+{
+
+    // #ifdef CONFIG_ENTER_DISTRICT
+    //     if (ChapterID[0] == 3)
+    //     {
+    //         CallEvent((const u16*)EventScrWM_Ch4_TRAVEL_TO_NODE, 0);
+    //         StartWMFaceCtrl(proc);
+    //         StartGmapMuEntry(NULL);
+    //     }
+    // #endif
+
+    if (Events_WM_ChapterIntro[GetROMChapterStruct(gPlaySt.chapterIndex)->gmapEventId] != NULL)
+    {
+        /**
+       * JESTER - I've resorted to hooking into the WM call function to directly load the
+       * WM events I want based on the supplied eventSCR. It's an unfortunate bit of hardcoding
+       * I'm looking to remove, but it frees me from having to rely on the list in ASM in vanilla.
+       */
+        int eventID = GetROMChapterStruct(gPlaySt.chapterIndex)->gmapEventId;
+
+        // NoCashGBAPrintf("TRAVEL event id is: %d", eventID);
+
+        switch (eventID) {
+        case 55:
+            break;
+        case 1:
+            CallEvent((const u16*)EventScrWM_Prologue_TRAVEL_TO_NODE, 0);
+            break;
+        case 2:
+            break;
+        case 3:
+            CallEvent((const u16*)EventScrWM_Ch2_TRAVEL_TO_NODE, 0);
+            break;
+        case 4:
+            CallEvent((const u16*)EventScrWM_Ch3_TRAVEL_TO_NODE, 0);
+            break;
+        case 5:
+            CallEvent((const u16*)EventScrWM_Ch4_TRAVEL_TO_NODE, 0);
+            break;
+        case 6:
+            break;
+        case 7:
+            CallEvent((const u16*)EventScrWM_Ch5_TRAVEL_TO_NODE, 0);
+            break;
+        case 8:
+            CallEvent((const u16*)EventScrWM_Ch6_TRAVEL_TO_NODE, 0);
+            break;
+        case 9:
+            CallEvent((const u16*)EventScrWM_Ch7_TRAVEL_TO_NODE, 0);
+            break;
+        case 10:
+            CallEvent((const u16*)EventScrWM_Ch8_TRAVEL_TO_NODE, 0);
+            break;
+        case 11:
+            CallEvent((const u16*)EventScrWM_Ch9_TRAVEL_TO_NODE, 0);
+            break;
+        case 12:
+            CallEvent((const u16*)EventScrWM_Ch10_TRAVEL_TO_NODE, 0);
+            break;
+        default:
+            CallEvent(Events_WM_ChapterIntro[eventID], 0);
+            break;
+        }
+        StartWMFaceCtrl(proc);
+        StartGmapMuEntry(NULL);
+    }
+}
+
+LYN_REPLACE_CHECK(Event97_WmInitNextStoryNode);
+//! FE8U = 0x0800C2DC
+u8 Event97_WmInitNextStoryNode(struct EventEngineProc* proc)
+{
+    // struct WorldMapMainProc * worldMapProc;
+
+    int nodeId = WMLoc_GetNextLocId(gGMData.current_node);
+
+    // NoCashGBAPrintf("Next node ID is: %d", nodeId);
+
+    if (nodeId < 0)
+    {
+        return EVC_ADVANCE_CONTINUE;
+    }
+
+    if (EVENT_IS_SKIPPING(proc))
+    {
+        ResetGmStoryNode();
+        gGMData.nodes[nodeId].state |= 1;
+        gGMData.nodes[nodeId].state |= 2;
+
+        GM_ICON->nodeId = nodeId;
+        GM_ICON->merge_next_node = true;
+    }
+    else
+    {
+        if (!(gGMData.nodes[nodeId].state & 1))
+        {
+            StartGmBaseEntry(nodeId, 0, NULL);
+            ResetGmStoryNode();
+            gGMData.nodes[nodeId].state |= 2;
+        }
+    }
+
+    return EVC_ADVANCE_CONTINUE;
+};
+
+LYN_REPLACE_CHECK(Event3E_PrepScreenCall);
+//! FE8U = 0x08010968
+u8 Event3E_PrepScreenCall(struct EventEngineProc* proc)
+{
+    HideAllUnits();
+    ClearFlag(0x84);
+    Proc_StartBlocking(gProcScr_SALLYCURSOR, proc);
+
+    return EVC_ADVANCE_YIELD;
+}
+
+//! FE8U = 0x080B9B38
+LYN_REPLACE_CHECK(WorldMap_CallIntroEvent);
+void WorldMap_CallIntroEvent(struct WorldMapMainProc* proc)
+{
+    GmMu_80BE108(proc->gm_mu, 0, 0);
+
+#ifdef CONFIG_ENTER_DISTRICT
+    if (ChapterID[0] > 0)
+    {
+        gPlaySt.chapterIndex = ChapterID[0];
+        ChapterID[0] = 0;
+        gGMData.state.bits.monster_merged = false;
+        CallChapterWMIntroEvents(proc);
+        gGMData.sprite_disp = 0;
+        WmRemoveRandomMonsters();
+        return;
+    }
+#endif
+
+    if (gGMData.units[0].location[gWMNodeData].placementFlag != GMAP_NODE_PLACEMENT_DUNGEON)
+    {
+        gPlaySt.chapterIndex = WMLoc_GetChapterId(proc->unk_3e);
+        gGMData.state.bits.monster_merged = false;
+    }
+    else
+    {
+        gPlaySt.chapterIndex = WMLoc_GetChapterId(gGMData.units[0].location);
+    }
+
+    CallChapterWMIntroEvents(proc);
+
+    gGMData.sprite_disp = 0;
+
+    WmRemoveRandomMonsters();
+}
+
 const EventScr EventScrWM_Tutorial_SKILL_SCROLL[] = {
     EvtTextStartType5 // ENOSUPP in EAstdlib
     SVAL(EVT_SLOT_B, 0xFFFFFFFF) // Center text box
