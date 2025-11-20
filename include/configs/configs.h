@@ -443,7 +443,7 @@
 #define CONFIG_TELLIUS_CAPACITY_SYSTEM
 #define CONFIG_TELLIUS_CAPACITY_BASE 50
 #define CONFIG_TELLIUS_CAPACITY_PROMOTED 25
-// #define CONFIG_LAGUZ_BARS /* Breaks MP system */
+// #define CONFIG_LAGUZ_BARS // Run make clean after turning this off
 // #define CONFIG_FORGING
 // #ifdef CONFIG_FORGING
 // 	#define CONFIG_FE4_CRIT_BONUS_ON_KILL
