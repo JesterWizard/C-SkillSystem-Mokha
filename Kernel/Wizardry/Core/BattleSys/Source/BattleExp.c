@@ -370,7 +370,7 @@ void BattleApplyExpGains(void)
     if (!(gPlaySt.chapterStateBits & PLAY_FLAG_EXTRA_MAP))
     {
         // Apply EXP only if the unit belongs to the blue faction
-        if (UNIT_FACTION(GetUnit(gBattleActor.unit.index)) == FACTION_BLUE)
+        if (UNIT_FACTION(GetUnit(gBattleActor.unit.index)) == FACTION_BLUE  && gBattleActor.unit.curHP > 0)
         {
             gBattleActor.expGain = GetBattleUnitExpGainRework(&gBattleActor, &gBattleTarget);
             gBattleActor.unit.exp += gBattleActor.expGain;
@@ -404,7 +404,7 @@ void BattleApplyExpGains(void)
         }
 
         // Apply EXP only if the target belongs to the blue faction
-        if (UNIT_FACTION(GetUnit(gBattleTarget.unit.index)) == FACTION_BLUE)
+        if (UNIT_FACTION(GetUnit(gBattleTarget.unit.index)) == FACTION_BLUE && gBattleTarget.unit.curHP > 0)
         {
             gBattleTarget.expGain = GetBattleUnitExpGainRework(&gBattleTarget, &gBattleActor);
             gBattleTarget.unit.exp += gBattleTarget.expGain;
