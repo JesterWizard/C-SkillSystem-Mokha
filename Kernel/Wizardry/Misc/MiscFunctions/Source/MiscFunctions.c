@@ -4379,18 +4379,6 @@ void InitSupportSubScreenRemainingSupports(struct SubScreenProc* proc) {
     return;
 }
 
-LYN_REPLACE_CHECK(GetUnitSupporterCount);
-int GetUnitSupporterCount(struct Unit* unit)
-{
-    if (!UNIT_SUPPORT_DATA(unit))
-        return 0;
-
-#ifdef CONFIG_UNLOCK_SUPPORT_CONVO_LIMIT
-    return MAX_SIMULTANEOUS_SUPPORT_COUNT;
-#else
-    return UNIT_SUPPORT_DATA(unit)->supportCount;
-#endif
-}
 
 LYN_REPLACE_CHECK(IsGuideLocked);
 bool IsGuideLocked(void)

@@ -489,6 +489,6 @@
 
 // #define CONFIG_ANIMA_WEAPON_TRIANGLE
 
-// #define CONFIG_UNLOCK_SUPPORT_CONVO_LIMIT 10 // Supports up to a maximum of 10 conversations, still only 1 A this breaks the MP system. More investigation needed.
+#define CONFIG_UNLOCK_SUPPORT_CONVO_LIMIT 10 // Supports up to a maximum of 10 conversations, still only 1 A this breaks the MP system. More investigation needed.
 
 #endif /* CONFIG_INSTALLED */
