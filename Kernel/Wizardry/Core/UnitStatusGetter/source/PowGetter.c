@@ -47,6 +47,8 @@ int PowGetterSkills(int status, struct Unit *unit)
 	int cur_hp = GetUnitCurrentHp(unit);
 	int max_hp = GetUnitMaxHp(unit);
 
+    int originalStatus = status;
+
     FORCE_DECLARE bool hugePowerPlus = false;
     FORCE_DECLARE struct NewBwl * bwl = GetNewBwl(UNIT_CHAR_ID(unit));
 
@@ -229,6 +231,11 @@ int PowGetterSkills(int status, struct Unit *unit)
             else
                 status += deadAllies / 3;
         }
+#endif
+
+#if defined(SID_BonusDoubler) && (COMMON_SKILL_VALID(SID_BonusDoubler))
+    if (SkillTester(unit, SID_BonusDoubler))
+        status += (status - originalStatus);
 #endif
 
 #if defined(SID_SlowStart) && (COMMON_SKILL_VALID(SID_SlowStart))

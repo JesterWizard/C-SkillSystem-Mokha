@@ -47,6 +47,8 @@ int ResGetterSkills(int status, struct Unit *unit)
 	int cur_hp = GetUnitCurrentHp(unit);
 	int max_hp = GetUnitMaxHp(unit);
 
+    int originalStatus = status;
+
     FORCE_DECLARE struct NewBwl * bwl = GetNewBwl(UNIT_CHAR_ID(unit));
 
 #if defined(SID_LifeAndDeath) && (COMMON_SKILL_VALID(SID_LifeAndDeath))
@@ -208,6 +210,11 @@ int ResGetterSkills(int status, struct Unit *unit)
 		else
 			status += deadAllies / 3;
 	}
+#endif
+
+#if defined(SID_BonusDoubler) && (COMMON_SKILL_VALID(SID_BonusDoubler))
+    if (SkillTester(unit, SID_BonusDoubler))
+        status += (status - originalStatus);
 #endif
 
     if (GetUnitStatusIndex(unit) == NEW_UNIT_STATUS_ENFEEBLE)

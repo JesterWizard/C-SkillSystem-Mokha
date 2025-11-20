@@ -382,6 +382,11 @@ int PowGetterStatDebuff(int status, struct Unit *unit)
             return status - GetStatDebuffMsgBuf(unit)->pow;
 #endif
 
+#if defined(SID_BonusDoubler) && (COMMON_SKILL_VALID(SID_BonusDoubler))
+    if (SkillTester(unit, SID_BonusDoubler))
+        return (status + (GetStatDebuffMsgBuf(unit)->pow * 2));
+#endif
+
     return status + GetStatDebuffMsgBuf(unit)->pow;
 }
 
@@ -398,6 +403,12 @@ int MagGetterStatDebuff(int status, struct Unit *unit)
         if (GetStatDebuffMsgBuf(unit)->mag < 0)
             return status - GetStatDebuffMsgBuf(unit)->mag;
 #endif
+
+#if defined(SID_BonusDoubler) && (COMMON_SKILL_VALID(SID_BonusDoubler))
+    if (SkillTester(unit, SID_BonusDoubler))
+        return (status + (GetStatDebuffMsgBuf(unit)->mag * 2));
+#endif
+
     return status + GetStatDebuffMsgBuf(unit)->mag;
 }
 
@@ -414,6 +425,12 @@ int SklGetterStatDebuff(int status, struct Unit *unit)
         if (GetStatDebuffMsgBuf(unit)->skl < 0)
             return status - GetStatDebuffMsgBuf(unit)->skl;
 #endif
+
+#if defined(SID_BonusDoubler) && (COMMON_SKILL_VALID(SID_BonusDoubler))
+    if (SkillTester(unit, SID_BonusDoubler))
+        return (status + (GetStatDebuffMsgBuf(unit)->skl * 2));
+#endif
+
     return status + GetStatDebuffMsgBuf(unit)->skl;
 }
 
@@ -430,6 +447,12 @@ int SpdGetterStatDebuff(int status, struct Unit *unit)
         if (GetStatDebuffMsgBuf(unit)->spd < 0)
             return status - GetStatDebuffMsgBuf(unit)->spd;
 #endif
+
+#if defined(SID_BonusDoubler) && (COMMON_SKILL_VALID(SID_BonusDoubler))
+    if (SkillTester(unit, SID_BonusDoubler))
+        return (status + (GetStatDebuffMsgBuf(unit)->spd * 2));
+#endif
+
     return status + GetStatDebuffMsgBuf(unit)->spd;
 }
 
@@ -446,6 +469,12 @@ int DefGetterStatDebuff(int status, struct Unit *unit)
         if (GetStatDebuffMsgBuf(unit)->def < 0)
             return status - GetStatDebuffMsgBuf(unit)->def;
 #endif
+
+#if defined(SID_BonusDoubler) && (COMMON_SKILL_VALID(SID_BonusDoubler))
+    if (SkillTester(unit, SID_BonusDoubler))
+        return (status + (GetStatDebuffMsgBuf(unit)->def * 2));
+#endif
+
     return status + GetStatDebuffMsgBuf(unit)->def;
 }
 
@@ -462,6 +491,12 @@ int ResGetterStatDebuff(int status, struct Unit *unit)
         if (GetStatDebuffMsgBuf(unit)->res < 0)
             return status - GetStatDebuffMsgBuf(unit)->res;
 #endif
+
+#if defined(SID_BonusDoubler) && (COMMON_SKILL_VALID(SID_BonusDoubler))
+    if (SkillTester(unit, SID_BonusDoubler))
+        return (status + (GetStatDebuffMsgBuf(unit)->res * 2));
+#endif
+
     return status + GetStatDebuffMsgBuf(unit)->res;
 }
 
@@ -478,6 +513,12 @@ int LckGetterStatDebuff(int status, struct Unit *unit)
         if (GetStatDebuffMsgBuf(unit)->lck < 0)
             return status - GetStatDebuffMsgBuf(unit)->lck;
 #endif
+
+#if defined(SID_BonusDoubler) && (COMMON_SKILL_VALID(SID_BonusDoubler))
+    if (SkillTester(unit, SID_BonusDoubler))
+        return (status + (GetStatDebuffMsgBuf(unit)->lck * 2));
+#endif
+
     return status + GetStatDebuffMsgBuf(unit)->lck;
 }
 
@@ -539,6 +580,11 @@ int HpGetterStatDebuff(int status, struct Unit *unit)
     if (SkillTester(unit, SID_Contrary))
         if (GetStatDebuffMsgBuf(unit)->maxHP < 0)
             return status - GetStatDebuffMsgBuf(unit)->maxHP;
+#endif
+
+#if defined(SID_BonusDoubler) && (COMMON_SKILL_VALID(SID_BonusDoubler))
+    if (SkillTester(unit, SID_BonusDoubler))
+        return (status + (GetStatDebuffMsgBuf(unit)->maxHP * 2));
 #endif
 
     return status + GetStatDebuffMsgBuf(unit)->maxHP;

@@ -47,6 +47,8 @@ int HpGetterWeaponBonus(int status, struct Unit *unit)
 
 int HpGetterSkills(int status, struct Unit *unit)
 {
+    int originalStatus = status;
+
 #if defined(SID_HpBonus) && (COMMON_SKILL_VALID(SID_HpBonus))
 	if (SkillTester(unit, SID_HpBonus))
 		status += SKILL_EFF0(SID_HpBonus);
@@ -84,6 +86,11 @@ int HpGetterSkills(int status, struct Unit *unit)
 #if defined(SID_Sellsword) && (COMMON_SKILL_VALID(SID_Sellsword))
     if (SkillTester(unit, SID_Sellsword) && CheckBitUES(unit, UES_BIT_SELLSWORD_SKILL_USED))
         status += SKILL_EFF0(SID_Sellsword);
+#endif
+
+#if defined(SID_BonusDoubler) && (COMMON_SKILL_VALID(SID_BonusDoubler))
+    if (SkillTester(unit, SID_BonusDoubler))
+        status += (status - originalStatus);
 #endif
 
 	return status;

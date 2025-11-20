@@ -43,6 +43,8 @@ int LckGetterSkills(int status, struct Unit *unit)
 	int cur_hp = GetUnitCurrentHp(unit);
 	int max_hp = GetUnitMaxHp(unit);
 
+    int originalStatus = status;
+
     FORCE_DECLARE struct NewBwl * bwl = GetNewBwl(UNIT_CHAR_ID(unit));
 
 #if defined(SID_LckBonus) && (COMMON_SKILL_VALID(SID_LckBonus))
@@ -154,23 +156,28 @@ int LckGetterSkills(int status, struct Unit *unit)
 #endif
 
 #if defined(SID_SupremeOverlord) && (COMMON_SKILL_VALID(SID_SupremeOverlord))
-        if (SkillTester(unit, SID_SupremeOverlord))
+    if (SkillTester(unit, SID_SupremeOverlord))
+    {
+        int deadAllies = 0;
+
+        for (int i = UNIT_FACTION(unit) + 1; i < (UNIT_FACTION(unit) + GetFactionUnitAmount(UNIT_FACTION(unit))); i++)
         {
-            int deadAllies = 0;
-
-            for (int i = UNIT_FACTION(unit) + 1; i < (UNIT_FACTION(unit) + GetFactionUnitAmount(UNIT_FACTION(unit))); i++)
-            {
-                if (!(GetUnit(i)->pCharacterData))
-                    break;
-                if (!UNIT_ALIVE(GetUnit(i)))
-                    deadAllies += 1;
-            }
-
-            if (UNIT_FACTION(unit) != FACTION_RED)
-                status += deadAllies * 3;
-            else
-                status += deadAllies / 3;
+            if (!(GetUnit(i)->pCharacterData))
+                break;
+            if (!UNIT_ALIVE(GetUnit(i)))
+                deadAllies += 1;
         }
+
+        if (UNIT_FACTION(unit) != FACTION_RED)
+            status += deadAllies * 3;
+        else
+            status += deadAllies / 3;
+    }
+#endif
+
+#if defined(SID_BonusDoubler) && (COMMON_SKILL_VALID(SID_BonusDoubler))
+    if (SkillTester(unit, SID_BonusDoubler))
+        status += (status - originalStatus);
 #endif
 
     if (GetUnitStatusIndex(unit) == NEW_UNIT_STATUS_ENFEEBLE)
