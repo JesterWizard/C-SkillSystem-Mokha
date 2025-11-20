@@ -1,5 +1,3 @@
-#include "../../../../include/constants/texts.h"
-
 #define GuideFlag 0xB4
 #define AddGuideEntry(category, title, content) "BYTE category category; SHORT title content GuideFlag GuideFlag 0"
 #define AddGuideEntry(category, title, content, character) "BYTE category category; SHORT title content GuideFlag GuideFlag; BYTE character 0"

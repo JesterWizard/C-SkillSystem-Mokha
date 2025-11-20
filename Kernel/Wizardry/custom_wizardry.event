@@ -2,6 +2,10 @@
     #include "../../Data/FE8_Rewritten_Terper/FE8Rewrite_Installer.event"
 #endif
 
+#ifdef CONFIG_CUSTOM_GUIDE
+    #include "Common/Guide/GuideTable.event"
+#endif
+
 #ifdef CONFIG_MULTIPLE_DEATH_QUOTES
     #include "Common/Quotes/Quotes.event"
 #endif
@@ -94,10 +98,6 @@
 
 #ifdef CONFIG_QUINTESSANCE_EFFECT
     #include "Misc/QuintessanceEffect/QuintessanceEffect_Installer.event"
-#endif
-
-#ifdef CONFIG_CUSTOM_GUIDE
-    #include "Common/Guide/GuideTable.event"
 #endif
 
 #ifdef CONFIG_VESLY_CREDITS_SEQUENCE

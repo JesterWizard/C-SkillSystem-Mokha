@@ -4378,27 +4378,3 @@ void InitSupportSubScreenRemainingSupports(struct SubScreenProc* proc) {
 
     return;
 }
-
-
-LYN_REPLACE_CHECK(IsGuideLocked);
-bool IsGuideLocked(void)
-{
-    return FALSE;
-    
-    struct GuideEnt * it = gGuideTable;
-
-    while (1)
-    {
-        if (it->title == 12)
-        {
-            return TRUE;
-        }
-
-        if (CheckFlag(it->displayFlag))
-        {
-            return FALSE;
-        }
-
-        it++;
-    }
-}

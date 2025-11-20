@@ -66,6 +66,8 @@ void SetGameOptions_Chapter0()
 
     // SetFlag(0xAB); // Gamma UI flag
 
+    SetFlag(0xB4); // Guide Flag
+
     // NoCashGBAPrintf("Chapter 1 - Total BEXP BEFORE is: %d", sBEXP);
 
     // sBEXP.value += 100;
