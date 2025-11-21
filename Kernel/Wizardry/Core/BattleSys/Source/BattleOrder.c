@@ -582,177 +582,453 @@ STATIC_DECLAR void RegenerateBattleOrderFlagsAfterCalc(void)
 	}
 }
 
+static inline void ClearBattleStateForUnwind(void)
+{
+    ClearBattleHits();
+    gBattleHitIterator->info |= BATTLE_HIT_INFO_BEGIN;
+}
+
+static inline bool IsRealBattle(void)
+{
+    return (gBattleStats.config & BATTLE_CONFIG_REAL);
+}
+
+static inline void EndBattleEarly(void)
+{
+    gBattleHitIterator->info |= BATTLE_HIT_INFO_END;
+}
+
+typedef enum {
+    ATTACK_NONE,
+    ATTACK_ACTOR,
+    ATTACK_TARGET
+} AttackType;
+
+static inline AttackType GetAttackTypeForStep(u8 cfg)
+{
+    if (cfg == ACT_ATTACK) return ATTACK_ACTOR;
+    if (cfg == TAR_ATTACK) return ATTACK_TARGET;
+    return ATTACK_NONE;
+}
+
+static inline void ApplyReturnAttackFlagIfNeeded(AttackType t)
+{
+    if (t == ATTACK_TARGET)
+        gBattleHitIterator->attributes |= BATTLE_HIT_ATTR_RETALIATE;
+}
+
+static inline void IncrementAttackCount(AttackType t, int *actorCount, int *targetCount)
+{
+    if (t == ATTACK_ACTOR) (*actorCount)++;
+    if (t == ATTACK_TARGET) (*targetCount)++;
+}
+
+static inline void TryRegisterCombatArt(struct BattleHit *start)
+{
+    int cid = GetCombatArtInForce(&gBattleActor.unit);
+    if (COMBART_VALID(cid))
+        RegisterEfxSkillCombatArt(GetBattleHitRound(start), cid);
+}
+
+static inline void ApplyFollowUpFlagIfSameAttacker(int i, const u8 *cfg)
+{
+    if (i != 0 && cfg[i-1] == cfg[i])
+        gBattleHitIterator->attributes = BATTLE_HIT_ATTR_FOLLOWUP;
+}
+
+static inline void TryRegisterVantage(int i, struct BattleHit *start)
+{
+    if (i != 0) return;
+    if (!(gBattleFlagExt.round_mask & UNWIND_VANTAGE)) return;
+    if (!gBattleTemporaryFlag.vantage_order) return;
+
+    RegisterActorEfxSkill(GetBattleHitRound(start), BattleOrderSkills[BORDER_VANTAGE]);
+}
+
+static inline void TryRegisterDesperation(int i, const u8 *cfg, struct BattleHit *start)
+{
+    if (i != 1) return;
+    if (!(gBattleFlagExt.round_mask & UNWIND_DESPERA)) return;
+    if (!gBattleTemporaryFlag.desperation_order) return;
+
+    bool pattern =
+        cfg[0] == ACT_ATTACK &&
+        cfg[1] == ACT_ATTACK &&
+        cfg[2] == TAR_ATTACK;
+
+    if (pattern)
+        RegisterActorEfxSkill(GetBattleHitRound(start), BattleOrderSkills[BORDER_DESPERATION]);
+}
+
+static inline void TryRegisterForcedDouble(AttackType t, int actor, int target, struct BattleHit *start)
+{
+    if (t == ATTACK_TARGET && target > 1 && gBattleTemporaryFlag.tar_force_twice_order)
+        RegisterActorEfxSkill(GetBattleHitRound(start), BattleOrderSkills[BORDER_TAR_TWICE]);
+
+    if (t == ATTACK_ACTOR && actor > 1 && gBattleTemporaryFlag.act_force_twice_order)
+        RegisterActorEfxSkill(GetBattleHitRound(start), BattleOrderSkills[BORDER_ACT_TWICE]);
+}
+
+static inline void MarkBattleEnd(void)
+{
+    if (GetBattleHitRound(gBattleHitIterator) != 0) {
+        struct BattleHit *pre = gBattleHitIterator - 1;
+        pre->info |= BATTLE_HIT_INFO_FINISHES;
+    }
+
+    gBattleHitIterator->info |= BATTLE_HIT_INFO_END;
+}
+
+static inline bool HasDuel(struct BattleUnit *bu)
+{
+#if defined(SID_Duel) && COMMON_SKILL_VALID(SID_Duel)
+    return BattleFastSkillTester(bu, SID_Duel);
+#else
+    return false;
+#endif
+}
+
+static int RunDuelCombatLoop(void)
+{
+    const u8 *roundOrder = BattleUnwindConfig[gBattleFlagExt.round_mask];
+
+    int actor_count  = 0;
+    int target_count = 0;
+
+    while (true)
+    {
+        //---------------------------------------------------------
+        // Execute ONE FULL ROUND of combat, respecting vanilla order
+        //---------------------------------------------------------
+
+        for (int i = 0; i < 4; i++)
+        {
+            u8 step = roundOrder[i];
+
+            // End of configured round
+            if (step == NOP_ATTACK)
+                break;
+
+            struct BattleUnit *atk;
+            struct BattleUnit *def;
+            AttackType atype;
+
+            if (step == ACT_ATTACK) {
+                atk   = &gBattleActor;
+                def   = &gBattleTarget;
+                atype = ATTACK_ACTOR;
+            }
+            else { // TAR_ATTACK
+                atk   = &gBattleTarget;
+                def   = &gBattleActor;
+                atype = ATTACK_TARGET;
+            }
+
+            if (!CheckCanContinueAttack(atk))
+                continue;
+
+            if (atype == ATTACK_TARGET)
+                gBattleHitIterator->attributes |= BATTLE_HIT_ATTR_RETALIATE;
+
+            struct BattleHit *roundStart = gBattleHitIterator;
+
+            int stop = BattleGenerateRoundHits(atk, def);
+
+            // Count + skills identical to Unwind
+            if (atype == ATTACK_ACTOR) actor_count++;
+            else                       target_count++;
+
+            if (i == 0 && atype == ATTACK_ACTOR)
+                TryRegisterCombatArt(roundStart);
+
+            if (i != 0 && roundOrder[i-1] == roundOrder[i])
+                gBattleHitIterator->attributes = BATTLE_HIT_ATTR_FOLLOWUP;
+
+            TryRegisterVantage(i, roundStart);
+            TryRegisterDesperation(i, roundOrder, roundStart);
+            TryRegisterForcedDouble(atype, actor_count, target_count, roundStart);
+
+            if (stop)
+                goto DuelFinish;
+
+            // If defender dies → end round early
+            if (!CheckCanContinueAttack(def))
+                goto DuelFinish;
+        }
+
+        //---------------------------------------------------------
+        // ROUND COMPLETE → Repeat the whole cycle again
+        //---------------------------------------------------------
+    }
+
+DuelFinish:
+    return 1; // signal to BattleUnwind() to stop
+}
+
+// -----------------------------------------------------------------------------
+// TryExecuteComboAttackOnce
+//
+// - Runs the chain/combo attack logic once (the original "combo_atk_done" behavior).
+// - Parameters:
+//     atk        : attacker unit to test for ChainAttack
+//     def        : defender unit (chain may be triggered by either unit)
+//     comboDone  : pointer to a bool that tracks whether we've already executed the combo
+//     pOldHit    : pointer to a struct BattleHit* in the caller that should be
+//                  updated to gBattleHitIterator after the combo finishes
+// - Returns:
+//     true  => BattleComboGenerateHits() returned non-zero (signal to stop unwind loop)
+//     false => either combo not triggered or it finished normally
+// ----------------------------------------------------------------------------- 
+static bool TryExecuteComboAttackOnce(
+    struct BattleUnit *atk,
+    struct BattleUnit *def,
+    bool *comboDone,
+    struct BattleHit **pOldHit)
+{
+    if (!comboDone || !pOldHit)
+        return false;
+
+#ifdef CONFIG_USE_COMBO_ATTACK
+    // Only run combo once
+    if (!(*comboDone))
+    {
+        // Only consider ChainAttack if the skill is defined and valid
+    #if (defined(SID_ChainAttack) && COMMON_SKILL_VALID(SID_ChainAttack))
+        if (BattleFastSkillTester(atk, SID_ChainAttack) ||
+            BattleFastSkillTester(def, SID_ChainAttack))
+        {
+            *comboDone = true;
+
+            // BattleComboGenerateHits mirrors original behavior: non-zero -> stop unwind
+            int ret = BattleComboGenerateHits();
+            if (ret)
+                return true;
+
+            // Reload the caller's 'oldHit' to reflect new iterator position
+            *pOldHit = gBattleHitIterator;
+            LTRACEF("Combo end at round %d", GetBattleHitRound(*pOldHit));
+        }
+    #endif
+    }
+
+#endif /* CONFIG_USE_COMBO_ATTACK */
+
+    return false;
+}
+
+
 LYN_REPLACE_CHECK(BattleUnwind);
 void BattleUnwind(void)
 {
-	int i, ret;
-#ifdef CONFIG_USE_COMBO_ATTACK
-	bool combo_atk_done = false;
-#endif
-	const u8 *config;
+    ClearBattleStateForUnwind();
 
-	/* Identifier to record attack amount for skill anim triger */
-	int actor_count = 0;
-	int target_count = 0;
+    // Fake battle? End immediately.
+    if (!IsRealBattle()) {
+        EndBattleEarly();
+        return;
+    }
 
-	ClearBattleHits();
-	gBattleHitIterator->info |= BATTLE_HIT_INFO_BEGIN;
+    RegenerateBattleOrderFlagsAfterCalc();
 
-	/* fasten calc! */
-	if (!(gBattleStats.config & BATTLE_CONFIG_REAL)) {
-		gBattleHitIterator->info |= BATTLE_HIT_INFO_END;
-		return;
-	}
+    //---------------------------------------------------------
+    // DUEL OVERRIDE
+    //---------------------------------------------------------
+    if (HasDuel(&gBattleActor) || HasDuel(&gBattleTarget))
+    {
+        RunDuelCombatLoop();
+        MarkBattleEnd();
+        return;
+    }
 
-	RegenerateBattleOrderFlagsAfterCalc();
+    const u8 *config = BattleUnwindConfig[gBattleFlagExt.round_mask];
 
-	config = BattleUnwindConfig[gBattleFlagExt.round_mask];
-
-	for (i = 0; i < 4; i++) {
-		struct BattleHit *old = gBattleHitIterator;
-
-		if (config[i] == ACT_ATTACK) {
-			if (!CheckCanContinueAttack(&gBattleActor))
-				continue;
+    int actor_count  = 0;
+    int target_count = 0;
 
 #ifdef CONFIG_USE_COMBO_ATTACK
-        #if (defined(SID_ChainAttack) && COMMON_SKILL_VALID(SID_ChainAttack))
-            if (BattleFastSkillTester(&gBattleActor, SID_ChainAttack) || BattleFastSkillTester(&gBattleTarget, SID_ChainAttack))
-            {
-                /* Combo-attack first */
-                if (!combo_atk_done)
-                {
-                    combo_atk_done = true;
-                    ret = BattleComboGenerateHits();
-                    if (ret)
-                        break;
-
-                    /* Reload battle-hit */
-                    old = gBattleHitIterator;
-                    LTRACEF("Combo end at round round %d", GetBattleHitRound(old));
-                }
-            }
-        #endif
+    bool combo_done = false;
 #endif
-			ret = BattleGenerateRoundHits(&gBattleActor, &gBattleTarget);
-			actor_count++;
-		} else if (config[i] == TAR_ATTACK) {
-			if (!CheckCanContinueAttack(&gBattleTarget))
-				continue;
 
-			gBattleHitIterator->attributes |= BATTLE_HIT_ATTR_RETALIATE;
-			ret = BattleGenerateRoundHits(&gBattleTarget, &gBattleActor);
-			target_count++;
-		} else if (config[i] == NOP_ATTACK)
-			break;
+    for (int i = 0; i < 4; i++)
+    {
+        struct BattleHit *roundStart = gBattleHitIterator;
 
-		/* Combat art first */
-		if (i == 0) {
-			int cid = GetCombatArtInForce(&gBattleActor.unit);
+        AttackType atkType = GetAttackTypeForStep(config[i]);
+        if (atkType == ATTACK_NONE)
+            break;
 
-			if (COMBART_VALID(cid))
-				RegisterEfxSkillCombatArt(GetBattleHitRound(old), cid);
-		}
+        struct BattleUnit *atk = (atkType == ATTACK_ACTOR) ? &gBattleActor : &gBattleTarget;
+        struct BattleUnit *def = (atkType == ATTACK_ACTOR) ? &gBattleTarget : &gBattleActor;
 
-		if (i != 0 && config[i - 1] == config[i])
-			gBattleHitIterator->attributes = BATTLE_HIT_ATTR_FOLLOWUP;
+        // Check attacker eligibility
+        if (!CheckCanContinueAttack(atk))
+            continue;
 
-		/* Vantage */
-		if (i == 0 && (gBattleFlagExt.round_mask & UNWIND_VANTAGE))
-			if (gBattleTemporaryFlag.vantage_order)
-				RegisterActorEfxSkill(GetBattleHitRound(old), BattleOrderSkills[BORDER_VANTAGE]);
+        ApplyReturnAttackFlagIfNeeded(atkType);
 
-		/* Desperation */
-		if (i == 1 && (gBattleFlagExt.round_mask & UNWIND_DESPERA))
-			if (config[0] == ACT_ATTACK && config[1] == ACT_ATTACK && config[2] == TAR_ATTACK)
-				if (gBattleTemporaryFlag.desperation_order)
-					RegisterActorEfxSkill(GetBattleHitRound(old), BattleOrderSkills[BORDER_DESPERATION]);
+#ifdef CONFIG_USE_COMBO_ATTACK
+        if (TryExecuteComboAttackOnce(atk, def, &combo_done, &roundStart))
+            break;
+#endif
 
-		/* Target double attack */
-		if (target_count > 1 && config[i] == TAR_ATTACK)
-			if (gBattleTemporaryFlag.tar_force_twice_order)
-				RegisterActorEfxSkill(GetBattleHitRound(old), BattleOrderSkills[BORDER_TAR_TWICE]);
+        int stop = BattleGenerateRoundHits(atk, def);
 
-		/* Actor double attack */
-		if (actor_count > 1 && config[i] == ACT_ATTACK)
-			if (gBattleTemporaryFlag.act_force_twice_order)
-				RegisterActorEfxSkill(GetBattleHitRound(old), BattleOrderSkills[BORDER_ACT_TWICE]);
+        IncrementAttackCount(atkType, &actor_count, &target_count);
 
-		if (ret)
-			break;
-	}
+        if (i == 0)
+            TryRegisterCombatArt(roundStart);
 
-	if (GetBattleHitRound(gBattleHitIterator) != 0) {
-		struct BattleHit *pre_hit = gBattleHitIterator - 1;
+        ApplyFollowUpFlagIfSameAttacker(i, config);
 
-		pre_hit->info |= BATTLE_HIT_INFO_FINISHES;
-	}
+        TryRegisterVantage(i, roundStart);
+        TryRegisterDesperation(i, config, roundStart);
+        TryRegisterForcedDouble(atkType, actor_count, target_count, roundStart);
 
-	gBattleHitIterator->info |= BATTLE_HIT_INFO_END;
+        if (stop)
+            break;
+    }
+
+    MarkBattleEnd();
 }
 
-LYN_REPLACE_CHECK(BattleGenerateRoundHits);
-bool BattleGenerateRoundHits(struct BattleUnit *attacker, struct BattleUnit *defender)
+// ================================================================
+// ENUM FOR RESULT STATE
+// ================================================================
+typedef enum BattleRoundResult {
+    BATTLE_ROUND_ABORT = 0,
+    BATTLE_ROUND_END   = 1
+} BattleRoundResult;
+
+
+// ================================================================
+// HELPER: Determines if attacker can start combat and sets unarmedCombat out-flag
+// Matches original logic exactly, including the #ifdef behavior.
+// ================================================================
+static bool CanInitiateCombat(struct BattleUnit* attacker, bool* outUnarmedCombat)
 {
-	int i, count;
-	u32 attrs;
-    int unarmedCombat = false;
+    *outUnarmedCombat = false;
 
 #if defined(SID_UnarmedCombat) && (COMMON_SKILL_VALID(SID_UnarmedCombat))
     if (!BattleFastSkillTester(attacker, SID_UnarmedCombat))
     {
         if (!attacker->weapon)
-            return FALSE;
+            return false;
     }
-    else 
+    else
     {
-        unarmedCombat = true;
+        *outUnarmedCombat = true;
     }
 #else
     if (!attacker->weapon)
-        return FALSE;
+        return false;
 #endif
 
-	if (!CheckCanContinueAttack(attacker))
-		return FALSE;
+    return CheckCanContinueAttack(attacker);
+}
 
-	/* Clear the round related efx skill pool */
-	ResetRoundEfxSkills();
 
-	attrs = gBattleHitIterator->attributes;
-	count = GetBattleUnitHitCount(attacker);
+// ================================================================
+// HELPER: Applies round-based effect skills AFTER the first round
+// ================================================================
+static void ApplyRoundSkillEffects(int roundIndex, int roundNumber)
+{
+    if (roundIndex == 0)
+        return;
 
-	LTRACEF("Battle rounds: %d", count);
+    int skillId = DequeueRoundEfxSkill();
 
-	for (i = 0; i < count; ++i) {
-		int efx_sid, round = GetBattleHitRound(gBattleHitIterator);
+    if (COMMON_SKILL_VALID(skillId)) {
+        LTRACEF("Round skill %02x registered at round %d", skillId, roundNumber);
+        RegisterActorEfxSkill(roundNumber, skillId);
+    }
+}
 
-		gBattleHitIterator->attributes |= attrs;
 
-		if (i != 0) {
-			efx_sid = DequeueRoundEfxSkill();
-			if (COMMON_SKILL_VALID(efx_sid)) {
-				LTRACEF("Round skill %02x registered at round %d", efx_sid, round);
-				RegisterActorEfxSkill(round, efx_sid);
-			}
-		}
+// ================================================================
+// HELPER: Handles battle hit overflow and returns whether it ended the sequence
+// Preserves original hack behavior.
+// ================================================================
+static bool HandleBattleHitOverflow(void)
+{
+    if (!CheckBattleHitOverflow())
+        return false;
 
-		if (BattleGenerateHit(attacker, defender))
-			return true;
+    Error("Battle hit overflowed!");
 
-		/* Hack here: we need avoid hit array overflow */
-		if (CheckBattleHitOverflow()) {
-			Error("Battle hit overflowed!");
-			gBattleHitIterator = gBattleHitIterator - 1;
-			gBattleHitIterator->info |= (BATTLE_HIT_INFO_FINISHES | BATTLE_HIT_INFO_END);
-			return true;
-		}
+    // Rewind one entry and mark it as finished
+    gBattleHitIterator = gBattleHitIterator - 1;
+    gBattleHitIterator->info |= (BATTLE_HIT_INFO_FINISHES | BATTLE_HIT_INFO_END);
 
-		/* I think this is a bug-fix for vanilla */
-		if (!CheckCanContinueAttack(attacker) && !unarmedCombat)
-			return false;
-	}
-	return false;
+    return true;
+}
+
+
+// ================================================================
+// MAIN FUNCTION REWRITE WITH HELPERS
+// ================================================================
+LYN_REPLACE_CHECK(BattleGenerateRoundHits);
+bool BattleGenerateRoundHits(struct BattleUnit *attacker, struct BattleUnit *defender)
+{
+    bool unarmedCombat    = false;
+    int  roundCount       = 0;
+    int  roundIndex       = 0;
+    u32  baseAttrs        = 0;
+
+    // ------------------------------------------------------------
+    // 1. Validate that attacker can begin combat
+    // ------------------------------------------------------------
+    if (!CanInitiateCombat(attacker, &unarmedCombat))
+        return BATTLE_ROUND_ABORT;
+
+    // ------------------------------------------------------------
+    // 2. Prepare per-round state
+    // ------------------------------------------------------------
+    ResetRoundEfxSkills();
+
+    baseAttrs  = gBattleHitIterator->attributes;
+    roundCount = GetBattleUnitHitCount(attacker);
+
+    LTRACEF("Battle rounds: %d", roundCount);
+
+
+    // ------------------------------------------------------------
+    // 3. Process each hit round
+    // ------------------------------------------------------------
+    for (roundIndex = 0; roundIndex < roundCount; ++roundIndex)
+    {
+        int roundNumber = GetBattleHitRound(gBattleHitIterator);
+
+        // Restore baseline hit attributes for the round
+        gBattleHitIterator->attributes |= baseAttrs;
+
+        // Apply EFX skills for rounds > 0
+        ApplyRoundSkillEffects(roundIndex, roundNumber);
+
+        // --------------------------------------------------------
+        // Generate the hit
+        // If this returns true, combat ends (old behavior)
+        // --------------------------------------------------------
+        if (BattleGenerateHit(attacker, defender))
+            return BATTLE_ROUND_END;
+
+        // --------------------------------------------------------
+        // Overflow protection
+        // --------------------------------------------------------
+        if (HandleBattleHitOverflow())
+            return BATTLE_ROUND_END;
+
+        // --------------------------------------------------------
+        // Mid-round continuation check
+        // --------------------------------------------------------
+        if (!CheckCanContinueAttack(attacker) && !unarmedCombat)
+            return BATTLE_ROUND_ABORT;
+    }
+
+    // ------------------------------------------------------------
+    // End of all rounds without early finish
+    // Original function returns FALSE here → abort-class result
+    // ------------------------------------------------------------
+    return BATTLE_ROUND_ABORT;
 }
 
 LYN_REPLACE_CHECK(BattleGetFollowUpOrder);
