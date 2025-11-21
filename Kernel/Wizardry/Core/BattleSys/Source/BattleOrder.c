@@ -695,17 +695,16 @@ static int RunDuelCombatLoop(void)
     int actor_count  = 0;
     int target_count = 0;
 
+DuelRoundStart:
+
     while (true)
     {
         //---------------------------------------------------------
-        // Execute ONE FULL ROUND of combat, respecting vanilla order
+        // Execute ONE FULL ROUND (vanilla attack order)
         //---------------------------------------------------------
-
         for (int i = 0; i < 4; i++)
         {
             u8 step = roundOrder[i];
-
-            // End of configured round
             if (step == NOP_ATTACK)
                 break;
 
@@ -717,8 +716,7 @@ static int RunDuelCombatLoop(void)
                 atk   = &gBattleActor;
                 def   = &gBattleTarget;
                 atype = ATTACK_ACTOR;
-            }
-            else { // TAR_ATTACK
+            } else {
                 atk   = &gBattleTarget;
                 def   = &gBattleActor;
                 atype = ATTACK_TARGET;
@@ -734,7 +732,21 @@ static int RunDuelCombatLoop(void)
 
             int stop = BattleGenerateRoundHits(atk, def);
 
-            // Count + skills identical to Unwind
+            //-----------------------------------------------------
+            // ★ NEW: Overflow protection for Duel
+            //-----------------------------------------------------
+            if (DuelHitBufferOverflowed())
+            {
+                // Reset buffer and restart the entire Duel round
+                DuelResetBattleHits();
+                actor_count = 0;
+                target_count = 0;
+                goto DuelRoundStart;
+            }
+
+            //-----------------------------------------------------
+            // Original bookkeeping
+            //-----------------------------------------------------
             if (atype == ATTACK_ACTOR) actor_count++;
             else                       target_count++;
 
@@ -750,19 +762,17 @@ static int RunDuelCombatLoop(void)
 
             if (stop)
                 goto DuelFinish;
-
-            // If defender dies → end round early
             if (!CheckCanContinueAttack(def))
                 goto DuelFinish;
         }
 
         //---------------------------------------------------------
-        // ROUND COMPLETE → Repeat the whole cycle again
+        // End of this Duel round → start next
         //---------------------------------------------------------
     }
 
 DuelFinish:
-    return 1; // signal to BattleUnwind() to stop
+    return 1;
 }
 
 // -----------------------------------------------------------------------------
@@ -815,7 +825,6 @@ static bool TryExecuteComboAttackOnce(
 
     return false;
 }
-
 
 LYN_REPLACE_CHECK(BattleUnwind);
 void BattleUnwind(void)
