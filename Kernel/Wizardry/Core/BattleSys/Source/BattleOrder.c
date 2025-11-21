@@ -688,6 +688,19 @@ static inline bool HasDuel(struct BattleUnit *bu)
 #endif
 }
 
+static inline void DuelResetBattleHits(void)
+{
+    // Fully reset the battle-hit array just like the beginning of any battle
+    ClearBattleHits();
+    gBattleHitIterator->info |= BATTLE_HIT_INFO_BEGIN;
+}
+
+static bool DuelHitBufferOverflowed(void)
+{
+    return CheckBattleHitOverflow();
+}
+
+
 static int RunDuelCombatLoop(void)
 {
     const u8 *roundOrder = BattleUnwindConfig[gBattleFlagExt.round_mask];
@@ -826,6 +839,30 @@ static bool TryExecuteComboAttackOnce(
     return false;
 }
 
+bool TryTriggerAccostRoundRepeat(struct BattleUnit * attacker, struct BattleUnit * defender)
+{
+#if defined(SID_Accost) && COMMON_SKILL_VALID(SID_Accost)
+    // Unit must actually have Accost
+    if (!BattleFastSkillTester(attacker, SID_Accost))
+        return false;
+
+    // RN roll based on unit’s skill
+    if (!Roll1RN((attacker->unit.spd - defender->unit.spd) + attacker->unit.curHP/2))
+        return false;
+
+    // Both sides must be able to continue fighting
+    if (!CheckCanContinueAttack(&gBattleActor))
+        return false;
+
+    if (!CheckCanContinueAttack(&gBattleTarget))
+        return false;
+
+    return true;
+#else
+    return false;
+#endif
+}
+
 LYN_REPLACE_CHECK(BattleUnwind);
 void BattleUnwind(void)
 {
@@ -849,14 +886,17 @@ void BattleUnwind(void)
         return;
     }
 
-    const u8 *config = BattleUnwindConfig[gBattleFlagExt.round_mask];
+repeat_full_round:;   // <--- label for Accost repeat
 
+    const u8 *config = BattleUnwindConfig[gBattleFlagExt.round_mask];
     int actor_count  = 0;
     int target_count = 0;
 
 #ifdef CONFIG_USE_COMBO_ATTACK
     bool combo_done = false;
 #endif
+
+    bool round_stopped = false;
 
     for (int i = 0; i < 4; i++)
     {
@@ -869,15 +909,16 @@ void BattleUnwind(void)
         struct BattleUnit *atk = (atkType == ATTACK_ACTOR) ? &gBattleActor : &gBattleTarget;
         struct BattleUnit *def = (atkType == ATTACK_ACTOR) ? &gBattleTarget : &gBattleActor;
 
-        // Check attacker eligibility
         if (!CheckCanContinueAttack(atk))
             continue;
 
         ApplyReturnAttackFlagIfNeeded(atkType);
 
 #ifdef CONFIG_USE_COMBO_ATTACK
-        if (TryExecuteComboAttackOnce(atk, def, &combo_done, &roundStart))
+        if (TryExecuteComboAttackOnce(atk, def, &combo_done, &roundStart)) {
+            round_stopped = true;
             break;
+        }
 #endif
 
         int stop = BattleGenerateRoundHits(atk, def);
@@ -893,9 +934,29 @@ void BattleUnwind(void)
         TryRegisterDesperation(i, config, roundStart);
         TryRegisterForcedDouble(atkType, actor_count, target_count, roundStart);
 
-        if (stop)
+        if (stop) {
+            round_stopped = true;
             break;
+        }
     }
+
+    //---------------------------------------------------------
+    // ACCOST — must occur AFTER a full round is completed
+    //---------------------------------------------------------
+#if defined(SID_Accost) && COMMON_SKILL_VALID(SID_Accost)
+    if (!round_stopped)
+    {
+        bool actor_accost  = TryTriggerAccostRoundRepeat(&gBattleActor, &gBattleTarget);
+        bool target_accost = TryTriggerAccostRoundRepeat(&gBattleTarget, &gBattleActor);
+
+        if (actor_accost || target_accost)
+        {
+            // Repeat the entire round
+            goto repeat_full_round;
+        }
+    }
+#endif
+    //---------------------------------------------------------
 
     MarkBattleEnd();
 }

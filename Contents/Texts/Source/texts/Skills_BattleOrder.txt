@@ -135,9 +135,8 @@ and occur immediately.[X]
 Accost[X]
 ## MSG_SKILL_Accost_DESC
 Accost:[N]
-Engage in up to 8 rounds of combat.[N]
-Conditions: (unitSPD + unitHP/2 ) -[N]
-enemySPD.[X]
+Engage in another round of combat.[N]
+Formula: (unitSPD - enemySPD) + (unitHP/2).[N]
 
 ## MSG_SKILL_Alacrity_NAME
 Alacrity[X]
