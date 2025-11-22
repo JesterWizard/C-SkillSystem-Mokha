@@ -333,8 +333,8 @@
 #define CONFIG_FOURTH_ALLEGIANCE // Run a full make clean every time you toggle this
 
 #ifdef CONFIG_FOURTH_ALLEGIANCE
- 	#define CONFIG_UNIT_AMT_ALLY  35
-	#define CONFIG_UNIT_AMT_FOURTH 16
+ 	#define CONFIG_UNIT_AMT_ALLY  41
+	#define CONFIG_UNIT_AMT_FOURTH 10
 #else
 	#define CONFIG_UNIT_AMT_ALLY  51
 	#define CONFIG_UNIT_AMT_FOURTH 0
