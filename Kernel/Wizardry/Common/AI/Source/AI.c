@@ -172,9 +172,9 @@ void CpOrderBerserkInit(ProcPtr proc)
     u32 faction = gPlaySt.faction;
 
 #ifdef CONFIG_FOURTH_ALLEGIANCE
-    int factionUnitCountLut[4] = { 62, 20, 50, 20 }; // TODO: named constant for those
+    int factionUnitCountLut[4] = { CONFIG_UNIT_AMT_ALLY, CONFIG_UNIT_AMT_NPC, CONFIG_UNIT_AMT_ENEMY, CONFIG_UNIT_AMT_FOURTH }; // TODO: named constant for those
 #else
-    int factionUnitCountLut[3] = { 62, 20, 50 }; // TODO: named constant for those
+    int factionUnitCountLut[3] = { CONFIG_UNIT_AMT_ALLY, CONFIG_UNIT_AMT_NPC, CONFIG_UNIT_AMT_ENEMY }; // TODO: named constant for those
 #endif
 
     for (i = 0; i < factionUnitCountLut[faction >> 6]; ++i)
@@ -301,9 +301,9 @@ int BuildAiUnitList(void)
     u32* prioIt = sUnitPriorityArray;
 
 #ifdef CONFIG_FOURTH_ALLEGIANCE
-    int factionUnitCountLut[4] = { 62, 20, 50, 20 }; // TODO: named constant for those
+    int factionUnitCountLut[4] = { CONFIG_UNIT_AMT_ALLY, CONFIG_UNIT_AMT_NPC, CONFIG_UNIT_AMT_ENEMY, CONFIG_UNIT_AMT_FOURTH }; // TODO: named constant for those
 #else
-    int factionUnitCountLut[3] = { 62, 20, 50 }; // TODO: named constant for those
+    int factionUnitCountLut[3] = { CONFIG_UNIT_AMT_ALLY, CONFIG_UNIT_AMT_NPC, CONFIG_UNIT_AMT_ENEMY }; // TODO: named constant for those
 #endif
 
     for (i = 0; i < factionUnitCountLut[faction >> 6]; ++i)

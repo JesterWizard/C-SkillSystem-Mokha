@@ -127,4 +127,27 @@ struct StatDebuffStatus *const sStatDebuffStatusPool[0x100] = {
 	[FACTION_GREEN + 0x12] = sStatDebuffStatusNpc + 17,
 	[FACTION_GREEN + 0x13] = sStatDebuffStatusNpc + 18,
 	[FACTION_GREEN + 0x14] = sStatDebuffStatusNpc + 19,
+
+#ifdef CONFIG_FOURTH_ALLEGIANCE
+    [FACTION_PURPLE + 0x01] = sStatDebuffStatusFourth + 0,
+    [FACTION_PURPLE + 0x02] = sStatDebuffStatusFourth + 1,
+    [FACTION_PURPLE + 0x03] = sStatDebuffStatusFourth + 2,
+    [FACTION_PURPLE + 0x04] = sStatDebuffStatusFourth + 3,
+    [FACTION_PURPLE + 0x05] = sStatDebuffStatusFourth + 4,
+    [FACTION_PURPLE + 0x06] = sStatDebuffStatusFourth + 5,
+    [FACTION_PURPLE + 0x07] = sStatDebuffStatusFourth + 6,
+    [FACTION_PURPLE + 0x08] = sStatDebuffStatusFourth + 7,
+    [FACTION_PURPLE + 0x09] = sStatDebuffStatusFourth + 8,
+    [FACTION_PURPLE + 0x0A] = sStatDebuffStatusFourth + 9,
+    [FACTION_PURPLE + 0x0B] = sStatDebuffStatusFourth + 10,
+    [FACTION_PURPLE + 0x0C] = sStatDebuffStatusFourth + 11,
+    [FACTION_PURPLE + 0x0D] = sStatDebuffStatusFourth + 12,
+    [FACTION_PURPLE + 0x0E] = sStatDebuffStatusFourth + 13,
+    [FACTION_PURPLE + 0x0F] = sStatDebuffStatusFourth + 14,
+    [FACTION_PURPLE + 0x10] = sStatDebuffStatusFourth + 15,
+    [FACTION_PURPLE + 0x11] = sStatDebuffStatusFourth + 16,
+    [FACTION_PURPLE + 0x12] = sStatDebuffStatusFourth + 17,
+    [FACTION_PURPLE + 0x13] = sStatDebuffStatusFourth + 18,
+    [FACTION_PURPLE + 0x14] = sStatDebuffStatusFourth + 19,
+#endif
 };

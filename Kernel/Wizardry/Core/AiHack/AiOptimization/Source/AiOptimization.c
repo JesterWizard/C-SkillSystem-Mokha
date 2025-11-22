@@ -239,9 +239,16 @@ s8 AiAttemptOffensiveAction(s8 (*isEnemy)(struct Unit *unit))
 
 	struct AiSimuSlotEnt *it, *final_slot = NULL;
 
+	u8 UNIT_AMOUNT = 0xC0;
+
+#ifdef CONFIG_FOURTH_ALLEGIANCE
+	UNIT_AMOUNT = 0xD0;
+#endif
+
 #ifdef CONFIG_PERFORMANCE_OPTIMIZATION
 	int target_count = 0;
 #endif
+
 	int uid;
 	bool ret = 0;
 
@@ -292,7 +299,7 @@ s8 AiAttemptOffensiveAction(s8 (*isEnemy)(struct Unit *unit))
 		move_distance = MovGetter(gActiveUnit) + GetItemMaxRangeRework(item, gActiveUnit);
 #endif
 
-		for (uid = 1; uid < 0xC0; uid++) {
+		for (uid = 1; uid < UNIT_AMOUNT; uid++) {
 			struct Unit *unit = GetUnit(uid);
 
 			if (!UNIT_IS_VALID(unit))

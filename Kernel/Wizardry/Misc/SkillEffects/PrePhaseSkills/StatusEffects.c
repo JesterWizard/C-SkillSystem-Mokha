@@ -13,7 +13,9 @@ struct ProcPrePhaseBoon {
 STATIC_DECLAR void PrePhaseBoon_FindNextCharacter(struct ProcPrePhaseBoon *proc)
 {
 	// FOR_UNITS_ONMAP_FACTION
-	while (++proc->uid < (gPlaySt.faction + 0x40)) {
+
+	for (proc->uid = gPlaySt.faction + 1; proc->uid < gPlaySt.faction + GetFactionUnitAmount(gPlaySt.faction); proc->uid++)
+	{
 		struct Unit *unit = GetUnit(proc->uid);
 
 		if (!UnitOnMapAvaliable(unit))
@@ -26,6 +28,7 @@ STATIC_DECLAR void PrePhaseBoon_FindNextCharacter(struct ProcPrePhaseBoon *proc)
 		}
 #endif
 	}
+
 	Proc_Goto(proc, 99);
 }
 

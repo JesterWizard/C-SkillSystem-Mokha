@@ -163,19 +163,25 @@ struct Unit* LoadUnit(const struct UnitDefinition* uDef) {
 
     switch (uDef->allegiance) {
 
-        // TODO: unit definition faction constants
+    // TODO: unit definition faction constants
 
     case 0:
         unit = GetFreeBlueUnit(uDef);
+        break;
+
+    case 1:
+        unit = GetFreeUnit(FACTION_GREEN);
         break;
 
     case 2:
         unit = GetFreeUnit(FACTION_RED);
         break;
 
-    case 1:
-        unit = GetFreeUnit(FACTION_GREEN);
+#ifdef CONFIG_FOURTH_ALLEGIANCE
+    case 3:
+        unit = GetFreeUnit(FACTION_PURPLE);
         break;
+#endif
 
     } // switch (uDef->allegiance)
 

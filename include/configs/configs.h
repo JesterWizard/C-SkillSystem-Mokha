@@ -329,9 +329,18 @@
 /**
  * Unit amount, since it is hard to modify, it is recommanded not change this value
  */
-#define CONFIG_UNIT_AMT_ALLY  51
+
+#define CONFIG_FOURTH_ALLEGIANCE
+
+#ifdef CONFIG_FOURTH_ALLEGIANCE
+ 	#define CONFIG_UNIT_AMT_ALLY  35
+#else
+	#define CONFIG_UNIT_AMT_ALLY  51
+#endif
+
 #define CONFIG_UNIT_AMT_ENEMY 50
 #define CONFIG_UNIT_AMT_NPC   8
+#define CONFIG_UNIT_AMT_FOURTH 16
 
 #define CONFIG_VESLY_DEBUGGER
 
@@ -489,6 +498,6 @@
 
 // #define CONFIG_ANIMA_WEAPON_TRIANGLE
 
-#define CONFIG_UNLOCK_SUPPORT_CONVO_LIMIT 10 // Supports up to a maximum of 10 conversations, still only 1 A this breaks the MP system. More investigation needed.
+#define CONFIG_UNLOCK_SUPPORT_CONVO_LIMIT 10
 
 #endif /* CONFIG_INSTALLED */

@@ -162,7 +162,9 @@ struct PlaySt_OptionBits {
 
     u32 debugControlRed:2; // 2 (!)
     u32 debugControlGreen:2; // 2
-    u32 unk43_4:5; // unk
+
+    u32 debugControlPurple: 2;
+    u32 unk43_4:3; // I'm not sure if reducing this from 5 -> 3 has negative implications
 
     u8  unk44[0x48 - 0x44];
 } BITPACKED;

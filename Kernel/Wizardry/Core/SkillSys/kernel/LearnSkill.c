@@ -5,7 +5,7 @@
 #include "constants/skills.h"
 #include "constants/texts.h"
 struct LearnedSkillList {
-    u32 data[8]; // 32 * 32 = 1024 bits needed for 10-bit skill IDs
+    u32 data[8];
 };
 
 extern struct LearnedSkillList sLearnedSkillPLists[NEW_BWL_ARRAY_NUM];

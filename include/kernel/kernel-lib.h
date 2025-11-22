@@ -167,13 +167,24 @@ bool IsUnitStruct(struct Unit *maybe_unit);
 /**
  * faction
  */
-#define GetFactionUnitAmount(faction) \
-( \
-	(faction) == FACTION_BLUE  ? CONFIG_UNIT_AMT_ALLY  : \
-	(faction) == FACTION_RED   ? CONFIG_UNIT_AMT_ENEMY : \
-	(faction) == FACTION_GREEN ? CONFIG_UNIT_AMT_NPC   : \
-	0 \
-)
+#ifdef CONFIG_FOURTH_ALLEGIANCE
+	#define GetFactionUnitAmount(faction)                       \
+	(                                                           \
+		(faction) == FACTION_BLUE   ? CONFIG_UNIT_AMT_ALLY    : \
+		(faction) == FACTION_RED    ? CONFIG_UNIT_AMT_ENEMY   : \
+		(faction) == FACTION_GREEN  ? CONFIG_UNIT_AMT_NPC     : \
+		(faction) == FACTION_PURPLE ? CONFIG_UNIT_AMT_FOURTH  : \
+		0                                                       \
+	)
+#else
+	#define GetFactionUnitAmount(faction)                       \
+	(                                                           \
+		(faction) == FACTION_BLUE   ? CONFIG_UNIT_AMT_ALLY    : \
+		(faction) == FACTION_RED    ? CONFIG_UNIT_AMT_ENEMY   : \
+		(faction) == FACTION_GREEN  ? CONFIG_UNIT_AMT_NPC     : \
+		0                                                       \
+	)
+#endif
 
 // Maybe there could be an external "FOR_UNITS" macro
 #undef FOR_UNITS
@@ -212,11 +223,23 @@ bool IsUnitStruct(struct Unit *maybe_unit);
 #define FOR_UNITS_VALID_FACTION(faction, var_name, body) \
 	FOR_UNITS_VALID(faction + 1, faction + 0x40, var_name, body)
 
-#define FOR_UNITS_ONMAP_ALL(var_name, body) \
-	FOR_UNITS_ONMAP(1, 0xC0, var_name, body)
+#ifdef CONFIG_FOURTH_ALLEGIANCE
 
-#define FOR_UNITS_VALID_ALL(var_name, body) \
-	FOR_UNITS_VALID(1, 0xC0, var_name, body)
+	#define FOR_UNITS_ONMAP_ALL(var_name, body) \
+		FOR_UNITS_ONMAP(1, 0xD0, var_name, body)
+
+	#define FOR_UNITS_VALID_ALL(var_name, body) \
+		FOR_UNITS_VALID(1, 0xD0, var_name, body)
+
+#else
+
+	#define FOR_UNITS_ONMAP_ALL(var_name, body) \
+		FOR_UNITS_ONMAP(1, 0xC0, var_name, body)
+
+	#define FOR_UNITS_VALID_ALL(var_name, body) \
+		FOR_UNITS_VALID(1, 0xC0, var_name, body)
+
+#endif
 
 int GetUidFaction(u8 uid);
 int GetUnitFaction(struct Unit *unit);
