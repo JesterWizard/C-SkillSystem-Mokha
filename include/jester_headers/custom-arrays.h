@@ -12,6 +12,7 @@ extern const struct SoundRoomEnt gSoundRoomTable_NEW[];
 
 struct MpSystemPInfoConfig 
 { 
+    u8 initialMP;
     u8 idleGeneration; 
     u8 battleGeneration;
     u8 killGeneration;

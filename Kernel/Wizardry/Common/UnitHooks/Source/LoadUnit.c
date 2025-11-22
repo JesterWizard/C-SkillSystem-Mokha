@@ -31,6 +31,7 @@ void UnitLoadStatsFromChracterVanilla(struct Unit* unit, const struct CharacterD
 
     if (bwl != NULL)
     {
+        bwl->currentMP = gMpSystemPInfoConfigList[UNIT_CHAR_ID(unit)].initialMP; 
         bwl->maxMP = gMpSystemPInfoConfigList[UNIT_CHAR_ID(unit)].maxMP;
 
 #if defined(SID_ManaRush) && (COMMON_SKILL_VALID(SID_ManaRush))
