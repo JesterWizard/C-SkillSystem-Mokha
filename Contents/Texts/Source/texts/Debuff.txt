@@ -1,82 +1,77 @@
 ## MSG_DEBUFF_PIERCE_ARMOR_NAME
 Def-[X]
 ## MSG_DEBUFF_PIERCE_ARMOR_DESC
-Armor pierced: Def-5[X]
+Def-5[X]
 
 ## MSG_DEBUFF_PIERCE_MAGIC_NAME
 Res-[X]
 ## MSG_DEBUFF_PIERCE_MAGIC_DESC
-Pierce magic: RES -5[X]
+RES -5[X]
 
 ## MSG_DEBUFF_HEAVY_GRAVITY_NAME
 Mov-[X]
 ## MSG_DEBUFF_HEAVY_GRAVITY_DESC
-Heavy Gravity: Cannot move[X]
+Unit cannot move[X]
 
 ## MSG_DEBUFF_WEAKEN_NAME
 Weaken[X]
 ## MSG_DEBUFF_WEAKEN_DESC
-Weaken: POW -5, MAG -5[X]
+POW -5, MAG -5[X]
 
 ## MSG_DEBUFF_AVOID_NAME
 Avoid[X]
 ## MSG_DEBUFF_AVOID_DESC
-Avoid: AVO + 15%[X]
+AVO + 15%[X]
 
 ## MSG_DEBUFF_AVOID_PLUS_NAME
 Avoid+[X]
 ## MSG_DEBUFF_AVOID_PLUS_DESC
-Avoid+: AVO + 30%[X]
+AVO + 30%[X]
 
 ## MSG_DEBUFF_PANIC_NAME
 Panic[X]
 ## MSG_DEBUFF_PANIC_DESC
-Panic: Invert any stat buffs[N]
+Invert any stat buffs[N]
 this unit may have.[X]
 
 ## MSG_DEBUFF_BREAK_NAME
 Break[X]
 ## MSG_DEBUFF_BREAK_DESC
-Break: Disarm enemy unit[X]
+Disarm enemy unit[X]
 
 ## MSG_DEBUFF_TOXIC_NAME
 Toxic[X]
 ## MSG_DEBUFF_TOXIC_DESC
-Toxic: Infict 10% (times[N]
-elapsed turns) of remaining[N]
-HP as damage each turn.[X]
+Infict 10% (times elapsed[N]
+turns) of remaining HP[N]
+as damage each turn.[X]
 
 ## MSG_DEBUFF_DECOY_NAME
 Decoy[X]
 ## MSG_DEBUFF_DECOY_DESC
-Decoy:[N]
 Enemy units will move to[NL]
 attack this unit.[X]
 
 ## MSG_DEBUFF_DOOM_NAME
 Doom[X]
 ## MSG_DEBUFF_DOOM_DESC
-Doom:[N]
 Unit dies when this[N]
 status wears off.[X]
 
 ## MSG_DEBUFF_HIDE_NAME
 Hide[X]
 ## MSG_DEBUFF_HIDE_DESC
-Hide:[N]
 This unit is hidden[N]
 from enemy view.[X]
 
 ## MSG_DEBUFF_SLOW_NAME
 Slow[X]
 ## MSG_DEBUFF_SLOW_DESC
-Slow:[N]
 Movement is halved.[X]
 
 ## MSG_DEBUFF_DISMOUNT_NAME
 Dismount[X]
 ## MSG_DEBUFF_DISMOUNT_DESC
-Dismount:[N]
 Unit temporarily ignore stat caps[N]
 because it's needed for a skill[N]
 with the same name.[X]
@@ -84,34 +79,29 @@ with the same name.[X]
 ## MSG_DEBUFF_SHOCK_NAME
 Shock[X]
 ## MSG_DEBUFF_SHOCK_DESC
-Shock:[N]
 Unit's avoidance is set to 0.[X]
 
 ## MSG_DEBUFF_REPLICATE_NAME
 Replicate[X]
 ## MSG_DEBUFF_REPLICATE_DESC
-Replicate:[N]
 This unit is a copy and transfers[N]
 all earned experience to the original.[X]
 
 ## MSG_DEBUFF_DEFAULT_NAME
 Default[X]
 ## MSG_DEBUFF_DEFAULT_DESC
-Default:[N]
 Reduce incoming damage by 25%[N]
 while you build usable turns.[X]
 
 ## MSG_DEBUFF_CAVALRY_EFFECTIVE_NAME
 CavEff[X]
 ## MSG_DEBUFF_CAVALRY_EFFECTIVE_DESC
-Cavalry Effective:[N]
 Deal effective damage to[N]
 cavalry units.[X]
 
 ## MSG_DEBUFF_ARMOR_EFFECTIVE_NAME
 ArmEff[X]
 ## MSG_DEBUFF_ARMOR_EFFECTIVE_DESC
-Armor Effective:[N]
 Deal effective damage to[N]
 armored units.[X]
 
@@ -125,7 +115,6 @@ flying units.[X]
 ## MSG_DEBUFF_INFANTRY_EFFECTIVE_NAME
 InfEff[X]
 ## MSG_DEBUFF_INFANTRY_EFFECTIVE_DESC
-Infantry Effective:[N]
 Deal effective damage to[N]
 infantry units.[X]
 
@@ -135,14 +124,12 @@ Sleep[X]
 ## MSG_DEBUFF_ENFEEBLE_NAME
 Enfeeble[X]
 ## MSG_DEBUFF_ENFEEBLE_DESC
-Enfeeble:[N]
 Reduce all stats by remaining[N]
 status duration * 2.[X]
 
 ## MSG_DEBUFF_PROVIDENCE_NAME
 Providence[X]
 ## MSG_DEBUFF_PROVIDENCE_DESC
-Providence:[N]
 Unit will survive the next lethal[N]
 attack at 1 HP. Status wears off[N]
 after the effect triggers.[X]
@@ -150,31 +137,26 @@ after the effect triggers.[X]
 ## MSG_DEBUFF_BOUND_NAME
 Bound[X]
 ## MSG_DEBUFF_BOUND_DESC
-Bound:[N]
 Unit is unable to attack with[N]
 physical weapons.[X]
 
 ## MSG_DEBUFF_HEX_NAME
 Hex[X]
 ## MSG_DEBUFF_HEX_DESC
-Hex:[N]
 Max HP reduced by half.[X]
 
 ## MSG_DEBUFF_QUICKEN_NAME
 Quicken[X]
 ## MSG_DEBUFF_QUICKEN_DESC
-Quicken:[N]
 The unit attacks as if they're[N]
 using a brave weapon (double attacks).[X]
 
 ## MSG_DEBUFF_DELAY_NAME
 Delay[X]
 ## MSG_DEBUFF_DELAY_DESC
-Delay:[N]
 This unit cannot double.[X]
 
 ## MSG_DEBUFF_RENEWAL_NAME
 Renewal[X]
 ## MSG_DEBUFF_RENEWAL_DESC
-Renewal:[N]
 Regain 30% of max HP each turn.[X]
