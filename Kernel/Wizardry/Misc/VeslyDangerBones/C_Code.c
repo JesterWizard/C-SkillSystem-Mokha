@@ -78,10 +78,12 @@ int GetUnitDisplayedSpritePalette_FE6(const struct Unit * unit)
 extern const u16 gPal_DangerBones[];
 void SetDangerBonesPalette(void)
 {
+#ifndef CONFIG_FOURTH_ALLEGIANCE
     if (Pal_4th)
     {
         CopyToPaletteBuffer(gPal_DangerBones, 0x1B * 0x20, 0x20);
     }
+#endif
 }
 
 // #define EMPTY_BmUnit

@@ -51,18 +51,8 @@ gEmsSavChunks:
 #endif
 
     EmsChunk($0010, EMS_SavePlayStExpa, EMS_LoadPlayStExpa)
-
-#ifdef CONFIG_FOURTH_ALLEGIANCE
-    /* 35 * 0x2C */
-    EmsChunk($0604, MSA_SaveUnits, MSA_LoadUnits, EMS_CHUNK_SAVEUNITS)
-    /* 35 * 0x20 */
-    EmsChunk($0460, SaveUnitLearnedSkillLists, LoadUnitLearnedSkillLists)
-#else
-    /* 51 * 0x2C */
-    EmsChunk($08C4, MSA_SaveUnits, MSA_LoadUnits, EMS_CHUNK_SAVEUNITS)
-    /* 51 * 0x20 */
-    EmsChunk($0660, SaveUnitLearnedSkillLists, LoadUnitLearnedSkillLists)
-#endif
+    EmsChunk(CONFIG_UNIT_AMT_ALLY * 0x2C, MSA_SaveUnits, MSA_LoadUnits, EMS_CHUNK_SAVEUNITS)
+    EmsChunk(CONFIG_UNIT_AMT_ALLY * 0x20, SaveUnitLearnedSkillLists, LoadUnitLearnedSkillLists)
 
     EmsChunk($0018, EMS_SaveKTutorialFlags, EMS_LoadKTutorialFlags)
     EmsChunk(110 * 4, MSU_SaveDemoUnitExpa, MSU_LoadDemoUnitExpa)
@@ -93,41 +83,21 @@ gEmsSusChunks:
 #endif
 
     EmsChunk($0010, EMS_SavePlayStExpa, EMS_LoadPlayStExpa)
-#ifdef CONFIG_FOURTH_ALLEGIANCE
-    EmsChunk(35 * 0x34, MSU_SaveBlueUnits,  MSU_LoadBlueUnits, EMS_CHUNK_SAVEUNITS)
-#else
-    EmsChunk(51 * 0x34, MSU_SaveBlueUnits,  MSU_LoadBlueUnits, EMS_CHUNK_SAVEUNITS)
-#endif
-    EmsChunk(50 * 0x34, MSU_SaveRedUnits,   MSU_LoadRedUnits)
-    EmsChunk(8  * 0x34, MSU_SaveGreenUnits, MSU_LoadGreenUnits)
+    EmsChunk(CONFIG_UNIT_AMT_ALLY * 0x34, MSU_SaveBlueUnits,  MSU_LoadBlueUnits, EMS_CHUNK_SAVEUNITS)
+    EmsChunk(CONFIG_UNIT_AMT_ENEMY * 0x34, MSU_SaveRedUnits,   MSU_LoadRedUnits)
+    EmsChunk(CONFIG_UNIT_AMT_NPC  * 0x34, MSU_SaveGreenUnits, MSU_LoadGreenUnits)
+    EmsChunk(CONFIG_UNIT_AMT_FOURTH  * 0x34, MSU_SavePurpleUnits, MSU_LoadPurpleUnits)
 
-#ifdef CONFIG_FOURTH_ALLEGIANCE
-    EmsChunk(16  * 0x34, MSU_SavePurpleUnits, MSU_LoadPurpleUnits)
-#endif
+    EmsChunk(CONFIG_UNIT_AMT_ALLY * 0x20, SaveUnitLearnedSkillLists, LoadUnitLearnedSkillLists)
+    EmsChunk(CONFIG_UNIT_AMT_ENEMY * 4, MSU_SaveRedUnitExtSkills, MSU_LoadRedUnitExtSkills)
+    EmsChunk(CONFIG_UNIT_AMT_NPC * 4, MSU_SaveGreenUnitExtSkills, MSU_LoadGreenUnitExtSkills)
+    EmsChunk(CONFIG_UNIT_AMT_FOURTH * 4, MSU_SavePurpleUnitExtSkills, MSU_LoadPurpleUnitExtSkills)
 
-    EmsChunk(50 * 4, MSU_SaveRedUnitExtSkills, MSU_LoadRedUnitExtSkills)
-    EmsChunk(8 * 4, MSU_SaveGreenUnitExtSkills, MSU_LoadGreenUnitExtSkills)
-
-#ifdef CONFIG_FOURTH_ALLEGIANCE
-    EmsChunk(16 * 4, MSU_SavePurpleUnitExtSkills, MSU_LoadPurpleUnitExtSkills)
-#endif
-
-#ifdef CONFIG_FOURTH_ALLEGIANCE
-    /* 35 * 0x20 */
-    EmsChunk($0460, SaveUnitLearnedSkillLists, LoadUnitLearnedSkillLists)
-#else
-    /* 51 * 0x20 */
-    EmsChunk($0660, SaveUnitLearnedSkillLists, LoadUnitLearnedSkillLists)
-#endif
     EmsChunk($0020, SaveCombatArtStatus, LoadCombatArtStatus)
     EmsChunk($0008, SaveRandC, LoadRandC)
     EmsChunk($0008, MSU_SaveSelectionPos, MSU_LoadSelectionPos)
     EmsChunk($0018, EMS_SaveKTutorialFlags, EMS_LoadKTutorialFlags)
-#ifdef CONFIG_FOURTH_ALLEGIANCE
-    EmsChunk((35 + 50 + 8 + 16) * 16, MSU_SaveStatDebuff, MSU_LoadStatDebuff)
-#else
-    EmsChunk((51 + 50 + 8) * 16, MSU_SaveStatDebuff, MSU_LoadStatDebuff)
-#endif
+    EmsChunk((CONFIG_UNIT_AMT_ALLY + CONFIG_UNIT_AMT_ENEMY + CONFIG_UNIT_AMT_NPC + CONFIG_UNIT_AMT_FOURTH) * 16, MSU_SaveStatDebuff, MSU_LoadStatDebuff)
     EmsChunk(110 * 4, MSU_SaveDemoUnitExpa, MSU_LoadDemoUnitExpa)
 
     EmsChunk(20 * 4, EMS_SaveSkillDbgList, EMS_LoadSkillDbgList)

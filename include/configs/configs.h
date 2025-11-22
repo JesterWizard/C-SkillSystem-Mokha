@@ -330,17 +330,18 @@
  * Unit amount, since it is hard to modify, it is recommanded not change this value
  */
 
-#define CONFIG_FOURTH_ALLEGIANCE
+#define CONFIG_FOURTH_ALLEGIANCE // Run a full make clean every time you toggle this
 
 #ifdef CONFIG_FOURTH_ALLEGIANCE
  	#define CONFIG_UNIT_AMT_ALLY  35
+	#define CONFIG_UNIT_AMT_FOURTH 16
 #else
 	#define CONFIG_UNIT_AMT_ALLY  51
+	#define CONFIG_UNIT_AMT_FOURTH 0
 #endif
 
 #define CONFIG_UNIT_AMT_ENEMY 50
 #define CONFIG_UNIT_AMT_NPC   8
-#define CONFIG_UNIT_AMT_FOURTH 16
 
 #define CONFIG_VESLY_DEBUGGER
 
