@@ -65,7 +65,7 @@ void PrePhase_ApplyMpStartingAmount(ProcPtr proc)
 
 			if (UNIT_IS_VALID(unit) && bwl != NULL)
 			{
-				if (gPlaySt.chapterTurnNumber == 1)
+				if (gPlaySt.chapterTurnNumber == 1 && bwl->currentMP == 0)
 					bwl->currentMP = gMpSystemPInfoConfigList[unit_id].initialMP;
 
 #if defined(SID_MPChanneling) && (COMMON_SKILL_VALID(SID_MPChanneling))
