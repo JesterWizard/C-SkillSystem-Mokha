@@ -65,13 +65,16 @@ void PrePhase_ApplyMpStartingAmount(ProcPtr proc)
 
 			if (UNIT_IS_VALID(unit) && bwl != NULL)
 			{
+				if (gPlaySt.chapterTurnNumber == 1)
+					bwl->currentMP = gMpSystemPInfoConfigList[unit_id].initialMP;
+
 #if defined(SID_MPChanneling) && (COMMON_SKILL_VALID(SID_MPChanneling))
 				if (SkillTester(unit, SID_MPChanneling))
 					bwl->currentMP += gMpSystemPInfoConfigList[unit_id].idleGeneration * 2;
 				else
 					bwl->currentMP += gMpSystemPInfoConfigList[unit_id].idleGeneration;
 #else
-				bwl->currentMP += gMpSystemPInfoConfigList[unit_id].generationRate;
+				bwl->currentMP += gMpSystemPInfoConfigList[unit_id].idleGeneration;
 #endif
 			}
 

@@ -30,7 +30,7 @@ const struct MpSystemPInfoConfig gMpSystemPInfoConfigList[0x100] = {
 	},
 	[CHARACTER_FRANZ] = {
 		.initialMP = 0,
-		.idleGeneration = 11,
+		.idleGeneration = 2,
 		.battleGeneration = 2,
 		.killGeneration = 5,
 		.maxMP = 22,
